@@ -1,0 +1,424 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "dockerfile",
+  "image_digest": "sha256:ac8cfad6ae55bfdf313926d2f25c71978cc62146b92290da82ecce2d756143cd",
+  "duration_s": 9.44,
+  "log_tail": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile.ctk\n#1 transferring dockerfile: 796B done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/ctk-exec-base/nikto:999670cb6a93\n#2 DONE 0.0s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 133B done\n#3 DONE 0.0s\n\n#4 [1/5] FROM docker.io/ctk-exec-base/nikto:999670cb6a93@sha256:df5d31b99895addf07690bb40239b4319335ade192ba445faa509e1dda46622d\n#4 resolve docker.io/ctk-exec-base/nikto:999670cb6a93@sha256:df5d31b99895addf07690bb40239b4319335ade192ba445faa509e1dda46622d 0.0s done\n#4 DONE 0.0s\n\n#5 [internal] load build context\n#5 transferring context: 21.76kB done\n#5 DONE 0.0s\n\n#6 [2/5] RUN ((apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less && rm -rf /var/lib/apt/lists/*) ||      (apk add --no-cache python3 mandoc less) ||      (dnf install -y python3 man-db less) ||      true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in upstream image\" >&2; exit 1)\n#6 CACHED\n\n#7 [4/5] COPY helptext.py /opt/ctk/helptext.py\n#7 CACHED\n\n#8 [3/5] COPY agent.py /opt/ctk/agent.py\n#8 CACHED\n\n#9 [5/5] RUN (useradd -u 65532 -m -s /usr/sbin/nologin ctk || adduser -D -u 65532 -s /usr/sbin/nologin ctk || true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in image\" >&2; exit 1)\n#9 CACHED\n\n#10 exporting to image\n#10 exporting layers done\n#10 exporting manifest sha256:7865735351f9df0bbba696d851eba82da81566da448b4c033245792f3e3c80ab done\n#10 exporting config sha256:e4a10213aa46c70e0f7b3cfe7e1f6fe30f85692739d08630598d0c9bc600243e done\n#10 exporting attestation manifest sha256:8a67e1b8fb4259f0aa4a8d5a000e08b9e099fc544dbb656e407f36394f3f7f20 0.0s done\n#10 exporting manifest list sha256:ac8cfad6ae55bfdf313926d2f25c71978cc62146b92290da82ecce2d756143cd\n#10 exporting manifest list sha256:ac8cfad6ae55bfdf313926d2f25c71978cc62146b92290da82ecce2d756143cd 0.0s done\n#10 naming to docker.io/ctk-exec/nikto:999670cb6a93 done\n#10 unpacking to docker.io/ctk-exec/nikto:999670cb6a93\n#10 unpacking to docker.io/ctk-exec/nikto:999670cb6a93 0.2s done\n#10 DONE 0.3s",
+  "error": null
+ },
+ "captures": [
+  {
+   "argv": [
+    "nikto.pl",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n   Options:\n       -Add-header         Add HTTP headers (can be used multiple times, one per header pair)\n       -ask+               Whether to ask about submitting updates\n                               yes   Ask about each (default)\n                               no    Don't ask, don't send\n                               auto  Don't ask, just send\n       -check6             Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)\n       -Cgidirs+           Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"\n       -config+            Use this config file\n       -Display+           Turn on/off display outputs:\n                               1     Show redirects\n                               2     Show cookies received\n                               3     Show all 200/OK responses\n                               4     Show URLs which require authentication\n                               D     Debug output\n                               E     Display all HTTP errors\n                               P     Print progress to STDOUT\n                               S     Scrub output of IPs and hostnames\n                               V     Verbose output\n       -dbcheck           Check database and other key files for syntax errors\n       -evasion+          Encoding technique:\n                               1     Random URI encoding (non-UTF8)\n                               2     Directory self-reference (/./)\n                               3     Premature URL ending\n                               4     Prepend long random string\n                               5     Fake parameter\n                               6     TAB as request spacer\n                               7     Change the case of the URL\n                               8     Use Windows directory separator (\\)\n                               A     Use a carriage return (0x0d) as a request spacer\n                               B     Use binary value 0x0b as a request spacer\n        -followredirects   Follow 3xx redirects to new location\n        -Format+           Save file (-o) format:\n                               csv   Comma-separated-value\n                               json  JSON Format\n                               htm   HTML Format\n                               sql   Generic SQL (see docs for schema)\n                               txt   Plain text\n                               xml   XML Format\n                               (if not specified the format will be taken from the file extension passed to -output)\n       -Help              This help information\n       -host+             Target host/URL\n       -id+               Host authentication to use, format is id:pass or id:pass:realm\n       -ipv4                 IPv4 Only\n       -ipv6                 IPv6 Only\n       -key+              Client certificate key file\n       -list-plugins      List all available plugins, perform no testing\n       -maxtime+          Maximum testing time per host (e.g., 1h, 60m, 3600s)\n       -mutate+           Guess additional file names:\n                               1     Test all files with all root directories\n                               2     Guess for password file names\n                               3     Enumerate user names via Apache (/~user type requests)\n                               4     Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)\n                               6     Attempt to guess directory names from the supplied dictionary file\n       -mutate-options    Provide information for mutates\n       -nocheck           Don't check for updates on startup\n       -nocookies         Do not use cookies from responses in requests\n       -nointeractive     Disables interactive features\n       -nolookup          Disables DNS lookups\n       -nossl             Disables the use of SSL\n       -noslash           Strip trailing slash from URL (e.g., '/admin/' to '/admin')\n       -no404             Disables nikto attempting to guess a 404 page\n       -Option            Over-ride an option in nikto.conf, can be issued multiple times\n       -output+           Write output to this file ('.' for auto-name)\n       -Pause+            Pause between tests (seconds)\n       -Platform+         Platform of target (nix, win, all)\n       -Plugins+          List of plugins to run (default: ALL)\n       -port+             Port to use (default 80)\n       -RSAcert+          Client certificate file\n       -root+             Prepend root value to all requests, format is /directory\n       -Save              Save positive responses to this directory ('.' for auto-name)\n       -ssl               Force ssl mode on port\n       -Tuning+           Scan tuning:\n                               1     Interesting File / Seen in logs\n                               2     Misconfiguration / Default File\n                               3     Information Disclosure\n                               4     Injection (XSS/Script/HTML)\n                               5     Remote File Retrieval - Inside Web Root\n                               6     Denial of Service\n                               7     Remote File Retrieval - Server Wide\n                               8     Command Execution / Remote Shell\n                               9     SQL Injection\n                               0     File Upload\n                               a     Authentication Bypass\n                               b     Software Identification\n                               c     Remote Source Inclusion\n                               d     WebService\n                               e     Administrative Console\n                               x     Reverse Tuning Options (i.e., include all except specified)\n       -timeout+          Timeout for requests (default 10 seconds)\n       -Userdbs           Load only user databases, not the standard databases\n                               all   Disable standard dbs and load only user dbs\n                               tests Disable only db_tests and load udb_tests\n       -useragent         Force User-Agent instead of pulling from database\n       -url+              Target host/URL (alias of -host)\n       -useproxy          Use the proxy defined in nikto.conf, or argument http://server:port\n       -Version           Print plugin and database versions\n       -vhost+            Virtual host (for Host header)\n       -404code           Ignore these HTTP codes as negative responses (always). Format is \"302,301\".\n       -404string         Ignore this string in response body content as negative response (always). Can be a regular expression.\n   \t\t+ requires a value\n\n",
+   "stderr": "Unknown option: help\n",
+   "duration_ms": 68,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nikto.pl"
+   ],
+   "exit_code": 5,
+   "stdout": "",
+   "stderr": "man: No entry for nikto.pl in the manual.\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nikto.pl"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'info'",
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "nikto.pl",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "-Add-header": "Add HTTP headers (can be used multiple times, one per header pair)",
+   "-ask": "Whether to ask about submitting updates",
+   "-check6": "Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)",
+   "-Cgidirs": "Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"",
+   "-config": "Use this config file",
+   "-Display": "Turn on/off display outputs:",
+   "-dbcheck": "Check database and other key files for syntax errors",
+   "-evasion": "Encoding technique:",
+   "-followredirects": "Follow 3xx redirects to new location",
+   "-Format": "Save file (-o) format:",
+   "-Help": "This help information",
+   "-host": "Target host/URL",
+   "-id": "Host authentication to use, format is id:pass or id:pass:realm",
+   "-ipv4": "IPv4 Only",
+   "-ipv6": "IPv6 Only",
+   "-key": "Client certificate key file",
+   "-list-plugins": "List all available plugins, perform no testing",
+   "-maxtime": "Maximum testing time per host (e.g., 1h, 60m, 3600s)",
+   "-mutate": "Guess additional file names:",
+   "-mutate-options": "Provide information for mutates",
+   "-nocheck": "Don't check for updates on startup",
+   "-nocookies": "Do not use cookies from responses in requests",
+   "-nointeractive": "Disables interactive features",
+   "-nolookup": "Disables DNS lookups",
+   "-nossl": "Disables the use of SSL",
+   "-noslash": "Strip trailing slash from URL (e.g., '/admin/' to '/admin')",
+   "-no404": "Disables nikto attempting to guess a 404 page",
+   "-Option": "Over-ride an option in nikto.conf, can be issued multiple times",
+   "-output": "Write output to this file ('.' for auto-name)",
+   "-Pause": "Pause between tests (seconds)",
+   "-Platform": "Platform of target (nix, win, all)",
+   "-Plugins": "List of plugins to run (default: ALL)",
+   "-port": "Port to use (default 80)",
+   "-RSAcert": "Client certificate file",
+   "-root": "Prepend root value to all requests, format is /directory",
+   "-Save": "Save positive responses to this directory ('.' for auto-name)",
+   "-ssl": "Force ssl mode on port",
+   "-Tuning": "Scan tuning:",
+   "-timeout": "Timeout for requests (default 10 seconds)",
+   "-Userdbs": "Load only user databases, not the standard databases",
+   "-useragent": "Force User-Agent instead of pulling from database",
+   "-url": "Target host/URL (alias of -host)",
+   "-useproxy": "Use the proxy defined in nikto.conf, or argument http://server:port",
+   "-Version": "Print plugin and database versions",
+   "-vhost": "Virtual host (for Host header)",
+   "-404code": "Ignore these HTTP codes as negative responses (always). Format is \"302,301\".",
+   "-404string": "Ignore this string in response body content as negative response (always). Can be a regular expression."
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "c07975c0f17e9ba2b315f010a3c6ed6b15d9602e09d099ed277b913238392720",
+  "text": "\n   Options:\n       -Add-header         Add HTTP headers (can be used multiple times, one per header pair)\n       -ask+               Whether to ask about submitting updates\n                               yes   Ask about each (default)\n                               no    Don't ask, don't send\n                               auto  Don't ask, just send\n       -check6             Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)\n       -Cgidirs+           Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"\n       -config+            Use this config file\n       -Display+           Turn on/off display outputs:\n                               1     Show redirects\n                               2     Show cookies received\n                               3     Show all 200/OK responses\n                               4     Show URLs which require authentication\n                               D     Debug output\n                               E     Display all HTTP errors\n                               P     Print progress to STDOUT\n                               S     Scrub output of IPs and hostnames\n                               V     Verbose output\n       -dbcheck           Check database and other key files for syntax errors\n       -evasion+          Encoding technique:\n                               1     Random URI encoding (non-UTF8)\n                               2     Directory self-reference (/./)\n                               3     Premature URL ending\n                               4     Prepend long random string\n                               5     Fake parameter\n                               6     TAB as request spacer\n                               7     Change the case of the URL\n                               8     Use Windows directory separator (\\)\n                               A     Use a carriage return (0x0d) as a request spacer\n                               B     Use binary value 0x0b as a request spacer\n        -followredirects   Follow 3xx redirects to new location\n        -Format+           Save file (-o) format:\n                               csv   Comma-separated-value\n                               json  JSON Format\n                               htm   HTML Format\n                               sql   Generic SQL (see docs for schema)\n                               txt   Plain text\n                               xml   XML Format\n                               (if not specified the format will be taken from the file extension passed to -output)\n       -Help              This help information\n       -host+             Target host/URL\n       -id+               Host authentication to use, format is id:pass or id:pass:realm\n       -ipv4                 IPv4 Only\n       -ipv6                 IPv6 Only\n       -key+              Client certificate key file\n       -list-plugins      List all available plugins, perform no testing\n       -maxtime+          Maximum testing time per host (e.g., 1h, 60m, 3600s)\n       -mutate+           Guess additional file names:\n                               1     Test all files with all root directories\n                               2     Guess for password file names\n                               3     Enumerate user names via Apache (/~user type requests)\n                               4     Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)\n                               6     Attempt to guess directory names from the supplied dictionary file\n       -mutate-options    Provide information for mutates\n       -nocheck           Don't check for updates on startup\n       -nocookies         Do not use cookies from responses in requests\n       -nointeractive     Disables interactive features\n       -nolookup          Disables DNS lookups\n       -nossl             Disables the use of SSL\n       -noslash           Strip trailing slash from URL (e.g., '/admin/' to '/admin')\n       -no404             Disables nikto attempting to guess a 404 page\n       -Option            Over-ride an option in nikto.conf, can be issued multiple times\n       -output+           Write output to this file ('.' for auto-name)\n       -Pause+            Pause between tests (seconds)\n       -Platform+         Platform of target (nix, win, all)\n       -Plugins+          List of plugins to run (default: ALL)\n       -port+             Port to use (default 80)\n       -RSAcert+          Client certificate file\n       -root+             Prepend root value to all requests, format is /directory\n       -Save              Save positive responses to this directory ('.' for auto-name)\n       -ssl               Force ssl mode on port\n       -Tuning+           Scan tuning:\n                               1     Interesting File / Seen in logs\n                               2     Misconfiguration / Default File\n                               3     Information Disclosure\n                               4     Injection (XSS/Script/HTML)\n                               5     Remote File Retrieval - Inside Web Root\n                               6     Denial of Service\n                               7     Remote File Retrieval - Server Wide\n                               8     Command Execution / Remote Shell\n                               9     SQL Injection\n                               0     File Upload\n                               a     Authentication Bypass\n                               b     Software Identification\n                               c     Remote Source Inclusion\n                               d     WebService\n                               e     Administrative Console\n                               x     Reverse Tuning Options (i.e., include all except specified)\n       -timeout+          Timeout for requests (default 10 seconds)\n       -Userdbs           Load only user databases, not the standard databases\n                               all   Disable standard dbs and load only user dbs\n                               tests Disable only db_tests and load udb_tests\n       -useragent         Force User-Agent instead of pulling from database\n       -url+              Target host/URL (alias of -host)\n       -useproxy          Use the proxy defined in nikto.conf, or argument http://server:port\n       -Version           Print plugin and database versions\n       -vhost+            Virtual host (for Host header)\n       -404code           Ignore these HTTP codes as negative responses (always). Format is \"302,301\".\n       -404string         Ignore this string in response body content as negative response (always). Can be a regular expression.\n   \t\t+ requires a value\n\nUnknown option: help\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "-404code",
+   "-404string",
+   "-Add-header",
+   "-Cgidirs",
+   "-Display",
+   "-Format",
+   "-Help",
+   "-Option",
+   "-Pause",
+   "-Platform",
+   "-Plugins",
+   "-RSAcert",
+   "-Save",
+   "-Tuning",
+   "-Userdbs",
+   "-Version",
+   "-ask",
+   "-check6",
+   "-config",
+   "-dbcheck",
+   "-evasion",
+   "-followredirects",
+   "-host",
+   "-id",
+   "-ipv4",
+   "-ipv6",
+   "-key",
+   "-list-plugins",
+   "-maxtime",
+   "-mutate",
+   "-mutate-options",
+   "-no404",
+   "-nocheck",
+   "-nocookies",
+   "-nointeractive",
+   "-nolookup",
+   "-noslash",
+   "-nossl",
+   "-output",
+   "-port",
+   "-root",
+   "-ssl",
+   "-timeout",
+   "-url",
+   "-useproxy",
+   "-useragent",
+   "-vhost"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "-404code": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore these HTTP codes as negative responses (always). Format is \"302,301\"."
+   },
+   "-404string": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore this string in response body content as negative response (always). Can be a regular expression."
+   },
+   "-Add-header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Add HTTP headers (can be used multiple times, one per header pair)"
+   },
+   "-Cgidirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\""
+   },
+   "-Display": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Turn on/off display outputs:"
+   },
+   "-Format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save file (-o) format:"
+   },
+   "-Help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This help information"
+   },
+   "-Option": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Over-ride an option in nikto.conf, can be issued multiple times"
+   },
+   "-Pause": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Pause between tests (seconds)"
+   },
+   "-Platform": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Platform of target (nix, win, all)"
+   },
+   "-Plugins": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List of plugins to run (default: ALL)"
+   },
+   "-RSAcert": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Client certificate file"
+   },
+   "-Save": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save positive responses to this directory ('.' for auto-name)"
+   },
+   "-Tuning": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan tuning:"
+   },
+   "-Userdbs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load only user databases, not the standard databases"
+   },
+   "-Version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print plugin and database versions"
+   },
+   "-ask": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Whether to ask about submitting updates"
+   },
+   "-check6": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)"
+   },
+   "-config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use this config file"
+   },
+   "-dbcheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check database and other key files for syntax errors"
+   },
+   "-evasion": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Encoding technique:"
+   },
+   "-followredirects": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Follow 3xx redirects to new location"
+   },
+   "-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target host/URL"
+   },
+   "-id": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Host authentication to use, format is id:pass or id:pass:realm"
+   },
+   "-ipv4": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv4 Only"
+   },
+   "-ipv6": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv6 Only"
+   },
+   "-key": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Client certificate key file"
+   },
+   "-list-plugins": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List all available plugins, perform no testing"
+   },
+   "-maxtime": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum testing time per host (e.g., 1h, 60m, 3600s)"
+   },
+   "-mutate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Guess additional file names:"
+   },
+   "-mutate-options": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Provide information for mutates"
+   },
+   "-no404": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables nikto attempting to guess a 404 page"
+   },
+   "-nocheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates on startup"
+   },
+   "-nocookies": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not use cookies from responses in requests"
+   },
+   "-nointeractive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables interactive features"
+   },
+   "-nolookup": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables DNS lookups"
+   },
+   "-noslash": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Strip trailing slash from URL (e.g., '/admin/' to '/admin')"
+   },
+   "-nossl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables the use of SSL"
+   },
+   "-output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write output to this file ('.' for auto-name)"
+   },
+   "-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Port to use (default 80)"
+   },
+   "-root": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prepend root value to all requests, format is /directory"
+   },
+   "-ssl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force ssl mode on port"
+   },
+   "-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Timeout for requests (default 10 seconds)"
+   },
+   "-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target host/URL (alias of -host)"
+   },
+   "-useproxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the proxy defined in nikto.conf, or argument http://server:port"
+   },
+   "-useragent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force User-Agent instead of pulling from database"
+   },
+   "-vhost": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Virtual host (for Host header)"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "nikto",
+ "repo": "sullo/nikto",
+ "head_sha": "999670cb6a939b6c93840ce666941756e4c5dcf5",
+ "analyzer": "exec",
+ "analyzer_version": "1",
+ "generated_at": "2026-07-26T18:58:56.425797+00:00"
+}
