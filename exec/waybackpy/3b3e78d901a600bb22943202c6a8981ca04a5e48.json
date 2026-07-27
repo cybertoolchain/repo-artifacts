@@ -1,0 +1,895 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:0f458c174cd6710c3685ad8119a35ba4fb59656ad8ececac1ba77dce65cb9241",
+  "duration_s": 9.66,
+  "log_tail": "#10 6.642   Downloading idna-3.18-py3-none-any.whl.metadata (6.1 kB)\n#10 6.697 Collecting certifi>=2023.5.7 (from requests->waybackpy==3.0.6)\n#10 6.747   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)\n#10 6.798 Downloading click-8.4.2-py3-none-any.whl (119 kB)\n#10 6.898 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#10 6.962 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#10 7.053 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#10 7.101 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 7.163 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#10 7.170 Building wheels for collected packages: waybackpy\n#10 7.171   Building wheel for waybackpy (pyproject.toml): started\n#10 7.280   Building wheel for waybackpy (pyproject.toml): finished with status 'done'\n#10 7.280   Created wheel for waybackpy: filename=waybackpy-3.0.6-py3-none-any.whl size=35520 sha256=17d3219a700c0145c560c504663fd8b1b0d5e9dd5763decae916dbef289ffeb1\n#10 7.280   Stored in directory: /tmp/pip-ephem-wheel-cache-dni8yfth/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 7.282 Successfully built waybackpy\n#10 7.289 Installing collected packages: urllib3, idna, click, charset_normalizer, certifi, requests, waybackpy\n#10 7.634 \n#10 7.634 Successfully installed certifi-2026.7.22 charset_normalizer-3.4.9 click-8.4.2 idna-3.18 requests-2.34.2 urllib3-2.7.0 waybackpy-3.0.6\n#10 DONE 7.7s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.109 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:fe64850fa5b6fb8d71304d453444cb547d8aa68adc7429da0fe8f8143a91cae7 0.1s done\n#17 exporting config sha256:3615fdd2802c6078b4247fc04dd59aefbf26fe95255d5d8091d5d7a0657661be done\n#17 exporting attestation manifest sha256:6d3dd8365347f4ef6fb3e0eb178ecd9c9d3f84824c782e6701694c055a8be7fd 0.0s done\n#17 exporting manifest list sha256:0f458c174cd6710c3685ad8119a35ba4fb59656ad8ececac1ba77dce65cb9241 done\n#17 naming to docker.io/ctk-exec/waybackpy:3b3e78d901a6 done\n#17 unpacking to docker.io/ctk-exec/waybackpy:3b3e78d901a6\n#17 unpacking to docker.io/ctk-exec/waybackpy:3b3e78d901a6 0.6s done\n#17 DONE 1.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "waybackpy",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: waybackpy [OPTIONS]\n\n                       _                _\n                      | |              | |\n  __      ____ _ _   _| |__   __ _  ___| | ___ __  _   _\n  \\ \\ /\\ / / _` | | | | '_ \\ / _` |/ __| |/ / '_ \\| | | |\n   \\ V  V / (_| | |_| | |_) | (_| | (__|   <| |_) | |_| |\n    \\_/\\_/ \\__,_|\\__, |_.__/ \\__,_|\\___|_|\\_\\ .__/ \\__, |\n                  __/ |                     | |     __/ |\n                 |___/                      |_|    |___/\n\n  Python package & CLI tool that interfaces the Wayback Machine APIs\n\n  Repository: https://github.com/akamhy/waybackpy\n\n  Documentation: https://github.com/akamhy/waybackpy/wiki/CLI-docs\n\n  waybackpy - CLI usage(Demo video): https://asciinema.org/a/469890\n\n  Released under the MIT License. Use the flag --license for license.\n\nOptions:\n  -u, --url TEXT                  URL on which Wayback machine operations are\n                                  to be performed.\n  -ua, --user-agent, --user_agent TEXT\n                                  User agent, default value is 'waybackpy\n                                  3.0.6 -\n                                  https://github.com/akamhy/waybackpy'.\n  -v, --version                   waybackpy version.\n  -l, --show-license, --show_license, --license\n                                  Show license of Waybackpy.\n  -n, -au, --newest, --archive_url, --archive-url\n                                  Retrieve the newest archive of URL.\n  -o, --oldest                    Retrieve the oldest archive of URL.\n  -N, --near                      Archive close to a specified time.\n  -Y, --year INTEGER RANGE        Year in integer.  [1994<=x<=9999]\n  -M, --month INTEGER RANGE       Month in integer.  [1<=x<=12]\n  -D, --day INTEGER RANGE         Day in integer.  [1<=x<=31]\n  -H, --hour INTEGER RANGE        Hour in integer.  [0<=x<=24]\n  -MIN, --minute INTEGER RANGE    Minute in integer.  [0<=x<=60]\n  -s, --save                      Save the specified URL's webpage and print\n                                  the archive URL.\n  -h, --headers                   Headers data of the SavePageNow API.\n  -ku, --known-urls, --known_urls\n                                  List known URLs. Uses CDX API.\n  -sub, --subdomain               Use with '--known_urls' to include known\n                                  URLs for subdomains.\n  -f, --file                      Use with '--known_urls' to save the URLs in\n                                  file at current directory.\n  --cdx                           Flag for using CDX API.\n  -st, --start-timestamp, --start_timestamp, --from TEXT\n                                  Start timestamp for CDX API in\n                                  yyyyMMddhhmmss format.\n  -et, --end-timestamp, --end_timestamp, --to TEXT\n                                  End timestamp for CDX API in yyyyMMddhhmmss\n                                  format.\n  -C, --closest TEXT              Archive that are closest the timestamp\n                                  passed as arguments to this parameter.\n  -f, --cdx-filter, --cdx_filter, --filter TEXT\n                                  Filter on a specific field or all the CDX\n                                  fields.\n  -mt, --match-type, --match_type TEXT\n                                  The default behavior is to return matches\n                                  for an exact URL. However, the CDX server\n                                  can also return results matching a certain\n                                  prefix, a certain host, or all sub-hosts by\n                                  using the match_type\n  -st, --sort TEXT                Choose one from default, closest or reverse.\n                                  It returns sorted CDX entries in the\n                                  response.\n  -up, --use-pagination, --use_pagination\n                                  Use the pagination API of the CDX server\n                                  instead of the default one.\n  -gz, --gzip TEXT                To disable gzip compression pass false as\n                                  argument to this parameter. The default\n                                  behavior is gzip compression enabled.\n  -c, --collapse TEXT             Filtering or 'collapse' results based on a\n                                  field, or a substring of a field.\n  -l, --limit TEXT                Number of maximum record that CDX API is\n                                  asked to return per API call, default value\n                                  is 25000 records.\n  -cp, --cdx-print, --cdx_print TEXT\n                                  Print only certain fields of the CDX API\n                                  response, if this parameter is not used then\n                                  the plain text response of the CDX API will\n                                  be printed.\n  --help                          Show this message and exit.\n",
+   "stderr": "/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n",
+   "duration_ms": 305,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "waybackpy"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for waybackpy\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "waybackpy"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'waybackpy' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "waybackpy",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--url": "URL on which Wayback machine operations are to be performed.",
+   "-u": "URL on which Wayback machine operations are to be performed.",
+   "--user-agent": "User agent, default value is 'waybackpy 3.0.6 - https://github.com/akamhy/waybackpy'.",
+   "-ua": "User agent, default value is 'waybackpy 3.0.6 - https://github.com/akamhy/waybackpy'.",
+   "--user_agent": "User agent, default value is 'waybackpy 3.0.6 - https://github.com/akamhy/waybackpy'.",
+   "--version": "waybackpy version.",
+   "-v": "waybackpy version.",
+   "--show-license": "Show license of Waybackpy.",
+   "-l": "Show license of Waybackpy.",
+   "--show_license": "Show license of Waybackpy.",
+   "--license": "Show license of Waybackpy.",
+   "--newest": "Retrieve the newest archive of URL.",
+   "-n": "Retrieve the newest archive of URL.",
+   "-au": "Retrieve the newest archive of URL.",
+   "--archive_url": "Retrieve the newest archive of URL.",
+   "--archive-url": "Retrieve the newest archive of URL.",
+   "--oldest": "Retrieve the oldest archive of URL.",
+   "-o": "Retrieve the oldest archive of URL.",
+   "--near": "Archive close to a specified time.",
+   "-N": "Archive close to a specified time.",
+   "--year": "Year in integer.  [1994<=x<=9999]",
+   "-Y": "Year in integer.  [1994<=x<=9999]",
+   "--month": "Month in integer.  [1<=x<=12]",
+   "-M": "Month in integer.  [1<=x<=12]",
+   "--day": "Day in integer.  [1<=x<=31]",
+   "-D": "Day in integer.  [1<=x<=31]",
+   "--hour": "Hour in integer.  [0<=x<=24]",
+   "-H": "Hour in integer.  [0<=x<=24]",
+   "--minute": "Minute in integer.  [0<=x<=60]",
+   "-MIN": "Minute in integer.  [0<=x<=60]",
+   "--save": "Save the specified URL's webpage and print the archive URL.",
+   "-s": "Save the specified URL's webpage and print the archive URL.",
+   "--headers": "Headers data of the SavePageNow API.",
+   "-h": "Headers data of the SavePageNow API.",
+   "--known-urls": "List known URLs. Uses CDX API.",
+   "-ku": "List known URLs. Uses CDX API.",
+   "--known_urls": "List known URLs. Uses CDX API.",
+   "--subdomain": "Use with '--known_urls' to include known URLs for subdomains.",
+   "-sub": "Use with '--known_urls' to include known URLs for subdomains.",
+   "--file": "Use with '--known_urls' to save the URLs in file at current directory.",
+   "-f": "Use with '--known_urls' to save the URLs in file at current directory.",
+   "--cdx": "Flag for using CDX API.",
+   "--start-timestamp": "Start timestamp for CDX API in yyyyMMddhhmmss format.",
+   "-st": "Start timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--start_timestamp": "Start timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--from": "Start timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--end-timestamp": "End timestamp for CDX API in yyyyMMddhhmmss format.",
+   "-et": "End timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--end_timestamp": "End timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--to": "End timestamp for CDX API in yyyyMMddhhmmss format.",
+   "--closest": "Archive that are closest the timestamp passed as arguments to this parameter.",
+   "-C": "Archive that are closest the timestamp passed as arguments to this parameter.",
+   "--cdx-filter": "Filter on a specific field or all the CDX fields.",
+   "--cdx_filter": "Filter on a specific field or all the CDX fields.",
+   "--filter": "Filter on a specific field or all the CDX fields.",
+   "--match-type": "The default behavior is to return matches for an exact URL. However, the CDX server can also return results matching a certain prefix, a certain host, or all sub-hosts by using the match_type",
+   "-mt": "The default behavior is to return matches for an exact URL. However, the CDX server can also return results matching a certain prefix, a certain host, or all sub-hosts by using the match_type",
+   "--match_type": "The default behavior is to return matches for an exact URL. However, the CDX server can also return results matching a certain prefix, a certain host, or all sub-hosts by using the match_type",
+   "--sort": "Choose one from default, closest or reverse. It returns sorted CDX entries in the response.",
+   "--use-pagination": "Use the pagination API of the CDX server instead of the default one.",
+   "-up": "Use the pagination API of the CDX server instead of the default one.",
+   "--use_pagination": "Use the pagination API of the CDX server instead of the default one.",
+   "--gzip": "To disable gzip compression pass false as argument to this parameter. The default behavior is gzip compression enabled.",
+   "-gz": "To disable gzip compression pass false as argument to this parameter. The default behavior is gzip compression enabled.",
+   "--collapse": "Filtering or 'collapse' results based on a field, or a substring of a field.",
+   "-c": "Filtering or 'collapse' results based on a field, or a substring of a field.",
+   "--limit": "Number of maximum record that CDX API is asked to return per API call, default value is 25000 records.",
+   "--cdx-print": "Print only certain fields of the CDX API response, if this parameter is not used then the plain text response of the CDX API will be printed.",
+   "-cp": "Print only certain fields of the CDX API response, if this parameter is not used then the plain text response of the CDX API will be printed.",
+   "--cdx_print": "Print only certain fields of the CDX API response, if this parameter is not used then the plain text response of the CDX API will be printed.",
+   "--help": "Show this message and exit."
+  },
+  "aliases": {
+   "--url": [
+    "-u"
+   ],
+   "--user-agent": [
+    "-ua",
+    "--user_agent"
+   ],
+   "--version": [
+    "-v"
+   ],
+   "--show-license": [
+    "-l",
+    "--show_license",
+    "--license"
+   ],
+   "--newest": [
+    "-n",
+    "-au",
+    "--archive_url",
+    "--archive-url"
+   ],
+   "--oldest": [
+    "-o"
+   ],
+   "--near": [
+    "-N"
+   ],
+   "--year": [
+    "-Y"
+   ],
+   "--month": [
+    "-M"
+   ],
+   "--day": [
+    "-D"
+   ],
+   "--hour": [
+    "-H"
+   ],
+   "--minute": [
+    "-MIN"
+   ],
+   "--save": [
+    "-s"
+   ],
+   "--headers": [
+    "-h"
+   ],
+   "--known-urls": [
+    "-ku",
+    "--known_urls"
+   ],
+   "--subdomain": [
+    "-sub"
+   ],
+   "--file": [
+    "-f"
+   ],
+   "--start-timestamp": [
+    "-st",
+    "--start_timestamp",
+    "--from"
+   ],
+   "--end-timestamp": [
+    "-et",
+    "--end_timestamp",
+    "--to"
+   ],
+   "--closest": [
+    "-C"
+   ],
+   "--cdx-filter": [
+    "--cdx_filter",
+    "--filter"
+   ],
+   "--match-type": [
+    "-mt",
+    "--match_type"
+   ],
+   "--use-pagination": [
+    "-up",
+    "--use_pagination"
+   ],
+   "--gzip": [
+    "-gz"
+   ],
+   "--collapse": [
+    "-c"
+   ],
+   "--cdx-print": [
+    "-cp",
+    "--cdx_print"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5f1a65466cf2b0d231c62d4df76d0b4e189f93a176d423cb63dcc24b3c0cd1f9",
+  "text": "Usage: waybackpy [OPTIONS]\n\n                       _                _\n                      | |              | |\n  __      ____ _ _   _| |__   __ _  ___| | ___ __  _   _\n  \\ \\ /\\ / / _` | | | | '_ \\ / _` |/ __| |/ / '_ \\| | | |\n   \\ V  V / (_| | |_| | |_) | (_| | (__|   <| |_) | |_| |\n    \\_/\\_/ \\__,_|\\__, |_.__/ \\__,_|\\___|_|\\_\\ .__/ \\__, |\n                  __/ |                     | |     __/ |\n                 |___/                      |_|    |___/\n\n  Python package & CLI tool that interfaces the Wayback Machine APIs\n\n  Repository: https://github.com/akamhy/waybackpy\n\n  Documentation: https://github.com/akamhy/waybackpy/wiki/CLI-docs\n\n  waybackpy - CLI usage(Demo video): https://asciinema.org/a/469890\n\n  Released under the MIT License. Use the flag --license for license.\n\nOptions:\n  -u, --url TEXT                  URL on which Wayback machine operations are\n                                  to be performed.\n  -ua, --user-agent, --user_agent TEXT\n                                  User agent, default value is 'waybackpy\n                                  3.0.6 -\n                                  https://github.com/akamhy/waybackpy'.\n  -v, --version                   waybackpy version.\n  -l, --show-license, --show_license, --license\n                                  Show license of Waybackpy.\n  -n, -au, --newest, --archive_url, --archive-url\n                                  Retrieve the newest archive of URL.\n  -o, --oldest                    Retrieve the oldest archive of URL.\n  -N, --near                      Archive close to a specified time.\n  -Y, --year INTEGER RANGE        Year in integer.  [1994<=x<=9999]\n  -M, --month INTEGER RANGE       Month in integer.  [1<=x<=12]\n  -D, --day INTEGER RANGE         Day in integer.  [1<=x<=31]\n  -H, --hour INTEGER RANGE        Hour in integer.  [0<=x<=24]\n  -MIN, --minute INTEGER RANGE    Minute in integer.  [0<=x<=60]\n  -s, --save                      Save the specified URL's webpage and print\n                                  the archive URL.\n  -h, --headers                   Headers data of the SavePageNow API.\n  -ku, --known-urls, --known_urls\n                                  List known URLs. Uses CDX API.\n  -sub, --subdomain               Use with '--known_urls' to include known\n                                  URLs for subdomains.\n  -f, --file                      Use with '--known_urls' to save the URLs in\n                                  file at current directory.\n  --cdx                           Flag for using CDX API.\n  -st, --start-timestamp, --start_timestamp, --from TEXT\n                                  Start timestamp for CDX API in\n                                  yyyyMMddhhmmss format.\n  -et, --end-timestamp, --end_timestamp, --to TEXT\n                                  End timestamp for CDX API in yyyyMMddhhmmss\n                                  format.\n  -C, --closest TEXT              Archive that are closest the timestamp\n                                  passed as arguments to this parameter.\n  -f, --cdx-filter, --cdx_filter, --filter TEXT\n                                  Filter on a specific field or all the CDX\n                                  fields.\n  -mt, --match-type, --match_type TEXT\n                                  The default behavior is to return matches\n                                  for an exact URL. However, the CDX server\n                                  can also return results matching a certain\n                                  prefix, a certain host, or all sub-hosts by\n                                  using the match_type\n  -st, --sort TEXT                Choose one from default, closest or reverse.\n                                  It returns sorted CDX entries in the\n                                  response.\n  -up, --use-pagination, --use_pagination\n                                  Use the pagination API of the CDX server\n                                  instead of the default one.\n  -gz, --gzip TEXT                To disable gzip compression pass false as\n                                  argument to this parameter. The default\n                                  behavior is gzip compression enabled.\n  -c, --collapse TEXT             Filtering or 'collapse' results based on a\n                                  field, or a substring of a field.\n  -l, --limit TEXT                Number of maximum record that CDX API is\n                                  asked to return per API call, default value\n                                  is 25000 records.\n  -cp, --cdx-print, --cdx_print TEXT\n                                  Print only certain fields of the CDX API\n                                  response, if this parameter is not used then\n                                  the plain text response of the CDX API will\n                                  be printed.\n  --help                          Show this message and exit.\n/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1307: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  parser = self.make_parser(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1300: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  self.parse_args(ctx, args)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1129: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  pieces = self.collect_usage_pieces(ctx)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -l is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -f is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n/opt/venv/lib/python3.12/site-packages/click/core.py:1224: UserWarning: The parameter -st is used more than once. Remove its duplicate as parameters should be unique.\n  self.format_options(ctx, formatter)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--archive_url",
+   "--cdx",
+   "--cdx-filter",
+   "--cdx-print",
+   "--closest",
+   "--collapse",
+   "--day",
+   "--end-timestamp",
+   "--file",
+   "--gzip",
+   "--headers",
+   "--hour",
+   "--known-urls",
+   "--known_urls",
+   "--limit",
+   "--match-type",
+   "--minute",
+   "--month",
+   "--near",
+   "--newest",
+   "--oldest",
+   "--save",
+   "--show-license",
+   "--sort",
+   "--start-timestamp",
+   "--subdomain",
+   "--url",
+   "--use-pagination",
+   "--user-agent",
+   "--user_agent",
+   "--version",
+   "--year"
+  ],
+  "unconfirmed": [
+   "--alive",
+   "--collapses",
+   "--filters",
+   "--get",
+   "--json",
+   "--total"
+  ],
+  "help_only": [
+   "--archive-url",
+   "--cdx_filter",
+   "--cdx_print",
+   "--end_timestamp",
+   "--filter",
+   "--from",
+   "--help",
+   "--license",
+   "--match_type",
+   "--show_license",
+   "--start_timestamp",
+   "--to",
+   "--use_pagination",
+   "-C",
+   "-D",
+   "-H",
+   "-M",
+   "-MIN",
+   "-N",
+   "-Y",
+   "-au",
+   "-c",
+   "-cp",
+   "-et",
+   "-f",
+   "-gz",
+   "-h",
+   "-ku",
+   "-l",
+   "-mt",
+   "-n",
+   "-o",
+   "-s",
+   "-st",
+   "-sub",
+   "-u",
+   "-ua",
+   "-up",
+   "-v"
+  ],
+  "mining_coverage": 0.4507042253521127
+ },
+ "surface": {
+  "flags": {
+   "--alive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "2.1.8",
+    "first_date": "2020-10-03T01:18:30+05:30",
+    "last_tag": "2.4.1",
+    "last_date": "2021-01-12T10:18:09+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--cdx": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Flag for using CDX API.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--cdx-filter": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Filter on a specific field or all the CDX fields.",
+    "kind": "option",
+    "first_tag": "3.0.3",
+    "first_date": "2022-02-09T16:18:25+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "--cdx_filter",
+     "--filter"
+    ]
+   },
+   "--cdx-print": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print only certain fields of the CDX API response, if this parameter is not used then the plain text response of the CDX API will be printed.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-cp",
+     "--cdx_print"
+    ]
+   },
+   "--closest": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Archive that are closest the timestamp passed as arguments to this parameter.",
+    "kind": "option",
+    "first_tag": "3.0.4",
+    "first_date": "2022-02-18T16:05:58+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--collapse": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Filtering or 'collapse' results based on a field, or a substring of a field.",
+    "kind": "option",
+    "first_tag": "3.0.3",
+    "first_date": "2022-02-09T16:18:25+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--collapses": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.2",
+    "last_date": "2022-01-26T01:54:58+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--day": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Day in integer.  [1<=x<=31]",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-D"
+    ]
+   },
+   "--end-timestamp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "End timestamp for CDX API in yyyyMMddhhmmss format.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-et",
+     "--end_timestamp",
+     "--to"
+    ]
+   },
+   "--file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use with '--known_urls' to save the URLs in file at current directory.",
+    "kind": "option",
+    "first_tag": "2.4.2",
+    "first_date": "2021-01-24T17:03:35+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--filters": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.2",
+    "last_date": "2022-01-26T01:54:58+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--get": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Prints the source code of the supplied url. Use '--get help' for extended usage",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "2.4.4",
+    "last_date": "2021-09-03T11:28:26+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--gzip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "To disable gzip compression pass false as argument to this parameter. The default behavior is gzip compression enabled.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-gz"
+    ]
+   },
+   "--headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Headers data of the SavePageNow API.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this message and exit."
+   },
+   "--hour": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Hour in integer.  [0<=x<=24]",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "JSON data returned by the availability API.",
+    "kind": "option",
+    "first_tag": "2.2.0",
+    "first_date": "2020-10-17T17:10:46+05:30",
+    "last_tag": "3.0.3",
+    "last_date": "2022-02-09T16:18:25+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--known-urls": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "List known URLs. Uses CDX API.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-ku",
+     "--known_urls"
+    ]
+   },
+   "--limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of maximum record that CDX API is asked to return per API call, default value is 25000 records.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--match-type": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The default behavior is to return matches for an exact URL. However, the CDX server can also return results matching a certain prefix, a certain host, or all sub-hosts by using the match_type",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-mt",
+     "--match_type"
+    ]
+   },
+   "--minute": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Minute in integer.  [0<=x<=60]",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-MIN"
+    ]
+   },
+   "--month": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Month in integer.  [1<=x<=12]",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--near": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Archive close to a specified time.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-N"
+    ]
+   },
+   "--newest": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Retrieve the newest archive of URL.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "2.4.4",
+    "last_date": "2021-09-03T11:28:26+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-n",
+     "-au",
+     "--archive_url",
+     "--archive-url"
+    ]
+   },
+   "--oldest": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Retrieve the oldest archive of URL.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--save": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Save the specified URL's webpage and print the archive URL.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--show-license": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show license of Waybackpy.",
+    "kind": "option",
+    "first_tag": "3.0.3",
+    "first_date": "2022-02-09T16:18:25+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-l",
+     "--show_license",
+     "--license"
+    ]
+   },
+   "--sort": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Choose one from default, closest or reverse. It returns sorted CDX entries in the response.",
+    "kind": "option",
+    "first_tag": "3.0.4",
+    "first_date": "2022-02-18T16:05:58+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--start-timestamp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Start timestamp for CDX API in yyyyMMddhhmmss format.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-st",
+     "--start_timestamp",
+     "--from"
+    ]
+   },
+   "--subdomain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use with '--known_urls' to include known URLs for subdomains.",
+    "kind": "option",
+    "first_tag": "2.1.8",
+    "first_date": "2020-10-03T01:18:30+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-sub"
+    ]
+   },
+   "--total": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Total number of archives for the specified URL",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "2.4.4",
+    "last_date": "2021-09-03T11:28:26+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py"
+   },
+   "--url": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "URL on which Wayback machine operations are to be performed.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--use-pagination": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use the pagination API of the CDX server instead of the default one.",
+    "kind": "option",
+    "first_tag": "3.0.4",
+    "first_date": "2022-02-18T16:05:58+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-up",
+     "--use_pagination"
+    ]
+   },
+   "--user-agent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "User agent, default value is 'waybackpy 3.0.6 - https://github.com/akamhy/waybackpy'.",
+    "kind": "option",
+    "first_tag": "3.0.0",
+    "first_date": "2022-01-18T21:18:17+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-ua",
+     "--user_agent"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "waybackpy version.",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--year": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Year in integer.  [1994<=x<=9999]",
+    "kind": "option",
+    "first_tag": "2.1.3",
+    "first_date": "2020-07-22T21:35:02+05:30",
+    "last_tag": "3.0.6",
+    "last_date": "2022-03-15T20:33:51+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "waybackpy/cli.py",
+    "aliases": [
+     "-Y"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "waybackpy",
+ "repo": "akamhy/waybackpy",
+ "head_sha": "3b3e78d901a600bb22943202c6a8981ca04a5e48",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:42:21.832467+00:00"
+}

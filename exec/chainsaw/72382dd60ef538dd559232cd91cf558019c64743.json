@@ -1,0 +1,19 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 1.75,
+  "log_tail": "#4 DONE 0.0s\n\n#5 [stage-1 1/7] FROM docker.io/library/debian:bookworm-slim@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818\n#5 resolve docker.io/library/debian:bookworm-slim@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818 0.0s done\n#5 DONE 0.0s\n\n#6 [build 1/5] FROM docker.io/library/rust:1.81-bookworm@sha256:7b7f7ae5e49819e708369d49925360bde2af4f1962842e75a14af17342f08262\n#6 resolve docker.io/library/rust:1.81-bookworm@sha256:7b7f7ae5e49819e708369d49925360bde2af4f1962842e75a14af17342f08262 0.0s done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 80.24MB 0.6s done\n#7 DONE 0.6s\n\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/5] RUN cargo build --release\n#10 0.177 error: failed to parse manifest at `/src/Cargo.toml`\n#10 0.177 \n#10 0.177 Caused by:\n#10 0.177   feature `edition2024` is required\n#10 0.177 \n#10 0.177   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n#10 0.177   Consider trying a newer version of Cargo (this may require the nightly release).\n#10 0.177   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n#10 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 4/5] RUN cargo build --release:\n0.177 error: failed to parse manifest at `/src/Cargo.toml`\n0.177 \n0.177 Caused by:\n0.177   feature `edition2024` is required\n0.177 \n0.177   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n0.177   Consider trying a newer version of Cargo (this may require the nightly release).\n0.177   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN cargo build --release\n   5 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n   6 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "skipped_reason": "docker build failed",
+ "tool": "chainsaw",
+ "repo": "WithSecureLabs/chainsaw",
+ "head_sha": "72382dd60ef538dd559232cd91cf558019c64743",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:16:33.079044+00:00"
+}

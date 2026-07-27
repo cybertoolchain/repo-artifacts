@@ -1,0 +1,74 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:ce6328cc3781c4eff965ef652cd9ad7a35325fe2d8f02d8c965c32de51bd8f48",
+  "duration_s": 35.64,
+  "log_tail": "#12 0.966 ./../../src/fnettrace/fnettrace --squash-map=static-ip-map.txt 2>&1 >static-ip-map\n#12 0.969 static ip map: input 6276, output 2733\n#12 0.970 make[1]: Leaving directory '/src/src/fnettrace'\n#12 0.991 gcc -Wl,-z,relro -Wl,-z,now -fPIE -pie   -o ../../src/fseccomp/fseccomp ../../src/fseccomp/main.o ../../src/fseccomp/namespaces.o ../../src/fseccomp/protocol.o ../../src/fseccomp/seccomp.o ../../src/fseccomp/seccomp_file.o ../../src/fseccomp/seccomp_secondary.o ../lib/common.o ../lib/errno.o ../lib/syscall.o \n#12 1.001 make[1]: Leaving directory '/src/src/fseccomp'\n#12 1.001 src/fseccomp/fseccomp default seccomp\n#12 1.001 src/fseccomp/fseccomp default seccomp.debug allow-debuggers\n#12 1.002 src/fseccomp/fseccomp secondary 32 seccomp.32\n#12 1.002 src/fsec-optimize/fsec-optimize seccomp\n#12 1.002 src/fsec-optimize/fsec-optimize seccomp.debug\n#12 1.003 src/fsec-optimize/fsec-optimize seccomp.32\n#12 1.003 src/fseccomp/fseccomp secondary block seccomp.block_secondary\n#12 1.003 src/fseccomp/fseccomp memory-deny-write-execute seccomp.mdwx\n#12 1.003 src/fseccomp/fseccomp memory-deny-write-execute.32 seccomp.mdwx.32\n#12 1.004 src/fseccomp/fseccomp restrict-namespaces seccomp.namespaces cgroup,ipc,net,mnt,pid,time,user,uts\n#12 1.004 src/fseccomp/fseccomp restrict-namespaces seccomp.namespaces.32 cgroup,ipc,net,mnt,pid,time,user,uts\n#12 1.378 gcc -Wl,-z,relro -Wl,-z,now -fPIE -pie   -o ../../src/firejail/firejail ../../src/firejail/appimage.o ../../src/firejail/appimage_size.o ../../src/firejail/arp.o ../../src/firejail/caps.o ../../src/firejail/checkcfg.o ../../src/firejail/chroot.o ../../src/firejail/cmdline.o ../../src/firejail/cpu.o ../../src/firejail/dbus.o ../../src/firejail/dhcp.o ../../src/firejail/env.o ../../src/firejail/fs.o ../../src/firejail/fs_bin.o ../../src/firejail/fs_dev.o ../../src/firejail/fs_etc.o ../../src/firejail/fs_home.o ../../src/firejail/fs_hostname.o ../../src/firejail/fs_lib.o ../../src/firejail/fs_lib2.o ../../src/firejail/fs_logger.o ../../src/firejail/fs_mkdir.o ../../src/firejail/fs_trace.o ../../src/firejail/fs_var.o ../../src/firejail/fs_whitelist.o ../../src/firejail/join.o ../../src/firejail/landlock.o ../../src/firejail/ls.o ../../src/firejail/macros.o ../../src/firejail/main.o ../../src/firejail/mountinfo.o ../../src/firejail/netfilter.o ../../src/firejail/netns.o ../../src/firejail/network.o ../../src/firejail/network_main.o ../../src/firejail/no_sandbox.o ../../src/firejail/oom.o ../../src/firejail/output.o ../../src/firejail/paths.o ../../src/firejail/preproc.o ../../src/firejail/process.o ../../src/firejail/profile.o ../../src/firejail/protocol.o ../../src/firejail/pulseaudio.o ../../src/firejail/restrict_users.o ../../src/firejail/restricted_shell.o ../../src/firejail/rlimit.o ../../src/firejail/run_files.o ../../src/firejail/run_symlink.o ../../src/firejail/sandbox.o ../../src/firejail/sbox.o ../../src/firejail/seccomp.o ../../src/firejail/selinux.o ../../src/firejail/shutdown.o ../../src/firejail/usage.o ../../src/firejail/util.o ../../src/firejail/x11.o ../lib/common.o ../lib/ldd_utils.o ../lib/firejail_user.o ../lib/errno.o ../lib/syscall.o \n#12 1.400 make[1]: Leaving directory '/src/src/firejail'\n#12 DONE 1.4s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.090 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.4s done\n#19 exporting manifest sha256:516287883997ad727db3feafd22cf9d5c030cbedbc5c5595ce571e57878ff49a done\n#19 exporting config sha256:e78774e0b0a1eadcec2d11f42019563fbb83cdd8d84d7a746005d7eb01910165 done\n#19 exporting attestation manifest sha256:c0077bb387b410b0ca641bfcfb63f3574884d67f8121f500b1c44fc21e537601 done\n#19 exporting manifest list sha256:ce6328cc3781c4eff965ef652cd9ad7a35325fe2d8f02d8c965c32de51bd8f48 done\n#19 naming to docker.io/ctk-exec/firejail:13bb0f4eb645 done\n#19 unpacking to docker.io/ctk-exec/firejail:13bb0f4eb645\n#19 unpacking to docker.io/ctk-exec/firejail:13bb0f4eb645 0.6s done\n#19 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "firejail",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'firejail'"
+  },
+  {
+   "argv": [
+    "man",
+    "firejail"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for firejail\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "firejail"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'firejail' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "tool": "Firejail",
+ "repo": "netblue30/firejail",
+ "head_sha": "13bb0f4eb64502f451fd40a45cf24444bc205d99",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:46:55.403336+00:00"
+}

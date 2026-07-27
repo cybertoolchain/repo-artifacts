@@ -1,0 +1,229 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:25a01b908518733e49fdb177be1db5bdce4d1e38b1c325a2c2963b85bb601300",
+  "duration_s": 7.11,
+  "log_tail": "#8 [internal] load build context\n#8 transferring context: 519.97kB done\n#8 DONE 0.0s\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.585 go: downloading mvdan.cc/xurls/v2 v2.2.0\n#10 0.585 go: downloading github.com/rs/zerolog v1.19.0\n#10 0.585 go: downloading github.com/ipinfo/go-ipinfo v0.0.0-20200706210721-8b290686e53e\n#10 0.585 go: downloading github.com/cheggaaa/pb v1.0.29\n#10 0.585 go: downloading github.com/akamensky/argparse v1.2.2\n#10 0.587 go: downloading golang.org/x/net v0.0.0-20200904194848-62affa334b73\n#10 0.588 go: downloading gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776\n#10 0.656 go: downloading github.com/mattn/go-runewidth v0.0.4\n#10 0.656 go: downloading golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd\n#10 0.704 go: downloading github.com/patrickmn/go-cache v2.1.0+incompatible\n#10 DONE 4.8s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.1s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.141 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.3s done\n#17 exporting manifest sha256:009c79ab4f0a746ff0a1f29a836017056c2e13ff5723651fee200ed48a580979 done\n#17 exporting config sha256:587096ac27cd66f1e292c51d16849745ea6a6a823be6a1ac3c757d610cbc34ee done\n#17 exporting attestation manifest sha256:911ad114e7e9105eeb730aad65f04f30b8aee67af7c171809d3707336f867606 done\n#17 exporting manifest list sha256:25a01b908518733e49fdb177be1db5bdce4d1e38b1c325a2c2963b85bb601300 done\n#17 naming to docker.io/ctk-exec/cloudbrute:a40b07e3def6 done\n#17 unpacking to docker.io/ctk-exec/cloudbrute:a40b07e3def6\n#17 unpacking to docker.io/ctk-exec/cloudbrute:a40b07e3def6 0.6s done\n#17 DONE 0.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cloudbrute",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: CloudBrute [-h|--help] -d|--domain \"<value>\" -k|--keyword \"<value>\"\n                  -w|--wordlist \"<value>\" [-c|--cloud \"<value>\"] [-t|--threads\n                  <integer>] [-T|--timeout <integer>] [-p|--proxy \"<value>\"]\n                  [-a|--randomagent \"<value>\"] [-D|--debug] [-q|--quite]\n                  [-m|--mode \"<value>\"] [-o|--output \"<value>\"]\n                  [-C|--configFolder \"<value>\"]\n\n                  Awesome Cloud Enumerator\n\nArguments:\n\n  -h  --help          Print help information\n  -d  --domain        domain\n  -k  --keyword       keyword used to generator urls\n  -w  --wordlist      path to wordlist\n  -c  --cloud         force a search, check config.yaml providers list\n  -t  --threads       number of threads. Default: 80\n  -T  --timeout       timeout per request in seconds. Default: 10\n  -p  --proxy         use proxy list\n  -a  --randomagent   user agent randomization\n  -D  --debug         show debug logs. Default: false\n  -q  --quite         suppress all output. Default: false\n  -m  --mode          storage or app. Default: storage\n  -o  --output        Output file. Default: out.txt\n  -C  --configFolder  Config path. Default: config\n\n\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cloudbrute"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cloudbrute\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cloudbrute"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cloudbrute' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "cloudbrute",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-w": "",
+   "--wordlist": "",
+   "-c": "",
+   "--cloud": "",
+   "-t": "",
+   "--threads": "",
+   "-h": "--help          Print help information",
+   "-d": "--domain        domain",
+   "-k": "--keyword       keyword used to generator urls",
+   "-T": "--timeout       timeout per request in seconds. Default: 10",
+   "-p": "--proxy         use proxy list",
+   "-a": "--randomagent   user agent randomization",
+   "-D": "--debug         show debug logs. Default: false",
+   "-q": "--quite         suppress all output. Default: false",
+   "-m": "--mode          storage or app. Default: storage",
+   "-o": "--output        Output file. Default: out.txt",
+   "-C": "--configFolder  Config path. Default: config"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "06eaab31dd02f9886b40582ada4e05d91f797cb7d17b4da5dbd4a8d6384aaefe",
+  "text": "usage: CloudBrute [-h|--help] -d|--domain \"<value>\" -k|--keyword \"<value>\"\n                  -w|--wordlist \"<value>\" [-c|--cloud \"<value>\"] [-t|--threads\n                  <integer>] [-T|--timeout <integer>] [-p|--proxy \"<value>\"]\n                  [-a|--randomagent \"<value>\"] [-D|--debug] [-q|--quite]\n                  [-m|--mode \"<value>\"] [-o|--output \"<value>\"]\n                  [-C|--configFolder \"<value>\"]\n\n                  Awesome Cloud Enumerator\n\nArguments:\n\n  -h  --help          Print help information\n  -d  --domain        domain\n  -k  --keyword       keyword used to generator urls\n  -w  --wordlist      path to wordlist\n  -c  --cloud         force a search, check config.yaml providers list\n  -t  --threads       number of threads. Default: 80\n  -T  --timeout       timeout per request in seconds. Default: 10\n  -p  --proxy         use proxy list\n  -a  --randomagent   user agent randomization\n  -D  --debug         show debug logs. Default: false\n  -q  --quite         suppress all output. Default: false\n  -m  --mode          storage or app. Default: storage\n  -o  --output        Output file. Default: out.txt\n  -C  --configFolder  Config path. Default: config\n\n\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--cloud",
+   "--threads",
+   "--wordlist",
+   "-C",
+   "-D",
+   "-T",
+   "-a",
+   "-c",
+   "-d",
+   "-h",
+   "-k",
+   "-m",
+   "-o",
+   "-p",
+   "-q",
+   "-t",
+   "-w"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--cloud": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--wordlist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--configFolder  Config path. Default: config"
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--debug         show debug logs. Default: false"
+   },
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--timeout       timeout per request in seconds. Default: 10"
+   },
+   "-a": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--randomagent   user agent randomization"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--domain        domain"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--help          Print help information"
+   },
+   "-k": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--keyword       keyword used to generator urls"
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--mode          storage or app. Default: storage"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--output        Output file. Default: out.txt"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--proxy         use proxy list"
+   },
+   "-q": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--quite         suppress all output. Default: false"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "cloudbrute",
+ "repo": "0xsha/cloudbrute",
+ "head_sha": "a40b07e3def62255ea5d6ed5116daab800d1ff00",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:17:54.109888+00:00"
+}

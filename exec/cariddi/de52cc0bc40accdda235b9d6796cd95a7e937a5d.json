@@ -1,0 +1,741 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:3f5ab366eb6416b8a5d85b9c6aa04caff81969b36ccaa09cea045a952aaedfa9",
+  "duration_s": 9.24,
+  "log_tail": "#10 0.382 go: downloading github.com/temoto/robotstxt v1.1.2\n#10 0.382 go: downloading github.com/saintfish/chardet v0.0.0-20230101081208-5e3ef4b5456d\n#10 0.493 go: downloading golang.org/x/sys v0.45.0\n#10 0.515 go: downloading gopkg.in/yaml.v3 v3.0.1\n#10 0.515 go: downloading github.com/projectdiscovery/blackrock v0.0.1\n#10 0.516 go: downloading github.com/pkg/errors v0.9.1\n#10 0.516 go: downloading github.com/asaskevich/govalidator v0.0.0-20230301143203-a9d515a09cc2\n#10 0.516 go: downloading golang.org/x/exp v0.0.0-20260312153236-7ab1446f8b90\n#10 0.516 go: downloading github.com/microcosm-cc/bluemonday v1.0.27\n#10 0.528 go: downloading golang.org/x/text v0.37.0\n#10 0.528 go: downloading github.com/bits-and-blooms/bitset v1.24.4\n#10 0.530 go: downloading github.com/andybalholm/cascadia v1.3.3\n#10 0.591 go: downloading github.com/golang/protobuf v1.5.4\n#10 0.718 go: downloading github.com/aymerick/douceur v0.2.0\n#10 0.746 go: downloading google.golang.org/protobuf v1.36.11\n#10 0.746 go: downloading github.com/antchfx/xpath v1.3.6\n#10 0.746 go: downloading github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8\n#10 0.893 go: downloading github.com/gorilla/css v1.0.1\n#10 DONE 6.9s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.109 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:850449976536bac6cad9e253395925ace6c64ebbb63da5ad61446decc2617f76 done\n#17 exporting config sha256:c4161327466c85654789577127220a92f3a2f6cd0dfbdafa2d6eebc42feee30b done\n#17 exporting attestation manifest sha256:56a02d1c558a6c28065ed22ae7d718ec0d4dd55e0e340f5d38d15690b7fa0dfe done\n#17 exporting manifest list sha256:3f5ab366eb6416b8a5d85b9c6aa04caff81969b36ccaa09cea045a952aaedfa9 done\n#17 naming to docker.io/ctk-exec/cariddi:de52cc0bc40a done\n#17 unpacking to docker.io/ctk-exec/cariddi:de52cc0bc40a\n#17 unpacking to docker.io/ctk-exec/cariddi:de52cc0bc40a 0.6s done\n#17 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cariddi",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of cariddi:\n  -c int\n    \tConcurrency level. (default 20)\n  -cache\n    \tUse the .cariddi_cache folder as cache.\n  -d int\n    \tDelay between a page crawled and another.\n  -debug\n    \tPrint debug information while crawling.\n  -e\tHunt for juicy endpoints.\n  -ef string\n    \tUse an external file (txt, one per line) to use custom parameters for endpoints hunting.\n  -err\n    \tHunt for errors in websites.\n  -examples\n    \tPrint the examples.\n  -ext int\n    \tHunt for juicy file extensions. Integer from 1(juicy) to 7(not juicy).\n  -h\tPrint the help.\n  -headers string\n    \tUse custom headers for each request E.g. -headers \"Cookie: auth=yes;;Client: type=2\".\n  -headersfile string\n    \tRead from an external file custom headers (same format of headers flag).\n  -i string\n    \tIgnore the URL containing at least one of the elements of this array.\n  -ie value\n    \tComma-separated list of extensions to ignore while scanning\n  -info\n    \tHunt for useful informations in websites.\n  -intensive\n    \tCrawl searching for resources matching 2nd level domain.\n  -it string\n    \tIgnore the URL containing at least one of the lines of this file.\n  -json\n    \tPrint the output as JSON in stdout.\n  -md int\n    \tMaximum depth level the crawler will follow from the initial target URL.\n  -oh string\n    \tWrite the output into an HTML file.\n  -ot string\n    \tWrite the output into a TXT file.\n  -plain\n    \tPrint only results.\n  -proxy string\n    \tSet a Proxy, http and socks5 supported.\n  -rua\n    \tUse a random browser user agent on every request.\n  -s\tHunt for secrets.\n  -sf string\n    \tUse an external file (txt, one per line) to use custom regexes for secrets hunting.\n  -sr\n    \tStore HTTP responses.\n  -t int\n    \tSet timeout for the requests. (default 10)\n  -ua string\n    \tUse a custom User Agent.\n  -version\n    \tPrint the version.\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cariddi"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cariddi\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cariddi"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cariddi' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "cariddi",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-c": "Concurrency level. (default 20)",
+   "-cache": "Use the .cariddi_cache folder as cache.",
+   "-d": "Delay between a page crawled and another.",
+   "-debug": "Print debug information while crawling.",
+   "-e": "",
+   "-ef": "Use an external file (txt, one per line) to use custom parameters for endpoints hunting.",
+   "-err": "Hunt for errors in websites.",
+   "-examples": "Print the examples.",
+   "-ext": "Hunt for juicy file extensions. Integer from 1(juicy) to 7(not juicy).",
+   "-h": "",
+   "-headers": "Use custom headers for each request E.g. -headers \"Cookie: auth=yes;;Client: type=2\".",
+   "-headersfile": "Read from an external file custom headers (same format of headers flag).",
+   "-i": "Ignore the URL containing at least one of the elements of this array.",
+   "-ie": "Comma-separated list of extensions to ignore while scanning",
+   "-info": "Hunt for useful informations in websites.",
+   "-intensive": "Crawl searching for resources matching 2nd level domain.",
+   "-it": "Ignore the URL containing at least one of the lines of this file.",
+   "-json": "Print the output as JSON in stdout.",
+   "-md": "Maximum depth level the crawler will follow from the initial target URL.",
+   "-oh": "Write the output into an HTML file.",
+   "-ot": "Write the output into a TXT file.",
+   "-plain": "Print only results.",
+   "-proxy": "Set a Proxy, http and socks5 supported.",
+   "-rua": "Use a random browser user agent on every request.",
+   "-s": "",
+   "-sf": "Use an external file (txt, one per line) to use custom regexes for secrets hunting.",
+   "-sr": "Store HTTP responses.",
+   "-t": "Set timeout for the requests. (default 10)",
+   "-ua": "Use a custom User Agent.",
+   "-version": "Print the version."
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "39280ccf2eb8126554b5f41771881f5e6135c5b19df96ae7ed7316c8e9f7d408",
+  "text": "Usage of cariddi:\n  -c int\n    \tConcurrency level. (default 20)\n  -cache\n    \tUse the .cariddi_cache folder as cache.\n  -d int\n    \tDelay between a page crawled and another.\n  -debug\n    \tPrint debug information while crawling.\n  -e\tHunt for juicy endpoints.\n  -ef string\n    \tUse an external file (txt, one per line) to use custom parameters for endpoints hunting.\n  -err\n    \tHunt for errors in websites.\n  -examples\n    \tPrint the examples.\n  -ext int\n    \tHunt for juicy file extensions. Integer from 1(juicy) to 7(not juicy).\n  -h\tPrint the help.\n  -headers string\n    \tUse custom headers for each request E.g. -headers \"Cookie: auth=yes;;Client: type=2\".\n  -headersfile string\n    \tRead from an external file custom headers (same format of headers flag).\n  -i string\n    \tIgnore the URL containing at least one of the elements of this array.\n  -ie value\n    \tComma-separated list of extensions to ignore while scanning\n  -info\n    \tHunt for useful informations in websites.\n  -intensive\n    \tCrawl searching for resources matching 2nd level domain.\n  -it string\n    \tIgnore the URL containing at least one of the lines of this file.\n  -json\n    \tPrint the output as JSON in stdout.\n  -md int\n    \tMaximum depth level the crawler will follow from the initial target URL.\n  -oh string\n    \tWrite the output into an HTML file.\n  -ot string\n    \tWrite the output into a TXT file.\n  -plain\n    \tPrint only results.\n  -proxy string\n    \tSet a Proxy, http and socks5 supported.\n  -rua\n    \tUse a random browser user agent on every request.\n  -s\tHunt for secrets.\n  -sf string\n    \tUse an external file (txt, one per line) to use custom regexes for secrets hunting.\n  -sr\n    \tStore HTTP responses.\n  -t int\n    \tSet timeout for the requests. (default 10)\n  -ua string\n    \tUse a custom User Agent.\n  -version\n    \tPrint the version.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--c",
+   "--cache",
+   "--d",
+   "--debug",
+   "--e",
+   "--ef",
+   "--err",
+   "--examples",
+   "--ext",
+   "--h",
+   "--headers",
+   "--headersfile",
+   "--i",
+   "--info",
+   "--insecure",
+   "--intensive",
+   "--it",
+   "--json",
+   "--md",
+   "--oh",
+   "--ot",
+   "--plain",
+   "--proxy",
+   "--rua",
+   "--s",
+   "--sf",
+   "--sr",
+   "--t",
+   "--ua",
+   "--version"
+  ],
+  "help_only": [
+   "-c",
+   "-cache",
+   "-d",
+   "-debug",
+   "-e",
+   "-ef",
+   "-err",
+   "-examples",
+   "-ext",
+   "-h",
+   "-headers",
+   "-headersfile",
+   "-i",
+   "-ie",
+   "-info",
+   "-intensive",
+   "-it",
+   "-json",
+   "-md",
+   "-oh",
+   "-ot",
+   "-plain",
+   "-proxy",
+   "-rua",
+   "-s",
+   "-sf",
+   "-sr",
+   "-t",
+   "-ua",
+   "-version"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Concurrency level.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--cache": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use the .cariddi_cache folder as cache.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--d": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Delay between a page crawled and another.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--debug": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print debug information while crawling.",
+    "kind": "option",
+    "first_tag": "v1.1.7",
+    "first_date": "2022-05-03T16:04:03+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--e": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Hunt for juicy endpoints.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--ef": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--err": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Hunt for errors in websites.",
+    "kind": "option",
+    "first_tag": "v1.1.5",
+    "first_date": "2021-12-24T12:54:08+01:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--examples": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the examples.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--ext": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Hunt for juicy file extensions. Integer from 1(juicy) to 7(not juicy).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--h": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the help.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--headers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2021-10-31T12:14:03+01:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--headersfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2021-10-31T12:14:03+01:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--i": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore the URL containing at least one of the elements of this array.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--info": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Hunt for useful informations in websites.",
+    "kind": "option",
+    "first_tag": "v1.1.7",
+    "first_date": "2022-05-03T16:04:03+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--insecure": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore invalid HTTPS certificates",
+    "kind": "option",
+    "first_tag": "v1.1.8",
+    "first_date": "2022-09-04T19:08:31+02:00",
+    "last_tag": "v1.2.1",
+    "last_date": "2022-11-15T18:54:14+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--intensive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Crawl searching for resources matching 2nd level domain.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--it": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore the URL containing at least one of the lines of this file.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the output as JSON in stdout.",
+    "kind": "option",
+    "first_tag": "v1.3.1",
+    "first_date": "2023-03-23T20:21:12+01:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--md": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Maximum depth level the crawler will follow from the initial target URL.",
+    "kind": "option",
+    "first_tag": "v1.4.0",
+    "first_date": "2025-04-14T11:10:34+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--oh": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write the output into an HTML file.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--ot": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write the output into a TXT file.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--plain": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print only results.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set a Proxy, http and socks5 supported.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--rua": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use a random browser user agent on every request.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--s": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Hunt for secrets.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--sf": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--sr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Store HTTP responses.",
+    "kind": "option",
+    "first_tag": "v1.3.2",
+    "first_date": "2023-06-09T11:59:26+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set timeout for the requests.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--ua": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use a custom User Agent.",
+    "kind": "option",
+    "first_tag": "v1.1.8",
+    "first_date": "2022-09-04T19:08:31+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the version.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2021-09-27T19:15:38+02:00",
+    "last_tag": "v1.4.6",
+    "last_date": "2026-03-29T11:12:29+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/input/flags.go"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Concurrency level. (default 20)"
+   },
+   "-cache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the .cariddi_cache folder as cache."
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Delay between a page crawled and another."
+   },
+   "-debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print debug information while crawling."
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-ef": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an external file (txt, one per line) to use custom parameters for endpoints hunting."
+   },
+   "-err": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hunt for errors in websites."
+   },
+   "-examples": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the examples."
+   },
+   "-ext": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hunt for juicy file extensions. Integer from 1(juicy) to 7(not juicy)."
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use custom headers for each request E.g. -headers \"Cookie: auth=yes;;Client: type=2\"."
+   },
+   "-headersfile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read from an external file custom headers (same format of headers flag)."
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore the URL containing at least one of the elements of this array."
+   },
+   "-ie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma-separated list of extensions to ignore while scanning"
+   },
+   "-info": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hunt for useful informations in websites."
+   },
+   "-intensive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Crawl searching for resources matching 2nd level domain."
+   },
+   "-it": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore the URL containing at least one of the lines of this file."
+   },
+   "-json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the output as JSON in stdout."
+   },
+   "-md": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum depth level the crawler will follow from the initial target URL."
+   },
+   "-oh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write the output into an HTML file."
+   },
+   "-ot": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write the output into a TXT file."
+   },
+   "-plain": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print only results."
+   },
+   "-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a Proxy, http and socks5 supported."
+   },
+   "-rua": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a random browser user agent on every request."
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-sf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an external file (txt, one per line) to use custom regexes for secrets hunting."
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Store HTTP responses."
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set timeout for the requests. (default 10)"
+   },
+   "-ua": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a custom User Agent."
+   },
+   "-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the version."
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "cariddi",
+ "repo": "edoardottt/cariddi",
+ "head_sha": "de52cc0bc40accdda235b9d6796cd95a7e937a5d",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:53:59.805881+00:00"
+}

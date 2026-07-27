@@ -1,0 +1,74 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:eef8a511ded7dcc3ed002e8515d605b3d197b67e683dddcdc71fb0ff547e3b1b",
+  "duration_s": 2.23,
+  "log_tail": "#12 0.127    85 |         return a.value.ptr == a.value.ptr;\n#12 0.127       |                            ^~\n#12 0.132 libs/memory.c: In function 'safe_realloc_internal':\n#12 0.132 libs/memory.c:149:3: warning: pointer 'ptr' used after 'realloc' [-Wuse-after-free]\n#12 0.132   149 |   update_entry(ptr, ret, size, file, line);\n#12 0.132       |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#12 0.132 libs/memory.c:145:15: note: call to 'realloc' here\n#12 0.132   145 |   void *ret = realloc(ptr, size);\n#12 0.132       |               ^~~~~~~~~~~~~~~~~~\n#12 0.182 cc --std=c89 -I. -Wall -D_DEFAULT_SOURCE  -Wformat -Wformat-security -g -o dnscat controller/packet.o controller/session.o controller/controller.o drivers/driver.o drivers/command/driver_command.o drivers/command/command_packet.o drivers/driver_console.o drivers/driver_exec.o drivers/driver_ping.o libs/buffer.o libs/crypto/encryptor.o libs/crypto/micro-ecc/uECC.o libs/crypto/salsa20.o libs/crypto/sha3.o libs/dns.o libs/ll.o libs/log.o libs/memory.o libs/select_group.o libs/tcp.o libs/types.o libs/udp.o tunnel_drivers/driver_dns.o  dnscat.o \n#12 0.195 *** dnscat successfully compiled\n#12 0.195 *** Build complete! Run 'make debug' to build a debug version!\n#12 0.195 make[1]: Leaving directory '/src/client'\n#12 0.196 Compile complete!\n#12 0.197 * Client: client/dnscat\n#12 0.197 * Server: server/dnscat_*.rb\n#12 DONE 0.2s\n\n#13 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#13 CACHED\n\n#14 [stage-1 3/8] COPY --from=build /src /src\n#14 DONE 0.0s\n\n#15 [stage-1 4/8] WORKDIR /src\n#15 DONE 0.0s\n\n#16 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.079 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers 0.1s done\n#20 exporting manifest sha256:55809cfad866538841d2db842259c77be58077bce1f216e60f674fe77062dd01 0.0s done\n#20 exporting config sha256:38fa3a7560a6661fafd032729297338a27a0a71a38a6683ccad5938bb2d84e11 done\n#20 exporting attestation manifest sha256:5a415873eb913b9e019a87f40e7c721697b61c70621040387f717839ea90079d 0.0s done\n#20 exporting manifest list sha256:eef8a511ded7dcc3ed002e8515d605b3d197b67e683dddcdc71fb0ff547e3b1b done\n#20 naming to docker.io/ctk-exec/dnscat2:42f8d7834888 done\n#20 unpacking to docker.io/ctk-exec/dnscat2:42f8d7834888\n#20 unpacking to docker.io/ctk-exec/dnscat2:42f8d7834888 0.5s done\n#20 DONE 0.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "dnscat2",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'dnscat2'"
+  },
+  {
+   "argv": [
+    "man",
+    "dnscat2"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for dnscat2\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "dnscat2"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'dnscat2' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "tool": "dnscat2",
+ "repo": "iagox86/dnscat2",
+ "head_sha": "42f8d783488836c0e24ff25571684170be0a0cc2",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:20:07.974954+00:00"
+}

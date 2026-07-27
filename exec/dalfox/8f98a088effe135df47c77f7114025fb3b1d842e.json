@@ -1,0 +1,19 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 24.9,
+  "log_tail": "#11 [build 3/5] COPY . .\n#11 DONE 0.1s\n\n#12 [build 4/5] RUN cargo build --release\n#12 0.115 error: failed to parse manifest at `/src/Cargo.toml`\n#12 0.115 \n#12 0.115 Caused by:\n#12 0.115   feature `edition2024` is required\n#12 0.115 \n#12 0.115   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n#12 0.115   Consider trying a newer version of Cargo (this may require the nightly release).\n#12 0.115   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n#12 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n\n#7 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#7 35.11 debconf: delaying package configuration, since apt-utils is not installed\n#7 ERROR: not found\n------\n > [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*:\n10.46 Get:38 http://deb.debian.org/debian bookworm/main arm64 libicu72 arm64 72.1-3+deb12u1 [9202 kB]\n34.26 Get:39 http://deb.debian.org/debian bookworm/main arm64 libtext-unidecode-perl all 1.30-3 [101 kB]\n34.31 Get:40 http://deb.debian.org/debian bookworm/main arm64 libxml2 arm64 2.9.14+dfsg-1.3~deb12u6 [620 kB]\n34.51 Get:41 http://deb.debian.org/debian bookworm/main arm64 libxml-namespacesupport-perl all 1.12-2 [15.1 kB]\n34.51 Get:42 http://deb.debian.org/debian bookworm/main arm64 libxml-sax-base-perl all 1.09-3 [20.6 kB]\n34.51 Get:43 http://deb.debian.org/debian bookworm/main arm64 libxml-sax-perl all 1.02+dfsg-3 [59.4 kB]\n34.53 Get:44 http://deb.debian.org/debian bookworm/main arm64 libxml-libxml-perl arm64 2.0207+dfsg+really+2.0134-1+deb12u1 [308 kB]\n34.65 Get:45 http://deb.debian.org/debian bookworm/main arm64 tex-common all 6.18 [32.5 kB]\n34.66 Get:46 http://deb.debian.org/debian bookworm/main arm64 texinfo arm64 6.8-6+b1 [1808 kB]\n35.11 debconf: delaying package configuration, since apt-utils is not installed\n------\n------\n > [build 4/5] RUN cargo build --release:\n0.115 error: failed to parse manifest at `/src/Cargo.toml`\n0.115 \n0.115 Caused by:\n0.115   feature `edition2024` is required\n0.115 \n0.115   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n0.115   Consider trying a newer version of Cargo (this may require the nightly release).\n0.115   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN cargo build --release\n   5 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n   6 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "skipped_reason": "docker build failed",
+ "tool": "Dalfox",
+ "repo": "hahwul/dalfox",
+ "head_sha": "8f98a088effe135df47c77f7114025fb3b1d842e",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:46:12.109016+00:00"
+}

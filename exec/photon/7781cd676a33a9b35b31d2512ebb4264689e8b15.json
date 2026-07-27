@@ -1,0 +1,582 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "dockerfile",
+  "image_digest": "sha256:1868abcd79b052a1d78917d5ad45584cbe2d2995bd7fc9cc98d4c5e206480995",
+  "duration_s": 11.86,
+  "log_tail": "#3 transferring context: 2B done\n#3 DONE 0.0s\n\n#4 [internal] load build context\n#4 transferring context: 28.34kB done\n#4 DONE 0.0s\n\n#5 [1/6] FROM docker.io/ctk-exec-base/photon:7781cd676a33@sha256:f37297c3077a05da7c8b8544e83880fa4fa02f3bd7c1f0e387507e956fda796d\n#5 resolve docker.io/ctk-exec-base/photon:7781cd676a33@sha256:f37297c3077a05da7c8b8544e83880fa4fa02f3bd7c1f0e387507e956fda796d done\n#5 DONE 0.0s\n\n#6 [2/6] RUN ((apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less && rm -rf /var/lib/apt/lists/*) ||      (apk add --no-cache python3 mandoc less) ||      (dnf install -y python3 man-db less) ||      true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in upstream image\" >&2; exit 1)\n#6 0.095 /bin/sh: apt-get: not found\n#6 0.579 (1/9) Installing less (702-r0)\n#6 0.612 (2/9) Installing mandoc (1.14.6-r15)\n#6 0.649 (3/9) Installing libgcc (15.2.0-r5)\n#6 0.681 (4/9) Installing libstdc++ (15.2.0-r5)\n#6 0.744 (5/9) Installing mpdecimal (4.0.1-r0)\n#6 0.771 (6/9) Installing python3 (3.14.5-r0)\n#6 1.220 (7/9) Installing python3-pycache-pyc0 (3.14.5-r0)\n#6 1.521 (8/9) Installing pyc (3.14.5-r0)\n#6 1.521 (9/9) Installing python3-pyc (3.14.5-r0)\n#6 1.521 Executing busybox-1.37.0-r31.trigger\n#6 1.532 OK: 64.8 MiB in 50 packages\n#6 DONE 1.6s\n\n#7 [3/6] COPY agent.py /opt/ctk/agent.py\n#7 DONE 0.0s\n\n#8 [4/6] COPY helptext.py /opt/ctk/helptext.py\n#8 DONE 0.0s\n\n#9 [5/6] COPY fixtures/ /opt/ctk/fixtures/\n#9 DONE 0.0s\n\n#10 [6/6] RUN (useradd -u 65532 -m -s /usr/sbin/nologin ctk || adduser -D -u 65532 -s /usr/sbin/nologin ctk || true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in image\" >&2; exit 1)\n#10 0.153 /bin/sh: useradd: not found\n#10 DONE 0.2s\n\n#11 exporting to image\n#11 exporting layers\n#11 exporting layers 1.1s done\n#11 exporting manifest sha256:2182ffb5d76c61eded992839e149e6f81310ce1d986868a9a89c469235a9d138 0.0s done\n#11 exporting config sha256:3cf8dfba5434e6cbad85782e0a4c87393d3a8e1200c9c2015805f781d2c64e2a done\n#11 exporting attestation manifest sha256:402f8b10156e276828c7df2fe7ce7b6c215ddf51aec9bd700fc7bcbba73843a0 0.0s done\n#11 exporting manifest list sha256:1868abcd79b052a1d78917d5ad45584cbe2d2995bd7fc9cc98d4c5e206480995 done\n#11 naming to docker.io/ctk-exec/photon:7781cd676a33 done\n#11 unpacking to docker.io/ctk-exec/photon:7781cd676a33\n#11 unpacking to docker.io/ctk-exec/photon:7781cd676a33 0.3s done\n#11 DONE 1.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "python",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ...\nOptions (and corresponding environment variables):\n-b     : issue warnings about converting bytes/bytearray to str and comparing\n         bytes/bytearray with str or bytes with int. (-bb: issue errors)\n-B     : don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x\n-c cmd : program passed in as string (terminates option list)\n-d     : turn on parser debugging output (for experts only, only works on\n         debug builds); also PYTHONDEBUG=x\n-E     : ignore PYTHON* environment variables (such as PYTHONPATH)\n-h     : print this help message and exit (also -? or --help)\n-i     : inspect interactively after running script; forces a prompt even\n         if stdin does not appear to be a terminal; also PYTHONINSPECT=x\n-I     : isolate Python from the user's environment (implies -E, -P and -s)\n-m mod : run library module as a script (terminates option list)\n-O     : remove assert and __debug__-dependent statements; add .opt-1 before\n         .pyc extension; also PYTHONOPTIMIZE=x\n-OO    : do -O changes and also discard docstrings; add .opt-2 before\n         .pyc extension\n-P     : don't prepend a potentially unsafe path to sys.path; also\n         PYTHONSAFEPATH\n-q     : don't print version and copyright messages on interactive startup\n-s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE=x\n-S     : don't imply 'import site' on initialization\n-u     : force the stdout and stderr streams to be unbuffered;\n         this option has no effect on stdin; also PYTHONUNBUFFERED=x\n-v     : verbose (trace import statements); also PYTHONVERBOSE=x\n         can be supplied multiple times to increase verbosity\n-V     : print the Python version number and exit (also --version)\n         when given twice, print more information about the build\n-W arg : warning control; arg is action:message:category:module:lineno\n         also PYTHONWARNINGS=arg\n-x     : skip first line of source, allowing use of non-Unix forms of #!cmd\n-X opt : set implementation-specific option\n--check-hash-based-pycs always|default|never:\n         control how Python invalidates hash-based .pyc files\n--help-env: print help about Python environment variables and exit\n--help-xoptions: print help about implementation-specific -X options and exit\n--help-all: print complete help information and exit\n\nArguments:\nfile   : program read from script file\n-      : program read from stdin (default; interactive mode if a tty)\narg ...: arguments passed to program in sys.argv[1:]\n",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "python"
+   ],
+   "exit_code": 5,
+   "stdout": "",
+   "stderr": "man: No entry for python in the manual.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "python"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'info'",
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "python",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-b": ": issue warnings about converting bytes/bytearray to str and comparing bytes/bytearray with str or bytes with int. (-bb: issue errors)",
+   "-B": ": don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x",
+   "-c": "program passed in as string (terminates option list)",
+   "-d": ": turn on parser debugging output (for experts only, only works on debug builds); also PYTHONDEBUG=x",
+   "-E": ": ignore PYTHON* environment variables (such as PYTHONPATH)",
+   "-h": ": print this help message and exit (also -? or --help)",
+   "-i": ": inspect interactively after running script; forces a prompt even if stdin does not appear to be a terminal; also PYTHONINSPECT=x",
+   "-I": ": isolate Python from the user's environment (implies -E, -P and -s)",
+   "-m": "run library module as a script (terminates option list)",
+   "-O": ": remove assert and __debug__-dependent statements; add .opt-1 before .pyc extension; also PYTHONOPTIMIZE=x",
+   "-OO": ": do -O changes and also discard docstrings; add .opt-2 before .pyc extension",
+   "-P": ": don't prepend a potentially unsafe path to sys.path; also PYTHONSAFEPATH",
+   "-q": ": don't print version and copyright messages on interactive startup",
+   "-s": ": don't add user site directory to sys.path; also PYTHONNOUSERSITE=x",
+   "-S": ": don't imply 'import site' on initialization",
+   "-u": ": force the stdout and stderr streams to be unbuffered; this option has no effect on stdin; also PYTHONUNBUFFERED=x",
+   "-v": ": verbose (trace import statements); also PYTHONVERBOSE=x can be supplied multiple times to increase verbosity",
+   "-V": ": print the Python version number and exit (also --version) when given twice, print more information about the build",
+   "-W": "warning control; arg is action:message:category:module:lineno also PYTHONWARNINGS=arg",
+   "-x": ": skip first line of source, allowing use of non-Unix forms of #!cmd",
+   "-X": "set implementation-specific option",
+   "--check-hash-based-pycs": "control how Python invalidates hash-based .pyc files",
+   "--help-env": "print help about Python environment variables and exit",
+   "--help-xoptions": "print help about implementation-specific -X options and exit",
+   "--help-all": "print complete help information and exit"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "29e038b7a867fde1a9329513e0bedb9b7aed32a60fccf0efbadc703c30295765",
+  "text": "usage: python [option] ... [-c cmd | -m mod | file | -] [arg] ...\nOptions (and corresponding environment variables):\n-b     : issue warnings about converting bytes/bytearray to str and comparing\n         bytes/bytearray with str or bytes with int. (-bb: issue errors)\n-B     : don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x\n-c cmd : program passed in as string (terminates option list)\n-d     : turn on parser debugging output (for experts only, only works on\n         debug builds); also PYTHONDEBUG=x\n-E     : ignore PYTHON* environment variables (such as PYTHONPATH)\n-h     : print this help message and exit (also -? or --help)\n-i     : inspect interactively after running script; forces a prompt even\n         if stdin does not appear to be a terminal; also PYTHONINSPECT=x\n-I     : isolate Python from the user's environment (implies -E, -P and -s)\n-m mod : run library module as a script (terminates option list)\n-O     : remove assert and __debug__-dependent statements; add .opt-1 before\n         .pyc extension; also PYTHONOPTIMIZE=x\n-OO    : do -O changes and also discard docstrings; add .opt-2 before\n         .pyc extension\n-P     : don't prepend a potentially unsafe path to sys.path; also\n         PYTHONSAFEPATH\n-q     : don't print version and copyright messages on interactive startup\n-s     : don't add user site directory to sys.path; also PYTHONNOUSERSITE=x\n-S     : don't imply 'import site' on initialization\n-u     : force the stdout and stderr streams to be unbuffered;\n         this option has no effect on stdin; also PYTHONUNBUFFERED=x\n-v     : verbose (trace import statements); also PYTHONVERBOSE=x\n         can be supplied multiple times to increase verbosity\n-V     : print the Python version number and exit (also --version)\n         when given twice, print more information about the build\n-W arg : warning control; arg is action:message:category:module:lineno\n         also PYTHONWARNINGS=arg\n-x     : skip first line of source, allowing use of non-Unix forms of #!cmd\n-X opt : set implementation-specific option\n--check-hash-based-pycs always|default|never:\n         control how Python invalidates hash-based .pyc files\n--help-env: print help about Python environment variables and exit\n--help-xoptions: print help about implementation-specific -X options and exit\n--help-all: print complete help information and exit\n\nArguments:\nfile   : program read from script file\n-      : program read from stdin (default; interactive mode if a tty)\narg ...: arguments passed to program in sys.argv[1:]\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--clone",
+   "--cookie",
+   "--delay",
+   "--dns",
+   "--exclude",
+   "--export",
+   "--headers",
+   "--keys",
+   "--level",
+   "--ninja",
+   "--only-urls",
+   "--output",
+   "--regex",
+   "--seeds",
+   "--stdout",
+   "--threads",
+   "--timeout",
+   "--update",
+   "--url",
+   "--user-agent",
+   "--verbose",
+   "--wayback"
+  ],
+  "help_only": [
+   "--check-hash-based-pycs",
+   "--help-all",
+   "--help-env",
+   "--help-xoptions",
+   "-B",
+   "-E",
+   "-I",
+   "-O",
+   "-OO",
+   "-P",
+   "-S",
+   "-V",
+   "-W",
+   "-X",
+   "-b",
+   "-c",
+   "-d",
+   "-h",
+   "-i",
+   "-m",
+   "-q",
+   "-s",
+   "-u",
+   "-v",
+   "-x"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--check-hash-based-pycs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "control how Python invalidates hash-based .pyc files"
+   },
+   "--clone": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "clone the website locally",
+    "kind": "option",
+    "first_tag": "v1.2.1",
+    "first_date": "2019-01-27T00:13:22+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--cookie": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cookie",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--delay": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "delay between requests",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--dns": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enumerate subdomains and DNS data",
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2018-07-25T01:29:04+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--exclude": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "exclude URLs matching this regex",
+    "kind": "option",
+    "first_tag": "v1.0.8",
+    "first_date": "2018-08-05T01:23:56+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--export": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "export format",
+    "kind": "option",
+    "first_tag": "v1.0.5",
+    "first_date": "2018-07-26T14:24:31+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--headers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "add headers",
+    "kind": "option",
+    "first_tag": "v1.1.5",
+    "first_date": "2018-10-24T13:00:07+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--help-all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print complete help information and exit"
+   },
+   "--help-env": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print help about Python environment variables and exit"
+   },
+   "--help-xoptions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print help about implementation-specific -X options and exit"
+   },
+   "--keys": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "find secret keys",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2018-08-20T02:12:31+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "levels to crawl",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--ninja": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "ninja mode",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.2.1",
+    "last_date": "2019-01-27T00:13:22+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--only-urls": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only extract URLs",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2018-07-25T23:20:34+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output directory",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2018-07-28T21:30:46+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--regex": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "regex pattern",
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2018-07-23T19:15:53+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--seeds": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "additional seed URLs",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--stdout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "send variables to stdout",
+    "kind": "option",
+    "first_tag": "v1.1.3",
+    "first_date": "2018-09-07T02:54:11+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--threads": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "number of threads",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "http request timeout",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2018-07-28T21:30:46+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--update": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "update photon",
+    "kind": "option",
+    "first_tag": "v1.0.5",
+    "first_date": "2018-07-26T14:24:31+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "root url",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2018-07-23T09:22:02+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--user-agent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "custom user agent(s)",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2018-07-28T21:30:46+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "verbose output",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2018-09-18T14:46:51+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "--wayback": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "fetch URLs from archive.org as seeds",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2018-09-04T14:49:45+05:30",
+    "last_tag": "v1.3.0",
+    "last_date": "2019-04-05T17:45:33+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "photon.py"
+   },
+   "-B": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": don't write .pyc files on import; also PYTHONDONTWRITEBYTECODE=x"
+   },
+   "-E": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": ignore PYTHON* environment variables (such as PYTHONPATH)"
+   },
+   "-I": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": isolate Python from the user's environment (implies -E, -P and -s)"
+   },
+   "-O": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": remove assert and __debug__-dependent statements; add .opt-1 before .pyc extension; also PYTHONOPTIMIZE=x"
+   },
+   "-OO": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": do -O changes and also discard docstrings; add .opt-2 before .pyc extension"
+   },
+   "-P": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": don't prepend a potentially unsafe path to sys.path; also PYTHONSAFEPATH"
+   },
+   "-S": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": don't imply 'import site' on initialization"
+   },
+   "-V": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": print the Python version number and exit (also --version) when given twice, print more information about the build"
+   },
+   "-W": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "warning control; arg is action:message:category:module:lineno also PYTHONWARNINGS=arg"
+   },
+   "-X": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set implementation-specific option"
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": issue warnings about converting bytes/bytearray to str and comparing bytes/bytearray with str or bytes with int. (-bb: issue errors)"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "program passed in as string (terminates option list)"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": turn on parser debugging output (for experts only, only works on debug builds); also PYTHONDEBUG=x"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": print this help message and exit (also -? or --help)"
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": inspect interactively after running script; forces a prompt even if stdin does not appear to be a terminal; also PYTHONINSPECT=x"
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run library module as a script (terminates option list)"
+   },
+   "-q": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": don't print version and copyright messages on interactive startup"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": don't add user site directory to sys.path; also PYTHONNOUSERSITE=x"
+   },
+   "-u": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": force the stdout and stderr streams to be unbuffered; this option has no effect on stdin; also PYTHONUNBUFFERED=x"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": verbose (trace import statements); also PYTHONVERBOSE=x can be supplied multiple times to increase verbosity"
+   },
+   "-x": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ": skip first line of source, allowing use of non-Unix forms of #!cmd"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "photon",
+ "repo": "s0md3v/Photon",
+ "head_sha": "7781cd676a33a9b35b31d2512ebb4264689e8b15",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:33:08.069949+00:00"
+}

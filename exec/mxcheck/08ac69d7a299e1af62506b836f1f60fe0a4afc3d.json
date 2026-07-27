@@ -1,0 +1,349 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:6d384a67cd85a97de023effd08638e389be256d3e94bb45ac8ca6bfa4052797f",
+  "duration_s": 6.28,
+  "log_tail": "#7 [internal] load build context\n#7 transferring context: 11.15MB 0.1s done\n#7 DONE 0.1s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.115 go: downloading github.com/logrusorgru/aurora v2.0.3+incompatible\n#10 0.115 go: downloading github.com/spf13/pflag v1.0.10\n#10 0.115 go: downloading github.com/miekg/dns v1.1.72\n#10 0.116 go: downloading github.com/jamesog/iptoasn v0.1.0\n#10 0.409 go: downloading golang.org/x/sys v0.47.0\n#10 0.409 go: downloading golang.org/x/net v0.52.0\n#10 0.622 go: downloading github.com/pkg/errors v0.9.1\n#10 DONE 4.1s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.109 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.2s done\n#17 exporting manifest sha256:045827ef90b5393f77ccf54a9850082a43663826c905da06c185c52e53382005 done\n#17 exporting config sha256:89b4209b1b18c275c25299fa36fad319699d8d8347bec743b0ee352861390bd9 done\n#17 exporting attestation manifest sha256:b11a25a50a879b854a4a7884937651b2b8e43687087738b546bc99ebbc33ce6e done\n#17 exporting manifest list sha256:6d384a67cd85a97de023effd08638e389be256d3e94bb45ac8ca6bfa4052797f done\n#17 naming to docker.io/ctk-exec/mxcheck:08ac69d7a299 done\n#17 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299\n#17 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299 0.6s done\n#17 DONE 0.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "mxcheck",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of mxcheck:\n  -b, --blacklist              Check if the service is on blacklists\n  -p, --disable-port-scan      Disable SMTP port scan\n  -S, --dkim-selector string   The DKIM selector. If set a DKIM check is performed on the provided service domain\n  -d, --dnsserver string       The dns server to be requested (default \"8.8.8.8\")\n  -f, --mailfrom string        Set the mailFrom address (default \"info@foo.wtf\")\n  -t, --mailto string          Set the mailTo address (default \"info@baz.wtf\")\n  -n, --no-prompt              Answer yes to all questions\n  -s, --service string         The service host to check\n  -g, --smuggle                Test for SMTPSmuggling vulnerability\n  -u, --updatecheck            Check for new version of mxcheck\n  -V, --verbose                Show timestamps in output\n  -v, --version                Version and license\n  -w, --write-tsv              Write tsv formated report to file\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "mxcheck"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for mxcheck\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "mxcheck"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'mxcheck' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "mxcheck",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--blacklist": "Check if the service is on blacklists",
+   "-b": "Check if the service is on blacklists",
+   "--disable-port-scan": "Disable SMTP port scan",
+   "-p": "Disable SMTP port scan",
+   "--dkim-selector": "The DKIM selector. If set a DKIM check is performed on the provided service domain",
+   "-S": "The DKIM selector. If set a DKIM check is performed on the provided service domain",
+   "--dnsserver": "The dns server to be requested (default \"8.8.8.8\")",
+   "-d": "The dns server to be requested (default \"8.8.8.8\")",
+   "--mailfrom": "Set the mailFrom address (default \"info@foo.wtf\")",
+   "-f": "Set the mailFrom address (default \"info@foo.wtf\")",
+   "--mailto": "Set the mailTo address (default \"info@baz.wtf\")",
+   "-t": "Set the mailTo address (default \"info@baz.wtf\")",
+   "--no-prompt": "Answer yes to all questions",
+   "-n": "Answer yes to all questions",
+   "--service": "The service host to check",
+   "-s": "The service host to check",
+   "--smuggle": "Test for SMTPSmuggling vulnerability",
+   "-g": "Test for SMTPSmuggling vulnerability",
+   "--updatecheck": "Check for new version of mxcheck",
+   "-u": "Check for new version of mxcheck",
+   "--verbose": "Show timestamps in output",
+   "-V": "Show timestamps in output",
+   "--version": "Version and license",
+   "-v": "Version and license",
+   "--write-tsv": "Write tsv formated report to file",
+   "-w": "Write tsv formated report to file"
+  },
+  "aliases": {
+   "--blacklist": [
+    "-b"
+   ],
+   "--disable-port-scan": [
+    "-p"
+   ],
+   "--dkim-selector": [
+    "-S"
+   ],
+   "--dnsserver": [
+    "-d"
+   ],
+   "--mailfrom": [
+    "-f"
+   ],
+   "--mailto": [
+    "-t"
+   ],
+   "--no-prompt": [
+    "-n"
+   ],
+   "--service": [
+    "-s"
+   ],
+   "--smuggle": [
+    "-g"
+   ],
+   "--updatecheck": [
+    "-u"
+   ],
+   "--verbose": [
+    "-V"
+   ],
+   "--version": [
+    "-v"
+   ],
+   "--write-tsv": [
+    "-w"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "287075b269b7b0cca39c520722326d81cc7ffbd085153b3fedd28a23196fe197",
+  "text": "Usage of mxcheck:\n  -b, --blacklist              Check if the service is on blacklists\n  -p, --disable-port-scan      Disable SMTP port scan\n  -S, --dkim-selector string   The DKIM selector. If set a DKIM check is performed on the provided service domain\n  -d, --dnsserver string       The dns server to be requested (default \"8.8.8.8\")\n  -f, --mailfrom string        Set the mailFrom address (default \"info@foo.wtf\")\n  -t, --mailto string          Set the mailTo address (default \"info@baz.wtf\")\n  -n, --no-prompt              Answer yes to all questions\n  -s, --service string         The service host to check\n  -g, --smuggle                Test for SMTPSmuggling vulnerability\n  -u, --updatecheck            Check for new version of mxcheck\n  -V, --verbose                Show timestamps in output\n  -v, --version                Version and license\n  -w, --write-tsv              Write tsv formated report to file\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--d",
+   "--t",
+   "--v"
+  ],
+  "help_only": [
+   "--blacklist",
+   "--disable-port-scan",
+   "--dkim-selector",
+   "--dnsserver",
+   "--mailfrom",
+   "--mailto",
+   "--no-prompt",
+   "--service",
+   "--smuggle",
+   "--updatecheck",
+   "--verbose",
+   "--version",
+   "--write-tsv",
+   "-S",
+   "-V",
+   "-b",
+   "-d",
+   "-f",
+   "-g",
+   "-n",
+   "-p",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-w"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--blacklist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check if the service is on blacklists",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--d": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The dns server to consult",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2019-01-24T00:30:25+01:00",
+    "last_tag": "v1.1.1",
+    "last_date": "2019-02-13T14:37:20+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--disable-port-scan": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable SMTP port scan",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--dkim-selector": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The DKIM selector. If set a DKIM check is performed on the provided service domain",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--dnsserver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The dns server to be requested (default \"8.8.8.8\")",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--mailfrom": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the mailFrom address (default \"info@foo.wtf\")",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--mailto": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the mailTo address (default \"info@baz.wtf\")",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--no-prompt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Answer yes to all questions",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--service": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The service host to check",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--smuggle": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Test for SMTPSmuggling vulnerability",
+    "aliases": [
+     "-g"
+    ]
+   },
+   "--t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The target host to check",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2018-10-21T23:56:19+02:00",
+    "last_tag": "v1.1.1",
+    "last_date": "2019-02-13T14:37:20+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--updatecheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check for new version of mxcheck",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "verbose",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2019-01-24T00:30:25+01:00",
+    "last_tag": "v1.1.1",
+    "last_date": "2019-02-13T14:37:20+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show timestamps in output",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Version and license",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--write-tsv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write tsv formated report to file",
+    "aliases": [
+     "-w"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "mxcheck",
+ "repo": "steffenfritz/mxcheck",
+ "head_sha": "08ac69d7a299e1af62506b836f1f60fe0a4afc3d",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:29:37.534012+00:00"
+}

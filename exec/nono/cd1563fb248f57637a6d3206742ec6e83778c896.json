@@ -1,0 +1,19 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 21.58,
+  "log_tail": "#8 20.42   python3.11-venv python3.11-doc binutils binfmt-support readline-doc\n#8 20.42   debhelper texlive-base texlive-latex-base texlive-plain-generic\n#8 20.42   texlive-fonts-recommended\n#8 20.42 Recommended packages:\n#8 20.42   krb5-locales libgpm2 libwww-perl libxml-sax-expat-perl netbase\n#8 20.42   ca-certificates\n#8 ...\n\n#10 [build 3/5] COPY . .\n#10 DONE 0.1s\n\n#11 [build 4/5] RUN cargo build --release\n#11 0.107 error: failed to load manifest for workspace member `/src/crates/nono`\n#11 0.107 referenced by workspace at `/src/Cargo.toml`\n#11 0.107 \n#11 0.107 Caused by:\n#11 0.107   failed to parse manifest at `/src/crates/nono/Cargo.toml`\n#11 0.107 \n#11 0.107 Caused by:\n#11 0.107   feature `edition2024` is required\n#11 0.107 \n#11 0.107   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n#11 0.107   Consider trying a newer version of Cargo (this may require the nightly release).\n#11 0.107   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n#11 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n\n#8 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#8 CANCELED\n------\n > [build 4/5] RUN cargo build --release:\n0.107 \n0.107 Caused by:\n0.107   failed to parse manifest at `/src/crates/nono/Cargo.toml`\n0.107 \n0.107 Caused by:\n0.107   feature `edition2024` is required\n0.107 \n0.107   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n0.107   Consider trying a newer version of Cargo (this may require the nightly release).\n0.107   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN cargo build --release\n   5 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n   6 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "skipped_reason": "docker build failed",
+ "tool": "nono",
+ "repo": "nolabs-ai/nono",
+ "head_sha": "cd1563fb248f57637a6d3206742ec6e83778c896",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T02:01:34.872013+00:00"
+}

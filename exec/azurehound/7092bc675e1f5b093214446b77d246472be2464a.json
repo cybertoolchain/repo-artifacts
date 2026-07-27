@@ -1,0 +1,1976 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:430e80ae3b357b5eccd437e607ae10e4ab27993818ca3988ac7c838e948fd6a5",
+  "duration_s": 7.63,
+  "log_tail": "#10 0.508 go: downloading github.com/mattn/go-colorable v0.1.14\n#10 0.642 go: downloading github.com/mattn/go-isatty v0.0.20\n#10 0.684 go: downloading golang.org/x/text v0.36.0\n#10 0.721 go: downloading golang.org/x/sys v0.41.0\n#10 0.812 go: downloading github.com/Azure/azure-sdk-for-go/sdk/internal v1.11.2\n#10 0.852 go: downloading gopkg.in/yaml.v3 v3.0.1\n#10 0.852 go: downloading github.com/go-viper/mapstructure/v2 v2.4.0\n#10 0.852 go: downloading github.com/pelletier/go-toml/v2 v2.2.4\n#10 0.852 go: downloading github.com/spf13/cast v1.8.0\n#10 0.852 go: downloading github.com/fsnotify/fsnotify v1.9.0\n#10 0.853 go: downloading github.com/sagikazarmark/locafero v0.9.0\n#10 0.853 go: downloading github.com/spf13/afero v1.14.0\n#10 0.853 go: downloading github.com/AzureAD/microsoft-authentication-library-for-go v1.4.2\n#10 0.853 go: downloading github.com/subosito/gotenv v1.6.0\n#10 1.232 go: downloading github.com/sourcegraph/conc v0.3.0\n#10 1.274 go: downloading github.com/kylelemons/godebug v1.1.0\n#10 1.274 go: downloading github.com/google/uuid v1.6.0\n#10 1.275 go: downloading github.com/pkg/browser v0.0.0-20240102092130-5ac0b6a4141c\n#10 DONE 5.6s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.091 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:fbb2758b9edfeb0b403063ba2d0f3df96c5aa0c350e8d051dd7907c8055679d2 done\n#17 exporting config sha256:2b18b86c84faeb4fee6fea08ffe419323b92e0bb4352076be3e7d9037f8dc5e4 done\n#17 exporting attestation manifest sha256:a53da35da680d1fe8cdd61214ccc9d4bbd2f095b2809654bb028c9b298e0abbe done\n#17 exporting manifest list sha256:430e80ae3b357b5eccd437e607ae10e4ab27993818ca3988ac7c838e948fd6a5 done\n#17 naming to docker.io/ctk-exec/azurehound:7092bc675e1f done\n#17 unpacking to docker.io/ctk-exec/azurehound:7092bc675e1f\n#17 unpacking to docker.io/ctk-exec/azurehound:7092bc675e1f 0.6s done\n#17 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "azurehound",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "The official tool for collecting Azure data for BloodHound and BloodHound Enterprise\n\nUsage:\n  azurehound [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  configure   Configure AzureHound\n  help        Help about any command\n  list        Lists Azure Objects\n  start       Start Azure data collection service for BloodHound Enterprise\n\nFlags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n  -h, --help                   help for azurehound\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n      --version                version for azurehound\n\nUse \"azurehound [command] --help\" for more information about a command.\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for azurehound for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  azurehound completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n\nUse \"azurehound completion [command] --help\" for more information about a command.\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(azurehound completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tazurehound completion bash > /etc/bash_completion.d/azurehound\n\n#### macOS:\n\n\tazurehound completion bash > $(brew --prefix)/etc/bash_completion.d/azurehound\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  azurehound completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tazurehound completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tazurehound completion fish > ~/.config/fish/completions/azurehound.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  azurehound completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tazurehound completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  azurehound completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(azurehound completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tazurehound completion zsh > \"${fpath[1]}/_azurehound\"\n\n#### macOS:\n\n\tazurehound completion zsh > $(brew --prefix)/share/zsh/site-functions/_azurehound\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  azurehound completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "configure",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Configure AzureHound\n\nUsage:\n  azurehound configure [flags]\n\nFlags:\n  -h, --help   help for configure\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type azurehound help [path to command] for full details.\n\nUsage:\n  azurehound help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Objects\n\nUsage:\n  azurehound list [flags]\n  azurehound list [command]\n\nAvailable Commands:\n  app-owners                                  \n  app-role-assignments                        \n  appfics                                     \n  apps                                        \n  automation-account-role-assignments         \n  automation-accounts                         \n  az-ad                                       \n  az-rm                                       \n  container-registries                        \n  container-registry-role-assignments         \n  devices                                     \n  function-app-role-assignments               \n  function-apps                               \n  group-members                               \n  group-owners                                \n  groups                                      \n  key-vault-access-policies                   \n  key-vault-contributors                      \n  key-vault-kvcontributors                    \n  key-vault-owners                            \n  key-vault-role-assignments                  \n  key-vault-user-access-admins                \n  key-vaults                                  \n  logic-app-role-assignments                  \n  logic-apps                                  \n  managed-cluster-role-assignments            \n  managed-clusters                            \n  management-group-contributors               \n  management-group-descendants                \n  management-group-owners                     \n  management-group-role-assignments           \n  management-group-user-access-admins         \n  management-groups                           \n  resource-group-contributors                 \n  resource-group-owners                       \n  resource-group-role-assignments             \n  resource-group-user-access-admins           \n  resource-groups                             \n  role-assignments                            \n  roles                                       \n  service-principal-owners                    \n  service-principals                          \n  storage-account-role-assignments            \n  storage-accounts                            \n  storage-containers                          \n  subscription-contributors                   \n  subscription-owners                         \n  subscription-role-assignments               \n  subscription-user-access-admins             \n  subscriptions                               \n  tenants                                     \n  unified-role-assignment-policies            Lists Unified Role Assignment Policies\n  unified-role-eligibility-schedule-instances \n  users                                       \n  virtual-machine-admin-logins                \n  virtual-machine-avere-contributors          \n  virtual-machine-contributors                \n  virtual-machine-owners                      \n  virtual-machine-role-assignments            \n  virtual-machine-user-access-admins          \n  virtual-machine-vmcontributors              \n  virtual-machines                            \n  vm-scale-set-role-assignments               \n  vm-scale-sets                               \n  web-app-role-assignments                    \n  web-apps                                    \n\nFlags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n      --graph string                        The Microsoft Graph URL.\n  -h, --help                                help for list\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -u, --username string                     The user principal name for the Azure Portal\n\nGlobal Flags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n\nUse \"azurehound list [command] --help\" for more information about a command.\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "app-owners",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure AD App Owners\n\nUsage:\n  azurehound list app-owners [flags]\n\nFlags:\n  -h, --help   help for app-owners\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "app-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Active Directory App Role Assignments\n\nUsage:\n  azurehound list app-role-assignments [flags]\n\nFlags:\n  -h, --help   help for app-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "appfics",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Entra ID Application Federated Identity Credentials\n\nUsage:\n  azurehound list appfics [flags]\n\nFlags:\n  -h, --help   help for appfics\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "apps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Active Directory Applications\n\nUsage:\n  azurehound list apps [flags]\n\nFlags:\n  -h, --help   help for apps\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "automation-account-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Automation Account Role Assignments\n\nUsage:\n  azurehound list automation-account-role-assignments [flags]\n\nFlags:\n  -h, --help   help for automation-account-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "automation-accounts",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Automation Accounts\n\nUsage:\n  azurehound list automation-accounts [flags]\n\nFlags:\n  -h, --help   help for automation-accounts\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "az-ad",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists All Azure AD Entities\n\nUsage:\n  azurehound list az-ad [flags]\n\nFlags:\n  -h, --help   help for az-ad\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "az-rm",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists All Azure RM Entities\n\nUsage:\n  azurehound list az-rm [flags]\n\nFlags:\n  -h, --help   help for az-rm\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "container-registries",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Container Registries\n\nUsage:\n  azurehound list container-registries [flags]\n\nFlags:\n  -h, --help   help for container-registries\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "container-registry-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Container Registry Role Assignments\n\nUsage:\n  azurehound list container-registry-role-assignments [flags]\n\nFlags:\n  -h, --help   help for container-registry-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "devices",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Active Directory Devices\n\nUsage:\n  azurehound list devices [flags]\n\nFlags:\n  -h, --help   help for devices\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "function-app-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Function App Role Assignments\n\nUsage:\n  azurehound list function-app-role-assignments [flags]\n\nFlags:\n  -h, --help   help for function-app-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "function-apps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Function Apps\n\nUsage:\n  azurehound list function-apps [flags]\n\nFlags:\n  -h, --help   help for function-apps\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "group-members",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure AD Group Members\n\nUsage:\n  azurehound list group-members [flags]\n\nFlags:\n  -h, --help             help for group-members\n      --select strings   Select properties to include. Use \"\" for Azure default properties. Azurehound default is \"id,displayName,createdDateTime\" if flag is not supplied. (default [\"id,displayName,createdDateTime\"])\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "group-owners",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure AD Group Owners\n\nUsage:\n  azurehound list group-owners [flags]\n\nFlags:\n  -h, --help   help for group-owners\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "groups",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Active Directory Groups\n\nUsage:\n  azurehound list groups [flags]\n\nFlags:\n  -h, --help   help for groups\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-access-policies",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vault Access Policies\n\nUsage:\n  azurehound list key-vault-access-policies [flags]\n\nFlags:\n      --access-types strings   Filter key vault policies by one or more access type. [GetCerts, GetKeys, GetSecrets]\n                               \tNote: may be used multiple times or values may be provided as comma-separated list\n                               \n  -h, --help                   help for key-vault-access-policies\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-contributors",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vault Contributors\n\nUsage:\n  azurehound list key-vault-contributors [flags]\n\nFlags:\n  -h, --help   help for key-vault-contributors\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-kvcontributors",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vault KVContributors\n\nUsage:\n  azurehound list key-vault-kvcontributors [flags]\n\nFlags:\n  -h, --help   help for key-vault-kvcontributors\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-owners",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vault Owners\n\nUsage:\n  azurehound list key-vault-owners [flags]\n\nFlags:\n  -h, --help   help for key-vault-owners\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Key Vault Role Assignments\n\nUsage:\n  azurehound list key-vault-role-assignments [flags]\n\nFlags:\n  -h, --help   help for key-vault-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vault-user-access-admins",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vault User Access Admins\n\nUsage:\n  azurehound list key-vault-user-access-admins [flags]\n\nFlags:\n  -h, --help   help for key-vault-user-access-admins\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "key-vaults",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Key Vaults\n\nUsage:\n  azurehound list key-vaults [flags]\n\nFlags:\n  -h, --help   help for key-vaults\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "logic-app-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Logic app Role Assignments\n\nUsage:\n  azurehound list logic-app-role-assignments [flags]\n\nFlags:\n  -h, --help   help for logic-app-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "logic-apps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Logic Apps\n\nUsage:\n  azurehound list logic-apps [flags]\n\nFlags:\n  -h, --help   help for logic-apps\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "managed-cluster-role-assignments",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists AKS Managed Cluster Role Assignments\n\nUsage:\n  azurehound list managed-cluster-role-assignments [flags]\n\nFlags:\n  -h, --help   help for managed-cluster-role-assignments\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "managed-clusters",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Kubernetes Service Managed Clusters\n\nUsage:\n  azurehound list managed-clusters [flags]\n\nFlags:\n  -h, --help   help for managed-clusters\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "management-group-contributors",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Management Group Contributors\n\nUsage:\n  azurehound list management-group-contributors [flags]\n\nFlags:\n  -h, --help   help for management-group-contributors\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "management-group-descendants",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Management Group Descendants\n\nUsage:\n  azurehound list management-group-descendants [flags]\n\nFlags:\n  -h, --help   help for management-group-descendants\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "azurehound",
+    "list",
+    "management-group-owners",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lists Azure Management Group Owners\n\nUsage:\n  azurehound list management-group-owners [flags]\n\nFlags:\n  -h, --help   help for management-group-owners\n\nGlobal Flags:\n  -a, --app string                          The Application Id that the Azure app registration portal assigned when the app was registered.\n      --auth string                         The Azure ActiveDirectory Authority URL.\n      --cert string                         The path to the certificate uploaded to the app registration portal.\n  -c, --config string                       AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n      --graph string                        The Microsoft Graph URL.\n      --json                                Output logs as json\n  -j, --jwt string                          Use an acquired JWT to authenticate into Azure\n  -k, --key string                          The path to the key file for a certificate uploaded to the app registration portal.\n      --keypass string                      The passphrase to use in conjuction with --key ${key file}.\n      --log-file string                     Output logs to this file\n      --managed-identity                    If true then authentication is done via managed identity (default false).\n      --managed-identity-client-id string   Client ID used to authenticate via Managed Identity SDK\n      --mgmt string                         The URL of the Azure Resource Manager.\n  -m, --mgmtGroupId strings                 The management group ID to use as a filter.\n  -o, --output string                       The path to the file in which to output data\n  -p, --password string                     The user's password for the Azure Portal\n      --pprof string                        During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string                        Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string                Use an acquired refresh token to authenticate into Azure\n      --region string                       The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]\n  -s, --secret string                       The Application Secret that was generated for the app in the app registration portal.\n  -b, --subscriptionId strings              The subscription ID to use as a filter.\n  -t, --tenant string                       The directory tenant that you want to request permission from. This can be in GUID or friendly name format.\n  -U, --user-agent string                   Custom User-Agent header\n  -u, --username string                     The user principal name for the Azure Portal\n  -v, --verbosity int                       AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n",
+   "stderr": "AzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": true,
+   "commands_run": 40,
+   "binary": "azurehound",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+   "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+   "--help": "help for azurehound",
+   "-h": "help for azurehound",
+   "--json": "Output logs as json",
+   "--jwt": "Use an acquired JWT to authenticate into Azure",
+   "-j": "Use an acquired JWT to authenticate into Azure",
+   "--log-file": "Output logs to this file",
+   "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+   "--proxy": "Sets the proxy URL for the AzureHound service",
+   "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+   "-r": "Use an acquired refresh token to authenticate into Azure",
+   "--user-agent": "Custom User-Agent header",
+   "-U": "Custom User-Agent header",
+   "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+   "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+   "--version": "version for azurehound"
+  },
+  "aliases": {
+   "--config": [
+    "-c"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--jwt": [
+    "-j"
+   ],
+   "--refresh-token": [
+    "-r"
+   ],
+   "--user-agent": [
+    "-U"
+   ],
+   "--verbosity": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "configure": {
+    "--help": "help for configure",
+    "-h": "help for configure",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]"
+   },
+   "list": {
+    "--app": "The Application Id that the Azure app registration portal assigned when the app was registered.",
+    "-a": "The Application Id that the Azure app registration portal assigned when the app was registered.",
+    "--auth": "The Azure ActiveDirectory Authority URL.",
+    "--cert": "The path to the certificate uploaded to the app registration portal.",
+    "--graph": "The Microsoft Graph URL.",
+    "--help": "help for management-group-owners",
+    "-h": "help for management-group-owners",
+    "--key": "The path to the key file for a certificate uploaded to the app registration portal.",
+    "-k": "The path to the key file for a certificate uploaded to the app registration portal.",
+    "--keypass": "The passphrase to use in conjuction with --key ${key file}.",
+    "--managed-identity": "If true then authentication is done via managed identity (default false).",
+    "--managed-identity-client-id": "Client ID used to authenticate via Managed Identity SDK",
+    "--mgmt": "The URL of the Azure Resource Manager.",
+    "--mgmtGroupId": "The management group ID to use as a filter.",
+    "-m": "The management group ID to use as a filter.",
+    "--output": "The path to the file in which to output data",
+    "-o": "The path to the file in which to output data",
+    "--password": "The user's password for the Azure Portal",
+    "-p": "The user's password for the Azure Portal",
+    "--region": "The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]",
+    "--secret": "The Application Secret that was generated for the app in the app registration portal.",
+    "-s": "The Application Secret that was generated for the app in the app registration portal.",
+    "--subscriptionId": "The subscription ID to use as a filter.",
+    "-b": "The subscription ID to use as a filter.",
+    "--tenant": "The directory tenant that you want to request permission from. This can be in GUID or friendly name format.",
+    "-t": "The directory tenant that you want to request permission from. This can be in GUID or friendly name format.",
+    "--username": "The user principal name for the Azure Portal",
+    "-u": "The user principal name for the Azure Portal",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "--select": "Select properties to include. Use \"\" for Azure default properties. Azurehound default is \"id,displayName,createdDateTime\" if flag is not supplied. (default [\"id,displayName,createdDateTime\"])",
+    "--access-types": "Filter key vault policies by one or more access type. [GetCerts, GetKeys, GetSecrets] Note: may be used multiple times or values may be provided as comma-separated list"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "configure",
+   "help",
+   "list",
+   "start"
+  ],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": true,
+  "text_sha256": "e00e724ef4ac6630b5a0bbffa86a290ce46bbfd6d2b3119a8aa1e03af9566cee",
+  "text": "The official tool for collecting Azure data for BloodHound and BloodHound Enterprise\n\nUsage:\n  azurehound [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  configure   Configure AzureHound\n  help        Help about any command\n  list        Lists Azure Objects\n  start       Start Azure data collection service for BloodHound Enterprise\n\nFlags:\n  -c, --config string          AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)\n  -h, --help                   help for azurehound\n      --json                   Output logs as json\n  -j, --jwt string             Use an acquired JWT to authenticate into Azure\n      --log-file string        Output logs to this file\n      --pprof string           During graceful shutdown, prints the pprof profile with the provided name to stderr\n      --proxy string           Sets the proxy URL for the AzureHound service\n  -r, --refresh-token string   Use an acquired refresh token to authenticate into Azure\n  -U, --user-agent string      Custom User-Agent header\n  -v, --verbosity int          AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]\n      --version                version for azurehound\n\nUse \"azurehound [command] --help\" for more information about a command.\nAzureHound v0.0.0\nCreated by the BloodHound Enterprise team - https://bloodhoundenterprise.io\n\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--select",
+   "app-owners",
+   "app-role-assignments",
+   "appfics",
+   "apps",
+   "automation-account-role-assignments",
+   "automation-accounts",
+   "az-ad",
+   "az-rm",
+   "configure",
+   "container-registries",
+   "container-registry-role-assignments",
+   "device-owners",
+   "devices",
+   "function-app-role-assignments",
+   "function-apps",
+   "group-members",
+   "group-owners",
+   "groups",
+   "install",
+   "key-vault-access-policies",
+   "key-vault-contributors",
+   "key-vault-kvcontributors",
+   "key-vault-owners",
+   "key-vault-role-assignments",
+   "key-vault-user-access-admins",
+   "key-vaults",
+   "list",
+   "logic-app-role-assignments",
+   "logic-apps",
+   "managed-cluster-role-assignments",
+   "managed-clusters",
+   "management-group-contributors",
+   "management-group-descendants",
+   "management-group-owners",
+   "management-group-role-assignments",
+   "management-group-user-access-admins",
+   "management-groups",
+   "resource-group-contributors",
+   "resource-group-owners",
+   "resource-group-role-assignments",
+   "resource-group-user-access-admins",
+   "resource-groups",
+   "role-assignments",
+   "roles",
+   "service-principal-owners",
+   "service-principals",
+   "start",
+   "storage-account-role-assignments",
+   "storage-accounts",
+   "storage-containers",
+   "subscription-contributors",
+   "subscription-owners",
+   "subscription-role-assignments",
+   "subscription-user-access-admins",
+   "subscriptions",
+   "tenants",
+   "unified-role-assignment-policies",
+   "unified-role-eligibility-schedule-instances",
+   "uninstall",
+   "users",
+   "virtual-machine-admin-logins",
+   "virtual-machine-avere-contributors",
+   "virtual-machine-contributors",
+   "virtual-machine-owners",
+   "virtual-machine-role-assignments",
+   "virtual-machine-user-access-admins",
+   "virtual-machine-vmcontributors",
+   "virtual-machines",
+   "vm-scale-set-role-assignments",
+   "vm-scale-sets",
+   "web-app-role-assignments",
+   "web-apps"
+  ],
+  "help_only": [
+   "--config",
+   "--help",
+   "--json",
+   "--jwt",
+   "--log-file",
+   "--pprof",
+   "--proxy",
+   "--refresh-token",
+   "--user-agent",
+   "--verbosity",
+   "--version",
+   "-U",
+   "-c",
+   "-h",
+   "-j",
+   "-r",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for azurehound",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output logs as json"
+   },
+   "--jwt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an acquired JWT to authenticate into Azure",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--log-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output logs to this file"
+   },
+   "--pprof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "During graceful shutdown, prints the pprof profile with the provided name to stderr"
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Sets the proxy URL for the AzureHound service"
+   },
+   "--refresh-token": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an acquired refresh token to authenticate into Azure",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--select": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v2.1.10",
+    "first_date": "2024-08-29T13:04:36-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-group-members.go"
+   },
+   "--user-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Custom User-Agent header",
+    "aliases": [
+     "-U"
+    ]
+   },
+   "--verbosity": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "version for azurehound"
+   },
+   "app-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure AD App Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-app-owners.go"
+   },
+   "app-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory App Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-app-role-assignments.go"
+   },
+   "appfics": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Entra ID Application Federated Identity Credentials",
+    "kind": "subcommand",
+    "first_tag": "v2.10.0-rc1",
+    "first_date": "2026-02-19T10:54:34-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-app-federated-identity-credentials.go"
+   },
+   "apps": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Applications",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-apps.go"
+   },
+   "automation-account-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Automation Account Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-automation-account-role-assignments.go"
+   },
+   "automation-accounts": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Automation Accounts",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-automation-accounts.go"
+   },
+   "az-ad": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists All Azure AD Entities",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-azure-ad.go"
+   },
+   "az-rm": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists All Azure RM Entities",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-azure-rm.go"
+   },
+   "configure": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Configure AzureHound",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/configure.go"
+   },
+   "container-registries": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Container Registries",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-container-registries.go"
+   },
+   "container-registry-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Container Registry Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-container-registry-role-assignments.go"
+   },
+   "device-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure AD Device Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v2.8.3",
+    "last_date": "2026-01-15T15:40:54-06:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/list-device-owners.go"
+   },
+   "devices": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Devices",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-devices.go"
+   },
+   "function-app-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Function App Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-function-app-role-assignments.go"
+   },
+   "function-apps": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Function Apps",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-function-apps.go"
+   },
+   "group-members": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure AD Group Members",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-group-members.go"
+   },
+   "group-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure AD Group Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-group-owners.go"
+   },
+   "groups": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Groups",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-groups.go"
+   },
+   "install": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Installs AzureHound as a system service for BloodHound Enterprise",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/install_windows.go"
+   },
+   "key-vault-access-policies": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vault Access Policies",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-access-policies.go"
+   },
+   "key-vault-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vault Contributors",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-contributors.go"
+   },
+   "key-vault-kvcontributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vault KVContributors",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-kvcontributors.go"
+   },
+   "key-vault-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vault Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-owners.go"
+   },
+   "key-vault-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Key Vault Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-role-assignments.go"
+   },
+   "key-vault-user-access-admins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vault User Access Admins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vault-user-access-admins.go"
+   },
+   "key-vaults": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Key Vaults",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-key-vaults.go"
+   },
+   "list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Objects",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-root.go"
+   },
+   "logic-app-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Logic app Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-logic-app-role-assignments.go"
+   },
+   "logic-apps": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Logic Apps",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-logic-apps.go"
+   },
+   "managed-cluster-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists AKS Managed Cluster Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-managed-cluster-role-assignments.go"
+   },
+   "managed-clusters": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Kubernetes Service Managed Clusters",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-managed-clusters.go"
+   },
+   "management-group-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Management Group Contributors",
+    "kind": "subcommand",
+    "first_tag": "v2.12.0-rc1",
+    "first_date": "2026-03-30T14:26:41-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-group-contributors.go"
+   },
+   "management-group-descendants": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Management Group Descendants",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-group-descendants.go"
+   },
+   "management-group-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Management Group Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-group-owners.go"
+   },
+   "management-group-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Management Group Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-group-role-assignments.go"
+   },
+   "management-group-user-access-admins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Management Group User Access Admins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-group-user-access-admins.go"
+   },
+   "management-groups": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Management Groups",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-management-groups.go"
+   },
+   "resource-group-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Resource Group Contributors",
+    "kind": "subcommand",
+    "first_tag": "v2.12.0-rc1",
+    "first_date": "2026-03-30T14:26:41-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-resource-group-contributors.go"
+   },
+   "resource-group-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Resource Group Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-resource-group-owners.go"
+   },
+   "resource-group-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Resource Group Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-resource-group-role-assignments.go"
+   },
+   "resource-group-user-access-admins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Resource Group User Access Admins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-resource-group-user-access-admins.go"
+   },
+   "resource-groups": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Resource Groups",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-resource-groups.go"
+   },
+   "role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-role-assignments.go"
+   },
+   "roles": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Roles",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-roles.go"
+   },
+   "service-principal-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure AD Service Principal Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-service-principal-owners.go"
+   },
+   "service-principals": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Service Principals",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-service-principals.go"
+   },
+   "start": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Start Azure data collection service for BloodHound Enterprise",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/start.go"
+   },
+   "storage-account-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Storage Account Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-storage-account-role-assignments.go"
+   },
+   "storage-accounts": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Storage Accounts",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-storage-accounts.go"
+   },
+   "storage-containers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Storage Containers",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-storage-containers.go"
+   },
+   "subscription-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Subscription Contributors",
+    "kind": "subcommand",
+    "first_tag": "v2.12.0-rc1",
+    "first_date": "2026-03-30T14:26:41-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-subscription-contributors.go"
+   },
+   "subscription-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Subscription Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-subscription-owners.go"
+   },
+   "subscription-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Subscription Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-subscription-role-assignments.go"
+   },
+   "subscription-user-access-admins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Subscription User Access Admins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-subscription-user-access-admins.go"
+   },
+   "subscriptions": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Subscriptions",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-subscriptions.go"
+   },
+   "tenants": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Tenants",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-tenants.go"
+   },
+   "unified-role-assignment-policies": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Unified Role Assignment Policies",
+    "kind": "subcommand",
+    "first_tag": "v2.5.0",
+    "first_date": "2025-05-30T14:12:45-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-role-assignment-policies.go"
+   },
+   "unified-role-eligibility-schedule-instances": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Unified Role Eligibility Schedule Instances",
+    "kind": "subcommand",
+    "first_tag": "v2.5.0",
+    "first_date": "2025-05-30T14:12:45-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-role-eligibility-schedule-instance.go"
+   },
+   "uninstall": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Removes AzureHound as a system service",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/uninstall_windows.go"
+   },
+   "users": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Active Directory Users",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-users.go"
+   },
+   "virtual-machine-admin-logins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine Admin Logins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-admin-logins.go"
+   },
+   "virtual-machine-avere-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine Avere Contributors",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-avere-contributors.go"
+   },
+   "virtual-machine-contributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine Contributors",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-contributors.go"
+   },
+   "virtual-machine-owners": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine Owners",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-owners.go"
+   },
+   "virtual-machine-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Virtual Machine Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-role-assignments.go"
+   },
+   "virtual-machine-user-access-admins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine User Access Admins",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-user-access-admins.go"
+   },
+   "virtual-machine-vmcontributors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine VMContributors",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machine-vmcontributors.go"
+   },
+   "virtual-machines": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machines",
+    "kind": "subcommand",
+    "first_tag": "v1.1.1",
+    "first_date": "2022-08-03T11:33:12-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-virtual-machines.go"
+   },
+   "vm-scale-set-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure VM Scale Set Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-vm-scale-set-role-assignments.go"
+   },
+   "vm-scale-sets": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Virtual Machine Scale Sets",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-vm-scale-sets.go"
+   },
+   "web-app-role-assignments": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Web App Role Assignments",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-web-app-role-assignments.go"
+   },
+   "web-apps": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Lists Azure Web Apps",
+    "kind": "subcommand",
+    "first_tag": "v2.1.9",
+    "first_date": "2024-04-26T10:00:52-07:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-07-17T15:00:21-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/list-web-apps.go"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "configure",
+   "help",
+   "list",
+   "start"
+  ],
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "configure": {
+    "--help": "help for configure",
+    "-h": "help for configure",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]"
+   },
+   "list": {
+    "--app": "The Application Id that the Azure app registration portal assigned when the app was registered.",
+    "-a": "The Application Id that the Azure app registration portal assigned when the app was registered.",
+    "--auth": "The Azure ActiveDirectory Authority URL.",
+    "--cert": "The path to the certificate uploaded to the app registration portal.",
+    "--graph": "The Microsoft Graph URL.",
+    "--help": "help for management-group-owners",
+    "-h": "help for management-group-owners",
+    "--key": "The path to the key file for a certificate uploaded to the app registration portal.",
+    "-k": "The path to the key file for a certificate uploaded to the app registration portal.",
+    "--keypass": "The passphrase to use in conjuction with --key ${key file}.",
+    "--managed-identity": "If true then authentication is done via managed identity (default false).",
+    "--managed-identity-client-id": "Client ID used to authenticate via Managed Identity SDK",
+    "--mgmt": "The URL of the Azure Resource Manager.",
+    "--mgmtGroupId": "The management group ID to use as a filter.",
+    "-m": "The management group ID to use as a filter.",
+    "--output": "The path to the file in which to output data",
+    "-o": "The path to the file in which to output data",
+    "--password": "The user's password for the Azure Portal",
+    "-p": "The user's password for the Azure Portal",
+    "--region": "The region of the Azure Cloud deployment (defaults to 'cloud') [china, cloud, usgovl4, usgovl5]",
+    "--secret": "The Application Secret that was generated for the app in the app registration portal.",
+    "-s": "The Application Secret that was generated for the app in the app registration portal.",
+    "--subscriptionId": "The subscription ID to use as a filter.",
+    "-b": "The subscription ID to use as a filter.",
+    "--tenant": "The directory tenant that you want to request permission from. This can be in GUID or friendly name format.",
+    "-t": "The directory tenant that you want to request permission from. This can be in GUID or friendly name format.",
+    "--username": "The user principal name for the Azure Portal",
+    "-u": "The user principal name for the Azure Portal",
+    "--config": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "-c": "AzureHound configuration file (default: /home/ctk/.config/azurehound/config.json)",
+    "--json": "Output logs as json",
+    "--jwt": "Use an acquired JWT to authenticate into Azure",
+    "-j": "Use an acquired JWT to authenticate into Azure",
+    "--log-file": "Output logs to this file",
+    "--pprof": "During graceful shutdown, prints the pprof profile with the provided name to stderr",
+    "--proxy": "Sets the proxy URL for the AzureHound service",
+    "--refresh-token": "Use an acquired refresh token to authenticate into Azure",
+    "-r": "Use an acquired refresh token to authenticate into Azure",
+    "--user-agent": "Custom User-Agent header",
+    "-U": "Custom User-Agent header",
+    "--verbosity": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "-v": "AzureHound verbosity level (defaults to 0) [Min: -1, Max: 2]",
+    "--select": "Select properties to include. Use \"\" for Azure default properties. Azurehound default is \"id,displayName,createdDateTime\" if flag is not supplied. (default [\"id,displayName,createdDateTime\"])",
+    "--access-types": "Filter key vault policies by one or more access type. [GetCerts, GetKeys, GetSecrets] Note: may be used multiple times or values may be provided as comma-separated list"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "tool": "azurehound",
+ "repo": "SpecterOps/AzureHound",
+ "head_sha": "7092bc675e1f5b093214446b77d246472be2464a",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:14:35.960519+00:00"
+}

@@ -1,0 +1,200 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:992b38d2822d46ab739195f87f2131bb7183d196e5e9167b6ba568715c180985",
+  "duration_s": 4.03,
+  "log_tail": "#5 resolve docker.io/library/debian:bookworm-slim@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818 done\n#5 DONE 0.0s\n\n#6 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 resolve docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651 done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 72.25kB done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.103 go: downloading github.com/spf13/pflag v1.0.5\n#10 DONE 2.4s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.088 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers 0.1s done\n#17 exporting manifest sha256:7a358c8a8cd3b5d99022dd217bcd8cfde44a2a6e6eefb3d331a582a8a70b3c7e done\n#17 exporting config sha256:2f5048f8e895a885298489681c174379e498c60e03925488ce135c3185485a8f done\n#17 exporting attestation manifest sha256:89f10bb9d718a8f1a4bb9564e2f0e12158198399b551001490eec1540108767e done\n#17 exporting manifest list sha256:992b38d2822d46ab739195f87f2131bb7183d196e5e9167b6ba568715c180985 done\n#17 naming to docker.io/ctk-exec/dwarf2json:9f14607e0d33 done\n#17 unpacking to docker.io/ctk-exec/dwarf2json:9f14607e0d33\n#17 unpacking to docker.io/ctk-exec/dwarf2json:9f14607e0d33 0.5s done\n#17 DONE 0.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "dwarf2json",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage: dwarf2json COMMAND\n\nA tool for generating intermediate symbol file (ISF)\n\nCommands:\n  linux  generate ISF for Linux analysis\n  mac    generate ISF for macOS analysis\n\nOptions:\n  -h, --help     Show this screen.\n  -v, --version  Show tool and output schema version.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dwarf2json",
+    "linux",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "\n",
+   "stderr": "Usage: dwarf2json linux [OPTIONS]\n\n      --elf PATH           ELF file PATH to extract symbol and type information\n      --elf-symbols PATH   ELF file PATH to extract only symbol information\n      --elf-types PATH     ELF file PATH to extract only type information\n      --system-map PATH    System.Map file PATH to extract symbol information\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dwarf2json",
+    "mac",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "\n",
+   "stderr": "Usage: dwarf2json mac [OPTIONS]\n\n      --arch NAME            architecture for universal FAT files. NAME is one of {i386|x86_64}\n      --macho PATH           Mach-O file PATH to extract symbol and type information\n      --macho-symbols PATH   Mach-O file PATH to extract only symbol information\n      --macho-types PATH     Mach-O file PATH to extract only type information\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "dwarf2json"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for dwarf2json\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "dwarf2json"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'dwarf2json' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 6,
+   "binary": "dwarf2json",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Show this screen.",
+   "-h": "Show this screen.",
+   "--version": "Show tool and output schema version.",
+   "-v": "Show tool and output schema version."
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "linux": {
+    "--elf": "ELF file PATH to extract symbol and type information",
+    "--elf-symbols": "ELF file PATH to extract only symbol information",
+    "--elf-types": "ELF file PATH to extract only type information",
+    "--system-map": "System.Map file PATH to extract symbol information"
+   },
+   "mac": {
+    "--arch": "architecture for universal FAT files. NAME is one of {i386|x86_64}",
+    "--macho": "Mach-O file PATH to extract symbol and type information",
+    "--macho-symbols": "Mach-O file PATH to extract only symbol information",
+    "--macho-types": "Mach-O file PATH to extract only type information"
+   }
+  },
+  "subcommands": [
+   "linux",
+   "mac"
+  ],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "d3c1a29872dee9017f121df887c2501a6c2b57ebf6bf4faa9234dcf3cc599f18",
+  "text": "Usage: dwarf2json COMMAND\n\nA tool for generating intermediate symbol file (ISF)\n\nCommands:\n  linux  generate ISF for Linux analysis\n  mac    generate ISF for macOS analysis\n\nOptions:\n  -h, --help     Show this screen.\n  -v, --version  Show tool and output schema version.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--help",
+   "--version",
+   "-h",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this screen.",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show tool and output schema version.",
+    "aliases": [
+     "-v"
+    ]
+   }
+  },
+  "subcommands": [
+   "linux",
+   "mac"
+  ],
+  "subcommand_flags": {
+   "linux": {
+    "--elf": "ELF file PATH to extract symbol and type information",
+    "--elf-symbols": "ELF file PATH to extract only symbol information",
+    "--elf-types": "ELF file PATH to extract only type information",
+    "--system-map": "System.Map file PATH to extract symbol information"
+   },
+   "mac": {
+    "--arch": "architecture for universal FAT files. NAME is one of {i386|x86_64}",
+    "--macho": "Mach-O file PATH to extract symbol and type information",
+    "--macho-symbols": "Mach-O file PATH to extract only symbol information",
+    "--macho-types": "Mach-O file PATH to extract only type information"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "tool": "dwarf2json",
+ "repo": "volatilityfoundation/dwarf2json",
+ "head_sha": "9f14607e0d339d463ea725fbd5c08aa7b7d40f75",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:20:56.246662+00:00"
+}

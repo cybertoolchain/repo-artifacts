@@ -1,0 +1,140 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:59e454e5b580f41a9f8908d0ff016c8f16f5e2cba613c067969e64f33fcd6f27",
+  "duration_s": 1.86,
+  "log_tail": "#11 0.317 cc -c -I. -Isrc -O3 -Wall -o src/magicrescue.o src/magicrescue.c\n#11 0.318 cc -c -I. -Isrc -O3 -Wall -o src/array.o src/array.c\n#11 0.318 cc -c -I. -Isrc -O3 -Wall -o src/extract.o src/extract.c\n#11 0.318 cc -c -I. -Isrc -O3 -Wall -o src/recipe.o src/recipe.c\n#11 0.319 cc -c -I. -Isrc -O3 -Wall -o src/scanner.o src/scanner.c\n#11 0.319 cc -c -I. -Isrc -O3 -Wall -o src/util.o src/util.c\n#11 0.319 cc -c -I. -Isrc -O3 -Wall -o src/dupemap.o src/dupemap.c\n#11 0.320 cc -c -I. -Isrc -O3 -Wall -o src/recur.o src/recur.c\n#11 0.320 cc -c -I. -Isrc -O3 -Wall -o tools/inputseek.o tools/inputseek.c\n#11 0.320 cc -c -I. -Isrc -O3 -Wall -o tools/safecat.o tools/safecat.c\n#11 0.321 cc -c -I. -Isrc -O3 -Wall -o tools/textextract.o tools/textextract.c\n#11 0.357 cc -o dupemap src/dupemap.o src/recur.o  \n#11 0.358 cc -o tools/inputseek tools/inputseek.o   src/util.o \n#11 0.359 cc -o tools/safecat tools/safecat.o     src/util.o \n#11 0.377 cc -o tools/textextract tools/textextract.o src/util.o \n#11 0.408 cc -o magicrescue src/magicrescue.o src/array.o src/extract.o src/recipe.o src/scanner.o src/util.o \n#11 DONE 0.4s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.096 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:4b4c30adaa198ce0ce67182d33c23f7697682a13613a01934fe66693ade1688f done\n#19 exporting config sha256:ab550fd6e7d30a02f1384dd21e574a5769a905fb9acc4e43cc0d8bc961e34084 done\n#19 exporting attestation manifest sha256:8419ede9db7a3ea9140a8fca5dada5becfa216f083f940f4a636dbfb6f86a614 done\n#19 exporting manifest list sha256:59e454e5b580f41a9f8908d0ff016c8f16f5e2cba613c067969e64f33fcd6f27 done\n#19 naming to docker.io/ctk-exec/magicrescue:d9a57931d437 done\n#19 unpacking to docker.io/ctk-exec/magicrescue:d9a57931d437\n#19 unpacking to docker.io/ctk-exec/magicrescue:d9a57931d437 0.6s done\n#19 DONE 0.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "magicrescue",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "Usage: magicrescue [-I FILE] [-M MODE] [-O [+-=][0x]OFFSET] [-b BLOCKSIZE]\n\t-d OUTPUT_DIR -r RECIPE1 [-r RECIPE2 [...]] DEVICE1 [DEVICE2 [...]]\n\n  -b  Only consider files starting at a multiple of BLOCKSIZE.\n  -d  Mandatory.  Output directory for found files.\n  -r  Mandatory.  Recipe name, file or directory.\n  -I  Read input file names from this file (\"-\" for stdin)\n  -M  Produce machine-readable output to stdout.\n  -O  Resume from specified offset (hex or decimal) in the first device.\n\n",
+   "stderr": "magicrescue: invalid option -- '-'\nError parsing options.\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "magicrescue"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for magicrescue\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "magicrescue"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(magicrescue)Top'\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "magicrescue",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-d": "",
+   "-r": "",
+   "-b": "Only consider files starting at a multiple of BLOCKSIZE.",
+   "-I": "Read input file names from this file (\"-\" for stdin)",
+   "-M": "Produce machine-readable output to stdout.",
+   "-O": "Resume from specified offset (hex or decimal) in the first device."
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "f0752dd8d9e0d3ea78edb7a274ce9cd3c8717759d087723a14e0735dc46e735b",
+  "text": "Usage: magicrescue [-I FILE] [-M MODE] [-O [+-=][0x]OFFSET] [-b BLOCKSIZE]\n\t-d OUTPUT_DIR -r RECIPE1 [-r RECIPE2 [...]] DEVICE1 [DEVICE2 [...]]\n\n  -b  Only consider files starting at a multiple of BLOCKSIZE.\n  -d  Mandatory.  Output directory for found files.\n  -r  Mandatory.  Recipe name, file or directory.\n  -I  Read input file names from this file (\"-\" for stdin)\n  -M  Produce machine-readable output to stdout.\n  -O  Resume from specified offset (hex or decimal) in the first device.\n\nmagicrescue: invalid option -- '-'\nError parsing options.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "-I",
+   "-M",
+   "-O",
+   "-b",
+   "-d",
+   "-r"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "-I": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read input file names from this file (\"-\" for stdin)"
+   },
+   "-M": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Produce machine-readable output to stdout."
+   },
+   "-O": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Resume from specified offset (hex or decimal) in the first device."
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only consider files starting at a multiple of BLOCKSIZE."
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "magicrescue",
+ "repo": "jbj/magicrescue",
+ "head_sha": "d9a57931d437674009bfd2f98451b3d71058eade",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:28:32.709645+00:00"
+}

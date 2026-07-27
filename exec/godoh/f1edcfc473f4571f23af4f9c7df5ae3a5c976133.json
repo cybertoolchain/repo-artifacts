@@ -1,0 +1,651 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:850d935fc6875613df2bd827b3264f7e3a14c48c18f03deda7574b364001ac06",
+  "duration_s": 7.27,
+  "log_tail": "#7 transferring context: 136.86kB done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.611 go: downloading github.com/rs/zerolog v1.31.0\n#10 0.611 go: downloading github.com/miekg/dns v1.1.57\n#10 0.613 go: downloading github.com/spf13/cobra v1.8.0\n#10 0.716 go: downloading github.com/spf13/pflag v1.0.5\n#10 0.741 go: downloading github.com/mattn/go-colorable v0.1.13\n#10 0.765 go: downloading golang.org/x/sys v0.15.0\n#10 0.765 go: downloading golang.org/x/net v0.19.0\n#10 0.775 go: downloading github.com/mattn/go-isatty v0.0.20\n#10 DONE 4.9s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.097 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:0cdee5823e489d5982ad3398d8f4eaacc3170719b83eb1de25222e311bae85dd done\n#17 exporting config sha256:a59f34966344d1edcb83482c1eb8db6f09828c0c227f568dfb26a085ba7e14b9 done\n#17 exporting attestation manifest sha256:4b27799eb1ace161a84f67ba031ca87182eb3018f70c063f2fa43022ace22fca done\n#17 exporting manifest list sha256:850d935fc6875613df2bd827b3264f7e3a14c48c18f03deda7574b364001ac06 done\n#17 naming to docker.io/ctk-exec/godoh:f1edcfc473f4 done\n#17 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4\n#17 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4 1.0s done\n#17 DONE 1.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "godoh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "A DNS (over-HTTPS) C2\n    Version: \n\tBy @leonjza from @sensepost\n\nUsage:\n  godoh [flags]\n  godoh [command]\n\nAvailable Commands:\n  agent       Connect as an Agent to the DoH C2\n  c2          Starts the godoh C2 server\n  completion  Generate the autocompletion script for the specified shell\n  help        Help about any command\n  receive     Receive a file via DoH\n  send        Send a file via DoH\n  test        Test DNS communications\n\nFlags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -h, --help                   help for godoh\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n\nUse \"godoh [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "agent",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Connect as an Agent to the DoH C2.\n\nExample:\n\tgodoh --domain example.com agent\n\tgodoh --domain example.com agent -n agent1\n\tgodoh --domain example.com agent --agent-name agent1 --poll-time 5\n\nUsage:\n  godoh agent [flags]\n\nFlags:\n  -n, --agent-name string   Agent name to use. (default: random)\n  -h, --help                help for agent\n  -t, --poll-time int       Time in seconds between polls. (default 10)\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "c2",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Starts the godoh C2 server.\n\nThe implementation is pretty simple in that it will accept most communications\ninbound, assuming a full DNS stream conversation is done.\n\nEven though a global DNS provider is chosen as part of the base command, this\nsub command cares little for that as any incoming, raw DNS packets are parsed.\n\nExamples:\n\tgodoh --domain example.com c2\n\nUsage:\n  godoh c2 [flags]\n\nFlags:\n  -h, --help   help for c2\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for godoh for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  godoh completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n\nUse \"godoh completion [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(godoh completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tgodoh completion bash > /etc/bash_completion.d/godoh\n\n#### macOS:\n\n\tgodoh completion bash > $(brew --prefix)/etc/bash_completion.d/godoh\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tgodoh completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tgodoh completion fish > ~/.config/fish/completions/godoh.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tgodoh completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  godoh completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(godoh completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tgodoh completion zsh > \"${fpath[1]}/_godoh\"\n\n#### macOS:\n\n\tgodoh completion zsh > $(brew --prefix)/share/zsh/site-functions/_godoh\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type godoh help [path to command] for full details.\n\nUsage:\n  godoh help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "receive",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Receive a file via DoH.\nStarts a DNS server to receive files. Files received will be dumped to the \ncurrent working directory using the original file name the target file had.\n\nExample:\n\tgodoh --domain example.com receive\n\nUsage:\n  godoh receive [flags]\n\nFlags:\n  -h, --help   help for receive\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "send",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Send a file via DoH.\n\nThe source file will be encoded, encrypted and sent\nvia DNS A record lookups to the target domain.\n\nExample:\n\tgodoh --domain example.com send --file blueprints.docx\n\nUsage:\n  godoh send [flags]\n\nFlags:\n  -f, --file string   The file to send.\n  -h, --help          help for send\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "godoh",
+    "test",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Tests communications to all of the known DNS-over-HTTPS communications providers.\nFor example:\n\n\tgodoh test --name google.com --type TXT\n\tgodoh test -n duckduckgo.com --type A\n\nUsage:\n  godoh test [flags]\n\nFlags:\n  -h, --help          help for test\n  -n, --name string   Name to lookup.\n  -t, --type string   Record type to lookup. (default \"A\")\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "godoh"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for godoh\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "godoh"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'godoh' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 15,
+   "binary": "godoh",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--debug": "enable debug logging",
+   "--disable-logging": "disable all logging",
+   "--domain": "DNS Domain to use. (ie: example.com)",
+   "-d": "DNS Domain to use. (ie: example.com)",
+   "--help": "help for godoh",
+   "-h": "help for godoh",
+   "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+   "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+   "--validate-certificate": "Validate DoH provider SSL certificates",
+   "-K": "Validate DoH provider SSL certificates"
+  },
+  "aliases": {
+   "--domain": [
+    "-d"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--provider": [
+    "-p"
+   ],
+   "--validate-certificate": [
+    "-K"
+   ]
+  },
+  "subcommand_flags": {
+   "agent": {
+    "--agent-name": "Agent name to use. (default: random)",
+    "-n": "Agent name to use. (default: random)",
+    "--help": "help for agent",
+    "-h": "help for agent",
+    "--poll-time": "Time in seconds between polls. (default 10)",
+    "-t": "Time in seconds between polls. (default 10)",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "c2": {
+    "--help": "help for c2",
+    "-h": "help for c2",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "receive": {
+    "--help": "help for receive",
+    "-h": "help for receive",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "send": {
+    "--file": "The file to send.",
+    "-f": "The file to send.",
+    "--help": "help for send",
+    "-h": "help for send",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "test": {
+    "--help": "help for test",
+    "-h": "help for test",
+    "--name": "Name to lookup.",
+    "-n": "Name to lookup.",
+    "--type": "Record type to lookup. (default \"A\")",
+    "-t": "Record type to lookup. (default \"A\")",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   }
+  },
+  "subcommands": [
+   "agent",
+   "c2",
+   "completion",
+   "help",
+   "receive",
+   "send",
+   "test"
+  ],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "f6d8b828731735a14193d12dfcc1dd799110b4d4044956483df88c5697b80e3d",
+  "text": "A DNS (over-HTTPS) C2\n    Version: \n\tBy @leonjza from @sensepost\n\nUsage:\n  godoh [flags]\n  godoh [command]\n\nAvailable Commands:\n  agent       Connect as an Agent to the DoH C2\n  c2          Starts the godoh C2 server\n  completion  Generate the autocompletion script for the specified shell\n  help        Help about any command\n  receive     Receive a file via DoH\n  send        Send a file via DoH\n  test        Test DNS communications\n\nFlags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -h, --help                   help for godoh\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n\nUse \"godoh [command] --help\" for more information about a command.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--domain",
+   "--help",
+   "--provider"
+  ],
+  "unconfirmed": [
+   "agent",
+   "c2",
+   "godoh",
+   "receive",
+   "send",
+   "test"
+  ],
+  "help_only": [
+   "--debug",
+   "--disable-logging",
+   "--validate-certificate",
+   "-K",
+   "-d",
+   "-h",
+   "-p"
+  ],
+  "mining_coverage": 0.3
+ },
+ "surface": {
+  "flags": {
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable debug logging"
+   },
+   "--disable-logging": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable all logging"
+   },
+   "--domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNS Domain to use. (ie: example.com)",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "help for godoh",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--provider": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--validate-certificate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Validate DoH provider SSL certificates",
+    "aliases": [
+     "-K"
+    ]
+   },
+   "agent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Connect as an Agent to the DoH C2",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/agent.go"
+   },
+   "c2": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Starts the godoh C2 server",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/c2.go"
+   },
+   "godoh": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "A DNS (over-HTTPS) C2",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go"
+   },
+   "receive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Receive a file via DoH",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/receive.go"
+   },
+   "send": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Send a file via DoH",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/send.go"
+   },
+   "test": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Test DNS communications",
+    "kind": "subcommand",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/test.go"
+   }
+  },
+  "subcommands": [
+   "agent",
+   "c2",
+   "completion",
+   "help",
+   "receive",
+   "send",
+   "test"
+  ],
+  "subcommand_flags": {
+   "agent": {
+    "--agent-name": "Agent name to use. (default: random)",
+    "-n": "Agent name to use. (default: random)",
+    "--help": "help for agent",
+    "-h": "help for agent",
+    "--poll-time": "Time in seconds between polls. (default 10)",
+    "-t": "Time in seconds between polls. (default 10)",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "c2": {
+    "--help": "help for c2",
+    "-h": "help for c2",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "receive": {
+    "--help": "help for receive",
+    "-h": "help for receive",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "send": {
+    "--file": "The file to send.",
+    "-f": "The file to send.",
+    "--help": "help for send",
+    "-h": "help for send",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   },
+   "test": {
+    "--help": "help for test",
+    "-h": "help for test",
+    "--name": "Name to lookup.",
+    "-n": "Name to lookup.",
+    "--type": "Record type to lookup. (default \"A\")",
+    "-t": "Record type to lookup. (default \"A\")",
+    "--debug": "enable debug logging",
+    "--disable-logging": "disable all logging",
+    "--domain": "DNS Domain to use. (ie: example.com)",
+    "-d": "DNS Domain to use. (ie: example.com)",
+    "--provider": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "--validate-certificate": "Validate DoH provider SSL certificates",
+    "-K": "Validate DoH provider SSL certificates"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "tool": "godoh",
+ "repo": "sensepost/goDoH",
+ "head_sha": "f1edcfc473f4571f23af4f9c7df5ae3a5c976133",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:25:47.701078+00:00"
+}

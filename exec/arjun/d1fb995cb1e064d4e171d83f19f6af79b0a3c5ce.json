@@ -1,0 +1,479 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:799164e582b2f19c60591500c7c0ae1afc02890fd9e58b13edf8488d526e54a3",
+  "duration_s": 12.35,
+  "log_tail": "#10 9.226 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#10 9.264 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#10 9.310 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#10 9.334 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 9.370 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#10 9.378 Building wheels for collected packages: arjun, ratelimit\n#10 9.379   Building wheel for arjun (pyproject.toml): started\n#10 9.529   Building wheel for arjun (pyproject.toml): finished with status 'done'\n#10 9.529   Created wheel for arjun: filename=arjun-2.2.7-py3-none-any.whl size=143534 sha256=bf3041da2648b7b7a13367337e3bd294779e91348068faf3c6f03ca150ac77f9\n#10 9.529   Stored in directory: /tmp/pip-ephem-wheel-cache-f6nc62qg/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 9.531   Building wheel for ratelimit (pyproject.toml): started\n#10 9.660   Building wheel for ratelimit (pyproject.toml): finished with status 'done'\n#10 9.660   Created wheel for ratelimit: filename=ratelimit-2.2.1-py3-none-any.whl size=5971 sha256=0f184528d6569ac9d5093309196320141b88f3702e61c38ae28cd3fb016adca4\n#10 9.660   Stored in directory: /tmp/pip-ephem-wheel-cache-f6nc62qg/wheels/69/bd/e0/4a5dee2a1bfbc8e258f543f92940e2b494d63b5be8144ec8c4\n#10 9.660 Successfully built arjun ratelimit\n#10 9.669 Installing collected packages: ratelimit, urllib3, idna, dicttoxml, charset_normalizer, certifi, requests, arjun\n#10 9.826 \n#10 9.826 Successfully installed arjun-2.2.7 certifi-2026.7.22 charset_normalizer-3.4.9 dicttoxml-1.7.16 idna-3.18 ratelimit-2.2.1 requests-2.34.2 urllib3-2.7.0\n#10 DONE 10.0s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.131 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.5s done\n#17 exporting manifest sha256:c6cd5e79d1704b4596a93deda9eb7bddd3fd82b614a18bd6b79dc7cd758d250a done\n#17 exporting config sha256:9e9ab5d300c1e94a790f2d74a31a9881fbce937e77d56ee379ab6b73ca63e6b0 done\n#17 exporting attestation manifest sha256:7c86d23dcef3c11ec62f7aa6e7bdf2db5eede94146c8f17f814c60c05e2d34d8 done\n#17 exporting manifest list sha256:799164e582b2f19c60591500c7c0ae1afc02890fd9e58b13edf8488d526e54a3 done\n#17 naming to docker.io/ctk-exec/arjun:d1fb995cb1e0 done\n#17 unpacking to docker.io/ctk-exec/arjun:d1fb995cb1e0\n#17 unpacking to docker.io/ctk-exec/arjun:d1fb995cb1e0 0.9s done\n#17 DONE 1.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "arjun",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: arjun [-h] [-u URL] [-o JSON_FILE] [-oT TEXT_FILE] [-oB [BURP_PROXY]]\n             [-d DELAY] [-t THREADS] [-w WORDLIST] [-m METHOD]\n             [-i [IMPORT_FILE]] [-T TIMEOUT] [-c CHUNKS] [-q]\n             [--rate-limit RATE_LIMIT] [--headers [HEADERS]]\n             [--passive [PASSIVE]] [--stable] [--include INCLUDE]\n             [--disable-redirects] [--casing CASING]\n\noptions:\n  -h, --help            show this help message and exit\n  -u URL                Target URL\n  -o JSON_FILE, -oJ JSON_FILE\n                        Path for json output file.\n  -oT TEXT_FILE         Path for text output file.\n  -oB [BURP_PROXY]      Output to Burp Suite Proxy. Default is 127.0.0.1:8080.\n  -d DELAY              Delay between requests in seconds. (default: 0)\n  -t THREADS            Number of concurrent threads. (default: 5)\n  -w WORDLIST           Wordlist file path. (default: {arjundir}/db/large.txt)\n  -m METHOD             Request method to use: GET/POST/XML/JSON. (default:\n                        GET)\n  -i [IMPORT_FILE]      Import target URLs from file.\n  -T TIMEOUT            HTTP request timeout in seconds. (default: 15)\n  -c CHUNKS             Chunk size. The number of parameters to be sent at\n                        once\n  -q                    Quiet mode. No output.\n  --rate-limit RATE_LIMIT\n                        Max number of requests to be sent out per second\n                        (default: 9999)\n  --headers [HEADERS]   Add headers. Separate multiple headers with a new\n                        line.\n  --passive [PASSIVE]   Collect parameter names from passive sources like\n                        wayback, commoncrawl and otx.\n  --stable              Prefer stability over speed.\n  --include INCLUDE     Include this data in every request.\n  --disable-redirects   disable redirects\n  --casing CASING       casing style for params e.g. like_this, likeThis,\n                        likethis\n",
+   "stderr": "",
+   "duration_ms": 313,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "arjun"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for arjun\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "arjun"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'arjun' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "arjun",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "-u": "Target URL",
+   "-o": "Path for json output file.",
+   "-oJ": "Path for json output file.",
+   "-oT": "Path for text output file.",
+   "-oB": "Output to Burp Suite Proxy. Default is 127.0.0.1:8080.",
+   "-d": "Delay between requests in seconds. (default: 0)",
+   "-t": "Number of concurrent threads. (default: 5)",
+   "-w": "Wordlist file path. (default: {arjundir}/db/large.txt)",
+   "-m": "Request method to use: GET/POST/XML/JSON. (default: GET)",
+   "-i": "Import target URLs from file.",
+   "-T": "HTTP request timeout in seconds. (default: 15)",
+   "-c": "Chunk size. The number of parameters to be sent at once",
+   "-q": "Quiet mode. No output.",
+   "--rate-limit": "Max number of requests to be sent out per second (default: 9999)",
+   "--headers": "Add headers. Separate multiple headers with a new line.",
+   "--passive": "Collect parameter names from passive sources like wayback, commoncrawl and otx.",
+   "--stable": "Prefer stability over speed.",
+   "--include": "Include this data in every request.",
+   "--disable-redirects": "disable redirects",
+   "--casing": "casing style for params e.g. like_this, likeThis, likethis"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "-o": [
+    "-oJ"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "ec0d61fbdd75859d77542ed4979de455a6547ed4384cb391e85e044bdbd55d0c",
+  "text": "usage: arjun [-h] [-u URL] [-o JSON_FILE] [-oT TEXT_FILE] [-oB [BURP_PROXY]]\n             [-d DELAY] [-t THREADS] [-w WORDLIST] [-m METHOD]\n             [-i [IMPORT_FILE]] [-T TIMEOUT] [-c CHUNKS] [-q]\n             [--rate-limit RATE_LIMIT] [--headers [HEADERS]]\n             [--passive [PASSIVE]] [--stable] [--include INCLUDE]\n             [--disable-redirects] [--casing CASING]\n\noptions:\n  -h, --help            show this help message and exit\n  -u URL                Target URL\n  -o JSON_FILE, -oJ JSON_FILE\n                        Path for json output file.\n  -oT TEXT_FILE         Path for text output file.\n  -oB [BURP_PROXY]      Output to Burp Suite Proxy. Default is 127.0.0.1:8080.\n  -d DELAY              Delay between requests in seconds. (default: 0)\n  -t THREADS            Number of concurrent threads. (default: 5)\n  -w WORDLIST           Wordlist file path. (default: {arjundir}/db/large.txt)\n  -m METHOD             Request method to use: GET/POST/XML/JSON. (default:\n                        GET)\n  -i [IMPORT_FILE]      Import target URLs from file.\n  -T TIMEOUT            HTTP request timeout in seconds. (default: 15)\n  -c CHUNKS             Chunk size. The number of parameters to be sent at\n                        once\n  -q                    Quiet mode. No output.\n  --rate-limit RATE_LIMIT\n                        Max number of requests to be sent out per second\n                        (default: 9999)\n  --headers [HEADERS]   Add headers. Separate multiple headers with a new\n                        line.\n  --passive [PASSIVE]   Collect parameter names from passive sources like\n                        wayback, commoncrawl and otx.\n  --stable              Prefer stability over speed.\n  --include INCLUDE     Include this data in every request.\n  --disable-redirects   disable redirects\n  --casing CASING       casing style for params e.g. like_this, likeThis,\n                        likethis\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--casing",
+   "--disable-redirects",
+   "--headers",
+   "--include",
+   "--passive",
+   "--rate-limit",
+   "--stable",
+   "-T",
+   "-c",
+   "-d",
+   "-i",
+   "-m",
+   "-o",
+   "-oB",
+   "-oJ",
+   "-oT",
+   "-q",
+   "-t",
+   "-u",
+   "-w"
+  ],
+  "unconfirmed": [
+   "--get",
+   "--json",
+   "--post",
+   "--urls",
+   "-f"
+  ],
+  "help_only": [
+   "--help",
+   "-h"
+  ],
+  "mining_coverage": 0.9090909090909091
+ },
+ "surface": {
+  "flags": {
+   "--casing": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "casing style for params e.g. like_this, likeThis, likethis",
+    "kind": "option",
+    "first_tag": "2.2.7",
+    "first_date": "2024-11-04T01:59:30+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--disable-redirects": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable redirects",
+    "kind": "option",
+    "first_tag": "2.1.5",
+    "first_date": "2022-04-09T21:35:17+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--get": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "use get method",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T14:32:34+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py"
+   },
+   "--headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Add headers. Separate multiple headers with a new line.",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--include": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Include this data in every request.",
+    "kind": "option",
+    "first_tag": "1.3",
+    "first_date": "2019-03-03T16:22:30+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "treat post data as json",
+    "kind": "option",
+    "first_tag": "1.4",
+    "first_date": "2019-04-12T19:47:11+05:30",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T14:32:34+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py"
+   },
+   "--passive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Collect parameter names from passive sources like wayback, commoncrawl and otx.",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--post": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "use post method",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T14:32:34+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py"
+   },
+   "--rate-limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Max number of requests to be sent out per second (default: 9999)",
+    "kind": "option",
+    "first_tag": "2.2.5",
+    "first_date": "2024-04-01T09:21:47+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--stable": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Prefer stability over speed.",
+    "kind": "option",
+    "first_tag": "1.6",
+    "first_date": "2019-10-23T14:32:34+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "--urls": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "file containing target urls",
+    "kind": "option",
+    "first_tag": "1.4",
+    "first_date": "2019-04-12T19:47:11+05:30",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T14:32:34+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py"
+   },
+   "-T": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "HTTP request timeout in seconds. (default: 15)",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-c": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Chunk size. The number of parameters to be sent at once",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-d": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Delay between requests in seconds. (default: 0)",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-f": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "wordlist path",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T14:32:34+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py"
+   },
+   "-i": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Import target URLs from file.",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-m": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Request method to use: GET/POST/XML/JSON. (default: GET)",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-o": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path for json output file.",
+    "kind": "option",
+    "first_tag": "1.4",
+    "first_date": "2019-04-12T19:47:11+05:30",
+    "last_tag": "2.0-beta",
+    "last_date": "2020-12-06T16:32:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "arjun.py",
+    "aliases": [
+     "-oJ"
+    ]
+   },
+   "-oB": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output to Burp Suite Proxy. Default is 127.0.0.1:8080.",
+    "kind": "option",
+    "first_tag": "2.1.1",
+    "first_date": "2021-03-11T06:29:10+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-oT": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path for text output file.",
+    "kind": "option",
+    "first_tag": "2.1.1",
+    "first_date": "2021-03-11T06:29:10+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-q": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Quiet mode. No output.",
+    "kind": "option",
+    "first_tag": "2.1.1",
+    "first_date": "2021-03-11T06:29:10+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-t": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent threads. (default: 5)",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-u": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Target URL",
+    "kind": "option",
+    "first_tag": "1.1",
+    "first_date": "2018-11-10T05:32:52+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   },
+   "-w": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Wordlist file path. (default: {arjundir}/db/large.txt)",
+    "kind": "option",
+    "first_tag": "2.0-beta",
+    "first_date": "2020-12-06T16:32:04+05:30",
+    "last_tag": "2.2.7",
+    "last_date": "2024-11-04T01:59:30+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "arjun/__main__.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "arjun",
+ "repo": "s0md3v/Arjun",
+ "head_sha": "d1fb995cb1e064d4e171d83f19f6af79b0a3c5ce",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:14:13.218710+00:00"
+}

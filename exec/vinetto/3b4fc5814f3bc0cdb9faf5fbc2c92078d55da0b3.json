@@ -1,0 +1,381 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:7cf3be1929ecefd5c4b8a349d48da6bedeb584ce54e6ddb43be3f12952a4b762",
+  "duration_s": 8.97,
+  "log_tail": "#10 5.052   Installing build dependencies: finished with status 'done'\n#10 5.053   Getting requirements to build wheel: started\n#10 5.220   Getting requirements to build wheel: finished with status 'done'\n#10 5.221   Preparing metadata (pyproject.toml): started\n#10 5.307   Preparing metadata (pyproject.toml): finished with status 'done'\n#10 5.582 Collecting pillow>=12.1.1 (from vinetto==0.9.15)\n#10 5.765   Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (9.1 kB)\n#10 5.819 Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (6.3 MB)\n#10 6.204    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 6.3/6.3 MB 23.1 MB/s  0:00:00\n#10 6.210 Building wheels for collected packages: vinetto\n#10 6.212   Building wheel for vinetto (pyproject.toml): started\n#10 6.391   Building wheel for vinetto (pyproject.toml): finished with status 'done'\n#10 6.392   Created wheel for vinetto: filename=vinetto-0.9.15-py3-none-any.whl size=1032479 sha256=6f8dd265f321b6a2cb59e28d9fb32431629aab759613d4d97084d41ec92d83b2\n#10 6.392   Stored in directory: /tmp/pip-ephem-wheel-cache-7o_g0vqe/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 6.394 Successfully built vinetto\n#10 6.398 Installing collected packages: pillow, vinetto\n#10 6.607 \n#10 6.608 Successfully installed pillow-12.3.0 vinetto-0.9.15\n#10 DONE 6.7s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.092 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.8s done\n#17 exporting manifest sha256:6b2a02a2a3ab147805f999e6a3d81eee372453ab584f128718ca5c3726de928d done\n#17 exporting config sha256:1cd93a301b9df73a5b9f2de49d215b2d69f69d19783128a55d80a6c85e2361eb done\n#17 exporting attestation manifest sha256:6449721aa82a37b2bc8b60cca7e116f215ce16667ed0962c1a0d66e6196425c3 done\n#17 exporting manifest list sha256:7cf3be1929ecefd5c4b8a349d48da6bedeb584ce54e6ddb43be3f12952a4b762 done\n#17 naming to docker.io/ctk-exec/vinetto:3b4fc5814f3b done\n#17 unpacking to docker.io/ctk-exec/vinetto:3b4fc5814f3b\n#17 unpacking to docker.io/ctk-exec/vinetto:3b4fc5814f3b 0.7s done\n#17 DONE 1.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "vinetto",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Vinetto: Version 0.9.15\nusage: vinetto [-h] [-e EDBFILE] [-H] [-m [{f,d,r,a}]] [--md5] [--nomd5]\n               [-o DIR] [-q] [-s] [-U] [-v] [--version]\n               [infile]\n\nVinetto.py - The Thumbnail File Parser\n\npositional arguments:\n  infile                depending on operating mode (see mode option), either a location\n                        to a thumbnail file (\"Thumb.db\" or similar) or a directory\n\noptions:\n  -h, -?, --help        show this help message and exit, use -v for more details\n  -e EDBFILE, --edb EDBFILE\n                        examine EDBFILE (Extensible Storage Engine Database) for\n                        original thumbnail filenames\n                        NOTE: -e without an INFILE explores EDBFILE extracted data\n                        NOTE: Automatic mode will attempt to use ESEDB without -e\n  -H, --htmlrep         write html report to DIR (requires option -o)\n  -m [{f,d,r,a}], --mode [{f,d,r,a}]\n                        operating mode: \"f\", \"d\", \"r\", or \"a\"\n                          where \"f\" indicates single file processing (default)\n                                \"d\" indicates directory processing\n                                \"r\" indicates recursive directory processing from a\n                                      starting directory\n                                \"a\" indicates automatic processing using well known\n                                      directories starting from a base directory\n  --md5                 force the MD5 hash value calculation for an input file\n                        Normally, the MD5 is calculated when a file is less than\n                        0.5 GiB in size\n                        NOTE: --nomd5 overrides --md5\n  --nomd5               skip the MD5 hash value calculation for an input file\n  -o DIR, --outdir DIR  write thumbnails to DIR\n                        NOTE: -o requires INFILE\n  -q, --quiet           quiet output: Errors only\n                        NOTE: -v overrides -q\n  -s, --symlinks        create symlink from the the image realname to the numbered name\n                        in DIR/.thumbs (requires option -o)\n                        NOTE: A Catalog containing the realname must exist for this\n                              option to produce results OR a Windows.edb must be given\n                              (-e) to find and extract possible file names\n  -U, --utf8            use utf8 encodings\n  -v, --verbose         verbose output, each use increments output level: 0 (Standard)\n                        1 (Verbose), 2 (Enhanced), 3 (Full)\n  --version             show program's version number and exit\n\n--- Vinetto.py 0.9.15 ---\nBased on the original Vinetto by Michel Roukine\nAuthor: Keven L. Ates\nVinetto.py is open source software\n  See: https://github.com/AtesComp/Vinetto\nFor more detailed help notes, use -v\n",
+   "stderr": "",
+   "duration_ms": 134,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "vinetto"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for vinetto\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "vinetto"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'vinetto' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "vinetto",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit, use -v for more details",
+   "-h": "show this help message and exit, use -v for more details",
+   "--edb": "examine EDBFILE (Extensible Storage Engine Database) for original thumbnail filenames NOTE: -e without an INFILE explores EDBFILE extracted data NOTE: Automatic mode will attempt to use ESEDB without -e",
+   "-e": "examine EDBFILE (Extensible Storage Engine Database) for original thumbnail filenames NOTE: -e without an INFILE explores EDBFILE extracted data NOTE: Automatic mode will attempt to use ESEDB without -e",
+   "--htmlrep": "write html report to DIR (requires option -o)",
+   "-H": "write html report to DIR (requires option -o)",
+   "--mode": "operating mode: \"f\", \"d\", \"r\", or \"a\" where \"f\" indicates single file processing (default) \"d\" indicates directory processing \"r\" indicates recursive directory processing from a starting directory \"a\" indicates automatic processing using well known directories starting from a base directory",
+   "-m": "operating mode: \"f\", \"d\", \"r\", or \"a\" where \"f\" indicates single file processing (default) \"d\" indicates directory processing \"r\" indicates recursive directory processing from a starting directory \"a\" indicates automatic processing using well known directories starting from a base directory",
+   "--md5": "force the MD5 hash value calculation for an input file Normally, the MD5 is calculated when a file is less than 0.5 GiB in size NOTE: --nomd5 overrides --md5",
+   "--nomd5": "skip the MD5 hash value calculation for an input file",
+   "--outdir": "write thumbnails to DIR NOTE: -o requires INFILE",
+   "-o": "write thumbnails to DIR NOTE: -o requires INFILE",
+   "--quiet": "quiet output: Errors only NOTE: -v overrides -q",
+   "-q": "quiet output: Errors only NOTE: -v overrides -q",
+   "--symlinks": "create symlink from the the image realname to the numbered name in DIR/.thumbs (requires option -o) NOTE: A Catalog containing the realname must exist for this option to produce results OR a Windows.edb must be given (-e) to find and extract possible file names",
+   "-s": "create symlink from the the image realname to the numbered name in DIR/.thumbs (requires option -o) NOTE: A Catalog containing the realname must exist for this option to produce results OR a Windows.edb must be given (-e) to find and extract possible file names",
+   "--utf8": "use utf8 encodings",
+   "-U": "use utf8 encodings",
+   "--verbose": "verbose output, each use increments output level: 0 (Standard) 1 (Verbose), 2 (Enhanced), 3 (Full)",
+   "-v": "verbose output, each use increments output level: 0 (Standard) 1 (Verbose), 2 (Enhanced), 3 (Full)",
+   "--version": "show program's version number and exit"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--edb": [
+    "-e"
+   ],
+   "--htmlrep": [
+    "-H"
+   ],
+   "--mode": [
+    "-m"
+   ],
+   "--outdir": [
+    "-o"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--symlinks": [
+    "-s"
+   ],
+   "--utf8": [
+    "-U"
+   ],
+   "--verbose": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "eac10491b0f60141b96ccc0269297ba3e121fd415171c3950f9e858d66eaba7d",
+  "text": "Vinetto: Version 0.9.15\nusage: vinetto [-h] [-e EDBFILE] [-H] [-m [{f,d,r,a}]] [--md5] [--nomd5]\n               [-o DIR] [-q] [-s] [-U] [-v] [--version]\n               [infile]\n\nVinetto.py - The Thumbnail File Parser\n\npositional arguments:\n  infile                depending on operating mode (see mode option), either a location\n                        to a thumbnail file (\"Thumb.db\" or similar) or a directory\n\noptions:\n  -h, -?, --help        show this help message and exit, use -v for more details\n  -e EDBFILE, --edb EDBFILE\n                        examine EDBFILE (Extensible Storage Engine Database) for\n                        original thumbnail filenames\n                        NOTE: -e without an INFILE explores EDBFILE extracted data\n                        NOTE: Automatic mode will attempt to use ESEDB without -e\n  -H, --htmlrep         write html report to DIR (requires option -o)\n  -m [{f,d,r,a}], --mode [{f,d,r,a}]\n                        operating mode: \"f\", \"d\", \"r\", or \"a\"\n                          where \"f\" indicates single file processing (default)\n                                \"d\" indicates directory processing\n                                \"r\" indicates recursive directory processing from a\n                                      starting directory\n                                \"a\" indicates automatic processing using well known\n                                      directories starting from a base directory\n  --md5                 force the MD5 hash value calculation for an input file\n                        Normally, the MD5 is calculated when a file is less than\n                        0.5 GiB in size\n                        NOTE: --nomd5 overrides --md5\n  --nomd5               skip the MD5 hash value calculation for an input file\n  -o DIR, --outdir DIR  write thumbnails to DIR\n                        NOTE: -o requires INFILE\n  -q, --quiet           quiet output: Errors only\n                        NOTE: -v overrides -q\n  -s, --symlinks        create symlink from the the image realname to the numbered name\n                        in DIR/.thumbs (requires option -o)\n                        NOTE: A Catalog containing the realname must exist for this\n                              option to produce results OR a Windows.edb must be given\n                              (-e) to find and extract possible file names\n  -U, --utf8            use utf8 encodings\n  -v, --verbose         verbose output, each use increments output level: 0 (Standard)\n                        1 (Verbose), 2 (Enhanced), 3 (Full)\n  --version             show program's version number and exit\n\n--- Vinetto.py 0.9.15 ---\nBased on the original Vinetto by Michel Roukine\nAuthor: Keven L. Ates\nVinetto.py is open source software\n  See: https://github.com/AtesComp/Vinetto\nFor more detailed help notes, use -v\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--edb",
+   "--help",
+   "--htmlrep",
+   "--md5",
+   "--mode",
+   "--nomd5",
+   "--outdir",
+   "--quiet",
+   "--symlinks",
+   "--utf8",
+   "--verbose",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--invert",
+   "infile"
+  ],
+  "help_only": [
+   "-H",
+   "-U",
+   "-e",
+   "-h",
+   "-m",
+   "-o",
+   "-q",
+   "-s",
+   "-v"
+  ],
+  "mining_coverage": 0.5714285714285714
+ },
+ "surface": {
+  "flags": {
+   "--edb": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "examine EDBFILE (Extensible Storage Engine Database) for original thumbnail filenames NOTE: -e without an INFILE explores EDBFILE extracted data NOTE: Automatic mode will attempt to use ESEDB without -e",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit, use -v for more details",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2019-11-01T16:35:13-05:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--htmlrep": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "write html report to DIR (requires option -o)",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--invert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.9.9",
+    "first_date": "2022-02-01T01:35:35-05:00",
+    "last_tag": "v0.9.9",
+    "last_date": "2022-02-01T01:35:35-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py"
+   },
+   "--md5": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "force the MD5 hash value calculation for an input file Normally, the MD5 is calculated when a file is less than 0.5 GiB in size NOTE: --nomd5 overrides --md5",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py"
+   },
+   "--mode": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "operating mode: \"f\", \"d\", \"r\", or \"a\" where \"f\" indicates single file processing (default) \"d\" indicates directory processing \"r\" indicates recursive directory processing from a starting directory \"a\" indicates automatic processing using well known directories starting from a base directory",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--nomd5": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "skip the MD5 hash value calculation for an input file",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py"
+   },
+   "--outdir": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "write thumbnails to DIR NOTE: -o requires INFILE",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "quiet output: Errors only NOTE: -v overrides -q",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--symlinks": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "create symlink from the the image realname to the numbered name in DIR/.thumbs (requires option -o) NOTE: A Catalog containing the realname must exist for this option to produce results OR a Windows.edb must be given (-e) to find and extract possible file names",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--utf8": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use utf8 encodings",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-U"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "verbose output, each use increments output level: 0 (Standard) 1 (Verbose), 2 (Enhanced), 3 (Full)",
+    "kind": "option",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show program's version number and exit",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2019-11-01T16:35:13-05:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py"
+   },
+   "infile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "positional",
+    "first_tag": "v0.9.6",
+    "first_date": "2020-02-07T18:16:38-06:00",
+    "last_tag": "v0.9.15",
+    "last_date": "2026-02-26T16:27:14-05:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/vinetto/vinetto.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "vinetto",
+ "repo": "AtesComp/Vinetto",
+ "head_sha": "3b4fc5814f3bc0cdb9faf5fbc2c92078d55da0b3",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:41:48.505231+00:00"
+}

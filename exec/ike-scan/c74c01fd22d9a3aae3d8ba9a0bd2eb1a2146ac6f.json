@@ -1,0 +1,911 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:7ba82128a4306fea172a8376c88c325ab6e615810f4b4877533aab82032e183f",
+  "duration_s": 29.65,
+  "log_tail": "#12 2.909 gcc -DHAVE_CONFIG_H -I.  -DIKEDATADIR=\\\"/usr/local/share/ike-scan\\\"   -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -MT sha1.o -MD -MP -MF .deps/sha1.Tpo -c -o sha1.o sha1.c\n#12 2.910 gcc -DHAVE_CONFIG_H -I.  -DIKEDATADIR=\\\"/usr/local/share/ike-scan\\\"   -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -MT strlcat.o -MD -MP -MF .deps/strlcat.Tpo -c -o strlcat.o strlcat.c\n#12 2.910 gcc -DHAVE_CONFIG_H -I.  -DIKEDATADIR=\\\"/usr/local/share/ike-scan\\\"   -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -MT strlcpy.o -MD -MP -MF .deps/strlcpy.Tpo -c -o strlcpy.o strlcpy.c\n#12 2.911 gcc -DHAVE_CONFIG_H -I.  -DIKEDATADIR=\\\"/usr/local/share/ike-scan\\\"   -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2 -MT psk-crack.o -MD -MP -MF .deps/psk-crack.Tpo -c -o psk-crack.o psk-crack.c\n#12 2.927 mv -f .deps/strlcpy.Tpo .deps/strlcpy.Po\n#12 2.928 mv -f .deps/strlcat.Tpo .deps/strlcat.Po\n#12 2.943 mv -f .deps/wrappers.Tpo .deps/wrappers.Po\n#12 2.944 mv -f .deps/mt19937ar.Tpo .deps/mt19937ar.Po\n#12 2.946 mv -f .deps/error.Tpo .deps/error.Po\n#12 2.970 mv -f .deps/md5.Tpo .deps/md5.Po\n#12 3.003 mv -f .deps/utils.Tpo .deps/utils.Po\n#12 3.016 mv -f .deps/sha1.Tpo .deps/sha1.Po\n#12 3.030 mv -f .deps/psk-crack.Tpo .deps/psk-crack.Po\n#12 3.032 gcc  -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2   -o psk-crack psk-crack.o error.o wrappers.o utils.o mt19937ar.o md5.o sha1.o strlcat.o strlcpy.o \n#12 3.124 mv -f .deps/isakmp.Tpo .deps/isakmp.Po\n#12 3.412 mv -f .deps/ike-scan.Tpo .deps/ike-scan.Po\n#12 3.414 gcc  -g -O2 -Wall -Wshadow -Wwrite-strings -Wextra -fstack-protector -Wformat -Wformat-security -D_FORTIFY_SOURCE=2   -o ike-scan ike-scan.o error.o isakmp.o wrappers.o utils.o mt19937ar.o md5.o sha1.o strlcat.o strlcpy.o \n#12 3.426 make[1]: Leaving directory '/src'\n#12 DONE 3.5s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.134 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.3s done\n#19 exporting manifest sha256:2c32d72d1540472ec3698cae57c3ee723e51ba8d805ccf0fbfe17a1f364d41f0 done\n#19 exporting config sha256:637ef3a1c9f32023f53c322a89766a981f5896a2dcd7f13a6e168b6551f58006 done\n#19 exporting attestation manifest sha256:241ee3bf974289ff3ec05caffedd77dd25fb79556c26e1c56afa4012e7fbaa30 done\n#19 exporting manifest list sha256:7ba82128a4306fea172a8376c88c325ab6e615810f4b4877533aab82032e183f done\n#19 naming to docker.io/ctk-exec/ike-scan:c74c01fd22d9 done\n#19 unpacking to docker.io/ctk-exec/ike-scan:c74c01fd22d9\n#19 unpacking to docker.io/ctk-exec/ike-scan:c74c01fd22d9 0.6s done\n#19 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "ike-scan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage: ike-scan [options] [hosts...]\n\nTarget hosts must be specified on the command line unless the --file option is\ngiven, in which case the targets are read from the specified file instead.\n\nThe target hosts can be specified as IP addresses or hostnames. You can also\nspecify the target as IPnetwork/bits (e.g. 192.168.1.0/24) to specify all hosts\nin the given network (network and broadcast addresses included), or\nIPstart-IPend (e.g. 192.168.1.3-192.168.1.27) to specify all hosts in the\ninclusive range, or IPnetwork:NetMask (e.g. 192.168.1.0:255.255.255.0) to\nspecify all hosts in the given network and mask.\n\nThese different options for specifying target hosts may be used both on the\ncommand line, and also in the file specified with the --file option.\n\nIn the options below a letter or word in angle brackets like <f> denotes a\nvalue or string that should be supplied. The corresponding text should\nindicate the meaning of this value or string. When supplying the value or\nstring, do not include the angle brackets. Text in square brackets like [<f>]\nmean that the enclosed text is optional. This is used for options which take\nan optional argument.\n\nOptions:\n\n--help or -h\t\tDisplay this usage message and exit.\n\n--file=<fn> or -f <fn>\tRead hostnames or addresses from the specified file\n\t\t\tinstead of from the command line. One name or IP\n\t\t\taddress per line.  Use \"-\" for standard input.\n\n--sport=<p> or -s <p>\tSet UDP source port to <p>, default=500, 0=random.\n\t\t\tSome IKE implementations require the client to use\n\t\t\tUDP source port 500 and will not talk to other ports.\n\t\t\tNote that superuser privileges are normally required\n\t\t\tto use non-zero source ports below 1024.  Also only\n\t\t\tone process on a system may bind to a given source port\n\t\t\tat any one time. Use of the --nat-t option changes\n\t\t\tthe default source port to 4500\n\n--dport=<p> or -d <p>\tSet UDP destination port to <p>, default=500.\n\t\t\tUDP port 500 is the assigned port number for ISAKMP\n\t\t\tand this is the port used by most if not all IKE\n\t\t\timplementations. Use of the --nat-t option changes\n\t\t\tthe default destination port to 4500\n\n--retry=<n> or -r <n>\tSet total number of attempts per host to <n>,\n\t\t\tdefault=3.\n\n--timeout=<n> or -t <n>\tSet initial per host timeout to <n> ms, default=500.\n\t\t\tThis timeout is for the first packet sent to each host.\n\t\t\tsubsequent timeouts are multiplied by the backoff\n\t\t\tfactor which is set with --backoff.\n\n--bandwidth=<n> or -B <n> Set desired outbound bandwidth to <n>, default=56000\n\t\t\tThe value is in bits per second by default.  If you\n\t\t\tappend \"K\" to the value, then the units are kilobits\n\t\t\tper second; and if you append \"M\" to the value,\n\t\t\tthe units are megabits per second.\n\t\t\tThe \"K\" and \"M\" suffixes represent the decimal, not\n\t\t\tbinary, multiples.  So 64K is 64000, not 65536.\n\n--interval=<n> or -i <n> Set minimum packet interval to <n> ms.\n\t\t\tThe packet interval will be no smaller than this number.\n\t\t\tThe interval specified is in milliseconds by default.\n\t\t\tif \"u\" is appended to the value, then the interval\n\t\t\tis in microseconds, and if \"s\" is appended, the\n\t\t\tinterval is in seconds.\n\t\t\tIf you want to use up to a given bandwidth, then it is\n\t\t\teasier to use the --bandwidth option instead.\n\t\t\tYou cannot specify both --interval and --bandwidth\n\t\t\tbecause they are just different ways to change the\n\t\t\tsame underlying variable.\n\n--backoff=<b> or -b <b>\tSet timeout backoff factor to <b>, default=1.50.\n\t\t\tThe per-host timeout is multiplied by this factor\n\t\t\tafter each timeout.  So, if the number of retries\n\t\t\tis 3, the initial per-host timeout is 500ms and the\n\t\t\tbackoff factor is 1.5, then the first timeout will be\n\t\t\t500ms, the second 750ms and the third 1125ms.\n\n--verbose or -v\t\tDisplay verbose progress messages.\n\t\t\tUse more than once for greater effect:\n\t\t\t1 - Show when each pass is completed and when\n\t\t\t    packets with invalid cookies are received.\n\t\t\t2 - Show each packet sent and received and when\n\t\t\t    hosts are removed from the list.\n\t\t\t3 - Display the host, Vendor ID and backoff lists\n\t\t\t    before scanning starts.\n\n--quiet or -q\t\tDon't decode the returned packet.\n\t\t\tThis prints less protocol information so the\n\t\t\toutput lines are shorter.\n\n--multiline or -M\tSplit the payload decode across multiple lines.\n\t\t\tWith this option, the decode for each payload is\n\t\t\tprinted on a separate line starting with a TAB.\n\t\t\tThis option makes the output easier to read, especially\n\t\t\twhen there are many payloads.\n\n--lifetime=<s> or -l <s> Set IKE lifetime to <s> seconds, default=28800.\n\t\t\tRFC 2407 specifies 28800 as the default, but some\n\t\t\timplementations may require different values.\n\t\t\tIf you specify this as a a decimal integer, e.g.\n\t\t\t86400, then the attribute will use a 4-byte value.\n\t\t\tIf you specify it as a hex number, e.g. 0xFF, then\n\t\t\tthe attribute will use the appropriate size value\n\t\t\t(one byte for this example).\n\t\t\tIf you specify the string \"none\" then no lifetime\n\t\t\tattribute will be added at all.\n\t\t\tYou can use this option more than once in conjunction\n\t\t\twith the --trans options to produce multiple transform\n\t\t\tpayloads with different lifetimes.  Each --trans option\n\t\t\twill use the previously specified lifetime value.\n\n--lifesize=<s> or -z <s> Set IKE lifesize to <s> Kilobytes, default=0.\n\t\t\tIf you specify this as a a decimal integer, e.g.\n\t\t\t86400, then the attribute will use a 4-byte value.\n\t\t\tIf you specify it as a hex number, e.g. 0xFF, then\n\t\t\tthe attribute will use the appropriate size value\n\t\t\t(one byte for this example).\n\t\t\tYou can use this option more than once in conjunction\n\t\t\twith the --trans options to produce multiple transform\n\t\t\tpayloads with different lifesizes.  Each --trans option\n\t\t\twill use the previously specified lifesize value.\n\n--auth=<n> or -m <n>\tSet auth. method to <n>, default=1 (PSK).\n\t\t\tRFC defined values are 1 to 5.  See RFC 2409 Appendix A.\n\t\t\tCheckpoint hybrid mode is 64221.\n\t\t\tGSS (Windows \"Kerberos\") is 65001.\n\t\t\tXAUTH uses 65001 to 65010.\n\t\t\tThis is not applicable to IKEv2.\n\n--version or -V\t\tDisplay program version and exit.\n\n--vendor=<v> or -e <v>\tSet vendor id string to hex value <v>.\n\t\t\tYou can use this option more than once to send\n\t\t\tmultiple vendor ID payloads.\n\n--trans=<t> or -a <t>\tUse custom transform <t> instead of default set.\n\t\t\tYou can use this option more than once to send\n\t\t\tan arbitrary number of custom transforms.\n\t\t\tThere are two ways to specify the transform:\n\t\t\tThe new way, where you specify the attribute/value\n\t\t\tpairs, and the old way where you specify the values\n\t\t\tfor a fixed list of attributes.\n\t\t\tFor the new method, the transform <t> is specified as\n\t\t\t(attr=value, attr=value, ...)\n\t\t\tWhere \"attr\" is the attribute number, and \"value\" is\n\t\t\tthe value to assign to that attribute.\n\t\t\tFor a basic attribute, specify the value as a decimal\n\t\t\tnumber; for a variable length attribute, specify the\n\t\t\tvalue as a hex number prefixed with 0x. You can specify\n\t\t\tan arbitary number of attribute/value pairs.\n\t\t\tSee RFC 2409 Appendix A for details of the attributes\n\t\t\tand values.\n\t\t\tNote that brackets are special to some shells, so you\n\t\t\tmay need to quote them, e.g.\n\t\t\t--trans=\"(1=1,2=2,3=3,4=4)\". For example,\n\t\t\t--trans=(1=1,2=2,3=1,4=2) specifies\n\t\t\tEnc=DES-CBC, Hash=SHA1, Auth=shared key, DH Group=2;\n\t\t\t--trans=(1=7,14=128,2=1,3=3,4=5) specifies\n\t\t\tEnc=AES/128, Hash=MD5, Auth=RSA sig, DH Group=5 and\n\t\t\t--trans=(1=5,2=1,3=1,4=1,11=1,12=0x00007080) specifies\n\t\t\tEnc=3DES-CBC, Hash=MD5, Auth=shared key, DH Group=1,\n\t\t\tLifetime=28800 seconds as a 4-byte variable attribute.\n\t\t\tFor the old method, the transform <t> is specified as\n\t\t\tenc[/len],hash,auth,group.\n\t\t\tWhere enc is the encryption algorithm,\n\t\t\tlen is the key length for variable length ciphers,\n\t\t\thash is the hash algorithm, and group is the DH Group.\n\t\t\tFor example, --trans=5,2,1,2 specifies\n\t\t\tEnc=3DES-CBC, Hash=SHA1, Auth=shared key, DH Group=2;\n\t\t\tand --trans=7/256,1,1,5 specifies\n\t\t\tEnc=AES-256, Hash=MD5, Auth=shared key, DH Group=5.\n\t\t\tThis option is not yet supported for IKEv2.\n\n--showbackoff[=<n>] or -o[<n>]\tDisplay the backoff fingerprint table.\n\t\t\tDisplay the backoff table to fingerprint the IKE\n\t\t\timplementation on the remote hosts.\n\t\t\tThe optional argument specifies time to wait in seconds\n\t\t\tafter receiving the last packet, default=60.\n\t\t\tIf you are using the short form of the option (-o)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -o25 not -o 25.\n\n--fuzz=<n> or -u <n>\tSet pattern matching fuzz to <n> ms, default=500.\n\t\t\tThis sets the maximum acceptable difference between\n\t\t\tthe observed backoff times and the reference times in\n\t\t\tthe backoff patterns file.  Larger values allow for\n\t\t\thigher variance but also increase the risk of\n\t\t\tfalse positive identifications.\n\t\t\tAny per-pattern-entry fuzz specifications in the\n\t\t\tpatterns file will override the value set here.\n\n--patterns=<f> or -p <f> Use IKE backoff patterns file <f>,\n\t\t\tdefault=/usr/local/share/ike-scan/ike-backoff-patterns.\n\t\t\tThis specifies the name of the file containing\n\t\t\tIKE backoff patterns.  This file is only used when\n\t\t\t--showbackoff is specified.\n\n--vidpatterns=<f> or -I <f> Use Vendor ID patterns file <f>,\n\t\t\tdefault=/usr/local/share/ike-scan/ike-vendor-ids.\n\t\t\tThis specifies the name of the file containing\n\t\t\tVendor ID patterns.  These patterns are used for\n\t\t\tVendor ID fingerprinting.\n\n--aggressive or -A\tUse IKE Aggressive Mode (The default is Main Mode)\n\t\t\tIf you specify --aggressive, then you may also\n\t\t\tspecify --dhgroup, --id and --idtype.  If you use\n\t\t\tcustom transforms with aggressive mode with the --trans\n\t\t\toption, note that all transforms should have the same\n\t\t\tDH Group and this should match the group specified\n\t\t\twith --dhgroup or the default if --dhgroup is not used.\n\n--id=<id> or -n <id>\tUse <id> as the identification value.\n\t\t\tThis option is only applicable to Aggressive Mode.\n\t\t\t<id> can be specified as a string, e.g. --id=test or as\n\t\t\ta hex value with a leading \"0x\", e.g. --id=0xdeadbeef.\n\n--idtype=<n> or -y <n>\tUse identification type <n>.  Default 3 (ID_USER_FQDN).\n\t\t\tThis option is only applicable to Aggressive Mode.\n\t\t\tSee RFC 2407 4.6.2 for details of Identification types.\n\n--dhgroup=<n> or -g <n>\tUse Diffie Hellman Group <n>.  Default 2.\n\t\t\tThis option is only applicable to Aggressive Mode and\n\t\t\tIKEv2.  For both of these, it is used to determine the\n\t\t\tsize of the key exchange payload.\n\t\t\tIf you use Aggressive Mode with custom transforms, then\n\t\t\tyou will normally need to use the --dhgroup option\n\t\t\tunless you are using the default DH group.\n\t\t\tAcceptable values are 1,2,5,14,15,16,17,18,19,20,21.\n\n--gssid=<n> or -G <n>\tUse GSS ID <n> where <n> is a hex string.\n\t\t\tThis uses transform attribute type 16384 as specified\n\t\t\tin draft-ietf-ipsec-isakmp-gss-auth-07.txt, although\n\t\t\tWindows-2000 has been observed to use 32001 as well.\n\t\t\tFor Windows 2000, you'll need to use --auth=65001 to\n\t\t\tspecify Kerberos (GSS) authentication.\n\n--random or -R\t\tRandomise the host list.\n\t\t\tThis option randomises the order of the hosts in the\n\t\t\thost list, so the IKE probes are sent to the hosts in\n\t\t\ta random order.  It uses the Knuth shuffle algorithm.\n\n--tcp[=<n>] or -T[<n>]\tUse TCP transport instead of UDP.\n\t\t\tThis allows you to test a host running IKE over TCP.\n\t\t\tYou won't normally need this option because the vast\n\t\t\tmajority of IPsec systems only support IKE over UDP.\n\t\t\tThe optional value <n> specifies the type of IKE over\n\t\t\tTCP.  There are currently two possible values:\n\t\t\t1 = RAW IKE over TCP as used by Checkpoint (default);\n\t\t\t2 = Encapsulated IKE over TCP as used by Cisco.\n\t\t\tIf you are using the short form of the option (-T)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -T2 not -T 2.\n\t\t\tYou can only specify a single target host if you use\n\t\t\tthis option.\n\n--tcptimeout=<n> or -O <n> Set TCP connect timeout to <n> seconds (default=10).\n\t\t\tThis is only applicable to TCP transport mode.\n\n--pskcrack[=<f>] or -P[<f>] Crack aggressive mode pre-shared keys.\n\t\t\tThis option outputs the aggressive mode pre-shared key\n\t\t\t(PSK) parameters for offline cracking using the\n\t\t\t\"psk-crack\" program that is supplied with ike-scan.\n\t\t\tYou can optionally specify a filename, <f>, to write\n\t\t\tthe PSK parameters to.  If you do not specify a filename\n\t\t\tthen the PSK parameters are written to standard output.\n\t\t\tIf you are using the short form of the option (-P)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -Pfile not -P file.\n\t\t\tYou can only specify a single target host if you use\n\t\t\tthis option.\n\t\t\tThis option is only applicable to IKE aggressive mode.\n\n--nodns or -N\t\tDo not use DNS to resolve names.\n\t\t\tIf you use this option, then all hosts must be\n\t\t\tspecified as IP addresses.\n\n--noncelen=<n> or -c <n> Set the nonce length to <n> bytes. Default=20\n\t\t\tThis option controls the length of the nonce payload\n\t\t\tthat is sent in an aggressive mode or IKEv2 request.\n\t\t\tNormally there is no need to use this option unless you\n\t\t\twant to reduce the nonce size to speed up pre-shared\n\t\t\tkey cracking, or if you want to see how a particular\n\t\t\tserver handles different length nonce payloads.\n\t\t\tRFC 2409 states that the length of nonce payload\n\t\t\tmust be between 8 and 256 bytes, but ike-scan does\n\t\t\tnot enforce this.\n\t\t\tSpecifying a large nonce length will increase the\n\t\t\tsize of the packet sent by ike-scan. A very large nonce\n\t\t\tlength may cause fragmentation, or exceed the maximum\n\t\t\tIP packet size.\n\t\t\tThis option is only applicable to IKE aggressive mode.\n\n--headerlen=<n> or -L <n> Set the length in the ISAKMP header to <n> bytes.\n\t\t\tYou can use this option to manually specify the value\n\t\t\tto be used for the ISAKMP header length.\n\t\t\tBy default, ike-scan will fill in the correct value.\n\t\t\tUse this option to manually specify an incorrect\n\t\t\tlength.\n\t\t\t<n> can be specified as \"+n\" which sets the length\n\t\t\tto n bytes more than it should be, \"-n\" which sets\n\t\t\tit to n bytes less, or \"n\" which sets it to exactly\n\t\t\tbytes.\n\t\t\tChanging the header length to an incorrect value can\n\t\t\tsometimes disrupt VPN servers.\n\n--mbz=<n> or -Z <n>\tUse the value <n> for reserved (MBZ) fields, default=0.\n\t\t\tSpecifying this option makes the outgoing packet\n\t\t\tnon-RFC compliant, and should only be used if you want\n\t\t\tto see how a VPN server will respond to invalid packets.\n\t\t\tThe value of <n> should be in the range 0-255.\n\n--headerver=<n> or -E <n> Specify the ISAKMP header version.\n\t\t\tThe default is 0x10 (16) which corresponds to v1.0.\n\t\t\tSpecifying a non-default value will make the outgoing\n\t\t\tpacket non-RFC compliant, and should only be used if\n\t\t\tyou want to see how the VPN server reacts to strange\n\t\t\tversions.\n\t\t\tThe value should be in the range 0-255.\n\n--certreq=<c> or -C <c> Add the CertificateRequest payload <c>.\n\t\t\t<c> should be specified as a hex value.\n\t\t\tThe first byte of the hex value will be interpreted as\n\t\t\tthe certificate type; the remaining bytes as the\n\t\t\tcertificate authority as described in RFC 2408 3.10.\n\t\t\tThe certificate types are listed in RFC 2408 sec 3.9.\n\t\t\tRFC 2408 states \"The Certificate Request payload MUST\n\t\t\tbe accepted at any point during the exchange\"\n\n--doi=<d> or -D <d>\tSet the SA DOI to <d>, default 1 (IPsec).\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard DOI.\n\n--situation=<s> or -S <s> Set the SA Situation to <d>, default 1.\n\t\t\tThe meaning of the situation depends on the DOI, and\n\t\t\tis detailed in the appropriate DOI document.  For the\n\t\t\tIPsec DOI, the default Situation of 1 represents\n\t\t\tSIT_IDENTITY_ONLY.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard situation.\n\n--protocol=<p> or -j <p> Set the Proposal protocol ID to <p>, default 1.\n\t\t\tThe meaning of the proposal protocol ID depends on\n\t\t\tthe DOI, and is detailed in the appropriate DOI\n\t\t\tdocument.  For the IPsec DOI, the default proposal\n\t\t\tprotocol id of 1 represents PROTO_ISAKMP.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard protocol ID.\n\n--transid=<t> or -k <t> Set the Transform ID to <t>, default 1.\n\t\t\tThe meaning of the transform ID depends on the\n\t\t\tDOI, and is detailed in the appropriate DOI\n\t\t\tdocument.  For the IPsec DOI, the default\n\t\t\ttransform id of 1 represents KEY_IKE.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard transform ID.\n\n--spisize=<n>\t\tSet the proposal SPI size to <n>.  Default=0\n\t\t\tIf this is non-zero, then a random SPI of the\n\t\t\tspecified size will be added to the proposal payload.\n\t\t\tThe default of zero means no SPI.\n\n--hdrflags=<n>\t\tSet the ISAKMP header flags to <n>.  Default=0\n\t\t\tThe flags are detailed in RFC 2408 section 3.1\n\n--hdrmsgid=<n>\t\tSet the ISAKMP header message ID to <n>.  Default=0\n\t\t\tThis should be zero for IKE Phase-1.\n\n--cookie=<n>\t\tSet the ISAKMP initiator cookie to <n>\n\t\t\tThe cookie value should be specified in hex.\n\t\t\tBy default, the cookies are automatically generated\n\t\t\tand have unique values.  If you specify this option,\n\t\t\tthen you can only specify a single target, because\n\t\t\tike-scan requires unique cookie values to match up\n\t\t\tthe response packets.\n\n--exchange=<n>\t\tSet the exchange type to <n>\n\t\t\tThis option allows you to change the exchange type in\n\t\t\tthe ISAKMP header to an arbitrary value.\n\t\t\tNote that ike-scan only supports Main and Aggressive\n\t\t\tmodes (values 2 and 4 respectively).  Specifying\n\t\t\tother values will change the exchange type value in\n\t\t\tthe ISAKMP header, but will not adjust the other\n\t\t\tpayloads.\n\t\t\tThe exchange types are defined in RFC 2408 sec 3.1.\n\n--nextpayload=<n>\tSet the next payload in the ISAKMP header to <n>\n\t\t\tNormally, the next payload is automatically set to the\n\t\t\tcorrect value.\n\n--randomseed=<n>\tUse <n> to seed the pseudo random number generator.\n\t\t\tThis option seeds the PRNG with the specified number,\n\t\t\twhich can be useful if you want to ensure that the\n\t\t\tpacket data is exactly repeatable when it includes\n\t\t\tpayloads with random data such as key exchange or nonce.\n\t\t\tBy default, the PRNG is seeded with an unpredictable\n\t\t\tvalue.\n\n--timestamp\t\tDisplay timestamps for received packets.\n\t\t\tThis option causes a timestamp to be displayed for\n\t\t\teach received packet.\n\n--sourceip=<s>\t\tSet source IP address for outgoing packets to <s>.\n\t\t\tThis option causes the outgoing IKE packets to have\n\t\t\tthe specified source IP address.\n\t\t\tThe address can either be an IP address in dotted\n\t\t\tquad format, or the string \"random\" which will use\n\t\t\ta different random source address for each packet that\n\t\t\tis sent.\n\t\t\tIf this option is used, no packets will be received\n\t\t\tThis option requires raw socket support, and you\n\t\t\twill need superuser privileges to use this option,\n\t\t\teven if you specify a high source port.\n\t\t\tThis option does not work on all operating systems.\n\n--bindip=<s>\t\tSet the IP address to bind to.\n\t\t\tThis option causes the outgoing IKE packets to originate\n\t\t\tfrom <s>, and this address will also be used to receive\n\t\t\tresponses from the target.\n\n--shownum\t\tDisplay the host number for received packets.\n\t\t\tThis displays the ordinal host number of the\n\t\t\tresponding host before the IP address. It can be useful\n\t\t\twhen sending many packets to the same target IP, to\n\t\t\tsee if any probes are being ignored.\n\n--nat-t\t\t\tUse RFC 3947 NAT-Traversal encapsulation.\n\t\t\tThis option adds the non-ESP marker to the beginning\n\t\t\tof outgoing packets and strips it from received\n\t\t\tpackets, as described in RFC 3947. It also changes the\n\t\t\tdefault source port to 4500 and the default destination\n\t\t\tport to 4500, which are the ports for NAT-T IKE.\n\t\t\tThese port numbers can be changed with the --sport and\n\t\t\t--dport options, providing they are used after the\n\t\t\t--nat-t option.\n\n--rcookie=<n>\t\tSet the ISAKMP responder cookie to <n>.\n\t\t\tThis sets the responder cookie to the specified hex\n\t\t\tvalue.  By default, the responder cookie is set to zero.\n\n--ikev2 or -2\t\tUse IKE version 2\n\t\t\tThis causes the outgoing packets to use IKEv2 format\n\t\t\tas defined in RFC 4306 instead of the default IKEv1\n\t\t\tformat. Any packets returned are automatically decoded\n\t\t\tas IKE or IKEv2 depending on their payloads irrespective\n\t\t\tof this option.\n\t\t\tThe --ikev2 option is currently experimental. It has not\n\t\t\tbeen extensively tested, and it only supports sending\n\t\t\tthe default proposal.\n\nReport bugs or send suggestions at https://github.com/royhills/ike-scan\nSee the ike-scan homepage at http://www.nta-monitor.com/tools/ike-scan/\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "ike-scan"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for ike-scan\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "ike-scan"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(ike-scan)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "ike-scan",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Display this usage message and exit.",
+   "-h": "Display this usage message and exit.",
+   "--file": "instead of from the command line. One name or IP address per line. Use \"-\" for standard input.",
+   "-f": "instead of from the command line. One name or IP address per line. Use \"-\" for standard input.",
+   "--sport": "Some IKE implementations require the client to use UDP source port 500 and will not talk to other ports. Note that superuser privileges are normally required to use non-zero source ports below 1024. Also only one process on a system may bind to a given source port at any one time. Use of the --nat-t option changes the default source port to 4500",
+   "-s": "Some IKE implementations require the client to use UDP source port 500 and will not talk to other ports. Note that superuser privileges are normally required to use non-zero source ports below 1024. Also only one process on a system may bind to a given source port at any one time. Use of the --nat-t option changes the default source port to 4500",
+   "--dport": "UDP port 500 is the assigned port number for ISAKMP and this is the port used by most if not all IKE implementations. Use of the --nat-t option changes the default destination port to 4500",
+   "-d": "UDP port 500 is the assigned port number for ISAKMP and this is the port used by most if not all IKE implementations. Use of the --nat-t option changes the default destination port to 4500",
+   "--retry": "default=3.",
+   "-r": "default=3.",
+   "--timeout": "This timeout is for the first packet sent to each host. subsequent timeouts are multiplied by the backoff factor which is set with --backoff.",
+   "-t": "This timeout is for the first packet sent to each host. subsequent timeouts are multiplied by the backoff factor which is set with --backoff.",
+   "--bandwidth": "The value is in bits per second by default. If you append \"K\" to the value, then the units are kilobits per second; and if you append \"M\" to the value, the units are megabits per second. The \"K\" and \"M\" suffixes represent the decimal, not binary, multiples. So 64K is 64000, not 65536.",
+   "-B": "The value is in bits per second by default. If you append \"K\" to the value, then the units are kilobits per second; and if you append \"M\" to the value, the units are megabits per second. The \"K\" and \"M\" suffixes represent the decimal, not binary, multiples. So 64K is 64000, not 65536.",
+   "--interval": "The packet interval will be no smaller than this number. The interval specified is in milliseconds by default. if \"u\" is appended to the value, then the interval is in microseconds, and if \"s\" is appended, the interval is in seconds. If you want to use up to a given bandwidth, then it is easier to use the --bandwidth option instead. You cannot specify both --interval and --bandwidth because they are just different ways to change the same underlying variable.",
+   "-i": "The packet interval will be no smaller than this number. The interval specified is in milliseconds by default. if \"u\" is appended to the value, then the interval is in microseconds, and if \"s\" is appended, the interval is in seconds. If you want to use up to a given bandwidth, then it is easier to use the --bandwidth option instead. You cannot specify both --interval and --bandwidth because they are just different ways to change the same underlying variable.",
+   "--backoff": "The per-host timeout is multiplied by this factor after each timeout. So, if the number of retries is 3, the initial per-host timeout is 500ms and the backoff factor is 1.5, then the first timeout will be 500ms, the second 750ms and the third 1125ms.",
+   "-b": "The per-host timeout is multiplied by this factor after each timeout. So, if the number of retries is 3, the initial per-host timeout is 500ms and the backoff factor is 1.5, then the first timeout will be 500ms, the second 750ms and the third 1125ms.",
+   "--verbose": "Display verbose progress messages. Use more than once for greater effect: 1 - Show when each pass is completed and when packets with invalid cookies are received. 2 - Show each packet sent and received and when hosts are removed from the list. 3 - Display the host, Vendor ID and backoff lists before scanning starts.",
+   "-v": "Display verbose progress messages. Use more than once for greater effect: 1 - Show when each pass is completed and when packets with invalid cookies are received. 2 - Show each packet sent and received and when hosts are removed from the list. 3 - Display the host, Vendor ID and backoff lists before scanning starts.",
+   "--quiet": "Don't decode the returned packet. This prints less protocol information so the output lines are shorter.",
+   "-q": "Don't decode the returned packet. This prints less protocol information so the output lines are shorter.",
+   "--multiline": "With this option, the decode for each payload is printed on a separate line starting with a TAB. This option makes the output easier to read, especially when there are many payloads.",
+   "-M": "With this option, the decode for each payload is printed on a separate line starting with a TAB. This option makes the output easier to read, especially when there are many payloads.",
+   "--lifetime": "RFC 2407 specifies 28800 as the default, but some implementations may require different values. If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). If you specify the string \"none\" then no lifetime attribute will be added at all. You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifetimes. Each --trans option will use the previously specified lifetime value.",
+   "-l": "RFC 2407 specifies 28800 as the default, but some implementations may require different values. If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). If you specify the string \"none\" then no lifetime attribute will be added at all. You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifetimes. Each --trans option will use the previously specified lifetime value.",
+   "--lifesize": "If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifesizes. Each --trans option will use the previously specified lifesize value.",
+   "-z": "If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifesizes. Each --trans option will use the previously specified lifesize value.",
+   "--auth": "RFC defined values are 1 to 5. See RFC 2409 Appendix A. Checkpoint hybrid mode is 64221. GSS (Windows \"Kerberos\") is 65001. XAUTH uses 65001 to 65010. This is not applicable to IKEv2.",
+   "-m": "RFC defined values are 1 to 5. See RFC 2409 Appendix A. Checkpoint hybrid mode is 64221. GSS (Windows \"Kerberos\") is 65001. XAUTH uses 65001 to 65010. This is not applicable to IKEv2.",
+   "--version": "Display program version and exit.",
+   "-V": "Display program version and exit.",
+   "--vendor": "You can use this option more than once to send multiple vendor ID payloads.",
+   "-e": "You can use this option more than once to send multiple vendor ID payloads.",
+   "--trans": "You can use this option more than once to send an arbitrary number of custom transforms. There are two ways to specify the transform: The new way, where you specify the attribute/value pairs, and the old way where you specify the values for a fixed list of attributes. For the new method, the transform <t> is specified as (attr=value, attr=value, ...) Where \"attr\" is the attribute number, and \"value\" is the value to assign to that attribute. For a basic attribute, specify the value as a decimal number; for a variable length attribute, specify the value as a hex number prefixed with 0x. You can specify an arbitary number of attribute/value pairs. See RFC 2409 Appendix A for details of the attributes and values. Note that brackets are special to some shells, so you may need to quote them, e.g.",
+   "-a": "You can use this option more than once to send an arbitrary number of custom transforms. There are two ways to specify the transform: The new way, where you specify the attribute/value pairs, and the old way where you specify the values for a fixed list of attributes. For the new method, the transform <t> is specified as (attr=value, attr=value, ...) Where \"attr\" is the attribute number, and \"value\" is the value to assign to that attribute. For a basic attribute, specify the value as a decimal number; for a variable length attribute, specify the value as a hex number prefixed with 0x. You can specify an arbitary number of attribute/value pairs. See RFC 2409 Appendix A for details of the attributes and values. Note that brackets are special to some shells, so you may need to quote them, e.g.",
+   "--showbackoff": "Display the backoff table to fingerprint the IKE implementation on the remote hosts. The optional argument specifies time to wait in seconds after receiving the last packet, default=60. If you are using the short form of the option (-o) then the value must immediately follow the option letter with no spaces, e.g. -o25 not -o 25.",
+   "-o": "Display the backoff table to fingerprint the IKE implementation on the remote hosts. The optional argument specifies time to wait in seconds after receiving the last packet, default=60. If you are using the short form of the option (-o) then the value must immediately follow the option letter with no spaces, e.g. -o25 not -o 25.",
+   "--fuzz": "This sets the maximum acceptable difference between the observed backoff times and the reference times in the backoff patterns file. Larger values allow for higher variance but also increase the risk of false positive identifications. Any per-pattern-entry fuzz specifications in the patterns file will override the value set here.",
+   "-u": "This sets the maximum acceptable difference between the observed backoff times and the reference times in the backoff patterns file. Larger values allow for higher variance but also increase the risk of false positive identifications. Any per-pattern-entry fuzz specifications in the patterns file will override the value set here.",
+   "--patterns": "default=/usr/local/share/ike-scan/ike-backoff-patterns. This specifies the name of the file containing IKE backoff patterns. This file is only used when",
+   "-p": "default=/usr/local/share/ike-scan/ike-backoff-patterns. This specifies the name of the file containing IKE backoff patterns. This file is only used when",
+   "--vidpatterns": "default=/usr/local/share/ike-scan/ike-vendor-ids. This specifies the name of the file containing Vendor ID patterns. These patterns are used for Vendor ID fingerprinting.",
+   "-I": "default=/usr/local/share/ike-scan/ike-vendor-ids. This specifies the name of the file containing Vendor ID patterns. These patterns are used for Vendor ID fingerprinting.",
+   "--aggressive": "If you specify --aggressive, then you may also specify --dhgroup, --id and --idtype. If you use custom transforms with aggressive mode with the --trans option, note that all transforms should have the same DH Group and this should match the group specified with --dhgroup or the default if --dhgroup is not used.",
+   "-A": "If you specify --aggressive, then you may also specify --dhgroup, --id and --idtype. If you use custom transforms with aggressive mode with the --trans option, note that all transforms should have the same DH Group and this should match the group specified with --dhgroup or the default if --dhgroup is not used.",
+   "--id": "This option is only applicable to Aggressive Mode. <id> can be specified as a string, e.g. --id=test or as a hex value with a leading \"0x\", e.g. --id=0xdeadbeef.",
+   "-n": "This option is only applicable to Aggressive Mode. <id> can be specified as a string, e.g. --id=test or as a hex value with a leading \"0x\", e.g. --id=0xdeadbeef.",
+   "--idtype": "Default 3 (ID_USER_FQDN). This option is only applicable to Aggressive Mode. See RFC 2407 4.6.2 for details of Identification types.",
+   "-y": "Default 3 (ID_USER_FQDN). This option is only applicable to Aggressive Mode. See RFC 2407 4.6.2 for details of Identification types.",
+   "--dhgroup": "Default 2. This option is only applicable to Aggressive Mode and IKEv2. For both of these, it is used to determine the size of the key exchange payload. If you use Aggressive Mode with custom transforms, then you will normally need to use the --dhgroup option unless you are using the default DH group. Acceptable values are 1,2,5,14,15,16,17,18,19,20,21.",
+   "-g": "Default 2. This option is only applicable to Aggressive Mode and IKEv2. For both of these, it is used to determine the size of the key exchange payload. If you use Aggressive Mode with custom transforms, then you will normally need to use the --dhgroup option unless you are using the default DH group. Acceptable values are 1,2,5,14,15,16,17,18,19,20,21.",
+   "--gssid": "This uses transform attribute type 16384 as specified in draft-ietf-ipsec-isakmp-gss-auth-07.txt, although Windows-2000 has been observed to use 32001 as well. For Windows 2000, you'll need to use --auth=65001 to specify Kerberos (GSS) authentication.",
+   "-G": "This uses transform attribute type 16384 as specified in draft-ietf-ipsec-isakmp-gss-auth-07.txt, although Windows-2000 has been observed to use 32001 as well. For Windows 2000, you'll need to use --auth=65001 to specify Kerberos (GSS) authentication.",
+   "--random": "Randomise the host list. This option randomises the order of the hosts in the host list, so the IKE probes are sent to the hosts in a random order. It uses the Knuth shuffle algorithm.",
+   "-R": "Randomise the host list. This option randomises the order of the hosts in the host list, so the IKE probes are sent to the hosts in a random order. It uses the Knuth shuffle algorithm.",
+   "--tcp": "This allows you to test a host running IKE over TCP. You won't normally need this option because the vast majority of IPsec systems only support IKE over UDP. The optional value <n> specifies the type of IKE over TCP. There are currently two possible values: 1 = RAW IKE over TCP as used by Checkpoint (default); 2 = Encapsulated IKE over TCP as used by Cisco. If you are using the short form of the option (-T) then the value must immediately follow the option letter with no spaces, e.g. -T2 not -T 2. You can only specify a single target host if you use this option.",
+   "-T": "This allows you to test a host running IKE over TCP. You won't normally need this option because the vast majority of IPsec systems only support IKE over UDP. The optional value <n> specifies the type of IKE over TCP. There are currently two possible values: 1 = RAW IKE over TCP as used by Checkpoint (default); 2 = Encapsulated IKE over TCP as used by Cisco. If you are using the short form of the option (-T) then the value must immediately follow the option letter with no spaces, e.g. -T2 not -T 2. You can only specify a single target host if you use this option.",
+   "--tcptimeout": "This is only applicable to TCP transport mode.",
+   "-O": "This is only applicable to TCP transport mode.",
+   "--pskcrack": "This option outputs the aggressive mode pre-shared key (PSK) parameters for offline cracking using the \"psk-crack\" program that is supplied with ike-scan. You can optionally specify a filename, <f>, to write the PSK parameters to. If you do not specify a filename then the PSK parameters are written to standard output. If you are using the short form of the option (-P) then the value must immediately follow the option letter with no spaces, e.g. -Pfile not -P file. You can only specify a single target host if you use this option. This option is only applicable to IKE aggressive mode.",
+   "-P": "This option outputs the aggressive mode pre-shared key (PSK) parameters for offline cracking using the \"psk-crack\" program that is supplied with ike-scan. You can optionally specify a filename, <f>, to write the PSK parameters to. If you do not specify a filename then the PSK parameters are written to standard output. If you are using the short form of the option (-P) then the value must immediately follow the option letter with no spaces, e.g. -Pfile not -P file. You can only specify a single target host if you use this option. This option is only applicable to IKE aggressive mode.",
+   "--nodns": "Do not use DNS to resolve names. If you use this option, then all hosts must be specified as IP addresses.",
+   "-N": "Do not use DNS to resolve names. If you use this option, then all hosts must be specified as IP addresses.",
+   "--noncelen": "This option controls the length of the nonce payload that is sent in an aggressive mode or IKEv2 request. Normally there is no need to use this option unless you want to reduce the nonce size to speed up pre-shared key cracking, or if you want to see how a particular server handles different length nonce payloads. RFC 2409 states that the length of nonce payload must be between 8 and 256 bytes, but ike-scan does not enforce this. Specifying a large nonce length will increase the size of the packet sent by ike-scan. A very large nonce length may cause fragmentation, or exceed the maximum IP packet size. This option is only applicable to IKE aggressive mode.",
+   "-c": "This option controls the length of the nonce payload that is sent in an aggressive mode or IKEv2 request. Normally there is no need to use this option unless you want to reduce the nonce size to speed up pre-shared key cracking, or if you want to see how a particular server handles different length nonce payloads. RFC 2409 states that the length of nonce payload must be between 8 and 256 bytes, but ike-scan does not enforce this. Specifying a large nonce length will increase the size of the packet sent by ike-scan. A very large nonce length may cause fragmentation, or exceed the maximum IP packet size. This option is only applicable to IKE aggressive mode.",
+   "--headerlen": "You can use this option to manually specify the value to be used for the ISAKMP header length. By default, ike-scan will fill in the correct value. Use this option to manually specify an incorrect length. <n> can be specified as \"+n\" which sets the length to n bytes more than it should be, \"-n\" which sets it to n bytes less, or \"n\" which sets it to exactly bytes. Changing the header length to an incorrect value can sometimes disrupt VPN servers.",
+   "-L": "You can use this option to manually specify the value to be used for the ISAKMP header length. By default, ike-scan will fill in the correct value. Use this option to manually specify an incorrect length. <n> can be specified as \"+n\" which sets the length to n bytes more than it should be, \"-n\" which sets it to n bytes less, or \"n\" which sets it to exactly bytes. Changing the header length to an incorrect value can sometimes disrupt VPN servers.",
+   "--mbz": "Specifying this option makes the outgoing packet non-RFC compliant, and should only be used if you want to see how a VPN server will respond to invalid packets. The value of <n> should be in the range 0-255.",
+   "-Z": "Specifying this option makes the outgoing packet non-RFC compliant, and should only be used if you want to see how a VPN server will respond to invalid packets. The value of <n> should be in the range 0-255.",
+   "--headerver": "The default is 0x10 (16) which corresponds to v1.0. Specifying a non-default value will make the outgoing packet non-RFC compliant, and should only be used if you want to see how the VPN server reacts to strange versions. The value should be in the range 0-255.",
+   "-E": "The default is 0x10 (16) which corresponds to v1.0. Specifying a non-default value will make the outgoing packet non-RFC compliant, and should only be used if you want to see how the VPN server reacts to strange versions. The value should be in the range 0-255.",
+   "--certreq": "<c> should be specified as a hex value. The first byte of the hex value will be interpreted as the certificate type; the remaining bytes as the certificate authority as described in RFC 2408 3.10. The certificate types are listed in RFC 2408 sec 3.9. RFC 2408 states \"The Certificate Request payload MUST be accepted at any point during the exchange\"",
+   "-C": "<c> should be specified as a hex value. The first byte of the hex value will be interpreted as the certificate type; the remaining bytes as the certificate authority as described in RFC 2408 3.10. The certificate types are listed in RFC 2408 sec 3.9. RFC 2408 states \"The Certificate Request payload MUST be accepted at any point during the exchange\"",
+   "--doi": "You will not normally want to change this unless you want to see how the VPN server responds to a non-standard DOI.",
+   "-D": "You will not normally want to change this unless you want to see how the VPN server responds to a non-standard DOI.",
+   "--situation": "The meaning of the situation depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default Situation of 1 represents SIT_IDENTITY_ONLY. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard situation.",
+   "-S": "The meaning of the situation depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default Situation of 1 represents SIT_IDENTITY_ONLY. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard situation.",
+   "--protocol": "The meaning of the proposal protocol ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default proposal protocol id of 1 represents PROTO_ISAKMP. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard protocol ID.",
+   "-j": "The meaning of the proposal protocol ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default proposal protocol id of 1 represents PROTO_ISAKMP. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard protocol ID.",
+   "--transid": "The meaning of the transform ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default transform id of 1 represents KEY_IKE. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard transform ID.",
+   "-k": "The meaning of the transform ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default transform id of 1 represents KEY_IKE. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard transform ID.",
+   "--spisize": "Set the proposal SPI size to <n>.  Default=0 If this is non-zero, then a random SPI of the specified size will be added to the proposal payload. The default of zero means no SPI.",
+   "--hdrflags": "Set the ISAKMP header flags to <n>.  Default=0 The flags are detailed in RFC 2408 section 3.1",
+   "--hdrmsgid": "Set the ISAKMP header message ID to <n>.  Default=0 This should be zero for IKE Phase-1.",
+   "--cookie": "Set the ISAKMP initiator cookie to <n> The cookie value should be specified in hex. By default, the cookies are automatically generated and have unique values. If you specify this option, then you can only specify a single target, because ike-scan requires unique cookie values to match up the response packets.",
+   "--exchange": "Set the exchange type to <n> This option allows you to change the exchange type in the ISAKMP header to an arbitrary value. Note that ike-scan only supports Main and Aggressive modes (values 2 and 4 respectively). Specifying other values will change the exchange type value in the ISAKMP header, but will not adjust the other payloads. The exchange types are defined in RFC 2408 sec 3.1.",
+   "--nextpayload": "Normally, the next payload is automatically set to the correct value.",
+   "--randomseed": "This option seeds the PRNG with the specified number, which can be useful if you want to ensure that the packet data is exactly repeatable when it includes payloads with random data such as key exchange or nonce. By default, the PRNG is seeded with an unpredictable value.",
+   "--timestamp": "Display timestamps for received packets. This option causes a timestamp to be displayed for each received packet.",
+   "--sourceip": "Set source IP address for outgoing packets to <s>. This option causes the outgoing IKE packets to have the specified source IP address. The address can either be an IP address in dotted quad format, or the string \"random\" which will use a different random source address for each packet that is sent. If this option is used, no packets will be received This option requires raw socket support, and you will need superuser privileges to use this option, even if you specify a high source port. This option does not work on all operating systems.",
+   "--bindip": "Set the IP address to bind to. This option causes the outgoing IKE packets to originate from <s>, and this address will also be used to receive responses from the target.",
+   "--shownum": "Display the host number for received packets. This displays the ordinal host number of the responding host before the IP address. It can be useful when sending many packets to the same target IP, to see if any probes are being ignored.",
+   "--nat-t": "Use RFC 3947 NAT-Traversal encapsulation. This option adds the non-ESP marker to the beginning of outgoing packets and strips it from received packets, as described in RFC 3947. It also changes the default source port to 4500 and the default destination port to 4500, which are the ports for NAT-T IKE. These port numbers can be changed with the --sport and",
+   "--rcookie": "Set the ISAKMP responder cookie to <n>. This sets the responder cookie to the specified hex value. By default, the responder cookie is set to zero.",
+   "--ikev2": "Use IKE version 2 This causes the outgoing packets to use IKEv2 format as defined in RFC 4306 instead of the default IKEv1 format. Any packets returned are automatically decoded as IKE or IKEv2 depending on their payloads irrespective of this option. The --ikev2 option is currently experimental. It has not been extensively tested, and it only supports sending the default proposal.",
+   "-2": "Use IKE version 2 This causes the outgoing packets to use IKEv2 format as defined in RFC 4306 instead of the default IKEv1 format. Any packets returned are automatically decoded as IKE or IKEv2 depending on their payloads irrespective of this option. The --ikev2 option is currently experimental. It has not been extensively tested, and it only supports sending the default proposal."
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "ccef17104f4a04993290200e213927e8b7e22b69c2b79bc4be060d24807a38f3",
+  "text": "Usage: ike-scan [options] [hosts...]\n\nTarget hosts must be specified on the command line unless the --file option is\ngiven, in which case the targets are read from the specified file instead.\n\nThe target hosts can be specified as IP addresses or hostnames. You can also\nspecify the target as IPnetwork/bits (e.g. 192.168.1.0/24) to specify all hosts\nin the given network (network and broadcast addresses included), or\nIPstart-IPend (e.g. 192.168.1.3-192.168.1.27) to specify all hosts in the\ninclusive range, or IPnetwork:NetMask (e.g. 192.168.1.0:255.255.255.0) to\nspecify all hosts in the given network and mask.\n\nThese different options for specifying target hosts may be used both on the\ncommand line, and also in the file specified with the --file option.\n\nIn the options below a letter or word in angle brackets like <f> denotes a\nvalue or string that should be supplied. The corresponding text should\nindicate the meaning of this value or string. When supplying the value or\nstring, do not include the angle brackets. Text in square brackets like [<f>]\nmean that the enclosed text is optional. This is used for options which take\nan optional argument.\n\nOptions:\n\n--help or -h\t\tDisplay this usage message and exit.\n\n--file=<fn> or -f <fn>\tRead hostnames or addresses from the specified file\n\t\t\tinstead of from the command line. One name or IP\n\t\t\taddress per line.  Use \"-\" for standard input.\n\n--sport=<p> or -s <p>\tSet UDP source port to <p>, default=500, 0=random.\n\t\t\tSome IKE implementations require the client to use\n\t\t\tUDP source port 500 and will not talk to other ports.\n\t\t\tNote that superuser privileges are normally required\n\t\t\tto use non-zero source ports below 1024.  Also only\n\t\t\tone process on a system may bind to a given source port\n\t\t\tat any one time. Use of the --nat-t option changes\n\t\t\tthe default source port to 4500\n\n--dport=<p> or -d <p>\tSet UDP destination port to <p>, default=500.\n\t\t\tUDP port 500 is the assigned port number for ISAKMP\n\t\t\tand this is the port used by most if not all IKE\n\t\t\timplementations. Use of the --nat-t option changes\n\t\t\tthe default destination port to 4500\n\n--retry=<n> or -r <n>\tSet total number of attempts per host to <n>,\n\t\t\tdefault=3.\n\n--timeout=<n> or -t <n>\tSet initial per host timeout to <n> ms, default=500.\n\t\t\tThis timeout is for the first packet sent to each host.\n\t\t\tsubsequent timeouts are multiplied by the backoff\n\t\t\tfactor which is set with --backoff.\n\n--bandwidth=<n> or -B <n> Set desired outbound bandwidth to <n>, default=56000\n\t\t\tThe value is in bits per second by default.  If you\n\t\t\tappend \"K\" to the value, then the units are kilobits\n\t\t\tper second; and if you append \"M\" to the value,\n\t\t\tthe units are megabits per second.\n\t\t\tThe \"K\" and \"M\" suffixes represent the decimal, not\n\t\t\tbinary, multiples.  So 64K is 64000, not 65536.\n\n--interval=<n> or -i <n> Set minimum packet interval to <n> ms.\n\t\t\tThe packet interval will be no smaller than this number.\n\t\t\tThe interval specified is in milliseconds by default.\n\t\t\tif \"u\" is appended to the value, then the interval\n\t\t\tis in microseconds, and if \"s\" is appended, the\n\t\t\tinterval is in seconds.\n\t\t\tIf you want to use up to a given bandwidth, then it is\n\t\t\teasier to use the --bandwidth option instead.\n\t\t\tYou cannot specify both --interval and --bandwidth\n\t\t\tbecause they are just different ways to change the\n\t\t\tsame underlying variable.\n\n--backoff=<b> or -b <b>\tSet timeout backoff factor to <b>, default=1.50.\n\t\t\tThe per-host timeout is multiplied by this factor\n\t\t\tafter each timeout.  So, if the number of retries\n\t\t\tis 3, the initial per-host timeout is 500ms and the\n\t\t\tbackoff factor is 1.5, then the first timeout will be\n\t\t\t500ms, the second 750ms and the third 1125ms.\n\n--verbose or -v\t\tDisplay verbose progress messages.\n\t\t\tUse more than once for greater effect:\n\t\t\t1 - Show when each pass is completed and when\n\t\t\t    packets with invalid cookies are received.\n\t\t\t2 - Show each packet sent and received and when\n\t\t\t    hosts are removed from the list.\n\t\t\t3 - Display the host, Vendor ID and backoff lists\n\t\t\t    before scanning starts.\n\n--quiet or -q\t\tDon't decode the returned packet.\n\t\t\tThis prints less protocol information so the\n\t\t\toutput lines are shorter.\n\n--multiline or -M\tSplit the payload decode across multiple lines.\n\t\t\tWith this option, the decode for each payload is\n\t\t\tprinted on a separate line starting with a TAB.\n\t\t\tThis option makes the output easier to read, especially\n\t\t\twhen there are many payloads.\n\n--lifetime=<s> or -l <s> Set IKE lifetime to <s> seconds, default=28800.\n\t\t\tRFC 2407 specifies 28800 as the default, but some\n\t\t\timplementations may require different values.\n\t\t\tIf you specify this as a a decimal integer, e.g.\n\t\t\t86400, then the attribute will use a 4-byte value.\n\t\t\tIf you specify it as a hex number, e.g. 0xFF, then\n\t\t\tthe attribute will use the appropriate size value\n\t\t\t(one byte for this example).\n\t\t\tIf you specify the string \"none\" then no lifetime\n\t\t\tattribute will be added at all.\n\t\t\tYou can use this option more than once in conjunction\n\t\t\twith the --trans options to produce multiple transform\n\t\t\tpayloads with different lifetimes.  Each --trans option\n\t\t\twill use the previously specified lifetime value.\n\n--lifesize=<s> or -z <s> Set IKE lifesize to <s> Kilobytes, default=0.\n\t\t\tIf you specify this as a a decimal integer, e.g.\n\t\t\t86400, then the attribute will use a 4-byte value.\n\t\t\tIf you specify it as a hex number, e.g. 0xFF, then\n\t\t\tthe attribute will use the appropriate size value\n\t\t\t(one byte for this example).\n\t\t\tYou can use this option more than once in conjunction\n\t\t\twith the --trans options to produce multiple transform\n\t\t\tpayloads with different lifesizes.  Each --trans option\n\t\t\twill use the previously specified lifesize value.\n\n--auth=<n> or -m <n>\tSet auth. method to <n>, default=1 (PSK).\n\t\t\tRFC defined values are 1 to 5.  See RFC 2409 Appendix A.\n\t\t\tCheckpoint hybrid mode is 64221.\n\t\t\tGSS (Windows \"Kerberos\") is 65001.\n\t\t\tXAUTH uses 65001 to 65010.\n\t\t\tThis is not applicable to IKEv2.\n\n--version or -V\t\tDisplay program version and exit.\n\n--vendor=<v> or -e <v>\tSet vendor id string to hex value <v>.\n\t\t\tYou can use this option more than once to send\n\t\t\tmultiple vendor ID payloads.\n\n--trans=<t> or -a <t>\tUse custom transform <t> instead of default set.\n\t\t\tYou can use this option more than once to send\n\t\t\tan arbitrary number of custom transforms.\n\t\t\tThere are two ways to specify the transform:\n\t\t\tThe new way, where you specify the attribute/value\n\t\t\tpairs, and the old way where you specify the values\n\t\t\tfor a fixed list of attributes.\n\t\t\tFor the new method, the transform <t> is specified as\n\t\t\t(attr=value, attr=value, ...)\n\t\t\tWhere \"attr\" is the attribute number, and \"value\" is\n\t\t\tthe value to assign to that attribute.\n\t\t\tFor a basic attribute, specify the value as a decimal\n\t\t\tnumber; for a variable length attribute, specify the\n\t\t\tvalue as a hex number prefixed with 0x. You can specify\n\t\t\tan arbitary number of attribute/value pairs.\n\t\t\tSee RFC 2409 Appendix A for details of the attributes\n\t\t\tand values.\n\t\t\tNote that brackets are special to some shells, so you\n\t\t\tmay need to quote them, e.g.\n\t\t\t--trans=\"(1=1,2=2,3=3,4=4)\". For example,\n\t\t\t--trans=(1=1,2=2,3=1,4=2) specifies\n\t\t\tEnc=DES-CBC, Hash=SHA1, Auth=shared key, DH Group=2;\n\t\t\t--trans=(1=7,14=128,2=1,3=3,4=5) specifies\n\t\t\tEnc=AES/128, Hash=MD5, Auth=RSA sig, DH Group=5 and\n\t\t\t--trans=(1=5,2=1,3=1,4=1,11=1,12=0x00007080) specifies\n\t\t\tEnc=3DES-CBC, Hash=MD5, Auth=shared key, DH Group=1,\n\t\t\tLifetime=28800 seconds as a 4-byte variable attribute.\n\t\t\tFor the old method, the transform <t> is specified as\n\t\t\tenc[/len],hash,auth,group.\n\t\t\tWhere enc is the encryption algorithm,\n\t\t\tlen is the key length for variable length ciphers,\n\t\t\thash is the hash algorithm, and group is the DH Group.\n\t\t\tFor example, --trans=5,2,1,2 specifies\n\t\t\tEnc=3DES-CBC, Hash=SHA1, Auth=shared key, DH Group=2;\n\t\t\tand --trans=7/256,1,1,5 specifies\n\t\t\tEnc=AES-256, Hash=MD5, Auth=shared key, DH Group=5.\n\t\t\tThis option is not yet supported for IKEv2.\n\n--showbackoff[=<n>] or -o[<n>]\tDisplay the backoff fingerprint table.\n\t\t\tDisplay the backoff table to fingerprint the IKE\n\t\t\timplementation on the remote hosts.\n\t\t\tThe optional argument specifies time to wait in seconds\n\t\t\tafter receiving the last packet, default=60.\n\t\t\tIf you are using the short form of the option (-o)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -o25 not -o 25.\n\n--fuzz=<n> or -u <n>\tSet pattern matching fuzz to <n> ms, default=500.\n\t\t\tThis sets the maximum acceptable difference between\n\t\t\tthe observed backoff times and the reference times in\n\t\t\tthe backoff patterns file.  Larger values allow for\n\t\t\thigher variance but also increase the risk of\n\t\t\tfalse positive identifications.\n\t\t\tAny per-pattern-entry fuzz specifications in the\n\t\t\tpatterns file will override the value set here.\n\n--patterns=<f> or -p <f> Use IKE backoff patterns file <f>,\n\t\t\tdefault=/usr/local/share/ike-scan/ike-backoff-patterns.\n\t\t\tThis specifies the name of the file containing\n\t\t\tIKE backoff patterns.  This file is only used when\n\t\t\t--showbackoff is specified.\n\n--vidpatterns=<f> or -I <f> Use Vendor ID patterns file <f>,\n\t\t\tdefault=/usr/local/share/ike-scan/ike-vendor-ids.\n\t\t\tThis specifies the name of the file containing\n\t\t\tVendor ID patterns.  These patterns are used for\n\t\t\tVendor ID fingerprinting.\n\n--aggressive or -A\tUse IKE Aggressive Mode (The default is Main Mode)\n\t\t\tIf you specify --aggressive, then you may also\n\t\t\tspecify --dhgroup, --id and --idtype.  If you use\n\t\t\tcustom transforms with aggressive mode with the --trans\n\t\t\toption, note that all transforms should have the same\n\t\t\tDH Group and this should match the group specified\n\t\t\twith --dhgroup or the default if --dhgroup is not used.\n\n--id=<id> or -n <id>\tUse <id> as the identification value.\n\t\t\tThis option is only applicable to Aggressive Mode.\n\t\t\t<id> can be specified as a string, e.g. --id=test or as\n\t\t\ta hex value with a leading \"0x\", e.g. --id=0xdeadbeef.\n\n--idtype=<n> or -y <n>\tUse identification type <n>.  Default 3 (ID_USER_FQDN).\n\t\t\tThis option is only applicable to Aggressive Mode.\n\t\t\tSee RFC 2407 4.6.2 for details of Identification types.\n\n--dhgroup=<n> or -g <n>\tUse Diffie Hellman Group <n>.  Default 2.\n\t\t\tThis option is only applicable to Aggressive Mode and\n\t\t\tIKEv2.  For both of these, it is used to determine the\n\t\t\tsize of the key exchange payload.\n\t\t\tIf you use Aggressive Mode with custom transforms, then\n\t\t\tyou will normally need to use the --dhgroup option\n\t\t\tunless you are using the default DH group.\n\t\t\tAcceptable values are 1,2,5,14,15,16,17,18,19,20,21.\n\n--gssid=<n> or -G <n>\tUse GSS ID <n> where <n> is a hex string.\n\t\t\tThis uses transform attribute type 16384 as specified\n\t\t\tin draft-ietf-ipsec-isakmp-gss-auth-07.txt, although\n\t\t\tWindows-2000 has been observed to use 32001 as well.\n\t\t\tFor Windows 2000, you'll need to use --auth=65001 to\n\t\t\tspecify Kerberos (GSS) authentication.\n\n--random or -R\t\tRandomise the host list.\n\t\t\tThis option randomises the order of the hosts in the\n\t\t\thost list, so the IKE probes are sent to the hosts in\n\t\t\ta random order.  It uses the Knuth shuffle algorithm.\n\n--tcp[=<n>] or -T[<n>]\tUse TCP transport instead of UDP.\n\t\t\tThis allows you to test a host running IKE over TCP.\n\t\t\tYou won't normally need this option because the vast\n\t\t\tmajority of IPsec systems only support IKE over UDP.\n\t\t\tThe optional value <n> specifies the type of IKE over\n\t\t\tTCP.  There are currently two possible values:\n\t\t\t1 = RAW IKE over TCP as used by Checkpoint (default);\n\t\t\t2 = Encapsulated IKE over TCP as used by Cisco.\n\t\t\tIf you are using the short form of the option (-T)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -T2 not -T 2.\n\t\t\tYou can only specify a single target host if you use\n\t\t\tthis option.\n\n--tcptimeout=<n> or -O <n> Set TCP connect timeout to <n> seconds (default=10).\n\t\t\tThis is only applicable to TCP transport mode.\n\n--pskcrack[=<f>] or -P[<f>] Crack aggressive mode pre-shared keys.\n\t\t\tThis option outputs the aggressive mode pre-shared key\n\t\t\t(PSK) parameters for offline cracking using the\n\t\t\t\"psk-crack\" program that is supplied with ike-scan.\n\t\t\tYou can optionally specify a filename, <f>, to write\n\t\t\tthe PSK parameters to.  If you do not specify a filename\n\t\t\tthen the PSK parameters are written to standard output.\n\t\t\tIf you are using the short form of the option (-P)\n\t\t\tthen the value must immediately follow the option\n\t\t\tletter with no spaces, e.g. -Pfile not -P file.\n\t\t\tYou can only specify a single target host if you use\n\t\t\tthis option.\n\t\t\tThis option is only applicable to IKE aggressive mode.\n\n--nodns or -N\t\tDo not use DNS to resolve names.\n\t\t\tIf you use this option, then all hosts must be\n\t\t\tspecified as IP addresses.\n\n--noncelen=<n> or -c <n> Set the nonce length to <n> bytes. Default=20\n\t\t\tThis option controls the length of the nonce payload\n\t\t\tthat is sent in an aggressive mode or IKEv2 request.\n\t\t\tNormally there is no need to use this option unless you\n\t\t\twant to reduce the nonce size to speed up pre-shared\n\t\t\tkey cracking, or if you want to see how a particular\n\t\t\tserver handles different length nonce payloads.\n\t\t\tRFC 2409 states that the length of nonce payload\n\t\t\tmust be between 8 and 256 bytes, but ike-scan does\n\t\t\tnot enforce this.\n\t\t\tSpecifying a large nonce length will increase the\n\t\t\tsize of the packet sent by ike-scan. A very large nonce\n\t\t\tlength may cause fragmentation, or exceed the maximum\n\t\t\tIP packet size.\n\t\t\tThis option is only applicable to IKE aggressive mode.\n\n--headerlen=<n> or -L <n> Set the length in the ISAKMP header to <n> bytes.\n\t\t\tYou can use this option to manually specify the value\n\t\t\tto be used for the ISAKMP header length.\n\t\t\tBy default, ike-scan will fill in the correct value.\n\t\t\tUse this option to manually specify an incorrect\n\t\t\tlength.\n\t\t\t<n> can be specified as \"+n\" which sets the length\n\t\t\tto n bytes more than it should be, \"-n\" which sets\n\t\t\tit to n bytes less, or \"n\" which sets it to exactly\n\t\t\tbytes.\n\t\t\tChanging the header length to an incorrect value can\n\t\t\tsometimes disrupt VPN servers.\n\n--mbz=<n> or -Z <n>\tUse the value <n> for reserved (MBZ) fields, default=0.\n\t\t\tSpecifying this option makes the outgoing packet\n\t\t\tnon-RFC compliant, and should only be used if you want\n\t\t\tto see how a VPN server will respond to invalid packets.\n\t\t\tThe value of <n> should be in the range 0-255.\n\n--headerver=<n> or -E <n> Specify the ISAKMP header version.\n\t\t\tThe default is 0x10 (16) which corresponds to v1.0.\n\t\t\tSpecifying a non-default value will make the outgoing\n\t\t\tpacket non-RFC compliant, and should only be used if\n\t\t\tyou want to see how the VPN server reacts to strange\n\t\t\tversions.\n\t\t\tThe value should be in the range 0-255.\n\n--certreq=<c> or -C <c> Add the CertificateRequest payload <c>.\n\t\t\t<c> should be specified as a hex value.\n\t\t\tThe first byte of the hex value will be interpreted as\n\t\t\tthe certificate type; the remaining bytes as the\n\t\t\tcertificate authority as described in RFC 2408 3.10.\n\t\t\tThe certificate types are listed in RFC 2408 sec 3.9.\n\t\t\tRFC 2408 states \"The Certificate Request payload MUST\n\t\t\tbe accepted at any point during the exchange\"\n\n--doi=<d> or -D <d>\tSet the SA DOI to <d>, default 1 (IPsec).\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard DOI.\n\n--situation=<s> or -S <s> Set the SA Situation to <d>, default 1.\n\t\t\tThe meaning of the situation depends on the DOI, and\n\t\t\tis detailed in the appropriate DOI document.  For the\n\t\t\tIPsec DOI, the default Situation of 1 represents\n\t\t\tSIT_IDENTITY_ONLY.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard situation.\n\n--protocol=<p> or -j <p> Set the Proposal protocol ID to <p>, default 1.\n\t\t\tThe meaning of the proposal protocol ID depends on\n\t\t\tthe DOI, and is detailed in the appropriate DOI\n\t\t\tdocument.  For the IPsec DOI, the default proposal\n\t\t\tprotocol id of 1 represents PROTO_ISAKMP.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard protocol ID.\n\n--transid=<t> or -k <t> Set the Transform ID to <t>, default 1.\n\t\t\tThe meaning of the transform ID depends on the\n\t\t\tDOI, and is detailed in the appropriate DOI\n\t\t\tdocument.  For the IPsec DOI, the default\n\t\t\ttransform id of 1 represents KEY_IKE.\n\t\t\tYou will not normally want to change this unless you\n\t\t\twant to see how the VPN server responds to a\n\t\t\tnon-standard transform ID.\n\n--spisize=<n>\t\tSet the proposal SPI size to <n>.  Default=0\n\t\t\tIf this is non-zero, then a random SPI of the\n\t\t\tspecified size will be added to the proposal payload.\n\t\t\tThe default of zero means no SPI.\n\n--hdrflags=<n>\t\tSet the ISAKMP header flags to <n>.  Default=0\n\t\t\tThe flags are detailed in RFC 2408 section 3.1\n\n--hdrmsgid=<n>\t\tSet the ISAKMP header message ID to <n>.  Default=0\n\t\t\tThis should be zero for IKE Phase-1.\n\n--cookie=<n>\t\tSet the ISAKMP initiator cookie to <n>\n\t\t\tThe cookie value should be specified in hex.\n\t\t\tBy default, the cookies are automatically generated\n\t\t\tand have unique values.  If you specify this option,\n\t\t\tthen you can only specify a single target, because\n\t\t\tike-scan requires unique cookie values to match up\n\t\t\tthe response packets.\n\n--exchange=<n>\t\tSet the exchange type to <n>\n\t\t\tThis option allows you to change the exchange type in\n\t\t\tthe ISAKMP header to an arbitrary value.\n\t\t\tNote that ike-scan only supports Main and Aggressive\n\t\t\tmodes (values 2 and 4 respectively).  Specifying\n\t\t\tother values will change the exchange type value in\n\t\t\tthe ISAKMP header, but will not adjust the other\n\t\t\tpayloads.\n\t\t\tThe exchange types are defined in RFC 2408 sec 3.1.\n\n--nextpayload=<n>\tSet the next payload in the ISAKMP header to <n>\n\t\t\tNormally, the next payload is automatically set to the\n\t\t\tcorrect value.\n\n--randomseed=<n>\tUse <n> to seed the pseudo random number generator.\n\t\t\tThis option seeds the PRNG with the specified number,\n\t\t\twhich can be useful if you want to ensure that the\n\t\t\tpacket data is exactly repeatable when it includes\n\t\t\tpayloads with random data such as key exchange or nonce.\n\t\t\tBy default, the PRNG is seeded with an unpredictable\n\t\t\tvalue.\n\n--timestamp\t\tDisplay timestamps for received packets.\n\t\t\tThis option causes a timestamp to be displayed for\n\t\t\teach received packet.\n\n--sourceip=<s>\t\tSet source IP address for outgoing packets to <s>.\n\t\t\tThis option causes the outgoing IKE packets to have\n\t\t\tthe specified source IP address.\n\t\t\tThe address can either be an IP address in dotted\n\t\t\tquad format, or the string \"random\" which will use\n\t\t\ta different random source address for each packet that\n\t\t\tis sent.\n\t\t\tIf this option is used, no packets will be received\n\t\t\tThis option requires raw socket support, and you\n\t\t\twill need superuser privileges to use this option,\n\t\t\teven if you specify a high source port.\n\t\t\tThis option does not work on all operating systems.\n\n--bindip=<s>\t\tSet the IP address to bind to.\n\t\t\tThis option causes the outgoing IKE packets to originate\n\t\t\tfrom <s>, and this address will also be used to receive\n\t\t\tresponses from the target.\n\n--shownum\t\tDisplay the host number for received packets.\n\t\t\tThis displays the ordinal host number of the\n\t\t\tresponding host before the IP address. It can be useful\n\t\t\twhen sending many packets to the same target IP, to\n\t\t\tsee if any probes are being ignored.\n\n--nat-t\t\t\tUse RFC 3947 NAT-Traversal encapsulation.\n\t\t\tThis option adds the non-ESP marker to the beginning\n\t\t\tof outgoing packets and strips it from received\n\t\t\tpackets, as described in RFC 3947. It also changes the\n\t\t\tdefault source port to 4500 and the default destination\n\t\t\tport to 4500, which are the ports for NAT-T IKE.\n\t\t\tThese port numbers can be changed with the --sport and\n\t\t\t--dport options, providing they are used after the\n\t\t\t--nat-t option.\n\n--rcookie=<n>\t\tSet the ISAKMP responder cookie to <n>.\n\t\t\tThis sets the responder cookie to the specified hex\n\t\t\tvalue.  By default, the responder cookie is set to zero.\n\n--ikev2 or -2\t\tUse IKE version 2\n\t\t\tThis causes the outgoing packets to use IKEv2 format\n\t\t\tas defined in RFC 4306 instead of the default IKEv1\n\t\t\tformat. Any packets returned are automatically decoded\n\t\t\tas IKE or IKEv2 depending on their payloads irrespective\n\t\t\tof this option.\n\t\t\tThe --ikev2 option is currently experimental. It has not\n\t\t\tbeen extensively tested, and it only supports sending\n\t\t\tthe default proposal.\n\nReport bugs or send suggestions at https://github.com/royhills/ike-scan\nSee the ike-scan homepage at http://www.nta-monitor.com/tools/ike-scan/\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--aggressive",
+   "--help",
+   "--id",
+   "--ikev2",
+   "--multiline",
+   "--nat-t",
+   "--nodns",
+   "--quiet",
+   "--random",
+   "--shownum",
+   "--timestamp",
+   "--verbose",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--md5",
+   "--sha1"
+  ],
+  "help_only": [
+   "--auth",
+   "--backoff",
+   "--bandwidth",
+   "--bindip",
+   "--certreq",
+   "--cookie",
+   "--dhgroup",
+   "--doi",
+   "--dport",
+   "--exchange",
+   "--file",
+   "--fuzz",
+   "--gssid",
+   "--hdrflags",
+   "--hdrmsgid",
+   "--headerlen",
+   "--headerver",
+   "--idtype",
+   "--interval",
+   "--lifesize",
+   "--lifetime",
+   "--mbz",
+   "--nextpayload",
+   "--noncelen",
+   "--patterns",
+   "--protocol",
+   "--pskcrack",
+   "--randomseed",
+   "--rcookie",
+   "--retry",
+   "--showbackoff",
+   "--situation",
+   "--sourceip",
+   "--spisize",
+   "--sport",
+   "--tcp",
+   "--tcptimeout",
+   "--timeout",
+   "--trans",
+   "--transid",
+   "--vendor",
+   "--vidpatterns",
+   "-2",
+   "-A",
+   "-B",
+   "-C",
+   "-D",
+   "-E",
+   "-G",
+   "-I",
+   "-L",
+   "-M",
+   "-N",
+   "-O",
+   "-P",
+   "-R",
+   "-S",
+   "-T",
+   "-V",
+   "-Z",
+   "-a",
+   "-b",
+   "-c",
+   "-d",
+   "-e",
+   "-f",
+   "-g",
+   "-h",
+   "-i",
+   "-j",
+   "-k",
+   "-l",
+   "-m",
+   "-n",
+   "-o",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-y",
+   "-z"
+  ],
+  "mining_coverage": 0.13402061855670103
+ },
+ "surface": {
+  "flags": {
+   "--aggressive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If you specify --aggressive, then you may also specify --dhgroup, --id and --idtype. If you use custom transforms with aggressive mode with the --trans option, note that all transforms should have the same DH Group and this should match the group specified with --dhgroup or the default if --dhgroup is not used.",
+    "kind": "option",
+    "first_tag": "1.5.1",
+    "first_date": "2013-11-12T23:01:48-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "RFC defined values are 1 to 5. See RFC 2409 Appendix A. Checkpoint hybrid mode is 64221. GSS (Windows \"Kerberos\") is 65001. XAUTH uses 65001 to 65010. This is not applicable to IKEv2."
+   },
+   "--backoff": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The per-host timeout is multiplied by this factor after each timeout. So, if the number of retries is 3, the initial per-host timeout is 500ms and the backoff factor is 1.5, then the first timeout will be 500ms, the second 750ms and the third 1125ms."
+   },
+   "--bandwidth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The value is in bits per second by default. If you append \"K\" to the value, then the units are kilobits per second; and if you append \"M\" to the value, the units are megabits per second. The \"K\" and \"M\" suffixes represent the decimal, not binary, multiples. So 64K is 64000, not 65536."
+   },
+   "--bindip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the IP address to bind to. This option causes the outgoing IKE packets to originate from <s>, and this address will also be used to receive responses from the target."
+   },
+   "--certreq": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "<c> should be specified as a hex value. The first byte of the hex value will be interpreted as the certificate type; the remaining bytes as the certificate authority as described in RFC 2408 3.10. The certificate types are listed in RFC 2408 sec 3.9. RFC 2408 states \"The Certificate Request payload MUST be accepted at any point during the exchange\""
+   },
+   "--cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the ISAKMP initiator cookie to <n> The cookie value should be specified in hex. By default, the cookies are automatically generated and have unique values. If you specify this option, then you can only specify a single target, because ike-scan requires unique cookie values to match up the response packets."
+   },
+   "--dhgroup": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Default 2. This option is only applicable to Aggressive Mode and IKEv2. For both of these, it is used to determine the size of the key exchange payload. If you use Aggressive Mode with custom transforms, then you will normally need to use the --dhgroup option unless you are using the default DH group. Acceptable values are 1,2,5,14,15,16,17,18,19,20,21."
+   },
+   "--doi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You will not normally want to change this unless you want to see how the VPN server responds to a non-standard DOI."
+   },
+   "--dport": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "UDP port 500 is the assigned port number for ISAKMP and this is the port used by most if not all IKE implementations. Use of the --nat-t option changes the default destination port to 4500"
+   },
+   "--exchange": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the exchange type to <n> This option allows you to change the exchange type in the ISAKMP header to an arbitrary value. Note that ike-scan only supports Main and Aggressive modes (values 2 and 4 respectively). Specifying other values will change the exchange type value in the ISAKMP header, but will not adjust the other payloads. The exchange types are defined in RFC 2408 sec 3.1."
+   },
+   "--file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "instead of from the command line. One name or IP address per line. Use \"-\" for standard input."
+   },
+   "--fuzz": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This sets the maximum acceptable difference between the observed backoff times and the reference times in the backoff patterns file. Larger values allow for higher variance but also increase the risk of false positive identifications. Any per-pattern-entry fuzz specifications in the patterns file will override the value set here."
+   },
+   "--gssid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This uses transform attribute type 16384 as specified in draft-ietf-ipsec-isakmp-gss-auth-07.txt, although Windows-2000 has been observed to use 32001 as well. For Windows 2000, you'll need to use --auth=65001 to specify Kerberos (GSS) authentication."
+   },
+   "--hdrflags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the ISAKMP header flags to <n>.  Default=0 The flags are detailed in RFC 2408 section 3.1"
+   },
+   "--hdrmsgid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the ISAKMP header message ID to <n>.  Default=0 This should be zero for IKE Phase-1."
+   },
+   "--headerlen": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option to manually specify the value to be used for the ISAKMP header length. By default, ike-scan will fill in the correct value. Use this option to manually specify an incorrect length. <n> can be specified as \"+n\" which sets the length to n bytes more than it should be, \"-n\" which sets it to n bytes less, or \"n\" which sets it to exactly bytes. Changing the header length to an incorrect value can sometimes disrupt VPN servers."
+   },
+   "--headerver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The default is 0x10 (16) which corresponds to v1.0. Specifying a non-default value will make the outgoing packet non-RFC compliant, and should only be used if you want to see how the VPN server reacts to strange versions. The value should be in the range 0-255."
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display this usage message and exit.",
+    "kind": "option",
+    "first_tag": "1.3",
+    "first_date": "2013-11-12T22:59:33-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--id": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "This option is only applicable to Aggressive Mode. <id> can be specified as a string, e.g. --id=test or as a hex value with a leading \"0x\", e.g. --id=0xdeadbeef.",
+    "kind": "option",
+    "first_tag": "1.5.1",
+    "first_date": "2013-11-12T23:01:48-05:00",
+    "last_tag": "1.6.5",
+    "last_date": "2013-11-12T23:07:18-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--idtype": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Default 3 (ID_USER_FQDN). This option is only applicable to Aggressive Mode. See RFC 2407 4.6.2 for details of Identification types."
+   },
+   "--ikev2": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use IKE version 2 This causes the outgoing packets to use IKEv2 format as defined in RFC 4306 instead of the default IKEv1 format. Any packets returned are automatically decoded as IKE or IKEv2 depending on their payloads irrespective of this option. The --ikev2 option is currently experimental. It has not been extensively tested, and it only supports sending the default proposal.",
+    "kind": "option",
+    "first_tag": "1.9",
+    "first_date": "2013-11-12T23:21:44-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--interval": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The packet interval will be no smaller than this number. The interval specified is in milliseconds by default. if \"u\" is appended to the value, then the interval is in microseconds, and if \"s\" is appended, the interval is in seconds. If you want to use up to a given bandwidth, then it is easier to use the --bandwidth option instead. You cannot specify both --interval and --bandwidth because they are just different ways to change the same underlying variable."
+   },
+   "--lifesize": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifesizes. Each --trans option will use the previously specified lifesize value."
+   },
+   "--lifetime": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "RFC 2407 specifies 28800 as the default, but some implementations may require different values. If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). If you specify the string \"none\" then no lifetime attribute will be added at all. You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifetimes. Each --trans option will use the previously specified lifetime value."
+   },
+   "--mbz": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specifying this option makes the outgoing packet non-RFC compliant, and should only be used if you want to see how a VPN server will respond to invalid packets. The value of <n> should be in the range 0-255."
+   },
+   "--md5": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Force MD5 hash type. Normally this is not required because the hash type is automatically determined from the hash length.",
+    "kind": "option",
+    "first_tag": "1.6.6",
+    "first_date": "2013-11-12T23:07:51-05:00",
+    "last_tag": "1.7.1",
+    "last_date": "2013-11-12T23:09:45-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "psk-crack.1"
+   },
+   "--multiline": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "With this option, the decode for each payload is printed on a separate line starting with a TAB. This option makes the output easier to read, especially when there are many payloads.",
+    "kind": "option",
+    "first_tag": "1.6",
+    "first_date": "2013-11-12T23:04:25-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--nat-t": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use RFC 3947 NAT-Traversal encapsulation. This option adds the non-ESP marker to the beginning of outgoing packets and strips it from received packets, as described in RFC 3947. It also changes the default source port to 4500 and the default destination port to 4500, which are the ports for NAT-T IKE. These port numbers can be changed with the --sport and",
+    "kind": "option",
+    "first_tag": "1.9",
+    "first_date": "2013-11-12T23:21:44-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--nextpayload": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Normally, the next payload is automatically set to the correct value."
+   },
+   "--nodns": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not use DNS to resolve names. If you use this option, then all hosts must be specified as IP addresses.",
+    "kind": "option",
+    "first_tag": "1.6.6",
+    "first_date": "2013-11-12T23:07:51-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--noncelen": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option controls the length of the nonce payload that is sent in an aggressive mode or IKEv2 request. Normally there is no need to use this option unless you want to reduce the nonce size to speed up pre-shared key cracking, or if you want to see how a particular server handles different length nonce payloads. RFC 2409 states that the length of nonce payload must be between 8 and 256 bytes, but ike-scan does not enforce this. Specifying a large nonce length will increase the size of the packet sent by ike-scan. A very large nonce length may cause fragmentation, or exceed the maximum IP packet size. This option is only applicable to IKE aggressive mode."
+   },
+   "--patterns": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=/usr/local/share/ike-scan/ike-backoff-patterns. This specifies the name of the file containing IKE backoff patterns. This file is only used when"
+   },
+   "--protocol": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the proposal protocol ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default proposal protocol id of 1 represents PROTO_ISAKMP. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard protocol ID."
+   },
+   "--pskcrack": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option outputs the aggressive mode pre-shared key (PSK) parameters for offline cracking using the \"psk-crack\" program that is supplied with ike-scan. You can optionally specify a filename, <f>, to write the PSK parameters to. If you do not specify a filename then the PSK parameters are written to standard output. If you are using the short form of the option (-P) then the value must immediately follow the option letter with no spaces, e.g. -Pfile not -P file. You can only specify a single target host if you use this option. This option is only applicable to IKE aggressive mode."
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't decode the returned packet. This prints less protocol information so the output lines are shorter.",
+    "kind": "option",
+    "first_tag": "1.6",
+    "first_date": "2013-11-12T23:04:25-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--random": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Randomise the host list. This option randomises the order of the hosts in the host list, so the IKE probes are sent to the hosts in a random order. It uses the Knuth shuffle algorithm.",
+    "kind": "option",
+    "first_tag": "1.6.6",
+    "first_date": "2013-11-12T23:07:51-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--randomseed": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option seeds the PRNG with the specified number, which can be useful if you want to ensure that the packet data is exactly repeatable when it includes payloads with random data such as key exchange or nonce. By default, the PRNG is seeded with an unpredictable value."
+   },
+   "--rcookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the ISAKMP responder cookie to <n>. This sets the responder cookie to the specified hex value. By default, the responder cookie is set to zero."
+   },
+   "--retry": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=3."
+   },
+   "--sha1": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Force SHA1 hash type. Normally this is not required because the hash type is automatically determined from the hash length.",
+    "kind": "option",
+    "first_tag": "1.6.6",
+    "first_date": "2013-11-12T23:07:51-05:00",
+    "last_tag": "1.7.1",
+    "last_date": "2013-11-12T23:09:45-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "psk-crack.1"
+   },
+   "--showbackoff": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display the backoff table to fingerprint the IKE implementation on the remote hosts. The optional argument specifies time to wait in seconds after receiving the last packet, default=60. If you are using the short form of the option (-o) then the value must immediately follow the option letter with no spaces, e.g. -o25 not -o 25."
+   },
+   "--shownum": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display the host number for received packets. This displays the ordinal host number of the responding host before the IP address. It can be useful when sending many packets to the same target IP, to see if any probes are being ignored.",
+    "kind": "option",
+    "first_tag": "1.9",
+    "first_date": "2013-11-12T23:21:44-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--situation": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the situation depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default Situation of 1 represents SIT_IDENTITY_ONLY. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard situation."
+   },
+   "--sourceip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set source IP address for outgoing packets to <s>. This option causes the outgoing IKE packets to have the specified source IP address. The address can either be an IP address in dotted quad format, or the string \"random\" which will use a different random source address for each packet that is sent. If this option is used, no packets will be received This option requires raw socket support, and you will need superuser privileges to use this option, even if you specify a high source port. This option does not work on all operating systems."
+   },
+   "--spisize": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the proposal SPI size to <n>.  Default=0 If this is non-zero, then a random SPI of the specified size will be added to the proposal payload. The default of zero means no SPI."
+   },
+   "--sport": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Some IKE implementations require the client to use UDP source port 500 and will not talk to other ports. Note that superuser privileges are normally required to use non-zero source ports below 1024. Also only one process on a system may bind to a given source port at any one time. Use of the --nat-t option changes the default source port to 4500"
+   },
+   "--tcp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This allows you to test a host running IKE over TCP. You won't normally need this option because the vast majority of IPsec systems only support IKE over UDP. The optional value <n> specifies the type of IKE over TCP. There are currently two possible values: 1 = RAW IKE over TCP as used by Checkpoint (default); 2 = Encapsulated IKE over TCP as used by Cisco. If you are using the short form of the option (-T) then the value must immediately follow the option letter with no spaces, e.g. -T2 not -T 2. You can only specify a single target host if you use this option."
+   },
+   "--tcptimeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This is only applicable to TCP transport mode."
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This timeout is for the first packet sent to each host. subsequent timeouts are multiplied by the backoff factor which is set with --backoff."
+   },
+   "--timestamp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display timestamps for received packets. This option causes a timestamp to be displayed for each received packet.",
+    "kind": "option",
+    "first_tag": "1.9",
+    "first_date": "2013-11-12T23:21:44-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--trans": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option more than once to send an arbitrary number of custom transforms. There are two ways to specify the transform: The new way, where you specify the attribute/value pairs, and the old way where you specify the values for a fixed list of attributes. For the new method, the transform <t> is specified as (attr=value, attr=value, ...) Where \"attr\" is the attribute number, and \"value\" is the value to assign to that attribute. For a basic attribute, specify the value as a decimal number; for a variable length attribute, specify the value as a hex number prefixed with 0x. You can specify an arbitary number of attribute/value pairs. See RFC 2409 Appendix A for details of the attributes and values. Note that brackets are special to some shells, so you may need to quote them, e.g."
+   },
+   "--transid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the transform ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default transform id of 1 represents KEY_IKE. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard transform ID."
+   },
+   "--vendor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option more than once to send multiple vendor ID payloads."
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display verbose progress messages. Use more than once for greater effect: 1 - Show when each pass is completed and when packets with invalid cookies are received. 2 - Show each packet sent and received and when hosts are removed from the list. 3 - Display the host, Vendor ID and backoff lists before scanning starts.",
+    "kind": "option",
+    "first_tag": "1.3",
+    "first_date": "2013-11-12T22:59:33-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display program version and exit.",
+    "kind": "option",
+    "first_tag": "1.3",
+    "first_date": "2013-11-12T22:59:33-05:00",
+    "last_tag": "1.9.5",
+    "last_date": "2021-10-13T10:55:45Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ike-scan.1"
+   },
+   "--vidpatterns": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=/usr/local/share/ike-scan/ike-vendor-ids. This specifies the name of the file containing Vendor ID patterns. These patterns are used for Vendor ID fingerprinting."
+   },
+   "-2": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use IKE version 2 This causes the outgoing packets to use IKEv2 format as defined in RFC 4306 instead of the default IKEv1 format. Any packets returned are automatically decoded as IKE or IKEv2 depending on their payloads irrespective of this option. The --ikev2 option is currently experimental. It has not been extensively tested, and it only supports sending the default proposal."
+   },
+   "-A": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "If you specify --aggressive, then you may also specify --dhgroup, --id and --idtype. If you use custom transforms with aggressive mode with the --trans option, note that all transforms should have the same DH Group and this should match the group specified with --dhgroup or the default if --dhgroup is not used."
+   },
+   "-B": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The value is in bits per second by default. If you append \"K\" to the value, then the units are kilobits per second; and if you append \"M\" to the value, the units are megabits per second. The \"K\" and \"M\" suffixes represent the decimal, not binary, multiples. So 64K is 64000, not 65536."
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "<c> should be specified as a hex value. The first byte of the hex value will be interpreted as the certificate type; the remaining bytes as the certificate authority as described in RFC 2408 3.10. The certificate types are listed in RFC 2408 sec 3.9. RFC 2408 states \"The Certificate Request payload MUST be accepted at any point during the exchange\""
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You will not normally want to change this unless you want to see how the VPN server responds to a non-standard DOI."
+   },
+   "-E": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The default is 0x10 (16) which corresponds to v1.0. Specifying a non-default value will make the outgoing packet non-RFC compliant, and should only be used if you want to see how the VPN server reacts to strange versions. The value should be in the range 0-255."
+   },
+   "-G": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This uses transform attribute type 16384 as specified in draft-ietf-ipsec-isakmp-gss-auth-07.txt, although Windows-2000 has been observed to use 32001 as well. For Windows 2000, you'll need to use --auth=65001 to specify Kerberos (GSS) authentication."
+   },
+   "-I": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=/usr/local/share/ike-scan/ike-vendor-ids. This specifies the name of the file containing Vendor ID patterns. These patterns are used for Vendor ID fingerprinting."
+   },
+   "-L": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option to manually specify the value to be used for the ISAKMP header length. By default, ike-scan will fill in the correct value. Use this option to manually specify an incorrect length. <n> can be specified as \"+n\" which sets the length to n bytes more than it should be, \"-n\" which sets it to n bytes less, or \"n\" which sets it to exactly bytes. Changing the header length to an incorrect value can sometimes disrupt VPN servers."
+   },
+   "-M": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "With this option, the decode for each payload is printed on a separate line starting with a TAB. This option makes the output easier to read, especially when there are many payloads."
+   },
+   "-N": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not use DNS to resolve names. If you use this option, then all hosts must be specified as IP addresses."
+   },
+   "-O": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This is only applicable to TCP transport mode."
+   },
+   "-P": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option outputs the aggressive mode pre-shared key (PSK) parameters for offline cracking using the \"psk-crack\" program that is supplied with ike-scan. You can optionally specify a filename, <f>, to write the PSK parameters to. If you do not specify a filename then the PSK parameters are written to standard output. If you are using the short form of the option (-P) then the value must immediately follow the option letter with no spaces, e.g. -Pfile not -P file. You can only specify a single target host if you use this option. This option is only applicable to IKE aggressive mode."
+   },
+   "-R": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Randomise the host list. This option randomises the order of the hosts in the host list, so the IKE probes are sent to the hosts in a random order. It uses the Knuth shuffle algorithm."
+   },
+   "-S": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the situation depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default Situation of 1 represents SIT_IDENTITY_ONLY. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard situation."
+   },
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This allows you to test a host running IKE over TCP. You won't normally need this option because the vast majority of IPsec systems only support IKE over UDP. The optional value <n> specifies the type of IKE over TCP. There are currently two possible values: 1 = RAW IKE over TCP as used by Checkpoint (default); 2 = Encapsulated IKE over TCP as used by Cisco. If you are using the short form of the option (-T) then the value must immediately follow the option letter with no spaces, e.g. -T2 not -T 2. You can only specify a single target host if you use this option."
+   },
+   "-V": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display program version and exit."
+   },
+   "-Z": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specifying this option makes the outgoing packet non-RFC compliant, and should only be used if you want to see how a VPN server will respond to invalid packets. The value of <n> should be in the range 0-255."
+   },
+   "-a": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option more than once to send an arbitrary number of custom transforms. There are two ways to specify the transform: The new way, where you specify the attribute/value pairs, and the old way where you specify the values for a fixed list of attributes. For the new method, the transform <t> is specified as (attr=value, attr=value, ...) Where \"attr\" is the attribute number, and \"value\" is the value to assign to that attribute. For a basic attribute, specify the value as a decimal number; for a variable length attribute, specify the value as a hex number prefixed with 0x. You can specify an arbitary number of attribute/value pairs. See RFC 2409 Appendix A for details of the attributes and values. Note that brackets are special to some shells, so you may need to quote them, e.g."
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The per-host timeout is multiplied by this factor after each timeout. So, if the number of retries is 3, the initial per-host timeout is 500ms and the backoff factor is 1.5, then the first timeout will be 500ms, the second 750ms and the third 1125ms."
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option controls the length of the nonce payload that is sent in an aggressive mode or IKEv2 request. Normally there is no need to use this option unless you want to reduce the nonce size to speed up pre-shared key cracking, or if you want to see how a particular server handles different length nonce payloads. RFC 2409 states that the length of nonce payload must be between 8 and 256 bytes, but ike-scan does not enforce this. Specifying a large nonce length will increase the size of the packet sent by ike-scan. A very large nonce length may cause fragmentation, or exceed the maximum IP packet size. This option is only applicable to IKE aggressive mode."
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "UDP port 500 is the assigned port number for ISAKMP and this is the port used by most if not all IKE implementations. Use of the --nat-t option changes the default destination port to 4500"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "You can use this option more than once to send multiple vendor ID payloads."
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "instead of from the command line. One name or IP address per line. Use \"-\" for standard input."
+   },
+   "-g": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Default 2. This option is only applicable to Aggressive Mode and IKEv2. For both of these, it is used to determine the size of the key exchange payload. If you use Aggressive Mode with custom transforms, then you will normally need to use the --dhgroup option unless you are using the default DH group. Acceptable values are 1,2,5,14,15,16,17,18,19,20,21."
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display this usage message and exit."
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The packet interval will be no smaller than this number. The interval specified is in milliseconds by default. if \"u\" is appended to the value, then the interval is in microseconds, and if \"s\" is appended, the interval is in seconds. If you want to use up to a given bandwidth, then it is easier to use the --bandwidth option instead. You cannot specify both --interval and --bandwidth because they are just different ways to change the same underlying variable."
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the proposal protocol ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default proposal protocol id of 1 represents PROTO_ISAKMP. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard protocol ID."
+   },
+   "-k": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The meaning of the transform ID depends on the DOI, and is detailed in the appropriate DOI document. For the IPsec DOI, the default transform id of 1 represents KEY_IKE. You will not normally want to change this unless you want to see how the VPN server responds to a non-standard transform ID."
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "RFC 2407 specifies 28800 as the default, but some implementations may require different values. If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). If you specify the string \"none\" then no lifetime attribute will be added at all. You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifetimes. Each --trans option will use the previously specified lifetime value."
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "RFC defined values are 1 to 5. See RFC 2409 Appendix A. Checkpoint hybrid mode is 64221. GSS (Windows \"Kerberos\") is 65001. XAUTH uses 65001 to 65010. This is not applicable to IKEv2."
+   },
+   "-n": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This option is only applicable to Aggressive Mode. <id> can be specified as a string, e.g. --id=test or as a hex value with a leading \"0x\", e.g. --id=0xdeadbeef."
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display the backoff table to fingerprint the IKE implementation on the remote hosts. The optional argument specifies time to wait in seconds after receiving the last packet, default=60. If you are using the short form of the option (-o) then the value must immediately follow the option letter with no spaces, e.g. -o25 not -o 25."
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=/usr/local/share/ike-scan/ike-backoff-patterns. This specifies the name of the file containing IKE backoff patterns. This file is only used when"
+   },
+   "-q": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't decode the returned packet. This prints less protocol information so the output lines are shorter."
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "default=3."
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Some IKE implementations require the client to use UDP source port 500 and will not talk to other ports. Note that superuser privileges are normally required to use non-zero source ports below 1024. Also only one process on a system may bind to a given source port at any one time. Use of the --nat-t option changes the default source port to 4500"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This timeout is for the first packet sent to each host. subsequent timeouts are multiplied by the backoff factor which is set with --backoff."
+   },
+   "-u": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This sets the maximum acceptable difference between the observed backoff times and the reference times in the backoff patterns file. Larger values allow for higher variance but also increase the risk of false positive identifications. Any per-pattern-entry fuzz specifications in the patterns file will override the value set here."
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display verbose progress messages. Use more than once for greater effect: 1 - Show when each pass is completed and when packets with invalid cookies are received. 2 - Show each packet sent and received and when hosts are removed from the list. 3 - Display the host, Vendor ID and backoff lists before scanning starts."
+   },
+   "-y": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Default 3 (ID_USER_FQDN). This option is only applicable to Aggressive Mode. See RFC 2407 4.6.2 for details of Identification types."
+   },
+   "-z": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "If you specify this as a a decimal integer, e.g. 86400, then the attribute will use a 4-byte value. If you specify it as a hex number, e.g. 0xFF, then the attribute will use the appropriate size value (one byte for this example). You can use this option more than once in conjunction with the --trans options to produce multiple transform payloads with different lifesizes. Each --trans option will use the previously specified lifesize value."
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "ike-scan",
+ "repo": "royhills/ike-scan",
+ "head_sha": "c74c01fd22d9a3aae3d8ba9a0bd2eb1a2146ac6f",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:27:21.109560+00:00"
+}

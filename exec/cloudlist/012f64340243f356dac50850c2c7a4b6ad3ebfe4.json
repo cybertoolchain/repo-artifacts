@@ -1,0 +1,519 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:ef818a9933bfe5cd690674991e3037d8ca038e0a61a956f32fa6836b174b967b",
+  "duration_s": 38.39,
+  "log_tail": "#11 9.913 go: downloading github.com/tklauser/numcpus v0.11.0\n#11 9.981 go: downloading github.com/akrylysov/pogreb v0.10.1\n#11 9.982 go: downloading github.com/syndtr/goleveldb v1.0.0\n#11 9.982 go: downloading github.com/tidwall/buntdb v1.3.0\n#11 9.982 go: downloading go.etcd.io/bbolt v1.3.7\n#11 9.982 go: downloading github.com/hashicorp/golang-lru/v2 v2.0.7\n#11 9.982 go: downloading github.com/munnerz/goautoneg v0.0.0-20191010083416-a7dc8b61c822\n#11 9.983 go: downloading github.com/go-openapi/swag v0.22.7\n#11 9.983 go: downloading github.com/go-openapi/jsonreference v0.20.4\n#11 9.987 go: downloading github.com/go-logr/stdr v1.2.2\n#11 10.000 go: downloading go.opentelemetry.io/auto/sdk v1.1.0\n#11 10.03 go: downloading github.com/emicklei/go-restful/v3 v3.11.0\n#11 10.04 go: downloading github.com/hashicorp/golang-lru v0.5.4\n#11 10.09 go: downloading github.com/go-openapi/jsonpointer v0.20.2\n#11 10.10 go: downloading github.com/mailru/easyjson v0.7.7\n#11 10.12 go: downloading github.com/tidwall/rtred v0.1.2\n#11 10.12 go: downloading github.com/tidwall/btree v1.4.3\n#11 10.12 go: downloading github.com/tidwall/grect v0.1.4\n#11 10.15 go: downloading github.com/golang/snappy v0.0.4\n#11 10.23 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#11 10.23 go: downloading github.com/josharian/intern v1.0.0\n#11 DONE 32.7s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.094 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 2.6s done\n#17 exporting manifest sha256:d20bfe01d0078535f161e1e147c719ca3a47ac11dc091b61585cb819f0213d50 done\n#17 exporting config sha256:e72eb8193f74a5845f0f3bce16e3d9106d2eddfec69e4ecbfcc8d9b80873cae3 done\n#17 exporting attestation manifest sha256:302c677d660aff689ca0ee8bf566f8fa2ad5dae87f31880cc8366ceb34c773ac done\n#17 exporting manifest list sha256:ef818a9933bfe5cd690674991e3037d8ca038e0a61a956f32fa6836b174b967b done\n#17 naming to docker.io/ctk-exec/cloudlist:012f64340243 done\n#17 unpacking to docker.io/ctk-exec/cloudlist:012f64340243\n#17 unpacking to docker.io/ctk-exec/cloudlist:012f64340243 0.9s done\n#17 DONE 3.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cloudlist",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Cloudlist is a tool for listing Assets from multiple cloud providers.\n\nUsage:\n  cloudlist [flags]\n\nFlags:\nCONFIGURATION:\n   -config string                cloudlist flag config file (default \"/home/ctk/.config/cloudlist/config.yaml\")\n   -pc, -provider-config string  provider config file (default \"/home/ctk/.config/cloudlist/provider-config.yaml\")\n\nFILTERS:\n   -p, -provider string[]  display results for given providers (comma-separated) (default aws,do,heroku,alibaba,namecheap,terraform,consul,r1c,scw,azure,hetzner,openstack,vercel,digitalocean,cloudflare,linode,nomad,gcp,fastly,ovh,kubernetes,custom,arvancloud)\n   -id string[]            display results for given ids (comma-separated)\n   -host                   display only hostnames in results\n   -ip                     display only ips in results\n   -extended-metadata      enable extended metadata for providers\n   -s, -service string[]   query and display results from given service (comma-separated)) (default staticwebapps,dns,deployments,droplet,fastly,ingress,lambda,apigateway,apigatewayv2,app,containerinstances,appservice,cloud-run,ec2,ecs,cloudfront,loadbalancer,storage,nomad,gke,route53,alb,elb,functions,frontdoor,compute,cloud-function,service,lightsail,aks,domains,s3,custom,instance,consul,vm,eks,domain,publicip,trafficmanager,cdn,applicationgateway,apimanagement,containerapps)\n   -ep, -exclude-private   exclude private ips in cli output\n\nUPDATE:\n   -up, -update                 update cloudlist to latest version\n   -duc, -disable-update-check  disable automatic cloudlist update check\n\nOUTPUT:\n   -o, -output string  output file to write results\n   -json               write output in json format\n   -version            display version of cloudlist\n   -v                  display verbose output\n   -silent             display only results in output\n\n",
+   "stderr": "",
+   "duration_ms": 26,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cloudlist"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cloudlist\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cloudlist"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cloudlist' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "cloudlist",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-config": "cloudlist flag config file (default \"/home/ctk/.config/cloudlist/config.yaml\")",
+   "-pc": "provider config file (default \"/home/ctk/.config/cloudlist/provider-config.yaml\")",
+   "-provider-config": "provider config file (default \"/home/ctk/.config/cloudlist/provider-config.yaml\")",
+   "-p": "display results for given providers (comma-separated) (default aws,do,heroku,alibaba,namecheap,terraform,consul,r1c,scw,azure,hetzner,openstack,vercel,digitalocean,cloudflare,linode,nomad,gcp,fastly,ovh,kubernetes,custom,arvancloud)",
+   "-provider": "display results for given providers (comma-separated) (default aws,do,heroku,alibaba,namecheap,terraform,consul,r1c,scw,azure,hetzner,openstack,vercel,digitalocean,cloudflare,linode,nomad,gcp,fastly,ovh,kubernetes,custom,arvancloud)",
+   "-id": "display results for given ids (comma-separated)",
+   "-host": "display only hostnames in results",
+   "-ip": "display only ips in results",
+   "-extended-metadata": "enable extended metadata for providers",
+   "-s": "query and display results from given service (comma-separated)) (default staticwebapps,dns,deployments,droplet,fastly,ingress,lambda,apigateway,apigatewayv2,app,containerinstances,appservice,cloud-run,ec2,ecs,cloudfront,loadbalancer,storage,nomad,gke,route53,alb,elb,functions,frontdoor,compute,cloud-function,service,lightsail,aks,domains,s3,custom,instance,consul,vm,eks,domain,publicip,trafficmanager,cdn,applicationgateway,apimanagement,containerapps)",
+   "-service": "query and display results from given service (comma-separated)) (default staticwebapps,dns,deployments,droplet,fastly,ingress,lambda,apigateway,apigatewayv2,app,containerinstances,appservice,cloud-run,ec2,ecs,cloudfront,loadbalancer,storage,nomad,gke,route53,alb,elb,functions,frontdoor,compute,cloud-function,service,lightsail,aks,domains,s3,custom,instance,consul,vm,eks,domain,publicip,trafficmanager,cdn,applicationgateway,apimanagement,containerapps)",
+   "-ep": "exclude private ips in cli output",
+   "-exclude-private": "exclude private ips in cli output",
+   "-up": "update cloudlist to latest version",
+   "-update": "update cloudlist to latest version",
+   "-duc": "disable automatic cloudlist update check",
+   "-disable-update-check": "disable automatic cloudlist update check",
+   "-o": "output file to write results",
+   "-output": "output file to write results",
+   "-json": "write output in json format",
+   "-version": "display version of cloudlist",
+   "-v": "display verbose output",
+   "-silent": "display only results in output"
+  },
+  "aliases": {
+   "-pc": [
+    "-provider-config"
+   ],
+   "-p": [
+    "-provider"
+   ],
+   "-s": [
+    "-service"
+   ],
+   "-ep": [
+    "-exclude-private"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-o": [
+    "-output"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "465d0ff4bffc37d0ba20d5cfe5264aba4c85c05b52586aa71d2dc7520ddd5615",
+  "text": "Cloudlist is a tool for listing Assets from multiple cloud providers.\n\nUsage:\n  cloudlist [flags]\n\nFlags:\nCONFIGURATION:\n   -config string                cloudlist flag config file (default \"/home/ctk/.config/cloudlist/config.yaml\")\n   -pc, -provider-config string  provider config file (default \"/home/ctk/.config/cloudlist/provider-config.yaml\")\n\nFILTERS:\n   -p, -provider string[]  display results for given providers (comma-separated) (default aws,do,heroku,alibaba,namecheap,terraform,consul,r1c,scw,azure,hetzner,openstack,vercel,digitalocean,cloudflare,linode,nomad,gcp,fastly,ovh,kubernetes,custom,arvancloud)\n   -id string[]            display results for given ids (comma-separated)\n   -host                   display only hostnames in results\n   -ip                     display only ips in results\n   -extended-metadata      enable extended metadata for providers\n   -s, -service string[]   query and display results from given service (comma-separated)) (default staticwebapps,dns,deployments,droplet,fastly,ingress,lambda,apigateway,apigatewayv2,app,containerinstances,appservice,cloud-run,ec2,ecs,cloudfront,loadbalancer,storage,nomad,gke,route53,alb,elb,functions,frontdoor,compute,cloud-function,service,lightsail,aks,domains,s3,custom,instance,consul,vm,eks,domain,publicip,trafficmanager,cdn,applicationgateway,apimanagement,containerapps)\n   -ep, -exclude-private   exclude private ips in cli output\n\nUPDATE:\n   -up, -update                 update cloudlist to latest version\n   -duc, -disable-update-check  disable automatic cloudlist update check\n\nOUTPUT:\n   -o, -output string  output file to write results\n   -json               write output in json format\n   -version            display version of cloudlist\n   -v                  display verbose output\n   -silent             display only results in output\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-config",
+   "-disable-update-check",
+   "-exclude-private",
+   "-host",
+   "-id",
+   "-ip",
+   "-json",
+   "-output",
+   "-provider",
+   "-provider-config",
+   "-service",
+   "-silent",
+   "-update",
+   "-version"
+  ],
+  "unconfirmed": [
+   "--config",
+   "--host",
+   "--ip",
+   "--json",
+   "--o",
+   "--provider",
+   "--silent",
+   "--v",
+   "--version"
+  ],
+  "help_only": [
+   "-duc",
+   "-ep",
+   "-extended-metadata",
+   "-o",
+   "-p",
+   "-pc",
+   "-s",
+   "-up",
+   "-v"
+  ],
+  "mining_coverage": 0.6086956521739131
+ },
+ "surface": {
+  "flags": {
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Configuration file to use for enumeration",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only hosts in output",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--ip": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only IP addresses in output",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show json output",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File to write output to (optional)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--provider": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Provider to fetch assets from (optional)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only results in output",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show Verbose output",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show version of cloudlist",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-07T03:50:46+05:30",
+    "last_tag": "v0.0.1",
+    "last_date": "2020-12-07T03:50:46+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "cloudlist flag config file (default \"/home/ctk/.config/cloudlist/config.yaml\")",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic cloudlist update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2024-08-17T10:55:57+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ep": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude private ips in cli output",
+    "aliases": [
+     "-exclude-private"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-extended-metadata": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable extended metadata for providers"
+   },
+   "-host": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display only hostnames in results",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-id": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display results for given ids (comma-separated)",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display only ips in results",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "write output in json format",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "output file to write results",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display results for given providers (comma-separated) (default aws,do,heroku,alibaba,namecheap,terraform,consul,r1c,scw,azure,hetzner,openstack,vercel,digitalocean,cloudflare,linode,nomad,gcp,fastly,ovh,kubernetes,custom,arvancloud)",
+    "aliases": [
+     "-provider"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provider config file (default \"/home/ctk/.config/cloudlist/provider-config.yaml\")",
+    "aliases": [
+     "-provider-config"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "query and display results from given service (comma-separated)) (default staticwebapps,dns,deployments,droplet,fastly,ingress,lambda,apigateway,apigatewayv2,app,containerinstances,appservice,cloud-run,ec2,ecs,cloudfront,loadbalancer,storage,nomad,gke,route53,alb,elb,functions,frontdoor,compute,cloud-function,service,lightsail,aks,domains,s3,custom,instance,consul,vm,eks,domain,publicip,trafficmanager,cdn,applicationgateway,apimanagement,containerapps)",
+    "aliases": [
+     "-service"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2024-08-17T10:55:57+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display only results in output",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update cloudlist to latest version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2024-08-17T10:55:57+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display verbose output"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display version of cloudlist",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2022-02-08T14:02:27+05:30",
+    "last_tag": "v1.4.0",
+    "last_date": "2026-02-09T20:36:03+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "cloudlist",
+ "repo": "projectdiscovery/cloudlist",
+ "head_sha": "012f64340243f356dac50850c2c7a4b6ad3ebfe4",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T02:04:19.697532+00:00"
+}

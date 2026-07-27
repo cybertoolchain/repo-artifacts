@@ -1,0 +1,356 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:3e09006f03bc3786b2bfb318d3ed38ff7cc377e9956dfe852363a775801840d8",
+  "duration_s": 6.09,
+  "log_tail": "#12 3.144       |             ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#12 3.144 gpart.h: In function 'main':\n#12 3.144 gpart.h:88:25: note: source object 't_boot' of size 446\n#12 3.144    88 |         byte_t          t_boot[DOSPARTOFF];\n#12 3.144       |                         ^~~~~~\n#12 3.144 /usr/include/unistd.h:378:16: note: in a call to function 'write' declared with attribute 'access (read_only, 2, 3)'\n#12 3.144   378 | extern ssize_t write (int __fd, const void *__buf, size_t __n) __wur\n#12 3.144       |                ^~~~~\n#12 3.279 mv -f .deps/gpart.Tpo .deps/gpart.Po\n#12 3.281 gcc -Wall -O2 -g -O2   -o gpart disku.o gm_beos.o gm_bsddl.o gm_ext2.o gm_btrfs.o gm_fat.o gm_hmlvm.o gm_lvm2.o gm_hpfs.o gm_lswap.o gm_minix.o gm_ntfs.o gmodules.o gm_qnx4.o gm_reiserfs.o gm_s86dl.o gm_xfs.o gpart.o l64seek.o  \n#12 3.297 make[2]: Leaving directory '/src/src'\n#12 3.297 Making all in man\n#12 3.298 make[2]: Entering directory '/src/man'\n#12 3.298 make[2]: Nothing to be done for 'all'.\n#12 3.298 make[2]: Leaving directory '/src/man'\n#12 3.300 make[2]: Entering directory '/src'\n#12 3.302 make[2]: Leaving directory '/src'\n#12 3.302 make[1]: Leaving directory '/src'\n#12 DONE 3.5s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.146 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:5541ad2ab8b4c20f80ce3df89b67f737fbd0a1edb568fe5d0afaf28a5bcd30cd 0.0s done\n#19 exporting config sha256:add354cd39aeb5de0b68bf00048db226b6068af7b85b2f571f9bcfaba3218906 0.0s done\n#19 exporting attestation manifest sha256:0de1087dac551d597a586b5f5f55d3cd3dded09f1693726603cef1c1e085e3d4 0.0s done\n#19 exporting manifest list sha256:3e09006f03bc3786b2bfb318d3ed38ff7cc377e9956dfe852363a775801840d8 done\n#19 naming to docker.io/ctk-exec/gpart:b507b6d56239 done\n#19 unpacking to docker.io/ctk-exec/gpart:b507b6d56239\n#19 unpacking to docker.io/ctk-exec/gpart:b507b6d56239 0.7s done\n#19 DONE 0.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "gpart",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'gpart'"
+  },
+  {
+   "argv": [
+    "man",
+    "gpart"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for gpart\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "gpart"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'gpart' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "man",
+    "--local-file",
+    "man/gpart.8"
+   ],
+   "exit_code": 0,
+   "stdout": "GPART(8)                    System Manager's Manual                   GPART(8)\n\nNAME\n       gpart - guess PC-type hard disk partitions\n\nSYNOPSIS\n       gpart [options] device\n\n       Options:     [-b     <backup     MBR>][-C    c,h,s][-c][-d][-E][-e][-f]\n       [-g][-h][-i][-K  <last-sector>][-k  <#  of  sectors>]  [-L]  [-l   <log\n       file>][-n    <increment>]    [-q][-s    <sector-size>]   [-t   <module-\n       name>][-V][-v] [-W <device>][-w <module-name, weight>]\n\nDESCRIPTION\n       gpart tries to guess which partitions are on a hard disk.  If the  pri\u2010\n       mary partition table has been lost, overwritten or destroyed the parti\u2010\n       tions still exist on the disk but the operating  system  cannot  access\n       them.\n\n       gpart  ignores  the primary partition table and scans the disk (or disk\n       image, file)  sector  after  sector  for  several  filesystem/partition\n       types.  It  does  so by \"asking\" filesystem recognition modules if they\n       think a given sequence of sectors resembles the beginning of a filesys\u2010\n       tem  or  partition  type.  Currently the following filesystem types are\n       known to gpart (listed by module names) :\n\n       beos   BeOS filesystem type.\n\n       bsddl  FreeBSD/NetBSD/386BSD disklabel sub-partitioning scheme used  on\n              Intel platforms.\n\n       ext2   Linux second extended filesystem.\n\n       fat    MS-DOS FAT12/16/32 \"filesystems\".\n\n       hpfs   IBM OS/2 High Performance filesystem.\n\n       hmlvm  Linux LVM physical volumes (LVM by Heinz Mauelshagen).\n\n       lswap  Linux swap partitions (versions 0 and 1).\n\n       minix  The Minix operating system filesystem type.\n\n       ntfs   MS Windows NT/2000 filesystem.\n\n       qnx4   QNX 4.x filesystem.\n\n       reiserfs\n              The Reiser filesystem (version 3.5.X, X > 11, 3.6.X).\n\n       s86dl  Sun Solaris on Intel platforms uses a sub-partitioning scheme on\n              PC hard disks similar to the BSD disklabels.\n\n       xfs    Silicon Graphic's journalling filesystem for Linux.\n\n       More filesystem guessing modules can be added at runtime  (see  the  -t\n       option). Please consult the gpart README file for detailed explanations\n       on how to create guessing modules. All modules  are  accompanied  by  a\n       guessing  weight  factor which denotes how \"educated\" their guesses are\n       compared to other modules. This weight can be changed if a certain mod\u2010\n       ule keeps on mis-identifying a partition.\n\n       Naturally  only partitions which have been formatted in some way can be\n       recognized. If the type of a partition entry in the  primary  partition\n       table  is  changed from x to y while the filesystem is still of type x,\n       gpart will also still guess a type x.\n\n       No checks are performed whether a found filesystem  is  clean  or  even\n       consistent/mountable,  so  it is quite possible that gpart may identify\n       partitions which existed prior to the current  partitioning  scheme  of\n       the disk. Especially on large disks old file system headers/superblocks\n       may be present a long time until they are finally overwritten with user\n       data.\n\n       It  should  be stressed that gpart does a very heuristic job, never be\u2010\n       lieve its output without any plausability  checks.  It  can  be  easily\n       right in its guesswork but it can also be terribly wrong. You have been\n       warned.\n\n       After having found a list of possible  partition  types,  the  list  is\n       checked  for  consistency. For example, a partition which overlaps with\n       the previous one will be discarded. All remaining  partitions  are  la\u2010\n       belled with one of the following attributes: \"primary\", \"logical\", \"or\u2010\n       phaned\" or \"invalid\".\n\n       A partition labelled \"orphaned\" is a logical partition which  seems  ok\n       but  is  missed in the chain of logical partitions. This may occur if a\n       logical partition is deleted from the extended partition table  without\n       overwriting the actual disk space.\n\n       An  \"invalid\" partition is one that cannot be accepted because of vari\u2010\n       ous reasons. If a consistent primary partition  table  was  created  in\n       this process it is printed and can be written to a file or device.\n\nEXTENDED PARTITIONS\n       If  the  disk/file  to be examined consists of primary partitions only,\n       gpart has quite a good chance to identify them. Extended partitions  on\n       the other hand can result in a lot of problems.\n\n       Extended partitions are realized as a linked list of extended partition\n       tables, each of which include an entry pointing to a logical partition.\n       The  size  of  an  extended partition depends on where the last logical\n       partition  ends.  This  means  that  extended  partitions  may  include\n       \"holes\",  unallocated disk space which should only be assigned to logi\u2010\n       cal, not primary partitions.\n\n       gpart tries to do its best to check a found chain of logical partitions\n       but  there  are  very  many possible points of failure. If \"good\" fdisk\n       programs are used to create extended partitions, the  resulting  tables\n       consist of a zeroed boot record and the four partition entries of which\n       at least two should be marked unused. Unfortunately e.g. the fdisk pro\u2010\n       gram  shipped with Windows NT does not seem to zero out the boot record\n       area so gpart has to be overly tolerant in recognizing extended  parti\u2010\n       tion tables. This tolerance may result in quite stupid guesses.\n\nDISK TRANSFERS\n       If  you  want  to  investigate hard disks from other systems you should\n       note down the geometry (number of cylinders,  heads  per  cylinder  and\n       sectors  per head) used for that disk, and tell gpart about this geome\u2010\n       try.\n\n       Investigating disks from machines with a different endianness than  the\n       scanning  one  has  not been tested at all, and is currently not recom\u2010\n       mended.\n\nLARGE DISKS\n       gpart relies on the OS reporting the correct disk  geometry.   Unfortu\u2010\n       nately  sometimes  the  OS may report a geometry smaller the the actual\n       one (e.g. disks with more than 1024 or 16384 cylinder).\n\n       gpart checks if guessed partitions extend  beyond  the  disk  size  and\n       marks  those  \"invalid\",  but  may be mistaken in case the disk size is\n       calculated from an incorrect geometry. For instance if a disk with  the\n       geometry  1028/255/63 should be scanned, and the OS reports 1024/255/63\n       gpart should be called like\n\n              gpart -C 1028,255,63 <other options> <device>\n\nPRECAUTIONS\n       gpart may be of some help when the primary partition table was lost  or\n       destroyed  but it can under no circumstances replace proper disk/parti\u2010\n       tion table backups.  To save the master boot record (MBR) including the\n       primary partition table to a file type\n\n              dd if=/dev/hda of=mbr bs=512 count=1\n\n       exchanging /dev/hda with the block device name of the disk in question.\n       This should be done for all disks in the system. To restore the primary\n       partition table without overwriting the MBR type\n\n              dd if=mbr of=/dev/hda bs=1 count=64 skip=446 seek=446\n\n       Warning:  make sure that all parameters are typed as shown and that the\n       disk device is correct. Failing to do so may result in severe  filesys\u2010\n       tem  corruption. The saved file should be stored in a safe place like a\n       floppy disk.\n\nOPTIONS\n       -b backupfile\n              If the guessed primary  partition  table  seems  consistent  and\n              should  be  written  (see  the -W option) backup the current MBR\n              into the specified file.\n\n       -C c,h,s\n              Set the disk geometry (cylinders, heads, sectors) for the  scan.\n              This is useful if a disk should be scanned which was partitioned\n              using a different geometry, if the device is a disk-image or  if\n              the  disk  geometry cannot be retrieved through the PCs BIOS. No\n              spaces are allowed between the numbers, unless all three are en\u2010\n              closed in quotes.\n\n       -c     Check/compare mode (implies the -q quiet option). After the scan\n              is done, the resulting primary partition table  is  compared  to\n              the  existing  one.  The  return code of gpart then contains the\n              number of differences (0 if they are identical  except  for  the\n              boot/active  flag  which  cannot be guessed). This option has no\n              effect if -d is given on the command line.\n\n       -d     Do not start the guessing loop. Useful if  the  partition  table\n              should  be  printed  (in combination with the -v option) without\n              actually scanning for partitions.\n\n       -E     Do not try to identify extended partition tables. If  there  are\n              extended  partitions  on  the  given device gpart will most cer\u2010\n              tainly complain about too many primary partitions because  there\n              can be only four primary partitions. Existing logical partitions\n              will be listed as primary ones.\n\n       -e     Do not skip disk read errors. If this option is given, and short\n              disk  reads  or  general disk read errors (EIO) are encountered,\n              gpart will exit. If not given, the program tries to continue.\n\n       -f     Full scan. When a possible partition is  found,  gpart  normally\n              skips  all  sectors this entry seems to occupy and continues the\n              scan from the end of the last possible partition. The disk  scan\n              can take quite a while if this option is given, be patient.\n\n       -g     Do  not  try to get the disk geometry from the OS. If the device\n              is no block or character device but a  plain  file  this  option\n              should  be  supplied. If the file to be scanned is an image of a\n              disk, the geometry can be given by the -C option.\n\n       -h     Show some help.\n\n       -i     Run interactively. Each time a possible partition is  identified\n              the user is asked for confirmation.\n\n       -K last sector\n              Scan  only  up to the given sector or the end of the file or de\u2010\n              vice whichever comes first.\n\n       -k sectors\n              Skip given number of sectors before the scan. Potentially useful\n              if a partition is looked for at the end of a large disk.\n\n       -L     List  available  filesystem/partition  type  modules  and  their\n              weights, then exit.\n\n       -l logfile\n              Log output to the given file (even if -q was supplied).\n\n       -n increment\n              Scan increment: number of sectors or \"s\" for single  sector  in\u2010\n              crement,  \"h\"  for  an increment of sectors per head (depends on\n              geometry) or \"c\" for cylinder increment.\n\n              The increment also influences the condition where extended  par\u2010\n              tition  tables  are searched: if the scan increment is \"s\" (i.e.\n              1) extended partition tables are required to be on a head bound\u2010\n              ary, otherwise they must be on a cylinder boundary.\n\n              If  the disk geometry could not be retrieved and no geometry was\n              given on the command line, the default increment is one sector.\n\n       -q     Quiet/no output mode. However if a logfile was specified (see -l\n              option)  all  output  is written to that file. This option over\u2010\n              rides the -i interactive mode.\n\n       -s sector size\n              Preset medium sector size.  gpart tries to find out  the  sector\n              size  but  may  fail  in  doing so. Probed sector sizes are 2^i,\n              i=9..14 (512 to 16384 bytes). The default medium sector size  is\n              512 bytes.\n\n       -V     Show version number.\n\n       -v     Be verbose. This option can be given more than once resulting in\n              quite a lot of information.\n\n       -W device\n              Write partition table. If a consistent primary  partition  table\n              has  been guessed it can be written to the specified file or de\u2010\n              vice. The supplied device can be the same as the scanned one.\n\n              Additionally the guessed partition entries  can  be  edited.  No\n              checks  are  performed on the entered values, thus the resulting\n              table is allowed to be highly inconsistent. Please beware.\n\n              Warning: The guessed partition  table  should  be  checked  very\n              carefully  before  writing  it  back.  You  can always write the\n              guessed partition table into a plain file and  write  this  into\n              sector 0 using dd(1) (see section PRECAUTIONS above).\n\n       -w module name,weight\n              Put  the given module at the head of the module chain and assign\n              a new weight to that module. All modules are  given  an  initial\n              weight of 1.0. A weight of 0 deactivates the filesystem recogni\u2010\n              tion module. Again no spaces are allowed.\n\n       Default settings are \"-n h\".\n\nEXAMPLES\n       - To scan the first IDE hard disk under Linux  using  default  settings\n       type\n\n              gpart /dev/hda\n\n       - To  print  the primary partition table of the third IDE drive without\n       starting the scan loop in FreeBSD type\n\n              gpart -vvd /dev/wd2\n\n       - If lilo(8) was installed in the master boot record (MBR)  of  a  hard\n       disk  it  saves  the  contents  of  the  first  sector in a file called\n       /boot/boot.<major/minor>. To list the partitions contained  in  such  a\n       file type e.g.\n\n              gpart -vdg /boot/boot.0300\n\n       If  the partition table contains an extended partition, gpart will com\u2010\n       plain about invalid extended partition tables because the extended  en\u2010\n       try points to sectors not within that file.\n\n       - Usually  the  first  primary  partition starts on the second head. If\n       gpart cannot identify the first partition properly this may not be  the\n       case.   gpart can be told to start the scan directly from sector one of\n       the disk, using the sector-wise scan mode:\n\n              gpart -k 1 -n s /dev/hdb\n\n       - Suppose gpart identifies an NTFS partition as FAT on a certain  disk.\n       In  this situation the \"ntfs\" module should be made the first module to\n       be probed and given a weight higher than the usual weight of 1.0:\n\n              gpart -w ntfs,1.5 /dev/hdb\n\n       To list the available modules and their weights use the -L option.\n\n       - Suppose the hard disk contains a lot  of  virtual  machines  and  the\n       filesystems inside the VMs isn't used outside. Thereby deactivating the\n       guessing of those filesystems reduces the  noise  and  false  positives\n       during the scan process.\n\n       Set the module weight to 0 to deactivate guessing it.\n\n       For  example:  The hard disk is formatted with XFS and EXT3 filesystems\n       only and there are a lot of Windows VMs on these  filesystems.  Thereby\n       deactivating  of  FAT and NTFS guesses reduce the noise during the scan\n       process and produces a more accurate guess.\n\n              gpart -w fat,0 -w ntfs,0  /dev/hdb\n\n       - After having checked the output of gpart at least thrice, the primary\n       partition table can be written back to the device this way:\n\n              gpart -W /dev/sdc /dev/sdc\n\n       This of course may be extremely dangerous to your health and social se\u2010\n       curity, so beware.\n\n       - A hard disk with 63 sectors per head is scanned in steps of  63  sec\u2010\n       tors. To perform the scan on every second head while skipping the first\n       1008 sectors type\n\n              gpart -k 1008 -n 126 /dev/sda\n\n       - If you want to see how easily gpart can  be  mislead,  and  how  many\n       probable  partition  starts are on a disk, search the whole disk really\n       sector by sector, writing all output to a logfile:\n\n              gpart -vvfn s -ql /tmp/gpart.log /dev/sd2 &\n\n       Usually gpart will not be able to produce an educated guess of the pri\u2010\n       mary  partition  table  in  this  mode. The logfile however may contain\n       enough hints to manually reconstruct the partition table.\n\nFILES\n       /dev/*\n              Hard disk block devices. The naming scheme of  hard  disk  block\n              devices  is  OS  dependent, consult your system manuals for more\n              information.\n\nDIAGNOSTICS\n       There are many error message types, all of them should be self-explana\u2010\n       tory. Complain if they are not.\n\nBUGS\n       gpart is beta software, so expect buggy behaviour.\n\n       -   gpart only accepts extended partition links with one logical parti\u2010\n       tion. There may be fdisk variants out there creating links with  up  to\n       three logical partition entries but these are not accepted.\n\nTO DO\n       - Support big-endian architectures.\n       - Test on 64-bit architectures.\n       - Look for boot manager partitions (e.g. OS/2 BM).\n       - Think about reconstructing logical partition chains.\n\nAUTHOR\n       Please send bug reports, suggestions, comments etc. to\n\n              Michail Brzitwa <michail@brzitwa.de>\n\nSEE ALSO\n       fdisk(8).\n\nAdministration Tools             January 2001                         GPART(8)\n",
+   "stderr": "",
+   "duration_ms": 12,
+   "truncated": false,
+   "error": null,
+   "source": "man-file"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-b": "If the guessed primary partition table seems consistent and should be written (see the -W option) backup the current MBR into the specified file.",
+   "-C": "Set the disk geometry (cylinders, heads, sectors) for the scan. This is useful if a disk should be scanned which was partitioned using a different geometry, if the device is a disk-image or if the disk geometry cannot be retrieved through the PCs BIOS. No spaces are allowed between the numbers, unless all three are en\u2010 closed in quotes.",
+   "-c": "Check/compare mode (implies the -q quiet option). After the scan is done, the resulting primary partition table is compared to the existing one. The return code of gpart then contains the number of differences (0 if they are identical except for the boot/active flag which cannot be guessed). This option has no effect if -d is given on the command line.",
+   "-d": "Do not start the guessing loop. Useful if  the  partition  table should be printed (in combination with the -v option) without actually scanning for partitions.",
+   "-E": "Do not try to identify extended partition tables. If  there  are extended partitions on the given device gpart will most cer\u2010 tainly complain about too many primary partitions because there can be only four primary partitions. Existing logical partitions will be listed as primary ones.",
+   "-e": "Do not skip disk read errors. If this option is given, and short disk reads or general disk read errors (EIO) are encountered, gpart will exit. If not given, the program tries to continue.",
+   "-f": "Full scan. When a possible partition is  found,  gpart  normally skips all sectors this entry seems to occupy and continues the scan from the end of the last possible partition. The disk scan can take quite a while if this option is given, be patient.",
+   "-g": "Do  not  try to get the disk geometry from the OS. If the device is no block or character device but a plain file this option should be supplied. If the file to be scanned is an image of a disk, the geometry can be given by the -C option.",
+   "-h": "Show some help.",
+   "-i": "Run interactively. Each time a possible partition is  identified the user is asked for confirmation.",
+   "-K": "Scan only up to the given sector or the end of the file or de\u2010 vice whichever comes first.",
+   "-k": "Skip given number of sectors before the scan. Potentially useful if a partition is looked for at the end of a large disk.",
+   "-L": "List  available  filesystem/partition  type  modules  and  their weights, then exit.",
+   "-l": "Log output to the given file (even if -q was supplied).",
+   "-n": "Scan increment: number of sectors or \"s\" for single sector in\u2010 crement, \"h\" for an increment of sectors per head (depends on geometry) or \"c\" for cylinder increment.",
+   "-q": "Quiet/no output mode. However if a logfile was specified (see -l option) all output is written to that file. This option over\u2010 rides the -i interactive mode.",
+   "-s": "Preset medium sector size. gpart tries to find out the sector size but may fail in doing so. Probed sector sizes are 2^i, i=9..14 (512 to 16384 bytes). The default medium sector size is 512 bytes.",
+   "-V": "Show version number.",
+   "-v": "Be verbose. This option can be given more than once resulting in quite a lot of information.",
+   "-W": "Write partition table. If a consistent primary partition table has been guessed it can be written to the specified file or de\u2010 vice. The supplied device can be the same as the scanned one.",
+   "-w": "Put the given module at the head of the module chain and assign a new weight to that module. All modules are given an initial weight of 1.0. A weight of 0 deactivates the filesystem recogni\u2010 tion module. Again no spaces are allowed."
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "man-file",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "825db166308400d6f06fe429c37a61f3dd5a44c26543681d40232fba7074c95f",
+  "text": "GPART(8)                    System Manager's Manual                   GPART(8)\n\nNAME\n       gpart - guess PC-type hard disk partitions\n\nSYNOPSIS\n       gpart [options] device\n\n       Options:     [-b     <backup     MBR>][-C    c,h,s][-c][-d][-E][-e][-f]\n       [-g][-h][-i][-K  <last-sector>][-k  <#  of  sectors>]  [-L]  [-l   <log\n       file>][-n    <increment>]    [-q][-s    <sector-size>]   [-t   <module-\n       name>][-V][-v] [-W <device>][-w <module-name, weight>]\n\nDESCRIPTION\n       gpart tries to guess which partitions are on a hard disk.  If the  pri\u2010\n       mary partition table has been lost, overwritten or destroyed the parti\u2010\n       tions still exist on the disk but the operating  system  cannot  access\n       them.\n\n       gpart  ignores  the primary partition table and scans the disk (or disk\n       image, file)  sector  after  sector  for  several  filesystem/partition\n       types.  It  does  so by \"asking\" filesystem recognition modules if they\n       think a given sequence of sectors resembles the beginning of a filesys\u2010\n       tem  or  partition  type.  Currently the following filesystem types are\n       known to gpart (listed by module names) :\n\n       beos   BeOS filesystem type.\n\n       bsddl  FreeBSD/NetBSD/386BSD disklabel sub-partitioning scheme used  on\n              Intel platforms.\n\n       ext2   Linux second extended filesystem.\n\n       fat    MS-DOS FAT12/16/32 \"filesystems\".\n\n       hpfs   IBM OS/2 High Performance filesystem.\n\n       hmlvm  Linux LVM physical volumes (LVM by Heinz Mauelshagen).\n\n       lswap  Linux swap partitions (versions 0 and 1).\n\n       minix  The Minix operating system filesystem type.\n\n       ntfs   MS Windows NT/2000 filesystem.\n\n       qnx4   QNX 4.x filesystem.\n\n       reiserfs\n              The Reiser filesystem (version 3.5.X, X > 11, 3.6.X).\n\n       s86dl  Sun Solaris on Intel platforms uses a sub-partitioning scheme on\n              PC hard disks similar to the BSD disklabels.\n\n       xfs    Silicon Graphic's journalling filesystem for Linux.\n\n       More filesystem guessing modules can be added at runtime  (see  the  -t\n       option). Please consult the gpart README file for detailed explanations\n       on how to create guessing modules. All modules  are  accompanied  by  a\n       guessing  weight  factor which denotes how \"educated\" their guesses are\n       compared to other modules. This weight can be changed if a certain mod\u2010\n       ule keeps on mis-identifying a partition.\n\n       Naturally  only partitions which have been formatted in some way can be\n       recognized. If the type of a partition entry in the  primary  partition\n       table  is  changed from x to y while the filesystem is still of type x,\n       gpart will also still guess a type x.\n\n       No checks are performed whether a found filesystem  is  clean  or  even\n       consistent/mountable,  so  it is quite possible that gpart may identify\n       partitions which existed prior to the current  partitioning  scheme  of\n       the disk. Especially on large disks old file system headers/superblocks\n       may be present a long time until they are finally overwritten with user\n       data.\n\n       It  should  be stressed that gpart does a very heuristic job, never be\u2010\n       lieve its output without any plausability  checks.  It  can  be  easily\n       right in its guesswork but it can also be terribly wrong. You have been\n       warned.\n\n       After having found a list of possible  partition  types,  the  list  is\n       checked  for  consistency. For example, a partition which overlaps with\n       the previous one will be discarded. All remaining  partitions  are  la\u2010\n       belled with one of the following attributes: \"primary\", \"logical\", \"or\u2010\n       phaned\" or \"invalid\".\n\n       A partition labelled \"orphaned\" is a logical partition which  seems  ok\n       but  is  missed in the chain of logical partitions. This may occur if a\n       logical partition is deleted from the extended partition table  without\n       overwriting the actual disk space.\n\n       An  \"invalid\" partition is one that cannot be accepted because of vari\u2010\n       ous reasons. If a consistent primary partition  table  was  created  in\n       this process it is printed and can be written to a file or device.\n\nEXTENDED PARTITIONS\n       If  the  disk/file  to be examined consists of primary partitions only,\n       gpart has quite a good chance to identify them. Extended partitions  on\n       the other hand can result in a lot of problems.\n\n       Extended partitions are realized as a linked list of extended partition\n       tables, each of which include an entry pointing to a logical partition.\n       The  size  of  an  extended partition depends on where the last logical\n       partition  ends.  This  means  that  extended  partitions  may  include\n       \"holes\",  unallocated disk space which should only be assigned to logi\u2010\n       cal, not primary partitions.\n\n       gpart tries to do its best to check a found chain of logical partitions\n       but  there  are  very  many possible points of failure. If \"good\" fdisk\n       programs are used to create extended partitions, the  resulting  tables\n       consist of a zeroed boot record and the four partition entries of which\n       at least two should be marked unused. Unfortunately e.g. the fdisk pro\u2010\n       gram  shipped with Windows NT does not seem to zero out the boot record\n       area so gpart has to be overly tolerant in recognizing extended  parti\u2010\n       tion tables. This tolerance may result in quite stupid guesses.\n\nDISK TRANSFERS\n       If  you  want  to  investigate hard disks from other systems you should\n       note down the geometry (number of cylinders,  heads  per  cylinder  and\n       sectors  per head) used for that disk, and tell gpart about this geome\u2010\n       try.\n\n       Investigating disks from machines with a different endianness than  the\n       scanning  one  has  not been tested at all, and is currently not recom\u2010\n       mended.\n\nLARGE DISKS\n       gpart relies on the OS reporting the correct disk  geometry.   Unfortu\u2010\n       nately  sometimes  the  OS may report a geometry smaller the the actual\n       one (e.g. disks with more than 1024 or 16384 cylinder).\n\n       gpart checks if guessed partitions extend  beyond  the  disk  size  and\n       marks  those  \"invalid\",  but  may be mistaken in case the disk size is\n       calculated from an incorrect geometry. For instance if a disk with  the\n       geometry  1028/255/63 should be scanned, and the OS reports 1024/255/63\n       gpart should be called like\n\n              gpart -C 1028,255,63 <other options> <device>\n\nPRECAUTIONS\n       gpart may be of some help when the primary partition table was lost  or\n       destroyed  but it can under no circumstances replace proper disk/parti\u2010\n       tion table backups.  To save the master boot record (MBR) including the\n       primary partition table to a file type\n\n              dd if=/dev/hda of=mbr bs=512 count=1\n\n       exchanging /dev/hda with the block device name of the disk in question.\n       This should be done for all disks in the system. To restore the primary\n       partition table without overwriting the MBR type\n\n              dd if=mbr of=/dev/hda bs=1 count=64 skip=446 seek=446\n\n       Warning:  make sure that all parameters are typed as shown and that the\n       disk device is correct. Failing to do so may result in severe  filesys\u2010\n       tem  corruption. The saved file should be stored in a safe place like a\n       floppy disk.\n\nOPTIONS\n       -b backupfile\n              If the guessed primary  partition  table  seems  consistent  and\n              should  be  written  (see  the -W option) backup the current MBR\n              into the specified file.\n\n       -C c,h,s\n              Set the disk geometry (cylinders, heads, sectors) for the  scan.\n              This is useful if a disk should be scanned which was partitioned\n              using a different geometry, if the device is a disk-image or  if\n              the  disk  geometry cannot be retrieved through the PCs BIOS. No\n              spaces are allowed between the numbers, unless all three are en\u2010\n              closed in quotes.\n\n       -c     Check/compare mode (implies the -q quiet option). After the scan\n              is done, the resulting primary partition table  is  compared  to\n              the  existing  one.  The  return code of gpart then contains the\n              number of differences (0 if they are identical  except  for  the\n              boot/active  flag  which  cannot be guessed). This option has no\n              effect if -d is given on the command line.\n\n       -d     Do not start the guessing loop. Useful if  the  partition  table\n              should  be  printed  (in combination with the -v option) without\n              actually scanning for partitions.\n\n       -E     Do not try to identify extended partition tables. If  there  are\n              extended  partitions  on  the  given device gpart will most cer\u2010\n              tainly complain about too many primary partitions because  there\n              can be only four primary partitions. Existing logical partitions\n              will be listed as primary ones.\n\n       -e     Do not skip disk read errors. If this option is given, and short\n              disk  reads  or  general disk read errors (EIO) are encountered,\n              gpart will exit. If not given, the program tries to continue.\n\n       -f     Full scan. When a possible partition is  found,  gpart  normally\n              skips  all  sectors this entry seems to occupy and continues the\n              scan from the end of the last possible partition. The disk  scan\n              can take quite a while if this option is given, be patient.\n\n       -g     Do  not  try to get the disk geometry from the OS. If the device\n              is no block or character device but a  plain  file  this  option\n              should  be  supplied. If the file to be scanned is an image of a\n              disk, the geometry can be given by the -C option.\n\n       -h     Show some help.\n\n       -i     Run interactively. Each time a possible partition is  identified\n              the user is asked for confirmation.\n\n       -K last sector\n              Scan  only  up to the given sector or the end of the file or de\u2010\n              vice whichever comes first.\n\n       -k sectors\n              Skip given number of sectors before the scan. Potentially useful\n              if a partition is looked for at the end of a large disk.\n\n       -L     List  available  filesystem/partition  type  modules  and  their\n              weights, then exit.\n\n       -l logfile\n              Log output to the given file (even if -q was supplied).\n\n       -n increment\n              Scan increment: number of sectors or \"s\" for single  sector  in\u2010\n              crement,  \"h\"  for  an increment of sectors per head (depends on\n              geometry) or \"c\" for cylinder increment.\n\n              The increment also influences the condition where extended  par\u2010\n              tition  tables  are searched: if the scan increment is \"s\" (i.e.\n              1) extended partition tables are required to be on a head bound\u2010\n              ary, otherwise they must be on a cylinder boundary.\n\n              If  the disk geometry could not be retrieved and no geometry was\n              given on the command line, the default increment is one sector.\n\n       -q     Quiet/no output mode. However if a logfile was specified (see -l\n              option)  all  output  is written to that file. This option over\u2010\n              rides the -i interactive mode.\n\n       -s sector size\n              Preset medium sector size.  gpart tries to find out  the  sector\n              size  but  may  fail  in  doing so. Probed sector sizes are 2^i,\n              i=9..14 (512 to 16384 bytes). The default medium sector size  is\n              512 bytes.\n\n       -V     Show version number.\n\n       -v     Be verbose. This option can be given more than once resulting in\n              quite a lot of information.\n\n       -W device\n              Write partition table. If a consistent primary  partition  table\n              has  been guessed it can be written to the specified file or de\u2010\n              vice. The supplied device can be the same as the scanned one.\n\n              Additionally the guessed partition entries  can  be  edited.  No\n              checks  are  performed on the entered values, thus the resulting\n              table is allowed to be highly inconsistent. Please beware.\n\n              Warning: The guessed partition  table  should  be  checked  very\n              carefully  before  writing  it  back.  You  can always write the\n              guessed partition table into a plain file and  write  this  into\n              sector 0 using dd(1) (see section PRECAUTIONS above).\n\n       -w module name,weight\n              Put  the given module at the head of the module chain and assign\n              a new weight to that module. All modules are  given  an  initial\n              weight of 1.0. A weight of 0 deactivates the filesystem recogni\u2010\n              tion module. Again no spaces are allowed.\n\n       Default settings are \"-n h\".\n\nEXAMPLES\n       - To scan the first IDE hard disk under Linux  using  default  settings\n       type\n\n              gpart /dev/hda\n\n       - To  print  the primary partition table of the third IDE drive without\n       starting the scan loop in FreeBSD type\n\n              gpart -vvd /dev/wd2\n\n       - If lilo(8) was installed in the master boot record (MBR)  of  a  hard\n       disk  it  saves  the  contents  of  the  first  sector in a file called\n       /boot/boot.<major/minor>. To list the partitions contained  in  such  a\n       file type e.g.\n\n              gpart -vdg /boot/boot.0300\n\n       If  the partition table contains an extended partition, gpart will com\u2010\n       plain about invalid extended partition tables because the extended  en\u2010\n       try points to sectors not within that file.\n\n       - Usually  the  first  primary  partition starts on the second head. If\n       gpart cannot identify the first partition properly this may not be  the\n       case.   gpart can be told to start the scan directly from sector one of\n       the disk, using the sector-wise scan mode:\n\n              gpart -k 1 -n s /dev/hdb\n\n       - Suppose gpart identifies an NTFS partition as FAT on a certain  disk.\n       In  this situation the \"ntfs\" module should be made the first module to\n       be probed and given a weight higher than the usual weight of 1.0:\n\n              gpart -w ntfs,1.5 /dev/hdb\n\n       To list the available modules and their weights use the -L option.\n\n       - Suppose the hard disk contains a lot  of  virtual  machines  and  the\n       filesystems inside the VMs isn't used outside. Thereby deactivating the\n       guessing of those filesystems reduces the  noise  and  false  positives\n       during the scan process.\n\n       Set the module weight to 0 to deactivate guessing it.\n\n       For  example:  The hard disk is formatted with XFS and EXT3 filesystems\n       only and there are a lot of Windows VMs on these  filesystems.  Thereby\n       deactivating  of  FAT and NTFS guesses reduce the noise during the scan\n       process and produces a more accurate guess.\n\n              gpart -w fat,0 -w ntfs,0  /dev/hdb\n\n       - After having checked the output of gpart at least thrice, the primary\n       partition table can be written back to the device this way:\n\n              gpart -W /dev/sdc /dev/sdc\n\n       This of course may be extremely dangerous to your health and social se\u2010\n       curity, so beware.\n\n       - A hard disk with 63 sectors per head is scanned in steps of  63  sec\u2010\n       tors. To perform the scan on every second head while skipping the first\n       1008 sectors type\n\n              gpart -k 1008 -n 126 /dev/sda\n\n       - If you want to see how easily gpart can  be  mislead,  and  how  many\n       probable  partition  starts are on a disk, search the whole disk really\n       sector by sector, writing all output to a logfile:\n\n              gpart -vvfn s -ql /tmp/gpart.log /dev/sd2 &\n\n       Usually gpart will not be able to produce an educated guess of the pri\u2010\n       mary  partition  table  in  this  mode. The logfile however may contain\n       enough hints to manually reconstruct the partition table.\n\nFILES\n       /dev/*\n              Hard disk block devices. The naming scheme of  hard  disk  block\n              devices  is  OS  dependent, consult your system manuals for more\n              information.\n\nDIAGNOSTICS\n       There are many error message types, all of them should be self-explana\u2010\n       tory. Complain if they are not.\n\nBUGS\n       gpart is beta software, so expect buggy behaviour.\n\n       -   gpart only accepts extended partition links with one logical parti\u2010\n       tion. There may be fdisk variants out there creating links with  up  to\n       three logical partition entries but these are not accepted.\n\nTO DO\n       - Support big-endian architectures.\n       - Test on 64-bit architectures.\n       - Look for boot manager partitions (e.g. OS/2 BM).\n       - Think about reconstructing logical partition chains.\n\nAUTHOR\n       Please send bug reports, suggestions, comments etc. to\n\n              Michail Brzitwa <michail@brzitwa.de>\n\nSEE ALSO\n       fdisk(8).\n\nAdministration Tools             January 2001                         GPART(8)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-E",
+   "-L",
+   "-V",
+   "-c",
+   "-d",
+   "-e",
+   "-f",
+   "-g",
+   "-h",
+   "-i",
+   "-q",
+   "-v"
+  ],
+  "unconfirmed": [],
+  "help_only": [
+   "-C",
+   "-K",
+   "-W",
+   "-b",
+   "-k",
+   "-l",
+   "-n",
+   "-s",
+   "-w"
+  ],
+  "mining_coverage": 0.5714285714285714
+ },
+ "surface": {
+  "flags": {
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the disk geometry (cylinders, heads, sectors) for the scan. This is useful if a disk should be scanned which was partitioned using a different geometry, if the device is a disk-image or if the disk geometry cannot be retrieved through the PCs BIOS. No spaces are allowed between the numbers, unless all three are en\u2010 closed in quotes."
+   },
+   "-E": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not try to identify extended partition tables. If  there  are extended partitions on the given device gpart will most cer\u2010 tainly complain about too many primary partitions because there can be only four primary partitions. Existing logical partitions will be listed as primary ones.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-K": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan only up to the given sector or the end of the file or de\u2010 vice whichever comes first."
+   },
+   "-L": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "List  available  filesystem/partition  type  modules  and  their weights, then exit.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-V": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show version number.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-W": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write partition table. If a consistent primary partition table has been guessed it can be written to the specified file or de\u2010 vice. The supplied device can be the same as the scanned one."
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "If the guessed primary partition table seems consistent and should be written (see the -W option) backup the current MBR into the specified file."
+   },
+   "-c": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check/compare mode (implies the -q quiet option). After the scan is done, the resulting primary partition table is compared to the existing one. The return code of gpart then contains the number of differences (0 if they are identical except for the boot/active flag which cannot be guessed). This option has no effect if -d is given on the command line.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-d": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not start the guessing loop. Useful if  the  partition  table should be printed (in combination with the -v option) without actually scanning for partitions.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-e": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not skip disk read errors. If this option is given, and short disk reads or general disk read errors (EIO) are encountered, gpart will exit. If not given, the program tries to continue.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-f": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Full scan. When a possible partition is  found,  gpart  normally skips all sectors this entry seems to occupy and continues the scan from the end of the last possible partition. The disk scan can take quite a while if this option is given, be patient.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-g": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do  not  try to get the disk geometry from the OS. If the device is no block or character device but a plain file this option should be supplied. If the file to be scanned is an image of a disk, the geometry can be given by the -C option.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-h": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show some help.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-i": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Run interactively. Each time a possible partition is  identified the user is asked for confirmation.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-k": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip given number of sectors before the scan. Potentially useful if a partition is looked for at the end of a large disk."
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Log output to the given file (even if -q was supplied)."
+   },
+   "-n": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan increment: number of sectors or \"s\" for single sector in\u2010 crement, \"h\" for an increment of sectors per head (depends on geometry) or \"c\" for cylinder increment."
+   },
+   "-q": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Quiet/no output mode. However if a logfile was specified (see -l option) all output is written to that file. This option over\u2010 rides the -i interactive mode.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Preset medium sector size. gpart tries to find out the sector size but may fail in doing so. Probed sector sizes are 2^i, i=9..14 (512 to 16384 bytes). The default medium sector size is 512 bytes."
+   },
+   "-v": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Be verbose. This option can be given more than once resulting in quite a lot of information.",
+    "kind": "option",
+    "first_tag": "v0.1i",
+    "first_date": "2013-11-01T13:20:01+02:00",
+    "last_tag": "0.3",
+    "last_date": "2015-11-24T13:03:45+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "man/gpart.8.in"
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Put the given module at the head of the module chain and assign a new weight to that module. All modules are given an initial weight of 1.0. A weight of 0 deactivates the filesystem recogni\u2010 tion module. Again no spaces are allowed."
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "gpart",
+ "repo": "baruch/gpart",
+ "head_sha": "b507b6d562395542fd7a20052cdd115fae052b37",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:26:03.178357+00:00"
+}

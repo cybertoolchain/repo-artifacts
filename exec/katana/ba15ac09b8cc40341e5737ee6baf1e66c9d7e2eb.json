@@ -1,0 +1,2268 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:7c00eb7cf6a42d633aa7b52f968175dbb6a2c52781873d7d97b7271e8e5d546c",
+  "duration_s": 24.54,
+  "log_tail": "#11 2.915 go: downloading github.com/aws/aws-sdk-go-v2/feature/ec2/imds v1.18.17\n#11 2.915 go: downloading github.com/aws/aws-sdk-go-v2/service/signin v1.0.5\n#11 2.915 go: downloading github.com/aws/aws-sdk-go-v2/internal/ini v1.8.4\n#11 2.915 go: downloading github.com/aws/aws-sdk-go-v2/service/sso v1.30.9\n#11 2.915 go: downloading github.com/aws/aws-sdk-go-v2/service/ssooidc v1.35.13\n#11 2.916 go: downloading github.com/aws/aws-sdk-go-v2/internal/configsources v1.4.23\n#11 2.916 go: downloading github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding v1.13.7\n#11 2.916 go: downloading github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.13.21\n#11 2.975 go: downloading github.com/tklauser/numcpus v0.11.0\n#11 2.976 go: downloading github.com/Azure/azure-sdk-for-go/sdk/azcore v1.20.0\n#11 2.976 go: downloading github.com/jackc/pgpassfile v1.0.0\n#11 2.976 go: downloading github.com/clipperhouse/stringish v0.1.1\n#11 2.976 go: downloading github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.7.23\n#11 2.976 go: downloading github.com/jackc/pgservicefile v0.0.0-20240606120523-5a60cdf6a761\n#11 3.055 go: downloading github.com/Azure/azure-sdk-for-go/sdk/internal v1.11.2\n#11 3.055 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#11 3.055 go: downloading github.com/charmbracelet/x/term v0.2.2\n#11 3.055 go: downloading github.com/charmbracelet/colorprofile v0.4.1\n#11 3.211 go: downloading github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e\n#11 4.558 go: downloading github.com/odvcencio/gotreesitter v0.6.1-0.20260306002001-fbe5983c6f41\n#11 4.558 go: downloading github.com/ditashi/jsbeautifier-go v0.0.0-20141206144643-2520a8026a9c\n#11 DONE 18.2s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.153 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 3.4s done\n#17 exporting manifest sha256:8447870066dc16d2aa32124907257949e89f0faceb709f3c9cc05d854a46d3b4 done\n#17 exporting config sha256:67d6f598a7067b5bb121ee8b33786f071943f0f8735ae5563df2c3e6cd0519dd done\n#17 exporting attestation manifest sha256:b6bd5000832f526dcf07c1b9b5eac69fd7b3bd962753a21b5210ecc71f1150e4 done\n#17 exporting manifest list sha256:7c00eb7cf6a42d633aa7b52f968175dbb6a2c52781873d7d97b7271e8e5d546c done\n#17 naming to docker.io/ctk-exec/katana:ba15ac09b8cc done\n#17 unpacking to docker.io/ctk-exec/katana:ba15ac09b8cc\n#17 unpacking to docker.io/ctk-exec/katana:ba15ac09b8cc 1.1s done\n#17 DONE 4.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "katana",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Katana is a fast crawler focused on execution in automation pipelines offering both headless and non-headless crawling.\n\nUsage:\n  katana [flags]\n\nFlags:\nINPUT:\n   -u, -list string[]     target url / list to crawl\n   -resume string         resume scan using resume.cfg\n   -e, -exclude string[]  exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)\n\nCONFIGURATION:\n   -r, -resolvers string[]              list of custom resolver (file or comma separated)\n   -d, -depth int                       maximum depth to crawl (default 3)\n   -jc, -js-crawl                       enable endpoint parsing / crawling in javascript file\n   -jsl, -jsluice                       enable jsluice parsing in javascript file (memory intensive)\n   -ct, -crawl-duration value           maximum duration to crawl the target for (s, m, h, d) (default s)\n   -kf, -known-files value              enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.\n   -mrs, -max-response-size int         maximum response size to read (default 4194304)\n   -timeout int                         time to wait for request in seconds (default 10)\n   -time-stable int                     time to wait until the page is stable in seconds (default 1)\n   -aff, -automatic-form-fill           enable automatic form filling (experimental)\n   -fx, -form-extraction                extract form, input, textarea & select elements in jsonl output\n   -retry int                           number of times to retry the request (default 1)\n   -proxy string                        http/socks5 proxy to use\n   -td, -tech-detect                    enable technology detection\n   -H, -headers string[]                custom header/cookie to include in all http request in header:value format (file)\n   -config string                       path to the katana configuration file\n   -fc, -form-config string             path to custom form configuration file\n   -flc, -field-config string           path to custom field configuration file\n   -s, -strategy string                 Visit strategy (depth-first, breadth-first) (default \"depth-first\")\n   -iqp, -ignore-query-params           Ignore crawling same path with different query-param values\n   -fsu, -filter-similar                filter crawling of similar looking URLs (e.g., /users/123 and /users/456)\n   -fst, -filter-similar-threshold int  number of distinct values before a path position is treated as parameter (default 10) (default 10)\n   -tlsi, -tls-impersonate              enable experimental client hello (ja3) tls randomization\n   -dr, -disable-redirects              disable following redirects (default false)\n   -pc, -path-climb                     enable path climb (auto crawl parent paths)\n   -kb, -knowledge-base                 enable knowledge base classification\n   -kb-secrets                          enable secrets extractor in the knowledge base\n   -kb-validate-secrets                 validate detected secrets against their provider (sends live API calls)\n   -kb-endpoints                        enable endpoints extractor (classifies REST/GraphQL/SOAP/XHR requests)\n   -mdp, -max-domain-pages int          maximum number of pages to crawl per domain (default unlimited)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -elog, -error-log string  file to write sent requests error log\n   -pprof-server             enable pprof server\n\nHEADLESS:\n   -hl, -headless                         enable headless crawling (experimental)\n   -hh, -hybrid                           enable headless hybrid crawling (experimental)\n   -sc, -system-chrome                    use local installed chrome browser instead of katana installed\n   -sb, -show-browser                     show the browser on the screen with headless mode\n   -ho, -headless-options string[]        start headless chrome with additional options\n   -nos, -no-sandbox                      start headless chrome in --no-sandbox mode\n   -cdd, -chrome-data-dir string          path to store chrome browser data\n   -scp, -system-chrome-path string       use specified chrome browser for headless crawling\n   -noi, -no-incognito                    start headless chrome without incognito mode\n   -cwu, -chrome-ws-url string            use chrome browser instance launched elsewhere with the debugger listening at this URL\n   -xhr, -xhr-extraction                  extract xhr request url,method in jsonl output\n   -mfc, -max-failure-count int           maximum number of consecutive action failures before stopping (default 10)\n   -ed, -enable-diagnostics               enable diagnostics\n   -pls, -page-load-strategy string       page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")\n   -dwt, -dom-wait-time int               time in seconds to wait after page load when using domcontentloaded strategy (default 5)\n   -csp, -captcha-solver-provider string  captcha solver provider (e.g. capsolver)\n   -csk, -captcha-solver-key string       captcha solver provider api key\n   -al, -auto-login string                automatic login with username:password (headless only)\n\nSCOPE:\n   -cs, -crawl-scope string[]       in scope url regex to be followed by crawler\n   -cos, -crawl-out-scope string[]  out of scope url regex to be excluded by crawler\n   -fs, -field-scope string         pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")\n   -ns, -no-scope                   disables host based default scope\n   -do, -display-out-scope          display external endpoint from scoped crawling\n\nFILTER:\n   -mr, -match-regex string[]                     regex or list of regex to match on output url (cli, file)\n   -fr, -filter-regex string[]                    regex or list of regex to filter on output url (cli, file)\n   -f, -field string                              field to display in output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir) (Deprecated: use -output-template instead)\n   -sf, -store-field string                       field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)\n   -em, -extension-match string[]                 match output for given extension (eg, -em php,html,js,none)\n   -ef, -extension-filter string[]                filter output for given extension (eg, -ef png,css)\n   -ndef, -no-default-ext-filter                  remove default extensions from the filter list\n   -mdc, -match-condition string                  match response with dsl based condition\n   -fdc, -filter-condition string                 filter response with dsl based condition\n   -duf, -disable-unique-filter                   disable duplicate content filtering\n   -pcs, -page-content-similar                    enable page content similarity filtering (after exact content dedup)\n   -sdd, -similarity-deduplication                alias for -pcs (page content similarity)\n   -pcsm, -page-content-similar-mode string       similarity mode: simhash, tfidf, or bm25 (default \"simhash\")\n   -pcsd, -page-content-similar-distance int      simhash max hamming distance (default 3) (default 3)\n   -pcst, -page-content-similar-threshold string  tfidf/bm25 min score 0-1 (default 0.85) (default \"0.85\")\n   -pcsn, -page-content-similar-budget int        pages to fully process per similarity cluster (default 1) (default 1)\n   -fpt, -filter-page-type string[]               filter response with page type (e.g. error,captcha,parked)\n\nRATE-LIMIT:\n   -c, -concurrency int                number of concurrent fetchers to use (default 10)\n   -p, -parallelism int                number of concurrent inputs to process (default 10)\n   -rd, -delay int                     request delay between each request in seconds\n   -rl, -rate-limit int                maximum requests to send per second (default 150)\n   -rlm, -rate-limit-minute int        maximum number of requests to send per minute\n   -hrl, -host-rate-limit int          maximum requests to send per second per host\n   -hrlm, -host-rate-limit-minute int  maximum number of requests to send per minute per host\n\nUPDATE:\n   -up, -update                 update katana to latest version\n   -duc, -disable-update-check  disable automatic katana update check\n\nOUTPUT:\n   -o, -output string                     file to write output to\n   -ot, -output-template string           custom output template\n   -sr, -store-response                   store http requests/responses\n   -srd, -store-response-dir string       store http requests/responses to custom directory\n   -ncb, -no-clobber                      do not overwrite output file\n   -sfd, -store-field-dir string          store per-host field to custom directory\n   -or, -omit-raw                         omit raw requests/responses from jsonl output\n   -ob, -omit-body                        omit response body from jsonl output\n   -lof, -list-output-fields              list of fields to output in jsonl format\n   -eof, -exclude-output-fields string[]  exclude fields from jsonl output\n   -j, -jsonl                             write output in jsonl format\n   -nc, -no-color                         disable output content coloring (ANSI escape codes)\n   -silent                                display output only\n   -v, -verbose                           display verbose output\n   -debug                                 display debug output\n   -version                               display project version\n\n",
+   "stderr": "",
+   "duration_ms": 26,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "katana"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for katana\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "katana"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'katana' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "katana",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-u": "target url / list to crawl",
+   "-list": "target url / list to crawl",
+   "-resume": "resume scan using resume.cfg",
+   "-e": "exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)",
+   "-exclude": "exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)",
+   "-r": "list of custom resolver (file or comma separated)",
+   "-resolvers": "list of custom resolver (file or comma separated)",
+   "-d": "maximum depth to crawl (default 3)",
+   "-depth": "maximum depth to crawl (default 3)",
+   "-jc": "enable endpoint parsing / crawling in javascript file",
+   "-js-crawl": "enable endpoint parsing / crawling in javascript file",
+   "-jsl": "enable jsluice parsing in javascript file (memory intensive)",
+   "-jsluice": "enable jsluice parsing in javascript file (memory intensive)",
+   "-ct": "maximum duration to crawl the target for (s, m, h, d) (default s)",
+   "-crawl-duration": "maximum duration to crawl the target for (s, m, h, d) (default s)",
+   "-kf": "enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.",
+   "-known-files": "enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.",
+   "-mrs": "maximum response size to read (default 4194304)",
+   "-max-response-size": "maximum response size to read (default 4194304)",
+   "-timeout": "time to wait for request in seconds (default 10)",
+   "-time-stable": "time to wait until the page is stable in seconds (default 1)",
+   "-aff": "enable automatic form filling (experimental)",
+   "-automatic-form-fill": "enable automatic form filling (experimental)",
+   "-fx": "extract form, input, textarea & select elements in jsonl output",
+   "-form-extraction": "extract form, input, textarea & select elements in jsonl output",
+   "-retry": "number of times to retry the request (default 1)",
+   "-proxy": "http/socks5 proxy to use",
+   "-td": "enable technology detection",
+   "-tech-detect": "enable technology detection",
+   "-H": "custom header/cookie to include in all http request in header:value format (file)",
+   "-headers": "custom header/cookie to include in all http request in header:value format (file)",
+   "-config": "path to the katana configuration file",
+   "-fc": "path to custom form configuration file",
+   "-form-config": "path to custom form configuration file",
+   "-flc": "path to custom field configuration file",
+   "-field-config": "path to custom field configuration file",
+   "-s": "Visit strategy (depth-first, breadth-first) (default \"depth-first\")",
+   "-strategy": "Visit strategy (depth-first, breadth-first) (default \"depth-first\")",
+   "-iqp": "Ignore crawling same path with different query-param values",
+   "-ignore-query-params": "Ignore crawling same path with different query-param values",
+   "-fsu": "filter crawling of similar looking URLs (e.g., /users/123 and /users/456)",
+   "-filter-similar": "filter crawling of similar looking URLs (e.g., /users/123 and /users/456)",
+   "-fst": "number of distinct values before a path position is treated as parameter (default 10) (default 10)",
+   "-filter-similar-threshold": "number of distinct values before a path position is treated as parameter (default 10) (default 10)",
+   "-tlsi": "enable experimental client hello (ja3) tls randomization",
+   "-tls-impersonate": "enable experimental client hello (ja3) tls randomization",
+   "-dr": "disable following redirects (default false)",
+   "-disable-redirects": "disable following redirects (default false)",
+   "-pc": "enable path climb (auto crawl parent paths)",
+   "-path-climb": "enable path climb (auto crawl parent paths)",
+   "-kb": "enable knowledge base classification",
+   "-knowledge-base": "enable knowledge base classification",
+   "-kb-secrets": "enable secrets extractor in the knowledge base",
+   "-kb-validate-secrets": "validate detected secrets against their provider (sends live API calls)",
+   "-kb-endpoints": "enable endpoints extractor (classifies REST/GraphQL/SOAP/XHR requests)",
+   "-mdp": "maximum number of pages to crawl per domain (default unlimited)",
+   "-max-domain-pages": "maximum number of pages to crawl per domain (default unlimited)",
+   "-health-check": "run diagnostic check up",
+   "-hc": "run diagnostic check up",
+   "-elog": "file to write sent requests error log",
+   "-error-log": "file to write sent requests error log",
+   "-pprof-server": "enable pprof server",
+   "-hl": "enable headless crawling (experimental)",
+   "-headless": "enable headless crawling (experimental)",
+   "-hh": "enable headless hybrid crawling (experimental)",
+   "-hybrid": "enable headless hybrid crawling (experimental)",
+   "-sc": "use local installed chrome browser instead of katana installed",
+   "-system-chrome": "use local installed chrome browser instead of katana installed",
+   "-sb": "show the browser on the screen with headless mode",
+   "-show-browser": "show the browser on the screen with headless mode",
+   "-ho": "start headless chrome with additional options",
+   "-headless-options": "start headless chrome with additional options",
+   "-nos": "start headless chrome in --no-sandbox mode",
+   "-no-sandbox": "start headless chrome in --no-sandbox mode",
+   "-cdd": "path to store chrome browser data",
+   "-chrome-data-dir": "path to store chrome browser data",
+   "-scp": "use specified chrome browser for headless crawling",
+   "-system-chrome-path": "use specified chrome browser for headless crawling",
+   "-noi": "start headless chrome without incognito mode",
+   "-no-incognito": "start headless chrome without incognito mode",
+   "-cwu": "use chrome browser instance launched elsewhere with the debugger listening at this URL",
+   "-chrome-ws-url": "use chrome browser instance launched elsewhere with the debugger listening at this URL",
+   "-xhr": "extract xhr request url,method in jsonl output",
+   "-xhr-extraction": "extract xhr request url,method in jsonl output",
+   "-mfc": "maximum number of consecutive action failures before stopping (default 10)",
+   "-max-failure-count": "maximum number of consecutive action failures before stopping (default 10)",
+   "-ed": "enable diagnostics",
+   "-enable-diagnostics": "enable diagnostics",
+   "-pls": "page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")",
+   "-page-load-strategy": "page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")",
+   "-dwt": "time in seconds to wait after page load when using domcontentloaded strategy (default 5)",
+   "-dom-wait-time": "time in seconds to wait after page load when using domcontentloaded strategy (default 5)",
+   "-csp": "captcha solver provider (e.g. capsolver)",
+   "-captcha-solver-provider": "captcha solver provider (e.g. capsolver)",
+   "-csk": "captcha solver provider api key",
+   "-captcha-solver-key": "captcha solver provider api key",
+   "-al": "automatic login with username:password (headless only)",
+   "-auto-login": "automatic login with username:password (headless only)",
+   "-cs": "in scope url regex to be followed by crawler",
+   "-crawl-scope": "in scope url regex to be followed by crawler",
+   "-cos": "out of scope url regex to be excluded by crawler",
+   "-crawl-out-scope": "out of scope url regex to be excluded by crawler",
+   "-fs": "pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")",
+   "-field-scope": "pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")",
+   "-ns": "disables host based default scope",
+   "-no-scope": "disables host based default scope",
+   "-do": "display external endpoint from scoped crawling",
+   "-display-out-scope": "display external endpoint from scoped crawling",
+   "-mr": "regex or list of regex to match on output url (cli, file)",
+   "-match-regex": "regex or list of regex to match on output url (cli, file)",
+   "-fr": "regex or list of regex to filter on output url (cli, file)",
+   "-filter-regex": "regex or list of regex to filter on output url (cli, file)",
+   "-f": "field to display in output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir) (Deprecated: use -output-template instead)",
+   "-field": "field to display in output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir) (Deprecated: use -output-template instead)",
+   "-sf": "field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)",
+   "-store-field": "field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)",
+   "-em": "match output for given extension (eg, -em php,html,js,none)",
+   "-extension-match": "match output for given extension (eg, -em php,html,js,none)",
+   "-ef": "filter output for given extension (eg, -ef png,css)",
+   "-extension-filter": "filter output for given extension (eg, -ef png,css)",
+   "-ndef": "remove default extensions from the filter list",
+   "-no-default-ext-filter": "remove default extensions from the filter list",
+   "-mdc": "match response with dsl based condition",
+   "-match-condition": "match response with dsl based condition",
+   "-fdc": "filter response with dsl based condition",
+   "-filter-condition": "filter response with dsl based condition",
+   "-duf": "disable duplicate content filtering",
+   "-disable-unique-filter": "disable duplicate content filtering",
+   "-pcs": "enable page content similarity filtering (after exact content dedup)",
+   "-page-content-similar": "enable page content similarity filtering (after exact content dedup)",
+   "-sdd": "alias for -pcs (page content similarity)",
+   "-similarity-deduplication": "alias for -pcs (page content similarity)",
+   "-pcsm": "similarity mode: simhash, tfidf, or bm25 (default \"simhash\")",
+   "-page-content-similar-mode": "similarity mode: simhash, tfidf, or bm25 (default \"simhash\")",
+   "-pcsd": "simhash max hamming distance (default 3) (default 3)",
+   "-page-content-similar-distance": "simhash max hamming distance (default 3) (default 3)",
+   "-pcst": "tfidf/bm25 min score 0-1 (default 0.85) (default \"0.85\")",
+   "-page-content-similar-threshold": "tfidf/bm25 min score 0-1 (default 0.85) (default \"0.85\")",
+   "-pcsn": "pages to fully process per similarity cluster (default 1) (default 1)",
+   "-page-content-similar-budget": "pages to fully process per similarity cluster (default 1) (default 1)",
+   "-fpt": "filter response with page type (e.g. error,captcha,parked)",
+   "-filter-page-type": "filter response with page type (e.g. error,captcha,parked)",
+   "-c": "number of concurrent fetchers to use (default 10)",
+   "-concurrency": "number of concurrent fetchers to use (default 10)",
+   "-p": "number of concurrent inputs to process (default 10)",
+   "-parallelism": "number of concurrent inputs to process (default 10)",
+   "-rd": "request delay between each request in seconds",
+   "-delay": "request delay between each request in seconds",
+   "-rl": "maximum requests to send per second (default 150)",
+   "-rate-limit": "maximum requests to send per second (default 150)",
+   "-rlm": "maximum number of requests to send per minute",
+   "-rate-limit-minute": "maximum number of requests to send per minute",
+   "-hrl": "maximum requests to send per second per host",
+   "-host-rate-limit": "maximum requests to send per second per host",
+   "-hrlm": "maximum number of requests to send per minute per host",
+   "-host-rate-limit-minute": "maximum number of requests to send per minute per host",
+   "-up": "update katana to latest version",
+   "-update": "update katana to latest version",
+   "-duc": "disable automatic katana update check",
+   "-disable-update-check": "disable automatic katana update check",
+   "-o": "file to write output to",
+   "-output": "file to write output to",
+   "-ot": "custom output template",
+   "-output-template": "custom output template",
+   "-sr": "store http requests/responses",
+   "-store-response": "store http requests/responses",
+   "-srd": "store http requests/responses to custom directory",
+   "-store-response-dir": "store http requests/responses to custom directory",
+   "-ncb": "do not overwrite output file",
+   "-no-clobber": "do not overwrite output file",
+   "-sfd": "store per-host field to custom directory",
+   "-store-field-dir": "store per-host field to custom directory",
+   "-or": "omit raw requests/responses from jsonl output",
+   "-omit-raw": "omit raw requests/responses from jsonl output",
+   "-ob": "omit response body from jsonl output",
+   "-omit-body": "omit response body from jsonl output",
+   "-lof": "list of fields to output in jsonl format",
+   "-list-output-fields": "list of fields to output in jsonl format",
+   "-eof": "exclude fields from jsonl output",
+   "-exclude-output-fields": "exclude fields from jsonl output",
+   "-j": "write output in jsonl format",
+   "-jsonl": "write output in jsonl format",
+   "-nc": "disable output content coloring (ANSI escape codes)",
+   "-no-color": "disable output content coloring (ANSI escape codes)",
+   "-silent": "display output only",
+   "-v": "display verbose output",
+   "-verbose": "display verbose output",
+   "-debug": "display debug output",
+   "-version": "display project version"
+  },
+  "aliases": {
+   "-u": [
+    "-list"
+   ],
+   "-e": [
+    "-exclude"
+   ],
+   "-r": [
+    "-resolvers"
+   ],
+   "-d": [
+    "-depth"
+   ],
+   "-jc": [
+    "-js-crawl"
+   ],
+   "-jsl": [
+    "-jsluice"
+   ],
+   "-ct": [
+    "-crawl-duration"
+   ],
+   "-kf": [
+    "-known-files"
+   ],
+   "-mrs": [
+    "-max-response-size"
+   ],
+   "-aff": [
+    "-automatic-form-fill"
+   ],
+   "-fx": [
+    "-form-extraction"
+   ],
+   "-td": [
+    "-tech-detect"
+   ],
+   "-H": [
+    "-headers"
+   ],
+   "-fc": [
+    "-form-config"
+   ],
+   "-flc": [
+    "-field-config"
+   ],
+   "-s": [
+    "-strategy"
+   ],
+   "-iqp": [
+    "-ignore-query-params"
+   ],
+   "-fsu": [
+    "-filter-similar"
+   ],
+   "-fst": [
+    "-filter-similar-threshold"
+   ],
+   "-tlsi": [
+    "-tls-impersonate"
+   ],
+   "-dr": [
+    "-disable-redirects"
+   ],
+   "-pc": [
+    "-path-climb"
+   ],
+   "-kb": [
+    "-knowledge-base"
+   ],
+   "-mdp": [
+    "-max-domain-pages"
+   ],
+   "-health-check": [
+    "-hc"
+   ],
+   "-elog": [
+    "-error-log"
+   ],
+   "-hl": [
+    "-headless"
+   ],
+   "-hh": [
+    "-hybrid"
+   ],
+   "-sc": [
+    "-system-chrome"
+   ],
+   "-sb": [
+    "-show-browser"
+   ],
+   "-ho": [
+    "-headless-options"
+   ],
+   "-nos": [
+    "-no-sandbox"
+   ],
+   "-cdd": [
+    "-chrome-data-dir"
+   ],
+   "-scp": [
+    "-system-chrome-path"
+   ],
+   "-noi": [
+    "-no-incognito"
+   ],
+   "-cwu": [
+    "-chrome-ws-url"
+   ],
+   "-xhr": [
+    "-xhr-extraction"
+   ],
+   "-mfc": [
+    "-max-failure-count"
+   ],
+   "-ed": [
+    "-enable-diagnostics"
+   ],
+   "-pls": [
+    "-page-load-strategy"
+   ],
+   "-dwt": [
+    "-dom-wait-time"
+   ],
+   "-csp": [
+    "-captcha-solver-provider"
+   ],
+   "-csk": [
+    "-captcha-solver-key"
+   ],
+   "-al": [
+    "-auto-login"
+   ],
+   "-cs": [
+    "-crawl-scope"
+   ],
+   "-cos": [
+    "-crawl-out-scope"
+   ],
+   "-fs": [
+    "-field-scope"
+   ],
+   "-ns": [
+    "-no-scope"
+   ],
+   "-do": [
+    "-display-out-scope"
+   ],
+   "-mr": [
+    "-match-regex"
+   ],
+   "-fr": [
+    "-filter-regex"
+   ],
+   "-f": [
+    "-field"
+   ],
+   "-sf": [
+    "-store-field"
+   ],
+   "-em": [
+    "-extension-match"
+   ],
+   "-ef": [
+    "-extension-filter"
+   ],
+   "-ndef": [
+    "-no-default-ext-filter"
+   ],
+   "-mdc": [
+    "-match-condition"
+   ],
+   "-fdc": [
+    "-filter-condition"
+   ],
+   "-duf": [
+    "-disable-unique-filter"
+   ],
+   "-pcs": [
+    "-page-content-similar"
+   ],
+   "-sdd": [
+    "-similarity-deduplication"
+   ],
+   "-pcsm": [
+    "-page-content-similar-mode"
+   ],
+   "-pcsd": [
+    "-page-content-similar-distance"
+   ],
+   "-pcst": [
+    "-page-content-similar-threshold"
+   ],
+   "-pcsn": [
+    "-page-content-similar-budget"
+   ],
+   "-fpt": [
+    "-filter-page-type"
+   ],
+   "-c": [
+    "-concurrency"
+   ],
+   "-p": [
+    "-parallelism"
+   ],
+   "-rd": [
+    "-delay"
+   ],
+   "-rl": [
+    "-rate-limit"
+   ],
+   "-rlm": [
+    "-rate-limit-minute"
+   ],
+   "-hrl": [
+    "-host-rate-limit"
+   ],
+   "-hrlm": [
+    "-host-rate-limit-minute"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-ot": [
+    "-output-template"
+   ],
+   "-sr": [
+    "-store-response"
+   ],
+   "-srd": [
+    "-store-response-dir"
+   ],
+   "-ncb": [
+    "-no-clobber"
+   ],
+   "-sfd": [
+    "-store-field-dir"
+   ],
+   "-or": [
+    "-omit-raw"
+   ],
+   "-ob": [
+    "-omit-body"
+   ],
+   "-lof": [
+    "-list-output-fields"
+   ],
+   "-eof": [
+    "-exclude-output-fields"
+   ],
+   "-j": [
+    "-jsonl"
+   ],
+   "-nc": [
+    "-no-color"
+   ],
+   "-v": [
+    "-verbose"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "dfcad9e0a4e1c5479944cb98f68fee8d4ebf02098aa9d15178a2f60f446f9e7a",
+  "text": "Katana is a fast crawler focused on execution in automation pipelines offering both headless and non-headless crawling.\n\nUsage:\n  katana [flags]\n\nFlags:\nINPUT:\n   -u, -list string[]     target url / list to crawl\n   -resume string         resume scan using resume.cfg\n   -e, -exclude string[]  exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)\n\nCONFIGURATION:\n   -r, -resolvers string[]              list of custom resolver (file or comma separated)\n   -d, -depth int                       maximum depth to crawl (default 3)\n   -jc, -js-crawl                       enable endpoint parsing / crawling in javascript file\n   -jsl, -jsluice                       enable jsluice parsing in javascript file (memory intensive)\n   -ct, -crawl-duration value           maximum duration to crawl the target for (s, m, h, d) (default s)\n   -kf, -known-files value              enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.\n   -mrs, -max-response-size int         maximum response size to read (default 4194304)\n   -timeout int                         time to wait for request in seconds (default 10)\n   -time-stable int                     time to wait until the page is stable in seconds (default 1)\n   -aff, -automatic-form-fill           enable automatic form filling (experimental)\n   -fx, -form-extraction                extract form, input, textarea & select elements in jsonl output\n   -retry int                           number of times to retry the request (default 1)\n   -proxy string                        http/socks5 proxy to use\n   -td, -tech-detect                    enable technology detection\n   -H, -headers string[]                custom header/cookie to include in all http request in header:value format (file)\n   -config string                       path to the katana configuration file\n   -fc, -form-config string             path to custom form configuration file\n   -flc, -field-config string           path to custom field configuration file\n   -s, -strategy string                 Visit strategy (depth-first, breadth-first) (default \"depth-first\")\n   -iqp, -ignore-query-params           Ignore crawling same path with different query-param values\n   -fsu, -filter-similar                filter crawling of similar looking URLs (e.g., /users/123 and /users/456)\n   -fst, -filter-similar-threshold int  number of distinct values before a path position is treated as parameter (default 10) (default 10)\n   -tlsi, -tls-impersonate              enable experimental client hello (ja3) tls randomization\n   -dr, -disable-redirects              disable following redirects (default false)\n   -pc, -path-climb                     enable path climb (auto crawl parent paths)\n   -kb, -knowledge-base                 enable knowledge base classification\n   -kb-secrets                          enable secrets extractor in the knowledge base\n   -kb-validate-secrets                 validate detected secrets against their provider (sends live API calls)\n   -kb-endpoints                        enable endpoints extractor (classifies REST/GraphQL/SOAP/XHR requests)\n   -mdp, -max-domain-pages int          maximum number of pages to crawl per domain (default unlimited)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -elog, -error-log string  file to write sent requests error log\n   -pprof-server             enable pprof server\n\nHEADLESS:\n   -hl, -headless                         enable headless crawling (experimental)\n   -hh, -hybrid                           enable headless hybrid crawling (experimental)\n   -sc, -system-chrome                    use local installed chrome browser instead of katana installed\n   -sb, -show-browser                     show the browser on the screen with headless mode\n   -ho, -headless-options string[]        start headless chrome with additional options\n   -nos, -no-sandbox                      start headless chrome in --no-sandbox mode\n   -cdd, -chrome-data-dir string          path to store chrome browser data\n   -scp, -system-chrome-path string       use specified chrome browser for headless crawling\n   -noi, -no-incognito                    start headless chrome without incognito mode\n   -cwu, -chrome-ws-url string            use chrome browser instance launched elsewhere with the debugger listening at this URL\n   -xhr, -xhr-extraction                  extract xhr request url,method in jsonl output\n   -mfc, -max-failure-count int           maximum number of consecutive action failures before stopping (default 10)\n   -ed, -enable-diagnostics               enable diagnostics\n   -pls, -page-load-strategy string       page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")\n   -dwt, -dom-wait-time int               time in seconds to wait after page load when using domcontentloaded strategy (default 5)\n   -csp, -captcha-solver-provider string  captcha solver provider (e.g. capsolver)\n   -csk, -captcha-solver-key string       captcha solver provider api key\n   -al, -auto-login string                automatic login with username:password (headless only)\n\nSCOPE:\n   -cs, -crawl-scope string[]       in scope url regex to be followed by crawler\n   -cos, -crawl-out-scope string[]  out of scope url regex to be excluded by crawler\n   -fs, -field-scope string         pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")\n   -ns, -no-scope                   disables host based default scope\n   -do, -display-out-scope          display external endpoint from scoped crawling\n\nFILTER:\n   -mr, -match-regex string[]                     regex or list of regex to match on output url (cli, file)\n   -fr, -filter-regex string[]                    regex or list of regex to filter on output url (cli, file)\n   -f, -field string                              field to display in output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir) (Deprecated: use -output-template instead)\n   -sf, -store-field string                       field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)\n   -em, -extension-match string[]                 match output for given extension (eg, -em php,html,js,none)\n   -ef, -extension-filter string[]                filter output for given extension (eg, -ef png,css)\n   -ndef, -no-default-ext-filter                  remove default extensions from the filter list\n   -mdc, -match-condition string                  match response with dsl based condition\n   -fdc, -filter-condition string                 filter response with dsl based condition\n   -duf, -disable-unique-filter                   disable duplicate content filtering\n   -pcs, -page-content-similar                    enable page content similarity filtering (after exact content dedup)\n   -sdd, -similarity-deduplication                alias for -pcs (page content similarity)\n   -pcsm, -page-content-similar-mode string       similarity mode: simhash, tfidf, or bm25 (default \"simhash\")\n   -pcsd, -page-content-similar-distance int      simhash max hamming distance (default 3) (default 3)\n   -pcst, -page-content-similar-threshold string  tfidf/bm25 min score 0-1 (default 0.85) (default \"0.85\")\n   -pcsn, -page-content-similar-budget int        pages to fully process per similarity cluster (default 1) (default 1)\n   -fpt, -filter-page-type string[]               filter response with page type (e.g. error,captcha,parked)\n\nRATE-LIMIT:\n   -c, -concurrency int                number of concurrent fetchers to use (default 10)\n   -p, -parallelism int                number of concurrent inputs to process (default 10)\n   -rd, -delay int                     request delay between each request in seconds\n   -rl, -rate-limit int                maximum requests to send per second (default 150)\n   -rlm, -rate-limit-minute int        maximum number of requests to send per minute\n   -hrl, -host-rate-limit int          maximum requests to send per second per host\n   -hrlm, -host-rate-limit-minute int  maximum number of requests to send per minute per host\n\nUPDATE:\n   -up, -update                 update katana to latest version\n   -duc, -disable-update-check  disable automatic katana update check\n\nOUTPUT:\n   -o, -output string                     file to write output to\n   -ot, -output-template string           custom output template\n   -sr, -store-response                   store http requests/responses\n   -srd, -store-response-dir string       store http requests/responses to custom directory\n   -ncb, -no-clobber                      do not overwrite output file\n   -sfd, -store-field-dir string          store per-host field to custom directory\n   -or, -omit-raw                         omit raw requests/responses from jsonl output\n   -ob, -omit-body                        omit response body from jsonl output\n   -lof, -list-output-fields              list of fields to output in jsonl format\n   -eof, -exclude-output-fields string[]  exclude fields from jsonl output\n   -j, -jsonl                             write output in jsonl format\n   -nc, -no-color                         disable output content coloring (ANSI escape codes)\n   -silent                                display output only\n   -v, -verbose                           display verbose output\n   -debug                                 display debug output\n   -version                               display project version\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-automatic-form-fill",
+   "-captcha-solver-key",
+   "-captcha-solver-provider",
+   "-chrome-data-dir",
+   "-chrome-ws-url",
+   "-concurrency",
+   "-config",
+   "-crawl-duration",
+   "-crawl-out-scope",
+   "-crawl-scope",
+   "-debug",
+   "-delay",
+   "-depth",
+   "-disable-redirects",
+   "-disable-unique-filter",
+   "-disable-update-check",
+   "-display-out-scope",
+   "-dom-wait-time",
+   "-error-log",
+   "-exclude",
+   "-exclude-output-fields",
+   "-extension-filter",
+   "-extension-match",
+   "-field",
+   "-field-config",
+   "-field-scope",
+   "-filter-condition",
+   "-filter-page-type",
+   "-filter-regex",
+   "-filter-similar",
+   "-filter-similar-threshold",
+   "-form-config",
+   "-form-extraction",
+   "-headers",
+   "-headless",
+   "-headless-options",
+   "-health-check",
+   "-host-rate-limit",
+   "-host-rate-limit-minute",
+   "-ignore-query-params",
+   "-js-crawl",
+   "-jsluice",
+   "-jsonl",
+   "-knowledge-base",
+   "-known-files",
+   "-list",
+   "-list-output-fields",
+   "-match-condition",
+   "-match-regex",
+   "-max-domain-pages",
+   "-max-response-size",
+   "-no-clobber",
+   "-no-color",
+   "-no-default-ext-filter",
+   "-no-incognito",
+   "-no-sandbox",
+   "-no-scope",
+   "-omit-body",
+   "-omit-raw",
+   "-output",
+   "-output-template",
+   "-page-load-strategy",
+   "-parallelism",
+   "-pprof-server",
+   "-proxy",
+   "-rate-limit",
+   "-rate-limit-minute",
+   "-resolvers",
+   "-resume",
+   "-retry",
+   "-show-browser",
+   "-silent",
+   "-store-field",
+   "-store-field-dir",
+   "-store-response",
+   "-store-response-dir",
+   "-strategy",
+   "-system-chrome",
+   "-system-chrome-path",
+   "-tech-detect",
+   "-timeout",
+   "-tls-impersonate",
+   "-update",
+   "-verbose",
+   "-version",
+   "-xhr-extraction"
+  ],
+  "unconfirmed": [
+   "--dev",
+   "-json",
+   "-passive",
+   "-passive-source"
+  ],
+  "help_only": [
+   "-H",
+   "-aff",
+   "-al",
+   "-auto-login",
+   "-c",
+   "-cdd",
+   "-cos",
+   "-cs",
+   "-csk",
+   "-csp",
+   "-ct",
+   "-cwu",
+   "-d",
+   "-do",
+   "-dr",
+   "-duc",
+   "-duf",
+   "-dwt",
+   "-e",
+   "-ed",
+   "-ef",
+   "-elog",
+   "-em",
+   "-enable-diagnostics",
+   "-eof",
+   "-f",
+   "-fc",
+   "-fdc",
+   "-flc",
+   "-fpt",
+   "-fr",
+   "-fs",
+   "-fst",
+   "-fsu",
+   "-fx",
+   "-hc",
+   "-hh",
+   "-hl",
+   "-ho",
+   "-hrl",
+   "-hrlm",
+   "-hybrid",
+   "-iqp",
+   "-j",
+   "-jc",
+   "-jsl",
+   "-kb",
+   "-kb-endpoints",
+   "-kb-secrets",
+   "-kb-validate-secrets",
+   "-kf",
+   "-lof",
+   "-max-failure-count",
+   "-mdc",
+   "-mdp",
+   "-mfc",
+   "-mr",
+   "-mrs",
+   "-nc",
+   "-ncb",
+   "-ndef",
+   "-noi",
+   "-nos",
+   "-ns",
+   "-o",
+   "-ob",
+   "-or",
+   "-ot",
+   "-p",
+   "-page-content-similar",
+   "-page-content-similar-budget",
+   "-page-content-similar-distance",
+   "-page-content-similar-mode",
+   "-page-content-similar-threshold",
+   "-path-climb",
+   "-pc",
+   "-pcs",
+   "-pcsd",
+   "-pcsm",
+   "-pcsn",
+   "-pcst",
+   "-pls",
+   "-r",
+   "-rd",
+   "-rl",
+   "-rlm",
+   "-s",
+   "-sb",
+   "-sc",
+   "-scp",
+   "-sdd",
+   "-sf",
+   "-sfd",
+   "-similarity-deduplication",
+   "-sr",
+   "-srd",
+   "-td",
+   "-time-stable",
+   "-tlsi",
+   "-u",
+   "-up",
+   "-v",
+   "-xhr"
+  ],
+  "mining_coverage": 0.455026455026455
+ },
+ "surface": {
+  "flags": {
+   "--dev": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dev Branch Katana Binary",
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2023-06-13T04:01:19+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "-H": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom header/cookie to include in all http request in header:value format (file)",
+    "aliases": [
+     "-headers"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-aff": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable automatic form filling (experimental)",
+    "aliases": [
+     "-automatic-form-fill"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-al": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "automatic login with username:password (headless only)",
+    "aliases": [
+     "-auto-login"
+    ]
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of concurrent fetchers to use (default 10)",
+    "aliases": [
+     "-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cdd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to store chrome browser data",
+    "aliases": [
+     "-chrome-data-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "path to the katana configuration file",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cos": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "out of scope url regex to be excluded by crawler",
+    "aliases": [
+     "-crawl-out-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "in scope url regex to be followed by crawler",
+    "aliases": [
+     "-crawl-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-csk": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "captcha solver provider api key",
+    "aliases": [
+     "-captcha-solver-key"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-csp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "captcha solver provider (e.g. capsolver)",
+    "aliases": [
+     "-captcha-solver-provider"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ct": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum duration to crawl the target for (s, m, h, d) (default s)",
+    "aliases": [
+     "-crawl-duration"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cwu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use chrome browser instance launched elsewhere with the debugger listening at this URL",
+    "aliases": [
+     "-chrome-ws-url"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum depth to crawl (default 3)",
+    "aliases": [
+     "-depth"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display debug output",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2023-04-08T16:19:40+08:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-do": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display external endpoint from scoped crawling",
+    "aliases": [
+     "-display-out-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable following redirects (default false)",
+    "aliases": [
+     "-disable-redirects"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.5",
+    "first_date": "2024-01-12T03:20:20+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic katana update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable duplicate content filtering",
+    "aliases": [
+     "-disable-unique-filter"
+    ],
+    "kind": "option",
+    "first_tag": "v1.2.2",
+    "first_date": "2025-08-30T22:14:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dwt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "time in seconds to wait after page load when using domcontentloaded strategy (default 5)",
+    "aliases": [
+     "-dom-wait-time"
+    ],
+    "kind": "option",
+    "first_tag": "v1.6.0",
+    "first_date": "2026-05-04T11:30:42+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude host matching specified filter ('cdn', 'private-ips', cidr, ip, regex)",
+    "aliases": [
+     "-exclude"
+    ],
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2024-10-28T14:59:00+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ed": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable diagnostics",
+    "aliases": [
+     "-enable-diagnostics"
+    ]
+   },
+   "-ef": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "filter output for given extension (eg, -ef png,css)",
+    "aliases": [
+     "-extension-filter"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elog": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write sent requests error log",
+    "aliases": [
+     "-error-log"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2023-01-13T18:42:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-em": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "match output for given extension (eg, -em php,html,js,none)",
+    "aliases": [
+     "-extension-match"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-eof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude fields from jsonl output",
+    "aliases": [
+     "-exclude-output-fields"
+    ],
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2025-12-01T22:32:50+07:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "field to display in output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir) (Deprecated: use -output-template instead)",
+    "aliases": [
+     "-field"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to custom form configuration file",
+    "aliases": [
+     "-form-config"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fdc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "filter response with dsl based condition",
+    "aliases": [
+     "-filter-condition"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-flc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to custom field configuration file",
+    "aliases": [
+     "-field-config"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fpt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "filter response with page type (e.g. error,captcha,parked)",
+    "aliases": [
+     "-filter-page-type"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "regex or list of regex to filter on output url (cli, file)",
+    "aliases": [
+     "-filter-regex"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "pre-defined scope field (dn,rdn,fqdn) or custom regex (e.g., '(company-staging.io|company.com)') (default \"rdn\")",
+    "aliases": [
+     "-field-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fst": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of distinct values before a path position is treated as parameter (default 10) (default 10)",
+    "aliases": [
+     "-filter-similar-threshold"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fsu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "filter crawling of similar looking URLs (e.g., /users/123 and /users/456)",
+    "aliases": [
+     "-filter-similar"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fx": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "extract form, input, textarea & select elements in jsonl output",
+    "aliases": [
+     "-form-extraction"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-health-check": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "run diagnostic check up",
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2023-01-13T18:42:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-hc"
+    ]
+   },
+   "-hh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable headless hybrid crawling (experimental)",
+    "aliases": [
+     "-hybrid"
+    ]
+   },
+   "-hl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable headless crawling (experimental)",
+    "aliases": [
+     "-headless"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ho": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "start headless chrome with additional options",
+    "aliases": [
+     "-headless-options"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.2",
+    "first_date": "2022-11-11T14:55:04+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hrl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum requests to send per second per host",
+    "aliases": [
+     "-host-rate-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v1.6.0",
+    "first_date": "2026-05-04T11:30:42+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hrlm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of requests to send per minute per host",
+    "aliases": [
+     "-host-rate-limit-minute"
+    ],
+    "kind": "option",
+    "first_tag": "v1.6.0",
+    "first_date": "2026-05-04T11:30:42+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-iqp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore crawling same path with different query-param values",
+    "aliases": [
+     "-ignore-query-params"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2023-04-08T16:19:40+08:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in jsonl format",
+    "aliases": [
+     "-jsonl"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2023-06-13T04:01:19+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-jc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable endpoint parsing / crawling in javascript file",
+    "aliases": [
+     "-js-crawl"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-jsl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable jsluice parsing in javascript file (memory intensive)",
+    "aliases": [
+     "-jsluice"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "write output in JSONL(ines) format",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2023-04-08T16:19:40+08:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-kb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable knowledge base classification",
+    "aliases": [
+     "-knowledge-base"
+    ],
+    "kind": "option",
+    "first_tag": "v1.5.0",
+    "first_date": "2026-03-10T17:47:46+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-kb-endpoints": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable endpoints extractor (classifies REST/GraphQL/SOAP/XHR requests)"
+   },
+   "-kb-secrets": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable secrets extractor in the knowledge base"
+   },
+   "-kb-validate-secrets": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "validate detected secrets against their provider (sends live API calls)"
+   },
+   "-kf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable crawling of known files (all,robotstxt,sitemapxml), a minimum depth of 3 is required to ensure all known files are properly crawled.",
+    "aliases": [
+     "-known-files"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-lof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of fields to output in jsonl format",
+    "aliases": [
+     "-list-output-fields"
+    ],
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2025-12-01T22:32:50+07:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mdc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "match response with dsl based condition",
+    "aliases": [
+     "-match-condition"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mdp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of pages to crawl per domain (default unlimited)",
+    "aliases": [
+     "-max-domain-pages"
+    ],
+    "kind": "option",
+    "first_tag": "v1.6.0",
+    "first_date": "2026-05-04T11:30:42+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mfc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of consecutive action failures before stopping (default 10)",
+    "aliases": [
+     "-max-failure-count"
+    ]
+   },
+   "-mr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "regex or list of regex to match on output url (cli, file)",
+    "aliases": [
+     "-match-regex"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mrs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum response size to read (default 4194304)",
+    "aliases": [
+     "-max-response-size"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable output content coloring (ANSI escape codes)",
+    "aliases": [
+     "-no-color"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ncb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "do not overwrite output file",
+    "aliases": [
+     "-no-clobber"
+    ],
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-07-23T19:16:22+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ndef": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "remove default extensions from the filter list",
+    "aliases": [
+     "-no-default-ext-filter"
+    ],
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2025-12-01T22:32:50+07:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-noi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "start headless chrome without incognito mode",
+    "aliases": [
+     "-no-incognito"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2023-01-13T18:42:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nos": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "start headless chrome in --no-sandbox mode",
+    "aliases": [
+     "-no-sandbox"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.2",
+    "first_date": "2022-11-11T14:55:04+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ns": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disables host based default scope",
+    "aliases": [
+     "-no-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write output to",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ob": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "omit response body from jsonl output",
+    "aliases": [
+     "-omit-body"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2023-06-13T04:01:19+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-or": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "omit raw requests/responses from jsonl output",
+    "aliases": [
+     "-omit-raw"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2023-06-13T04:01:19+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ot": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom output template",
+    "aliases": [
+     "-output-template"
+    ],
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-07-23T19:16:22+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of concurrent inputs to process (default 10)",
+    "aliases": [
+     "-parallelism"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-passive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enable passive sources to discover target endpoints",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2024-03-26T14:18:48+05:30",
+    "last_tag": "v1.1.0",
+    "last_date": "2024-03-26T14:18:48+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-passive-source": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "passive source to use for url discovery (waybackarchive,commoncrawl,alienvault)",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2024-03-26T14:18:48+05:30",
+    "last_tag": "v1.1.0",
+    "last_date": "2024-03-26T14:18:48+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable path climb (auto crawl parent paths)",
+    "aliases": [
+     "-path-climb"
+    ]
+   },
+   "-pcs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable page content similarity filtering (after exact content dedup)",
+    "aliases": [
+     "-page-content-similar"
+    ]
+   },
+   "-pcsd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "simhash max hamming distance (default 3) (default 3)",
+    "aliases": [
+     "-page-content-similar-distance"
+    ]
+   },
+   "-pcsm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "similarity mode: simhash, tfidf, or bm25 (default \"simhash\")",
+    "aliases": [
+     "-page-content-similar-mode"
+    ]
+   },
+   "-pcsn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "pages to fully process per similarity cluster (default 1) (default 1)",
+    "aliases": [
+     "-page-content-similar-budget"
+    ]
+   },
+   "-pcst": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "tfidf/bm25 min score 0-1 (default 0.85) (default \"0.85\")",
+    "aliases": [
+     "-page-content-similar-threshold"
+    ]
+   },
+   "-pls": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "page load strategy (heuristic, load, domcontentloaded, networkidle, none) (default \"heuristic\")",
+    "aliases": [
+     "-page-load-strategy"
+    ],
+    "kind": "option",
+    "first_tag": "v1.6.0",
+    "first_date": "2026-05-04T11:30:42+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pprof-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable pprof server",
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-07-23T19:16:22+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "http/socks5 proxy to use",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of custom resolver (file or comma separated)",
+    "aliases": [
+     "-resolvers"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "request delay between each request in seconds",
+    "aliases": [
+     "-delay"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-resume": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "resume scan using resume.cfg",
+    "kind": "option",
+    "first_tag": "v1.0.5",
+    "first_date": "2024-01-12T03:20:20+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-retry": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of times to retry the request (default 1)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum requests to send per second (default 150)",
+    "aliases": [
+     "-rate-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rlm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of requests to send per minute",
+    "aliases": [
+     "-rate-limit-minute"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Visit strategy (depth-first, breadth-first) (default \"depth-first\")",
+    "aliases": [
+     "-strategy"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show the browser on the screen with headless mode",
+    "aliases": [
+     "-show-browser"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use local installed chrome browser instead of katana installed",
+    "aliases": [
+     "-system-chrome"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-scp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use specified chrome browser for headless crawling",
+    "aliases": [
+     "-system-chrome-path"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2023-01-13T18:42:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sdd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "alias for -pcs (page content similarity)",
+    "aliases": [
+     "-similarity-deduplication"
+    ]
+   },
+   "-sf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "field to store in per-host output (url,path,fqdn,rdn,rurl,qurl,qpath,file,ufile,key,value,kv,dir,udir)",
+    "aliases": [
+     "-store-field"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sfd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store per-host field to custom directory",
+    "aliases": [
+     "-store-field-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2024-10-28T14:59:00+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display output only",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store http requests/responses",
+    "aliases": [
+     "-store-response"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-srd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store http requests/responses to custom directory",
+    "aliases": [
+     "-store-response-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-td": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable technology detection",
+    "aliases": [
+     "-tech-detect"
+    ],
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-07-23T19:16:22+03:00",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-time-stable": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "time to wait until the page is stable in seconds (default 1)"
+   },
+   "-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "time to wait for request in seconds (default 10)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tlsi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable experimental client hello (ja3) tls randomization",
+    "aliases": [
+     "-tls-impersonate"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-u": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "target url / list to crawl",
+    "aliases": [
+     "-list"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update katana to latest version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-03-20T16:25:28+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display verbose output",
+    "aliases": [
+     "-verbose"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display project version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2022-11-07T19:56:35+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-xhr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "extract xhr request url,method in jsonl output",
+    "aliases": [
+     "-xhr-extraction"
+    ],
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2023-08-01T17:45:36+05:30",
+    "last_tag": "v1.6.1",
+    "last_date": "2026-05-05T20:58:16+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "Katana",
+ "repo": "projectdiscovery/katana",
+ "head_sha": "ba15ac09b8cc40341e5737ee6baf1e66c9d7e2eb",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:47:55.126572+00:00"
+}

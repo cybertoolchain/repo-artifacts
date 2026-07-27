@@ -1,0 +1,301 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:c1760422b1bbfedaa9e32170c4c8a9e4d233194a967417b344ea4a2ea0ac76a4",
+  "duration_s": 18.65,
+  "log_tail": "#10 15.34   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)\n#10 15.39 Collecting PySocks!=1.5.7,>=1.5.6 (from requests[socks]->wafw00f==2.4.2)\n#10 15.42   Downloading PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)\n#10 15.46 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#10 15.52 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#10 15.57 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#10 15.61 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 15.65 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#10 15.77 Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)\n#10 15.77 Building wheels for collected packages: wafw00f\n#10 15.77   Building wheel for wafw00f (pyproject.toml): started\n#10 15.93   Building wheel for wafw00f (pyproject.toml): finished with status 'done'\n#10 15.93   Created wheel for wafw00f: filename=wafw00f-2.4.2-py3-none-any.whl size=96066 sha256=53c3e83db86564c19556f01ca2c81e2fcc77c3b7d764fb41ebba40506ab04516\n#10 15.93   Stored in directory: /tmp/pip-ephem-wheel-cache-ajw7avs_/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 15.93 Successfully built wafw00f\n#10 15.94 Installing collected packages: urllib3, PySocks, idna, charset_normalizer, certifi, requests, wafw00f\n#10 16.11 \n#10 16.11 Successfully installed PySocks-1.7.1 certifi-2026.7.22 charset_normalizer-3.4.9 idna-3.18 requests-2.34.2 urllib3-2.7.0 wafw00f-2.4.2\n#10 DONE 16.4s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.106 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:3e1d022ebd1d3989eace71e37b91021959c17105319f66208a15d18a03b16b14 done\n#17 exporting config sha256:a9a7c90b6323931af9bd34a7a6e9f49587cade669bd29f9fc61a539b292ba582 done\n#17 exporting attestation manifest sha256:507e6bf5584841d0473a4bd54ae5f55a0c2e8982fba496503342ea25f19121ee done\n#17 exporting manifest list sha256:c1760422b1bbfedaa9e32170c4c8a9e4d233194a967417b344ea4a2ea0ac76a4 done\n#17 naming to docker.io/ctk-exec/wafw00f:69fbe3956bba done\n#17 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba\n#17 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba 0.8s done\n#17 DONE 1.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "wafw00f",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n",
+   "stderr": "",
+   "duration_ms": 302,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "wafw00f"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for wafw00f\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "wafw00f"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'wafw00f' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "wafw00f",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--verbose": "Enable verbosity, multiple -v options increase verbosity",
+   "-v": "Enable verbosity, multiple -v options increase verbosity",
+   "--findall": "Find all WAFs which match the signatures, do not stop testing on the first one",
+   "-a": "Find all WAFs which match the signatures, do not stop testing on the first one",
+   "--noredirect": "Do not follow redirections given by 3xx responses",
+   "-r": "Do not follow redirections given by 3xx responses",
+   "--test": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+   "-t": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+   "--output": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+   "-o": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+   "--format": "Force output format to csv, json or text.",
+   "-f": "Force output format to csv, json or text.",
+   "--input-file": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+   "-i": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+   "--list": "List all WAFs that WAFW00F is able to detect",
+   "-l": "List all WAFs that WAFW00F is able to detect",
+   "--proxy": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+   "-p": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+   "--version": "Print out the current version of WafW00f and exit.",
+   "-V": "Print out the current version of WafW00f and exit.",
+   "--headers": "Pass custom headers via a text file to overwrite the default header set.",
+   "-H": "Pass custom headers via a text file to overwrite the default header set.",
+   "--timeout": "Set the timeout for the requests.",
+   "-T": "Set the timeout for the requests.",
+   "--no-colors": "Disable ANSI colors in output."
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--findall": [
+    "-a"
+   ],
+   "--noredirect": [
+    "-r"
+   ],
+   "--test": [
+    "-t"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--format": [
+    "-f"
+   ],
+   "--input-file": [
+    "-i"
+   ],
+   "--list": [
+    "-l"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--version": [
+    "-V"
+   ],
+   "--headers": [
+    "-H"
+   ],
+   "--timeout": [
+    "-T"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "8578e930ee2389273f5aae2a564cb73b1be29e687e12a091604961d1dcb45954",
+  "text": "Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--findall",
+   "--format",
+   "--headers",
+   "--help",
+   "--input-file",
+   "--list",
+   "--no-colors",
+   "--noredirect",
+   "--output",
+   "--proxy",
+   "--test",
+   "--timeout",
+   "--verbose",
+   "--version",
+   "-H",
+   "-T",
+   "-V",
+   "-a",
+   "-f",
+   "-h",
+   "-i",
+   "-l",
+   "-o",
+   "-p",
+   "-r",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--findall": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Find all WAFs which match the signatures, do not stop testing on the first one",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force output format to csv, json or text.",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Pass custom headers via a text file to overwrite the default header set.",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--input-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List all WAFs that WAFW00F is able to detect",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--no-colors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable ANSI colors in output."
+   },
+   "--noredirect": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not follow redirections given by 3xx responses",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--test": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the timeout for the requests.",
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable verbosity, multiple -v options increase verbosity",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print out the current version of WafW00f and exit.",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "wafw00f",
+ "repo": "EnableSecurity/wafw00f",
+ "head_sha": "69fbe3956bba47a172cf87e40e9037535d32a130",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:42:11.646039+00:00"
+}

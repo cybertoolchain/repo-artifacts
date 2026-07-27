@@ -1,0 +1,86 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:226a7d87ca759d8021d94d4819a43557f26082e6ec91f2394ece04a6707c45d7",
+  "duration_s": 72.29,
+  "log_tail": "#10 23.10 go: downloading github.com/go-openapi/swag/cmdutils v0.26.1\n#10 23.25 go: downloading github.com/go-openapi/swag/netutils v0.26.1\n#10 23.25 go: downloading github.com/coreos/go-systemd/v22 v22.7.0\n#10 23.25 go: downloading github.com/coreos/go-semver v0.3.1\n#10 23.25 go: downloading go.uber.org/multierr v1.11.0\n#10 23.77 go: downloading github.com/x448/float16 v0.8.4\n#10 23.78 go: downloading github.com/emicklei/go-restful/v3 v3.13.0\n#10 23.94 go: downloading github.com/cloudflare/circl v1.6.3\n#10 24.29 go: downloading github.com/rivo/uniseg v0.4.4\n#10 24.31 go: downloading github.com/dylibso/observe-sdk/go v0.0.0-20240819160327-2d926c5d788a\n#10 25.05 go: downloading github.com/lann/ps v0.0.0-20150810152359-62de8c46ede0\n#10 25.24 go: downloading github.com/google/renameio/v2 v2.0.2\n#10 25.24 go: downloading github.com/grpc-ecosystem/grpc-gateway/v2 v2.28.0\n#10 25.41 go: downloading github.com/ianlancetaylor/demangle v0.0.0-20250417193237-f615e6bd150b\n#10 25.83 go: downloading github.com/tetratelabs/wabin v0.0.0-20230304001439-f6f874872834\n#10 26.50 go: downloading go.opentelemetry.io/otel/metric v1.44.0\n#10 26.50 go: downloading github.com/go-logr/stdr v1.2.2\n#10 26.50 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#10 DONE 56.0s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.121 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 4.9s done\n#17 exporting manifest sha256:59fc85590cdaf739baa62cb81254c218c004efe432c7299e08d3d6844b193f31 done\n#17 exporting config sha256:400382714bf51cb098e4e0a7e3fb924a53db5dd50d0dd48f853b03d619cd87e2 done\n#17 exporting attestation manifest sha256:676ce716abbd6dcfc851a1b0434e2f7b3683343d4a71822fe19f636bc7c02143 done\n#17 exporting manifest list sha256:226a7d87ca759d8021d94d4819a43557f26082e6ec91f2394ece04a6707c45d7 done\n#17 naming to docker.io/ctk-exec/cilium-cli:0d65932c2986 done\n#17 unpacking to docker.io/ctk-exec/cilium-cli:0d65932c2986\n#17 unpacking to docker.io/ctk-exec/cilium-cli:0d65932c2986 1.2s done\n#17 DONE 6.1s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cilium-cli",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'cilium-cli'"
+  },
+  {
+   "argv": [
+    "man",
+    "tool"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for tool\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "tool"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'tool' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "tool": "cilium-cli",
+ "repo": "cilium/cilium-cli",
+ "head_sha": "0d65932c2986c9f32cc685ddb55d626e4e7b18ed",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:18:00.054265+00:00"
+}

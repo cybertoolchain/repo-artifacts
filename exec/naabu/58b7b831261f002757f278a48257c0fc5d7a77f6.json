@@ -1,0 +1,2347 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:0e2b3f578060681bf3869c1e8e83ab265dbfeb5c3f6fbc4b9bbe0fb20d32f9af",
+  "duration_s": 24.75,
+  "log_tail": "#10 3.440 go: downloading github.com/gorilla/css v1.0.1\n#10 3.653 go: downloading github.com/tklauser/numcpus v0.11.0\n#10 3.653 go: downloading github.com/klauspost/compress v1.18.2\n#10 3.653 go: downloading github.com/yuin/goldmark v1.7.4\n#10 3.654 go: downloading github.com/yuin/goldmark-emoji v1.0.3\n#10 3.654 go: downloading github.com/andybalholm/brotli v1.2.0\n#10 3.654 go: downloading github.com/muesli/termenv v0.15.3-0.20240618155329-98d742f6907a\n#10 3.997 go: downloading github.com/alecthomas/chroma/v2 v2.14.0\n#10 4.233 go: downloading github.com/charmbracelet/lipgloss v0.13.0\n#10 5.121 go: downloading github.com/charmbracelet/x/ansi v0.3.2\n#10 5.121 go: downloading github.com/muesli/reflow v0.3.0\n#10 5.121 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#10 5.121 go: downloading github.com/zmap/rc2 v0.0.0-20190804163417-abaa70531248\n#10 5.247 go: downloading github.com/lucasb-eyer/go-colorful v1.2.0\n#10 5.247 go: downloading github.com/aymanbagabas/go-osc52/v2 v2.0.1\n#10 ...\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 DONE 20.7s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.101 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 1.8s done\n#17 exporting manifest sha256:490a1f05f3ba55e825ff267858346b3981e446fd0ee4aa0116740840330d5a92 done\n#17 exporting config sha256:7b8a1c86b3b0f46af7e0b39f0140db6cd65ab62c2d312d49f1493d9adabd0ddd done\n#17 exporting attestation manifest sha256:6909a0f61fd06c5dbe9d5a99f684b466c9be7e2d3dad556bec3d4821893f688b done\n#17 exporting manifest list sha256:0e2b3f578060681bf3869c1e8e83ab265dbfeb5c3f6fbc4b9bbe0fb20d32f9af done\n#17 naming to docker.io/ctk-exec/naabu:58b7b831261f done\n#17 unpacking to docker.io/ctk-exec/naabu:58b7b831261f\n#17 unpacking to docker.io/ctk-exec/naabu:58b7b831261f 0.9s done\n#17 DONE 2.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "naabu",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Naabu is a port scanning tool written in Go that allows you to enumerate open ports for hosts in a fast and reliable manner.\n\nUsage:\n  naabu [flags]\n\nFlags:\nINPUT:\n   -host string[]              hosts to scan ports for (comma-separated)\n   -list, -l string            list of hosts to scan ports (file)\n   -exclude-hosts, -eh string  hosts to exclude from the scan (comma-separated)\n   -exclude-file, -ef string   list of hosts to exclude from scan (file)\n\nPORT:\n   -port, -p string              ports to scan (80,443, 100-200)\n   -top-ports, -tp string        top ports to scan (default 100) [full,100,1000]\n   -exclude-ports, -ep string[]  ports to exclude from scan (file or comma-separated)\n   -ports-file, -pf string[]     list of ports to scan (file or comma-separated)\n   -port-threshold, -pts int     port threshold to skip port scan for the host\n   -exclude-cdn, -ec             skip full port scans for CDN/WAF (only scan for port 80,443)\n   -display-cdn, -cdn            display cdn in use\n\nRATE-LIMIT:\n   -c int     general internal worker threads (default 25)\n   -rate int  packets to send per second (default 1000)\n\nUPDATE:\n   -up, -update                 update naabu to latest version\n   -duc, -disable-update-check  disable automatic naabu update check\n\nOUTPUT:\n   -o, -output string                     file to write output to (optional)\n   -lof, -list-output-fields              list of fields to output (comma separated)\n   -eof, -exclude-output-fields string[]  exclude output fields output based on a condition\n   -j, -json                              write output in JSON lines format\n   -csv                                   write output in csv format\n\nCONFIGURATION:\n   -config string                   path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)\n   -scan-all-ips, -sa               scan all the IP's associated with DNS record\n   -ip-version, -iv string[]        ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])\n   -scan-type, -s string            type of port scan (SYN/CONNECT) (default \"c\")\n   -source-ip string                source ip and port (x.x.x.x:yyy - might not work on OSX) \n   -connect-payload, -cp string     payload to send in CONNECT scans (optional)\n   -interface-list, -il             list available interfaces and public ip\n   -interface, -i string            network Interface to use for port scan\n   -nmap                            invoke nmap scan on targets (nmap must be installed) - Deprecated\n   -nmap-cli string                 nmap command to run on found results (example: -nmap-cli 'nmap -sV')\n   -r string                        list of custom resolver dns resolution (comma separated or from file)\n   -proxy string                    socks5 proxy (ip[:port] / fqdn[:port]\n   -proxy-auth string               socks5 proxy authentication (username:password)\n   -dns-order string                dns resolution order (p/l/lp/pl) (default \"l\")\n   -sr, -system-resolver            use system DNS as fallback resolver\n   -resume                          resume scan using resume.cfg\n   -stream                          stream mode (disables resume, nmap, verify, retries, shuffling, etc)\n   -passive                         display passive open ports using shodan internetdb api (automatically enables stream mode)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -no-stdin                        Disable Stdin processing\n\nHOST-DISCOVERY:\n   -sn, -host-discovery           Perform Only Host Discovery\n   -show-dead                     show hosts that did not respond to host discovery (requires host discovery)\n   -Pn, -skip-host-discovery      Skip Host discovery\n   -wn, -with-host-discovery      Enable Host discovery\n   -ps, -probe-tcp-syn string[]   TCP SYN Ping (host discovery needs to be enabled)\n   -pa, -probe-tcp-ack string[]   TCP ACK Ping (host discovery needs to be enabled)\n   -pe, -probe-icmp-echo          ICMP echo request Ping (host discovery needs to be enabled)\n   -pp, -probe-icmp-timestamp     ICMP timestamp request Ping (host discovery needs to be enabled)\n   -pm, -probe-icmp-address-mask  ICMP address mask request Ping (host discovery needs to be enabled)\n   -arp, -arp-ping                ARP ping (host discovery needs to be enabled)\n   -nd, -nd-ping                  IPv6 Neighbor Discovery (host discovery needs to be enabled)\n   -rev-ptr                       Reverse PTR lookup for input ips\n\nSERVICES-DISCOVERY:\n   -sD, -service-discovery  Service Discovery\n   -sV, -service-version    Service Version\n   -sV-fast                 only probe port-hinted services (faster)\n   -sV-timeout value        timeout for service version probes (default 5s)\n   -sV-workers int          number of concurrent service version workers (default 25)\n   -sV-probes string        custom nmap-service-probes file path (auto-detected from local nmap install if empty)\n   -uP, -udp-probes         send protocol-specific payloads on UDP scans using nmap-service-probes\n\nOPTIMIZATION:\n   -retries int                    number of retries for the port scan (default 3)\n   -timeout value                  millisecond to wait before timing out (default 1s)\n   -warm-up-time int               time in seconds between scan phases (default 2)\n   -ping                           ping probes for verification of host\n   -verify                         validate the ports again with TCP verification\n   -ss, -smart-scan                predictive port scanning using port correlation model (not compatible with stream mode)\n   -pt, -prediction-threshold int  minimum confidence for port predictions (0-100%) (default 20)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -debug                    display debugging information\n   -verbose, -v              display verbose output\n   -no-color, -nc            disable colors in CLI output\n   -silent                   display only results in output\n   -version                  display version of naabu\n   -stats                    display stats of the running scan (deprecated)\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (deprecated) (default 5)\n   -mp, -metrics-port int    port to expose naabu metrics on (default 63636)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -ac, -auth-config string        configure projectdiscovery cloud (pdcp) api key credential file\n   -pd, -dashboard                 upload / view output in projectdiscovery cloud (pdcp) UI dashboard\n   -tid, -team-id string           upload asset results to given team id (optional)\n   -aid, -asset-id string          upload new assets to existing asset id (optional)\n   -aname, -asset-name string      assets group name to set (optional)\n   -pdu, -dashboard-upload string  upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\n",
+   "stderr": "",
+   "duration_ms": 41,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "naabu"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for naabu\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "naabu"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'naabu' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "naabu",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-host": "hosts to scan ports for (comma-separated)",
+   "-list": "list of hosts to scan ports (file)",
+   "-l": "list of hosts to scan ports (file)",
+   "-exclude-hosts": "hosts to exclude from the scan (comma-separated)",
+   "-eh": "hosts to exclude from the scan (comma-separated)",
+   "-exclude-file": "list of hosts to exclude from scan (file)",
+   "-ef": "list of hosts to exclude from scan (file)",
+   "-port": "ports to scan (80,443, 100-200)",
+   "-p": "ports to scan (80,443, 100-200)",
+   "-top-ports": "top ports to scan (default 100) [full,100,1000]",
+   "-tp": "top ports to scan (default 100) [full,100,1000]",
+   "-exclude-ports": "ports to exclude from scan (file or comma-separated)",
+   "-ep": "ports to exclude from scan (file or comma-separated)",
+   "-ports-file": "list of ports to scan (file or comma-separated)",
+   "-pf": "list of ports to scan (file or comma-separated)",
+   "-port-threshold": "port threshold to skip port scan for the host",
+   "-pts": "port threshold to skip port scan for the host",
+   "-exclude-cdn": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+   "-ec": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+   "-display-cdn": "display cdn in use",
+   "-cdn": "display cdn in use",
+   "-c": "general internal worker threads (default 25)",
+   "-rate": "packets to send per second (default 1000)",
+   "-up": "update naabu to latest version",
+   "-update": "update naabu to latest version",
+   "-duc": "disable automatic naabu update check",
+   "-disable-update-check": "disable automatic naabu update check",
+   "-o": "file to write output to (optional)",
+   "-output": "file to write output to (optional)",
+   "-lof": "list of fields to output (comma separated)",
+   "-list-output-fields": "list of fields to output (comma separated)",
+   "-eof": "exclude output fields output based on a condition",
+   "-exclude-output-fields": "exclude output fields output based on a condition",
+   "-j": "write output in JSON lines format",
+   "-json": "write output in JSON lines format",
+   "-csv": "write output in csv format",
+   "-config": "path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)",
+   "-scan-all-ips": "scan all the IP's associated with DNS record",
+   "-sa": "scan all the IP's associated with DNS record",
+   "-ip-version": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+   "-iv": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+   "-scan-type": "type of port scan (SYN/CONNECT) (default \"c\")",
+   "-s": "type of port scan (SYN/CONNECT) (default \"c\")",
+   "-source-ip": "source ip and port (x.x.x.x:yyy - might not work on OSX)",
+   "-connect-payload": "payload to send in CONNECT scans (optional)",
+   "-cp": "payload to send in CONNECT scans (optional)",
+   "-interface-list": "list available interfaces and public ip",
+   "-il": "list available interfaces and public ip",
+   "-interface": "network Interface to use for port scan",
+   "-i": "network Interface to use for port scan",
+   "-nmap": "invoke nmap scan on targets (nmap must be installed) - Deprecated",
+   "-nmap-cli": "nmap command to run on found results (example: -nmap-cli 'nmap -sV')",
+   "-r": "list of custom resolver dns resolution (comma separated or from file)",
+   "-proxy": "socks5 proxy (ip[:port] / fqdn[:port]",
+   "-proxy-auth": "socks5 proxy authentication (username:password)",
+   "-dns-order": "dns resolution order (p/l/lp/pl) (default \"l\")",
+   "-sr": "use system DNS as fallback resolver",
+   "-system-resolver": "use system DNS as fallback resolver",
+   "-resume": "resume scan using resume.cfg",
+   "-stream": "stream mode (disables resume, nmap, verify, retries, shuffling, etc)",
+   "-passive": "display passive open ports using shodan internetdb api (automatically enables stream mode)",
+   "-irt": "timeout on input read (default 3m0s)",
+   "-input-read-timeout": "timeout on input read (default 3m0s)",
+   "-no-stdin": "Disable Stdin processing",
+   "-sn": "Perform Only Host Discovery",
+   "-host-discovery": "Perform Only Host Discovery",
+   "-show-dead": "show hosts that did not respond to host discovery (requires host discovery)",
+   "-Pn": "Skip Host discovery",
+   "-skip-host-discovery": "Skip Host discovery",
+   "-wn": "Enable Host discovery",
+   "-with-host-discovery": "Enable Host discovery",
+   "-ps": "TCP SYN Ping (host discovery needs to be enabled)",
+   "-probe-tcp-syn": "TCP SYN Ping (host discovery needs to be enabled)",
+   "-pa": "TCP ACK Ping (host discovery needs to be enabled)",
+   "-probe-tcp-ack": "TCP ACK Ping (host discovery needs to be enabled)",
+   "-pe": "ICMP echo request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-echo": "ICMP echo request Ping (host discovery needs to be enabled)",
+   "-pp": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-timestamp": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+   "-pm": "ICMP address mask request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-address-mask": "ICMP address mask request Ping (host discovery needs to be enabled)",
+   "-arp": "ARP ping (host discovery needs to be enabled)",
+   "-arp-ping": "ARP ping (host discovery needs to be enabled)",
+   "-nd": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+   "-nd-ping": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+   "-rev-ptr": "Reverse PTR lookup for input ips",
+   "-sD": "Service Discovery",
+   "-service-discovery": "Service Discovery",
+   "-sV": "Service Version",
+   "-service-version": "Service Version",
+   "-sV-fast": "only probe port-hinted services (faster)",
+   "-sV-timeout": "timeout for service version probes (default 5s)",
+   "-sV-workers": "number of concurrent service version workers (default 25)",
+   "-sV-probes": "custom nmap-service-probes file path (auto-detected from local nmap install if empty)",
+   "-uP": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+   "-udp-probes": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+   "-retries": "number of retries for the port scan (default 3)",
+   "-timeout": "millisecond to wait before timing out (default 1s)",
+   "-warm-up-time": "time in seconds between scan phases (default 2)",
+   "-ping": "ping probes for verification of host",
+   "-verify": "validate the ports again with TCP verification",
+   "-ss": "predictive port scanning using port correlation model (not compatible with stream mode)",
+   "-smart-scan": "predictive port scanning using port correlation model (not compatible with stream mode)",
+   "-pt": "minimum confidence for port predictions (0-100%) (default 20)",
+   "-prediction-threshold": "minimum confidence for port predictions (0-100%) (default 20)",
+   "-health-check": "run diagnostic check up",
+   "-hc": "run diagnostic check up",
+   "-debug": "display debugging information",
+   "-verbose": "display verbose output",
+   "-v": "display verbose output",
+   "-no-color": "disable colors in CLI output",
+   "-nc": "disable colors in CLI output",
+   "-silent": "display only results in output",
+   "-version": "display version of naabu",
+   "-stats": "display stats of the running scan (deprecated)",
+   "-si": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+   "-stats-interval": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+   "-mp": "port to expose naabu metrics on (default 63636)",
+   "-metrics-port": "port to expose naabu metrics on (default 63636)",
+   "-auth": "configure projectdiscovery cloud (pdcp) api key (default true)",
+   "-ac": "configure projectdiscovery cloud (pdcp) api key credential file",
+   "-auth-config": "configure projectdiscovery cloud (pdcp) api key credential file",
+   "-pd": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+   "-tid": "upload asset results to given team id (optional)",
+   "-team-id": "upload asset results to given team id (optional)",
+   "-aid": "upload new assets to existing asset id (optional)",
+   "-asset-id": "upload new assets to existing asset id (optional)",
+   "-aname": "assets group name to set (optional)",
+   "-asset-name": "assets group name to set (optional)",
+   "-pdu": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard-upload": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard"
+  },
+  "aliases": {
+   "-list": [
+    "-l"
+   ],
+   "-exclude-hosts": [
+    "-eh"
+   ],
+   "-exclude-file": [
+    "-ef"
+   ],
+   "-port": [
+    "-p"
+   ],
+   "-top-ports": [
+    "-tp"
+   ],
+   "-exclude-ports": [
+    "-ep"
+   ],
+   "-ports-file": [
+    "-pf"
+   ],
+   "-port-threshold": [
+    "-pts"
+   ],
+   "-exclude-cdn": [
+    "-ec"
+   ],
+   "-display-cdn": [
+    "-cdn"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-lof": [
+    "-list-output-fields"
+   ],
+   "-eof": [
+    "-exclude-output-fields"
+   ],
+   "-j": [
+    "-json"
+   ],
+   "-scan-all-ips": [
+    "-sa"
+   ],
+   "-ip-version": [
+    "-iv"
+   ],
+   "-scan-type": [
+    "-s"
+   ],
+   "-connect-payload": [
+    "-cp"
+   ],
+   "-interface-list": [
+    "-il"
+   ],
+   "-interface": [
+    "-i"
+   ],
+   "-sr": [
+    "-system-resolver"
+   ],
+   "-irt": [
+    "-input-read-timeout"
+   ],
+   "-sn": [
+    "-host-discovery"
+   ],
+   "-Pn": [
+    "-skip-host-discovery"
+   ],
+   "-wn": [
+    "-with-host-discovery"
+   ],
+   "-ps": [
+    "-probe-tcp-syn"
+   ],
+   "-pa": [
+    "-probe-tcp-ack"
+   ],
+   "-pe": [
+    "-probe-icmp-echo"
+   ],
+   "-pp": [
+    "-probe-icmp-timestamp"
+   ],
+   "-pm": [
+    "-probe-icmp-address-mask"
+   ],
+   "-arp": [
+    "-arp-ping"
+   ],
+   "-nd": [
+    "-nd-ping"
+   ],
+   "-sD": [
+    "-service-discovery"
+   ],
+   "-sV": [
+    "-service-version"
+   ],
+   "-uP": [
+    "-udp-probes"
+   ],
+   "-ss": [
+    "-smart-scan"
+   ],
+   "-pt": [
+    "-prediction-threshold"
+   ],
+   "-health-check": [
+    "-hc"
+   ],
+   "-verbose": [
+    "-v"
+   ],
+   "-no-color": [
+    "-nc"
+   ],
+   "-si": [
+    "-stats-interval"
+   ],
+   "-mp": [
+    "-metrics-port"
+   ],
+   "-ac": [
+    "-auth-config"
+   ],
+   "-pd": [
+    "-dashboard"
+   ],
+   "-tid": [
+    "-team-id"
+   ],
+   "-aid": [
+    "-asset-id"
+   ],
+   "-aname": [
+    "-asset-name"
+   ],
+   "-pdu": [
+    "-dashboard-upload"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2474be6d1a6ce8d5844efc7ec38817d8e3c07732b1a753d19fd085d10c13140d",
+  "text": "Naabu is a port scanning tool written in Go that allows you to enumerate open ports for hosts in a fast and reliable manner.\n\nUsage:\n  naabu [flags]\n\nFlags:\nINPUT:\n   -host string[]              hosts to scan ports for (comma-separated)\n   -list, -l string            list of hosts to scan ports (file)\n   -exclude-hosts, -eh string  hosts to exclude from the scan (comma-separated)\n   -exclude-file, -ef string   list of hosts to exclude from scan (file)\n\nPORT:\n   -port, -p string              ports to scan (80,443, 100-200)\n   -top-ports, -tp string        top ports to scan (default 100) [full,100,1000]\n   -exclude-ports, -ep string[]  ports to exclude from scan (file or comma-separated)\n   -ports-file, -pf string[]     list of ports to scan (file or comma-separated)\n   -port-threshold, -pts int     port threshold to skip port scan for the host\n   -exclude-cdn, -ec             skip full port scans for CDN/WAF (only scan for port 80,443)\n   -display-cdn, -cdn            display cdn in use\n\nRATE-LIMIT:\n   -c int     general internal worker threads (default 25)\n   -rate int  packets to send per second (default 1000)\n\nUPDATE:\n   -up, -update                 update naabu to latest version\n   -duc, -disable-update-check  disable automatic naabu update check\n\nOUTPUT:\n   -o, -output string                     file to write output to (optional)\n   -lof, -list-output-fields              list of fields to output (comma separated)\n   -eof, -exclude-output-fields string[]  exclude output fields output based on a condition\n   -j, -json                              write output in JSON lines format\n   -csv                                   write output in csv format\n\nCONFIGURATION:\n   -config string                   path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)\n   -scan-all-ips, -sa               scan all the IP's associated with DNS record\n   -ip-version, -iv string[]        ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])\n   -scan-type, -s string            type of port scan (SYN/CONNECT) (default \"c\")\n   -source-ip string                source ip and port (x.x.x.x:yyy - might not work on OSX) \n   -connect-payload, -cp string     payload to send in CONNECT scans (optional)\n   -interface-list, -il             list available interfaces and public ip\n   -interface, -i string            network Interface to use for port scan\n   -nmap                            invoke nmap scan on targets (nmap must be installed) - Deprecated\n   -nmap-cli string                 nmap command to run on found results (example: -nmap-cli 'nmap -sV')\n   -r string                        list of custom resolver dns resolution (comma separated or from file)\n   -proxy string                    socks5 proxy (ip[:port] / fqdn[:port]\n   -proxy-auth string               socks5 proxy authentication (username:password)\n   -dns-order string                dns resolution order (p/l/lp/pl) (default \"l\")\n   -sr, -system-resolver            use system DNS as fallback resolver\n   -resume                          resume scan using resume.cfg\n   -stream                          stream mode (disables resume, nmap, verify, retries, shuffling, etc)\n   -passive                         display passive open ports using shodan internetdb api (automatically enables stream mode)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -no-stdin                        Disable Stdin processing\n\nHOST-DISCOVERY:\n   -sn, -host-discovery           Perform Only Host Discovery\n   -show-dead                     show hosts that did not respond to host discovery (requires host discovery)\n   -Pn, -skip-host-discovery      Skip Host discovery\n   -wn, -with-host-discovery      Enable Host discovery\n   -ps, -probe-tcp-syn string[]   TCP SYN Ping (host discovery needs to be enabled)\n   -pa, -probe-tcp-ack string[]   TCP ACK Ping (host discovery needs to be enabled)\n   -pe, -probe-icmp-echo          ICMP echo request Ping (host discovery needs to be enabled)\n   -pp, -probe-icmp-timestamp     ICMP timestamp request Ping (host discovery needs to be enabled)\n   -pm, -probe-icmp-address-mask  ICMP address mask request Ping (host discovery needs to be enabled)\n   -arp, -arp-ping                ARP ping (host discovery needs to be enabled)\n   -nd, -nd-ping                  IPv6 Neighbor Discovery (host discovery needs to be enabled)\n   -rev-ptr                       Reverse PTR lookup for input ips\n\nSERVICES-DISCOVERY:\n   -sD, -service-discovery  Service Discovery\n   -sV, -service-version    Service Version\n   -sV-fast                 only probe port-hinted services (faster)\n   -sV-timeout value        timeout for service version probes (default 5s)\n   -sV-workers int          number of concurrent service version workers (default 25)\n   -sV-probes string        custom nmap-service-probes file path (auto-detected from local nmap install if empty)\n   -uP, -udp-probes         send protocol-specific payloads on UDP scans using nmap-service-probes\n\nOPTIMIZATION:\n   -retries int                    number of retries for the port scan (default 3)\n   -timeout value                  millisecond to wait before timing out (default 1s)\n   -warm-up-time int               time in seconds between scan phases (default 2)\n   -ping                           ping probes for verification of host\n   -verify                         validate the ports again with TCP verification\n   -ss, -smart-scan                predictive port scanning using port correlation model (not compatible with stream mode)\n   -pt, -prediction-threshold int  minimum confidence for port predictions (0-100%) (default 20)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -debug                    display debugging information\n   -verbose, -v              display verbose output\n   -no-color, -nc            disable colors in CLI output\n   -silent                   display only results in output\n   -version                  display version of naabu\n   -stats                    display stats of the running scan (deprecated)\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (deprecated) (default 5)\n   -mp, -metrics-port int    port to expose naabu metrics on (default 63636)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -ac, -auth-config string        configure projectdiscovery cloud (pdcp) api key credential file\n   -pd, -dashboard                 upload / view output in projectdiscovery cloud (pdcp) UI dashboard\n   -tid, -team-id string           upload asset results to given team id (optional)\n   -aid, -asset-id string          upload new assets to existing asset id (optional)\n   -aname, -asset-name string      assets group name to set (optional)\n   -pdu, -dashboard-upload string  upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-arp-ping",
+   "-asset-id",
+   "-asset-name",
+   "-auth",
+   "-auth-config",
+   "-config",
+   "-connect-payload",
+   "-csv",
+   "-dashboard",
+   "-dashboard-upload",
+   "-debug",
+   "-disable-update-check",
+   "-display-cdn",
+   "-dns-order",
+   "-exclude-cdn",
+   "-exclude-file",
+   "-exclude-hosts",
+   "-exclude-ports",
+   "-health-check",
+   "-host",
+   "-host-discovery",
+   "-input-read-timeout",
+   "-interface",
+   "-interface-list",
+   "-ip-version",
+   "-json",
+   "-list",
+   "-metrics-port",
+   "-nd-ping",
+   "-nmap",
+   "-nmap-cli",
+   "-no-color",
+   "-no-stdin",
+   "-output",
+   "-passive",
+   "-ping",
+   "-port",
+   "-port-threshold",
+   "-ports-file",
+   "-prediction-threshold",
+   "-probe-icmp-address-mask",
+   "-probe-icmp-echo",
+   "-probe-icmp-timestamp",
+   "-probe-tcp-ack",
+   "-probe-tcp-syn",
+   "-proxy",
+   "-proxy-auth",
+   "-rate",
+   "-resume",
+   "-retries",
+   "-rev-ptr",
+   "-scan-all-ips",
+   "-scan-type",
+   "-silent",
+   "-skip-host-discovery",
+   "-smart-scan",
+   "-source-ip",
+   "-stats",
+   "-stats-interval",
+   "-stream",
+   "-system-resolver",
+   "-team-id",
+   "-timeout",
+   "-top-ports",
+   "-update",
+   "-verbose",
+   "-verify",
+   "-version",
+   "-warm-up-time",
+   "-with-host-discovery"
+  ],
+  "unconfirmed": [
+   "--Pn",
+   "--c",
+   "--config",
+   "--debug",
+   "--dev",
+   "--exclude",
+   "--exclude-cdn",
+   "--exclude-file",
+   "--exclude-hosts",
+   "--exclude-ports",
+   "--hL",
+   "--host",
+   "--iL",
+   "--icmp-echo-probe",
+   "--icmp-timestamp-probe",
+   "--interface",
+   "--interface-list",
+   "--json",
+   "--main",
+   "--nC",
+   "--nmap",
+   "--nmap-cli",
+   "--no-color",
+   "--no-probe",
+   "--o",
+   "--oD",
+   "--oJ",
+   "--p",
+   "--ping",
+   "--port-probe",
+   "--ports",
+   "--ports-file",
+   "--privileged",
+   "--rate",
+   "--retries",
+   "--s",
+   "--scan-all-ips",
+   "--silent",
+   "--source-ip",
+   "--stats",
+   "--t",
+   "--testcases",
+   "--timeout",
+   "--top-ports",
+   "--unprivileged",
+   "--v",
+   "--verify",
+   "--version",
+   "--warm-up-time",
+   "-iL"
+  ],
+  "help_only": [
+   "-Pn",
+   "-ac",
+   "-aid",
+   "-aname",
+   "-arp",
+   "-c",
+   "-cdn",
+   "-cp",
+   "-duc",
+   "-ec",
+   "-ef",
+   "-eh",
+   "-eof",
+   "-ep",
+   "-exclude-output-fields",
+   "-hc",
+   "-i",
+   "-il",
+   "-irt",
+   "-iv",
+   "-j",
+   "-l",
+   "-list-output-fields",
+   "-lof",
+   "-mp",
+   "-nc",
+   "-nd",
+   "-o",
+   "-p",
+   "-pa",
+   "-pd",
+   "-pdu",
+   "-pe",
+   "-pf",
+   "-pm",
+   "-pp",
+   "-ps",
+   "-pt",
+   "-pts",
+   "-r",
+   "-s",
+   "-sD",
+   "-sV",
+   "-sV-fast",
+   "-sV-probes",
+   "-sV-timeout",
+   "-sV-workers",
+   "-sa",
+   "-service-discovery",
+   "-service-version",
+   "-show-dead",
+   "-si",
+   "-sn",
+   "-sr",
+   "-ss",
+   "-tid",
+   "-tp",
+   "-uP",
+   "-udp-probes",
+   "-up",
+   "-v",
+   "-wn"
+  ],
+  "mining_coverage": 0.5303030303030303
+ },
+ "surface": {
+  "flags": {
+   "--Pn": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use ping probes for verification of host",
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2020-03-17T00:29:16+05:30",
+    "last_tag": "v1.1.4",
+    "last_date": "2020-07-13T19:25:55+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "General internal worker threads",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Config file",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--debug": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable debugging information",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2020-07-13T19:25:55+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--dev": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dev Branch Naabu Binary",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--exclude": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specifies a comma-separated list of targets to be excluded from the scan (ip, cidr)",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-06-07T02:50:13+05:30",
+    "last_tag": "v1.1.4",
+    "last_date": "2020-07-13T19:25:55+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--exclude-cdn": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip full port scans for CDNs (only checks for 80,443)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--exclude-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specifies a newline-delimited file with targets to be excluded from the scan (ip, cidr)",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-06-07T02:50:13+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--exclude-hosts": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specifies a comma-separated list of targets to be excluded from the scan (ip, cidr)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--exclude-ports": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ports to exclude from enumeration",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--hL": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File containing list of hosts to enumerate ports",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v1.1.4",
+    "last_date": "2020-07-13T19:25:55+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Host to find ports for",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--iL": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File containing list of hosts to enumerate ports",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--icmp-echo-probe": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use ICMP_ECHO_REQUEST probe",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--icmp-timestamp-probe": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use ICMP_ECHO_REQUEST probe",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--interface": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Network Interface to use for port scan",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--interface-list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List available interfaces and public ip",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output in JSON lines Format",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-06-07T02:50:13+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--main": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Main Branch Naabu Binary",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--nC": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't Use colors in output",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--nmap": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Invoke nmap scan on targets (nmap must be installed)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--nmap-cli": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Nmap command line (invoked as COMMAND + TARGETS)",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--no-color": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't Use colors in output",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--no-probe": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip all probes for verification of host",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File to write output to (optional)",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--oD": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Directory to write enumeration results to (optional)",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v1.1.4",
+    "last_date": "2020-07-13T19:25:55+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--oJ": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output in JSON lines Format",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v1.1.1",
+    "last_date": "2020-03-17T00:29:16+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--p": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ports to scan (80, 80,443, 100-200, (-p - for full port scan)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--ping": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use ping probes for verification of host",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--port-probe": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port probes for hosts (default SYN - 80, ACK - 443)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--ports": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ports to enumerate for on hosts (top-1000, full, custom, default: top-100)",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v1.1.4",
+    "last_date": "2020-07-13T19:25:55+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--ports-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File containing ports to enumerate for on hosts",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--privileged": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Attempts to run as root - Use sudo if possible",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--rate": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Rate of port scan probe requests",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--retries": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Number of retries for the port scan probe",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--s": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Scan Type (s - SYN, c - CONNECT)",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--scan-all-ips": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Scan all the ips",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show found ports only in output",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--source-ip": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Source Ip",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--stats": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Display stats of the running scan",
+    "kind": "option",
+    "first_tag": "v2.0.3",
+    "first_date": "2020-12-12T11:07:23+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Number of concurrent goroutines for resolving",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.0",
+    "last_date": "2020-09-22T22:34:12+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "pkg/runner/options.go"
+   },
+   "--testcases": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Test cases file for Naabu functional tests",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Millisecond to wait before timing out",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--top-ports": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Top Ports to scan (default top 100)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--unprivileged": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Drop root privileges",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2020-09-24T02:05:04+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show Verbose output",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--verify": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Validate the ports again with TCP verification",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show version of naabu",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-01-21T23:48:48+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--warm-up-time": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Time in seconds between scan phases",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2020-09-22T22:34:12+02:00",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "-Pn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip Host discovery",
+    "aliases": [
+     "-skip-host-discovery"
+    ],
+    "kind": "option",
+    "first_tag": "v2.1.1",
+    "first_date": "2022-10-25T23:40:41+02:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ac": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "configure projectdiscovery cloud (pdcp) api key credential file",
+    "aliases": [
+     "-auth-config"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-aid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload new assets to existing asset id (optional)",
+    "aliases": [
+     "-asset-id"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-aname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "assets group name to set (optional)",
+    "aliases": [
+     "-asset-name"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-arp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ARP ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-arp-ping"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-auth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "configure projectdiscovery cloud (pdcp) api key (default true)",
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "general internal worker threads (default 25)"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-connect-payload": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "payload to send in CONNECT scans (optional)",
+    "kind": "option",
+    "first_tag": "v2.3.6",
+    "first_date": "2025-11-15T00:36:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-cp"
+    ]
+   },
+   "-csv": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "write output in csv format",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display debugging information",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-display-cdn": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display cdn in use",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-cdn"
+    ]
+   },
+   "-dns-order": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "dns resolution order (p/l/lp/pl) (default \"l\")",
+    "kind": "option",
+    "first_tag": "v2.6.0",
+    "first_date": "2026-04-23T07:21:41+03:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic naabu update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v2.1.7",
+    "first_date": "2023-08-19T14:06:56+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-eof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude output fields output based on a condition",
+    "aliases": [
+     "-exclude-output-fields"
+    ]
+   },
+   "-exclude-cdn": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-ec"
+    ]
+   },
+   "-exclude-file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list of hosts to exclude from scan (file)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-ef"
+    ]
+   },
+   "-exclude-hosts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "hosts to exclude from the scan (comma-separated)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-eh"
+    ]
+   },
+   "-exclude-ports": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ports to exclude from scan (file or comma-separated)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-ep"
+    ]
+   },
+   "-health-check": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "run diagnostic check up",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-hc"
+    ]
+   },
+   "-host": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "hosts to scan ports for (comma-separated)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-iL": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File containing list of hosts to enumerate ports",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.0.4",
+    "last_date": "2021-06-19T23:38:00+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-interface": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "network Interface to use for port scan",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "-interface-list": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list available interfaces and public ip",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-il"
+    ]
+   },
+   "-ip-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-iv"
+    ]
+   },
+   "-irt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout on input read (default 3m0s)",
+    "aliases": [
+     "-input-read-timeout"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in JSON lines format",
+    "aliases": [
+     "-json"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-list": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list of hosts to scan ports (file)",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2021-10-13T00:26:20+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "-lof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of fields to output (comma separated)",
+    "aliases": [
+     "-list-output-fields"
+    ]
+   },
+   "-mp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "port to expose naabu metrics on (default 63636)",
+    "aliases": [
+     "-metrics-port"
+    ],
+    "kind": "option",
+    "first_tag": "v2.1.6",
+    "first_date": "2023-04-30T20:34:25+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+    "aliases": [
+     "-nd-ping"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nmap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "invoke nmap scan on targets (nmap must be installed) - Deprecated",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nmap-cli": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "nmap command to run on found results (example: -nmap-cli 'nmap -sV')",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-no-color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable colors in CLI output",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-nc"
+    ]
+   },
+   "-no-stdin": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable Stdin processing",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write output to (optional)",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2021-10-13T00:26:20+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP ACK Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-tcp-ack"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-passive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display passive open ports using shodan internetdb api (automatically enables stream mode)",
+    "kind": "option",
+    "first_tag": "v2.0.7",
+    "first_date": "2022-05-10T21:44:11+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+    "aliases": [
+     "-dashboard"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pdu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+    "aliases": [
+     "-dashboard-upload"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP echo request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-echo"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ping": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ping probes for verification of host",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP address mask request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-address-mask"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ports to scan (80,443, 100-200)",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2021-10-13T00:26:20+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "-port-threshold": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "port threshold to skip port scan for the host",
+    "kind": "option",
+    "first_tag": "v2.1.1",
+    "first_date": "2022-10-25T23:40:41+02:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-pts"
+    ]
+   },
+   "-ports-file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list of ports to scan (file or comma-separated)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-pf"
+    ]
+   },
+   "-pp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-timestamp"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "socks5 proxy (ip[:port] / fqdn[:port]",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-proxy-auth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "socks5 proxy authentication (username:password)",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ps": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP SYN Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-tcp-syn"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "minimum confidence for port predictions (0-100%) (default 20)",
+    "aliases": [
+     "-prediction-threshold"
+    ],
+    "kind": "option",
+    "first_tag": "v2.6.0",
+    "first_date": "2026-04-23T07:21:41+03:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of custom resolver dns resolution (comma separated or from file)"
+   },
+   "-rate": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "packets to send per second (default 1000)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-resume": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "resume scan using resume.cfg",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-retries": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of retries for the port scan (default 3)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rev-ptr": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Reverse PTR lookup for input ips",
+    "kind": "option",
+    "first_tag": "v2.1.2",
+    "first_date": "2023-02-24T13:52:11+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sD": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Service Discovery",
+    "aliases": [
+     "-service-discovery"
+    ]
+   },
+   "-sV": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Service Version",
+    "aliases": [
+     "-service-version"
+    ]
+   },
+   "-sV-fast": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "only probe port-hinted services (faster)"
+   },
+   "-sV-probes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom nmap-service-probes file path (auto-detected from local nmap install if empty)"
+   },
+   "-sV-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout for service version probes (default 5s)"
+   },
+   "-sV-workers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of concurrent service version workers (default 25)"
+   },
+   "-scan-all-ips": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "scan all the IP's associated with DNS record",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-sa"
+    ]
+   },
+   "-scan-type": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "type of port scan (SYN/CONNECT) (default \"c\")",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2021-10-13T00:26:20+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "-show-dead": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show hosts that did not respond to host discovery (requires host discovery)"
+   },
+   "-si": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+    "aliases": [
+     "-stats-interval"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display only results in output",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Perform Only Host Discovery",
+    "aliases": [
+     "-host-discovery"
+    ],
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2022-07-23T02:34:43+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-source-ip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "source ip and port (x.x.x.x:yyy - might not work on OSX)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use system DNS as fallback resolver",
+    "aliases": [
+     "-system-resolver"
+    ],
+    "kind": "option",
+    "first_tag": "v2.6.0",
+    "first_date": "2026-04-23T07:21:41+03:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "predictive port scanning using port correlation model (not compatible with stream mode)",
+    "aliases": [
+     "-smart-scan"
+    ],
+    "kind": "option",
+    "first_tag": "v2.6.0",
+    "first_date": "2026-04-23T07:21:41+03:00",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-stats": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display stats of the running scan (deprecated)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-stream": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "stream mode (disables resume, nmap, verify, retries, shuffling, etc)",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload asset results to given team id (optional)",
+    "aliases": [
+     "-team-id"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.5",
+    "first_date": "2025-07-15T03:58:52+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "millisecond to wait before timing out (default 1s)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-top-ports": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "top ports to scan (default 100) [full,100,1000]",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-tp"
+    ]
+   },
+   "-uP": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+    "aliases": [
+     "-udp-probes"
+    ]
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update naabu to latest version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v2.1.7",
+    "first_date": "2023-08-19T14:06:56+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display verbose output",
+    "kind": "option",
+    "first_tag": "v2.0.6",
+    "first_date": "2022-03-31T16:41:46+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "-verify": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "validate the ports again with TCP verification",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display version of naabu",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-warm-up-time": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "time in seconds between scan phases (default 2)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2021-06-19T23:38:00+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-wn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable Host discovery",
+    "aliases": [
+     "-with-host-discovery"
+    ],
+    "kind": "option",
+    "first_tag": "v2.3.3",
+    "first_date": "2024-11-29T04:24:45+05:30",
+    "last_tag": "v2.6.1",
+    "last_date": "2026-05-05T20:59:23+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "naabu",
+ "repo": "projectdiscovery/naabu",
+ "head_sha": "58b7b831261f002757f278a48257c0fc5d7a77f6",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:30:02.772846+00:00"
+}

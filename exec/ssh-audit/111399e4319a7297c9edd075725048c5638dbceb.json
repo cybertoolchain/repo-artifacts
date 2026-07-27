@@ -1,0 +1,676 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:6cdac654037b5cccb2e277ad4187ee7465a6785425e6868443427ab4d7f9e1b3",
+  "duration_s": 7.55,
+  "log_tail": "#10 2.546     Uninstalling pip-25.0.1:\n#10 2.548       Successfully uninstalled pip-25.0.1\n#10 3.003 Successfully installed pip-26.1.2\n#10 3.539 Processing ./.\n#10 3.540   Installing build dependencies: started\n#10 5.503   Installing build dependencies: finished with status 'done'\n#10 5.503   Getting requirements to build wheel: started\n#10 5.658   Getting requirements to build wheel: finished with status 'done'\n#10 5.658   Preparing metadata (pyproject.toml): started\n#10 5.732   Preparing metadata (pyproject.toml): finished with status 'done'\n#10 5.733 Building wheels for collected packages: ssh-audit\n#10 5.734   Building wheel for ssh-audit (pyproject.toml): started\n#10 5.831   Building wheel for ssh-audit (pyproject.toml): finished with status 'done'\n#10 5.832   Created wheel for ssh-audit: filename=ssh_audit-3.9.1.dev0-py3-none-any.whl size=127179 sha256=7dce1c800c6d81fbb279c5f95c81a2ccb651e0744dbf9317d894c985b24d8c20\n#10 5.832   Stored in directory: /tmp/pip-ephem-wheel-cache-8h3_e0qy/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 5.833 Successfully built ssh-audit\n#10 5.836 Installing collected packages: ssh-audit\n#10 5.872 Successfully installed ssh-audit-3.9.1.dev0\n#10 DONE 5.9s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.100 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.3s done\n#17 exporting manifest sha256:ed0ff284376051e3c0134f3af3cf132e5d1ffaebd0501fba9669d6c33f8956f6 done\n#17 exporting config sha256:6f3d13b190add7cdb545705c70ad8377d1bccb4e80d4860c2f8dc2d7426454da done\n#17 exporting attestation manifest sha256:9c432a1c2a364ddbad789b9922aa48cf747506a1ca25a2c1d2f7c87b40ad9e7c done\n#17 exporting manifest list sha256:6cdac654037b5cccb2e277ad4187ee7465a6785425e6868443427ab4d7f9e1b3 done\n#17 naming to docker.io/ctk-exec/ssh-audit:111399e4319a done\n#17 unpacking to docker.io/ctk-exec/ssh-audit:111399e4319a\n#17 unpacking to docker.io/ctk-exec/ssh-audit:111399e4319a 0.5s done\n#17 DONE 0.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "ssh-audit",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: ssh-audit [-h] [-4] [-6] [-b] [-c] [-d]\n                 [-g <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>]\n                 [-j] [-l {info,warn,fail}] [-L] [-M custom_policy.txt] [-m]\n                 [-n] [-P \"Built-In Policy Name\" / custom_policy.txt] [-p N]\n                 [-T targets.txt] [-t N] [-v] [--conn-rate-test N[:max_rate]]\n                 [--dheat N[:kex[:e_len]]] [--get-hardening-guide platform]\n                 [--list-hardening-guides] [--lookup alg1[,alg2,...]]\n                 [--skip-rate-test] [--socks5 host:port] [--threads N]\n                 [host]\n\n# ssh-audit v3.9.1-dev, https://github.com/jtesta/ssh-audit\n\npositional arguments:\n  host                  target hostname or IPv4/IPv6 address\n\noptions:\n  -h, --help            show this help message and exit\n  -4, --ipv4            enable IPv4 (order of precedence)\n  -6, --ipv6            enable IPv6 (order of precedence)\n  -b, --batch           batch output\n  -c, --client-audit    starts a server on port 2222 to audit client software\n                        config (use -p to change port; use -t to change\n                        timeout)\n  -d, --debug           enable debugging output\n  -g <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>, --gex-test <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>\n                        conducts a very customized Diffie-Hellman GEX modulus\n                        size test. Tests an array of minimum, preferred, and\n                        maximum values, or a range of values with an optional\n                        incremental step amount\n  -j, --json            enable JSON output (use -jj to enable indentation for\n                        better readability)\n  -l {info,warn,fail}, --level {info,warn,fail}\n                        minimum output level (default: info)\n  -L, --list-policies   list all the official, built-in policies. Combine with\n                        -v to view policy change logs\n  -M custom_policy.txt, --make-policy custom_policy.txt\n                        creates a policy based on the target server (i.e.: the\n                        target server has the ideal configuration that other\n                        servers should adhere to), and stores it in the file\n                        path specified\n  -m, --manual          print the man page (Docker, PyPI, Snap, and Windows\n                        builds only)\n  -n, --no-colors       disable colors (automatic when the NO_COLOR\n                        environment variable is set)\n  -P \"Built-In Policy Name\" / custom_policy.txt, --policy \"Built-In Policy Name\" / custom_policy.txt\n                        run a policy test using the specified policy (use -L\n                        to see built-in policies, or specify filesystem path\n                        to custom policy created by -M)\n  -p N, --port N        the TCP port to connect to (or to listen on when -c is\n                        used)\n  -T targets.txt, --targets targets.txt\n                        a file containing a list of target hosts (one per\n                        line, format HOST[:PORT]). Use -p/--port to set the\n                        default port for all hosts. Use --threads to control\n                        concurrent scans\n  -t N, --timeout N     timeout (in seconds) for connection and reading\n                        (default: 5)\n  -v, --verbose         enable verbose output\n  --conn-rate-test N[:max_rate]\n                        perform a connection rate test (useful for collecting\n                        metrics related to susceptibility of the DHEat vuln).\n                        Testing is conducted with N concurrent sockets with an\n                        optional maximum rate of connections per second\n  --dheat N[:kex[:e_len]]\n                        continuously perform the DHEat DoS attack\n                        (CVE-2002-20001) against the target using N concurrent\n                        sockets. Optionally, a specific key exchange algorithm\n                        can be specified instead of allowing it to be\n                        automatically chosen. Additionally, a small length of\n                        the fake e value sent to the server can be chosen for\n                        a more efficient attack (such as 4).\n  --get-hardening-guide platform\n                        retrieves the hardening guide for the specified\n                        platform name (use --list-hardening-guides to see list\n                        of available guides).\n  --list-hardening-guides\n                        list all official, built-in hardening guides for\n                        common systems. Their full names can then be passed to\n                        --get-hardening-guide. Add -v to this option to view\n                        hardening guide change logs and prior versions.\n  --lookup alg1[,alg2,...]\n                        looks up an algorithm(s) without connecting to a\n                        server.\n  --skip-rate-test      skip the connection rate test during standard audits\n                        (used to safely infer whether the DHEat attack is\n                        viable)\n  --socks5 host:port    connect via a SOCKS5 proxy (implies --skip-rate-test)\n  --threads N           number of threads to use when scanning multiple\n                        targets (-T/--targets) (default: 32)\n",
+   "stderr": "",
+   "duration_ms": 138,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "ssh-audit"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for ssh-audit\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "ssh-audit"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'ssh-audit' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "ssh-audit",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--ipv4": "enable IPv4 (order of precedence)",
+   "-4": "enable IPv4 (order of precedence)",
+   "--ipv6": "enable IPv6 (order of precedence)",
+   "-6": "enable IPv6 (order of precedence)",
+   "--batch": "batch output",
+   "-b": "batch output",
+   "--client-audit": "starts a server on port 2222 to audit client software config (use -p to change port; use -t to change timeout)",
+   "-c": "starts a server on port 2222 to audit client software config (use -p to change port; use -t to change timeout)",
+   "--debug": "enable debugging output",
+   "-d": "enable debugging output",
+   "--gex-test": "conducts a very customized Diffie-Hellman GEX modulus size test. Tests an array of minimum, preferred, and maximum values, or a range of values with an optional incremental step amount",
+   "-g": "conducts a very customized Diffie-Hellman GEX modulus size test. Tests an array of minimum, preferred, and maximum values, or a range of values with an optional incremental step amount",
+   "--json": "enable JSON output (use -jj to enable indentation for better readability)",
+   "-j": "enable JSON output (use -jj to enable indentation for better readability)",
+   "--level": "minimum output level (default: info)",
+   "-l": "minimum output level (default: info)",
+   "--list-policies": "list all the official, built-in policies. Combine with",
+   "-L": "list all the official, built-in policies. Combine with",
+   "-v": "",
+   "--make-policy": "creates a policy based on the target server (i.e.: the target server has the ideal configuration that other servers should adhere to), and stores it in the file path specified",
+   "-M": "creates a policy based on the target server (i.e.: the target server has the ideal configuration that other servers should adhere to), and stores it in the file path specified",
+   "--manual": "print the man page (Docker, PyPI, Snap, and Windows builds only)",
+   "-m": "print the man page (Docker, PyPI, Snap, and Windows builds only)",
+   "--no-colors": "disable colors (automatic when the NO_COLOR environment variable is set)",
+   "-n": "disable colors (automatic when the NO_COLOR environment variable is set)",
+   "--policy": "run a policy test using the specified policy (use -L to see built-in policies, or specify filesystem path to custom policy created by -M)",
+   "-P": "run a policy test using the specified policy (use -L to see built-in policies, or specify filesystem path to custom policy created by -M)",
+   "--port": "the TCP port to connect to (or to listen on when -c is used)",
+   "-p": "the TCP port to connect to (or to listen on when -c is used)",
+   "--targets": "a file containing a list of target hosts (one per line, format HOST[:PORT]). Use -p/--port to set the default port for all hosts. Use --threads to control concurrent scans",
+   "-T": "a file containing a list of target hosts (one per line, format HOST[:PORT]). Use -p/--port to set the default port for all hosts. Use --threads to control concurrent scans",
+   "--timeout": "timeout (in seconds) for connection and reading (default: 5)",
+   "-t": "timeout (in seconds) for connection and reading (default: 5)",
+   "--verbose": "enable verbose output",
+   "--conn-rate-test": "perform a connection rate test (useful for collecting metrics related to susceptibility of the DHEat vuln). Testing is conducted with N concurrent sockets with an optional maximum rate of connections per second",
+   "--dheat": "continuously perform the DHEat DoS attack (CVE-2002-20001) against the target using N concurrent sockets. Optionally, a specific key exchange algorithm can be specified instead of allowing it to be automatically chosen. Additionally, a small length of the fake e value sent to the server can be chosen for a more efficient attack (such as 4).",
+   "--get-hardening-guide": "retrieves the hardening guide for the specified platform name (use --list-hardening-guides to see list of available guides).",
+   "--list-hardening-guides": "list all official, built-in hardening guides for common systems. Their full names can then be passed to",
+   "--lookup": "looks up an algorithm(s) without connecting to a server.",
+   "--skip-rate-test": "skip the connection rate test during standard audits (used to safely infer whether the DHEat attack is viable)",
+   "--socks5": "connect via a SOCKS5 proxy (implies --skip-rate-test)",
+   "--threads": "number of threads to use when scanning multiple targets (-T/--targets) (default: 32)"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--ipv4": [
+    "-4"
+   ],
+   "--ipv6": [
+    "-6"
+   ],
+   "--batch": [
+    "-b"
+   ],
+   "--client-audit": [
+    "-c"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--gex-test": [
+    "-g"
+   ],
+   "--json": [
+    "-j"
+   ],
+   "--level": [
+    "-l"
+   ],
+   "--list-policies": [
+    "-L"
+   ],
+   "--make-policy": [
+    "-M"
+   ],
+   "--manual": [
+    "-m"
+   ],
+   "--no-colors": [
+    "-n"
+   ],
+   "--policy": [
+    "-P"
+   ],
+   "--port": [
+    "-p"
+   ],
+   "--targets": [
+    "-T"
+   ],
+   "--timeout": [
+    "-t"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2fcbf0c538dfb68ffcae16b8736250e357fdb009e1c0d7e7d0acd82ec674e5ba",
+  "text": "usage: ssh-audit [-h] [-4] [-6] [-b] [-c] [-d]\n                 [-g <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>]\n                 [-j] [-l {info,warn,fail}] [-L] [-M custom_policy.txt] [-m]\n                 [-n] [-P \"Built-In Policy Name\" / custom_policy.txt] [-p N]\n                 [-T targets.txt] [-t N] [-v] [--conn-rate-test N[:max_rate]]\n                 [--dheat N[:kex[:e_len]]] [--get-hardening-guide platform]\n                 [--list-hardening-guides] [--lookup alg1[,alg2,...]]\n                 [--skip-rate-test] [--socks5 host:port] [--threads N]\n                 [host]\n\n# ssh-audit v3.9.1-dev, https://github.com/jtesta/ssh-audit\n\npositional arguments:\n  host                  target hostname or IPv4/IPv6 address\n\noptions:\n  -h, --help            show this help message and exit\n  -4, --ipv4            enable IPv4 (order of precedence)\n  -6, --ipv6            enable IPv6 (order of precedence)\n  -b, --batch           batch output\n  -c, --client-audit    starts a server on port 2222 to audit client software\n                        config (use -p to change port; use -t to change\n                        timeout)\n  -d, --debug           enable debugging output\n  -g <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>, --gex-test <min1:pref1:max1[,min2:pref2:max2,...]> / <x-y[:step]>\n                        conducts a very customized Diffie-Hellman GEX modulus\n                        size test. Tests an array of minimum, preferred, and\n                        maximum values, or a range of values with an optional\n                        incremental step amount\n  -j, --json            enable JSON output (use -jj to enable indentation for\n                        better readability)\n  -l {info,warn,fail}, --level {info,warn,fail}\n                        minimum output level (default: info)\n  -L, --list-policies   list all the official, built-in policies. Combine with\n                        -v to view policy change logs\n  -M custom_policy.txt, --make-policy custom_policy.txt\n                        creates a policy based on the target server (i.e.: the\n                        target server has the ideal configuration that other\n                        servers should adhere to), and stores it in the file\n                        path specified\n  -m, --manual          print the man page (Docker, PyPI, Snap, and Windows\n                        builds only)\n  -n, --no-colors       disable colors (automatic when the NO_COLOR\n                        environment variable is set)\n  -P \"Built-In Policy Name\" / custom_policy.txt, --policy \"Built-In Policy Name\" / custom_policy.txt\n                        run a policy test using the specified policy (use -L\n                        to see built-in policies, or specify filesystem path\n                        to custom policy created by -M)\n  -p N, --port N        the TCP port to connect to (or to listen on when -c is\n                        used)\n  -T targets.txt, --targets targets.txt\n                        a file containing a list of target hosts (one per\n                        line, format HOST[:PORT]). Use -p/--port to set the\n                        default port for all hosts. Use --threads to control\n                        concurrent scans\n  -t N, --timeout N     timeout (in seconds) for connection and reading\n                        (default: 5)\n  -v, --verbose         enable verbose output\n  --conn-rate-test N[:max_rate]\n                        perform a connection rate test (useful for collecting\n                        metrics related to susceptibility of the DHEat vuln).\n                        Testing is conducted with N concurrent sockets with an\n                        optional maximum rate of connections per second\n  --dheat N[:kex[:e_len]]\n                        continuously perform the DHEat DoS attack\n                        (CVE-2002-20001) against the target using N concurrent\n                        sockets. Optionally, a specific key exchange algorithm\n                        can be specified instead of allowing it to be\n                        automatically chosen. Additionally, a small length of\n                        the fake e value sent to the server can be chosen for\n                        a more efficient attack (such as 4).\n  --get-hardening-guide platform\n                        retrieves the hardening guide for the specified\n                        platform name (use --list-hardening-guides to see list\n                        of available guides).\n  --list-hardening-guides\n                        list all official, built-in hardening guides for\n                        common systems. Their full names can then be passed to\n                        --get-hardening-guide. Add -v to this option to view\n                        hardening guide change logs and prior versions.\n  --lookup alg1[,alg2,...]\n                        looks up an algorithm(s) without connecting to a\n                        server.\n  --skip-rate-test      skip the connection rate test during standard audits\n                        (used to safely infer whether the DHEat attack is\n                        viable)\n  --socks5 host:port    connect via a SOCKS5 proxy (implies --skip-rate-test)\n  --threads N           number of threads to use when scanning multiple\n                        targets (-T/--targets) (default: 32)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--batch",
+   "--client-audit",
+   "--conn-rate-test",
+   "--debug",
+   "--dheat",
+   "--get-hardening-guide",
+   "--gex-test",
+   "--help",
+   "--ipv4",
+   "--ipv6",
+   "--json",
+   "--level",
+   "--list-hardening-guides",
+   "--list-policies",
+   "--lookup",
+   "--make-policy",
+   "--manual",
+   "--no-colors",
+   "--policy",
+   "--port",
+   "--skip-rate-test",
+   "--socks5",
+   "--targets",
+   "--threads",
+   "--timeout",
+   "--verbose",
+   "-M",
+   "-P",
+   "-T",
+   "-g",
+   "-l",
+   "-p",
+   "-t"
+  ],
+  "unconfirmed": [
+   "--ssh1",
+   "--ssh2",
+   "host"
+  ],
+  "help_only": [
+   "-4",
+   "-6",
+   "-L",
+   "-b",
+   "-c",
+   "-d",
+   "-h",
+   "-j",
+   "-m",
+   "-n",
+   "-v"
+  ],
+  "mining_coverage": 0.75
+ },
+ "surface": {
+  "flags": {
+   "--batch": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "batch output",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--client-audit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "starts a server on port 2222 to audit client software config (use -p to change port; use -t to change timeout)",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--conn-rate-test": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "perform a connection rate test (useful for collecting metrics related to susceptibility of the DHEat vuln). Testing is conducted with N concurrent sockets with an optional maximum rate of connections per second",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable debugging output",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2021-08-26T15:25:36-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--dheat": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "continuously perform the DHEat DoS attack (CVE-2002-20001) against the target using N concurrent sockets. Optionally, a specific key exchange algorithm can be specified instead of allowing it to be automatically chosen. Additionally, a small length of the fake e value sent to the server can be chosen for a more efficient attack (such as 4).",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--get-hardening-guide": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "retrieves the hardening guide for the specified platform name (use --list-hardening-guides to see list of available guides).",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--gex-test": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "conducts a very customized Diffie-Hellman GEX modulus size test. Tests an array of minimum, preferred, and maximum values, or a range of values with an optional incremental step amount",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-g"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssh-audit.1",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--ipv4": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable IPv4 (order of precedence)",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-4"
+    ]
+   },
+   "--ipv6": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable IPv6 (order of precedence)",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-6"
+    ]
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable JSON output (use -jj to enable indentation for better readability)",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--level": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "minimum output level (default: info)",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--list-hardening-guides": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list all official, built-in hardening guides for common systems. Their full names can then be passed to",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--list-policies": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list all the official, built-in policies. Combine with",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--lookup": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "looks up an algorithm(s) without connecting to a server.",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--make-policy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "creates a policy based on the target server (i.e.: the target server has the ideal configuration that other servers should adhere to), and stores it in the file path specified",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--manual": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "print the man page (Docker, PyPI, Snap, and Windows builds only)",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2021-02-23T20:39:39-05:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--no-colors": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable colors (automatic when the NO_COLOR environment variable is set)",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--policy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "run a policy test using the specified policy (use -L to see built-in policies, or specify filesystem path to custom policy created by -M)",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-P"
+    ]
+   },
+   "--port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the TCP port to connect to (or to listen on when -c is used)",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--skip-rate-test": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "skip the connection rate test during standard audits (used to safely infer whether the DHEat attack is viable)",
+    "kind": "option",
+    "first_tag": "v3.2.0",
+    "first_date": "2024-04-22T16:34:19-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--socks5": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "connect via a SOCKS5 proxy (implies --skip-rate-test)",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--ssh1": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only perform an audit using SSH protocol version 1.",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.3.0",
+    "last_date": "2024-10-15T13:33:41-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "ssh-audit.1"
+   },
+   "--ssh2": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only perform an audit using SSH protocol version 2.",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.3.0",
+    "last_date": "2024-10-15T13:33:41-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "ssh-audit.1"
+   },
+   "--targets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "a file containing a list of target hosts (one per line, format HOST[:PORT]). Use -p/--port to set the default port for all hosts. Use --threads to control concurrent scans",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--threads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of threads to use when scanning multiple targets (-T/--targets) (default: 32)",
+    "kind": "option",
+    "first_tag": "v3.3.0",
+    "first_date": "2024-10-15T13:33:41-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "timeout (in seconds) for connection and reading (default: 5)",
+    "kind": "option",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable verbose output",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2020-09-27T17:31:44-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "target hostname or IPv4/IPv6 address",
+    "kind": "positional",
+    "first_tag": "v3.9.0",
+    "first_date": "2026-07-04T15:35:39-04:00",
+    "last_tag": "v3.9.0",
+    "last_date": "2026-07-04T15:35:39-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/ssh_audit/ssh_audit.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "ssh-audit",
+ "repo": "jtesta/ssh-audit",
+ "head_sha": "111399e4319a7297c9edd075725048c5638dbceb",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:58:09.930670+00:00"
+}

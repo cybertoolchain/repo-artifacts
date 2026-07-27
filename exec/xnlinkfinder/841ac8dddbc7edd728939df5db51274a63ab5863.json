@@ -1,0 +1,1374 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:8e0ed076b997a9dbf08441671d3bcd38c77bf82576e216843c82d5be04ac681b",
+  "duration_s": 35.25,
+  "log_tail": "#10 27.36 Downloading termcolor-3.3.0-py3-none-any.whl (7.7 kB)\n#10 27.41 Downloading tldextract-5.3.1-py3-none-any.whl (105 kB)\n#10 27.52 Downloading filelock-3.32.0-py3-none-any.whl (97 kB)\n#10 27.64 Downloading requests_file-3.0.1-py2.py3-none-any.whl (4.5 kB)\n#10 27.69 Downloading webencodings-0.5.1-py2.py3-none-any.whl (11 kB)\n#10 27.74 Building wheels for collected packages: xnlinkfinder, urlparse3\n#10 27.74   Building wheel for xnlinkfinder (pyproject.toml): started\n#10 27.84   Building wheel for xnlinkfinder (pyproject.toml): finished with status 'done'\n#10 27.84   Created wheel for xnlinkfinder: filename=xnlinkfinder-8.2-py3-none-any.whl size=76200 sha256=7b80d3a063e38c7e18c995a7d4f5218365a605aa2e7b01ec90f0d27fedd4836b\n#10 27.84   Stored in directory: /tmp/pip-ephem-wheel-cache-2gzfxexq/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 27.84   Building wheel for urlparse3 (pyproject.toml): started\n#10 27.93   Building wheel for urlparse3 (pyproject.toml): finished with status 'done'\n#10 27.94   Created wheel for urlparse3: filename=urlparse3-1.1-py3-none-any.whl size=4915 sha256=11233885c12d5ffe3a5171ecb44d9f14a9dc771d8b5c399366fd14df8aac1899\n#10 27.94   Stored in directory: /tmp/pip-ephem-wheel-cache-2gzfxexq/wheels/92/67/92/653e6d9605d40d8ac1caeedfa7755fbf95bc1ad1d79a299316\n#10 27.94 Successfully built xnlinkfinder urlparse3\n#10 27.96 Installing collected packages: webencodings, urlparse3, urllib3, typing_extensions, termcolor, soupsieve, six, pyyaml, pypdf, psutil, more_itertools, lxml, idna, greenlet, filelock, charset_normalizer, certifi, typeguard, requests, pyee, html5lib, beautifulsoup4, requests-file, playwright, inflect, tldextract, xnlinkfinder\n#10 29.10 \n#10 29.11 Successfully installed beautifulsoup4-4.15.0 certifi-2026.7.22 charset_normalizer-3.4.9 filelock-3.32.0 greenlet-3.5.4 html5lib-1.1 idna-3.18 inflect-7.5.0 lxml-6.1.1 more_itertools-11.1.0 playwright-1.61.0 psutil-7.2.2 pyee-13.0.1 pypdf-6.14.2 pyyaml-6.0.3 requests-2.34.2 requests-file-3.0.1 six-1.17.0 soupsieve-2.9.1 termcolor-3.3.0 tldextract-5.3.1 typeguard-4.6.0 typing_extensions-4.16.0 urllib3-2.7.0 urlparse3-1.1 webencodings-0.5.1 xnlinkfinder-8.2\n#10 DONE 29.3s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.098 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 3.7s done\n#17 exporting manifest sha256:2da97202ca7a970f1ba88644b1a00707e3fccdbfaf5302943dd89f09f1136dfe done\n#17 exporting config sha256:e80a535d8cdb34c80c7f504eb5f0858c058298dfd661b32febfd1a5c1d09c5bc done\n#17 exporting attestation manifest sha256:e898d7d8efecffbc06ae942a0686a5df0a50a9d120b8688f483036bf86c321f7 done\n#17 exporting manifest list sha256:8e0ed076b997a9dbf08441671d3bcd38c77bf82576e216843c82d5be04ac681b done\n#17 naming to docker.io/ctk-exec/xnlinkfinder:841ac8dddbc7 done\n#17 unpacking to docker.io/ctk-exec/xnlinkfinder:841ac8dddbc7\n#17 unpacking to docker.io/ctk-exec/xnlinkfinder:841ac8dddbc7 1.2s done\n#17 DONE 5.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "xnLinkFinder",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: xnLinkFinder [-h] [-i INPUT] [-o OUTPUT] [-op OUTPUT_PARAMS]\n                    [-owl OUTPUT_WORDLIST] [-oo OUTPUT_OOS]\n                    [-os OUTPUT_SECRETS] [-ow] [-sp <domain/file>] [-spo]\n                    [-spkf] [-sf <domain/file>] [-c COOKIES] [-H HEADERS]\n                    [-ra REGEX_AFTER] [-d DEPTH] [-p <integer>] [-rl <float>]\n                    [-x EXCLUDE] [-orig] [-prefixed] [-xrel] [-t <seconds>]\n                    [-r <integer>] [-mrs <MB>] [-inc] [-u [...]]\n                    [-uc USER_AGENT_CUSTOM] [-insecure] [-s429] [-s403] [-sTO]\n                    [-sCE] [-m <integer>] [-mfs <integer>] [-fp FORWARD_PROXY]\n                    [-rp REQUEST_PROXY] [--heap] [-ro] [-ascii-only]\n                    [-mtl <integer>] [--config CONFIG] [-nwlpl] [-nwlpw]\n                    [-nwlpm] [-nwlc] [-nwlia] [-nwld] [-nwll]\n                    [-wlml WORDLIST_MAXLEN] [-swf STOPWORDS_FILE]\n                    [-brt <bool>] [-all] [-cl] [-nb] [-v] [-vv] [--version]\n\nxnLinkFinder (v8.2) - by @Xnl-h4ck3r\n\noptions:\n  -h, --help            show this help message and exit\n  -i INPUT, --input INPUT\n                        Input a: URL, text file of URLs, a Directory of files\n                        to search, a Burp XML output file, ZAP output file,\n                        Caido CSV file, or a HAR JSON file.\n  -o OUTPUT, --output OUTPUT\n                        The file to save the Links output to, including path\n                        if necessary (default: output.txt). If set to \"cli\"\n                        then output is only written to STDOUT. If the file\n                        already exist it will just be appended to (and de-\n                        duplicated) unless option -ow is passed.\n  -op OUTPUT_PARAMS, --output-params OUTPUT_PARAMS\n                        The file to save the Potential Parameters output to,\n                        including path if necessary (default: parameters.txt).\n                        If set to \"cli\" then output is only written to STDOUT\n                        (but not piped to another program). If the file\n                        already exist it will just be appended to (and de-\n                        duplicated) unless option -ow is passed.\n  -owl OUTPUT_WORDLIST, --output-wordlist OUTPUT_WORDLIST\n                        The file to save the target specific Wordlist output\n                        to, including path if necessary (default: No wordlist\n                        output). If set to \"cli\" then output is only written\n                        to STDOUT (but not piped to another program). If the\n                        file already exist it will just be appended to (and\n                        de-duplicated) unless option -ow is passed.\n  -oo OUTPUT_OOS, --output-oos OUTPUT_OOS\n                        The file to save Out Of Scope links to, including path\n                        if necessary (default: No OOS output). If set to \"cli\"\n                        then output is only written to STDOUT (but not piped\n                        to another program). If the file already exist it will\n                        just be appended to (and de-duplicated) unless option\n                        -ow is passed.\n  -os OUTPUT_SECRETS, --output-secrets OUTPUT_SECRETS\n                        The file to save any secrets found in responses to,\n                        including path if necessary (default: No secrets\n                        output). If set to \"cli\" then output is only written\n                        to STDOUT. If the file already exist it will just be\n                        appended to (and de-duplicated) unless option -ow is\n                        passed. Secrets include: AWS keys, GitHub tokens,\n                        JWTs, Google API keys, private keys, database\n                        connection strings, and more.\n  -ow, --output-overwrite\n                        If the output file already exists, it will be\n                        overwritten instead of being appended to.\n  -sp <domain/file>, --scope-prefix <domain/file>\n                        Any links found starting with / will be prefixed with\n                        scope domains in the output instead of the original\n                        link. If the passed value is a valid file name, that\n                        file will be used, otherwise the string literal will\n                        be used.\n  -spo, --scope-prefix-original\n                        If argument -sp is passed, then this determines\n                        whether the original link starting with / is also\n                        included in the output (default: false).\n  -spkf, --scope-prefix-keep-failed\n                        If argument -spkf is passed, then this determines\n                        whether a prefixed link will be kept in the output if\n                        it was a 404 or a RequestException occurred (default:\n                        false).\n  -sf <domain/file>, --scope-filter <domain/file>\n                        Will filter output links to only include them if the\n                        domain of the link is in the scope specified. If the\n                        passed value is a valid file name, that file will be\n                        used, otherwise the string literal will be used. This\n                        argument is now mandatory if input is a domain/URL (or\n                        file of domains/URLs) to prevent crawling sites that\n                        are not in scope and also preventing misleading\n                        results.\n  -c COOKIES, --cookies COOKIES\n                        Add cookies to pass with HTTP requests. Pass in the\n                        format 'name1=value1; name2=value2;'\n  -H HEADERS, --headers HEADERS\n                        Add custom headers to pass with HTTP requests. Pass in\n                        the format 'Header1: value1; Header2: value2;'\n  -ra REGEX_AFTER, --regex-after REGEX_AFTER\n                        RegEx for filtering purposes against found endpoints\n                        before output (e.g. /api/v[0-9]\\.[0-9]* ). If it\n                        matches, the link is output.\n  -d DEPTH, --depth DEPTH\n                        The level of depth to search. For example, if a value\n                        of 2 is passed, then all links initially found will\n                        then be searched for more links (default: 1). This\n                        option is ignored for Burp files, ZAP files and Caiod\n                        files because they can be huge and consume lots of\n                        memory. It is also advisable to use the -sp (--scope-\n                        prefix) argument to ensure a request to links found\n                        without a domain can be attempted.\n  -p <integer>, --processes <integer>\n                        Basic multithreading is done when getting requests for\n                        a URL, or file of URLs (not a Burp file, ZAP file or\n                        Caido file). This argument determines the number of\n                        processes (threads) used (default: 25)\n  -rl <float>, --rate-limit <float>\n                        Maximum number of requests to send per second\n                        (default: 0, no rate limiting). This helps prevent\n                        overwhelming the target server.\n  -x EXCLUDE, --exclude EXCLUDE\n                        Additional Link exclusions (to the list in config.yml)\n                        in a comma separated list, e.g. careers,forum\n  -orig, --origin       Whether you want the origin of the link to be in the\n                        output. Displayed as LINK-URL [ORIGIN-URL] in the\n                        output (default: false)\n  -prefixed             Whether you want to see which links were prefixed in\n                        the output. Displays (PREFIXED) after link and origin\n                        in the output (default: false)\n  -xrel, --exclude-relative-links\n                        By default, if any links in the results start with\n                        `./` or `../`, they will be included. If this argument\n                        is used, these relative links will not be added.\n  -t <seconds>, --timeout <seconds>\n                        How many seconds to wait for the server to send data\n                        before giving up (default: 10 seconds)\n  -r <integer>, --retries <integer>\n                        The number of times to retry a request after a failure\n                        (e.g. timeout, connection error, etc). This is limited\n                        to 5 retries (default: 0).\n  -mrs <MB>, --max-response-size <MB>\n                        Maximum response size in MB to download. Responses\n                        larger than this will be skipped (default: 100 MB).\n  -inc, --include       Include input (-i) links in the output (default:\n                        false)\n  -u [ ...], --user-agent [ ...]\n                        What User Agents to get links for, e.g. '-u desktop\n                        mobile'\n  -uc USER_AGENT_CUSTOM, --user-agent-custom USER_AGENT_CUSTOM\n                        A custom User Agent string to use for all requests.\n                        This will override the -u/--user-agent argument. This\n                        can be used when a program requires a specific User\n                        Agent header to identify you for example.\n  -insecure             Whether TLS certificate checks should be made disabled\n                        making requests (default: false)\n  -s429                 Stop when > 95 percent of responses return 429 Too\n                        Many Requests (default: false)\n  -s403                 Stop when > 95 percent of responses return 403\n                        Forbidden (default: false)\n  -sTO                  Stop when > 95 percent of requests time out (default:\n                        false)\n  -sCE                  Stop when > 95 percent of requests have connection\n                        errors (default: false)\n  -m <integer>, --memory-threshold <integer>\n                        The memory threshold percentage. If the machines\n                        memory goes above the threshold, the program will be\n                        stopped and ended gracefully before running out of\n                        memory (default: 95)\n  -mfs <integer>, --max-file-size <integer>\n                        The maximum file size (in bytes) of a file to be\n                        checked if -i is a directory. If the file size os\n                        over, it will be ignored (default: 500 MB). Setting to\n                        0 means no files will be ignored, regardless of size.\n  -fp FORWARD_PROXY, --forward-proxy FORWARD_PROXY\n                        For active link finding with URL (or file of URLs),\n                        replay the requests through a proxy such as Burp or\n                        Caido, e.g http://127.0.0.1:8080\n  -rp REQUEST_PROXY, --request-proxy REQUEST_PROXY\n                        Request proxy to use. Can be a proxy string (e.g.\n                        http://user:pass@1.2.3.4:8000, socks5://host:port) or\n                        a file containing proxy list (one per line, random\n                        selection)\n  --heap                Whether to take a heap snapshot of visited URLs and\n                        extract links from browser memory. This will take\n                        longer but could discover dynamically generated links\n                        that standard static analysis might miss (Requires\n                        Playwright to be installed).\n  -ro, --readable-only  If passed, only human-readable text will be extracted\n                        from HTML responses/files using BeautifulSoup before\n                        searching for links. This excludes content from\n                        script, style, noscript, and template tags.\n  -ascii-only           Whether links and parameters will only be added if\n                        they only contain ASCII characters (default: False).\n                        This can be useful when you know the target is likely\n                        to use ASCII characters and you also get a number of\n                        false positives from binary files for some reason.\n  -mtl <integer>, --max-time-limit <integer>\n                        The maximum time limit (in minutes) to run before\n                        stopping (default: 0). If 0 is passed, there is no\n                        limit.\n  --config CONFIG       Path to the YML config file. If not passed, it looks\n                        for file 'config.yml' in the same directory as runtime\n                        file 'xnLinkFinder.py'.\n  -nwlpl, --no-wordlist-plurals\n                        When words are found for a target specific wordlist,\n                        by default new words are added if there is a singular\n                        word from a plural, and vice versa. If this argument\n                        is used, this process is not done.\n  -nwlpw, --no-wordlist-pathwords\n                        By default, any path words found in the links will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwlpm, --no-wordlist-parameters\n                        By default, any parameters found in the links will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwlc, --no-wordlist-comments\n                        By default, any comments in pages will be processed\n                        for the target specific wordlist. If this argument is\n                        used, they will not be processed.\n  -nwlia, --no-wordlist-imgalt\n                        By default, any image 'alt' attributes will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwld, --no-wordlist-digits\n                        Exclude any words from the target specific wordlist\n                        with numerical digits in.\n  -nwll, --no-wordlist-lowercase\n                        By default, any word added with any uppercase\n                        characters in will also add the word in lowercase. If\n                        this argument is used, the lowercase words will not be\n                        added.\n  -wlml WORDLIST_MAXLEN, --wordlist-maxlen WORDLIST_MAXLEN\n                        The maximum length of words to add to the target\n                        specific wordlist (excluding plurals).\n  -swf STOPWORDS_FILE, --stopwords-file STOPWORDS_FILE\n                        A file of additional Stop Words (in addition to\n                        \"stopWords\" in the YML Config file) used to exclude\n                        words from the target specific wordlist. Stop Words\n                        are used in Natural Language Processing and different\n                        lists can be found in different libraries. You may\n                        want to add words in different languages, depending on\n                        your target.\n  -brt <bool>, --burpfile-remove-tags <bool>\n                        Whether to remove tags if a Burp file is passed as\n                        input. This is asked interactively if the flag is not\n                        passed. Pass as True or False. If this argument is not\n                        passed then the question will be asked interactively.\n  -all, --all-tlds      All links found will be returned, even if the TLD is\n                        not common. This can result in a number of false\n                        positives where variable names, etc. may also be a\n                        possible genuine domain. By default, only links that\n                        have a TLD in the common TLDs (commonTLDs in\n                        config.yml) will be returned.\n  -cl, --content-length\n                        Show the Content-Length of the response when crawling.\n  -nb, --no-banner      Hides the tool banner.\n  -v, --verbose         Verbose output\n  -vv, --vverbose       Increased verbose output\n  --version             Show version number\n",
+   "stderr": "WARNING: Unable to create config.yml: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 301,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "xnLinkFinder"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for xnLinkFinder\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "xnLinkFinder"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'xnLinkFinder' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "xnLinkFinder",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--input": "Input a: URL, text file of URLs, a Directory of files to search, a Burp XML output file, ZAP output file, Caido CSV file, or a HAR JSON file.",
+   "-i": "Input a: URL, text file of URLs, a Directory of files to search, a Burp XML output file, ZAP output file, Caido CSV file, or a HAR JSON file.",
+   "--output": "The file to save the Links output to, including path if necessary (default: output.txt). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+   "-o": "The file to save the Links output to, including path if necessary (default: output.txt). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+   "--output-params": "The file to save the Potential Parameters output to, including path if necessary (default: parameters.txt). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+   "-op": "The file to save the Potential Parameters output to, including path if necessary (default: parameters.txt). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+   "--output-wordlist": "The file to save the target specific Wordlist output to, including path if necessary (default: No wordlist output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed.",
+   "-owl": "The file to save the target specific Wordlist output to, including path if necessary (default: No wordlist output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed.",
+   "--output-oos": "The file to save Out Of Scope links to, including path if necessary (default: No OOS output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option",
+   "-oo": "The file to save Out Of Scope links to, including path if necessary (default: No OOS output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option",
+   "-ow": "",
+   "--output-secrets": "The file to save any secrets found in responses to, including path if necessary (default: No secrets output). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed. Secrets include: AWS keys, GitHub tokens, JWTs, Google API keys, private keys, database connection strings, and more.",
+   "-os": "The file to save any secrets found in responses to, including path if necessary (default: No secrets output). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed. Secrets include: AWS keys, GitHub tokens, JWTs, Google API keys, private keys, database connection strings, and more.",
+   "--output-overwrite": "If the output file already exists, it will be overwritten instead of being appended to.",
+   "--scope-prefix": "Any links found starting with / will be prefixed with scope domains in the output instead of the original link. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used.",
+   "-sp": "Any links found starting with / will be prefixed with scope domains in the output instead of the original link. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used.",
+   "--scope-prefix-original": "If argument -sp is passed, then this determines whether the original link starting with / is also included in the output (default: false).",
+   "-spo": "If argument -sp is passed, then this determines whether the original link starting with / is also included in the output (default: false).",
+   "--scope-prefix-keep-failed": "If argument -spkf is passed, then this determines whether a prefixed link will be kept in the output if it was a 404 or a RequestException occurred (default: false).",
+   "-spkf": "If argument -spkf is passed, then this determines whether a prefixed link will be kept in the output if it was a 404 or a RequestException occurred (default: false).",
+   "--scope-filter": "Will filter output links to only include them if the domain of the link is in the scope specified. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used. This argument is now mandatory if input is a domain/URL (or file of domains/URLs) to prevent crawling sites that are not in scope and also preventing misleading results.",
+   "-sf": "Will filter output links to only include them if the domain of the link is in the scope specified. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used. This argument is now mandatory if input is a domain/URL (or file of domains/URLs) to prevent crawling sites that are not in scope and also preventing misleading results.",
+   "--cookies": "Add cookies to pass with HTTP requests. Pass in the format 'name1=value1; name2=value2;'",
+   "-c": "Add cookies to pass with HTTP requests. Pass in the format 'name1=value1; name2=value2;'",
+   "--headers": "Add custom headers to pass with HTTP requests. Pass in the format 'Header1: value1; Header2: value2;'",
+   "-H": "Add custom headers to pass with HTTP requests. Pass in the format 'Header1: value1; Header2: value2;'",
+   "--regex-after": "RegEx for filtering purposes against found endpoints before output (e.g. /api/v[0-9]\\.[0-9]* ). If it matches, the link is output.",
+   "-ra": "RegEx for filtering purposes against found endpoints before output (e.g. /api/v[0-9]\\.[0-9]* ). If it matches, the link is output.",
+   "--depth": "The level of depth to search. For example, if a value of 2 is passed, then all links initially found will then be searched for more links (default: 1). This option is ignored for Burp files, ZAP files and Caiod files because they can be huge and consume lots of memory. It is also advisable to use the -sp (--scope- prefix) argument to ensure a request to links found without a domain can be attempted.",
+   "-d": "The level of depth to search. For example, if a value of 2 is passed, then all links initially found will then be searched for more links (default: 1). This option is ignored for Burp files, ZAP files and Caiod files because they can be huge and consume lots of memory. It is also advisable to use the -sp (--scope- prefix) argument to ensure a request to links found without a domain can be attempted.",
+   "--processes": "Basic multithreading is done when getting requests for a URL, or file of URLs (not a Burp file, ZAP file or Caido file). This argument determines the number of processes (threads) used (default: 25)",
+   "-p": "Basic multithreading is done when getting requests for a URL, or file of URLs (not a Burp file, ZAP file or Caido file). This argument determines the number of processes (threads) used (default: 25)",
+   "--rate-limit": "Maximum number of requests to send per second (default: 0, no rate limiting). This helps prevent overwhelming the target server.",
+   "-rl": "Maximum number of requests to send per second (default: 0, no rate limiting). This helps prevent overwhelming the target server.",
+   "--exclude": "Additional Link exclusions (to the list in config.yml) in a comma separated list, e.g. careers,forum",
+   "-x": "Additional Link exclusions (to the list in config.yml) in a comma separated list, e.g. careers,forum",
+   "--origin": "Whether you want the origin of the link to be in the output. Displayed as LINK-URL [ORIGIN-URL] in the output (default: false)",
+   "-orig": "Whether you want the origin of the link to be in the output. Displayed as LINK-URL [ORIGIN-URL] in the output (default: false)",
+   "-prefixed": "Whether you want to see which links were prefixed in the output. Displays (PREFIXED) after link and origin in the output (default: false)",
+   "--exclude-relative-links": "By default, if any links in the results start with `./` or `../`, they will be included. If this argument is used, these relative links will not be added.",
+   "-xrel": "By default, if any links in the results start with `./` or `../`, they will be included. If this argument is used, these relative links will not be added.",
+   "--timeout": "How many seconds to wait for the server to send data before giving up (default: 10 seconds)",
+   "-t": "How many seconds to wait for the server to send data before giving up (default: 10 seconds)",
+   "--retries": "The number of times to retry a request after a failure (e.g. timeout, connection error, etc). This is limited to 5 retries (default: 0).",
+   "-r": "The number of times to retry a request after a failure (e.g. timeout, connection error, etc). This is limited to 5 retries (default: 0).",
+   "--max-response-size": "Maximum response size in MB to download. Responses larger than this will be skipped (default: 100 MB).",
+   "-mrs": "Maximum response size in MB to download. Responses larger than this will be skipped (default: 100 MB).",
+   "--include": "Include input (-i) links in the output (default: false)",
+   "-inc": "Include input (-i) links in the output (default: false)",
+   "--user-agent": "What User Agents to get links for, e.g. '-u desktop mobile'",
+   "-u": "What User Agents to get links for, e.g. '-u desktop mobile'",
+   "--user-agent-custom": "A custom User Agent string to use for all requests. This will override the -u/--user-agent argument. This can be used when a program requires a specific User Agent header to identify you for example.",
+   "-uc": "A custom User Agent string to use for all requests. This will override the -u/--user-agent argument. This can be used when a program requires a specific User Agent header to identify you for example.",
+   "-insecure": "Whether TLS certificate checks should be made disabled making requests (default: false)",
+   "-s429": "Stop when > 95 percent of responses return 429 Too Many Requests (default: false)",
+   "-s403": "Stop when > 95 percent of responses return 403 Forbidden (default: false)",
+   "-sTO": "Stop when > 95 percent of requests time out (default: false)",
+   "-sCE": "Stop when > 95 percent of requests have connection errors (default: false)",
+   "--memory-threshold": "The memory threshold percentage. If the machines memory goes above the threshold, the program will be stopped and ended gracefully before running out of memory (default: 95)",
+   "-m": "The memory threshold percentage. If the machines memory goes above the threshold, the program will be stopped and ended gracefully before running out of memory (default: 95)",
+   "--max-file-size": "The maximum file size (in bytes) of a file to be checked if -i is a directory. If the file size os over, it will be ignored (default: 500 MB). Setting to 0 means no files will be ignored, regardless of size.",
+   "-mfs": "The maximum file size (in bytes) of a file to be checked if -i is a directory. If the file size os over, it will be ignored (default: 500 MB). Setting to 0 means no files will be ignored, regardless of size.",
+   "--forward-proxy": "For active link finding with URL (or file of URLs), replay the requests through a proxy such as Burp or Caido, e.g http://127.0.0.1:8080",
+   "-fp": "For active link finding with URL (or file of URLs), replay the requests through a proxy such as Burp or Caido, e.g http://127.0.0.1:8080",
+   "--request-proxy": "Request proxy to use. Can be a proxy string (e.g. http://user:pass@1.2.3.4:8000, socks5://host:port) or a file containing proxy list (one per line, random selection)",
+   "-rp": "Request proxy to use. Can be a proxy string (e.g. http://user:pass@1.2.3.4:8000, socks5://host:port) or a file containing proxy list (one per line, random selection)",
+   "--heap": "Whether to take a heap snapshot of visited URLs and extract links from browser memory. This will take longer but could discover dynamically generated links that standard static analysis might miss (Requires Playwright to be installed).",
+   "--readable-only": "If passed, only human-readable text will be extracted from HTML responses/files using BeautifulSoup before searching for links. This excludes content from script, style, noscript, and template tags.",
+   "-ro": "If passed, only human-readable text will be extracted from HTML responses/files using BeautifulSoup before searching for links. This excludes content from script, style, noscript, and template tags.",
+   "-ascii-only": "Whether links and parameters will only be added if they only contain ASCII characters (default: False). This can be useful when you know the target is likely to use ASCII characters and you also get a number of false positives from binary files for some reason.",
+   "--max-time-limit": "The maximum time limit (in minutes) to run before stopping (default: 0). If 0 is passed, there is no limit.",
+   "-mtl": "The maximum time limit (in minutes) to run before stopping (default: 0). If 0 is passed, there is no limit.",
+   "--config": "Path to the YML config file. If not passed, it looks for file 'config.yml' in the same directory as runtime file 'xnLinkFinder.py'.",
+   "--no-wordlist-plurals": "When words are found for a target specific wordlist, by default new words are added if there is a singular word from a plural, and vice versa. If this argument is used, this process is not done.",
+   "-nwlpl": "When words are found for a target specific wordlist, by default new words are added if there is a singular word from a plural, and vice versa. If this argument is used, this process is not done.",
+   "--no-wordlist-pathwords": "By default, any path words found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "-nwlpw": "By default, any path words found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "--no-wordlist-parameters": "By default, any parameters found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "-nwlpm": "By default, any parameters found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "--no-wordlist-comments": "By default, any comments in pages will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "-nwlc": "By default, any comments in pages will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "--no-wordlist-imgalt": "By default, any image 'alt' attributes will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "-nwlia": "By default, any image 'alt' attributes will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+   "--no-wordlist-digits": "Exclude any words from the target specific wordlist with numerical digits in.",
+   "-nwld": "Exclude any words from the target specific wordlist with numerical digits in.",
+   "--no-wordlist-lowercase": "By default, any word added with any uppercase characters in will also add the word in lowercase. If this argument is used, the lowercase words will not be added.",
+   "-nwll": "By default, any word added with any uppercase characters in will also add the word in lowercase. If this argument is used, the lowercase words will not be added.",
+   "--wordlist-maxlen": "The maximum length of words to add to the target specific wordlist (excluding plurals).",
+   "-wlml": "The maximum length of words to add to the target specific wordlist (excluding plurals).",
+   "--stopwords-file": "A file of additional Stop Words (in addition to \"stopWords\" in the YML Config file) used to exclude words from the target specific wordlist. Stop Words are used in Natural Language Processing and different lists can be found in different libraries. You may want to add words in different languages, depending on your target.",
+   "-swf": "A file of additional Stop Words (in addition to \"stopWords\" in the YML Config file) used to exclude words from the target specific wordlist. Stop Words are used in Natural Language Processing and different lists can be found in different libraries. You may want to add words in different languages, depending on your target.",
+   "--burpfile-remove-tags": "Whether to remove tags if a Burp file is passed as input. This is asked interactively if the flag is not passed. Pass as True or False. If this argument is not passed then the question will be asked interactively.",
+   "-brt": "Whether to remove tags if a Burp file is passed as input. This is asked interactively if the flag is not passed. Pass as True or False. If this argument is not passed then the question will be asked interactively.",
+   "--all-tlds": "All links found will be returned, even if the TLD is not common. This can result in a number of false positives where variable names, etc. may also be a possible genuine domain. By default, only links that have a TLD in the common TLDs (commonTLDs in config.yml) will be returned.",
+   "-all": "All links found will be returned, even if the TLD is not common. This can result in a number of false positives where variable names, etc. may also be a possible genuine domain. By default, only links that have a TLD in the common TLDs (commonTLDs in config.yml) will be returned.",
+   "--content-length": "Show the Content-Length of the response when crawling.",
+   "-cl": "Show the Content-Length of the response when crawling.",
+   "--no-banner": "Hides the tool banner.",
+   "-nb": "Hides the tool banner.",
+   "--verbose": "Verbose output",
+   "-v": "Verbose output",
+   "--vverbose": "Increased verbose output",
+   "-vv": "Increased verbose output",
+   "--version": "Show version number"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--input": [
+    "-i"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--output-params": [
+    "-op"
+   ],
+   "--output-wordlist": [
+    "-owl"
+   ],
+   "--output-oos": [
+    "-oo"
+   ],
+   "--output-secrets": [
+    "-os"
+   ],
+   "--scope-prefix": [
+    "-sp"
+   ],
+   "--scope-prefix-original": [
+    "-spo"
+   ],
+   "--scope-prefix-keep-failed": [
+    "-spkf"
+   ],
+   "--scope-filter": [
+    "-sf"
+   ],
+   "--cookies": [
+    "-c"
+   ],
+   "--headers": [
+    "-H"
+   ],
+   "--regex-after": [
+    "-ra"
+   ],
+   "--depth": [
+    "-d"
+   ],
+   "--processes": [
+    "-p"
+   ],
+   "--rate-limit": [
+    "-rl"
+   ],
+   "--exclude": [
+    "-x"
+   ],
+   "--origin": [
+    "-orig"
+   ],
+   "--exclude-relative-links": [
+    "-xrel"
+   ],
+   "--timeout": [
+    "-t"
+   ],
+   "--retries": [
+    "-r"
+   ],
+   "--max-response-size": [
+    "-mrs"
+   ],
+   "--include": [
+    "-inc"
+   ],
+   "--user-agent": [
+    "-u"
+   ],
+   "--user-agent-custom": [
+    "-uc"
+   ],
+   "--memory-threshold": [
+    "-m"
+   ],
+   "--max-file-size": [
+    "-mfs"
+   ],
+   "--forward-proxy": [
+    "-fp"
+   ],
+   "--request-proxy": [
+    "-rp"
+   ],
+   "--readable-only": [
+    "-ro"
+   ],
+   "--max-time-limit": [
+    "-mtl"
+   ],
+   "--no-wordlist-plurals": [
+    "-nwlpl"
+   ],
+   "--no-wordlist-pathwords": [
+    "-nwlpw"
+   ],
+   "--no-wordlist-parameters": [
+    "-nwlpm"
+   ],
+   "--no-wordlist-comments": [
+    "-nwlc"
+   ],
+   "--no-wordlist-imgalt": [
+    "-nwlia"
+   ],
+   "--no-wordlist-digits": [
+    "-nwld"
+   ],
+   "--no-wordlist-lowercase": [
+    "-nwll"
+   ],
+   "--wordlist-maxlen": [
+    "-wlml"
+   ],
+   "--stopwords-file": [
+    "-swf"
+   ],
+   "--burpfile-remove-tags": [
+    "-brt"
+   ],
+   "--all-tlds": [
+    "-all"
+   ],
+   "--content-length": [
+    "-cl"
+   ],
+   "--no-banner": [
+    "-nb"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--vverbose": [
+    "-vv"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "acdd305aa2457b215fe22e55de85220f0b0ef0158caf8e6bd6403ebc565096c4",
+  "text": "usage: xnLinkFinder [-h] [-i INPUT] [-o OUTPUT] [-op OUTPUT_PARAMS]\n                    [-owl OUTPUT_WORDLIST] [-oo OUTPUT_OOS]\n                    [-os OUTPUT_SECRETS] [-ow] [-sp <domain/file>] [-spo]\n                    [-spkf] [-sf <domain/file>] [-c COOKIES] [-H HEADERS]\n                    [-ra REGEX_AFTER] [-d DEPTH] [-p <integer>] [-rl <float>]\n                    [-x EXCLUDE] [-orig] [-prefixed] [-xrel] [-t <seconds>]\n                    [-r <integer>] [-mrs <MB>] [-inc] [-u [...]]\n                    [-uc USER_AGENT_CUSTOM] [-insecure] [-s429] [-s403] [-sTO]\n                    [-sCE] [-m <integer>] [-mfs <integer>] [-fp FORWARD_PROXY]\n                    [-rp REQUEST_PROXY] [--heap] [-ro] [-ascii-only]\n                    [-mtl <integer>] [--config CONFIG] [-nwlpl] [-nwlpw]\n                    [-nwlpm] [-nwlc] [-nwlia] [-nwld] [-nwll]\n                    [-wlml WORDLIST_MAXLEN] [-swf STOPWORDS_FILE]\n                    [-brt <bool>] [-all] [-cl] [-nb] [-v] [-vv] [--version]\n\nxnLinkFinder (v8.2) - by @Xnl-h4ck3r\n\noptions:\n  -h, --help            show this help message and exit\n  -i INPUT, --input INPUT\n                        Input a: URL, text file of URLs, a Directory of files\n                        to search, a Burp XML output file, ZAP output file,\n                        Caido CSV file, or a HAR JSON file.\n  -o OUTPUT, --output OUTPUT\n                        The file to save the Links output to, including path\n                        if necessary (default: output.txt). If set to \"cli\"\n                        then output is only written to STDOUT. If the file\n                        already exist it will just be appended to (and de-\n                        duplicated) unless option -ow is passed.\n  -op OUTPUT_PARAMS, --output-params OUTPUT_PARAMS\n                        The file to save the Potential Parameters output to,\n                        including path if necessary (default: parameters.txt).\n                        If set to \"cli\" then output is only written to STDOUT\n                        (but not piped to another program). If the file\n                        already exist it will just be appended to (and de-\n                        duplicated) unless option -ow is passed.\n  -owl OUTPUT_WORDLIST, --output-wordlist OUTPUT_WORDLIST\n                        The file to save the target specific Wordlist output\n                        to, including path if necessary (default: No wordlist\n                        output). If set to \"cli\" then output is only written\n                        to STDOUT (but not piped to another program). If the\n                        file already exist it will just be appended to (and\n                        de-duplicated) unless option -ow is passed.\n  -oo OUTPUT_OOS, --output-oos OUTPUT_OOS\n                        The file to save Out Of Scope links to, including path\n                        if necessary (default: No OOS output). If set to \"cli\"\n                        then output is only written to STDOUT (but not piped\n                        to another program). If the file already exist it will\n                        just be appended to (and de-duplicated) unless option\n                        -ow is passed.\n  -os OUTPUT_SECRETS, --output-secrets OUTPUT_SECRETS\n                        The file to save any secrets found in responses to,\n                        including path if necessary (default: No secrets\n                        output). If set to \"cli\" then output is only written\n                        to STDOUT. If the file already exist it will just be\n                        appended to (and de-duplicated) unless option -ow is\n                        passed. Secrets include: AWS keys, GitHub tokens,\n                        JWTs, Google API keys, private keys, database\n                        connection strings, and more.\n  -ow, --output-overwrite\n                        If the output file already exists, it will be\n                        overwritten instead of being appended to.\n  -sp <domain/file>, --scope-prefix <domain/file>\n                        Any links found starting with / will be prefixed with\n                        scope domains in the output instead of the original\n                        link. If the passed value is a valid file name, that\n                        file will be used, otherwise the string literal will\n                        be used.\n  -spo, --scope-prefix-original\n                        If argument -sp is passed, then this determines\n                        whether the original link starting with / is also\n                        included in the output (default: false).\n  -spkf, --scope-prefix-keep-failed\n                        If argument -spkf is passed, then this determines\n                        whether a prefixed link will be kept in the output if\n                        it was a 404 or a RequestException occurred (default:\n                        false).\n  -sf <domain/file>, --scope-filter <domain/file>\n                        Will filter output links to only include them if the\n                        domain of the link is in the scope specified. If the\n                        passed value is a valid file name, that file will be\n                        used, otherwise the string literal will be used. This\n                        argument is now mandatory if input is a domain/URL (or\n                        file of domains/URLs) to prevent crawling sites that\n                        are not in scope and also preventing misleading\n                        results.\n  -c COOKIES, --cookies COOKIES\n                        Add cookies to pass with HTTP requests. Pass in the\n                        format 'name1=value1; name2=value2;'\n  -H HEADERS, --headers HEADERS\n                        Add custom headers to pass with HTTP requests. Pass in\n                        the format 'Header1: value1; Header2: value2;'\n  -ra REGEX_AFTER, --regex-after REGEX_AFTER\n                        RegEx for filtering purposes against found endpoints\n                        before output (e.g. /api/v[0-9]\\.[0-9]* ). If it\n                        matches, the link is output.\n  -d DEPTH, --depth DEPTH\n                        The level of depth to search. For example, if a value\n                        of 2 is passed, then all links initially found will\n                        then be searched for more links (default: 1). This\n                        option is ignored for Burp files, ZAP files and Caiod\n                        files because they can be huge and consume lots of\n                        memory. It is also advisable to use the -sp (--scope-\n                        prefix) argument to ensure a request to links found\n                        without a domain can be attempted.\n  -p <integer>, --processes <integer>\n                        Basic multithreading is done when getting requests for\n                        a URL, or file of URLs (not a Burp file, ZAP file or\n                        Caido file). This argument determines the number of\n                        processes (threads) used (default: 25)\n  -rl <float>, --rate-limit <float>\n                        Maximum number of requests to send per second\n                        (default: 0, no rate limiting). This helps prevent\n                        overwhelming the target server.\n  -x EXCLUDE, --exclude EXCLUDE\n                        Additional Link exclusions (to the list in config.yml)\n                        in a comma separated list, e.g. careers,forum\n  -orig, --origin       Whether you want the origin of the link to be in the\n                        output. Displayed as LINK-URL [ORIGIN-URL] in the\n                        output (default: false)\n  -prefixed             Whether you want to see which links were prefixed in\n                        the output. Displays (PREFIXED) after link and origin\n                        in the output (default: false)\n  -xrel, --exclude-relative-links\n                        By default, if any links in the results start with\n                        `./` or `../`, they will be included. If this argument\n                        is used, these relative links will not be added.\n  -t <seconds>, --timeout <seconds>\n                        How many seconds to wait for the server to send data\n                        before giving up (default: 10 seconds)\n  -r <integer>, --retries <integer>\n                        The number of times to retry a request after a failure\n                        (e.g. timeout, connection error, etc). This is limited\n                        to 5 retries (default: 0).\n  -mrs <MB>, --max-response-size <MB>\n                        Maximum response size in MB to download. Responses\n                        larger than this will be skipped (default: 100 MB).\n  -inc, --include       Include input (-i) links in the output (default:\n                        false)\n  -u [ ...], --user-agent [ ...]\n                        What User Agents to get links for, e.g. '-u desktop\n                        mobile'\n  -uc USER_AGENT_CUSTOM, --user-agent-custom USER_AGENT_CUSTOM\n                        A custom User Agent string to use for all requests.\n                        This will override the -u/--user-agent argument. This\n                        can be used when a program requires a specific User\n                        Agent header to identify you for example.\n  -insecure             Whether TLS certificate checks should be made disabled\n                        making requests (default: false)\n  -s429                 Stop when > 95 percent of responses return 429 Too\n                        Many Requests (default: false)\n  -s403                 Stop when > 95 percent of responses return 403\n                        Forbidden (default: false)\n  -sTO                  Stop when > 95 percent of requests time out (default:\n                        false)\n  -sCE                  Stop when > 95 percent of requests have connection\n                        errors (default: false)\n  -m <integer>, --memory-threshold <integer>\n                        The memory threshold percentage. If the machines\n                        memory goes above the threshold, the program will be\n                        stopped and ended gracefully before running out of\n                        memory (default: 95)\n  -mfs <integer>, --max-file-size <integer>\n                        The maximum file size (in bytes) of a file to be\n                        checked if -i is a directory. If the file size os\n                        over, it will be ignored (default: 500 MB). Setting to\n                        0 means no files will be ignored, regardless of size.\n  -fp FORWARD_PROXY, --forward-proxy FORWARD_PROXY\n                        For active link finding with URL (or file of URLs),\n                        replay the requests through a proxy such as Burp or\n                        Caido, e.g http://127.0.0.1:8080\n  -rp REQUEST_PROXY, --request-proxy REQUEST_PROXY\n                        Request proxy to use. Can be a proxy string (e.g.\n                        http://user:pass@1.2.3.4:8000, socks5://host:port) or\n                        a file containing proxy list (one per line, random\n                        selection)\n  --heap                Whether to take a heap snapshot of visited URLs and\n                        extract links from browser memory. This will take\n                        longer but could discover dynamically generated links\n                        that standard static analysis might miss (Requires\n                        Playwright to be installed).\n  -ro, --readable-only  If passed, only human-readable text will be extracted\n                        from HTML responses/files using BeautifulSoup before\n                        searching for links. This excludes content from\n                        script, style, noscript, and template tags.\n  -ascii-only           Whether links and parameters will only be added if\n                        they only contain ASCII characters (default: False).\n                        This can be useful when you know the target is likely\n                        to use ASCII characters and you also get a number of\n                        false positives from binary files for some reason.\n  -mtl <integer>, --max-time-limit <integer>\n                        The maximum time limit (in minutes) to run before\n                        stopping (default: 0). If 0 is passed, there is no\n                        limit.\n  --config CONFIG       Path to the YML config file. If not passed, it looks\n                        for file 'config.yml' in the same directory as runtime\n                        file 'xnLinkFinder.py'.\n  -nwlpl, --no-wordlist-plurals\n                        When words are found for a target specific wordlist,\n                        by default new words are added if there is a singular\n                        word from a plural, and vice versa. If this argument\n                        is used, this process is not done.\n  -nwlpw, --no-wordlist-pathwords\n                        By default, any path words found in the links will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwlpm, --no-wordlist-parameters\n                        By default, any parameters found in the links will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwlc, --no-wordlist-comments\n                        By default, any comments in pages will be processed\n                        for the target specific wordlist. If this argument is\n                        used, they will not be processed.\n  -nwlia, --no-wordlist-imgalt\n                        By default, any image 'alt' attributes will be\n                        processed for the target specific wordlist. If this\n                        argument is used, they will not be processed.\n  -nwld, --no-wordlist-digits\n                        Exclude any words from the target specific wordlist\n                        with numerical digits in.\n  -nwll, --no-wordlist-lowercase\n                        By default, any word added with any uppercase\n                        characters in will also add the word in lowercase. If\n                        this argument is used, the lowercase words will not be\n                        added.\n  -wlml WORDLIST_MAXLEN, --wordlist-maxlen WORDLIST_MAXLEN\n                        The maximum length of words to add to the target\n                        specific wordlist (excluding plurals).\n  -swf STOPWORDS_FILE, --stopwords-file STOPWORDS_FILE\n                        A file of additional Stop Words (in addition to\n                        \"stopWords\" in the YML Config file) used to exclude\n                        words from the target specific wordlist. Stop Words\n                        are used in Natural Language Processing and different\n                        lists can be found in different libraries. You may\n                        want to add words in different languages, depending on\n                        your target.\n  -brt <bool>, --burpfile-remove-tags <bool>\n                        Whether to remove tags if a Burp file is passed as\n                        input. This is asked interactively if the flag is not\n                        passed. Pass as True or False. If this argument is not\n                        passed then the question will be asked interactively.\n  -all, --all-tlds      All links found will be returned, even if the TLD is\n                        not common. This can result in a number of false\n                        positives where variable names, etc. may also be a\n                        possible genuine domain. By default, only links that\n                        have a TLD in the common TLDs (commonTLDs in\n                        config.yml) will be returned.\n  -cl, --content-length\n                        Show the Content-Length of the response when crawling.\n  -nb, --no-banner      Hides the tool banner.\n  -v, --verbose         Verbose output\n  -vv, --vverbose       Increased verbose output\n  --version             Show version number\nWARNING: Unable to create config.yml: [Errno 30] Read-only file system: '/home/ctk/.config'\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--all-tlds",
+   "--burpfile-remove-tags",
+   "--config",
+   "--content-length",
+   "--cookies",
+   "--depth",
+   "--exclude",
+   "--exclude-relative-links",
+   "--forward-proxy",
+   "--headers",
+   "--heap",
+   "--include",
+   "--input",
+   "--max-file-size",
+   "--max-response-size",
+   "--max-time-limit",
+   "--memory-threshold",
+   "--no-banner",
+   "--no-wordlist-comments",
+   "--no-wordlist-digits",
+   "--no-wordlist-imgalt",
+   "--no-wordlist-lowercase",
+   "--no-wordlist-parameters",
+   "--no-wordlist-pathwords",
+   "--no-wordlist-plurals",
+   "--origin",
+   "--output",
+   "--output-oos",
+   "--output-overwrite",
+   "--output-params",
+   "--output-secrets",
+   "--output-wordlist",
+   "--processes",
+   "--rate-limit",
+   "--readable-only",
+   "--regex-after",
+   "--request-proxy",
+   "--retries",
+   "--scope-filter",
+   "--scope-prefix",
+   "--scope-prefix-keep-failed",
+   "--scope-prefix-original",
+   "--stopwords-file",
+   "--timeout",
+   "--user-agent",
+   "--user-agent-custom",
+   "--verbose",
+   "--version",
+   "--vverbose",
+   "--wordlist-maxlen",
+   "-ascii-only",
+   "-insecure",
+   "-prefixed",
+   "-s403",
+   "-s429",
+   "-sCE",
+   "-sTO"
+  ],
+  "unconfirmed": [
+   "--replay-proxy",
+   "-replay-proxy"
+  ],
+  "help_only": [
+   "--help",
+   "-H",
+   "-all",
+   "-brt",
+   "-c",
+   "-cl",
+   "-d",
+   "-fp",
+   "-h",
+   "-i",
+   "-inc",
+   "-m",
+   "-mfs",
+   "-mrs",
+   "-mtl",
+   "-nb",
+   "-nwlc",
+   "-nwld",
+   "-nwlia",
+   "-nwll",
+   "-nwlpl",
+   "-nwlpm",
+   "-nwlpw",
+   "-o",
+   "-oo",
+   "-op",
+   "-orig",
+   "-os",
+   "-ow",
+   "-owl",
+   "-p",
+   "-r",
+   "-ra",
+   "-rl",
+   "-ro",
+   "-rp",
+   "-sf",
+   "-sp",
+   "-spkf",
+   "-spo",
+   "-swf",
+   "-t",
+   "-u",
+   "-uc",
+   "-v",
+   "-vv",
+   "-wlml",
+   "-x",
+   "-xrel"
+  ],
+  "mining_coverage": 0.5377358490566038
+ },
+ "surface": {
+  "flags": {
+   "--all-tlds": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "All links found will be returned, even if the TLD is not common. This can result in a number of false positives where variable names, etc. may also be a possible genuine domain. By default, only links that have a TLD in the common TLDs (commonTLDs in config.yml) will be returned.",
+    "kind": "option",
+    "first_tag": "v6.7",
+    "first_date": "2025-02-26T21:04:54Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-all"
+    ]
+   },
+   "--burpfile-remove-tags": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether to remove tags if a Burp file is passed as input. This is asked interactively if the flag is not passed. Pass as True or False. If this argument is not passed then the question will be asked interactively.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-brt"
+    ]
+   },
+   "--config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to the YML config file. If not passed, it looks for file 'config.yml' in the same directory as runtime file 'xnLinkFinder.py'.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "--content-length": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show the Content-Length of the response when crawling.",
+    "kind": "option",
+    "first_tag": "v6.8",
+    "first_date": "2025-02-27T23:59:42Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-cl"
+    ]
+   },
+   "--cookies": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Add cookies to pass with HTTP requests. Pass in the format 'name1=value1; name2=value2;'",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--depth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The level of depth to search. For example, if a value of 2 is passed, then all links initially found will then be searched for more links (default: 1). This option is ignored for Burp files, ZAP files and Caiod files because they can be huge and consume lots of memory. It is also advisable to use the -sp (--scope- prefix) argument to ensure a request to links found without a domain can be attempted.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--exclude": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Additional Link exclusions (to the list in config.yml) in a comma separated list, e.g. careers,forum",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--exclude-relative-links": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, if any links in the results start with `./` or `../`, they will be included. If this argument is used, these relative links will not be added.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-xrel"
+    ]
+   },
+   "--forward-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "For active link finding with URL (or file of URLs), replay the requests through a proxy such as Burp or Caido, e.g http://127.0.0.1:8080",
+    "kind": "option",
+    "first_tag": "v7.10",
+    "first_date": "2025-12-25T14:46:56Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-fp"
+    ]
+   },
+   "--headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Add custom headers to pass with HTTP requests. Pass in the format 'Header1: value1; Header2: value2;'",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--heap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether to take a heap snapshot of visited URLs and extract links from browser memory. This will take longer but could discover dynamically generated links that standard static analysis might miss (Requires Playwright to be installed).",
+    "kind": "option",
+    "first_tag": "v7.12",
+    "first_date": "2026-01-03T00:24:05Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--include": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Include input (-i) links in the output (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-inc"
+    ]
+   },
+   "--input": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Input a: URL, text file of URLs, a Directory of files to search, a Burp XML output file, ZAP output file, Caido CSV file, or a HAR JSON file.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--max-file-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The maximum file size (in bytes) of a file to be checked if -i is a directory. If the file size os over, it will be ignored (default: 500 MB). Setting to 0 means no files will be ignored, regardless of size.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-mfs"
+    ]
+   },
+   "--max-response-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Maximum response size in MB to download. Responses larger than this will be skipped (default: 100 MB).",
+    "kind": "option",
+    "first_tag": "v7.18",
+    "first_date": "2026-01-08T17:15:31Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-mrs"
+    ]
+   },
+   "--max-time-limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The maximum time limit (in minutes) to run before stopping (default: 0). If 0 is passed, there is no limit.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-mtl"
+    ]
+   },
+   "--memory-threshold": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The memory threshold percentage. If the machines memory goes above the threshold, the program will be stopped and ended gracefully before running out of memory (default: 95)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--no-banner": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Hides the tool banner.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nb"
+    ]
+   },
+   "--no-wordlist-comments": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, any comments in pages will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwlc"
+    ]
+   },
+   "--no-wordlist-digits": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Exclude any words from the target specific wordlist with numerical digits in.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwld"
+    ]
+   },
+   "--no-wordlist-imgalt": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, any image 'alt' attributes will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwlia"
+    ]
+   },
+   "--no-wordlist-lowercase": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, any word added with any uppercase characters in will also add the word in lowercase. If this argument is used, the lowercase words will not be added.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwll"
+    ]
+   },
+   "--no-wordlist-parameters": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, any parameters found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwlpm"
+    ]
+   },
+   "--no-wordlist-pathwords": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "By default, any path words found in the links will be processed for the target specific wordlist. If this argument is used, they will not be processed.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwlpw"
+    ]
+   },
+   "--no-wordlist-plurals": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "When words are found for a target specific wordlist, by default new words are added if there is a singular word from a plural, and vice versa. If this argument is used, this process is not done.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-nwlpl"
+    ]
+   },
+   "--origin": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether you want the origin of the link to be in the output. Displayed as LINK-URL [ORIGIN-URL] in the output (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-orig"
+    ]
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The file to save the Links output to, including path if necessary (default: output.txt). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--output-oos": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The file to save Out Of Scope links to, including path if necessary (default: No OOS output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-oo"
+    ]
+   },
+   "--output-overwrite": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If the output file already exists, it will be overwritten instead of being appended to.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "--output-params": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The file to save the Potential Parameters output to, including path if necessary (default: parameters.txt). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de- duplicated) unless option -ow is passed.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-op"
+    ]
+   },
+   "--output-secrets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The file to save any secrets found in responses to, including path if necessary (default: No secrets output). If set to \"cli\" then output is only written to STDOUT. If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed. Secrets include: AWS keys, GitHub tokens, JWTs, Google API keys, private keys, database connection strings, and more.",
+    "kind": "option",
+    "first_tag": "v8.0",
+    "first_date": "2026-01-14T23:19:37Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-os"
+    ]
+   },
+   "--output-wordlist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The file to save the target specific Wordlist output to, including path if necessary (default: No wordlist output). If set to \"cli\" then output is only written to STDOUT (but not piped to another program). If the file already exist it will just be appended to (and de-duplicated) unless option -ow is passed.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-owl"
+    ]
+   },
+   "--processes": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Basic multithreading is done when getting requests for a URL, or file of URLs (not a Burp file, ZAP file or Caido file). This argument determines the number of processes (threads) used (default: 25)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--rate-limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Maximum number of requests to send per second (default: 0, no rate limiting). This helps prevent overwhelming the target server.",
+    "kind": "option",
+    "first_tag": "v7.0",
+    "first_date": "2025-09-30T14:58:11+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-rl"
+    ]
+   },
+   "--readable-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If passed, only human-readable text will be extracted from HTML responses/files using BeautifulSoup before searching for links. This excludes content from script, style, noscript, and template tags.",
+    "kind": "option",
+    "first_tag": "v7.16",
+    "first_date": "2026-01-07T16:59:15Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-ro"
+    ]
+   },
+   "--regex-after": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "RegEx for filtering purposes against found endpoints before output (e.g. /api/v[0-9]\\.[0-9]* ). If it matches, the link is output.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-ra"
+    ]
+   },
+   "--replay-proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "For active link finding with URL (or file of URLs), replay the requests through this proxy.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v7.9",
+    "last_date": "2025-12-17T21:15:06Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "--request-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Request proxy to use. Can be a proxy string (e.g. http://user:pass@1.2.3.4:8000, socks5://host:port) or a file containing proxy list (one per line, random selection)",
+    "kind": "option",
+    "first_tag": "v8.1",
+    "first_date": "2026-01-15T23:20:25Z",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-rp"
+    ]
+   },
+   "--retries": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The number of times to retry a request after a failure (e.g. timeout, connection error, etc). This is limited to 5 retries (default: 0).",
+    "kind": "option",
+    "first_tag": "v7.1",
+    "first_date": "2025-10-08T21:48:17+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--scope-filter": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Will filter output links to only include them if the domain of the link is in the scope specified. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used. This argument is now mandatory if input is a domain/URL (or file of domains/URLs) to prevent crawling sites that are not in scope and also preventing misleading results.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-sf"
+    ]
+   },
+   "--scope-prefix": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Any links found starting with / will be prefixed with scope domains in the output instead of the original link. If the passed value is a valid file name, that file will be used, otherwise the string literal will be used.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-sp"
+    ]
+   },
+   "--scope-prefix-keep-failed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If argument -spkf is passed, then this determines whether a prefixed link will be kept in the output if it was a 404 or a RequestException occurred (default: false).",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-spkf"
+    ]
+   },
+   "--scope-prefix-original": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If argument -sp is passed, then this determines whether the original link starting with / is also included in the output (default: false).",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-spo"
+    ]
+   },
+   "--stopwords-file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "A file of additional Stop Words (in addition to \"stopWords\" in the YML Config file) used to exclude words from the target specific wordlist. Stop Words are used in Natural Language Processing and different lists can be found in different libraries. You may want to add words in different languages, depending on your target.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-swf"
+    ]
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "How many seconds to wait for the server to send data before giving up (default: 10 seconds)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--user-agent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "What User Agents to get links for, e.g. '-u desktop mobile'",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--user-agent-custom": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "A custom User Agent string to use for all requests. This will override the -u/--user-agent argument. This can be used when a program requires a specific User Agent header to identify you for example.",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-uc"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Verbose output",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show version number",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "--vverbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Increased verbose output",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-vv"
+    ]
+   },
+   "--wordlist-maxlen": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The maximum length of words to add to the target specific wordlist (excluding plurals).",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py",
+    "aliases": [
+     "-wlml"
+    ]
+   },
+   "-ascii-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether links and parameters will only be added if they only contain ASCII characters (default: False). This can be useful when you know the target is likely to use ASCII characters and you also get a number of false positives from binary files for some reason.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-insecure": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether TLS certificate checks should be made disabled making requests (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-ow": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "-prefixed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whether you want to see which links were prefixed in the output. Displays (PREFIXED) after link and origin in the output (default: false)",
+    "kind": "option",
+    "first_tag": "v6.1",
+    "first_date": "2024-05-14T13:11:39+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-replay-proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "For active link finding with URL (or file of URLs), replay the requests through this proxy.",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v2.1",
+    "last_date": "2022-10-17T20:21:33+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xnLinkFinder.py"
+   },
+   "-s403": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Stop when > 95 percent of responses return 403 Forbidden (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-s429": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Stop when > 95 percent of responses return 429 Too Many Requests (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-sCE": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Stop when > 95 percent of requests have connection errors (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   },
+   "-sTO": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Stop when > 95 percent of requests time out (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1",
+    "first_date": "2022-10-17T20:21:33+01:00",
+    "last_tag": "v8.2",
+    "last_date": "2026-03-08T20:08:28Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xnLinkFinder/xnLinkFinder.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "xnLinkFinder",
+ "repo": "xnl-h4ck3r/xnLinkFinder",
+ "head_sha": "841ac8dddbc7edd728939df5db51274a63ab5863",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T02:00:33.890327+00:00"
+}

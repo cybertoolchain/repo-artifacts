@@ -1,0 +1,672 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:4ca34863083911807b453d59f9ca5e2d2bef574e20c295fa4c2cabefe0a5f5d3",
+  "duration_s": 4.83,
+  "log_tail": "#11 3.132   472 |                         strncpy(backup, eol, (size_t)(strlen(eol)));\n#11 3.132       |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#11 3.132 src/header_f.c:472:55: note: length computed here\n#11 3.132   472 |                         strncpy(backup, eol, (size_t)(strlen(eol)));\n#11 3.132       |                                                      ~^~~~~~~~~~~~\n#11 3.132 src/header_f.c:473:47: warning: ' ' directive output may be truncated writing 1 byte into a region of size between 0 and 10 [-Wformat-truncation=]\n#11 3.132   473 |                         snprintf(cs_s, 11, \"%i \", cs);\n#11 3.132       |                                               ^\n#11 3.132 src/header_f.c:473:25: note: 'snprintf' output between 3 and 13 bytes into a destination of size 11\n#11 3.132   473 |                         snprintf(cs_s, 11, \"%i \", cs);\n#11 3.132       |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#11 3.132 src/header_f.c:475:25: warning: 'strncpy' output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]\n#11 3.132   475 |                         strncpy(cs_s, backup, strlen(backup));\n#11 3.132       |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n#11 3.232 gcc  -g -O2 -Wall -fstack-protector   -o sipsak src/transport.o src/auth.o src/header_f.o src/helper.o src/md5.o src/request.o src/shoot.o src/sipsak.o src/exit_code.o  \n#11 3.242 make[1]: Leaving directory '/src'\n#11 DONE 3.3s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.102 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:36914baae1bd9326e1a4732c6e120a033b8bed38083cc1a7661f0dd84cef6ccf done\n#19 exporting config sha256:3413c4693c9a2c00797c6063bf8f8ec173385f62d48f8f83705a56f7fc34c62b done\n#19 exporting attestation manifest sha256:1c6a4cb57cc4455548e609c2c69013b1b80d556e4342ba267d7c97d0d5ff84af done\n#19 exporting manifest list sha256:4ca34863083911807b453d59f9ca5e2d2bef574e20c295fa4c2cabefe0a5f5d3 done\n#19 naming to docker.io/ctk-exec/sipsak:ed6a911f0701 done\n#19 unpacking to docker.io/ctk-exec/sipsak:ed6a911f0701\n#19 unpacking to docker.io/ctk-exec/sipsak:ed6a911f0701 0.5s done\n#19 DONE 0.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "sipsak",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "long option help\nsipsak 0.9.9-pre by Nils Ohlmeier\n Copyright (C) 2002-2004 FhG Fokus\n Copyright (C) 2004-2022 Nils Ohlmeier\n report bugs to github@ohlmeier.org\n\n shoot  : sipsak [-f FILE] [-L] -s SIPURI\n trace  : sipsak -T -s SIPURI\n usrloc : sipsak -U [-I|M] [-b NUMBER] [-e NUMBER] [-x NUMBER] [-z NUMBER] -s SIPURI\n usrloc : sipsak -I|M [-b NUMBER] [-e NUMBER] -s SIPURI\n usrloc : sipsak -U [-C SIPURI] [-x NUMBER] -s SIPURI\n message: sipsak -M [-B STRING] [-O STRING] [-c SIPURI] -s SIPURI\n flood  : sipsak -F [-e NUMBER] -s SIPURI\n random : sipsak -R [-t NUMBER] -s SIPURI\n\n additional parameter in every mode:\n   [-a PASSWORD] [-d] [-i] [-H HOSTNAME] [-l PORT] [-m NUMBER] [-n] [-N]\n   [-r PORT] [-v] [-V] [-w]\n\n  --help                     displays this help message\n  --version                  prints version string only\n  --filename=FILE            the file which contains the SIP message to send\n                               use - for standard input\n  --no-crlf                  de-activate CR (\\r) insertion\n  --sip-uri=SIPURI           the destination server URI in form\n                               sip:[user@]servername[:port]\n  --traceroute               activates the traceroute mode\n  --usrloc-mode              activates the usrloc mode\n  --invite-mode              simulates a successful calls with itself\n  --message-mode             sends messages to itself\n  --contact=SIPURI           use the given URI as Contact in REGISTER\n  --appendix-begin=NUMBER    the starting number appendix to the user name (default: 0)\n  --appendix-end=NUMBER      the ending number of the appendix to the user name\n  --sleep=NUMBER             sleep number ms before sending next request\n  --expires=NUMBER           the expires header field value (default: 15)\n  --remove-bindings=NUMBER   activates randomly removing of user bindings\n  --flood-mode               activates the flood mode\n  --random-mode              activates the random mode (dangerous)\n  --trash-chars=NUMBER       the maximum number of trashed character in random mode\n                               (default: request length)\n  --local-port=PORT          the local port to use (default: any)\n  --remote-port=PORT         the remote port to use (default: 5060)\n  --outbound-proxy=HOSTNAME  request target (outbound proxy)\n  --hostname=HOSTNAME        overwrites the local hostname in all headers\n  --max-forwards=NUMBER      the value for the max-forwards header field\n  --numeric                  use FQDN instead of IP in the Via-Line\n  --processes=NUMBER         Divide the workflow among the number of processes\n  --auth-username=STRING     username for authentication\n  --no-via                   deactivate the insertion of a Via-Line\n  --password=PASSWORD        password for authentication\n                               (if omitted password=username)\n  --ignore-redirects         ignore redirects\n  --verbose                  each v produces more verbosity (max. 3)\n  --extract-ip               extract IP from the warning in reply\n  --replace-string=STRING    replacement for a special mark in the message\n  --replace                  activates replacement of variables\n  --nagios-code              returns exit codes Nagios compliant\n  --nagios-warn=NUMBER       return Nagios warning if retrans > number\n  --message-body=STRING      send a message with string as body\n  --disposition=STRING       Content-Disposition value\n  --search=REGEXP            search for a RegExp in replies and return error\n                             on failure\n  --timing=NUMBER            number of test runs and print just the timings\n  --symmetric                send and received on the same port\n  --from=SIPURI              use the given URI as From in MESSAGE\n  --timeout-factor=NUMBER    timeout multiplier for INVITE transactions\n                             on non-reliable transports (default: 64)\n  --timer-t1=NUMBER          timeout T1 in ms (default: 500)\n  --transport=STRING         specify transport to be used\n  --headers=STRING           adds additional headers to the request\n  --local-ip=STRING          specify local ip address to be used\n  --authhash=STRING          HA1 hash for authentication instead of password\n  --syslog=NUMBER            log exit message to syslog with given log level\n",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "sipsak"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for sipsak\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "sipsak"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(sipsak)Top'\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "sipsak",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "displays this help message",
+   "--version": "prints version string only",
+   "--filename": "the file which contains the SIP message to send use - for standard input",
+   "--no-crlf": "de-activate CR (\\r) insertion",
+   "--sip-uri": "the destination server URI in form sip:[user@]servername[:port]",
+   "--traceroute": "activates the traceroute mode",
+   "--usrloc-mode": "activates the usrloc mode",
+   "--invite-mode": "simulates a successful calls with itself",
+   "--message-mode": "sends messages to itself",
+   "--contact": "use the given URI as Contact in REGISTER",
+   "--appendix-begin": "the starting number appendix to the user name (default: 0)",
+   "--appendix-end": "the ending number of the appendix to the user name",
+   "--sleep": "sleep number ms before sending next request",
+   "--expires": "the expires header field value (default: 15)",
+   "--remove-bindings": "activates randomly removing of user bindings",
+   "--flood-mode": "activates the flood mode",
+   "--random-mode": "activates the random mode (dangerous)",
+   "--trash-chars": "the maximum number of trashed character in random mode (default: request length)",
+   "--local-port": "the local port to use (default: any)",
+   "--remote-port": "the remote port to use (default: 5060)",
+   "--outbound-proxy": "request target (outbound proxy)",
+   "--hostname": "overwrites the local hostname in all headers",
+   "--max-forwards": "the value for the max-forwards header field",
+   "--numeric": "use FQDN instead of IP in the Via-Line",
+   "--processes": "Divide the workflow among the number of processes",
+   "--auth-username": "username for authentication",
+   "--no-via": "deactivate the insertion of a Via-Line",
+   "--password": "password for authentication (if omitted password=username)",
+   "--ignore-redirects": "ignore redirects",
+   "--verbose": "each v produces more verbosity (max. 3)",
+   "--extract-ip": "extract IP from the warning in reply",
+   "--replace-string": "replacement for a special mark in the message",
+   "--replace": "activates replacement of variables",
+   "--nagios-code": "returns exit codes Nagios compliant",
+   "--nagios-warn": "return Nagios warning if retrans > number",
+   "--message-body": "send a message with string as body",
+   "--disposition": "Content-Disposition value",
+   "--search": "search for a RegExp in replies and return error on failure",
+   "--timing": "number of test runs and print just the timings",
+   "--symmetric": "send and received on the same port",
+   "--from": "use the given URI as From in MESSAGE",
+   "--timeout-factor": "timeout multiplier for INVITE transactions on non-reliable transports (default: 64)",
+   "--timer-t1": "timeout T1 in ms (default: 500)",
+   "--transport": "specify transport to be used",
+   "--headers": "adds additional headers to the request",
+   "--local-ip": "specify local ip address to be used",
+   "--authhash": "HA1 hash for authentication instead of password",
+   "--syslog": "log exit message to syslog with given log level"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5ca8dc56e6b3f317b62f8b6e78c6339c9a5bf4476cd94c3ee9851049c911646f",
+  "text": "long option help\nsipsak 0.9.9-pre by Nils Ohlmeier\n Copyright (C) 2002-2004 FhG Fokus\n Copyright (C) 2004-2022 Nils Ohlmeier\n report bugs to github@ohlmeier.org\n\n shoot  : sipsak [-f FILE] [-L] -s SIPURI\n trace  : sipsak -T -s SIPURI\n usrloc : sipsak -U [-I|M] [-b NUMBER] [-e NUMBER] [-x NUMBER] [-z NUMBER] -s SIPURI\n usrloc : sipsak -I|M [-b NUMBER] [-e NUMBER] -s SIPURI\n usrloc : sipsak -U [-C SIPURI] [-x NUMBER] -s SIPURI\n message: sipsak -M [-B STRING] [-O STRING] [-c SIPURI] -s SIPURI\n flood  : sipsak -F [-e NUMBER] -s SIPURI\n random : sipsak -R [-t NUMBER] -s SIPURI\n\n additional parameter in every mode:\n   [-a PASSWORD] [-d] [-i] [-H HOSTNAME] [-l PORT] [-m NUMBER] [-n] [-N]\n   [-r PORT] [-v] [-V] [-w]\n\n  --help                     displays this help message\n  --version                  prints version string only\n  --filename=FILE            the file which contains the SIP message to send\n                               use - for standard input\n  --no-crlf                  de-activate CR (\\r) insertion\n  --sip-uri=SIPURI           the destination server URI in form\n                               sip:[user@]servername[:port]\n  --traceroute               activates the traceroute mode\n  --usrloc-mode              activates the usrloc mode\n  --invite-mode              simulates a successful calls with itself\n  --message-mode             sends messages to itself\n  --contact=SIPURI           use the given URI as Contact in REGISTER\n  --appendix-begin=NUMBER    the starting number appendix to the user name (default: 0)\n  --appendix-end=NUMBER      the ending number of the appendix to the user name\n  --sleep=NUMBER             sleep number ms before sending next request\n  --expires=NUMBER           the expires header field value (default: 15)\n  --remove-bindings=NUMBER   activates randomly removing of user bindings\n  --flood-mode               activates the flood mode\n  --random-mode              activates the random mode (dangerous)\n  --trash-chars=NUMBER       the maximum number of trashed character in random mode\n                               (default: request length)\n  --local-port=PORT          the local port to use (default: any)\n  --remote-port=PORT         the remote port to use (default: 5060)\n  --outbound-proxy=HOSTNAME  request target (outbound proxy)\n  --hostname=HOSTNAME        overwrites the local hostname in all headers\n  --max-forwards=NUMBER      the value for the max-forwards header field\n  --numeric                  use FQDN instead of IP in the Via-Line\n  --processes=NUMBER         Divide the workflow among the number of processes\n  --auth-username=STRING     username for authentication\n  --no-via                   deactivate the insertion of a Via-Line\n  --password=PASSWORD        password for authentication\n                               (if omitted password=username)\n  --ignore-redirects         ignore redirects\n  --verbose                  each v produces more verbosity (max. 3)\n  --extract-ip               extract IP from the warning in reply\n  --replace-string=STRING    replacement for a special mark in the message\n  --replace                  activates replacement of variables\n  --nagios-code              returns exit codes Nagios compliant\n  --nagios-warn=NUMBER       return Nagios warning if retrans > number\n  --message-body=STRING      send a message with string as body\n  --disposition=STRING       Content-Disposition value\n  --search=REGEXP            search for a RegExp in replies and return error\n                             on failure\n  --timing=NUMBER            number of test runs and print just the timings\n  --symmetric                send and received on the same port\n  --from=SIPURI              use the given URI as From in MESSAGE\n  --timeout-factor=NUMBER    timeout multiplier for INVITE transactions\n                             on non-reliable transports (default: 64)\n  --timer-t1=NUMBER          timeout T1 in ms (default: 500)\n  --transport=STRING         specify transport to be used\n  --headers=STRING           adds additional headers to the request\n  --local-ip=STRING          specify local ip address to be used\n  --authhash=STRING          HA1 hash for authentication instead of password\n  --syslog=NUMBER            log exit message to syslog with given log level\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--appendix-begin",
+   "--appendix-end",
+   "--auth-username",
+   "--contact",
+   "--disposition",
+   "--expires",
+   "--filename",
+   "--from",
+   "--headers",
+   "--hostname",
+   "--local-ip",
+   "--local-port",
+   "--max-forwards",
+   "--message-body",
+   "--nagios-warn",
+   "--outbound-proxy",
+   "--password",
+   "--processes",
+   "--remote-port",
+   "--replace-string",
+   "--search",
+   "--sip-uri",
+   "--sleep",
+   "--timeout-factor",
+   "--transport",
+   "--trash-chars"
+  ],
+  "unconfirmed": [
+   "--apendix-begin",
+   "--autohash"
+  ],
+  "help_only": [
+   "--authhash",
+   "--extract-ip",
+   "--flood-mode",
+   "--help",
+   "--ignore-redirects",
+   "--invite-mode",
+   "--message-mode",
+   "--nagios-code",
+   "--no-crlf",
+   "--no-via",
+   "--numeric",
+   "--random-mode",
+   "--remove-bindings",
+   "--replace",
+   "--symmetric",
+   "--syslog",
+   "--timer-t1",
+   "--timing",
+   "--traceroute",
+   "--usrloc-mode",
+   "--verbose",
+   "--version"
+  ],
+  "mining_coverage": 0.5416666666666666
+ },
+ "surface": {
+  "flags": {
+   "--apendix-begin": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The starting number which is appended to the user name in the usrloc mode. This is increased until it reaches the value given by the parameter. If omitted the starting number will be one.",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.7",
+    "last_date": "2019-04-26T21:59:41-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--appendix-begin": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the starting number appendix to the user name (default: 0)",
+    "kind": "option",
+    "first_tag": "0.9.8",
+    "first_date": "2020-12-07T10:14:38-08:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--appendix-end": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the ending number of the appendix to the user name",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--auth-username": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "username for authentication",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--authhash": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HA1 hash for authentication instead of password"
+   },
+   "--autohash": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The will be used as the H(A1) input to the digest authentication response calculation. Thus no password from the option is required if this option is provided. The given is expected to be a hex string with the length of the used hash function.",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--contact": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use the given URI as Contact in REGISTER",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--disposition": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Content-Disposition value",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--expires": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the expires header field value (default: 15)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--extract-ip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "extract IP from the warning in reply"
+   },
+   "--filename": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the file which contains the SIP message to send use - for standard input",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--flood-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates the flood mode"
+   },
+   "--from": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use the given URI as From in MESSAGE",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "adds additional headers to the request",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "displays this help message"
+   },
+   "--hostname": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "overwrites the local hostname in all headers",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--ignore-redirects": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ignore redirects"
+   },
+   "--invite-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "simulates a successful calls with itself"
+   },
+   "--local-ip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "specify local ip address to be used",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--local-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the local port to use (default: any)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--max-forwards": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the value for the max-forwards header field",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--message-body": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "send a message with string as body",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--message-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "sends messages to itself"
+   },
+   "--nagios-code": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "returns exit codes Nagios compliant"
+   },
+   "--nagios-warn": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "return Nagios warning if retrans > number",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--no-crlf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "de-activate CR (\\r) insertion"
+   },
+   "--no-via": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "deactivate the insertion of a Via-Line"
+   },
+   "--numeric": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use FQDN instead of IP in the Via-Line"
+   },
+   "--outbound-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "request target (outbound proxy)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--password": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "password for authentication (if omitted password=username)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--processes": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Divide the workflow among the number of processes",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--random-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates the random mode (dangerous)"
+   },
+   "--remote-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the remote port to use (default: 5060)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--remove-bindings": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates randomly removing of user bindings"
+   },
+   "--replace": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates replacement of variables"
+   },
+   "--replace-string": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "replacement for a special mark in the message",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--search": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "search for a RegExp in replies and return error on failure",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--sip-uri": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the destination server URI in form sip:[user@]servername[:port]",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--sleep": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "sleep number ms before sending next request",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--symmetric": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "send and received on the same port"
+   },
+   "--syslog": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "log exit message to syslog with given log level"
+   },
+   "--timeout-factor": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "timeout multiplier for INVITE transactions on non-reliable transports (default: 64)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--timer-t1": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout T1 in ms (default: 500)"
+   },
+   "--timing": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of test runs and print just the timings"
+   },
+   "--traceroute": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates the traceroute mode"
+   },
+   "--transport": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "specify transport to be used",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--trash-chars": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the maximum number of trashed character in random mode (default: request length)",
+    "kind": "option",
+    "first_tag": "0.9.7",
+    "first_date": "2019-04-26T21:59:41-07:00",
+    "last_tag": "0.9.8.1",
+    "last_date": "2021-01-07T21:36:08-08:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sipsak.1"
+   },
+   "--usrloc-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "activates the usrloc mode"
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "each v produces more verbosity (max. 3)"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "prints version string only"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "sipsak",
+ "repo": "nils-ohlmeier/sipsak",
+ "head_sha": "ed6a911f07012c9fdf7f5a27970bb5fc0ee541fb",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:36:58.843782+00:00"
+}

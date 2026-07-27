@@ -1,0 +1,394 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:f769fda2d4e7e085caf61f676c6901d1b3dc39dcdd2c45edd4b4e38388f977d9",
+  "duration_s": 6.96,
+  "log_tail": "#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 1.20MB 0.0s done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.152 go: downloading github.com/bobesa/go-domain-util v0.0.0-20250410211237-17ab3b2f4a95\n#10 0.162 go: downloading github.com/PuerkitoBio/goquery v1.12.0\n#10 0.458 go: downloading golang.org/x/net v0.53.0\n#10 0.463 go: downloading github.com/andybalholm/cascadia v1.3.3\n#10 0.766 go: downloading golang.org/x/text v0.36.0\n#10 DONE 4.8s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.093 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.2s done\n#17 exporting manifest sha256:11463d8bcafede256de3889bd6c89ff7f89d55e296f788e1554d7ff7309c9a8a done\n#17 exporting config sha256:11460f1575e83987705bf46eaae7845b8f6ed71e28628d184ebdcb9721bfa416 done\n#17 exporting attestation manifest sha256:4b183cdda8010767e4fb7303500a1a40041609a12955187eeb4be63eb4c28c11 done\n#17 exporting manifest list sha256:f769fda2d4e7e085caf61f676c6901d1b3dc39dcdd2c45edd4b4e38388f977d9 done\n#17 naming to docker.io/ctk-exec/webanalyze:ad06133a839d done\n#17 unpacking to docker.io/ctk-exec/webanalyze:ad06133a839d\n#17 unpacking to docker.io/ctk-exec/webanalyze:ad06133a839d 0.6s done\n#17 DONE 0.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "webanalyze",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of webanalyze:\n  -apps string\n    \ttechnologies definition file (default \"technologies.json\")\n  -crawl int\n    \tlinks to follow from the root page (default 0)\n  -host string\n    \tsingle host to test\n  -hosts string\n    \tfilename with hosts, one host per line.\n  -output string\n    \toutput format (stdout|csv|json) (default \"stdout\")\n  -redirect\n    \tfollow http redirects (default false)\n  -search\n    \tsearches all urls with same base domain (i.e. example.com and sub.example.com) (default true)\n  -silent\n    \tavoid printing header (default false)\n  -update\n    \tupdate technologies file to current dir\n  -worker int\n    \tnumber of worker (default 4)\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "webanalyze"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for webanalyze\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "webanalyze"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'webanalyze' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "webanalyze",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-apps": "technologies definition file (default \"technologies.json\")",
+   "-crawl": "links to follow from the root page (default 0)",
+   "-host": "single host to test",
+   "-hosts": "filename with hosts, one host per line.",
+   "-output": "output format (stdout|csv|json) (default \"stdout\")",
+   "-redirect": "follow http redirects (default false)",
+   "-search": "searches all urls with same base domain (i.e. example.com and sub.example.com) (default true)",
+   "-silent": "avoid printing header (default false)",
+   "-update": "update technologies file to current dir",
+   "-worker": "number of worker (default 4)"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "83c7f267be4baa662677f5d0f51d32f62cbc2904384e1b591a6bcbe4c2045553",
+  "text": "Usage of webanalyze:\n  -apps string\n    \ttechnologies definition file (default \"technologies.json\")\n  -crawl int\n    \tlinks to follow from the root page (default 0)\n  -host string\n    \tsingle host to test\n  -hosts string\n    \tfilename with hosts, one host per line.\n  -output string\n    \toutput format (stdout|csv|json) (default \"stdout\")\n  -redirect\n    \tfollow http redirects (default false)\n  -search\n    \tsearches all urls with same base domain (i.e. example.com and sub.example.com) (default true)\n  -silent\n    \tavoid printing header (default false)\n  -update\n    \tupdate technologies file to current dir\n  -worker int\n    \tnumber of worker (default 4)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-apps",
+   "-crawl",
+   "-host",
+   "-hosts",
+   "-output",
+   "-search",
+   "-silent",
+   "-update",
+   "-worker"
+  ],
+  "unconfirmed": [
+   "--apps",
+   "--crawl",
+   "--host",
+   "--hosts",
+   "--output",
+   "--redirect",
+   "--search",
+   "--silent",
+   "--update",
+   "--worker"
+  ],
+  "help_only": [
+   "-redirect"
+  ],
+  "mining_coverage": 0.9
+ },
+ "surface": {
+  "flags": {
+   "--apps": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "technologies definition file",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--crawl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "links to follow from the root page (default 0)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "single host to test",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--hosts": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "filename with hosts, one host per line.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output format (stdout|csv|json)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--redirect": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "follow http redirects (default false)",
+    "kind": "option",
+    "first_tag": "v0.3.3",
+    "first_date": "2021-02-11T09:06:52Z",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--search": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "searches all urls with same base domain (i.e. example.com and sub.example.com)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "avoid printing header (default false)",
+    "kind": "option",
+    "first_tag": "v0.3.2",
+    "first_date": "2020-09-29T13:16:02+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--update": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "update technologies file to current dir",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "--worker": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "number of worker",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.4.3",
+    "last_date": "2026-04-15T04:58:15+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/webanalyze/main.go"
+   },
+   "-apps": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "technologies definition file (default \"technologies.json\")",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-crawl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "links to follow from the root page (default 0)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-host": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "single host to test",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hosts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "filename with hosts, one host per line.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "output format (stdout|csv|json) (default \"stdout\")",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-redirect": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "follow http redirects (default false)"
+   },
+   "-search": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "searches all urls with same base domain (i.e. example.com and sub.example.com) (default true)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "avoid printing header (default false)",
+    "kind": "option",
+    "first_tag": "v0.3.2",
+    "first_date": "2020-09-29T13:16:02+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "update technologies file to current dir",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-worker": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of worker (default 4)",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-07-05T22:44:17+02:00",
+    "last_tag": "v0.3.8",
+    "last_date": "2022-11-26T21:26:04+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "webanalyze",
+ "repo": "rverton/webanalyze",
+ "head_sha": "ad06133a839ded2d396ca952a7a904b3d89583e7",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:59:57.888646+00:00"
+}

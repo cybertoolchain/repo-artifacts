@@ -1,0 +1,303 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:4e485eab4e21640c56b3f3daedf7fdbe88a37ad0e54f107e75a338da6924d469",
+  "duration_s": 4.71,
+  "log_tail": "\n#8 [build 2/4] WORKDIR /src\n#8 DONE 0.2s\n\n#9 [internal] load .dockerignore\n#9 transferring context: 2B done\n#9 DONE 0.0s\n\n#10 [internal] load build context\n#10 transferring context: 73.36kB done\n#10 DONE 0.0s\n\n#11 [build 3/4] COPY . .\n#11 DONE 0.0s\n\n#12 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 0.113 go: downloading github.com/fatih/color v1.15.0\n#12 0.114 go: downloading github.com/spf13/cobra v1.7.0\n#12 0.334 go: downloading github.com/mattn/go-isatty v0.0.17\n#12 0.335 go: downloading github.com/mattn/go-colorable v0.1.13\n#12 0.559 go: downloading github.com/spf13/pflag v1.0.5\n#12 0.628 go: downloading golang.org/x/sys v0.6.0\n#12 DONE 3.3s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.103 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:c203479909f7f5dcdc6b950ed57e84680db13dfb1602a9eef2a46e7635069a77 done\n#18 exporting config sha256:ea73fd46f9d18795f4a6d7618b79751d4f3086ef3082a1781e77de35f2568237 done\n#18 exporting attestation manifest sha256:8e5f2a439de62138f25a3ab9eab9f5725953ab47d6e655d24b60ece2aa5fc350 done\n#18 exporting manifest list sha256:4e485eab4e21640c56b3f3daedf7fdbe88a37ad0e54f107e75a338da6924d469 done\n#18 naming to docker.io/ctk-exec/passdetective:458f12e4c197 done\n#18 unpacking to docker.io/ctk-exec/passdetective:458f12e4c197 0.0s done\n#18 DONE 0.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "The \"extract\" command allows you to automatically extract passwords from shell history change descriptions.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective [flags]\n  PassDetective [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  extract     Extract passwords from shell history\n  help        Help about any command\n\nFlags:\n  -h, --help   Help message for PassDetective\n\nUse \"PassDetective [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for PassDetective for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  PassDetective completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nUse \"PassDetective completion [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(PassDetective completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tPassDetective completion bash > /etc/bash_completion.d/PassDetective\n\n#### macOS:\n\n\tPassDetective completion bash > $(brew --prefix)/etc/bash_completion.d/PassDetective\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  PassDetective completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tPassDetective completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tPassDetective completion fish > ~/.config/fish/completions/PassDetective.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  PassDetective completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tPassDetective completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  PassDetective completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(PassDetective completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tPassDetective completion zsh > \"${fpath[1]}/_PassDetective\"\n\n#### macOS:\n\n\tPassDetective completion zsh > $(brew --prefix)/share/zsh/site-functions/_PassDetective\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  PassDetective completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "extract",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "The \"extract\" command allows you to automatically extract passwords from shell history.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective extract [flags]\n\nFlags:\n  -a, --all       Check passwords on all shells\n  -b, --bash      Check passwords on BASH\n  -h, --help      help for extract\n  -s, --secrets   Check secrets on shell history\n  -z, --zsh       Check passwords on ZSH\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "PassDetective",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type PassDetective help [path to command] for full details.\n\nUsage:\n  PassDetective help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "PassDetective"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for PassDetective\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "PassDetective"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'PassDetective' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 11,
+   "binary": "PassDetective",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Help message for PassDetective",
+   "-h": "Help message for PassDetective"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "extract": {
+    "--all": "Check passwords on all shells",
+    "-a": "Check passwords on all shells",
+    "--bash": "Check passwords on BASH",
+    "-b": "Check passwords on BASH",
+    "--help": "help for extract",
+    "-h": "help for extract",
+    "--secrets": "Check secrets on shell history",
+    "-s": "Check secrets on shell history",
+    "--zsh": "Check passwords on ZSH",
+    "-z": "Check passwords on ZSH"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "extract",
+   "help"
+  ],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "dadf52cfe05601f358f9750eb2892b4a343917f4d900b5dfaeee999e8b66819a",
+  "text": "The \"extract\" command allows you to automatically extract passwords from shell history change descriptions.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective [flags]\n  PassDetective [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  extract     Extract passwords from shell history\n  help        Help about any command\n\nFlags:\n  -h, --help   Help message for PassDetective\n\nUse \"PassDetective [command] --help\" for more information about a command.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "extract",
+   "main.go"
+  ],
+  "help_only": [
+   "--help",
+   "-h"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Help message for PassDetective",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "extract": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Extract passwords from shell history",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/extract.go"
+   },
+   "main.go": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Extract passwords from shell history change descriptions",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "extract",
+   "help"
+  ],
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "extract": {
+    "--all": "Check passwords on all shells",
+    "-a": "Check passwords on all shells",
+    "--bash": "Check passwords on BASH",
+    "-b": "Check passwords on BASH",
+    "--help": "help for extract",
+    "-h": "help for extract",
+    "--secrets": "Check secrets on shell history",
+    "-s": "Check secrets on shell history",
+    "--zsh": "Check passwords on ZSH",
+    "-z": "Check passwords on ZSH"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "tool": "passdetective",
+ "repo": "aydinnyunus/PassDetective",
+ "head_sha": "458f12e4c197ddee1286515bcb4e2305296f7a8b",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:32:36.532514+00:00"
+}

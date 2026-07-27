@@ -1,0 +1,19 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "c",
+  "image_digest": null,
+  "duration_s": 0.71,
+  "log_tail": "#5 resolve docker.io/library/debian:bookworm-slim@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818 done\n#5 DONE 0.0s\n\n#6 [build 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential autoconf automake libtool pkg-config cmake git ca-certificates  && rm -rf /var/lib/apt/lists/*\n#6 CACHED\n\n#7 [build 3/5] WORKDIR /src\n#7 CACHED\n\n#8 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [internal] load .dockerignore\n#9 transferring context: 2B done\n#9 DONE 0.0s\n\n#10 [internal] load build context\n#10 transferring context: 7.24MB 0.1s done\n#10 DONE 0.1s\n\n#11 [build 4/5] COPY . .\n#11 DONE 0.0s\n\n#12 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi\n#12 0.101 gcc -I../openssl/include -L../openssl -lcrypto -lssl -lcrypto -ldl -lpthread -o heartleech heartleech.c\n#12 0.114 heartleech.c:98:10: fatal error: openssl/ssl.h: No such file or directory\n#12 0.114    98 | #include <openssl/ssl.h>\n#12 0.114       |          ^~~~~~~~~~~~~~~\n#12 0.114 compilation terminated.\n#12 0.115 make: *** [Makefile:4: heartleech] Error 1\n#12 ERROR: process \"/bin/sh -c if [ -x ./configure ]; then ./configure && make -j\\\"$(nproc)\\\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\\\"$(nproc)\\\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\\\"$(nproc)\\\";     else make -j\\\"$(nproc)\\\"; fi\" did not complete successfully: exit code: 2\n------\n > [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi:\n0.101 gcc -I../openssl/include -L../openssl -lcrypto -lssl -lcrypto -ldl -lpthread -o heartleech heartleech.c\n0.114 heartleech.c:98:10: fatal error: openssl/ssl.h: No such file or directory\n0.114    98 | #include <openssl/ssl.h>\n0.114       |          ^~~~~~~~~~~~~~~\n0.114 compilation terminated.\n0.115 make: *** [Makefile:4: heartleech] Error 1\n------\nDockerfile.ctk:7\n--------------------\n   6 |     COPY . .\n   7 | >>> RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\"; \\\n   8 | >>>     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\"; \\\n   9 | >>>     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\"; \\\n  10 | >>>     else make -j\"$(nproc)\"; fi\n  11 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c if [ -x ./configure ]; then ./configure && make -j\\\"$(nproc)\\\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\\\"$(nproc)\\\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\\\"$(nproc)\\\";     else make -j\\\"$(nproc)\\\"; fi\" did not complete successfully: exit code: 2",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "skipped_reason": "docker build failed",
+ "tool": "heartleech",
+ "repo": "robertdavidgraham/heartleech",
+ "head_sha": "3ab1d60d7d5fc36f99c674cbe349733fbaf889bb",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:26:23.600733+00:00"
+}

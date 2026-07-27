@@ -1,0 +1,183 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:6915b8923cd8b3e9aee9f0e9f8e96699e765a85c4339e008d8c15c7e30467cad",
+  "duration_s": 4.08,
+  "log_tail": "#5 transferring context: 2B done\n#5 DONE 0.0s\n\n#6 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 resolve docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651 0.0s done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 55.73kB done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.089 go: downloading golang.org/x/time v0.12.0\n#10 DONE 2.5s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.104 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers 0.1s done\n#17 exporting manifest sha256:3b5532cffe7fb7f4c861d804df78bf42b70a447b513d6b19aeafa7de08b05679 done\n#17 exporting config sha256:fd1aac986959745c892ad3b227482e31d3fef1f1adbf7e35b470f4f9793971ae done\n#17 exporting attestation manifest sha256:e22344f0c7431bbe808078cf145b8553cdcd53d716919e2e382821e6df8464f1 done\n#17 exporting manifest list sha256:6915b8923cd8b3e9aee9f0e9f8e96699e765a85c4339e008d8c15c7e30467cad done\n#17 naming to docker.io/ctk-exec/nextnet:2c66df3a6aba done\n#17 unpacking to docker.io/ctk-exec/nextnet:2c66df3a6aba\n#17 unpacking to docker.io/ctk-exec/nextnet:2c66df3a6aba 0.5s done\n#17 DONE 0.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "nextnet",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: nextnet [cidr] ... [cidr]\n\nProbes a list of networks for potential pivot points.\n\nOptions:\n",
+   "stderr": "  -rate int\n    \tSet the maximum packets per second rate (default 1000)\n  -version\n    \tShow the application version\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nextnet"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for nextnet\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nextnet"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'nextnet' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "nextnet",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-rate": "Set the maximum packets per second rate (default 1000)",
+   "-version": "Show the application version"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "cc42e66eb786e4c6a7295726f8022bf69a9b15239b82827c3d4f597efb25d0e1",
+  "text": "Usage: nextnet [cidr] ... [cidr]\n\nProbes a list of networks for potential pivot points.\n\nOptions:\n  -rate int\n    \tSet the maximum packets per second rate (default 1000)\n  -version\n    \tShow the application version\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-rate",
+   "-version"
+  ],
+  "unconfirmed": [
+   "--help",
+   "--rate",
+   "--version"
+  ],
+  "help_only": [],
+  "mining_coverage": 1.0
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show Usage and exit.",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2018-02-22T11:42:37-06:00",
+    "last_tag": "v0.0.2",
+    "last_date": "2018-07-23T03:10:23Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--rate": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the maximum packets per second rate",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2018-02-22T11:42:37-06:00",
+    "last_tag": "v0.0.2",
+    "last_date": "2018-07-23T03:10:23Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show the application version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2018-02-22T11:42:37-06:00",
+    "last_tag": "v0.0.2",
+    "last_date": "2018-07-23T03:10:23Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "-rate": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set the maximum packets per second rate (default 1000)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2018-02-22T11:42:37-06:00",
+    "last_tag": "v0.0.2",
+    "last_date": "2018-07-23T03:10:23Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show the application version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2018-02-22T11:42:37-06:00",
+    "last_tag": "v0.0.2",
+    "last_date": "2018-07-23T03:10:23Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "nextnet",
+ "repo": "hdm/nextnet",
+ "head_sha": "2c66df3a6aba8b17305a7f96b8ef3c1c829071c5",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:30:10.785322+00:00"
+}

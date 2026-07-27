@@ -1,0 +1,601 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:ea00d7cd819cb6ca2fd44ad18fa611b5078c9f72b863d9c15b452f998a5ca1ae",
+  "duration_s": 58.31,
+  "log_tail": "#12 9.838 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 9.838 debconf: falling back to frontend: Readline\n#12 9.841 debconf: unable to initialize frontend: Readline\n#12 9.841 debconf: (This frontend requires a controlling tty.)\n#12 9.841 debconf: falling back to frontend: Teletype\n#12 9.858 \n#12 9.858 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 9.866 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#12 9.880 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#12 9.906 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#12 9.931 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#12 9.964 debconf: unable to initialize frontend: Dialog\n#12 9.964 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 9.964 debconf: falling back to frontend: Readline\n#12 9.966 debconf: unable to initialize frontend: Readline\n#12 9.966 debconf: (This frontend requires a controlling tty.)\n#12 9.966 debconf: falling back to frontend: Teletype\n#12 9.983 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 9.992 Setting up texinfo (6.8-6+b1) ...\n#12 9.998 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#12 10.01 Processing triggers for install-info (6.8-6+b1) ...\n#12 DONE 10.2s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.091 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 2.9s done\n#18 exporting manifest sha256:02926e2f5eccc7a8b5456bc0173a4e7cc77fa30b00ea62c475b90d2be77fce2e done\n#18 exporting config sha256:d7cccfdc6382839aea09422c202b3424533c259cc10a01a9c15f08b4f12a2dd3 done\n#18 exporting attestation manifest sha256:6912b1cffbf43e66d4b53c04fb8dd08dd4f12fb6d368884c7cbcf0aad4c7f577 done\n#18 exporting manifest list sha256:ea00d7cd819cb6ca2fd44ad18fa611b5078c9f72b863d9c15b452f998a5ca1ae done\n#18 naming to docker.io/ctk-exec/crush:677046d28d5f done\n#18 unpacking to docker.io/ctk-exec/crush:677046d28d5f\n#18 unpacking to docker.io/ctk-exec/crush:677046d28d5f 0.8s done\n#18 DONE 3.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "crush",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n  A glamorous, terminal-first AI assistant for software development and adjacent tasks                                  \n         \n  USAGE  \n         \n    crush [command] [--flags]                                                   \n            \n  EXAMPLES  \n            \n    # Run in interactive mode                                                   \n    crush                                                                       \n                                                                                \n    # Run non-interactively                                                     \n    crush run \"Guess my 5 favorite Pok\u00e9mon\"                                     \n                                                                                \n    # Run a non-interactively with pipes and redirection                        \n    cat README.md | crush run \"make this more glamorous\" > GLAMOROUS_README.md  \n                                                                                \n    # Run with debug logging in a specific directory                            \n    crush --debug --cwd /path/to/project                                        \n                                                                                \n    # Run in yolo mode (auto-accept all permissions; use with care)             \n    crush --yolo                                                                \n                                                                                \n    # Run with custom data directory                                            \n    crush --data-dir /path/to/custom/.crush                                     \n                                                                                \n    # Continue a previous session                                               \n    crush --session {session-id}                                                \n                                                                                \n    # Continue the most recent session                                          \n    crush --continue                                                            \n            \n  COMMANDS  \n            \n    completion [command]                      Generate the autocompletion script for the specified shell\n    dirs                                      Show config and data directories\n    help [command]                            Help about any command\n    login [platform] [--flags]                Login Crush to a platform\n    logout [platform] [--flags]               Logout Crush from a platform\n    logs [--flags]                            View crush logs\n    models                                    List all available models from known providers\n    projects [--flags]                        List project directories\n    run [prompt...] [--flags]                 Run a single non-interactive prompt\n    server [--flags]                          Start the Crush server\n    session [command]                         Manage sessions\n    stats [--flags]                           Show usage statistics\n    update-providers [path-or-url] [--flags]  Update providers\n         \n  FLAGS  \n         \n    -C --continue                             Continue the most recent session\n    -c --cwd                                  Current working directory\n    -D --data-dir                             Custom crush data directory\n    -d --debug                                Debug\n    -h --help                                 Help\n    -H --host                                 Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)\n    -s --session                              Continue a previous session by ID\n    -v --version                              Version for crush\n    -y --yolo                                 Automatically accept all permissions (dangerous mode)\n\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "crush"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for crush\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "crush"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'crush' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "crush",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-C": "Continue the most recent session",
+   "--continue": "Continue the most recent session",
+   "-c": "Current working directory",
+   "--cwd": "Current working directory",
+   "-D": "Custom crush data directory",
+   "--data-dir": "Custom crush data directory",
+   "-d": "Debug",
+   "--debug": "Debug",
+   "-h": "Help",
+   "--help": "Help",
+   "-H": "Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)",
+   "--host": "Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)",
+   "-s": "Continue a previous session by ID",
+   "--session": "Continue a previous session by ID",
+   "-v": "Version for crush",
+   "--version": "Version for crush",
+   "-y": "Automatically accept all permissions (dangerous mode)",
+   "--yolo": "Automatically accept all permissions (dangerous mode)"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "bdaa8435c7b2274158c0fe3c5deef28c513af3dad7d08aae7175f3f6d21fd79c",
+  "text": "\n  A glamorous, terminal-first AI assistant for software development and adjacent tasks                                  \n         \n  USAGE  \n         \n    crush [command] [--flags]                                                   \n            \n  EXAMPLES  \n            \n    # Run in interactive mode                                                   \n    crush                                                                       \n                                                                                \n    # Run non-interactively                                                     \n    crush run \"Guess my 5 favorite Pok\u00e9mon\"                                     \n                                                                                \n    # Run a non-interactively with pipes and redirection                        \n    cat README.md | crush run \"make this more glamorous\" > GLAMOROUS_README.md  \n                                                                                \n    # Run with debug logging in a specific directory                            \n    crush --debug --cwd /path/to/project                                        \n                                                                                \n    # Run in yolo mode (auto-accept all permissions; use with care)             \n    crush --yolo                                                                \n                                                                                \n    # Run with custom data directory                                            \n    crush --data-dir /path/to/custom/.crush                                     \n                                                                                \n    # Continue a previous session                                               \n    crush --session {session-id}                                                \n                                                                                \n    # Continue the most recent session                                          \n    crush --continue                                                            \n            \n  COMMANDS  \n            \n    completion [command]                      Generate the autocompletion script for the specified shell\n    dirs                                      Show config and data directories\n    help [command]                            Help about any command\n    login [platform] [--flags]                Login Crush to a platform\n    logout [platform] [--flags]               Logout Crush from a platform\n    logs [--flags]                            View crush logs\n    models                                    List all available models from known providers\n    projects [--flags]                        List project directories\n    run [prompt...] [--flags]                 Run a single non-interactive prompt\n    server [--flags]                          Start the Crush server\n    session [command]                         Manage sessions\n    stats [--flags]                           Show usage statistics\n    update-providers [path-or-url] [--flags]  Update providers\n         \n  FLAGS  \n         \n    -C --continue                             Continue the most recent session\n    -c --cwd                                  Current working directory\n    -D --data-dir                             Custom crush data directory\n    -d --debug                                Debug\n    -h --help                                 Help\n    -H --host                                 Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)\n    -s --session                              Continue a previous session by ID\n    -v --version                              Version for crush\n    -y --yolo                                 Automatically accept all permissions (dangerous mode)\n\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--all",
+   "--channels",
+   "--crawl-dir",
+   "--json",
+   "--small-model",
+   "--source",
+   "config",
+   "crush",
+   "data",
+   "delete",
+   "dirs",
+   "last",
+   "list",
+   "login",
+   "logout",
+   "logs",
+   "models",
+   "projects",
+   "rename",
+   "run",
+   "schema",
+   "server",
+   "session",
+   "show",
+   "stats",
+   "update-providers"
+  ],
+  "help_only": [
+   "--continue",
+   "--cwd",
+   "--data-dir",
+   "--debug",
+   "--help",
+   "--host",
+   "--session",
+   "--version",
+   "--yolo",
+   "-C",
+   "-D",
+   "-H",
+   "-c",
+   "-d",
+   "-h",
+   "-s",
+   "-v",
+   "-y"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Aggregate stats from all known projects (from projects.json)",
+    "kind": "option",
+    "first_tag": "v0.86.0",
+    "first_date": "2026-07-20T17:01:57-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/stats.go"
+   },
+   "--channels": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "MCP servers to enable as channels (repeatable), e.g. --channels server:webhook",
+    "kind": "option",
+    "first_tag": "v0.87.0",
+    "first_date": "2026-07-24T16:30:03-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/root.go"
+   },
+   "--continue": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Continue the most recent session"
+   },
+   "--crawl-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Crawl a directory recursively for all crush projects and aggregate stats",
+    "kind": "option",
+    "first_tag": "v0.86.0",
+    "first_date": "2026-07-20T17:01:57-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/stats.go"
+   },
+   "--cwd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Current working directory"
+   },
+   "--data-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Custom crush data directory"
+   },
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Debug"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Help"
+   },
+   "--host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Output as JSON",
+    "kind": "option",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/projects.go"
+   },
+   "--session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Continue a previous session by ID"
+   },
+   "--small-model": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Small model to use. If not provided, uses the default small model for the provider",
+    "kind": "option",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/run.go"
+   },
+   "--source": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Provider source to update (catwalk or hyper)",
+    "kind": "option",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/update_providers.go"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Version for crush"
+   },
+   "--yolo": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically accept all permissions (dangerous mode)"
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Continue the most recent session"
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Custom crush data directory"
+   },
+   "-H": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Connect to a specific crush server host (for advanced users) (unix:///tmp/crush-65532.sock)"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Current working directory"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Debug"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Help"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Continue a previous session by ID"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Version for crush"
+   },
+   "-y": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically accept all permissions (dangerous mode)"
+   },
+   "config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the configuration directory used by Crush",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.68.0",
+    "last_date": "2026-05-14T17:26:02-03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/cmd/dirs.go"
+   },
+   "crush": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "A terminal-first AI assistant for software development",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0",
+    "first_date": "2025-07-29T14:55:12-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/root.go"
+   },
+   "data": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the datauration directory used by Crush",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.68.0",
+    "last_date": "2026-05-14T17:26:02-03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/cmd/dirs.go"
+   },
+   "delete": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Delete a session",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "dirs": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show config and data directories",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/dirs.go"
+   },
+   "last": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show most recent session",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List all sessions",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "login": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Login Crush to a platform",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/login.go"
+   },
+   "logout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Logout Crush from a platform",
+    "kind": "subcommand",
+    "first_tag": "v0.68.0",
+    "first_date": "2026-05-14T17:26:02-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/logout.go"
+   },
+   "logs": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "View crush logs",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0",
+    "first_date": "2025-07-29T14:55:12-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/logs.go"
+   },
+   "models": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List all available models from known providers",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/models.go"
+   },
+   "projects": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List project directories",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/projects.go"
+   },
+   "rename": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Rename a session",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "run": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Run a single non-interactive prompt",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0",
+    "first_date": "2025-07-29T14:55:12-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/run.go"
+   },
+   "schema": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate JSON schema for configuration",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0",
+    "first_date": "2025-07-29T14:55:12-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/schema.go"
+   },
+   "server": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Start the Crush server",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/server.go"
+   },
+   "session": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Manage sessions",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "show": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show session details",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/session.go"
+   },
+   "stats": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show usage statistics",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/stats.go"
+   },
+   "update-providers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Update providers",
+    "kind": "subcommand",
+    "first_tag": "v0.59.0",
+    "first_date": "2026-04-16T18:13:30-03:00",
+    "last_tag": "v0.87.0",
+    "last_date": "2026-07-24T16:30:03-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/cmd/update_providers.go"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "Crush",
+ "repo": "charmbracelet/crush",
+ "head_sha": "677046d28d5f794636787b18de5a93282ba18d17",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:12:58.941075+00:00"
+}

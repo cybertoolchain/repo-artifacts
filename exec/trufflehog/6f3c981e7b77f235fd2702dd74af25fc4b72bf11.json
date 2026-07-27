@@ -1,0 +1,780 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:7728a1ab406bceefb05e951ffc6f904fb81203f4debb5f1c9c625d14b624ee62",
+  "duration_s": 41.45,
+  "log_tail": "#11 8.135 go: downloading github.com/kevinburke/ssh_config v1.2.0\n#11 8.135 go: downloading github.com/skeema/knownhosts v1.3.1\n#11 8.135 go: downloading github.com/xanzy/ssh-agent v0.3.3\n#11 8.135 go: downloading github.com/cloudflare/circl v1.6.3\n#11 8.139 go: downloading github.com/docker/docker-credential-helpers v0.9.3\n#11 8.145 go: downloading github.com/docker/go-units v0.5.0\n#11 8.145 go: downloading gopkg.in/warnings.v0 v0.1.2\n#11 8.145 go: downloading github.com/xdg-go/pbkdf2 v1.0.0\n#11 8.146 go: downloading github.com/envoyproxy/go-control-plane/envoy v1.36.0\n#11 8.147 go: downloading github.com/go-logr/stdr v1.2.2\n#11 8.154 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 8.175 go: downloading github.com/google/s2a-go v0.1.9\n#11 8.175 go: downloading github.com/googleapis/enterprise-certificate-proxy v0.3.7\n#11 8.176 go: downloading github.com/spiffe/go-spiffe/v2 v2.6.0\n#11 8.346 go: downloading github.com/cncf/xds/go v0.0.0-20251210132809-ee656c7534f5\n#11 8.914 go: downloading github.com/felixge/httpsnoop v1.0.4\n#11 8.914 go: downloading github.com/gorilla/css v1.0.1\n#11 8.914 go: downloading github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e\n#11 8.915 go: downloading github.com/klauspost/cpuid/v2 v2.3.0\n#11 8.915 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#11 8.916 go: downloading cel.dev/expr v0.25.1\n#11 DONE 32.7s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.2s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.097 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 4.0s done\n#17 exporting manifest sha256:05fed37d7e596e1b9918db4daa6d98efc411562ce2d2161afdd64646b5bc39bf done\n#17 exporting config sha256:a9722089c4b68e8f69c83ebf54950806153f485bc8aea390c6a719bc1d5013c0 done\n#17 exporting attestation manifest sha256:964b5060077e5f0ff1c99a36c2eebb08a2637050025ec1eaf2e92ba55fbf3c17 done\n#17 exporting manifest list sha256:7728a1ab406bceefb05e951ffc6f904fb81203f4debb5f1c9c625d14b624ee62 done\n#17 naming to docker.io/ctk-exec/trufflehog:6f3c981e7b77 done\n#17 unpacking to docker.io/ctk-exec/trufflehog:6f3c981e7b77\n#17 unpacking to docker.io/ctk-exec/trufflehog:6f3c981e7b77 1.1s done\n#17 DONE 5.1s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "trufflehog",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: trufflehog [<flags>] <command> [<args> ...]\n\nTruffleHog is a tool for finding credentials. Run without a command for\ninteractive mode.\n\n\nFlags:\n  -h, --[no-]help                Show context-sensitive help (also try\n                                 --help-long and --help-man).\n      --log-level=0              Logging verbosity on a scale of 0 (info) to 5\n                                 (trace). Can be disabled with \"-1\".\n      --[no-]profile             Enables profiling and sets a pprof and fgprof\n                                 server on :18066.\n  -j, --[no-]json                Output in JSON format.\n      --[no-]json-legacy         Use the pre-v3.0 JSON format. Only works with\n                                 git, gitlab, and github sources.\n      --[no-]github-actions      Output in GitHub Actions format.\n      --concurrency=N            Number of concurrent workers.\n      --[no-]no-verification     Don't verify the results.\n      --results=RESULTS          Specifies which type(s) of results to output:\n                                 verified (confirmed valid by API),\n                                 unknown (verification failed due to error),\n                                 unverified (detected but not verified),\n                                 filtered_unverified (unverified but would\n                                 have been filtered out). Defaults to\n                                 verified,unverified,unknown.\n      --[no-]no-color            Disable colorized output\n      --[no-]allow-verification-overlap  \n                                 Allow verification of similar credentials\n                                 across detectors\n      --[no-]filter-unverified   Only output first unverified result per\n                                 chunk per detector if there are more than one\n                                 results.\n      --filter-entropy=FILTER-ENTROPY  \n                                 Filter unverified results with Shannon entropy.\n                                 Start with 3.0.\n      --max-decode-depth=5       Maximum depth of iterative decoding.\n                                 Each decoder's output is fed back through all\n                                 decoders, up to this limit. 1 = single pass, 2+\n                                 = chained decoding (e.g., base64 inside utf16).\n      --config=CONFIG            Path to configuration file.\n      --[no-]print-avg-detector-time  \n                                 Print the average time spent on each detector.\n      --[no-]no-update           Don't check for updates.\n      --[no-]fail                Exit with code 183 if results are found.\n      --[no-]fail-on-scan-errors  \n                                 Exit with non-zero error code if an error\n                                 occurs during the scan.\n      --verifier=VERIFIER ...    Set custom verification endpoints.\n      --[no-]custom-verifiers-only  \n                                 Only use custom verification endpoints.\n      --detector-timeout=DETECTOR-TIMEOUT  \n                                 Maximum time to spend scanning chunks per\n                                 detector (e.g., 30s).\n      --archive-max-size=ARCHIVE-MAX-SIZE  \n                                 Maximum size of archive to scan. (Byte units\n                                 eg. 512B, 2KB, 4MB)\n      --archive-max-depth=ARCHIVE-MAX-DEPTH  \n                                 Maximum depth of archive to scan.\n      --archive-timeout=ARCHIVE-TIMEOUT  \n                                 Maximum time to spend extracting an archive.\n      --include-detectors=\"all\"  Comma separated list of detector types to\n                                 include. Protobuf name or IDs may be used,\n                                 as well as ranges.\n      --exclude-detectors=EXCLUDE-DETECTORS  \n                                 Comma separated list of detector types to\n                                 exclude. Protobuf name or IDs may be used,\n                                 as well as ranges. IDs defined here take\n                                 precedence over the include list.\n      --[no-]no-verification-cache  \n                                 Disable verification caching\n      --[no-]force-skip-binaries  \n                                 Force skipping binaries.\n      --[no-]force-skip-archives  \n                                 Force skipping archives.\n      --[no-]skip-additional-refs  \n                                 Skip additional references.\n      --user-agent-suffix=USER-AGENT-SUFFIX  \n                                 Suffix to add to User-Agent.\n      --[no-]drop-unverified-jwt-results  \n                                 Drop unverified results without any\n                                 verification errors from the JWT detector.\n      --[no-]version             Show application version.\n\nCommands:\nhelp [<command>...]\n    Show help.\n\ngit [<flags>] <uri>\n    Find credentials in git repositories.\n\ngithub [<flags>]\n    Find credentials in GitHub repositories.\n\ngithub-experimental --repo=REPO [<flags>]\n    Run an experimental GitHub scan. Must specify at least one experimental\n    sub-module to run: object-discovery.\n\ngitlab --token=TOKEN [<flags>]\n    Find credentials in GitLab repositories.\n\nfilesystem [<flags>] [<path>...]\n    Find credentials in a filesystem.\n\ns3 [<flags>]\n    Find credentials in S3 buckets.\n\ngcs [<flags>]\n    Find credentials in GCS buckets.\n\nsyslog --format=FORMAT [<flags>]\n    Scan syslog\n\ncircleci --token=TOKEN\n    Scan CircleCI\n\ndocker [<flags>]\n    Scan Docker Image\n\ntravisci --token=TOKEN\n    Scan TravisCI\n\npostman [<flags>]\n    Scan Postman\n\nelasticsearch [<flags>]\n    Scan Elasticsearch\n\njenkins --url=URL [<flags>]\n    Scan Jenkins\n\nhuggingface [<flags>]\n    Find credentials in HuggingFace datasets, models, spaces and buckets.\n\nstdin\n    Find credentials from stdin.\n\nmulti-scan\n    Find credentials in multiple sources defined in configuration.\n\njson-enumerator [<path>...]\n    Find credentials from a JSON enumerator input.\n\nanalyze\n    Analyze API keys for fine-grained permissions information.\n\n\n",
+   "stderr": "",
+   "duration_ms": 368,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "trufflehog"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for trufflehog\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "trufflehog"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'trufflehog' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "/opt/ctk/fixtures/source-corpus",
+    "--no-verification",
+    "--no-update",
+    "--json"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "{\"level\":\"info-0\",\"ts\":\"2026-07-27T03:00:41Z\",\"logger\":\"trufflehog\",\"msg\":\"running source\",\"source_manager_worker_id\":\"dEpo6\",\"with_units\":true}\n{\"level\":\"info-0\",\"ts\":\"2026-07-27T03:00:41Z\",\"logger\":\"trufflehog\",\"msg\":\"finished scanning\",\"chunks\":6,\"bytes\":3644,\"verified_secrets\":0,\"unverified_secrets\":0,\"scan_duration\":\"2.673292ms\",\"trufflehog_version\":\"dev\",\"verification_caching\":{\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "duration_ms": 799,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "scan-filesystem",
+   "title": "Find secrets in a filesystem path"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "trufflehog",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "50e385acbf553ceb",
+ "examples": [
+  {
+   "id": "scan-filesystem",
+   "title": "Find secrets in a filesystem path",
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "/opt/ctk/fixtures/source-corpus",
+    "--no-verification",
+    "--no-update",
+    "--json"
+   ],
+   "stdout": "",
+   "stderr": "{\"level\":\"info-0\",\"ts\":\"2026-07-27T03:00:41Z\",\"logger\":\"trufflehog\",\"msg\":\"running source\",\"source_manager_worker_id\":\"dEpo6\",\"with_units\":true}\n{\"level\":\"info-0\",\"ts\":\"2026-07-27T03:00:41Z\",\"logger\":\"trufflehog\",\"msg\":\"finished scanning\",\"chunks\":6,\"bytes\":3644,\"verified_secrets\":0,\"unverified_secrets\":0,\"scan_duration\":\"2.673292ms\",\"trufflehog_version\":\"dev\",\"verification_caching\":{\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "exit_code": 0,
+   "duration_ms": 799,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "Show context-sensitive help (also try",
+   "--no-help": "Show context-sensitive help (also try",
+   "-h": "Show context-sensitive help (also try",
+   "--help-long": "",
+   "--log-level": "Logging verbosity on a scale of 0 (info) to 5 (trace). Can be disabled with \"-1\".",
+   "--profile": "Enables profiling and sets a pprof and fgprof server on :18066.",
+   "--no-profile": "Enables profiling and sets a pprof and fgprof server on :18066.",
+   "--json": "Output in JSON format.",
+   "--no-json": "Output in JSON format.",
+   "-j": "Output in JSON format.",
+   "--json-legacy": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+   "--no-json-legacy": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+   "--github-actions": "Output in GitHub Actions format.",
+   "--no-github-actions": "Output in GitHub Actions format.",
+   "--concurrency": "Number of concurrent workers.",
+   "--no-verification": "Don't verify the results.",
+   "--no-no-verification": "Don't verify the results.",
+   "--results": "Specifies which type(s) of results to output: verified (confirmed valid by API), unknown (verification failed due to error), unverified (detected but not verified), filtered_unverified (unverified but would have been filtered out). Defaults to verified,unverified,unknown.",
+   "--no-color": "Disable colorized output",
+   "--no-no-color": "Disable colorized output",
+   "--allow-verification-overlap": "Allow verification of similar credentials across detectors",
+   "--no-allow-verification-overlap": "Allow verification of similar credentials across detectors",
+   "--filter-unverified": "Only output first unverified result per chunk per detector if there are more than one results.",
+   "--no-filter-unverified": "Only output first unverified result per chunk per detector if there are more than one results.",
+   "--filter-entropy": "Filter unverified results with Shannon entropy. Start with 3.0.",
+   "--max-decode-depth": "Maximum depth of iterative decoding. Each decoder's output is fed back through all decoders, up to this limit. 1 = single pass, 2+ = chained decoding (e.g., base64 inside utf16).",
+   "--config": "Path to configuration file.",
+   "--print-avg-detector-time": "Print the average time spent on each detector.",
+   "--no-print-avg-detector-time": "Print the average time spent on each detector.",
+   "--no-update": "Don't check for updates.",
+   "--no-no-update": "Don't check for updates.",
+   "--fail": "Exit with code 183 if results are found.",
+   "--no-fail": "Exit with code 183 if results are found.",
+   "--fail-on-scan-errors": "Exit with non-zero error code if an error occurs during the scan.",
+   "--no-fail-on-scan-errors": "Exit with non-zero error code if an error occurs during the scan.",
+   "--verifier": "Set custom verification endpoints.",
+   "--custom-verifiers-only": "Only use custom verification endpoints.",
+   "--no-custom-verifiers-only": "Only use custom verification endpoints.",
+   "--detector-timeout": "Maximum time to spend scanning chunks per detector (e.g., 30s).",
+   "--archive-max-size": "Maximum size of archive to scan. (Byte units eg. 512B, 2KB, 4MB)",
+   "--archive-max-depth": "Maximum depth of archive to scan.",
+   "--archive-timeout": "Maximum time to spend extracting an archive.",
+   "--include-detectors": "Comma separated list of detector types to include. Protobuf name or IDs may be used, as well as ranges.",
+   "--exclude-detectors": "Comma separated list of detector types to exclude. Protobuf name or IDs may be used, as well as ranges. IDs defined here take precedence over the include list.",
+   "--no-verification-cache": "Disable verification caching",
+   "--no-no-verification-cache": "Disable verification caching",
+   "--force-skip-binaries": "Force skipping binaries.",
+   "--no-force-skip-binaries": "Force skipping binaries.",
+   "--force-skip-archives": "Force skipping archives.",
+   "--no-force-skip-archives": "Force skipping archives.",
+   "--skip-additional-refs": "Skip additional references.",
+   "--no-skip-additional-refs": "Skip additional references.",
+   "--user-agent-suffix": "Suffix to add to User-Agent.",
+   "--drop-unverified-jwt-results": "Drop unverified results without any verification errors from the JWT detector.",
+   "--no-drop-unverified-jwt-results": "Drop unverified results without any verification errors from the JWT detector.",
+   "--version": "Show application version.",
+   "--no-version": "Show application version."
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "367b30dcac54d5582a3b91422612bb8b334d8c616655aa875070d7ae68d0590f",
+  "text": "usage: trufflehog [<flags>] <command> [<args> ...]\n\nTruffleHog is a tool for finding credentials. Run without a command for\ninteractive mode.\n\n\nFlags:\n  -h, --[no-]help                Show context-sensitive help (also try\n                                 --help-long and --help-man).\n      --log-level=0              Logging verbosity on a scale of 0 (info) to 5\n                                 (trace). Can be disabled with \"-1\".\n      --[no-]profile             Enables profiling and sets a pprof and fgprof\n                                 server on :18066.\n  -j, --[no-]json                Output in JSON format.\n      --[no-]json-legacy         Use the pre-v3.0 JSON format. Only works with\n                                 git, gitlab, and github sources.\n      --[no-]github-actions      Output in GitHub Actions format.\n      --concurrency=N            Number of concurrent workers.\n      --[no-]no-verification     Don't verify the results.\n      --results=RESULTS          Specifies which type(s) of results to output:\n                                 verified (confirmed valid by API),\n                                 unknown (verification failed due to error),\n                                 unverified (detected but not verified),\n                                 filtered_unverified (unverified but would\n                                 have been filtered out). Defaults to\n                                 verified,unverified,unknown.\n      --[no-]no-color            Disable colorized output\n      --[no-]allow-verification-overlap  \n                                 Allow verification of similar credentials\n                                 across detectors\n      --[no-]filter-unverified   Only output first unverified result per\n                                 chunk per detector if there are more than one\n                                 results.\n      --filter-entropy=FILTER-ENTROPY  \n                                 Filter unverified results with Shannon entropy.\n                                 Start with 3.0.\n      --max-decode-depth=5       Maximum depth of iterative decoding.\n                                 Each decoder's output is fed back through all\n                                 decoders, up to this limit. 1 = single pass, 2+\n                                 = chained decoding (e.g., base64 inside utf16).\n      --config=CONFIG            Path to configuration file.\n      --[no-]print-avg-detector-time  \n                                 Print the average time spent on each detector.\n      --[no-]no-update           Don't check for updates.\n      --[no-]fail                Exit with code 183 if results are found.\n      --[no-]fail-on-scan-errors  \n                                 Exit with non-zero error code if an error\n                                 occurs during the scan.\n      --verifier=VERIFIER ...    Set custom verification endpoints.\n      --[no-]custom-verifiers-only  \n                                 Only use custom verification endpoints.\n      --detector-timeout=DETECTOR-TIMEOUT  \n                                 Maximum time to spend scanning chunks per\n                                 detector (e.g., 30s).\n      --archive-max-size=ARCHIVE-MAX-SIZE  \n                                 Maximum size of archive to scan. (Byte units\n                                 eg. 512B, 2KB, 4MB)\n      --archive-max-depth=ARCHIVE-MAX-DEPTH  \n                                 Maximum depth of archive to scan.\n      --archive-timeout=ARCHIVE-TIMEOUT  \n                                 Maximum time to spend extracting an archive.\n      --include-detectors=\"all\"  Comma separated list of detector types to\n                                 include. Protobuf name or IDs may be used,\n                                 as well as ranges.\n      --exclude-detectors=EXCLUDE-DETECTORS  \n                                 Comma separated list of detector types to\n                                 exclude. Protobuf name or IDs may be used,\n                                 as well as ranges. IDs defined here take\n                                 precedence over the include list.\n      --[no-]no-verification-cache  \n                                 Disable verification caching\n      --[no-]force-skip-binaries  \n                                 Force skipping binaries.\n      --[no-]force-skip-archives  \n                                 Force skipping archives.\n      --[no-]skip-additional-refs  \n                                 Skip additional references.\n      --user-agent-suffix=USER-AGENT-SUFFIX  \n                                 Suffix to add to User-Agent.\n      --[no-]drop-unverified-jwt-results  \n                                 Drop unverified results without any\n                                 verification errors from the JWT detector.\n      --[no-]version             Show application version.\n\nCommands:\nhelp [<command>...]\n    Show help.\n\ngit [<flags>] <uri>\n    Find credentials in git repositories.\n\ngithub [<flags>]\n    Find credentials in GitHub repositories.\n\ngithub-experimental --repo=REPO [<flags>]\n    Run an experimental GitHub scan. Must specify at least one experimental\n    sub-module to run: object-discovery.\n\ngitlab --token=TOKEN [<flags>]\n    Find credentials in GitLab repositories.\n\nfilesystem [<flags>] [<path>...]\n    Find credentials in a filesystem.\n\ns3 [<flags>]\n    Find credentials in S3 buckets.\n\ngcs [<flags>]\n    Find credentials in GCS buckets.\n\nsyslog --format=FORMAT [<flags>]\n    Scan syslog\n\ncircleci --token=TOKEN\n    Scan CircleCI\n\ndocker [<flags>]\n    Scan Docker Image\n\ntravisci --token=TOKEN\n    Scan TravisCI\n\npostman [<flags>]\n    Scan Postman\n\nelasticsearch [<flags>]\n    Scan Elasticsearch\n\njenkins --url=URL [<flags>]\n    Scan Jenkins\n\nhuggingface [<flags>]\n    Find credentials in HuggingFace datasets, models, spaces and buckets.\n\nstdin\n    Find credentials from stdin.\n\nmulti-scan\n    Find credentials in multiple sources defined in configuration.\n\njson-enumerator [<path>...]\n    Find credentials from a JSON enumerator input.\n\nanalyze\n    Analyze API keys for fine-grained permissions information.\n\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--allow-verification-overlap",
+   "--custom-verifiers-only",
+   "--fail",
+   "--filter-unverified",
+   "--github-actions",
+   "--help",
+   "--json",
+   "--json-legacy",
+   "--no-update",
+   "--no-verification",
+   "--print-avg-detector-time",
+   "--profile",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--bare",
+   "--branch",
+   "--entropy",
+   "--max_depth",
+   "--quiet",
+   "--regex",
+   "--rules",
+   "--since_commit",
+   "git_url"
+  ],
+  "help_only": [
+   "--archive-max-depth",
+   "--archive-max-size",
+   "--archive-timeout",
+   "--concurrency",
+   "--config",
+   "--detector-timeout",
+   "--drop-unverified-jwt-results",
+   "--exclude-detectors",
+   "--fail-on-scan-errors",
+   "--filter-entropy",
+   "--force-skip-archives",
+   "--force-skip-binaries",
+   "--help-long",
+   "--include-detectors",
+   "--log-level",
+   "--max-decode-depth",
+   "--no-allow-verification-overlap",
+   "--no-color",
+   "--no-custom-verifiers-only",
+   "--no-drop-unverified-jwt-results",
+   "--no-fail",
+   "--no-fail-on-scan-errors",
+   "--no-filter-unverified",
+   "--no-force-skip-archives",
+   "--no-force-skip-binaries",
+   "--no-github-actions",
+   "--no-help",
+   "--no-json",
+   "--no-json-legacy",
+   "--no-no-color",
+   "--no-no-update",
+   "--no-no-verification",
+   "--no-no-verification-cache",
+   "--no-print-avg-detector-time",
+   "--no-profile",
+   "--no-skip-additional-refs",
+   "--no-verification-cache",
+   "--no-version",
+   "--results",
+   "--skip-additional-refs",
+   "--user-agent-suffix",
+   "--verifier",
+   "-h",
+   "-j"
+  ],
+  "mining_coverage": 0.22807017543859648
+ },
+ "surface": {
+  "flags": {
+   "--allow-verification-overlap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Allow verification of similar credentials across detectors",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--archive-max-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum depth of archive to scan."
+   },
+   "--archive-max-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum size of archive to scan. (Byte units eg. 512B, 2KB, 4MB)"
+   },
+   "--archive-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum time to spend extracting an archive."
+   },
+   "--bare": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Scan bare repository (e.g. useful while using in pre-receive hooks)",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--branch": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Name of the branch to be scanned",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--concurrency": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent workers."
+   },
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to configuration file."
+   },
+   "--custom-verifiers-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Only use custom verification endpoints.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--detector-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum time to spend scanning chunks per detector (e.g., 30s)."
+   },
+   "--drop-unverified-jwt-results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Drop unverified results without any verification errors from the JWT detector."
+   },
+   "--entropy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable entropy checks",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--exclude-detectors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of detector types to exclude. Protobuf name or IDs may be used, as well as ranges. IDs defined here take precedence over the include list."
+   },
+   "--fail": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Exit with code 183 if results are found.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.96.0",
+    "last_date": "2026-07-24T10:38:46-07:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "hack/checksecretparts/main.go"
+   },
+   "--fail-on-scan-errors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with non-zero error code if an error occurs during the scan."
+   },
+   "--filter-entropy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Filter unverified results with Shannon entropy. Start with 3.0."
+   },
+   "--filter-unverified": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Only output first unverified result per chunk per detector if there are more than one results.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--force-skip-archives": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping archives."
+   },
+   "--force-skip-binaries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping binaries."
+   },
+   "--github-actions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output in GitHub Actions format.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help-long": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--include-detectors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of detector types to include. Protobuf name or IDs may be used, as well as ranges."
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format.",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--json-legacy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--log-level": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Logging verbosity on a scale of 0 (info) to 5 (trace). Can be disabled with \"-1\"."
+   },
+   "--max-decode-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum depth of iterative decoding. Each decoder's output is fed back through all decoders, up to this limit. 1 = single pass, 2+ = chained decoding (e.g., base64 inside utf16)."
+   },
+   "--max_depth": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The max commit depth to go back when searching for secrets",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--no-allow-verification-overlap": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Allow verification of similar credentials across detectors"
+   },
+   "--no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable colorized output"
+   },
+   "--no-custom-verifiers-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only use custom verification endpoints."
+   },
+   "--no-drop-unverified-jwt-results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Drop unverified results without any verification errors from the JWT detector."
+   },
+   "--no-fail": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with code 183 if results are found."
+   },
+   "--no-fail-on-scan-errors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with non-zero error code if an error occurs during the scan."
+   },
+   "--no-filter-unverified": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only output first unverified result per chunk per detector if there are more than one results."
+   },
+   "--no-force-skip-archives": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping archives."
+   },
+   "--no-force-skip-binaries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping binaries."
+   },
+   "--no-github-actions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in GitHub Actions format."
+   },
+   "--no-help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try"
+   },
+   "--no-json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format."
+   },
+   "--no-json-legacy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources."
+   },
+   "--no-no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable colorized output"
+   },
+   "--no-no-update": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates."
+   },
+   "--no-no-verification": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't verify the results."
+   },
+   "--no-no-verification-cache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable verification caching"
+   },
+   "--no-print-avg-detector-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the average time spent on each detector."
+   },
+   "--no-profile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enables profiling and sets a pprof and fgprof server on :18066."
+   },
+   "--no-skip-additional-refs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip additional references."
+   },
+   "--no-update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--no-verification": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't verify the results.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--no-verification-cache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable verification caching"
+   },
+   "--no-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show application version."
+   },
+   "--print-avg-detector-time": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print the average time spent on each detector.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--profile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enables profiling and sets a pprof and fgprof server on :18066.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--quiet": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "suppress the summary line when no findings are reported",
+    "kind": "option",
+    "first_tag": "v3.95.3",
+    "first_date": "2026-05-11T08:27:50-07:00",
+    "last_tag": "v3.96.0",
+    "last_date": "2026-07-24T10:38:46-07:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "hack/checksecretparts/main.go"
+   },
+   "--regex": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable high signal regex checks",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specifies which type(s) of results to output: verified (confirmed valid by API), unknown (verification failed due to error), unverified (detected but not verified), filtered_unverified (unverified but would have been filtered out). Defaults to verified,unverified,unknown."
+   },
+   "--rules": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore default regexes and source from json list file",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--since_commit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only scan from a given commit hash",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   },
+   "--skip-additional-refs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip additional references."
+   },
+   "--user-agent-suffix": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Suffix to add to User-Agent."
+   },
+   "--verifier": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set custom verification endpoints."
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show application version.",
+    "kind": "option",
+    "first_tag": "v3.90.8",
+    "first_date": "2025-09-18T09:53:55-04:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try"
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format."
+   },
+   "git_url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "URL for secret searching",
+    "kind": "positional",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "trufflehog",
+ "repo": "trufflesecurity/trufflehog",
+ "head_sha": "6f3c981e7b77f235fd2702dd74af25fc4b72bf11",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T03:00:41.531258+00:00"
+}

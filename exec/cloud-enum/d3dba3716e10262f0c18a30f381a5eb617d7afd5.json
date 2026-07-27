@@ -1,0 +1,390 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:c5886c3fecaa044d8ec89062247a7096bf5e717b0e72437ae5253928893c974b",
+  "duration_s": 9.72,
+  "log_tail": "#10 6.594 Collecting certifi>=2023.5.7 (from requests>=2.34.2->cloud_enum==0.8)\n#10 6.619   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)\n#10 6.646 Downloading dnspython-2.8.0-py3-none-any.whl (331 kB)\n#10 6.732 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#10 6.765 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#10 6.797 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#10 6.825 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 6.857 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#10 6.895 Downloading requests_futures-1.0.2-py2.py3-none-any.whl (7.7 kB)\n#10 6.900 Building wheels for collected packages: cloud_enum\n#10 6.901   Building wheel for cloud_enum (pyproject.toml): started\n#10 6.999   Building wheel for cloud_enum (pyproject.toml): finished with status 'done'\n#10 7.000   Created wheel for cloud_enum: filename=cloud_enum-0.8-py3-none-any.whl size=18069 sha256=2b776093bdd72ba8fc1c1d9d6439d7e04af7fb5c25ecda69f6bb98400ae5f27b\n#10 7.000   Stored in directory: /tmp/pip-ephem-wheel-cache-g6zewf8g/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 7.000 Successfully built cloud_enum\n#10 7.008 Installing collected packages: urllib3, idna, dnspython, charset_normalizer, certifi, requests, requests-futures, cloud_enum\n#10 7.292 \n#10 7.293 Successfully installed certifi-2026.7.22 charset_normalizer-3.4.9 cloud_enum-0.8 dnspython-2.8.0 idna-3.18 requests-2.34.2 requests-futures-1.0.2 urllib3-2.7.0\n#10 DONE 7.5s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.108 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:518f14ba73f8ceacbf53f5bb73a4f047f079c7fcb216c7931cf74468a9a335c8 done\n#17 exporting config sha256:fd2402f1f9c1a3990343d866f660a7bac35135632ce8b201d382834de7d18c8b done\n#17 exporting attestation manifest sha256:39a93939e1e6f9aa1de0abff270cda201b0346d27e58c613091a91b12e12bd06 done\n#17 exporting manifest list sha256:c5886c3fecaa044d8ec89062247a7096bf5e717b0e72437ae5253928893c974b done\n#17 naming to docker.io/ctk-exec/cloud_enum:d3dba3716e10 done\n#17 unpacking to docker.io/ctk-exec/cloud_enum:d3dba3716e10\n#17 unpacking to docker.io/ctk-exec/cloud_enum:d3dba3716e10 0.6s done\n#17 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "cloud_enum",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: cloud_enum [-h] (-k KEYWORD | -kf KEYFILE) [-m MUTATIONS] [-b BRUTE]\n                  [-t THREADS] [-ns NAMESERVER] [-nsf NAMESERVERFILE]\n                  [-l LOGFILE] [-f FORMAT] [--disable-aws] [--disable-azure]\n                  [--disable-gcp] [-qs]\n\nMulti-cloud enumeration utility. All hail OSINT!\n\noptions:\n  -h, --help            show this help message and exit\n  -k KEYWORD, --keyword KEYWORD\n                        Keyword. Can use argument multiple times.\n  -kf KEYFILE, --keyfile KEYFILE\n                        Input file with a single keyword per line.\n  -m MUTATIONS, --mutations MUTATIONS\n                        Mutations. Default: enum_tools/fuzz.txt\n  -b BRUTE, --brute BRUTE\n                        List to brute-force Azure container names. Default:\n                        enum_tools/fuzz.txt\n  -t THREADS, --threads THREADS\n                        Threads for HTTP brute-force. Default = 5\n  -ns NAMESERVER, --nameserver NAMESERVER\n                        DNS server to use in brute-force.\n  -nsf NAMESERVERFILE, --nameserverfile NAMESERVERFILE\n                        Path to the file containing nameserver IPs\n  -l LOGFILE, --logfile LOGFILE\n                        Appends found items to specified file.\n  -f FORMAT, --format FORMAT\n                        Format for log file (text,json,csv) - default: text\n  --disable-aws         Disable Amazon checks.\n  --disable-azure       Disable Azure checks.\n  --disable-gcp         Disable Google checks.\n  -qs, --quickscan      Disable all mutations and second-level scans\n",
+   "stderr": "",
+   "duration_ms": 354,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cloud_enum"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cloud_enum\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cloud_enum"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cloud_enum' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "cloud_enum",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--keyword": "Keyword. Can use argument multiple times.",
+   "-k": "Keyword. Can use argument multiple times.",
+   "--keyfile": "Input file with a single keyword per line.",
+   "-kf": "Input file with a single keyword per line.",
+   "--mutations": "Mutations. Default: enum_tools/fuzz.txt",
+   "-m": "Mutations. Default: enum_tools/fuzz.txt",
+   "--brute": "List to brute-force Azure container names. Default: enum_tools/fuzz.txt",
+   "-b": "List to brute-force Azure container names. Default: enum_tools/fuzz.txt",
+   "--threads": "Threads for HTTP brute-force. Default = 5",
+   "-t": "Threads for HTTP brute-force. Default = 5",
+   "--nameserver": "DNS server to use in brute-force.",
+   "-ns": "DNS server to use in brute-force.",
+   "--nameserverfile": "Path to the file containing nameserver IPs",
+   "-nsf": "Path to the file containing nameserver IPs",
+   "--logfile": "Appends found items to specified file.",
+   "-l": "Appends found items to specified file.",
+   "--format": "Format for log file (text,json,csv) - default: text",
+   "-f": "Format for log file (text,json,csv) - default: text",
+   "--disable-aws": "Disable Amazon checks.",
+   "--disable-azure": "Disable Azure checks.",
+   "--disable-gcp": "Disable Google checks.",
+   "--quickscan": "Disable all mutations and second-level scans",
+   "-qs": "Disable all mutations and second-level scans"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--keyword": [
+    "-k"
+   ],
+   "--keyfile": [
+    "-kf"
+   ],
+   "--mutations": [
+    "-m"
+   ],
+   "--brute": [
+    "-b"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--nameserver": [
+    "-ns"
+   ],
+   "--nameserverfile": [
+    "-nsf"
+   ],
+   "--logfile": [
+    "-l"
+   ],
+   "--format": [
+    "-f"
+   ],
+   "--quickscan": [
+    "-qs"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "196739a937bf4dc17d77587b939d2febb1056f2b419dfae10590fb081a5808d8",
+  "text": "usage: cloud_enum [-h] (-k KEYWORD | -kf KEYFILE) [-m MUTATIONS] [-b BRUTE]\n                  [-t THREADS] [-ns NAMESERVER] [-nsf NAMESERVERFILE]\n                  [-l LOGFILE] [-f FORMAT] [--disable-aws] [--disable-azure]\n                  [--disable-gcp] [-qs]\n\nMulti-cloud enumeration utility. All hail OSINT!\n\noptions:\n  -h, --help            show this help message and exit\n  -k KEYWORD, --keyword KEYWORD\n                        Keyword. Can use argument multiple times.\n  -kf KEYFILE, --keyfile KEYFILE\n                        Input file with a single keyword per line.\n  -m MUTATIONS, --mutations MUTATIONS\n                        Mutations. Default: enum_tools/fuzz.txt\n  -b BRUTE, --brute BRUTE\n                        List to brute-force Azure container names. Default:\n                        enum_tools/fuzz.txt\n  -t THREADS, --threads THREADS\n                        Threads for HTTP brute-force. Default = 5\n  -ns NAMESERVER, --nameserver NAMESERVER\n                        DNS server to use in brute-force.\n  -nsf NAMESERVERFILE, --nameserverfile NAMESERVERFILE\n                        Path to the file containing nameserver IPs\n  -l LOGFILE, --logfile LOGFILE\n                        Appends found items to specified file.\n  -f FORMAT, --format FORMAT\n                        Format for log file (text,json,csv) - default: text\n  --disable-aws         Disable Amazon checks.\n  --disable-azure       Disable Azure checks.\n  --disable-gcp         Disable Google checks.\n  -qs, --quickscan      Disable all mutations and second-level scans\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--brute",
+   "--disable-aws",
+   "--disable-azure",
+   "--disable-gcp",
+   "--format",
+   "--keyfile",
+   "--keyword",
+   "--logfile",
+   "--mutations",
+   "--nameserver",
+   "--nameserverfile",
+   "--quickscan",
+   "--threads"
+  ],
+  "unconfirmed": [],
+  "help_only": [
+   "--help",
+   "-b",
+   "-f",
+   "-h",
+   "-k",
+   "-kf",
+   "-l",
+   "-m",
+   "-ns",
+   "-nsf",
+   "-qs",
+   "-t"
+  ],
+  "mining_coverage": 0.52
+ },
+ "surface": {
+  "flags": {
+   "--brute": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "List to brute-force Azure container names. Default: enum_tools/fuzz.txt",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--disable-aws": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable Amazon checks.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py"
+   },
+   "--disable-azure": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable Azure checks.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py"
+   },
+   "--disable-gcp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable Google checks.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py"
+   },
+   "--format": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Format for log file (text,json,csv) - default: text",
+    "kind": "option",
+    "first_tag": "0.7",
+    "first_date": "2022-04-02T21:06:16+11:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--keyfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Input file with a single keyword per line.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-kf"
+    ]
+   },
+   "--keyword": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Keyword. Can use argument multiple times.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-k"
+    ]
+   },
+   "--logfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Appends found items to specified file.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--mutations": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Mutations. Default: enum_tools/fuzz.txt",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--nameserver": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNS server to use in brute-force.",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-ns"
+    ]
+   },
+   "--nameserverfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to the file containing nameserver IPs",
+    "kind": "option",
+    "first_tag": "0.8",
+    "first_date": "2026-05-21T17:06:52+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-nsf"
+    ]
+   },
+   "--quickscan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable all mutations and second-level scans",
+    "kind": "option",
+    "first_tag": "0.6",
+    "first_date": "2020-10-24T11:59:58+11:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-qs"
+    ]
+   },
+   "--threads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Threads for HTTP brute-force. Default = 5",
+    "kind": "option",
+    "first_tag": "v0.1",
+    "first_date": "2019-09-02T11:28:13+10:00",
+    "last_tag": "0.8",
+    "last_date": "2026-05-21T17:06:52+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cloud_enum.py",
+    "aliases": [
+     "-t"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "cloud-enum",
+ "repo": "initstring/cloud_enum",
+ "head_sha": "d3dba3716e10262f0c18a30f381a5eb617d7afd5",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:17:46.376617+00:00"
+}

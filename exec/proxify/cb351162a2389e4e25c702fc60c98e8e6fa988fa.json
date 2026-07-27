@@ -1,0 +1,1436 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:9d91c16f8ce7542f2202d51cbe1ed368745a98399671a0f1e0912835545de629",
+  "duration_s": 25.5,
+  "log_tail": "#11 4.302 go: downloading github.com/yuin/goldmark v1.7.4\n#11 4.332 go: downloading github.com/yuin/goldmark-emoji v1.0.3\n#11 4.389 go: downloading golang.org/x/term v0.27.0\n#11 4.389 go: downloading github.com/bits-and-blooms/bitset v1.13.0\n#11 4.575 go: downloading github.com/weppos/publicsuffix-go v0.30.1-0.20230422193905-8fecedd899db\n#11 4.576 go: downloading github.com/tklauser/go-sysconf v0.3.12\n#11 4.576 go: downloading github.com/rivo/uniseg v0.4.7\n#11 4.576 go: downloading github.com/alecthomas/chroma/v2 v2.14.0\n#11 4.576 go: downloading github.com/jcmturner/aescts/v2 v2.0.0\n#11 4.576 go: downloading github.com/gorilla/css v1.0.1\n#11 4.577 go: downloading github.com/charmbracelet/lipgloss v0.13.0\n#11 4.577 go: downloading github.com/muesli/reflow v0.3.0\n#11 4.577 go: downloading github.com/charmbracelet/x/ansi v0.3.2\n#11 4.719 go: downloading github.com/tidwall/btree v1.6.0\n#11 4.778 go: downloading github.com/tidwall/grect v0.1.4\n#11 4.961 go: downloading github.com/tidwall/rtred v0.1.2\n#11 4.962 go: downloading github.com/lucasb-eyer/go-colorful v1.2.0\n#11 4.962 go: downloading github.com/aymanbagabas/go-osc52/v2 v2.0.1\n#11 4.963 go: downloading github.com/tklauser/numcpus v0.6.1\n#11 5.204 go: downloading github.com/dlclark/regexp2 v1.11.4\n#11 5.205 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#11 DONE 15.2s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.099 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 1.8s done\n#17 exporting manifest sha256:5fbd10afa5634202f8825a81f3c92c160ab470f2bb555ce55b8478e621524fd6 done\n#17 exporting config sha256:90ce185abafe4c95a0e7377bc4d4b8af9890a4661b526ec0d4924f1dd1cfc07a done\n#17 exporting attestation manifest sha256:0dfc5afa349d7b0811291d05d45b5d1cf8bce10a7eff8d2bae1224993eb56abf done\n#17 exporting manifest list sha256:9d91c16f8ce7542f2202d51cbe1ed368745a98399671a0f1e0912835545de629 0.0s done\n#17 naming to docker.io/ctk-exec/proxify:cb351162a238 done\n#17 unpacking to docker.io/ctk-exec/proxify:cb351162a238\n#17 unpacking to docker.io/ctk-exec/proxify:cb351162a238 0.8s done\n#17 DONE 2.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "proxify",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Swiss Army Knife Proxy for rapid deployments. Supports multiple operations such as request/response dump,filtering and manipulation via DSL language, upstream HTTP/Socks5 proxy\n\nUsage:\n  proxify [flags]\n\nFlags:\nOUTPUT:\n   -sr, -store-response string  store raw http request / response to output directory (default \"proxify_logs\")\n   -o, -output string           output file to store proxify logs (default \"proxify_logs.jsonl\")\n   -of, -output-format string   output format (jsonl/yaml) (default \"jsonl\")\n   -dump-req                    Dump only HTTP requests to output file\n   -dump-resp                   Dump only HTTP responses to output file\n   -oca, -out-ca string         Generate and Save CA File to filename\n\nUPDATE:\n   -up, -update                 update proxify to latest version\n   -duc, -disable-update-check  disable automatic proxify update check\n\nFILTER:\n   -req-fd, -request-dsl string[]                   Request Filter DSL\n   -resp-fd, -response-dsl string[]                 Response Filter DSL\n   -req-mrd, -request-match-replace-dsl string[]    Request Match-Replace DSL\n   -resp-mrd, -response-match-replace-dsl string[]  Response Match-Replace DSL\n\nNETWORK:\n   -ha, -http-addr string    Listening HTTP IP and Port address (ip:port) (default \"127.0.0.1:8888\")\n   -sa, -socks-addr string   Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")\n   -da, -dns-addr string     Listening DNS IP and Port address (ip:port)\n   -dm, -dns-mapping string  Domain to IP DNS mapping (eg domain:ip,domain:ip,..)\n   -r, -resolver string      Custom DNS resolvers to use (ip:port)\n\nPROXY:\n   -hp, -http-proxy string[]    Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)\n   -sp, -socks5-proxy string[]  Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)\n   -c int                       Number of requests before switching to the next upstream proxy (default 1)\n\nEXPORT:\n   -max-size int  Max export data size (request/responses will be truncated) (default 9223372036854775807)\n\nCONFIGURATION:\n   -config string              path to the proxify configuration file\n   -ec, -export-config string  proxify export module configuration file (default \"/home/ctk/.config/proxify/export-config.yaml\")\n   -config-directory string    override the default config path ($home/.config/proxify) (default \"/home/ctk/.config/proxify\")\n   -cert-cache-size int        Number of certificates to cache (default 256)\n   -a, -allow string[]         Allowed list of IP/CIDR's to be proxied\n   -d, -deny string[]          Denied list of IP/CIDR's to be proxied\n   -pt, -passthrough string[]  List of passthrough domains\n\nDEBUG:\n   -nc, -no-color      No Color\n   -version            Version\n   -silent             Silent\n   -v, -verbose        Verbose\n   -vv, -very-verbose  Very Verbose\n\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "proxify"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for proxify\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "proxify"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'proxify' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "proxify",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-sr": "store raw http request / response to output directory (default \"proxify_logs\")",
+   "-store-response": "store raw http request / response to output directory (default \"proxify_logs\")",
+   "-o": "output file to store proxify logs (default \"proxify_logs.jsonl\")",
+   "-output": "output file to store proxify logs (default \"proxify_logs.jsonl\")",
+   "-of": "output format (jsonl/yaml) (default \"jsonl\")",
+   "-output-format": "output format (jsonl/yaml) (default \"jsonl\")",
+   "-dump-req": "Dump only HTTP requests to output file",
+   "-dump-resp": "Dump only HTTP responses to output file",
+   "-oca": "Generate and Save CA File to filename",
+   "-out-ca": "Generate and Save CA File to filename",
+   "-up": "update proxify to latest version",
+   "-update": "update proxify to latest version",
+   "-duc": "disable automatic proxify update check",
+   "-disable-update-check": "disable automatic proxify update check",
+   "-req-fd": "Request Filter DSL",
+   "-request-dsl": "Request Filter DSL",
+   "-resp-fd": "Response Filter DSL",
+   "-response-dsl": "Response Filter DSL",
+   "-req-mrd": "Request Match-Replace DSL",
+   "-request-match-replace-dsl": "Request Match-Replace DSL",
+   "-resp-mrd": "Response Match-Replace DSL",
+   "-response-match-replace-dsl": "Response Match-Replace DSL",
+   "-ha": "Listening HTTP IP and Port address (ip:port) (default \"127.0.0.1:8888\")",
+   "-http-addr": "Listening HTTP IP and Port address (ip:port) (default \"127.0.0.1:8888\")",
+   "-sa": "Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")",
+   "-socks-addr": "Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")",
+   "-da": "Listening DNS IP and Port address (ip:port)",
+   "-dns-addr": "Listening DNS IP and Port address (ip:port)",
+   "-dm": "Domain to IP DNS mapping (eg domain:ip,domain:ip,..)",
+   "-dns-mapping": "Domain to IP DNS mapping (eg domain:ip,domain:ip,..)",
+   "-r": "Custom DNS resolvers to use (ip:port)",
+   "-resolver": "Custom DNS resolvers to use (ip:port)",
+   "-hp": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
+   "-http-proxy": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
+   "-sp": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+   "-socks5-proxy": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+   "-c": "Number of requests before switching to the next upstream proxy (default 1)",
+   "-max-size": "Max export data size (request/responses will be truncated) (default 9223372036854775807)",
+   "-config": "path to the proxify configuration file",
+   "-ec": "proxify export module configuration file (default \"/home/ctk/.config/proxify/export-config.yaml\")",
+   "-export-config": "proxify export module configuration file (default \"/home/ctk/.config/proxify/export-config.yaml\")",
+   "-config-directory": "override the default config path ($home/.config/proxify) (default \"/home/ctk/.config/proxify\")",
+   "-cert-cache-size": "Number of certificates to cache (default 256)",
+   "-a": "Allowed list of IP/CIDR's to be proxied",
+   "-allow": "Allowed list of IP/CIDR's to be proxied",
+   "-d": "Denied list of IP/CIDR's to be proxied",
+   "-deny": "Denied list of IP/CIDR's to be proxied",
+   "-pt": "List of passthrough domains",
+   "-passthrough": "List of passthrough domains",
+   "-nc": "No Color",
+   "-no-color": "No Color",
+   "-version": "Version",
+   "-silent": "Silent",
+   "-v": "Verbose",
+   "-verbose": "Verbose",
+   "-vv": "Very Verbose",
+   "-very-verbose": "Very Verbose"
+  },
+  "aliases": {
+   "-sr": [
+    "-store-response"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-of": [
+    "-output-format"
+   ],
+   "-oca": [
+    "-out-ca"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-req-fd": [
+    "-request-dsl"
+   ],
+   "-resp-fd": [
+    "-response-dsl"
+   ],
+   "-req-mrd": [
+    "-request-match-replace-dsl"
+   ],
+   "-resp-mrd": [
+    "-response-match-replace-dsl"
+   ],
+   "-ha": [
+    "-http-addr"
+   ],
+   "-sa": [
+    "-socks-addr"
+   ],
+   "-da": [
+    "-dns-addr"
+   ],
+   "-dm": [
+    "-dns-mapping"
+   ],
+   "-r": [
+    "-resolver"
+   ],
+   "-hp": [
+    "-http-proxy"
+   ],
+   "-sp": [
+    "-socks5-proxy"
+   ],
+   "-ec": [
+    "-export-config"
+   ],
+   "-a": [
+    "-allow"
+   ],
+   "-d": [
+    "-deny"
+   ],
+   "-pt": [
+    "-passthrough"
+   ],
+   "-nc": [
+    "-no-color"
+   ],
+   "-v": [
+    "-verbose"
+   ],
+   "-vv": [
+    "-very-verbose"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "dc95b659639add24a3a07fe9198d9a0f184cb61ecf6f1b6b9058c4770e5b2e8f",
+  "text": "Swiss Army Knife Proxy for rapid deployments. Supports multiple operations such as request/response dump,filtering and manipulation via DSL language, upstream HTTP/Socks5 proxy\n\nUsage:\n  proxify [flags]\n\nFlags:\nOUTPUT:\n   -sr, -store-response string  store raw http request / response to output directory (default \"proxify_logs\")\n   -o, -output string           output file to store proxify logs (default \"proxify_logs.jsonl\")\n   -of, -output-format string   output format (jsonl/yaml) (default \"jsonl\")\n   -dump-req                    Dump only HTTP requests to output file\n   -dump-resp                   Dump only HTTP responses to output file\n   -oca, -out-ca string         Generate and Save CA File to filename\n\nUPDATE:\n   -up, -update                 update proxify to latest version\n   -duc, -disable-update-check  disable automatic proxify update check\n\nFILTER:\n   -req-fd, -request-dsl string[]                   Request Filter DSL\n   -resp-fd, -response-dsl string[]                 Response Filter DSL\n   -req-mrd, -request-match-replace-dsl string[]    Request Match-Replace DSL\n   -resp-mrd, -response-match-replace-dsl string[]  Response Match-Replace DSL\n\nNETWORK:\n   -ha, -http-addr string    Listening HTTP IP and Port address (ip:port) (default \"127.0.0.1:8888\")\n   -sa, -socks-addr string   Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")\n   -da, -dns-addr string     Listening DNS IP and Port address (ip:port)\n   -dm, -dns-mapping string  Domain to IP DNS mapping (eg domain:ip,domain:ip,..)\n   -r, -resolver string      Custom DNS resolvers to use (ip:port)\n\nPROXY:\n   -hp, -http-proxy string[]    Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)\n   -sp, -socks5-proxy string[]  Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)\n   -c int                       Number of requests before switching to the next upstream proxy (default 1)\n\nEXPORT:\n   -max-size int  Max export data size (request/responses will be truncated) (default 9223372036854775807)\n\nCONFIGURATION:\n   -config string              path to the proxify configuration file\n   -ec, -export-config string  proxify export module configuration file (default \"/home/ctk/.config/proxify/export-config.yaml\")\n   -config-directory string    override the default config path ($home/.config/proxify) (default \"/home/ctk/.config/proxify\")\n   -cert-cache-size int        Number of certificates to cache (default 256)\n   -a, -allow string[]         Allowed list of IP/CIDR's to be proxied\n   -d, -deny string[]          Denied list of IP/CIDR's to be proxied\n   -pt, -passthrough string[]  List of passthrough domains\n\nDEBUG:\n   -nc, -no-color      No Color\n   -version            Version\n   -silent             Silent\n   -v, -verbose        Verbose\n   -vv, -very-verbose  Very Verbose\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-allow",
+   "-cert-cache-size",
+   "-config",
+   "-config-directory",
+   "-deny",
+   "-disable-update-check",
+   "-dns-addr",
+   "-dns-mapping",
+   "-dump-req",
+   "-dump-resp",
+   "-export-config",
+   "-http-addr",
+   "-http-proxy",
+   "-max-size",
+   "-no-color",
+   "-out-ca",
+   "-output",
+   "-output-format",
+   "-passthrough",
+   "-request-dsl",
+   "-request-match-replace-dsl",
+   "-resolver",
+   "-response-dsl",
+   "-response-match-replace-dsl",
+   "-silent",
+   "-socks-addr",
+   "-socks5-proxy",
+   "-store-response",
+   "-update",
+   "-verbose",
+   "-version",
+   "-very-verbose"
+  ],
+  "unconfirmed": [
+   "--addr",
+   "--burp-addr",
+   "--cert-cache-size",
+   "--client-cert",
+   "--client-key",
+   "--config",
+   "--dns-addr",
+   "--dns-mapping",
+   "--dns-resolver",
+   "--dump-req",
+   "--dump-resp",
+   "--http-addr",
+   "--http-proxy",
+   "--no-color",
+   "--output",
+   "--protocol",
+   "--proxy-addr",
+   "--request-dsl",
+   "--request-match-replace-dsl",
+   "--resolver-addr",
+   "--response-dsl",
+   "--response-match-replace-dsl",
+   "--server-cert",
+   "--server-key",
+   "--silent",
+   "--socks5-proxy",
+   "--timeout",
+   "--tls-client",
+   "--tls-server",
+   "--v",
+   "--version",
+   "-addr",
+   "-api-host",
+   "-dns-resolver",
+   "-elastic-address",
+   "-elastic-index",
+   "-elastic-password",
+   "-elastic-ssl",
+   "-elastic-ssl-verification",
+   "-elastic-username",
+   "-jsonl",
+   "-kafka-address",
+   "-kafka-topic",
+   "-log-dir",
+   "-output-spec",
+   "-store-resposne"
+  ],
+  "help_only": [
+   "-a",
+   "-c",
+   "-d",
+   "-da",
+   "-dm",
+   "-duc",
+   "-ec",
+   "-ha",
+   "-hp",
+   "-nc",
+   "-o",
+   "-oca",
+   "-of",
+   "-pt",
+   "-r",
+   "-req-fd",
+   "-req-mrd",
+   "-resp-fd",
+   "-resp-mrd",
+   "-sa",
+   "-sp",
+   "-sr",
+   "-up",
+   "-v",
+   "-vv"
+  ],
+  "mining_coverage": 0.5614035087719298
+ },
+ "surface": {
+  "flags": {
+   "--addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen Ip and port (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--burp-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Burp HTTP Address",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/replay/replay.go"
+   },
+   "--cert-cache-size": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Number of certificates to cache",
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2020-12-12T12:31:26+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--client-cert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relay => Server Cert File",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--client-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relay => Server Key File",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Directory for storing program information",
+    "kind": "option",
+    "first_tag": "v0.0.3",
+    "first_date": "2020-12-12T12:31:26+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--dns-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen DNS Ip and port (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--dns-mapping": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "DNS A mapping (eg domain:ip,domain:ip,..)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--dns-resolver": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen DNS Ip and port (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--dump-req": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dump requests in separate files",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--dump-resp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dump responses in separate files",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--http-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "HTTP Server Listen Address",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--http-proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Upstream HTTP Proxy (eg http://proxyip:proxyport",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--no-color": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "No Color",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Output Folder",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--protocol": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "tcp or udp",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--proxy-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "HTTP Proxy Address",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--request-dsl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Request Filter DSL",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--request-match-replace-dsl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Request Match-Replace DSL",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--resolver-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen DNS Ip and port (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--response-dsl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Response Filter DSL",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--response-match-replace-dsl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Request Match-Replace DSL",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--server-cert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Client => Relay Cert File",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--server-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Client => Relay Key File",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Silent",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--socks5-proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Upstream SOCKS5 Proxy (eg socks5://proxyip:proxyport)",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Connection Timeout In Seconds",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--tls-client": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relay => Server should use tls",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--tls-server": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Client => Relay should use tls",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/mitmrelay/mitmrelay.go"
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Verbose",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-12-11T23:13:45+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "-a": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Allowed list of IP/CIDR's to be proxied",
+    "aliases": [
+     "-allow"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen Ip and port (ip:port) (default \"127.0.0.1:8888\")",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-api-host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "API host (example: api.example.com)",
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/swaggergen/README.md"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of requests before switching to the next upstream proxy (default 1)"
+   },
+   "-cert-cache-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of certificates to cache (default 256)",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "path to the proxify configuration file",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-config-directory": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "override the default config path ($home/.config/proxify) (default \"/home/ctk/.config/proxify\")",
+    "kind": "option",
+    "first_tag": "v0.0.12",
+    "first_date": "2023-08-13T01:53:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Denied list of IP/CIDR's to be proxied",
+    "aliases": [
+     "-deny"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-da": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Listening DNS IP and Port address (ip:port)",
+    "aliases": [
+     "-dns-addr"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Domain to IP DNS mapping (eg domain:ip,domain:ip,..)",
+    "aliases": [
+     "-dns-mapping"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dns-resolver": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listen DNS Ip and port (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.4",
+    "last_date": "2021-05-24T07:32:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic proxify update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dump-req": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Dump only HTTP requests to output file",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dump-resp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Dump only HTTP responses to output file",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ec": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "proxify export module configuration file (default \"/home/ctk/.config/proxify/export-config.yaml\")",
+    "aliases": [
+     "-export-config"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.13",
+    "first_date": "2024-02-08T21:38:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-address": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "elasticsearch address (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-index": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "elasticsearch index name (default \"proxify\")",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-password": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "elasticsearch password",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-ssl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enable elasticsearch ssl",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-ssl-verification": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enable elasticsearch ssl verification",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elastic-username": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "elasticsearch username",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ha": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Listening HTTP IP and Port address (ip:port) (default \"127.0.0.1:8888\")",
+    "aliases": [
+     "-http-addr"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
+    "aliases": [
+     "-http-proxy"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-jsonl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "write output in JSONL(ines) format",
+    "kind": "option",
+    "first_tag": "v0.0.10",
+    "first_date": "2023-07-26T07:34:56+05:30",
+    "last_tag": "v0.0.13",
+    "last_date": "2024-02-08T21:38:19+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-kafka-address": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "address of kafka broker (ip:port)",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-kafka-topic": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "kafka topic to publish messages on (default \"proxify\")",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.12",
+    "last_date": "2023-08-13T01:53:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-log-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "path to proxify's output log directory",
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/swaggergen/README.md"
+   },
+   "-max-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Max export data size (request/responses will be truncated) (default 9223372036854775807)",
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "No Color",
+    "aliases": [
+     "-no-color"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "output file to store proxify logs (default \"proxify_logs.jsonl\")",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-oca": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate and Save CA File to filename",
+    "aliases": [
+     "-out-ca"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.10",
+    "first_date": "2023-07-26T07:34:56+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-of": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "output format (jsonl/yaml) (default \"jsonl\")",
+    "aliases": [
+     "-output-format"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.15",
+    "first_date": "2024-03-12T21:02:08+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-output-spec": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "file to store Swagger/OpenAPI specification (example: OpenAPI.yaml)",
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/swaggergen/README.md"
+   },
+   "-pt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List of passthrough domains",
+    "aliases": [
+     "-passthrough"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Custom DNS resolvers to use (ip:port)",
+    "aliases": [
+     "-resolver"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-req-fd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Request Filter DSL",
+    "aliases": [
+     "-request-dsl"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-req-mrd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Request Match-Replace DSL",
+    "aliases": [
+     "-request-match-replace-dsl"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-resp-fd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Response Filter DSL",
+    "aliases": [
+     "-response-dsl"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-resp-mrd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Response Match-Replace DSL",
+    "aliases": [
+     "-response-match-replace-dsl"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")",
+    "aliases": [
+     "-socks-addr"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Silent",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+    "aliases": [
+     "-socks5-proxy"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store raw http request / response to output directory (default \"proxify_logs\")",
+    "aliases": [
+     "-store-response"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.16",
+    "first_date": "2025-08-30T04:25:44+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-store-resposne": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "store raw http request / response to output directory (default proxify_logs)",
+    "kind": "option",
+    "first_tag": "v0.0.15",
+    "first_date": "2024-03-12T21:02:08+05:30",
+    "last_tag": "v0.0.15",
+    "last_date": "2024-03-12T21:02:08+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update proxify to latest version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2023-03-21T17:28:19+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Verbose",
+    "aliases": [
+     "-verbose"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2021-11-19T13:36:18+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Version",
+    "kind": "option",
+    "first_tag": "v0.0.4",
+    "first_date": "2021-05-24T07:32:29+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-vv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Very Verbose",
+    "aliases": [
+     "-very-verbose"
+    ],
+    "kind": "option",
+    "first_tag": "v0.0.8",
+    "first_date": "2022-10-20T02:41:43+05:30",
+    "last_tag": "v0.0.16",
+    "last_date": "2025-08-30T04:25:44+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "proxify",
+ "repo": "projectdiscovery/proxify",
+ "head_sha": "cb351162a2389e4e25c702fc60c98e8e6fa988fa",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:33:45.875447+00:00"
+}

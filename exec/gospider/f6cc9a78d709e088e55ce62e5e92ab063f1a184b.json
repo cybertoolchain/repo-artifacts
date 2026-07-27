@@ -1,0 +1,828 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:2a87b517ac0a7884285ffcc166354ac46251f8e4ebdef838e020d64d04b1677e",
+  "duration_s": 8.45,
+  "log_tail": "#11 1.239 go: downloading github.com/mgutz/ansi v0.0.0-20200706080929-d51e80ef957d\n#11 1.245 go: downloading github.com/modern-go/reflect2 v1.0.1\n#11 1.245 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd\n#11 1.275 go: downloading github.com/gocolly/colly v1.2.0\n#11 1.282 go: downloading github.com/spf13/pflag v1.0.5\n#11 1.337 go: downloading github.com/mattn/go-colorable v0.0.9\n#11 1.499 go: downloading github.com/mattn/go-isatty v0.0.3\n#11 1.642 go: downloading github.com/antchfx/htmlquery v1.2.3\n#11 1.642 go: downloading github.com/gobwas/glob v0.2.3\n#11 1.642 go: downloading github.com/temoto/robotstxt v1.1.1\n#11 1.642 go: downloading github.com/PuerkitoBio/goquery v1.5.1\n#11 1.642 go: downloading golang.org/x/text v0.3.6\n#11 1.642 go: downloading github.com/kennygrant/sanitize v1.2.4\n#11 1.642 go: downloading github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca\n#11 1.642 go: downloading github.com/antchfx/xmlquery v1.2.4\n#11 1.642 go: downloading google.golang.org/appengine v1.6.6\n#11 1.715 go: downloading github.com/golang/groupcache v0.0.0-20200121045136-8c9f03a8e57e\n#11 1.715 go: downloading github.com/antchfx/xpath v1.1.8\n#11 1.728 go: downloading github.com/andybalholm/cascadia v1.2.0\n#11 1.816 go: downloading github.com/golang/protobuf v1.5.2\n#11 1.960 go: downloading google.golang.org/protobuf v1.26.0\n#11 DONE 6.3s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.100 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:3e1cea9d4f79a6f94b6c65273ccc5438a6c68a138a21ecb37784df3d69eda075 done\n#17 exporting config sha256:5e7e7295c527376dc6dedd396850bc18dd24d701d3d47e2f9d103dddc9c1f283 done\n#17 exporting attestation manifest sha256:188db775e93604beb5dc9801de24928dc818c95eca064c8a5c21b34f3396d7c6 done\n#17 exporting manifest list sha256:2a87b517ac0a7884285ffcc166354ac46251f8e4ebdef838e020d64d04b1677e done\n#17 naming to docker.io/ctk-exec/gospider:f6cc9a78d709 done\n#17 unpacking to docker.io/ctk-exec/gospider:f6cc9a78d709\n#17 unpacking to docker.io/ctk-exec/gospider:f6cc9a78d709 0.6s done\n#17 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "gospider",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Fast web spider written in Go - v1.1.6 by @thebl4ckturtle & @j3ssiejjj\n\nUsage:\n  gospider [flags]\n\nFlags:\n  -s, --site string               Site to crawl\n  -S, --sites string              Site list to crawl\n  -p, --proxy string              Proxy (Ex: http://127.0.0.1:8080)\n  -o, --output string             Output folder\n  -u, --user-agent string         User Agent to use\n                                  \tweb: random web user-agent\n                                  \tmobi: random mobile user-agent\n                                  \tor you can set your special user-agent (default \"web\")\n      --cookie string             Cookie to use (testA=a; testB=b)\n  -H, --header stringArray        Header to use (Use multiple flag to set multiple header)\n      --burp string               Load headers and cookie from burp raw http request\n      --blacklist string          Blacklist URL Regex\n      --whitelist string          Whitelist URL Regex\n      --whitelist-domain string   Whitelist Domain\n  -L, --filter-length string      Turn on length filter\n  -t, --threads int               Number of threads (Run sites in parallel) (default 1)\n  -c, --concurrent int            The number of the maximum allowed concurrent requests of the matching domains (default 5)\n  -d, --depth int                 MaxDepth limits the recursion depth of visited URLs. (Set it to 0 for infinite recursion) (default 1)\n  -k, --delay int                 Delay is the duration to wait before creating a new request to the matching domains (second)\n  -K, --random-delay int          RandomDelay is the extra randomized duration to wait added to Delay before creating a new request (second)\n  -m, --timeout int               Request timeout (second) (default 10)\n  -B, --base                      Disable all and only use HTML content\n      --js                        Enable linkfinder in javascript file (default true)\n      --sitemap                   Try to crawl sitemap.xml\n      --robots                    Try to crawl robots.txt (default true)\n  -a, --other-source              Find URLs from 3rd party (Archive.org, CommonCrawl.org, VirusTotal.com, AlienVault.com)\n  -w, --include-subs              Include subdomains crawled from 3rd party. Default is main domain\n  -r, --include-other-source      Also include other-source's urls (still crawl and request)\n      --subs                      Include subdomains\n      --debug                     Turn on debug mode\n      --json                      Enable JSON output\n  -v, --verbose                   Turn on verbose\n  -q, --quiet                     Suppress all the output and only show URL\n      --no-redirect               Disable redirect\n      --version                   Check version\n  -l, --length                    Turn on length\n  -R, --raw                       Enable raw output\n  -h, --help                      help for gospider\n",
+   "stderr": "",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "gospider"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for gospider\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "gospider"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'gospider' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "gospider",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--site": "Site to crawl",
+   "-s": "Site to crawl",
+   "--sites": "Site list to crawl",
+   "-S": "Site list to crawl",
+   "--proxy": "Proxy (Ex: http://127.0.0.1:8080)",
+   "-p": "Proxy (Ex: http://127.0.0.1:8080)",
+   "--output": "Output folder",
+   "-o": "Output folder",
+   "--user-agent": "User Agent to use web: random web user-agent mobi: random mobile user-agent or you can set your special user-agent (default \"web\")",
+   "-u": "User Agent to use web: random web user-agent mobi: random mobile user-agent or you can set your special user-agent (default \"web\")",
+   "--cookie": "Cookie to use (testA=a; testB=b)",
+   "--header": "Header to use (Use multiple flag to set multiple header)",
+   "-H": "Header to use (Use multiple flag to set multiple header)",
+   "--burp": "Load headers and cookie from burp raw http request",
+   "--blacklist": "Blacklist URL Regex",
+   "--whitelist": "Whitelist URL Regex",
+   "--whitelist-domain": "Whitelist Domain",
+   "--filter-length": "Turn on length filter",
+   "-L": "Turn on length filter",
+   "--threads": "Number of threads (Run sites in parallel) (default 1)",
+   "-t": "Number of threads (Run sites in parallel) (default 1)",
+   "--concurrent": "The number of the maximum allowed concurrent requests of the matching domains (default 5)",
+   "-c": "The number of the maximum allowed concurrent requests of the matching domains (default 5)",
+   "--depth": "MaxDepth limits the recursion depth of visited URLs. (Set it to 0 for infinite recursion) (default 1)",
+   "-d": "MaxDepth limits the recursion depth of visited URLs. (Set it to 0 for infinite recursion) (default 1)",
+   "--delay": "Delay is the duration to wait before creating a new request to the matching domains (second)",
+   "-k": "Delay is the duration to wait before creating a new request to the matching domains (second)",
+   "--random-delay": "RandomDelay is the extra randomized duration to wait added to Delay before creating a new request (second)",
+   "-K": "RandomDelay is the extra randomized duration to wait added to Delay before creating a new request (second)",
+   "--timeout": "Request timeout (second) (default 10)",
+   "-m": "Request timeout (second) (default 10)",
+   "--base": "Disable all and only use HTML content",
+   "-B": "Disable all and only use HTML content",
+   "--js": "Enable linkfinder in javascript file (default true)",
+   "--sitemap": "Try to crawl sitemap.xml",
+   "--robots": "Try to crawl robots.txt (default true)",
+   "--other-source": "Find URLs from 3rd party (Archive.org, CommonCrawl.org, VirusTotal.com, AlienVault.com)",
+   "-a": "Find URLs from 3rd party (Archive.org, CommonCrawl.org, VirusTotal.com, AlienVault.com)",
+   "--include-subs": "Include subdomains crawled from 3rd party. Default is main domain",
+   "-w": "Include subdomains crawled from 3rd party. Default is main domain",
+   "--include-other-source": "Also include other-source's urls (still crawl and request)",
+   "-r": "Also include other-source's urls (still crawl and request)",
+   "--subs": "Include subdomains",
+   "--debug": "Turn on debug mode",
+   "--json": "Enable JSON output",
+   "--verbose": "Turn on verbose",
+   "-v": "Turn on verbose",
+   "--quiet": "Suppress all the output and only show URL",
+   "-q": "Suppress all the output and only show URL",
+   "--no-redirect": "Disable redirect",
+   "--version": "Check version",
+   "--length": "Turn on length",
+   "-l": "Turn on length",
+   "--raw": "Enable raw output",
+   "-R": "Enable raw output",
+   "--help": "help for gospider",
+   "-h": "help for gospider"
+  },
+  "aliases": {
+   "--site": [
+    "-s"
+   ],
+   "--sites": [
+    "-S"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--user-agent": [
+    "-u"
+   ],
+   "--header": [
+    "-H"
+   ],
+   "--filter-length": [
+    "-L"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--concurrent": [
+    "-c"
+   ],
+   "--depth": [
+    "-d"
+   ],
+   "--delay": [
+    "-k"
+   ],
+   "--random-delay": [
+    "-K"
+   ],
+   "--timeout": [
+    "-m"
+   ],
+   "--base": [
+    "-B"
+   ],
+   "--other-source": [
+    "-a"
+   ],
+   "--include-subs": [
+    "-w"
+   ],
+   "--include-other-source": [
+    "-r"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--length": [
+    "-l"
+   ],
+   "--raw": [
+    "-R"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "0b7347329863db4cb9e68d9ce6dbc6ba5cab1888113fcc9cedbd0c1442a746c6",
+  "text": "Fast web spider written in Go - v1.1.6 by @thebl4ckturtle & @j3ssiejjj\n\nUsage:\n  gospider [flags]\n\nFlags:\n  -s, --site string               Site to crawl\n  -S, --sites string              Site list to crawl\n  -p, --proxy string              Proxy (Ex: http://127.0.0.1:8080)\n  -o, --output string             Output folder\n  -u, --user-agent string         User Agent to use\n                                  \tweb: random web user-agent\n                                  \tmobi: random mobile user-agent\n                                  \tor you can set your special user-agent (default \"web\")\n      --cookie string             Cookie to use (testA=a; testB=b)\n  -H, --header stringArray        Header to use (Use multiple flag to set multiple header)\n      --burp string               Load headers and cookie from burp raw http request\n      --blacklist string          Blacklist URL Regex\n      --whitelist string          Whitelist URL Regex\n      --whitelist-domain string   Whitelist Domain\n  -L, --filter-length string      Turn on length filter\n  -t, --threads int               Number of threads (Run sites in parallel) (default 1)\n  -c, --concurrent int            The number of the maximum allowed concurrent requests of the matching domains (default 5)\n  -d, --depth int                 MaxDepth limits the recursion depth of visited URLs. (Set it to 0 for infinite recursion) (default 1)\n  -k, --delay int                 Delay is the duration to wait before creating a new request to the matching domains (second)\n  -K, --random-delay int          RandomDelay is the extra randomized duration to wait added to Delay before creating a new request (second)\n  -m, --timeout int               Request timeout (second) (default 10)\n  -B, --base                      Disable all and only use HTML content\n      --js                        Enable linkfinder in javascript file (default true)\n      --sitemap                   Try to crawl sitemap.xml\n      --robots                    Try to crawl robots.txt (default true)\n  -a, --other-source              Find URLs from 3rd party (Archive.org, CommonCrawl.org, VirusTotal.com, AlienVault.com)\n  -w, --include-subs              Include subdomains crawled from 3rd party. Default is main domain\n  -r, --include-other-source      Also include other-source's urls (still crawl and request)\n      --subs                      Include subdomains\n      --debug                     Turn on debug mode\n      --json                      Enable JSON output\n  -v, --verbose                   Turn on verbose\n  -q, --quiet                     Suppress all the output and only show URL\n      --no-redirect               Disable redirect\n      --version                   Check version\n  -l, --length                    Turn on length\n  -R, --raw                       Enable raw output\n  -h, --help                      help for gospider\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--base",
+   "--blacklist",
+   "--burp",
+   "--concurrent",
+   "--cookie",
+   "--debug",
+   "--delay",
+   "--depth",
+   "--filter-length",
+   "--header",
+   "--help",
+   "--include-other-source",
+   "--include-subs",
+   "--js",
+   "--json",
+   "--length",
+   "--no-redirect",
+   "--other-source",
+   "--output",
+   "--proxy",
+   "--quiet",
+   "--random-delay",
+   "--raw",
+   "--robots",
+   "--site",
+   "--sitemap",
+   "--sites",
+   "--subs",
+   "--threads",
+   "--timeout",
+   "--user-agent",
+   "--verbose",
+   "--version",
+   "--whitelist",
+   "--whitelist-domain"
+  ],
+  "unconfirmed": [
+   "--quite"
+  ],
+  "help_only": [
+   "-B",
+   "-H",
+   "-K",
+   "-L",
+   "-R",
+   "-S",
+   "-a",
+   "-c",
+   "-d",
+   "-h",
+   "-k",
+   "-l",
+   "-m",
+   "-o",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-w"
+  ],
+  "mining_coverage": 0.6140350877192983
+ },
+ "surface": {
+  "flags": {
+   "--base": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable all and only use HTML content",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-08-29T11:15:36+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-B"
+    ]
+   },
+   "--blacklist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Blacklist URL Regex",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--burp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Load headers and cookie from burp raw http request",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--concurrent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The number of the maximum allowed concurrent requests of the matching domains (default 5)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--cookie": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Cookie to use (testA=a; testB=b)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Turn on debug mode",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--delay": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Delay is the duration to wait before creating a new request to the matching domains (second)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-k"
+    ]
+   },
+   "--depth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "MaxDepth limits the recursion depth of visited URLs. (Set it to 0 for infinite recursion) (default 1)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--filter-length": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Turn on length filter",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--header": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Header to use (Use multiple flag to set multiple header)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "help for gospider",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--include-other-source": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also include other-source's urls (still crawl and request)",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2020-02-16T19:37:22+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--include-subs": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Include subdomains crawled from 3rd party. Default is main domain",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-w"
+    ]
+   },
+   "--js": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable linkfinder in javascript file (default true)",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-08-29T11:15:36+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable JSON output",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--length": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Turn on length",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--no-redirect": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable redirect",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--other-source": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Find URLs from 3rd party (Archive.org, CommonCrawl.org, VirusTotal.com, AlienVault.com)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output folder",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Proxy (Ex: http://127.0.0.1:8080)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Suppress all the output and only show URL",
+    "kind": "option",
+    "first_tag": "v1.1.3",
+    "first_date": "2020-11-27T18:01:52+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--quite": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only show URL",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2020-08-29T11:15:36+07:00",
+    "last_tag": "v1.1.2",
+    "last_date": "2020-08-29T11:15:36+07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--random-delay": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "RandomDelay is the extra randomized duration to wait added to Delay before creating a new request (second)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-K"
+    ]
+   },
+   "--raw": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable raw output",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-R"
+    ]
+   },
+   "--robots": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Try to crawl robots.txt (default true)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--site": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Site to crawl",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--sitemap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Try to crawl sitemap.xml",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--sites": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Site list to crawl",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--subs": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Include subdomains",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--threads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of threads (Run sites in parallel) (default 1)",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Request timeout (second) (default 10)",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2020-02-16T19:37:22+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--user-agent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "User Agent to use web: random web user-agent mobi: random mobile user-agent or you can set your special user-agent (default \"web\")",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2020-02-03T20:18:00+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Turn on verbose",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2020-02-08T09:59:11+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check version",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2020-02-08T09:59:11+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--whitelist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whitelist URL Regex",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--whitelist-domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Whitelist Domain",
+    "kind": "option",
+    "first_tag": "v1.1.6",
+    "first_date": "2021-06-27T14:03:59+07:00",
+    "last_tag": "v1.1.6",
+    "last_date": "2021-06-27T14:03:59+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "gospider",
+ "repo": "jaeles-project/gospider",
+ "head_sha": "f6cc9a78d709e088e55ce62e5e92ab063f1a184b",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:25:56.540640+00:00"
+}

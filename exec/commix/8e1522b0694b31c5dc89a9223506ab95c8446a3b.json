@@ -1,0 +1,810 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:efc1a4ea0ec56f61325b36bb3fe3cf2e4435b2b640088569a51bdf5f98838ba0",
+  "duration_s": 22.76,
+  "log_tail": "#11 11.82 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 11.82 debconf: falling back to frontend: Readline\n#11 11.83 debconf: unable to initialize frontend: Readline\n#11 11.83 debconf: (This frontend requires a controlling tty.)\n#11 11.83 debconf: falling back to frontend: Teletype\n#11 11.86 \n#11 11.86 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 11.88 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#11 11.91 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#11 11.96 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 12.00 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 12.06 debconf: unable to initialize frontend: Dialog\n#11 12.06 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 12.06 debconf: falling back to frontend: Readline\n#11 12.07 debconf: unable to initialize frontend: Readline\n#11 12.07 debconf: (This frontend requires a controlling tty.)\n#11 12.07 debconf: falling back to frontend: Teletype\n#11 12.12 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 12.14 Setting up texinfo (6.8-6+b1) ...\n#11 12.17 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 12.21 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 12.3s\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.130 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 3.1s done\n#17 exporting manifest sha256:3553126d92adc096124ca702874dc1e8b7940110b8cdd902b5e4a38e41f7f3b1 done\n#17 exporting config sha256:d9aff5a20322e78bb207ec6a928dd89c9788526b2ba40210d896945a51dd7fd4 done\n#17 exporting attestation manifest sha256:69c68017f75dbc366e29b1faf495437134f3f08d71b713d06cf0587163407c84 done\n#17 exporting manifest list sha256:efc1a4ea0ec56f61325b36bb3fe3cf2e4435b2b640088569a51bdf5f98838ba0 done\n#17 naming to docker.io/ctk-exec/commix:8e1522b0694b done\n#17 unpacking to docker.io/ctk-exec/commix:8e1522b0694b\n#17 unpacking to docker.io/ctk-exec/commix:8e1522b0694b 0.6s done\n#17 DONE 3.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "commix",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: python commix [option(s)]\n\nOptions:\n  -h, --help            Show help and exit.\n\n  \u001b[1m\u001b[4mGeneral\u001b[0m:\n    These options relate to general matters.\n\n    -v VERBOSE          Verbosity level (0-4, Default: 0).\n    --install           Install commix to your system.\n    --version           Show version number and exit.\n    --update            Check for updates (apply if any) and exit.\n    --output-dir=OUT..  Set custom output directory path.\n    -s SESSION_FILE     Load session from a stored (.sqlite) file.\n    --flush-session     Flush session files for current target.\n    --ignore-session    Ignore results stored in session file.\n    -t TRAFFIC_FILE     Log all HTTP traffic into a textual file.\n    --time-limit=TIM..  Run with a time limit in seconds (e.g. 3600).\n    --batch             Never ask for user input, use the default behaviour.\n    --skip-heuristics   Skip heuristic detection for code injection.\n    --codec=CODEC       Force codec for character encoding (e.g. 'ascii').\n    --charset=CHARSET   Time-related injection charset (e.g.\n                        '0123456789abcdef').\n    --check-internet    Check internet connection before assessing the target.\n    --answers=ANSWERS   Set predefined answers (e.g. 'quit=N,follow=N').\n\n  \u001b[1m\u001b[4mTarget\u001b[0m:\n    This options has to be provided, to define the target URL.\n\n    -u URL, --url=URL   Target URL.\n    --url-reload        Reload target URL after command execution.\n    -l LOGFILE          Parse target from HTTP proxy log file.\n    -m BULKFILE         Scan multiple targets given in a textual file.\n    -r REQUESTFILE      Load HTTP request from a file.\n    --crawl=CRAWLDEPTH  Crawl the website starting from the target URL\n                        (Default: 1).\n    --crawl-exclude=..  Regexp to exclude pages from crawling (e.g. 'logout').\n    -x SITEMAP_URL      Parse target(s) from remote sitemap(.xml) file.\n    --method=METHOD     Force usage of given HTTP method (e.g. 'PUT').\n\n  \u001b[1m\u001b[4mRequest\u001b[0m:\n    These options can be used to specify how to connect to the target URL.\n\n    -d DATA, --data=..  Data string to be sent through POST.\n    --host=HOST         HTTP Host header.\n    --referer=REFERER   HTTP Referer header.\n    --user-agent=AGENT  HTTP User-Agent header.\n    --random-agent      Use a randomly selected HTTP User-Agent header.\n    --param-del=PDEL    Set character for splitting parameter values.\n    --cookie=COOKIE     HTTP Cookie header.\n    --cookie-del=CDEL   Set character for splitting cookie values.\n    --http1.0           Force requests to use the HTTP/1.0 protocol.\n    -H HEADER, --hea..  Extra header (e.g. 'X-Forwarded-For: 127.0.0.1').\n    --headers=HEADERS   Extra headers (e.g. 'Accept-Language: fr\\nETag: 123').\n    --proxy=PROXY       Use a proxy to connect to the target URL.\n    --tor               Use the Tor network.\n    --tor-port=TOR_P..  Set Tor proxy port (Default: 8118).\n    --auth-url=AUTH_..  Login panel URL.\n    --auth-data=AUTH..  Login parameters and data.\n    --auth-type=AUTH..  HTTP authentication type (Basic, Digest, Bearer).\n    --auth-cred=AUTH..  HTTP authentication credentials (e.g. 'admin:admin').\n    --abort-code=ABO..  Abort on (problematic) HTTP error code(s) (e.g. 401).\n    --ignore-code=IG..  Ignore (problematic) HTTP error code(s) (e.g. 401).\n    --force-ssl         Force usage of SSL/HTTPS.\n    --ignore-proxy      Ignore system default proxy settings.\n    --ignore-redirects  Ignore redirection attempts.\n    --timeout=TIMEOUT   Seconds to wait before timeout connection (Default:\n                        30).\n    --retries=RETRIES   Retries when the connection timeouts (Default: 3).\n    --drop-set-cookie   Ignore Set-Cookie header from response.\n\n  \u001b[1m\u001b[4mEnumeration\u001b[0m:\n    These options can be used to enumerate the target host.\n\n    --all               Retrieve everything.\n    --current-user      Retrieve current user name.\n    --hostname          Retrieve current hostname.\n    --is-root           Check if the current user have root privileges.\n    --is-admin          Check if the current user have admin privileges.\n    --sys-info          Retrieve system information.\n    --users             Retrieve system users.\n    --passwords         Retrieve system users password hashes.\n    --privileges        Retrieve system users privileges.\n    --ps-version        Retrieve PowerShell's version number.\n\n  \u001b[1m\u001b[4mFile access\u001b[0m:\n    These options can be used to access files on the target host.\n\n    --file-read=FILE..  Read a file from the target host.\n    --file-write=FIL..  Write to a file on the target host.\n    --file-dest=FILE..  Host's absolute filepath to write to.\n\n  \u001b[1m\u001b[4mModules\u001b[0m:\n    These options can be used increase the detection and/or injection\n    capabilities.\n\n    --shellshock        The 'shellshock' injection module.\n\n  \u001b[1m\u001b[4mInjection\u001b[0m:\n    These options can be used to specify which parameters to inject and to\n    provide custom injection payloads.\n\n    -p TEST_PARAMETER   Testable parameter(s).\n    --skip=SKIP_PARA..  Skip testing for given parameter(s).\n    --suffix=SUFFIX     Injection payload suffix string.\n    --prefix=PREFIX     Injection payload prefix string.\n    --technique=TECH    Specify injection technique(s) to use.\n    --skip-technique..  Specify injection technique(s) to skip.\n    --maxlen=MAXLEN     Set the max length of output for time-related\n                        injection techniques (Default: 10000 chars).\n    --delay=DELAY       Seconds to delay between each HTTP request.\n    --time-sec=TIMESEC  Seconds to delay the OS response.\n    --tmp-path=TMP_P..  Set the absolute path of web server's temp directory.\n    --web-root=WEB_R..  Set the web server document root directory (e.g.\n                        '/var/www').\n    --alter-shell=AL..  Use an alternative os-shell (e.g. 'Python').\n    --os-cmd=OS_CMD     Execute a single operating system command.\n    --os=OS             Force back-end operating system (e.g. 'Windows' or\n                        'Unix').\n    --tamper=TAMPER     Use given script(s) for tampering injection data.\n    --msf-path=MSF_P..  Set a local path where metasploit is installed.\n\n  \u001b[1m\u001b[4mDetection\u001b[0m:\n    These options can be used to customize the detection phase.\n\n    --level=LEVEL       Level of tests to perform (1-3, Default: 1).\n    --skip-calc         Skip the mathematic calculation during the detection\n                        phase.\n    --skip-empty        Skip testing the parameter(s) with empty value(s).\n    --failed-tries=F..  Set a number of failed injection tries, in file-based\n                        technique.\n    --smart             Perform thorough tests only if positive heuristic(s).\n\n  \u001b[1m\u001b[4mMiscellaneous\u001b[0m:\n    --ignore-depende..  Ignore all required third-party library dependencies.\n    --list-tampers      Display list of available tamper scripts.\n    --alert=ALERT       Run host OS command(s) when injection point is found.\n    --no-logging        Disable logging to a file.\n    --purge             Safely remove all content from commix data directory.\n    --skip-waf          Skip heuristic detection of WAF/IPS protection.\n    --mobile            Imitate smartphone through HTTP User-Agent header.\n    --offline           Work in offline mode.\n    --wizard            Simple wizard interface for beginner users.\n    --disable-coloring  Disable console output coloring.\n",
+   "stderr": "",
+   "duration_ms": 117,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "commix"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for commix\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "commix"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'commix' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "commix",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Show help and exit.",
+   "-h": "Show help and exit.",
+   "-v": "Verbosity level (0-4, Default: 0).",
+   "--install": "Install commix to your system.",
+   "--version": "Show version number and exit.",
+   "--update": "Check for updates (apply if any) and exit.",
+   "--output-dir": "Set custom output directory path.",
+   "-s": "Load session from a stored (.sqlite) file.",
+   "--flush-session": "Flush session files for current target.",
+   "--ignore-session": "Ignore results stored in session file.",
+   "-t": "Log all HTTP traffic into a textual file.",
+   "--time-limit": "Run with a time limit in seconds (e.g. 3600).",
+   "--batch": "Never ask for user input, use the default behaviour.",
+   "--skip-heuristics": "Skip heuristic detection for code injection.",
+   "--codec": "Force codec for character encoding (e.g. 'ascii').",
+   "--charset": "Time-related injection charset (e.g. '0123456789abcdef').",
+   "--check-internet": "Check internet connection before assessing the target.",
+   "--answers": "Set predefined answers (e.g. 'quit=N,follow=N').",
+   "--url": "Target URL.",
+   "-u": "Target URL.",
+   "--url-reload": "Reload target URL after command execution.",
+   "-l": "Parse target from HTTP proxy log file.",
+   "-m": "Scan multiple targets given in a textual file.",
+   "-r": "Load HTTP request from a file.",
+   "--crawl": "Crawl the website starting from the target URL (Default: 1).",
+   "--crawl-exclude": "Regexp to exclude pages from crawling (e.g. 'logout').",
+   "-x": "Parse target(s) from remote sitemap(.xml) file.",
+   "--method": "Force usage of given HTTP method (e.g. 'PUT').",
+   "--data": "Data string to be sent through POST.",
+   "-d": "Data string to be sent through POST.",
+   "--host": "HTTP Host header.",
+   "--referer": "HTTP Referer header.",
+   "--user-agent": "HTTP User-Agent header.",
+   "--random-agent": "Use a randomly selected HTTP User-Agent header.",
+   "--param-del": "Set character for splitting parameter values.",
+   "--cookie": "HTTP Cookie header.",
+   "--cookie-del": "Set character for splitting cookie values.",
+   "--http1": "Force requests to use the HTTP/1.0 protocol.",
+   "--hea": "Extra header (e.g. 'X-Forwarded-For: 127.0.0.1').",
+   "-H": "Extra header (e.g. 'X-Forwarded-For: 127.0.0.1').",
+   "--headers": "Extra headers (e.g. 'Accept-Language: fr\\nETag: 123').",
+   "--proxy": "Use a proxy to connect to the target URL.",
+   "--tor": "Use the Tor network.",
+   "--tor-port": "Set Tor proxy port (Default: 8118).",
+   "--auth-url": "Login panel URL.",
+   "--auth-data": "Login parameters and data.",
+   "--auth-type": "HTTP authentication type (Basic, Digest, Bearer).",
+   "--auth-cred": "HTTP authentication credentials (e.g. 'admin:admin').",
+   "--abort-code": "Abort on (problematic) HTTP error code(s) (e.g. 401).",
+   "--ignore-code": "Ignore (problematic) HTTP error code(s) (e.g. 401).",
+   "--force-ssl": "Force usage of SSL/HTTPS.",
+   "--ignore-proxy": "Ignore system default proxy settings.",
+   "--ignore-redirects": "Ignore redirection attempts.",
+   "--timeout": "Seconds to wait before timeout connection (Default: 30).",
+   "--retries": "Retries when the connection timeouts (Default: 3).",
+   "--drop-set-cookie": "Ignore Set-Cookie header from response.",
+   "--all": "Retrieve everything.",
+   "--current-user": "Retrieve current user name.",
+   "--hostname": "Retrieve current hostname.",
+   "--is-root": "Check if the current user have root privileges.",
+   "--is-admin": "Check if the current user have admin privileges.",
+   "--sys-info": "Retrieve system information.",
+   "--users": "Retrieve system users.",
+   "--passwords": "Retrieve system users password hashes.",
+   "--privileges": "Retrieve system users privileges.",
+   "--ps-version": "Retrieve PowerShell's version number.",
+   "--file-read": "Read a file from the target host.",
+   "--file-write": "Write to a file on the target host.",
+   "--file-dest": "Host's absolute filepath to write to.",
+   "--shellshock": "The 'shellshock' injection module.",
+   "-p": "Testable parameter(s).",
+   "--skip": "Skip testing for given parameter(s).",
+   "--suffix": "Injection payload suffix string.",
+   "--prefix": "Injection payload prefix string.",
+   "--technique": "Specify injection technique(s) to use.",
+   "--skip-technique": "Specify injection technique(s) to skip.",
+   "--maxlen": "Set the max length of output for time-related injection techniques (Default: 10000 chars).",
+   "--delay": "Seconds to delay between each HTTP request.",
+   "--time-sec": "Seconds to delay the OS response.",
+   "--tmp-path": "Set the absolute path of web server's temp directory.",
+   "--web-root": "Set the web server document root directory (e.g. '/var/www').",
+   "--alter-shell": "Use an alternative os-shell (e.g. 'Python').",
+   "--os-cmd": "Execute a single operating system command.",
+   "--os": "Force back-end operating system (e.g. 'Windows' or 'Unix').",
+   "--tamper": "Use given script(s) for tampering injection data.",
+   "--msf-path": "Set a local path where metasploit is installed.",
+   "--level": "Level of tests to perform (1-3, Default: 1).",
+   "--skip-calc": "Skip the mathematic calculation during the detection phase.",
+   "--skip-empty": "Skip testing the parameter(s) with empty value(s).",
+   "--failed-tries": "Set a number of failed injection tries, in file-based technique.",
+   "--smart": "Perform thorough tests only if positive heuristic(s).",
+   "--ignore-depende": "Ignore all required third-party library dependencies.",
+   "--list-tampers": "Display list of available tamper scripts.",
+   "--alert": "Run host OS command(s) when injection point is found.",
+   "--no-logging": "Disable logging to a file.",
+   "--purge": "Safely remove all content from commix data directory.",
+   "--skip-waf": "Skip heuristic detection of WAF/IPS protection.",
+   "--mobile": "Imitate smartphone through HTTP User-Agent header.",
+   "--offline": "Work in offline mode.",
+   "--wizard": "Simple wizard interface for beginner users.",
+   "--disable-coloring": "Disable console output coloring."
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--url": [
+    "-u"
+   ],
+   "--data": [
+    "-d"
+   ],
+   "--hea": [
+    "-H"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "ae462cefb1e5e100b40ed0bf4b2b20ea3bbd1996da6bb1b25b09caa0f50c156e",
+  "text": "Usage: python commix [option(s)]\n\nOptions:\n  -h, --help            Show help and exit.\n\n  \u001b[1m\u001b[4mGeneral\u001b[0m:\n    These options relate to general matters.\n\n    -v VERBOSE          Verbosity level (0-4, Default: 0).\n    --install           Install commix to your system.\n    --version           Show version number and exit.\n    --update            Check for updates (apply if any) and exit.\n    --output-dir=OUT..  Set custom output directory path.\n    -s SESSION_FILE     Load session from a stored (.sqlite) file.\n    --flush-session     Flush session files for current target.\n    --ignore-session    Ignore results stored in session file.\n    -t TRAFFIC_FILE     Log all HTTP traffic into a textual file.\n    --time-limit=TIM..  Run with a time limit in seconds (e.g. 3600).\n    --batch             Never ask for user input, use the default behaviour.\n    --skip-heuristics   Skip heuristic detection for code injection.\n    --codec=CODEC       Force codec for character encoding (e.g. 'ascii').\n    --charset=CHARSET   Time-related injection charset (e.g.\n                        '0123456789abcdef').\n    --check-internet    Check internet connection before assessing the target.\n    --answers=ANSWERS   Set predefined answers (e.g. 'quit=N,follow=N').\n\n  \u001b[1m\u001b[4mTarget\u001b[0m:\n    This options has to be provided, to define the target URL.\n\n    -u URL, --url=URL   Target URL.\n    --url-reload        Reload target URL after command execution.\n    -l LOGFILE          Parse target from HTTP proxy log file.\n    -m BULKFILE         Scan multiple targets given in a textual file.\n    -r REQUESTFILE      Load HTTP request from a file.\n    --crawl=CRAWLDEPTH  Crawl the website starting from the target URL\n                        (Default: 1).\n    --crawl-exclude=..  Regexp to exclude pages from crawling (e.g. 'logout').\n    -x SITEMAP_URL      Parse target(s) from remote sitemap(.xml) file.\n    --method=METHOD     Force usage of given HTTP method (e.g. 'PUT').\n\n  \u001b[1m\u001b[4mRequest\u001b[0m:\n    These options can be used to specify how to connect to the target URL.\n\n    -d DATA, --data=..  Data string to be sent through POST.\n    --host=HOST         HTTP Host header.\n    --referer=REFERER   HTTP Referer header.\n    --user-agent=AGENT  HTTP User-Agent header.\n    --random-agent      Use a randomly selected HTTP User-Agent header.\n    --param-del=PDEL    Set character for splitting parameter values.\n    --cookie=COOKIE     HTTP Cookie header.\n    --cookie-del=CDEL   Set character for splitting cookie values.\n    --http1.0           Force requests to use the HTTP/1.0 protocol.\n    -H HEADER, --hea..  Extra header (e.g. 'X-Forwarded-For: 127.0.0.1').\n    --headers=HEADERS   Extra headers (e.g. 'Accept-Language: fr\\nETag: 123').\n    --proxy=PROXY       Use a proxy to connect to the target URL.\n    --tor               Use the Tor network.\n    --tor-port=TOR_P..  Set Tor proxy port (Default: 8118).\n    --auth-url=AUTH_..  Login panel URL.\n    --auth-data=AUTH..  Login parameters and data.\n    --auth-type=AUTH..  HTTP authentication type (Basic, Digest, Bearer).\n    --auth-cred=AUTH..  HTTP authentication credentials (e.g. 'admin:admin').\n    --abort-code=ABO..  Abort on (problematic) HTTP error code(s) (e.g. 401).\n    --ignore-code=IG..  Ignore (problematic) HTTP error code(s) (e.g. 401).\n    --force-ssl         Force usage of SSL/HTTPS.\n    --ignore-proxy      Ignore system default proxy settings.\n    --ignore-redirects  Ignore redirection attempts.\n    --timeout=TIMEOUT   Seconds to wait before timeout connection (Default:\n                        30).\n    --retries=RETRIES   Retries when the connection timeouts (Default: 3).\n    --drop-set-cookie   Ignore Set-Cookie header from response.\n\n  \u001b[1m\u001b[4mEnumeration\u001b[0m:\n    These options can be used to enumerate the target host.\n\n    --all               Retrieve everything.\n    --current-user      Retrieve current user name.\n    --hostname          Retrieve current hostname.\n    --is-root           Check if the current user have root privileges.\n    --is-admin          Check if the current user have admin privileges.\n    --sys-info          Retrieve system information.\n    --users             Retrieve system users.\n    --passwords         Retrieve system users password hashes.\n    --privileges        Retrieve system users privileges.\n    --ps-version        Retrieve PowerShell's version number.\n\n  \u001b[1m\u001b[4mFile access\u001b[0m:\n    These options can be used to access files on the target host.\n\n    --file-read=FILE..  Read a file from the target host.\n    --file-write=FIL..  Write to a file on the target host.\n    --file-dest=FILE..  Host's absolute filepath to write to.\n\n  \u001b[1m\u001b[4mModules\u001b[0m:\n    These options can be used increase the detection and/or injection\n    capabilities.\n\n    --shellshock        The 'shellshock' injection module.\n\n  \u001b[1m\u001b[4mInjection\u001b[0m:\n    These options can be used to specify which parameters to inject and to\n    provide custom injection payloads.\n\n    -p TEST_PARAMETER   Testable parameter(s).\n    --skip=SKIP_PARA..  Skip testing for given parameter(s).\n    --suffix=SUFFIX     Injection payload suffix string.\n    --prefix=PREFIX     Injection payload prefix string.\n    --technique=TECH    Specify injection technique(s) to use.\n    --skip-technique..  Specify injection technique(s) to skip.\n    --maxlen=MAXLEN     Set the max length of output for time-related\n                        injection techniques (Default: 10000 chars).\n    --delay=DELAY       Seconds to delay between each HTTP request.\n    --time-sec=TIMESEC  Seconds to delay the OS response.\n    --tmp-path=TMP_P..  Set the absolute path of web server's temp directory.\n    --web-root=WEB_R..  Set the web server document root directory (e.g.\n                        '/var/www').\n    --alter-shell=AL..  Use an alternative os-shell (e.g. 'Python').\n    --os-cmd=OS_CMD     Execute a single operating system command.\n    --os=OS             Force back-end operating system (e.g. 'Windows' or\n                        'Unix').\n    --tamper=TAMPER     Use given script(s) for tampering injection data.\n    --msf-path=MSF_P..  Set a local path where metasploit is installed.\n\n  \u001b[1m\u001b[4mDetection\u001b[0m:\n    These options can be used to customize the detection phase.\n\n    --level=LEVEL       Level of tests to perform (1-3, Default: 1).\n    --skip-calc         Skip the mathematic calculation during the detection\n                        phase.\n    --skip-empty        Skip testing the parameter(s) with empty value(s).\n    --failed-tries=F..  Set a number of failed injection tries, in file-based\n                        technique.\n    --smart             Perform thorough tests only if positive heuristic(s).\n\n  \u001b[1m\u001b[4mMiscellaneous\u001b[0m:\n    --ignore-depende..  Ignore all required third-party library dependencies.\n    --list-tampers      Display list of available tamper scripts.\n    --alert=ALERT       Run host OS command(s) when injection point is found.\n    --no-logging        Disable logging to a file.\n    --purge             Safely remove all content from commix data directory.\n    --skip-waf          Skip heuristic detection of WAF/IPS protection.\n    --mobile            Imitate smartphone through HTTP User-Agent header.\n    --offline           Work in offline mode.\n    --wizard            Simple wizard interface for beginner users.\n    --disable-coloring  Disable console output coloring.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--abort-code",
+   "--alert",
+   "--all",
+   "--alter-shell",
+   "--answers",
+   "--auth-cred",
+   "--auth-data",
+   "--auth-type",
+   "--auth-url",
+   "--batch",
+   "--charset",
+   "--check-internet",
+   "--codec",
+   "--cookie",
+   "--cookie-del",
+   "--crawl",
+   "--crawl-exclude",
+   "--current-user",
+   "--data",
+   "--delay",
+   "--disable-coloring",
+   "--drop-set-cookie",
+   "--failed-tries",
+   "--file-dest",
+   "--file-read",
+   "--file-write",
+   "--flush-session",
+   "--force-ssl",
+   "--hea",
+   "--headers",
+   "--help",
+   "--host",
+   "--hostname",
+   "--http1",
+   "--ignore-code",
+   "--ignore-depende",
+   "--ignore-proxy",
+   "--ignore-redirects",
+   "--ignore-session",
+   "--install",
+   "--is-admin",
+   "--is-root",
+   "--level",
+   "--list-tampers",
+   "--maxlen",
+   "--method",
+   "--mobile",
+   "--msf-path",
+   "--no-logging",
+   "--offline",
+   "--os",
+   "--os-cmd",
+   "--output-dir",
+   "--param-del",
+   "--passwords",
+   "--prefix",
+   "--privileges",
+   "--proxy",
+   "--ps-version",
+   "--purge",
+   "--random-agent",
+   "--referer",
+   "--retries",
+   "--shellshock",
+   "--skip",
+   "--skip-calc",
+   "--skip-empty",
+   "--skip-heuristics",
+   "--skip-technique",
+   "--skip-waf",
+   "--smart",
+   "--suffix",
+   "--sys-info",
+   "--tamper",
+   "--technique",
+   "--time-limit",
+   "--time-sec",
+   "--timeout",
+   "--tmp-path",
+   "--tor",
+   "--tor-port",
+   "--update",
+   "--url",
+   "--url-reload",
+   "--user-agent",
+   "--users",
+   "--version",
+   "--web-root",
+   "--wizard",
+   "-H",
+   "-d",
+   "-h",
+   "-l",
+   "-m",
+   "-p",
+   "-r",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-x"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--abort-code": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Abort on (problematic) HTTP error code(s) (e.g. 401)."
+   },
+   "--alert": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Run host OS command(s) when injection point is found."
+   },
+   "--all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve everything."
+   },
+   "--alter-shell": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an alternative os-shell (e.g. 'Python')."
+   },
+   "--answers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set predefined answers (e.g. 'quit=N,follow=N')."
+   },
+   "--auth-cred": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP authentication credentials (e.g. 'admin:admin')."
+   },
+   "--auth-data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Login parameters and data."
+   },
+   "--auth-type": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP authentication type (Basic, Digest, Bearer)."
+   },
+   "--auth-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Login panel URL."
+   },
+   "--batch": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Never ask for user input, use the default behaviour."
+   },
+   "--charset": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Time-related injection charset (e.g. '0123456789abcdef')."
+   },
+   "--check-internet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check internet connection before assessing the target."
+   },
+   "--codec": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force codec for character encoding (e.g. 'ascii')."
+   },
+   "--cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP Cookie header."
+   },
+   "--cookie-del": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set character for splitting cookie values."
+   },
+   "--crawl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Crawl the website starting from the target URL (Default: 1)."
+   },
+   "--crawl-exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Regexp to exclude pages from crawling (e.g. 'logout')."
+   },
+   "--current-user": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve current user name."
+   },
+   "--data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Data string to be sent through POST.",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--delay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Seconds to delay between each HTTP request."
+   },
+   "--disable-coloring": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable console output coloring."
+   },
+   "--drop-set-cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore Set-Cookie header from response."
+   },
+   "--failed-tries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a number of failed injection tries, in file-based technique."
+   },
+   "--file-dest": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Host's absolute filepath to write to."
+   },
+   "--file-read": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read a file from the target host."
+   },
+   "--file-write": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write to a file on the target host."
+   },
+   "--flush-session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Flush session files for current target."
+   },
+   "--force-ssl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force usage of SSL/HTTPS."
+   },
+   "--hea": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extra header (e.g. 'X-Forwarded-For: 127.0.0.1').",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extra headers (e.g. 'Accept-Language: fr\\nETag: 123')."
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show help and exit.",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP Host header."
+   },
+   "--hostname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve current hostname."
+   },
+   "--http1": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force requests to use the HTTP/1.0 protocol."
+   },
+   "--ignore-code": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore (problematic) HTTP error code(s) (e.g. 401)."
+   },
+   "--ignore-depende": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore all required third-party library dependencies."
+   },
+   "--ignore-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore system default proxy settings."
+   },
+   "--ignore-redirects": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore redirection attempts."
+   },
+   "--ignore-session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore results stored in session file."
+   },
+   "--install": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Install commix to your system."
+   },
+   "--is-admin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check if the current user have admin privileges."
+   },
+   "--is-root": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check if the current user have root privileges."
+   },
+   "--level": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Level of tests to perform (1-3, Default: 1)."
+   },
+   "--list-tampers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display list of available tamper scripts."
+   },
+   "--maxlen": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the max length of output for time-related injection techniques (Default: 10000 chars)."
+   },
+   "--method": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force usage of given HTTP method (e.g. 'PUT')."
+   },
+   "--mobile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Imitate smartphone through HTTP User-Agent header."
+   },
+   "--msf-path": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a local path where metasploit is installed."
+   },
+   "--no-logging": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable logging to a file."
+   },
+   "--offline": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Work in offline mode."
+   },
+   "--os": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force back-end operating system (e.g. 'Windows' or 'Unix')."
+   },
+   "--os-cmd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Execute a single operating system command."
+   },
+   "--output-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set custom output directory path."
+   },
+   "--param-del": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set character for splitting parameter values."
+   },
+   "--passwords": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve system users password hashes."
+   },
+   "--prefix": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Injection payload prefix string."
+   },
+   "--privileges": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve system users privileges."
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a proxy to connect to the target URL."
+   },
+   "--ps-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve PowerShell's version number."
+   },
+   "--purge": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Safely remove all content from commix data directory."
+   },
+   "--random-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a randomly selected HTTP User-Agent header."
+   },
+   "--referer": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP Referer header."
+   },
+   "--retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retries when the connection timeouts (Default: 3)."
+   },
+   "--shellshock": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The 'shellshock' injection module."
+   },
+   "--skip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip testing for given parameter(s)."
+   },
+   "--skip-calc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip the mathematic calculation during the detection phase."
+   },
+   "--skip-empty": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip testing the parameter(s) with empty value(s)."
+   },
+   "--skip-heuristics": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip heuristic detection for code injection."
+   },
+   "--skip-technique": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify injection technique(s) to skip."
+   },
+   "--skip-waf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip heuristic detection of WAF/IPS protection."
+   },
+   "--smart": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Perform thorough tests only if positive heuristic(s)."
+   },
+   "--suffix": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Injection payload suffix string."
+   },
+   "--sys-info": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve system information."
+   },
+   "--tamper": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use given script(s) for tampering injection data."
+   },
+   "--technique": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify injection technique(s) to use."
+   },
+   "--time-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Run with a time limit in seconds (e.g. 3600)."
+   },
+   "--time-sec": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Seconds to delay the OS response."
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Seconds to wait before timeout connection (Default: 30)."
+   },
+   "--tmp-path": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the absolute path of web server's temp directory."
+   },
+   "--tor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the Tor network."
+   },
+   "--tor-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set Tor proxy port (Default: 8118)."
+   },
+   "--update": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check for updates (apply if any) and exit."
+   },
+   "--url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target URL.",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--url-reload": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Reload target URL after command execution."
+   },
+   "--user-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP User-Agent header."
+   },
+   "--users": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve system users."
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show version number and exit."
+   },
+   "--web-root": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the web server document root directory (e.g. '/var/www')."
+   },
+   "--wizard": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Simple wizard interface for beginner users."
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Parse target from HTTP proxy log file."
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan multiple targets given in a textual file."
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Testable parameter(s)."
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load HTTP request from a file."
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load session from a stored (.sqlite) file."
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Log all HTTP traffic into a textual file."
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Verbosity level (0-4, Default: 0)."
+   },
+   "-x": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Parse target(s) from remote sitemap(.xml) file."
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "Commix",
+ "repo": "commixproject/commix",
+ "head_sha": "8e1522b0694b31c5dc89a9223506ab95c8446a3b",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T02:04:12.145096+00:00"
+}

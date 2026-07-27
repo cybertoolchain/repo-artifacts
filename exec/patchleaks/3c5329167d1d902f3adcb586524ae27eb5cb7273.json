@@ -1,0 +1,145 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:d31eaa3ddc592f39d85b5014dbbefe05f0ab886ce72108631b5246bca1d9045e",
+  "duration_s": 10.53,
+  "log_tail": "\n#7 [build 2/4] WORKDIR /src\n#7 DONE 0.2s\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 2.47MB 0.0s done\n#9 DONE 0.0s\n\n#10 [build 3/4] COPY . .\n#10 DONE 0.1s\n\n#11 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.100 go: downloading github.com/smacker/go-tree-sitter v0.0.0-20240827094217-dd81d9e9be82\n#11 0.100 go: downloading github.com/gorilla/sessions v1.4.0\n#11 0.100 go: downloading github.com/google/uuid v1.6.0\n#11 0.100 go: downloading github.com/gorilla/mux v1.8.1\n#11 0.340 go: downloading github.com/gorilla/securecookie v1.1.2\n#11 DONE 8.2s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.101 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.5s done\n#17 exporting manifest sha256:8d376cf7d4dc8eb9ca45341c3e526bdbde4fe65995576f1ffceb185b932b580d done\n#17 exporting config sha256:cf09caa0e3d042b45666a072e9626a0f414507f4985047f441f29fad01077d96 done\n#17 exporting attestation manifest sha256:2bf26b28d9df5335bcc6fedf5395429c90dfbdc9d49f3a8e0d07a4cbb8e68520 done\n#17 exporting manifest list sha256:d31eaa3ddc592f39d85b5014dbbefe05f0ab886ce72108631b5246bca1d9045e done\n#17 naming to docker.io/ctk-exec/patchleaks:3c5329167d1d done\n#17 unpacking to docker.io/ctk-exec/patchleaks:3c5329167d1d\n#17 unpacking to docker.io/ctk-exec/patchleaks:3c5329167d1d 0.8s done\n#17 DONE 1.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "PatchLeaks",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of PatchLeaks:\n  -host string\n    \tHost address to bind to (default \"127.0.0.1\")\n  -language string\n    \tComma-separated list of languages to test (php,javascript,python)\n  -p int\n    \tPort to run the server on (default: random free port)\n  -t int\n    \tNumber of threads for AI analysis (default: 1) (default 1)\n  -test-real-world\n    \tRun real-world tests instead of starting server\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "PatchLeaks"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for PatchLeaks\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "PatchLeaks"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'PatchLeaks' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "PatchLeaks",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-host": "Host address to bind to (default \"127.0.0.1\")",
+   "-language": "Comma-separated list of languages to test (php,javascript,python)",
+   "-p": "Port to run the server on (default: random free port)",
+   "-t": "Number of threads for AI analysis (default: 1) (default 1)",
+   "-test-real-world": "Run real-world tests instead of starting server"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "eea94c95c1cbe3a2c0adeea5294569e742d380c4b852959df09faf660526e323",
+  "text": "Usage of PatchLeaks:\n  -host string\n    \tHost address to bind to (default \"127.0.0.1\")\n  -language string\n    \tComma-separated list of languages to test (php,javascript,python)\n  -p int\n    \tPort to run the server on (default: random free port)\n  -t int\n    \tNumber of threads for AI analysis (default: 1) (default 1)\n  -test-real-world\n    \tRun real-world tests instead of starting server\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "-host",
+   "-language",
+   "-p",
+   "-t",
+   "-test-real-world"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Host address to bind to (default \"127.0.0.1\")"
+   },
+   "-language": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma-separated list of languages to test (php,javascript,python)"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Port to run the server on (default: random free port)"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads for AI analysis (default: 1) (default 1)"
+   },
+   "-test-real-world": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Run real-world tests instead of starting server"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "patchleaks",
+ "repo": "hatlesswizard/PatchLeaks",
+ "head_sha": "3c5329167d1d902f3adcb586524ae27eb5cb7273",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:32:47.704019+00:00"
+}

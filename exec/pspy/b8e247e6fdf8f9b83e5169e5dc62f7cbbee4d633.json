@@ -1,0 +1,260 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:72eb90fb0cc8817bb7994a157d09ece12a630bc022a111efce909907c3b84186",
+  "duration_s": 4.33,
+  "log_tail": "\n#6 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 resolve docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651 done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 149.81kB done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.088 go: downloading golang.org/x/sys v0.0.0-20220520151302-bc2c85ada10a\n#10 0.089 go: downloading github.com/spf13/cobra v1.4.0\n#10 0.408 go: downloading github.com/spf13/pflag v1.0.5\n#10 DONE 2.7s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.090 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers 0.1s done\n#17 exporting manifest sha256:9b2c6cbc2ae79a602799cb23e99eccaa6d442e3f9dd585137b4de3b0c78e911a done\n#17 exporting config sha256:04dcdb0ee175747b196de9fe6553e2e7ef3e56627b4f456465e0542b2dde0c80 done\n#17 exporting attestation manifest sha256:a934fd95693ced80d61c42137b8e9d4494057950539aeaeeeb691c1f6dfed5e1 done\n#17 exporting manifest list sha256:72eb90fb0cc8817bb7994a157d09ece12a630bc022a111efce909907c3b84186 done\n#17 naming to docker.io/ctk-exec/pspy:b8e247e6fdf8 done\n#17 unpacking to docker.io/ctk-exec/pspy:b8e247e6fdf8\n#17 unpacking to docker.io/ctk-exec/pspy:b8e247e6fdf8 0.5s done\n#17 DONE 0.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "pspy",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "pspy - version:  - Commit SHA: \n\n\n     \u2588\u2588\u2593\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2593\u2588\u2588\u2588 \u2593\u2588\u2588   \u2588\u2588\u2593\n    \u2593\u2588\u2588\u2591  \u2588\u2588\u2592\u2592\u2588\u2588    \u2592 \u2593\u2588\u2588\u2591  \u2588\u2588\u2592\u2592\u2588\u2588  \u2588\u2588\u2592\n    \u2593\u2588\u2588\u2591 \u2588\u2588\u2593\u2592\u2591 \u2593\u2588\u2588\u2584   \u2593\u2588\u2588\u2591 \u2588\u2588\u2593\u2592 \u2592\u2588\u2588 \u2588\u2588\u2591\n    \u2592\u2588\u2588\u2584\u2588\u2593\u2592 \u2592  \u2592   \u2588\u2588\u2592\u2592\u2588\u2588\u2584\u2588\u2593\u2592 \u2592 \u2591 \u2590\u2588\u2588\u2593\u2591\n    \u2592\u2588\u2588\u2592 \u2591  \u2591\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2592\u2592\u2588\u2588\u2592 \u2591  \u2591 \u2591 \u2588\u2588\u2592\u2593\u2591\n    \u2592\u2593\u2592\u2591 \u2591  \u2591\u2592 \u2592\u2593\u2592 \u2592 \u2591\u2592\u2593\u2592\u2591 \u2591  \u2591  \u2588\u2588\u2592\u2592\u2592 \n    \u2591\u2592 \u2591     \u2591 \u2591\u2592  \u2591 \u2591\u2591\u2592 \u2591     \u2593\u2588\u2588 \u2591\u2592\u2591 \n    \u2591\u2591       \u2591  \u2591  \u2591  \u2591\u2591       \u2592 \u2592 \u2591\u2591  \n                   \u2591           \u2591 \u2591     \n                               \u2591 \u2591\n\nUsage:\n  pspy [flags]\n\nFlags:\n  -c, --color                        color the printed events (default true)\n      --debug                        print detailed error messages\n  -d, --dirs stringArray             watch these dirs\n  -f, --fsevents                     print file system events to stdout\n  -h, --help                         help for pspy\n  -i, --interval int                 scan every 'interval' milliseconds for new processes (default 100)\n      --ppid                         record process ppids\n  -p, --procevents                   print new processes to stdout (default true)\n  -r, --recursive_dirs stringArray   watch these dirs recursively (default [/usr,/tmp,/etc,/home,/var,/opt])\n  -t, --truncate int                 truncate process cmds longer than this (default 2048)\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "pspy"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for pspy\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "pspy"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'pspy' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "pspy",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--color": "color the printed events (default true)",
+   "-c": "color the printed events (default true)",
+   "--debug": "print detailed error messages",
+   "--dirs": "watch these dirs",
+   "-d": "watch these dirs",
+   "--fsevents": "print file system events to stdout",
+   "-f": "print file system events to stdout",
+   "--help": "help for pspy",
+   "-h": "help for pspy",
+   "--interval": "scan every 'interval' milliseconds for new processes (default 100)",
+   "-i": "scan every 'interval' milliseconds for new processes (default 100)",
+   "--ppid": "record process ppids",
+   "--procevents": "print new processes to stdout (default true)",
+   "-p": "print new processes to stdout (default true)",
+   "--recursive_dirs": "watch these dirs recursively (default [/usr,/tmp,/etc,/home,/var,/opt])",
+   "-r": "watch these dirs recursively (default [/usr,/tmp,/etc,/home,/var,/opt])",
+   "--truncate": "truncate process cmds longer than this (default 2048)",
+   "-t": "truncate process cmds longer than this (default 2048)"
+  },
+  "aliases": {
+   "--color": [
+    "-c"
+   ],
+   "--dirs": [
+    "-d"
+   ],
+   "--fsevents": [
+    "-f"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--interval": [
+    "-i"
+   ],
+   "--procevents": [
+    "-p"
+   ],
+   "--recursive_dirs": [
+    "-r"
+   ],
+   "--truncate": [
+    "-t"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "ea2db80a85e0ce1bafcfac869cc1dcb57324cc954d5d19f69e60eb92131e264b",
+  "text": "pspy - version:  - Commit SHA: \n\n\n     \u2588\u2588\u2593\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588  \u2588\u2588\u2593\u2588\u2588\u2588 \u2593\u2588\u2588   \u2588\u2588\u2593\n    \u2593\u2588\u2588\u2591  \u2588\u2588\u2592\u2592\u2588\u2588    \u2592 \u2593\u2588\u2588\u2591  \u2588\u2588\u2592\u2592\u2588\u2588  \u2588\u2588\u2592\n    \u2593\u2588\u2588\u2591 \u2588\u2588\u2593\u2592\u2591 \u2593\u2588\u2588\u2584   \u2593\u2588\u2588\u2591 \u2588\u2588\u2593\u2592 \u2592\u2588\u2588 \u2588\u2588\u2591\n    \u2592\u2588\u2588\u2584\u2588\u2593\u2592 \u2592  \u2592   \u2588\u2588\u2592\u2592\u2588\u2588\u2584\u2588\u2593\u2592 \u2592 \u2591 \u2590\u2588\u2588\u2593\u2591\n    \u2592\u2588\u2588\u2592 \u2591  \u2591\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2592\u2592\u2588\u2588\u2592 \u2591  \u2591 \u2591 \u2588\u2588\u2592\u2593\u2591\n    \u2592\u2593\u2592\u2591 \u2591  \u2591\u2592 \u2592\u2593\u2592 \u2592 \u2591\u2592\u2593\u2592\u2591 \u2591  \u2591  \u2588\u2588\u2592\u2592\u2592 \n    \u2591\u2592 \u2591     \u2591 \u2591\u2592  \u2591 \u2591\u2591\u2592 \u2591     \u2593\u2588\u2588 \u2591\u2592\u2591 \n    \u2591\u2591       \u2591  \u2591  \u2591  \u2591\u2591       \u2592 \u2592 \u2591\u2591  \n                   \u2591           \u2591 \u2591     \n                               \u2591 \u2591\n\nUsage:\n  pspy [flags]\n\nFlags:\n  -c, --color                        color the printed events (default true)\n      --debug                        print detailed error messages\n  -d, --dirs stringArray             watch these dirs\n  -f, --fsevents                     print file system events to stdout\n  -h, --help                         help for pspy\n  -i, --interval int                 scan every 'interval' milliseconds for new processes (default 100)\n      --ppid                         record process ppids\n  -p, --procevents                   print new processes to stdout (default true)\n  -r, --recursive_dirs stringArray   watch these dirs recursively (default [/usr,/tmp,/etc,/home,/var,/opt])\n  -t, --truncate int                 truncate process cmds longer than this (default 2048)\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "pspy"
+  ],
+  "help_only": [
+   "--color",
+   "--debug",
+   "--dirs",
+   "--fsevents",
+   "--help",
+   "--interval",
+   "--ppid",
+   "--procevents",
+   "--recursive_dirs",
+   "--truncate",
+   "-c",
+   "-d",
+   "-f",
+   "-h",
+   "-i",
+   "-p",
+   "-r",
+   "-t"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "color the printed events (default true)",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print detailed error messages"
+   },
+   "--dirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "watch these dirs",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--fsevents": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print file system events to stdout",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for pspy",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--interval": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "scan every 'interval' milliseconds for new processes (default 100)",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--ppid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "record process ppids"
+   },
+   "--procevents": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print new processes to stdout (default true)",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--recursive_dirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "watch these dirs recursively (default [/usr,/tmp,/etc,/home,/var,/opt])",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--truncate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "truncate process cmds longer than this (default 2048)",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "pspy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "pspy can watch your system for new processes and file system events",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2018-04-05T09:01:27+02:00",
+    "last_tag": "v1.2.1",
+    "last_date": "2023-01-17T21:48:02+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "pspy",
+ "repo": "DominicBreuker/pspy",
+ "head_sha": "b8e247e6fdf8f9b83e5169e5dc62f7cbbee4d633",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:34:01.925331+00:00"
+}

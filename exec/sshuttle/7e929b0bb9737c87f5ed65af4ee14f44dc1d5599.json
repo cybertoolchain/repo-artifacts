@@ -1,0 +1,807 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:9f11c6cb555e087d888b4a6c499c77c53ac37c6bb616092f5e140823201607a7",
+  "duration_s": 6.33,
+  "log_tail": "#11 2.194 Installing collected packages: pip\n#11 2.195   Attempting uninstall: pip\n#11 2.195     Found existing installation: pip 25.0.1\n#11 2.208     Uninstalling pip-25.0.1:\n#11 2.211       Successfully uninstalled pip-25.0.1\n#11 2.622 Successfully installed pip-26.1.2\n#11 3.205 Processing ./.\n#11 3.206   Installing build dependencies: started\n#11 4.161   Installing build dependencies: finished with status 'done'\n#11 4.161   Getting requirements to build wheel: started\n#11 4.232   Getting requirements to build wheel: finished with status 'done'\n#11 4.233   Preparing metadata (pyproject.toml): started\n#11 4.321   Preparing metadata (pyproject.toml): finished with status 'done'\n#11 4.322 Building wheels for collected packages: sshuttle\n#11 4.323   Building wheel for sshuttle (pyproject.toml): started\n#11 4.337   Building wheel for sshuttle (pyproject.toml): finished with status 'done'\n#11 4.338   Created wheel for sshuttle: filename=sshuttle-1.3.2-py3-none-any.whl size=80926 sha256=b0248d77c4913cd931c9626bc474432a235104b048f8841ea95dc1804af1a1eb\n#11 4.338   Stored in directory: /tmp/pip-ephem-wheel-cache-i4wk_277/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 4.339 Successfully built sshuttle\n#11 4.341 Installing collected packages: sshuttle\n#11 4.370 Successfully installed sshuttle-1.3.2\n#11 DONE 4.5s\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.3s done\n#17 exporting manifest sha256:8811bf1b56e5f0215406fd6c39dc61701fb2b6e74853f2157f137227e002ff5e done\n#17 exporting config sha256:71646c429e68b2dad9357d62c8355e5bbd50878e69828f96a95ac8524b820ade done\n#17 exporting attestation manifest sha256:fd99b5bab53e3b3891c05f14dc27dd9b4498d079d9001c35479cf56b36ca3cae done\n#17 exporting manifest list sha256:9f11c6cb555e087d888b4a6c499c77c53ac37c6bb616092f5e140823201607a7 done\n#17 naming to docker.io/ctk-exec/sshuttle:7e929b0bb973 done\n#17 unpacking to docker.io/ctk-exec/sshuttle:7e929b0bb973\n#17 unpacking to docker.io/ctk-exec/sshuttle:7e929b0bb973 0.6s done\n#17 DONE 0.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "sshuttle",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: sshuttle [-l [ip:]port] -r [user@]sshserver[:port] <subnets...>\n\npositional arguments:\n  IP/MASK[:PORT[-PORT]]...\n                        capture and forward traffic to these subnets\n                        (whitespace separated)\n\noptions:\n  -h, --help            show this help message and exit\n  -l [IP:]PORT, --listen [IP:]PORT\n                        transproxy to this ip address and port number\n  -H, --auto-hosts      continuously scan for remote hostnames and update\n                        local /etc/hosts as they are found\n  -N, --auto-nets       automatically determine subnets to route\n  --dns                 capture local DNS requests and forward to the remote\n                        DNS server\n  --ns-hosts IP[,IP]    capture and forward DNS requests made to the following\n                        servers (comma separated)\n  --to-ns IP[:PORT]     the DNS server to forward requests to; defaults to\n                        servers in /etc/resolv.conf on remote side if not\n                        given.\n  --method TYPE         auto, nft, nat, tproxy, pf, ipfw\n  --python PATH         path to python interpreter on the remote server\n  -r [USERNAME[:PASSWORD]@]ADDR[:PORT], --remote [USERNAME[:PASSWORD]@]ADDR[:PORT]\n                        ssh hostname (and optional username and password) of\n                        remote sshuttle server\n  -x IP/MASK[:PORT[-PORT]], --exclude IP/MASK[:PORT[-PORT]]\n                        exclude this subnet (can be used more than once)\n  -X PATH, --exclude-from PATH\n                        exclude the subnets in a file (whitespace separated)\n  -v, --verbose         increase debug message verbosity (can be used more\n                        than once)\n  -V, --version         print the sshuttle version number and exit\n  -e CMD, --ssh-cmd CMD\n                        the command to use to connect to the remote [ssh]\n  --no-cmd-delimiter    do not add a double dash before the python command\n  --remote-shell PROGRAM\n                        alternate remote shell program instead of defacto\n                        posix shell. For Windows targets it would be either\n                        `cmd` or `powershell` unless something like git-bash\n                        is in use.\n  --seed-hosts HOSTNAME[,HOSTNAME]\n                        comma-separated list of hostnames for initial scan\n                        (may be used with or without --auto-hosts)\n  --no-latency-control  sacrifice latency to improve bandwidth benchmarks\n  --latency-buffer-size SIZE\n                        size of latency control buffer\n  --wrap NUM            restart counting channel numbers after this number\n                        (for testing)\n  --disable-ipv6        disable IPv6 support\n  -D, --daemon          run in the background as a daemon\n  -s PATH, --subnets PATH\n                        file where the subnets are stored, instead of on the\n                        command line\n  --syslog              send log messages to syslog (default if you use\n                        --daemon)\n  --pidfile PATH        pidfile name (only if using --daemon) [./sshuttle.pid]\n  --user USER           apply all the rules only to this linux user\n  --group GROUP         apply all the rules only to this linux group\n  --firewall            (internal use only)\n  --hostwatch           (internal use only)\n  --sudoers-no-modify   Prints a sudo configuration to STDOUT which allows a\n                        user to run sshuttle without a password. This option\n                        is INSECURE because, with some cleverness, it also\n                        allows the user to run any command as root without a\n                        password. The output also includes a suggested method\n                        for you to install the configuration.\n  --sudoers-user SUDOERS_USER\n                        Set the user name or group with %group_name for\n                        passwordless operation. Default is the current user.\n                        Only works with the --sudoers-no-modify option.\n  --no-sudo-pythonpath  do not set PYTHONPATH when invoking sudo\n  -t [MARK], --tmark [MARK]\n                        tproxy optional traffic mark with provided MARK value\n                        in hexadecimal (default '0x01')\n  --namespace NAMESPACE\n                        Run inside of a net namespace with the given name.\n  --namespace-pid NAMESPACE_PID\n                        Run inside the net namespace used by the process with\n                        the given pid.\n",
+   "stderr": "",
+   "duration_ms": 138,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "sshuttle"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for sshuttle\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "sshuttle"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'sshuttle' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "sshuttle",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--listen": "transproxy to this ip address and port number",
+   "-l": "transproxy to this ip address and port number",
+   "--auto-hosts": "continuously scan for remote hostnames and update local /etc/hosts as they are found",
+   "-H": "continuously scan for remote hostnames and update local /etc/hosts as they are found",
+   "--auto-nets": "automatically determine subnets to route",
+   "-N": "automatically determine subnets to route",
+   "--dns": "capture local DNS requests and forward to the remote DNS server",
+   "--ns-hosts": "capture and forward DNS requests made to the following servers (comma separated)",
+   "--to-ns": "the DNS server to forward requests to; defaults to servers in /etc/resolv.conf on remote side if not given.",
+   "--method": "auto, nft, nat, tproxy, pf, ipfw",
+   "--python": "path to python interpreter on the remote server",
+   "--remote": "ssh hostname (and optional username and password) of remote sshuttle server",
+   "-r": "ssh hostname (and optional username and password) of remote sshuttle server",
+   "-x": "exclude this subnet (can be used more than once)",
+   "-PORT": "exclude this subnet (can be used more than once)",
+   "--exclude": "exclude this subnet (can be used more than once)",
+   "--exclude-from": "exclude the subnets in a file (whitespace separated)",
+   "-X": "exclude the subnets in a file (whitespace separated)",
+   "--verbose": "increase debug message verbosity (can be used more than once)",
+   "-v": "increase debug message verbosity (can be used more than once)",
+   "--version": "print the sshuttle version number and exit",
+   "-V": "print the sshuttle version number and exit",
+   "--ssh-cmd": "the command to use to connect to the remote [ssh]",
+   "-e": "the command to use to connect to the remote [ssh]",
+   "--no-cmd-delimiter": "do not add a double dash before the python command",
+   "--remote-shell": "alternate remote shell program instead of defacto posix shell. For Windows targets it would be either `cmd` or `powershell` unless something like git-bash is in use.",
+   "--seed-hosts": "comma-separated list of hostnames for initial scan (may be used with or without --auto-hosts)",
+   "--no-latency-control": "sacrifice latency to improve bandwidth benchmarks",
+   "--latency-buffer-size": "size of latency control buffer",
+   "--wrap": "restart counting channel numbers after this number (for testing)",
+   "--disable-ipv6": "disable IPv6 support",
+   "--daemon": "run in the background as a daemon",
+   "-D": "run in the background as a daemon",
+   "--subnets": "file where the subnets are stored, instead of on the command line",
+   "-s": "file where the subnets are stored, instead of on the command line",
+   "--syslog": "send log messages to syslog (default if you use",
+   "--pidfile": "pidfile name (only if using --daemon) [./sshuttle.pid]",
+   "--user": "apply all the rules only to this linux user",
+   "--group": "apply all the rules only to this linux group",
+   "--firewall": "(internal use only)",
+   "--hostwatch": "(internal use only)",
+   "--sudoers-no-modify": "Prints a sudo configuration to STDOUT which allows a user to run sshuttle without a password. This option is INSECURE because, with some cleverness, it also allows the user to run any command as root without a password. The output also includes a suggested method for you to install the configuration.",
+   "--sudoers-user": "Set the user name or group with %group_name for passwordless operation. Default is the current user. Only works with the --sudoers-no-modify option.",
+   "--no-sudo-pythonpath": "do not set PYTHONPATH when invoking sudo",
+   "--tmark": "tproxy optional traffic mark with provided MARK value in hexadecimal (default '0x01')",
+   "-t": "tproxy optional traffic mark with provided MARK value in hexadecimal (default '0x01')",
+   "--namespace": "Run inside of a net namespace with the given name.",
+   "--namespace-pid": "Run inside the net namespace used by the process with the given pid."
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--listen": [
+    "-l"
+   ],
+   "--auto-hosts": [
+    "-H"
+   ],
+   "--auto-nets": [
+    "-N"
+   ],
+   "--remote": [
+    "-r"
+   ],
+   "--exclude-from": [
+    "-X"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--version": [
+    "-V"
+   ],
+   "--ssh-cmd": [
+    "-e"
+   ],
+   "--daemon": [
+    "-D"
+   ],
+   "--subnets": [
+    "-s"
+   ],
+   "--tmark": [
+    "-t"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2a49d76b41aeb692f27512ab597b831e331c6366262e432192992c9f20f50b47",
+  "text": "usage: sshuttle [-l [ip:]port] -r [user@]sshserver[:port] <subnets...>\n\npositional arguments:\n  IP/MASK[:PORT[-PORT]]...\n                        capture and forward traffic to these subnets\n                        (whitespace separated)\n\noptions:\n  -h, --help            show this help message and exit\n  -l [IP:]PORT, --listen [IP:]PORT\n                        transproxy to this ip address and port number\n  -H, --auto-hosts      continuously scan for remote hostnames and update\n                        local /etc/hosts as they are found\n  -N, --auto-nets       automatically determine subnets to route\n  --dns                 capture local DNS requests and forward to the remote\n                        DNS server\n  --ns-hosts IP[,IP]    capture and forward DNS requests made to the following\n                        servers (comma separated)\n  --to-ns IP[:PORT]     the DNS server to forward requests to; defaults to\n                        servers in /etc/resolv.conf on remote side if not\n                        given.\n  --method TYPE         auto, nft, nat, tproxy, pf, ipfw\n  --python PATH         path to python interpreter on the remote server\n  -r [USERNAME[:PASSWORD]@]ADDR[:PORT], --remote [USERNAME[:PASSWORD]@]ADDR[:PORT]\n                        ssh hostname (and optional username and password) of\n                        remote sshuttle server\n  -x IP/MASK[:PORT[-PORT]], --exclude IP/MASK[:PORT[-PORT]]\n                        exclude this subnet (can be used more than once)\n  -X PATH, --exclude-from PATH\n                        exclude the subnets in a file (whitespace separated)\n  -v, --verbose         increase debug message verbosity (can be used more\n                        than once)\n  -V, --version         print the sshuttle version number and exit\n  -e CMD, --ssh-cmd CMD\n                        the command to use to connect to the remote [ssh]\n  --no-cmd-delimiter    do not add a double dash before the python command\n  --remote-shell PROGRAM\n                        alternate remote shell program instead of defacto\n                        posix shell. For Windows targets it would be either\n                        `cmd` or `powershell` unless something like git-bash\n                        is in use.\n  --seed-hosts HOSTNAME[,HOSTNAME]\n                        comma-separated list of hostnames for initial scan\n                        (may be used with or without --auto-hosts)\n  --no-latency-control  sacrifice latency to improve bandwidth benchmarks\n  --latency-buffer-size SIZE\n                        size of latency control buffer\n  --wrap NUM            restart counting channel numbers after this number\n                        (for testing)\n  --disable-ipv6        disable IPv6 support\n  -D, --daemon          run in the background as a daemon\n  -s PATH, --subnets PATH\n                        file where the subnets are stored, instead of on the\n                        command line\n  --syslog              send log messages to syslog (default if you use\n                        --daemon)\n  --pidfile PATH        pidfile name (only if using --daemon) [./sshuttle.pid]\n  --user USER           apply all the rules only to this linux user\n  --group GROUP         apply all the rules only to this linux group\n  --firewall            (internal use only)\n  --hostwatch           (internal use only)\n  --sudoers-no-modify   Prints a sudo configuration to STDOUT which allows a\n                        user to run sshuttle without a password. This option\n                        is INSECURE because, with some cleverness, it also\n                        allows the user to run any command as root without a\n                        password. The output also includes a suggested method\n                        for you to install the configuration.\n  --sudoers-user SUDOERS_USER\n                        Set the user name or group with %group_name for\n                        passwordless operation. Default is the current user.\n                        Only works with the --sudoers-no-modify option.\n  --no-sudo-pythonpath  do not set PYTHONPATH when invoking sudo\n  -t [MARK], --tmark [MARK]\n                        tproxy optional traffic mark with provided MARK value\n                        in hexadecimal (default '0x01')\n  --namespace NAMESPACE\n                        Run inside of a net namespace with the given name.\n  --namespace-pid NAMESPACE_PID\n                        Run inside the net namespace used by the process with\n                        the given pid.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--auto-hosts",
+   "--auto-nets",
+   "--daemon",
+   "--disable-ipv6",
+   "--dns",
+   "--exclude",
+   "--exclude-from",
+   "--firewall",
+   "--group",
+   "--hostwatch",
+   "--latency-buffer-size",
+   "--listen",
+   "--method",
+   "--namespace",
+   "--namespace-pid",
+   "--no-cmd-delimiter",
+   "--no-latency-control",
+   "--no-sudo-pythonpath",
+   "--ns-hosts",
+   "--pidfile",
+   "--python",
+   "--remote",
+   "--remote-shell",
+   "--seed-hosts",
+   "--ssh-cmd",
+   "--subnets",
+   "--sudoers-no-modify",
+   "--sudoers-user",
+   "--syslog",
+   "--tmark",
+   "--to-ns",
+   "--user",
+   "--verbose",
+   "--version",
+   "--wrap",
+   "-x"
+  ],
+  "unconfirmed": [
+   "--server",
+   "--sudoers",
+   "--sudoers-filename",
+   "subnets"
+  ],
+  "help_only": [
+   "--help",
+   "-D",
+   "-H",
+   "-N",
+   "-PORT",
+   "-V",
+   "-X",
+   "-e",
+   "-h",
+   "-l",
+   "-r",
+   "-s",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.72
+ },
+ "surface": {
+  "flags": {
+   "--auto-hosts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "continuously scan for remote hostnames and update local /etc/hosts as they are found",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--auto-nets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "automatically determine subnets to route",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-N"
+    ]
+   },
+   "--daemon": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "run in the background as a daemon",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-D"
+    ]
+   },
+   "--disable-ipv6": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable IPv6 support",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--dns": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "capture local DNS requests and forward to the remote DNS server",
+    "kind": "option",
+    "first_tag": "sshuttle-0.61",
+    "first_date": "2012-07-06T16:21:23-04:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--exclude": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "exclude this subnet (can be used more than once)",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--exclude-from": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "exclude the subnets in a file (whitespace separated)",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-X"
+    ]
+   },
+   "--firewall": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "(internal use only)",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--group": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "apply all the rules only to this linux group",
+    "kind": "option",
+    "first_tag": "v1.1.2",
+    "first_date": "2024-02-19T11:21:39+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--hostwatch": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "(internal use only)",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--latency-buffer-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "size of latency control buffer",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-05T08:13:27+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--listen": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "transproxy to this ip address and port number",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--method": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "auto, nft, nat, tproxy, pf, ipfw",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--namespace": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Run inside of a net namespace with the given name.",
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2025-02-24T07:54:01+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--namespace-pid": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Run inside the net namespace used by the process with the given pid.",
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2025-02-24T07:54:01+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--no-cmd-delimiter": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "do not add a double dash before the python command",
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-02-08T09:21:02+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--no-latency-control": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "sacrifice latency to improve bandwidth benchmarks",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--no-sudo-pythonpath": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "do not set PYTHONPATH when invoking sudo",
+    "kind": "option",
+    "first_tag": "v0.78.5",
+    "first_date": "2019-01-28T16:29:04+13:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--ns-hosts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "capture and forward DNS requests made to the following servers (comma separated)",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--pidfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "pidfile name (only if using --daemon) [./sshuttle.pid]",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--python": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "path to python interpreter on the remote server",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--remote": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ssh hostname (and optional username and password) of remote sshuttle server",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--remote-shell": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "alternate remote shell program instead of defacto posix shell. For Windows targets it would be either `cmd` or `powershell` unless something like git-bash is in use.",
+    "kind": "option",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-02-08T09:21:02+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--seed-hosts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "comma-separated list of hostnames for initial scan (may be used with or without --auto-hosts)",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--server": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "sshuttle-0.72",
+    "last_date": "2015-10-25T18:48:17+11:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "src/sshuttle.md"
+   },
+   "--ssh-cmd": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the command to use to connect to the remote [ssh]",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--subnets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "file where the subnets are stored, instead of on the command line",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--sudoers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "\n    Add sshuttle to the sudoers for this user\n    ",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-05T08:13:27+10:00",
+    "last_tag": "v1.1.0",
+    "last_date": "2022-01-28T09:29:19+11:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--sudoers-filename": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "\n    Set the file name for the sudoers.d file to be added. Default is\n    \"sshuttle_auto\". Only works with --sudoers or --sudoers-no-modify option.\n    ",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-05T08:13:27+10:00",
+    "last_tag": "v1.1.0",
+    "last_date": "2022-01-28T09:29:19+11:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--sudoers-no-modify": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Prints a sudo configuration to STDOUT which allows a user to run sshuttle without a password. This option is INSECURE because, with some cleverness, it also allows the user to run any command as root without a password. The output also includes a suggested method for you to install the configuration.",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-05T08:13:27+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--sudoers-user": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set the user name or group with %group_name for passwordless operation. Default is the current user. Only works with the --sudoers-no-modify option.",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-05T08:13:27+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--syslog": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "send log messages to syslog (default if you use",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--tmark": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "tproxy optional traffic mark with provided MARK value in hexadecimal (default '0x01')",
+    "kind": "option",
+    "first_tag": "v1.0.5",
+    "first_date": "2020-12-29T10:35:15+11:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--to-ns": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "the DNS server to forward requests to; defaults to servers in /etc/resolv.conf on remote side if not given.",
+    "kind": "option",
+    "first_tag": "v0.78.4",
+    "first_date": "2018-04-02T14:52:42+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--user": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "apply all the rules only to this linux user",
+    "kind": "option",
+    "first_tag": "v0.78.4",
+    "first_date": "2018-04-02T14:52:42+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "increase debug message verbosity (can be used more than once)",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "print the sshuttle version number and exit",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--wrap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "restart counting channel numbers after this number (for testing)",
+    "kind": "option",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   },
+   "-PORT": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude this subnet (can be used more than once)"
+   },
+   "-x": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "exclude this subnet (can be used more than once)",
+    "kind": "option",
+    "first_tag": "sshuttle-0.50a",
+    "first_date": "2011-01-26T11:53:19-08:00",
+    "last_tag": "v0.75",
+    "last_date": "2016-01-12T12:50:10+11:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "sshuttle/sshuttle.md"
+   },
+   "subnets": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "\n    capture and forward traffic to these subnets (whitespace separated)\n    ",
+    "kind": "positional",
+    "first_tag": "v0.78.0",
+    "first_date": "2016-04-08T12:01:58+10:00",
+    "last_tag": "v1.3.2",
+    "last_date": "2025-08-11T08:16:21+10:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sshuttle/options.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "sshuttle",
+ "repo": "sshuttle/sshuttle",
+ "head_sha": "7e929b0bb9737c87f5ed65af4ee14f44dc1d5599",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:39:03.457305+00:00"
+}

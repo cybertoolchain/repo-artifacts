@@ -1,0 +1,4716 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:c713f2c61f5f5ed32067d063bbae2138426e9b7b28fd5ce0dbbc5865a0ae2f7d",
+  "duration_s": 137.6,
+  "log_tail": "#11 31.74 go: downloading go.opentelemetry.io/otel v1.43.0\n#11 31.75 go: downloading github.com/google/certificate-transparency-go v1.3.2\n#11 31.75 go: downloading github.com/gin-contrib/sse v0.1.0\n#11 31.75 go: downloading github.com/indece-official/go-ebcdic v1.2.0\n#11 31.75 go: downloading github.com/spiffe/go-spiffe/v2 v2.6.0\n#11 31.75 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#11 31.75 go: downloading github.com/vmihailenco/tagparser/v2 v2.0.0\n#11 31.75 go: downloading github.com/moby/docker-image-spec v1.3.1\n#11 31.75 go: downloading github.com/envoyproxy/go-control-plane/envoy v1.37.0\n#11 31.75 go: downloading github.com/ericlagergren/decimal v0.0.0-20240411145413-00de7ca16731\n#11 31.77 go: downloading github.com/pelletier/go-toml/v2 v2.0.8\n#11 31.94 go: downloading github.com/ugorji/go/codec v1.2.11\n#11 31.95 go: downloading github.com/felixge/httpsnoop v1.0.4\n#11 32.57 go: downloading go.opentelemetry.io/otel/metric v1.43.0\n#11 33.06 go: downloading github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e\n#11 33.06 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#11 34.56 go: downloading github.com/go-logr/logr v1.4.3\n#11 34.56 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 34.56 go: downloading github.com/go-logr/stdr v1.2.2\n#11 34.96 go: downloading github.com/envoyproxy/protoc-gen-validate v1.3.3\n#11 34.96 go: downloading github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2\n#11 DONE 84.5s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.6s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.107 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 23.7s done\n#17 exporting manifest sha256:c432fddacf27d7421eecc2433ae2e9af79e3233ac679525d6a95198c04d506b1 done\n#17 exporting config sha256:61a57be7c70329b2c7964f268483e793587f6d1e7d88cb6665fd9a684579cd4f done\n#17 exporting attestation manifest sha256:c5b992176fea62c9cdaf480abee7c7402f17a7e7ef5b39af2fd501b08c66a79a done\n#17 exporting manifest list sha256:c713f2c61f5f5ed32067d063bbae2138426e9b7b28fd5ce0dbbc5865a0ae2f7d done\n#17 naming to docker.io/ctk-exec/nuclei:89d43000cf96 done\n#17 unpacking to docker.io/ctk-exec/nuclei:89d43000cf96\n#17 unpacking to docker.io/ctk-exec/nuclei:89d43000cf96 3.7s done\n#17 DONE 27.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "nuclei",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Nuclei is a fast, template based vulnerability scanner focusing\non extensive configurability, massive extensibility and ease of use.\n\nUsage:\n  nuclei [flags]\n\nFlags:\nCOMMON:\n   -mt, -max-time value  maximum time to run before automatic termination (e.g., 1h, 30m)\n\nTARGET:\n   -u, -target string[]          target URLs/hosts to scan\n   -l, -list string              path to file containing a list of target URLs/hosts to scan (one per line)\n   -targets-inline string        inline multiline target list (for use in template profiles)\n   -eh, -exclude-hosts string[]  hosts to exclude to scan from the input list (ip, cidr, hostname)\n   -resume string                resume scan from and save to specified file (clustering will be disabled)\n   -sa, -scan-all-ips            scan all the IP's associated with dns record\n   -iv, -ip-version string[]     IP version to scan of hostname (4,6) - (default 4)\n\nTARGET-FORMAT:\n   -im, -input-mode string         mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")\n   -ro, -required-only             use only required fields in input format when generating requests\n   -sfv, -skip-format-validation   skip format validation (like missing vars) when parsing input file\n   -vtt, -vars-text-templating     enable text templating for vars in input file (only for yaml input mode)\n   -vfp, -var-file-paths string[]  list of yaml file contained vars to inject into yaml input\n\nTEMPLATES:\n   -nt, -new-templates                    run only new templates added in latest nuclei-templates release\n   -ntv, -new-templates-version string[]  run new templates added in specific version\n   -as, -automatic-scan                   automatic web scan using wappalyzer technology detection to tags mapping\n   -t, -templates string[]                list of template or template directory to run (comma-separated, file)\n   -turl, -template-url string[]          template url or list containing template urls to run (comma-separated, file)\n   -ai, -prompt string                    generate and run template using ai prompt\n   -w, -workflows string[]                list of workflow or workflow directory to run (comma-separated, file)\n   -wurl, -workflow-url string[]          workflow url or list containing workflow urls to run (comma-separated, file)\n   -validate                              validate the passed templates to nuclei\n   -nss, -no-strict-syntax                disable strict syntax check on templates\n   -td, -template-display                 displays the templates content\n   -tl                                    list all templates matching current filters\n   -tgl                                   list all available tags\n   -sign                                  signs the templates with the private key defined in NUCLEI_SIGNATURE_PRIVATE_KEY env variable\n   -code                                  enable loading code protocol-based templates\n   -dut, -disable-unsigned-templates      disable running unsigned templates or templates with mismatched signature\n   -esc, -enable-self-contained           enable loading self-contained templates\n   -egm, -enable-global-matchers          enable loading global matchers templates\n   -file                                  enable loading file templates\n\nFILTERING:\n   -a, -author string[]               templates to run based on authors (comma-separated, file)\n   -tags string[]                     templates to run based on tags (comma-separated, file)\n   -etags, -exclude-tags string[]     templates to exclude based on tags (comma-separated, file)\n   -itags, -include-tags string[]     tags to be executed even if they are excluded either by default or configuration\n   -id, -template-id string[]         templates to run based on template ids (comma-separated, file, allow-wildcard)\n   -eid, -exclude-id string[]         templates to exclude based on template ids (comma-separated, file)\n   -it, -include-templates string[]   path to template file or directory to be executed even if they are excluded either by default or configuration\n   -et, -exclude-templates string[]   path to template file or directory to exclude (comma-separated, file)\n   -em, -exclude-matchers string[]    template matchers to exclude in result\n   -s, -severity value[]              templates to run based on severity. Possible values: info, low, medium, high, critical, unknown\n   -es, -exclude-severity value[]     templates to exclude based on severity. Possible values: info, low, medium, high, critical, unknown\n   -pt, -type value[]                 templates to run based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript\n   -ept, -exclude-type value[]        templates to exclude based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript\n   -tc, -template-condition string[]  templates to run based on expression condition\n\nOUTPUT:\n   -o, -output string            output file to write found issues/vulnerabilities\n   -sresp, -store-resp           store all request/response passed through nuclei to output directory\n   -srd, -store-resp-dir string  store all request/response passed through nuclei to custom directory (default \"output\")\n   -silent                       display findings only\n   -nc, -no-color                disable output content coloring (ANSI escape codes)\n   -j, -jsonl                    write output in JSONL(ines) format\n   -irr, -include-rr -omit-raw   include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)\n   -or, -omit-raw                omit request/response pairs in the JSON, JSONL, Markdown, and PDF outputs (for findings only)\n   -ot, -omit-template           omit encoded template in the JSON, JSONL output\n   -nm, -no-meta                 disable printing result metadata in cli output\n   -ts, -timestamp               enables printing timestamp in cli output\n   -rdb, -report-db string       nuclei reporting database (always use this to persist report data)\n   -ms, -matcher-status          display match failure status\n   -me, -markdown-export string  directory to export results in markdown format\n   -se, -sarif-export string     file to export results in SARIF format\n   -je, -json-export string      file to export results in JSON format\n   -jle, -jsonl-export string    file to export results in JSONL(ine) format\n   -pe, -pdf-export string       file to export results in PDF format\n   -rd, -redact string[]         redact given list of keys from query parameter, request header and body\n\nCONFIGURATIONS:\n   -config string                        path to the nuclei configuration file\n   -tp, -profile string                  template profile config file to run\n   -tpl, -profile-list                   list community template profiles\n   -fr, -follow-redirects                enable following redirects for http templates\n   -fhr, -follow-host-redirects          follow redirects on the same host\n   -mr, -max-redirects int               max number of redirects to follow for http templates (default 10)\n   -dr, -disable-redirects               disable redirects for http templates\n   -rc, -report-config string            nuclei reporting module configuration file\n   -H, -header string[]                  custom header/cookie to include in all http request in header:value format (cli, file)\n   -V, -var value                        custom vars in key=value format\n   -r, -resolvers string                 file containing resolver list for nuclei\n   -sr, -system-resolvers                use system DNS resolving as error fallback\n   -dc, -disable-clustering              disable clustering of requests\n   -passive                              enable passive HTTP response processing mode\n   -fh2, -force-http2                    force http2 connection on requests\n   -ev, -env-vars                        enable environment variables to be used in template\n   -cc, -client-cert string              client certificate file (PEM-encoded) used for authenticating against scanned hosts\n   -ck, -client-key string               client key file (PEM-encoded) used for authenticating against scanned hosts\n   -ca, -client-ca string                client certificate authority file (PEM-encoded) used for authenticating against scanned hosts\n   -sml, -show-match-line                show match lines for file templates, works with extractors only\n   -ztls                                 use ztls library with autofallback to standard one for tls13 [Deprecated] autofallback to ztls is enabled by default\n   -sni string                           tls sni hostname to use (default: input domain name)\n   -dka, -dialer-keep-alive value        keep-alive duration for network requests.\n   -lfa, -allow-local-file-access        allows file (payload) access anywhere on the system\n   -lna, -restrict-local-network-access  blocks connections to the local / private network\n   -i, -interface string                 network interface to use for network scan\n   -at, -attack-type string              type of payload combinations to perform (batteringram,pitchfork,clusterbomb)\n   -sip, -source-ip string               source ip address to use for network scan\n   -rsr, -response-size-read int         max response size to read in bytes\n   -rss, -response-size-save int         max response size to read in bytes (default 1048576)\n   -reset                                reset removes all nuclei configuration and data files (including nuclei-templates)\n   -tlsi, -tls-impersonate               enable experimental client hello (ja3) tls randomization\n   -hae, -http-api-endpoint string       experimental http api endpoint\n\nINTERACTSH:\n   -iserver, -interactsh-server string  interactsh server url for self-hosted instance (default: oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)\n   -itoken, -interactsh-token string    authentication token for self-hosted interactsh server\n   -interactions-cache-size int         number of requests to keep in the interactions cache (default 5000)\n   -interactions-eviction int           number of seconds to wait before evicting requests from cache (default 60)\n   -interactions-poll-duration int      number of seconds to wait before each interaction poll request (default 5)\n   -interactions-cooldown-period int    extra time for interaction polling before exiting (default 5)\n   -ni, -no-interactsh                  disable interactsh server for OAST testing, exclude OAST based templates\n\nFUZZING:\n   -ft, -fuzzing-type string           overrides fuzzing type set in template (replace, prefix, postfix, infix)\n   -fm, -fuzzing-mode string           overrides fuzzing mode set in template (multiple, single)\n   -fuzz                               enable loading fuzzing templates (Deprecated: use -dast instead)\n   -dast                               enable / run dast (fuzz) nuclei templates\n   -dts, -dast-server                  enable dast server mode (live fuzzing)\n   -dtr, -dast-report                  write dast scan report to file\n   -dtst, -dast-server-token string    dast server token (optional)\n   -dtsa, -dast-server-address string  dast server address (default \"localhost:9055\")\n   -dfp, -display-fuzz-points          display fuzz points in the output for debugging\n   -fuzz-param-frequency int           frequency of uninteresting parameters for fuzzing before skipping (default 10)\n   -fa, -fuzz-aggression string        fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")\n   -cs, -fuzz-scope string[]           in scope url regex to be followed by fuzzer\n   -cos, -fuzz-out-scope string[]      out of scope url regex to be excluded by fuzzer\n\nUNCOVER:\n   -uc, -uncover                  enable uncover engine\n   -uq, -uncover-query string[]   uncover search query\n   -ue, -uncover-engine string[]  uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise,daydaymap,nerdydata) (default shodan)\n   -uf, -uncover-field string     uncover fields to return (ip,port,host) (default \"ip:port\")\n   -ul, -uncover-limit int        uncover results to return (default 100)\n   -ur, -uncover-ratelimit int    override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)\n\nRATE-LIMIT:\n   -rl, -rate-limit int                     maximum number of requests to send per second (default 150)\n   -rld, -rate-limit-duration value         maximum number of requests to send per second (default 1s)\n   -per-host-rate-limit                     enable per-host rate limiting (global rate limit becomes unlimited when enabled)\n   -rlm, -rate-limit-minute int             maximum number of requests to send per minute (DEPRECATED)\n   -bs, -bulk-size int                      maximum number of hosts to be analyzed in parallel per template (default 25)\n   -c, -concurrency int                     maximum number of templates to be executed in parallel (default 25)\n   -hbs, -headless-bulk-size int            maximum number of headless hosts to be analyzed in parallel per template (default 10)\n   -headc, -headless-concurrency int        maximum number of headless templates to be executed in parallel (default 10)\n   -jsc, -js-concurrency int                maximum number of javascript runtimes to be executed in parallel (default 120)\n   -pc, -payload-concurrency int            max payload concurrency for each template (default 25)\n   -prc, -probe-concurrency int             http probe concurrency with httpx (default 50)\n   -tlc, -template-loading-concurrency int  maximum number of concurrent template loading operations (default 50)\n\nOPTIMIZATIONS:\n   -timeout int                     time to wait in seconds before timeout (default 10)\n   -retries int                     number of times to retry a failed request (default 1)\n   -ldp, -leave-default-ports       leave default HTTP/HTTPS ports (eg. host:80,host:443)\n   -mhe, -max-host-error int        max errors for a host before skipping from scan (default 30)\n   -te, -track-error string[]       adds given error to max-host-error watchlist (standard, file)\n   -nmhe, -no-mhe                   disable skipping host from scan based on errors\n   -project                         use a project folder to avoid sending same request multiple times\n   -project-path string             set a specific project path (default \"/tmp\")\n   -spm, -stop-at-first-match       stop processing HTTP requests after the first match (may break template/workflow logic)\n   -stream                          stream mode - start elaborating without sorting the input\n   -ss, -scan-strategy value        strategy to use while scanning(auto/host-spray/template-spray) (default auto)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -nh, -no-httpx                   disable httpx probing for non-url input\n   -preflight-portscan              run preflight resolve + TCP portscan and filter targets before scanning (disabled by default)\n   -no-stdin                        disable stdin processing\n\nHEADLESS:\n   -headless                        enable templates that require headless browser support (root user on Linux will disable sandbox)\n   -page-timeout int                seconds to wait for each page in headless mode (default 20)\n   -sb, -show-browser               show the browser on the screen when running templates with headless mode\n   -ho, -headless-options string[]  start headless chrome with additional options\n   -sc, -system-chrome              use local installed Chrome browser instead of nuclei installed\n   -cdpe, -cdp-endpoint string      use remote browser via Chrome DevTools Protocol (CDP) endpoint\n   -lha, -list-headless-action      list available headless actions\n\nDEBUG:\n   -debug                     show all requests and responses\n   -dreq, -debug-req          show all sent requests\n   -dresp, -debug-resp        show all received responses\n   -p, -proxy string[]        list of http/socks5 proxy to use (comma separated or file input)\n   -pi, -proxy-internal       proxy all internal requests\n   -ldf, -list-dsl-function   list all supported DSL function signatures\n   -tlog, -trace-log string   file to write sent requests trace log\n   -elog, -error-log string   file to write sent requests error log\n   -version                   show nuclei version\n   -hm, -hang-monitor         enable nuclei hang monitoring\n   -v, -verbose               show verbose output\n   -profile-mem string        generate memory (heap) profile & trace files\n   -vv                        display templates loaded for scan\n   -svd, -show-var-dump       show variables dump for debugging\n   -vdl, -var-dump-limit int  limit the number of characters displayed in var dump (default 255)\n   -ep, -enable-pprof         enable pprof debugging server\n   -tv, -templates-version    shows the version of the installed nuclei-templates\n   -hc, -health-check         run diagnostic check up\n\nUPDATE:\n   -up, -update                      update nuclei engine to the latest released version\n   -ut, -update-templates            update nuclei-templates to latest released version\n   -ud, -update-template-dir string  custom directory to install / update nuclei-templates\n   -duc, -disable-update-check       disable automatic nuclei/templates update check\n\nHONEYPOT:\n   -hpd, -honeypot-detect         detect potential honeypot hosts based on match concentration\n   -hpt, -honeypot-threshold int  number of distinct template IDs required to flag a honeypot host (default 15)\n   -shp, -suppress-honeypot       suppress output for flagged honeypot hosts\n\nSTATISTICS:\n   -stats                    display statistics about the running scan\n   -sj, -stats-json          display statistics in JSONL(ines) format\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (default 5)\n   -mp, -metrics-port int    port to expose nuclei metrics on (default 9092)\n   -hps, -http-stats         enable http status capturing (experimental)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -tid, -team-id string           upload scan results to given team id (optional) (default \"none\")\n   -cup, -cloud-upload             upload scan results to pdcp dashboard [DEPRECATED use -dashboard]\n   -sid, -scan-id string           upload scan results to existing scan id (optional)\n   -sname, -scan-name string       scan name to set (optional)\n   -pd, -dashboard                 upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard\n   -pdu, -dashboard-upload string  upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\nAUTHENTICATION:\n   -sf, -secret-file string[]  path to config file containing secrets for nuclei authenticated scan\n   -ps, -prefetch-secrets      prefetch secrets from the secrets file\n\n\nEXAMPLES:\nRun nuclei on single host:\n\t$ nuclei -target example.com\n\nRun nuclei with specific template directories:\n\t$ nuclei -target example.com -t http/cves/ -t ssl\n\nRun nuclei against a list of hosts:\n\t$ nuclei -list hosts.txt\n\nRun nuclei with a JSON output:\n\t$ nuclei -target example.com -json-export output.json\n\nRun nuclei with sorted Markdown outputs (with environment variables):\n\t$ MARKDOWN_EXPORT_SORT_MODE=template nuclei -target example.com -markdown-export nuclei_report/\n\nAdditional documentation is available at: https://docs.nuclei.sh/getting-started/running\n\t\n",
+   "stderr": "[\u001b[31mERR\u001b[0m] failed to create config directory at /home/ctk/.config/nuclei got: mkdir /home/ctk/.config: read-only file system\n[\u001b[31mERR\u001b[0m] failed to write config file at /home/ctk/.config/nuclei/.templates-config.json got: cause=\"could not create nuclei config directory at /home/ctk/.config/nuclei: mkdir /home/ctk/.config: read-only file system\"\n[\u001b[31mERR\u001b[0m] failed to load provider keys got cause=\"couldn't write provider config file(%s): %s\\n\" /home/ctk/.config/uncover/provider-config.yaml=open /home/ctk/.config/uncover/provider-config.yaml: no such file or directory\n",
+   "duration_ms": 57,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nuclei"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for nuclei\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nuclei"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'nuclei' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "nuclei",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-mt": "maximum time to run before automatic termination (e.g., 1h, 30m)",
+   "-max-time": "maximum time to run before automatic termination (e.g., 1h, 30m)",
+   "-u": "target URLs/hosts to scan",
+   "-target": "target URLs/hosts to scan",
+   "-l": "path to file containing a list of target URLs/hosts to scan (one per line)",
+   "-list": "path to file containing a list of target URLs/hosts to scan (one per line)",
+   "-targets-inline": "inline multiline target list (for use in template profiles)",
+   "-eh": "hosts to exclude to scan from the input list (ip, cidr, hostname)",
+   "-exclude-hosts": "hosts to exclude to scan from the input list (ip, cidr, hostname)",
+   "-resume": "resume scan from and save to specified file (clustering will be disabled)",
+   "-sa": "scan all the IP's associated with dns record",
+   "-scan-all-ips": "scan all the IP's associated with dns record",
+   "-iv": "IP version to scan of hostname (4,6) - (default 4)",
+   "-ip-version": "IP version to scan of hostname (4,6) - (default 4)",
+   "-im": "mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")",
+   "-input-mode": "mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")",
+   "-ro": "use only required fields in input format when generating requests",
+   "-required-only": "use only required fields in input format when generating requests",
+   "-sfv": "skip format validation (like missing vars) when parsing input file",
+   "-skip-format-validation": "skip format validation (like missing vars) when parsing input file",
+   "-vtt": "enable text templating for vars in input file (only for yaml input mode)",
+   "-vars-text-templating": "enable text templating for vars in input file (only for yaml input mode)",
+   "-vfp": "list of yaml file contained vars to inject into yaml input",
+   "-var-file-paths": "list of yaml file contained vars to inject into yaml input",
+   "-nt": "run only new templates added in latest nuclei-templates release",
+   "-new-templates": "run only new templates added in latest nuclei-templates release",
+   "-ntv": "run new templates added in specific version",
+   "-new-templates-version": "run new templates added in specific version",
+   "-as": "automatic web scan using wappalyzer technology detection to tags mapping",
+   "-automatic-scan": "automatic web scan using wappalyzer technology detection to tags mapping",
+   "-t": "list of template or template directory to run (comma-separated, file)",
+   "-templates": "list of template or template directory to run (comma-separated, file)",
+   "-turl": "template url or list containing template urls to run (comma-separated, file)",
+   "-template-url": "template url or list containing template urls to run (comma-separated, file)",
+   "-ai": "generate and run template using ai prompt",
+   "-prompt": "generate and run template using ai prompt",
+   "-w": "list of workflow or workflow directory to run (comma-separated, file)",
+   "-workflows": "list of workflow or workflow directory to run (comma-separated, file)",
+   "-wurl": "workflow url or list containing workflow urls to run (comma-separated, file)",
+   "-workflow-url": "workflow url or list containing workflow urls to run (comma-separated, file)",
+   "-validate": "validate the passed templates to nuclei",
+   "-nss": "disable strict syntax check on templates",
+   "-no-strict-syntax": "disable strict syntax check on templates",
+   "-td": "displays the templates content",
+   "-template-display": "displays the templates content",
+   "-tl": "list all templates matching current filters",
+   "-tgl": "list all available tags",
+   "-sign": "signs the templates with the private key defined in NUCLEI_SIGNATURE_PRIVATE_KEY env variable",
+   "-code": "enable loading code protocol-based templates",
+   "-dut": "disable running unsigned templates or templates with mismatched signature",
+   "-disable-unsigned-templates": "disable running unsigned templates or templates with mismatched signature",
+   "-esc": "enable loading self-contained templates",
+   "-enable-self-contained": "enable loading self-contained templates",
+   "-egm": "enable loading global matchers templates",
+   "-enable-global-matchers": "enable loading global matchers templates",
+   "-file": "enable loading file templates",
+   "-a": "templates to run based on authors (comma-separated, file)",
+   "-author": "templates to run based on authors (comma-separated, file)",
+   "-tags": "templates to run based on tags (comma-separated, file)",
+   "-etags": "templates to exclude based on tags (comma-separated, file)",
+   "-exclude-tags": "templates to exclude based on tags (comma-separated, file)",
+   "-itags": "tags to be executed even if they are excluded either by default or configuration",
+   "-include-tags": "tags to be executed even if they are excluded either by default or configuration",
+   "-id": "templates to run based on template ids (comma-separated, file, allow-wildcard)",
+   "-template-id": "templates to run based on template ids (comma-separated, file, allow-wildcard)",
+   "-eid": "templates to exclude based on template ids (comma-separated, file)",
+   "-exclude-id": "templates to exclude based on template ids (comma-separated, file)",
+   "-it": "path to template file or directory to be executed even if they are excluded either by default or configuration",
+   "-include-templates": "path to template file or directory to be executed even if they are excluded either by default or configuration",
+   "-et": "path to template file or directory to exclude (comma-separated, file)",
+   "-exclude-templates": "path to template file or directory to exclude (comma-separated, file)",
+   "-em": "template matchers to exclude in result",
+   "-exclude-matchers": "template matchers to exclude in result",
+   "-s": "templates to run based on severity. Possible values: info, low, medium, high, critical, unknown",
+   "-severity": "templates to run based on severity. Possible values: info, low, medium, high, critical, unknown",
+   "-es": "templates to exclude based on severity. Possible values: info, low, medium, high, critical, unknown",
+   "-exclude-severity": "templates to exclude based on severity. Possible values: info, low, medium, high, critical, unknown",
+   "-pt": "templates to run based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+   "-type": "templates to run based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+   "-ept": "templates to exclude based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+   "-exclude-type": "templates to exclude based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+   "-tc": "templates to run based on expression condition",
+   "-template-condition": "templates to run based on expression condition",
+   "-o": "output file to write found issues/vulnerabilities",
+   "-output": "output file to write found issues/vulnerabilities",
+   "-sresp": "store all request/response passed through nuclei to output directory",
+   "-store-resp": "store all request/response passed through nuclei to output directory",
+   "-srd": "store all request/response passed through nuclei to custom directory (default \"output\")",
+   "-store-resp-dir": "store all request/response passed through nuclei to custom directory (default \"output\")",
+   "-silent": "display findings only",
+   "-nc": "disable output content coloring (ANSI escape codes)",
+   "-no-color": "disable output content coloring (ANSI escape codes)",
+   "-j": "write output in JSONL(ines) format",
+   "-jsonl": "write output in JSONL(ines) format",
+   "-irr": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+   "-include-rr": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+   "-omit-raw": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+   "-or": "omit request/response pairs in the JSON, JSONL, Markdown, and PDF outputs (for findings only)",
+   "-ot": "omit encoded template in the JSON, JSONL output",
+   "-omit-template": "omit encoded template in the JSON, JSONL output",
+   "-nm": "disable printing result metadata in cli output",
+   "-no-meta": "disable printing result metadata in cli output",
+   "-ts": "enables printing timestamp in cli output",
+   "-timestamp": "enables printing timestamp in cli output",
+   "-rdb": "nuclei reporting database (always use this to persist report data)",
+   "-report-db": "nuclei reporting database (always use this to persist report data)",
+   "-ms": "display match failure status",
+   "-matcher-status": "display match failure status",
+   "-me": "directory to export results in markdown format",
+   "-markdown-export": "directory to export results in markdown format",
+   "-se": "file to export results in SARIF format",
+   "-sarif-export": "file to export results in SARIF format",
+   "-je": "file to export results in JSON format",
+   "-json-export": "file to export results in JSON format",
+   "-jle": "file to export results in JSONL(ine) format",
+   "-jsonl-export": "file to export results in JSONL(ine) format",
+   "-pe": "file to export results in PDF format",
+   "-pdf-export": "file to export results in PDF format",
+   "-rd": "redact given list of keys from query parameter, request header and body",
+   "-redact": "redact given list of keys from query parameter, request header and body",
+   "-config": "path to the nuclei configuration file",
+   "-tp": "template profile config file to run",
+   "-profile": "template profile config file to run",
+   "-tpl": "list community template profiles",
+   "-profile-list": "list community template profiles",
+   "-fr": "enable following redirects for http templates",
+   "-follow-redirects": "enable following redirects for http templates",
+   "-fhr": "follow redirects on the same host",
+   "-follow-host-redirects": "follow redirects on the same host",
+   "-mr": "max number of redirects to follow for http templates (default 10)",
+   "-max-redirects": "max number of redirects to follow for http templates (default 10)",
+   "-dr": "disable redirects for http templates",
+   "-disable-redirects": "disable redirects for http templates",
+   "-rc": "nuclei reporting module configuration file",
+   "-report-config": "nuclei reporting module configuration file",
+   "-H": "custom header/cookie to include in all http request in header:value format (cli, file)",
+   "-header": "custom header/cookie to include in all http request in header:value format (cli, file)",
+   "-V": "custom vars in key=value format",
+   "-var": "custom vars in key=value format",
+   "-r": "file containing resolver list for nuclei",
+   "-resolvers": "file containing resolver list for nuclei",
+   "-sr": "use system DNS resolving as error fallback",
+   "-system-resolvers": "use system DNS resolving as error fallback",
+   "-dc": "disable clustering of requests",
+   "-disable-clustering": "disable clustering of requests",
+   "-passive": "enable passive HTTP response processing mode",
+   "-fh2": "force http2 connection on requests",
+   "-force-http2": "force http2 connection on requests",
+   "-ev": "enable environment variables to be used in template",
+   "-env-vars": "enable environment variables to be used in template",
+   "-cc": "client certificate file (PEM-encoded) used for authenticating against scanned hosts",
+   "-client-cert": "client certificate file (PEM-encoded) used for authenticating against scanned hosts",
+   "-ck": "client key file (PEM-encoded) used for authenticating against scanned hosts",
+   "-client-key": "client key file (PEM-encoded) used for authenticating against scanned hosts",
+   "-ca": "client certificate authority file (PEM-encoded) used for authenticating against scanned hosts",
+   "-client-ca": "client certificate authority file (PEM-encoded) used for authenticating against scanned hosts",
+   "-sml": "show match lines for file templates, works with extractors only",
+   "-show-match-line": "show match lines for file templates, works with extractors only",
+   "-ztls": "use ztls library with autofallback to standard one for tls13 [Deprecated] autofallback to ztls is enabled by default",
+   "-sni": "tls sni hostname to use (default: input domain name)",
+   "-dka": "keep-alive duration for network requests.",
+   "-dialer-keep-alive": "keep-alive duration for network requests.",
+   "-lfa": "allows file (payload) access anywhere on the system",
+   "-allow-local-file-access": "allows file (payload) access anywhere on the system",
+   "-lna": "blocks connections to the local / private network",
+   "-restrict-local-network-access": "blocks connections to the local / private network",
+   "-i": "network interface to use for network scan",
+   "-interface": "network interface to use for network scan",
+   "-at": "type of payload combinations to perform (batteringram,pitchfork,clusterbomb)",
+   "-attack-type": "type of payload combinations to perform (batteringram,pitchfork,clusterbomb)",
+   "-sip": "source ip address to use for network scan",
+   "-source-ip": "source ip address to use for network scan",
+   "-rsr": "max response size to read in bytes",
+   "-response-size-read": "max response size to read in bytes",
+   "-rss": "max response size to read in bytes (default 1048576)",
+   "-response-size-save": "max response size to read in bytes (default 1048576)",
+   "-reset": "reset removes all nuclei configuration and data files (including nuclei-templates)",
+   "-tlsi": "enable experimental client hello (ja3) tls randomization",
+   "-tls-impersonate": "enable experimental client hello (ja3) tls randomization",
+   "-hae": "experimental http api endpoint",
+   "-http-api-endpoint": "experimental http api endpoint",
+   "-iserver": "interactsh server url for self-hosted instance (default: oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)",
+   "-interactsh-server": "interactsh server url for self-hosted instance (default: oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)",
+   "-itoken": "authentication token for self-hosted interactsh server",
+   "-interactsh-token": "authentication token for self-hosted interactsh server",
+   "-interactions-cache-size": "number of requests to keep in the interactions cache (default 5000)",
+   "-interactions-eviction": "number of seconds to wait before evicting requests from cache (default 60)",
+   "-interactions-poll-duration": "number of seconds to wait before each interaction poll request (default 5)",
+   "-interactions-cooldown-period": "extra time for interaction polling before exiting (default 5)",
+   "-ni": "disable interactsh server for OAST testing, exclude OAST based templates",
+   "-no-interactsh": "disable interactsh server for OAST testing, exclude OAST based templates",
+   "-ft": "overrides fuzzing type set in template (replace, prefix, postfix, infix)",
+   "-fuzzing-type": "overrides fuzzing type set in template (replace, prefix, postfix, infix)",
+   "-fm": "overrides fuzzing mode set in template (multiple, single)",
+   "-fuzzing-mode": "overrides fuzzing mode set in template (multiple, single)",
+   "-fuzz": "enable loading fuzzing templates (Deprecated: use -dast instead)",
+   "-dast": "enable / run dast (fuzz) nuclei templates",
+   "-dts": "enable dast server mode (live fuzzing)",
+   "-dast-server": "enable dast server mode (live fuzzing)",
+   "-dtr": "write dast scan report to file",
+   "-dast-report": "write dast scan report to file",
+   "-dtst": "dast server token (optional)",
+   "-dast-server-token": "dast server token (optional)",
+   "-dtsa": "dast server address (default \"localhost:9055\")",
+   "-dast-server-address": "dast server address (default \"localhost:9055\")",
+   "-dfp": "display fuzz points in the output for debugging",
+   "-display-fuzz-points": "display fuzz points in the output for debugging",
+   "-fuzz-param-frequency": "frequency of uninteresting parameters for fuzzing before skipping (default 10)",
+   "-fa": "fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")",
+   "-fuzz-aggression": "fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")",
+   "-cs": "in scope url regex to be followed by fuzzer",
+   "-fuzz-scope": "in scope url regex to be followed by fuzzer",
+   "-cos": "out of scope url regex to be excluded by fuzzer",
+   "-fuzz-out-scope": "out of scope url regex to be excluded by fuzzer",
+   "-uc": "enable uncover engine",
+   "-uncover": "enable uncover engine",
+   "-uq": "uncover search query",
+   "-uncover-query": "uncover search query",
+   "-ue": "uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise,daydaymap,nerdydata) (default shodan)",
+   "-uncover-engine": "uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise,daydaymap,nerdydata) (default shodan)",
+   "-uf": "uncover fields to return (ip,port,host) (default \"ip:port\")",
+   "-uncover-field": "uncover fields to return (ip,port,host) (default \"ip:port\")",
+   "-ul": "uncover results to return (default 100)",
+   "-uncover-limit": "uncover results to return (default 100)",
+   "-ur": "override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)",
+   "-uncover-ratelimit": "override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)",
+   "-rl": "maximum number of requests to send per second (default 150)",
+   "-rate-limit": "maximum number of requests to send per second (default 150)",
+   "-rld": "maximum number of requests to send per second (default 1s)",
+   "-rate-limit-duration": "maximum number of requests to send per second (default 1s)",
+   "-per-host-rate-limit": "enable per-host rate limiting (global rate limit becomes unlimited when enabled)",
+   "-rlm": "maximum number of requests to send per minute (DEPRECATED)",
+   "-rate-limit-minute": "maximum number of requests to send per minute (DEPRECATED)",
+   "-bs": "maximum number of hosts to be analyzed in parallel per template (default 25)",
+   "-bulk-size": "maximum number of hosts to be analyzed in parallel per template (default 25)",
+   "-c": "maximum number of templates to be executed in parallel (default 25)",
+   "-concurrency": "maximum number of templates to be executed in parallel (default 25)",
+   "-hbs": "maximum number of headless hosts to be analyzed in parallel per template (default 10)",
+   "-headless-bulk-size": "maximum number of headless hosts to be analyzed in parallel per template (default 10)",
+   "-headc": "maximum number of headless templates to be executed in parallel (default 10)",
+   "-headless-concurrency": "maximum number of headless templates to be executed in parallel (default 10)",
+   "-jsc": "maximum number of javascript runtimes to be executed in parallel (default 120)",
+   "-js-concurrency": "maximum number of javascript runtimes to be executed in parallel (default 120)",
+   "-pc": "max payload concurrency for each template (default 25)",
+   "-payload-concurrency": "max payload concurrency for each template (default 25)",
+   "-prc": "http probe concurrency with httpx (default 50)",
+   "-probe-concurrency": "http probe concurrency with httpx (default 50)",
+   "-tlc": "maximum number of concurrent template loading operations (default 50)",
+   "-template-loading-concurrency": "maximum number of concurrent template loading operations (default 50)",
+   "-timeout": "time to wait in seconds before timeout (default 10)",
+   "-retries": "number of times to retry a failed request (default 1)",
+   "-ldp": "leave default HTTP/HTTPS ports (eg. host:80,host:443)",
+   "-leave-default-ports": "leave default HTTP/HTTPS ports (eg. host:80,host:443)",
+   "-mhe": "max errors for a host before skipping from scan (default 30)",
+   "-max-host-error": "max errors for a host before skipping from scan (default 30)",
+   "-te": "adds given error to max-host-error watchlist (standard, file)",
+   "-track-error": "adds given error to max-host-error watchlist (standard, file)",
+   "-nmhe": "disable skipping host from scan based on errors",
+   "-no-mhe": "disable skipping host from scan based on errors",
+   "-project": "use a project folder to avoid sending same request multiple times",
+   "-project-path": "set a specific project path (default \"/tmp\")",
+   "-spm": "stop processing HTTP requests after the first match (may break template/workflow logic)",
+   "-stop-at-first-match": "stop processing HTTP requests after the first match (may break template/workflow logic)",
+   "-stream": "stream mode - start elaborating without sorting the input",
+   "-ss": "strategy to use while scanning(auto/host-spray/template-spray) (default auto)",
+   "-scan-strategy": "strategy to use while scanning(auto/host-spray/template-spray) (default auto)",
+   "-irt": "timeout on input read (default 3m0s)",
+   "-input-read-timeout": "timeout on input read (default 3m0s)",
+   "-nh": "disable httpx probing for non-url input",
+   "-no-httpx": "disable httpx probing for non-url input",
+   "-preflight-portscan": "run preflight resolve + TCP portscan and filter targets before scanning (disabled by default)",
+   "-no-stdin": "disable stdin processing",
+   "-headless": "enable templates that require headless browser support (root user on Linux will disable sandbox)",
+   "-page-timeout": "seconds to wait for each page in headless mode (default 20)",
+   "-sb": "show the browser on the screen when running templates with headless mode",
+   "-show-browser": "show the browser on the screen when running templates with headless mode",
+   "-ho": "start headless chrome with additional options",
+   "-headless-options": "start headless chrome with additional options",
+   "-sc": "use local installed Chrome browser instead of nuclei installed",
+   "-system-chrome": "use local installed Chrome browser instead of nuclei installed",
+   "-cdpe": "use remote browser via Chrome DevTools Protocol (CDP) endpoint",
+   "-cdp-endpoint": "use remote browser via Chrome DevTools Protocol (CDP) endpoint",
+   "-lha": "list available headless actions",
+   "-list-headless-action": "list available headless actions",
+   "-debug": "show all requests and responses",
+   "-dreq": "show all sent requests",
+   "-debug-req": "show all sent requests",
+   "-dresp": "show all received responses",
+   "-debug-resp": "show all received responses",
+   "-p": "list of http/socks5 proxy to use (comma separated or file input)",
+   "-proxy": "list of http/socks5 proxy to use (comma separated or file input)",
+   "-pi": "proxy all internal requests",
+   "-proxy-internal": "proxy all internal requests",
+   "-ldf": "list all supported DSL function signatures",
+   "-list-dsl-function": "list all supported DSL function signatures",
+   "-tlog": "file to write sent requests trace log",
+   "-trace-log": "file to write sent requests trace log",
+   "-elog": "file to write sent requests error log",
+   "-error-log": "file to write sent requests error log",
+   "-version": "show nuclei version",
+   "-hm": "enable nuclei hang monitoring",
+   "-hang-monitor": "enable nuclei hang monitoring",
+   "-v": "show verbose output",
+   "-verbose": "show verbose output",
+   "-profile-mem": "generate memory (heap) profile & trace files",
+   "-vv": "display templates loaded for scan",
+   "-svd": "show variables dump for debugging",
+   "-show-var-dump": "show variables dump for debugging",
+   "-vdl": "limit the number of characters displayed in var dump (default 255)",
+   "-var-dump-limit": "limit the number of characters displayed in var dump (default 255)",
+   "-ep": "enable pprof debugging server",
+   "-enable-pprof": "enable pprof debugging server",
+   "-tv": "shows the version of the installed nuclei-templates",
+   "-templates-version": "shows the version of the installed nuclei-templates",
+   "-hc": "run diagnostic check up",
+   "-health-check": "run diagnostic check up",
+   "-up": "update nuclei engine to the latest released version",
+   "-update": "update nuclei engine to the latest released version",
+   "-ut": "update nuclei-templates to latest released version",
+   "-update-templates": "update nuclei-templates to latest released version",
+   "-ud": "custom directory to install / update nuclei-templates",
+   "-update-template-dir": "custom directory to install / update nuclei-templates",
+   "-duc": "disable automatic nuclei/templates update check",
+   "-disable-update-check": "disable automatic nuclei/templates update check",
+   "-hpd": "detect potential honeypot hosts based on match concentration",
+   "-honeypot-detect": "detect potential honeypot hosts based on match concentration",
+   "-hpt": "number of distinct template IDs required to flag a honeypot host (default 15)",
+   "-honeypot-threshold": "number of distinct template IDs required to flag a honeypot host (default 15)",
+   "-shp": "suppress output for flagged honeypot hosts",
+   "-suppress-honeypot": "suppress output for flagged honeypot hosts",
+   "-stats": "display statistics about the running scan",
+   "-sj": "display statistics in JSONL(ines) format",
+   "-stats-json": "display statistics in JSONL(ines) format",
+   "-si": "number of seconds to wait between showing a statistics update (default 5)",
+   "-stats-interval": "number of seconds to wait between showing a statistics update (default 5)",
+   "-mp": "port to expose nuclei metrics on (default 9092)",
+   "-metrics-port": "port to expose nuclei metrics on (default 9092)",
+   "-hps": "enable http status capturing (experimental)",
+   "-http-stats": "enable http status capturing (experimental)",
+   "-auth": "configure projectdiscovery cloud (pdcp) api key (default true)",
+   "-tid": "upload scan results to given team id (optional) (default \"none\")",
+   "-team-id": "upload scan results to given team id (optional) (default \"none\")",
+   "-cup": "upload scan results to pdcp dashboard [DEPRECATED use -dashboard]",
+   "-cloud-upload": "upload scan results to pdcp dashboard [DEPRECATED use -dashboard]",
+   "-sid": "upload scan results to existing scan id (optional)",
+   "-scan-id": "upload scan results to existing scan id (optional)",
+   "-sname": "scan name to set (optional)",
+   "-scan-name": "scan name to set (optional)",
+   "-pd": "upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard": "upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard",
+   "-pdu": "upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard-upload": "upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+   "-sf": "path to config file containing secrets for nuclei authenticated scan",
+   "-secret-file": "path to config file containing secrets for nuclei authenticated scan",
+   "-ps": "prefetch secrets from the secrets file",
+   "-prefetch-secrets": "prefetch secrets from the secrets file"
+  },
+  "aliases": {
+   "-mt": [
+    "-max-time"
+   ],
+   "-u": [
+    "-target"
+   ],
+   "-l": [
+    "-list"
+   ],
+   "-eh": [
+    "-exclude-hosts"
+   ],
+   "-sa": [
+    "-scan-all-ips"
+   ],
+   "-iv": [
+    "-ip-version"
+   ],
+   "-im": [
+    "-input-mode"
+   ],
+   "-ro": [
+    "-required-only"
+   ],
+   "-sfv": [
+    "-skip-format-validation"
+   ],
+   "-vtt": [
+    "-vars-text-templating"
+   ],
+   "-vfp": [
+    "-var-file-paths"
+   ],
+   "-nt": [
+    "-new-templates"
+   ],
+   "-ntv": [
+    "-new-templates-version"
+   ],
+   "-as": [
+    "-automatic-scan"
+   ],
+   "-t": [
+    "-templates"
+   ],
+   "-turl": [
+    "-template-url"
+   ],
+   "-ai": [
+    "-prompt"
+   ],
+   "-w": [
+    "-workflows"
+   ],
+   "-wurl": [
+    "-workflow-url"
+   ],
+   "-nss": [
+    "-no-strict-syntax"
+   ],
+   "-td": [
+    "-template-display"
+   ],
+   "-dut": [
+    "-disable-unsigned-templates"
+   ],
+   "-esc": [
+    "-enable-self-contained"
+   ],
+   "-egm": [
+    "-enable-global-matchers"
+   ],
+   "-a": [
+    "-author"
+   ],
+   "-etags": [
+    "-exclude-tags"
+   ],
+   "-itags": [
+    "-include-tags"
+   ],
+   "-id": [
+    "-template-id"
+   ],
+   "-eid": [
+    "-exclude-id"
+   ],
+   "-it": [
+    "-include-templates"
+   ],
+   "-et": [
+    "-exclude-templates"
+   ],
+   "-em": [
+    "-exclude-matchers"
+   ],
+   "-s": [
+    "-severity"
+   ],
+   "-es": [
+    "-exclude-severity"
+   ],
+   "-pt": [
+    "-type"
+   ],
+   "-ept": [
+    "-exclude-type"
+   ],
+   "-tc": [
+    "-template-condition"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-sresp": [
+    "-store-resp"
+   ],
+   "-srd": [
+    "-store-resp-dir"
+   ],
+   "-nc": [
+    "-no-color"
+   ],
+   "-j": [
+    "-jsonl"
+   ],
+   "-ot": [
+    "-omit-template"
+   ],
+   "-nm": [
+    "-no-meta"
+   ],
+   "-ts": [
+    "-timestamp"
+   ],
+   "-rdb": [
+    "-report-db"
+   ],
+   "-ms": [
+    "-matcher-status"
+   ],
+   "-me": [
+    "-markdown-export"
+   ],
+   "-se": [
+    "-sarif-export"
+   ],
+   "-je": [
+    "-json-export"
+   ],
+   "-jle": [
+    "-jsonl-export"
+   ],
+   "-pe": [
+    "-pdf-export"
+   ],
+   "-rd": [
+    "-redact"
+   ],
+   "-tp": [
+    "-profile"
+   ],
+   "-tpl": [
+    "-profile-list"
+   ],
+   "-fr": [
+    "-follow-redirects"
+   ],
+   "-fhr": [
+    "-follow-host-redirects"
+   ],
+   "-mr": [
+    "-max-redirects"
+   ],
+   "-dr": [
+    "-disable-redirects"
+   ],
+   "-rc": [
+    "-report-config"
+   ],
+   "-H": [
+    "-header"
+   ],
+   "-V": [
+    "-var"
+   ],
+   "-r": [
+    "-resolvers"
+   ],
+   "-sr": [
+    "-system-resolvers"
+   ],
+   "-dc": [
+    "-disable-clustering"
+   ],
+   "-fh2": [
+    "-force-http2"
+   ],
+   "-ev": [
+    "-env-vars"
+   ],
+   "-cc": [
+    "-client-cert"
+   ],
+   "-ck": [
+    "-client-key"
+   ],
+   "-ca": [
+    "-client-ca"
+   ],
+   "-sml": [
+    "-show-match-line"
+   ],
+   "-dka": [
+    "-dialer-keep-alive"
+   ],
+   "-lfa": [
+    "-allow-local-file-access"
+   ],
+   "-lna": [
+    "-restrict-local-network-access"
+   ],
+   "-i": [
+    "-interface"
+   ],
+   "-at": [
+    "-attack-type"
+   ],
+   "-sip": [
+    "-source-ip"
+   ],
+   "-rsr": [
+    "-response-size-read"
+   ],
+   "-rss": [
+    "-response-size-save"
+   ],
+   "-tlsi": [
+    "-tls-impersonate"
+   ],
+   "-hae": [
+    "-http-api-endpoint"
+   ],
+   "-iserver": [
+    "-interactsh-server"
+   ],
+   "-itoken": [
+    "-interactsh-token"
+   ],
+   "-ni": [
+    "-no-interactsh"
+   ],
+   "-ft": [
+    "-fuzzing-type"
+   ],
+   "-fm": [
+    "-fuzzing-mode"
+   ],
+   "-dts": [
+    "-dast-server"
+   ],
+   "-dtr": [
+    "-dast-report"
+   ],
+   "-dtst": [
+    "-dast-server-token"
+   ],
+   "-dtsa": [
+    "-dast-server-address"
+   ],
+   "-dfp": [
+    "-display-fuzz-points"
+   ],
+   "-fa": [
+    "-fuzz-aggression"
+   ],
+   "-cs": [
+    "-fuzz-scope"
+   ],
+   "-cos": [
+    "-fuzz-out-scope"
+   ],
+   "-uc": [
+    "-uncover"
+   ],
+   "-uq": [
+    "-uncover-query"
+   ],
+   "-ue": [
+    "-uncover-engine"
+   ],
+   "-uf": [
+    "-uncover-field"
+   ],
+   "-ul": [
+    "-uncover-limit"
+   ],
+   "-ur": [
+    "-uncover-ratelimit"
+   ],
+   "-rl": [
+    "-rate-limit"
+   ],
+   "-rld": [
+    "-rate-limit-duration"
+   ],
+   "-rlm": [
+    "-rate-limit-minute"
+   ],
+   "-bs": [
+    "-bulk-size"
+   ],
+   "-c": [
+    "-concurrency"
+   ],
+   "-hbs": [
+    "-headless-bulk-size"
+   ],
+   "-headc": [
+    "-headless-concurrency"
+   ],
+   "-jsc": [
+    "-js-concurrency"
+   ],
+   "-pc": [
+    "-payload-concurrency"
+   ],
+   "-prc": [
+    "-probe-concurrency"
+   ],
+   "-tlc": [
+    "-template-loading-concurrency"
+   ],
+   "-ldp": [
+    "-leave-default-ports"
+   ],
+   "-mhe": [
+    "-max-host-error"
+   ],
+   "-te": [
+    "-track-error"
+   ],
+   "-nmhe": [
+    "-no-mhe"
+   ],
+   "-spm": [
+    "-stop-at-first-match"
+   ],
+   "-ss": [
+    "-scan-strategy"
+   ],
+   "-irt": [
+    "-input-read-timeout"
+   ],
+   "-nh": [
+    "-no-httpx"
+   ],
+   "-sb": [
+    "-show-browser"
+   ],
+   "-ho": [
+    "-headless-options"
+   ],
+   "-sc": [
+    "-system-chrome"
+   ],
+   "-cdpe": [
+    "-cdp-endpoint"
+   ],
+   "-lha": [
+    "-list-headless-action"
+   ],
+   "-dreq": [
+    "-debug-req"
+   ],
+   "-dresp": [
+    "-debug-resp"
+   ],
+   "-p": [
+    "-proxy"
+   ],
+   "-pi": [
+    "-proxy-internal"
+   ],
+   "-ldf": [
+    "-list-dsl-function"
+   ],
+   "-tlog": [
+    "-trace-log"
+   ],
+   "-elog": [
+    "-error-log"
+   ],
+   "-hm": [
+    "-hang-monitor"
+   ],
+   "-v": [
+    "-verbose"
+   ],
+   "-svd": [
+    "-show-var-dump"
+   ],
+   "-vdl": [
+    "-var-dump-limit"
+   ],
+   "-ep": [
+    "-enable-pprof"
+   ],
+   "-tv": [
+    "-templates-version"
+   ],
+   "-hc": [
+    "-health-check"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-ut": [
+    "-update-templates"
+   ],
+   "-ud": [
+    "-update-template-dir"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-hpd": [
+    "-honeypot-detect"
+   ],
+   "-hpt": [
+    "-honeypot-threshold"
+   ],
+   "-shp": [
+    "-suppress-honeypot"
+   ],
+   "-sj": [
+    "-stats-json"
+   ],
+   "-si": [
+    "-stats-interval"
+   ],
+   "-mp": [
+    "-metrics-port"
+   ],
+   "-hps": [
+    "-http-stats"
+   ],
+   "-tid": [
+    "-team-id"
+   ],
+   "-cup": [
+    "-cloud-upload"
+   ],
+   "-sid": [
+    "-scan-id"
+   ],
+   "-sname": [
+    "-scan-name"
+   ],
+   "-pd": [
+    "-dashboard"
+   ],
+   "-pdu": [
+    "-dashboard-upload"
+   ],
+   "-sf": [
+    "-secret-file"
+   ],
+   "-ps": [
+    "-prefetch-secrets"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5b2c75e51327e17975ff5e25b5ba944d32422223928e551108f84f61e183d922",
+  "text": "Nuclei is a fast, template based vulnerability scanner focusing\non extensive configurability, massive extensibility and ease of use.\n\nUsage:\n  nuclei [flags]\n\nFlags:\nCOMMON:\n   -mt, -max-time value  maximum time to run before automatic termination (e.g., 1h, 30m)\n\nTARGET:\n   -u, -target string[]          target URLs/hosts to scan\n   -l, -list string              path to file containing a list of target URLs/hosts to scan (one per line)\n   -targets-inline string        inline multiline target list (for use in template profiles)\n   -eh, -exclude-hosts string[]  hosts to exclude to scan from the input list (ip, cidr, hostname)\n   -resume string                resume scan from and save to specified file (clustering will be disabled)\n   -sa, -scan-all-ips            scan all the IP's associated with dns record\n   -iv, -ip-version string[]     IP version to scan of hostname (4,6) - (default 4)\n\nTARGET-FORMAT:\n   -im, -input-mode string         mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")\n   -ro, -required-only             use only required fields in input format when generating requests\n   -sfv, -skip-format-validation   skip format validation (like missing vars) when parsing input file\n   -vtt, -vars-text-templating     enable text templating for vars in input file (only for yaml input mode)\n   -vfp, -var-file-paths string[]  list of yaml file contained vars to inject into yaml input\n\nTEMPLATES:\n   -nt, -new-templates                    run only new templates added in latest nuclei-templates release\n   -ntv, -new-templates-version string[]  run new templates added in specific version\n   -as, -automatic-scan                   automatic web scan using wappalyzer technology detection to tags mapping\n   -t, -templates string[]                list of template or template directory to run (comma-separated, file)\n   -turl, -template-url string[]          template url or list containing template urls to run (comma-separated, file)\n   -ai, -prompt string                    generate and run template using ai prompt\n   -w, -workflows string[]                list of workflow or workflow directory to run (comma-separated, file)\n   -wurl, -workflow-url string[]          workflow url or list containing workflow urls to run (comma-separated, file)\n   -validate                              validate the passed templates to nuclei\n   -nss, -no-strict-syntax                disable strict syntax check on templates\n   -td, -template-display                 displays the templates content\n   -tl                                    list all templates matching current filters\n   -tgl                                   list all available tags\n   -sign                                  signs the templates with the private key defined in NUCLEI_SIGNATURE_PRIVATE_KEY env variable\n   -code                                  enable loading code protocol-based templates\n   -dut, -disable-unsigned-templates      disable running unsigned templates or templates with mismatched signature\n   -esc, -enable-self-contained           enable loading self-contained templates\n   -egm, -enable-global-matchers          enable loading global matchers templates\n   -file                                  enable loading file templates\n\nFILTERING:\n   -a, -author string[]               templates to run based on authors (comma-separated, file)\n   -tags string[]                     templates to run based on tags (comma-separated, file)\n   -etags, -exclude-tags string[]     templates to exclude based on tags (comma-separated, file)\n   -itags, -include-tags string[]     tags to be executed even if they are excluded either by default or configuration\n   -id, -template-id string[]         templates to run based on template ids (comma-separated, file, allow-wildcard)\n   -eid, -exclude-id string[]         templates to exclude based on template ids (comma-separated, file)\n   -it, -include-templates string[]   path to template file or directory to be executed even if they are excluded either by default or configuration\n   -et, -exclude-templates string[]   path to template file or directory to exclude (comma-separated, file)\n   -em, -exclude-matchers string[]    template matchers to exclude in result\n   -s, -severity value[]              templates to run based on severity. Possible values: info, low, medium, high, critical, unknown\n   -es, -exclude-severity value[]     templates to exclude based on severity. Possible values: info, low, medium, high, critical, unknown\n   -pt, -type value[]                 templates to run based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript\n   -ept, -exclude-type value[]        templates to exclude based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript\n   -tc, -template-condition string[]  templates to run based on expression condition\n\nOUTPUT:\n   -o, -output string            output file to write found issues/vulnerabilities\n   -sresp, -store-resp           store all request/response passed through nuclei to output directory\n   -srd, -store-resp-dir string  store all request/response passed through nuclei to custom directory (default \"output\")\n   -silent                       display findings only\n   -nc, -no-color                disable output content coloring (ANSI escape codes)\n   -j, -jsonl                    write output in JSONL(ines) format\n   -irr, -include-rr -omit-raw   include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)\n   -or, -omit-raw                omit request/response pairs in the JSON, JSONL, Markdown, and PDF outputs (for findings only)\n   -ot, -omit-template           omit encoded template in the JSON, JSONL output\n   -nm, -no-meta                 disable printing result metadata in cli output\n   -ts, -timestamp               enables printing timestamp in cli output\n   -rdb, -report-db string       nuclei reporting database (always use this to persist report data)\n   -ms, -matcher-status          display match failure status\n   -me, -markdown-export string  directory to export results in markdown format\n   -se, -sarif-export string     file to export results in SARIF format\n   -je, -json-export string      file to export results in JSON format\n   -jle, -jsonl-export string    file to export results in JSONL(ine) format\n   -pe, -pdf-export string       file to export results in PDF format\n   -rd, -redact string[]         redact given list of keys from query parameter, request header and body\n\nCONFIGURATIONS:\n   -config string                        path to the nuclei configuration file\n   -tp, -profile string                  template profile config file to run\n   -tpl, -profile-list                   list community template profiles\n   -fr, -follow-redirects                enable following redirects for http templates\n   -fhr, -follow-host-redirects          follow redirects on the same host\n   -mr, -max-redirects int               max number of redirects to follow for http templates (default 10)\n   -dr, -disable-redirects               disable redirects for http templates\n   -rc, -report-config string            nuclei reporting module configuration file\n   -H, -header string[]                  custom header/cookie to include in all http request in header:value format (cli, file)\n   -V, -var value                        custom vars in key=value format\n   -r, -resolvers string                 file containing resolver list for nuclei\n   -sr, -system-resolvers                use system DNS resolving as error fallback\n   -dc, -disable-clustering              disable clustering of requests\n   -passive                              enable passive HTTP response processing mode\n   -fh2, -force-http2                    force http2 connection on requests\n   -ev, -env-vars                        enable environment variables to be used in template\n   -cc, -client-cert string              client certificate file (PEM-encoded) used for authenticating against scanned hosts\n   -ck, -client-key string               client key file (PEM-encoded) used for authenticating against scanned hosts\n   -ca, -client-ca string                client certificate authority file (PEM-encoded) used for authenticating against scanned hosts\n   -sml, -show-match-line                show match lines for file templates, works with extractors only\n   -ztls                                 use ztls library with autofallback to standard one for tls13 [Deprecated] autofallback to ztls is enabled by default\n   -sni string                           tls sni hostname to use (default: input domain name)\n   -dka, -dialer-keep-alive value        keep-alive duration for network requests.\n   -lfa, -allow-local-file-access        allows file (payload) access anywhere on the system\n   -lna, -restrict-local-network-access  blocks connections to the local / private network\n   -i, -interface string                 network interface to use for network scan\n   -at, -attack-type string              type of payload combinations to perform (batteringram,pitchfork,clusterbomb)\n   -sip, -source-ip string               source ip address to use for network scan\n   -rsr, -response-size-read int         max response size to read in bytes\n   -rss, -response-size-save int         max response size to read in bytes (default 1048576)\n   -reset                                reset removes all nuclei configuration and data files (including nuclei-templates)\n   -tlsi, -tls-impersonate               enable experimental client hello (ja3) tls randomization\n   -hae, -http-api-endpoint string       experimental http api endpoint\n\nINTERACTSH:\n   -iserver, -interactsh-server string  interactsh server url for self-hosted instance (default: oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)\n   -itoken, -interactsh-token string    authentication token for self-hosted interactsh server\n   -interactions-cache-size int         number of requests to keep in the interactions cache (default 5000)\n   -interactions-eviction int           number of seconds to wait before evicting requests from cache (default 60)\n   -interactions-poll-duration int      number of seconds to wait before each interaction poll request (default 5)\n   -interactions-cooldown-period int    extra time for interaction polling before exiting (default 5)\n   -ni, -no-interactsh                  disable interactsh server for OAST testing, exclude OAST based templates\n\nFUZZING:\n   -ft, -fuzzing-type string           overrides fuzzing type set in template (replace, prefix, postfix, infix)\n   -fm, -fuzzing-mode string           overrides fuzzing mode set in template (multiple, single)\n   -fuzz                               enable loading fuzzing templates (Deprecated: use -dast instead)\n   -dast                               enable / run dast (fuzz) nuclei templates\n   -dts, -dast-server                  enable dast server mode (live fuzzing)\n   -dtr, -dast-report                  write dast scan report to file\n   -dtst, -dast-server-token string    dast server token (optional)\n   -dtsa, -dast-server-address string  dast server address (default \"localhost:9055\")\n   -dfp, -display-fuzz-points          display fuzz points in the output for debugging\n   -fuzz-param-frequency int           frequency of uninteresting parameters for fuzzing before skipping (default 10)\n   -fa, -fuzz-aggression string        fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")\n   -cs, -fuzz-scope string[]           in scope url regex to be followed by fuzzer\n   -cos, -fuzz-out-scope string[]      out of scope url regex to be excluded by fuzzer\n\nUNCOVER:\n   -uc, -uncover                  enable uncover engine\n   -uq, -uncover-query string[]   uncover search query\n   -ue, -uncover-engine string[]  uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise,daydaymap,nerdydata) (default shodan)\n   -uf, -uncover-field string     uncover fields to return (ip,port,host) (default \"ip:port\")\n   -ul, -uncover-limit int        uncover results to return (default 100)\n   -ur, -uncover-ratelimit int    override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)\n\nRATE-LIMIT:\n   -rl, -rate-limit int                     maximum number of requests to send per second (default 150)\n   -rld, -rate-limit-duration value         maximum number of requests to send per second (default 1s)\n   -per-host-rate-limit                     enable per-host rate limiting (global rate limit becomes unlimited when enabled)\n   -rlm, -rate-limit-minute int             maximum number of requests to send per minute (DEPRECATED)\n   -bs, -bulk-size int                      maximum number of hosts to be analyzed in parallel per template (default 25)\n   -c, -concurrency int                     maximum number of templates to be executed in parallel (default 25)\n   -hbs, -headless-bulk-size int            maximum number of headless hosts to be analyzed in parallel per template (default 10)\n   -headc, -headless-concurrency int        maximum number of headless templates to be executed in parallel (default 10)\n   -jsc, -js-concurrency int                maximum number of javascript runtimes to be executed in parallel (default 120)\n   -pc, -payload-concurrency int            max payload concurrency for each template (default 25)\n   -prc, -probe-concurrency int             http probe concurrency with httpx (default 50)\n   -tlc, -template-loading-concurrency int  maximum number of concurrent template loading operations (default 50)\n\nOPTIMIZATIONS:\n   -timeout int                     time to wait in seconds before timeout (default 10)\n   -retries int                     number of times to retry a failed request (default 1)\n   -ldp, -leave-default-ports       leave default HTTP/HTTPS ports (eg. host:80,host:443)\n   -mhe, -max-host-error int        max errors for a host before skipping from scan (default 30)\n   -te, -track-error string[]       adds given error to max-host-error watchlist (standard, file)\n   -nmhe, -no-mhe                   disable skipping host from scan based on errors\n   -project                         use a project folder to avoid sending same request multiple times\n   -project-path string             set a specific project path (default \"/tmp\")\n   -spm, -stop-at-first-match       stop processing HTTP requests after the first match (may break template/workflow logic)\n   -stream                          stream mode - start elaborating without sorting the input\n   -ss, -scan-strategy value        strategy to use while scanning(auto/host-spray/template-spray) (default auto)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -nh, -no-httpx                   disable httpx probing for non-url input\n   -preflight-portscan              run preflight resolve + TCP portscan and filter targets before scanning (disabled by default)\n   -no-stdin                        disable stdin processing\n\nHEADLESS:\n   -headless                        enable templates that require headless browser support (root user on Linux will disable sandbox)\n   -page-timeout int                seconds to wait for each page in headless mode (default 20)\n   -sb, -show-browser               show the browser on the screen when running templates with headless mode\n   -ho, -headless-options string[]  start headless chrome with additional options\n   -sc, -system-chrome              use local installed Chrome browser instead of nuclei installed\n   -cdpe, -cdp-endpoint string      use remote browser via Chrome DevTools Protocol (CDP) endpoint\n   -lha, -list-headless-action      list available headless actions\n\nDEBUG:\n   -debug                     show all requests and responses\n   -dreq, -debug-req          show all sent requests\n   -dresp, -debug-resp        show all received responses\n   -p, -proxy string[]        list of http/socks5 proxy to use (comma separated or file input)\n   -pi, -proxy-internal       proxy all internal requests\n   -ldf, -list-dsl-function   list all supported DSL function signatures\n   -tlog, -trace-log string   file to write sent requests trace log\n   -elog, -error-log string   file to write sent requests error log\n   -version                   show nuclei version\n   -hm, -hang-monitor         enable nuclei hang monitoring\n   -v, -verbose               show verbose output\n   -profile-mem string        generate memory (heap) profile & trace files\n   -vv                        display templates loaded for scan\n   -svd, -show-var-dump       show variables dump for debugging\n   -vdl, -var-dump-limit int  limit the number of characters displayed in var dump (default 255)\n   -ep, -enable-pprof         enable pprof debugging server\n   -tv, -templates-version    shows the version of the installed nuclei-templates\n   -hc, -health-check         run diagnostic check up\n\nUPDATE:\n   -up, -update                      update nuclei engine to the latest released version\n   -ut, -update-templates            update nuclei-templates to latest released version\n   -ud, -update-template-dir string  custom directory to install / update nuclei-templates\n   -duc, -disable-update-check       disable automatic nuclei/templates update check\n\nHONEYPOT:\n   -hpd, -honeypot-detect         detect potential honeypot hosts based on match concentration\n   -hpt, -honeypot-threshold int  number of distinct template IDs required to flag a honeypot host (default 15)\n   -shp, -suppress-honeypot       suppress output for flagged honeypot hosts\n\nSTATISTICS:\n   -stats                    display statistics about the running scan\n   -sj, -stats-json          display statistics in JSONL(ines) format\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (default 5)\n   -mp, -metrics-port int    port to expose nuclei metrics on (default 9092)\n   -hps, -http-stats         enable http status capturing (experimental)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -tid, -team-id string           upload scan results to given team id (optional) (default \"none\")\n   -cup, -cloud-upload             upload scan results to pdcp dashboard [DEPRECATED use -dashboard]\n   -sid, -scan-id string           upload scan results to existing scan id (optional)\n   -sname, -scan-name string       scan name to set (optional)\n   -pd, -dashboard                 upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard\n   -pdu, -dashboard-upload string  upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\nAUTHENTICATION:\n   -sf, -secret-file string[]  path to config file containing secrets for nuclei authenticated scan\n   -ps, -prefetch-secrets      prefetch secrets from the secrets file\n\n\nEXAMPLES:\nRun nuclei on single host:\n\t$ nuclei -target example.com\n\nRun nuclei with specific template directories:\n\t$ nuclei -target example.com -t http/cves/ -t ssl\n\nRun nuclei against a list of hosts:\n\t$ nuclei -list hosts.txt\n\nRun nuclei with a JSON output:\n\t$ nuclei -target example.com -json-export output.json\n\nRun nuclei with sorted Markdown outputs (with environment variables):\n\t$ MARKDOWN_EXPORT_SORT_MODE=template nuclei -target example.com -markdown-export nuclei_report/\n\nAdditional documentation is available at: https://docs.nuclei.sh/getting-started/running\n\t\n[\u001b[31mERR\u001b[0m] failed to create config directory at /home/ctk/.config/nuclei got: mkdir /home/ctk/.config: read-only file system\n[\u001b[31mERR\u001b[0m] failed to write config file at /home/ctk/.config/nuclei/.templates-config.json got: cause=\"could not create nuclei config directory at /home/ctk/.config/nuclei: mkdir /home/ctk/.config: read-only file system\"\n[\u001b[31mERR\u001b[0m] failed to load provider keys got cause=\"couldn't write provider config file(%s): %s\\n\" /home/ctk/.config/uncover/provider-config.yaml=open /home/ctk/.config/uncover/provider-config.yaml: no such file or directory\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-allow-local-file-access",
+   "-attack-type",
+   "-auth",
+   "-author",
+   "-automatic-scan",
+   "-bulk-size",
+   "-cdp-endpoint",
+   "-client-ca",
+   "-client-cert",
+   "-client-key",
+   "-cloud-upload",
+   "-code",
+   "-concurrency",
+   "-config",
+   "-dashboard",
+   "-dashboard-upload",
+   "-dast",
+   "-dast-report",
+   "-dast-server",
+   "-dast-server-address",
+   "-dast-server-token",
+   "-debug",
+   "-debug-req",
+   "-debug-resp",
+   "-dialer-keep-alive",
+   "-disable-clustering",
+   "-disable-redirects",
+   "-disable-unsigned-templates",
+   "-disable-update-check",
+   "-display-fuzz-points",
+   "-enable-global-matchers",
+   "-enable-pprof",
+   "-enable-self-contained",
+   "-env-vars",
+   "-error-log",
+   "-exclude-hosts",
+   "-exclude-id",
+   "-exclude-matchers",
+   "-exclude-severity",
+   "-exclude-tags",
+   "-exclude-templates",
+   "-exclude-type",
+   "-file",
+   "-follow-host-redirects",
+   "-follow-redirects",
+   "-force-http2",
+   "-fuzz",
+   "-fuzz-aggression",
+   "-fuzz-out-scope",
+   "-fuzz-param-frequency",
+   "-fuzz-scope",
+   "-fuzzing-mode",
+   "-fuzzing-type",
+   "-hang-monitor",
+   "-header",
+   "-headless",
+   "-headless-bulk-size",
+   "-headless-concurrency",
+   "-headless-options",
+   "-health-check",
+   "-honeypot-detect",
+   "-honeypot-threshold",
+   "-http-api-endpoint",
+   "-http-stats",
+   "-include-rr",
+   "-include-tags",
+   "-include-templates",
+   "-input-mode",
+   "-input-read-timeout",
+   "-interactions-cache-size",
+   "-interactions-cooldown-period",
+   "-interactions-eviction",
+   "-interactions-poll-duration",
+   "-interactsh-server",
+   "-interactsh-token",
+   "-interface",
+   "-ip-version",
+   "-js-concurrency",
+   "-json-export",
+   "-jsonl",
+   "-jsonl-export",
+   "-leave-default-ports",
+   "-list",
+   "-list-dsl-function",
+   "-list-headless-action",
+   "-markdown-export",
+   "-matcher-status",
+   "-max-host-error",
+   "-max-redirects",
+   "-metrics-port",
+   "-new-templates",
+   "-new-templates-version",
+   "-no-color",
+   "-no-httpx",
+   "-no-interactsh",
+   "-no-meta",
+   "-no-mhe",
+   "-no-stdin",
+   "-no-strict-syntax",
+   "-omit-raw",
+   "-omit-template",
+   "-output",
+   "-page-timeout",
+   "-passive",
+   "-payload-concurrency",
+   "-prefetch-secrets",
+   "-probe-concurrency",
+   "-profile",
+   "-profile-list",
+   "-profile-mem",
+   "-project",
+   "-project-path",
+   "-prompt",
+   "-proxy",
+   "-proxy-internal",
+   "-rate-limit",
+   "-rate-limit-duration",
+   "-rate-limit-minute",
+   "-redact",
+   "-report-config",
+   "-report-db",
+   "-required-only",
+   "-reset",
+   "-resolvers",
+   "-response-size-read",
+   "-response-size-save",
+   "-restrict-local-network-access",
+   "-resume",
+   "-retries",
+   "-sarif-export",
+   "-scan-all-ips",
+   "-scan-id",
+   "-scan-name",
+   "-scan-strategy",
+   "-secret-file",
+   "-severity",
+   "-show-browser",
+   "-show-match-line",
+   "-show-var-dump",
+   "-sign",
+   "-silent",
+   "-skip-format-validation",
+   "-sni",
+   "-source-ip",
+   "-stats",
+   "-stats-interval",
+   "-stats-json",
+   "-stop-at-first-match",
+   "-store-resp",
+   "-store-resp-dir",
+   "-stream",
+   "-suppress-honeypot",
+   "-system-chrome",
+   "-system-resolvers",
+   "-tags",
+   "-target",
+   "-team-id",
+   "-template-condition",
+   "-template-display",
+   "-template-id",
+   "-template-loading-concurrency",
+   "-template-url",
+   "-templates",
+   "-templates-version",
+   "-tgl",
+   "-timeout",
+   "-timestamp",
+   "-tl",
+   "-tls-impersonate",
+   "-trace-log",
+   "-track-error",
+   "-type",
+   "-uncover",
+   "-uncover-engine",
+   "-uncover-field",
+   "-uncover-limit",
+   "-uncover-query",
+   "-uncover-ratelimit",
+   "-update",
+   "-update-template-dir",
+   "-update-templates",
+   "-validate",
+   "-var",
+   "-var-dump-limit",
+   "-verbose",
+   "-version",
+   "-vv",
+   "-workflow-url",
+   "-workflows",
+   "-ztls"
+  ],
+  "unconfirmed": [
+   "--addr",
+   "--address",
+   "--c",
+   "--cert",
+   "--dev",
+   "--dir",
+   "--l",
+   "--main",
+   "--nC",
+   "--o",
+   "--out",
+   "--output",
+   "--priv-key",
+   "--protocol",
+   "--retries",
+   "--silent",
+   "--src",
+   "--t",
+   "--target",
+   "--template",
+   "--testcases",
+   "--timeout",
+   "--tpl",
+   "--v",
+   "--version",
+   "-dialer-timeout",
+   "-dir",
+   "-key",
+   "-keyfile",
+   "-out",
+   "-response-read-timeout"
+  ],
+  "help_only": [
+   "-H",
+   "-V",
+   "-a",
+   "-ai",
+   "-as",
+   "-at",
+   "-bs",
+   "-c",
+   "-ca",
+   "-cc",
+   "-cdpe",
+   "-ck",
+   "-cos",
+   "-cs",
+   "-cup",
+   "-dc",
+   "-dfp",
+   "-dka",
+   "-dr",
+   "-dreq",
+   "-dresp",
+   "-dtr",
+   "-dts",
+   "-dtsa",
+   "-dtst",
+   "-duc",
+   "-dut",
+   "-egm",
+   "-eh",
+   "-eid",
+   "-elog",
+   "-em",
+   "-ep",
+   "-ept",
+   "-es",
+   "-esc",
+   "-et",
+   "-etags",
+   "-ev",
+   "-fa",
+   "-fh2",
+   "-fhr",
+   "-fm",
+   "-fr",
+   "-ft",
+   "-hae",
+   "-hbs",
+   "-hc",
+   "-headc",
+   "-hm",
+   "-ho",
+   "-hpd",
+   "-hps",
+   "-hpt",
+   "-i",
+   "-id",
+   "-im",
+   "-irr",
+   "-irt",
+   "-iserver",
+   "-it",
+   "-itags",
+   "-itoken",
+   "-iv",
+   "-j",
+   "-je",
+   "-jle",
+   "-jsc",
+   "-l",
+   "-ldf",
+   "-ldp",
+   "-lfa",
+   "-lha",
+   "-lna",
+   "-max-time",
+   "-me",
+   "-mhe",
+   "-mp",
+   "-mr",
+   "-ms",
+   "-mt",
+   "-nc",
+   "-nh",
+   "-ni",
+   "-nm",
+   "-nmhe",
+   "-nss",
+   "-nt",
+   "-ntv",
+   "-o",
+   "-or",
+   "-ot",
+   "-p",
+   "-pc",
+   "-pd",
+   "-pdf-export",
+   "-pdu",
+   "-pe",
+   "-per-host-rate-limit",
+   "-pi",
+   "-prc",
+   "-preflight-portscan",
+   "-ps",
+   "-pt",
+   "-r",
+   "-rc",
+   "-rd",
+   "-rdb",
+   "-rl",
+   "-rld",
+   "-rlm",
+   "-ro",
+   "-rsr",
+   "-rss",
+   "-s",
+   "-sa",
+   "-sb",
+   "-sc",
+   "-se",
+   "-sf",
+   "-sfv",
+   "-shp",
+   "-si",
+   "-sid",
+   "-sip",
+   "-sj",
+   "-sml",
+   "-sname",
+   "-spm",
+   "-sr",
+   "-srd",
+   "-sresp",
+   "-ss",
+   "-svd",
+   "-t",
+   "-targets-inline",
+   "-tc",
+   "-td",
+   "-te",
+   "-tid",
+   "-tlc",
+   "-tlog",
+   "-tlsi",
+   "-tp",
+   "-tpl",
+   "-ts",
+   "-turl",
+   "-tv",
+   "-u",
+   "-uc",
+   "-ud",
+   "-ue",
+   "-uf",
+   "-ul",
+   "-up",
+   "-uq",
+   "-ur",
+   "-ut",
+   "-v",
+   "-var-file-paths",
+   "-vars-text-templating",
+   "-vdl",
+   "-vfp",
+   "-vtt",
+   "-w",
+   "-wurl"
+  ],
+  "mining_coverage": 0.5337078651685393
+ },
+ "surface": {
+  "flags": {
+   "--addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "playground server address",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/tools/fuzzplayground/main.go"
+   },
+   "--address": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "address to run the server on",
+    "kind": "option",
+    "first_tag": "v3.2.5",
+    "first_date": "2024-04-25T16:30:37+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/scan-charts/main.go"
+   },
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Number of concurrent requests to make",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--cert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "certificate file",
+    "kind": "option",
+    "first_tag": "v3.3.7",
+    "first_date": "2024-12-02T17:17:16+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/tools/signer/main.go"
+   },
+   "--dev": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dev Branch Nuclei Binary",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.7.1",
+    "last_date": "2026-03-05T13:52:27+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "directory to scan",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/scan-charts/main.go"
+   },
+   "--l": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List of URLs to run templates on",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--main": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Main Branch Nuclei Binary",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.7.1",
+    "last_date": "2026-03-05T13:52:27+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--nC": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't Use colors in output",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File to write output to (optional)",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--out": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "directory to output generated files",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/js/devtools/bindgen/cmd/bindgen/main.go"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output filename of generated html file",
+    "kind": "option",
+    "first_tag": "v3.2.5",
+    "first_date": "2024-04-25T16:30:37+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/scan-charts/main.go"
+   },
+   "--priv-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "private key file",
+    "kind": "option",
+    "first_tag": "v3.3.7",
+    "first_date": "2024-12-02T17:17:16+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/tools/signer/main.go"
+   },
+   "--protocol": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "run integration tests of given protocol",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.7.1",
+    "last_date": "2026-03-05T13:52:27+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/integration-test/integration-test.go"
+   },
+   "--retries": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Number of times to retry a failed request",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only results in output",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--src": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "nuclei source path",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/memogen/memogen.go"
+   },
+   "--t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Template input file/files to run on host",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--target": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "target modules to generate",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/js/devtools/bindgen/cmd/bindgen/main.go"
+   },
+   "--template": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "template to sign (file only)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "cmd/tools/signer/main.go"
+   },
+   "--testcases": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Test cases file for nuclei functional tests",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.7.1",
+    "last_date": "2026-03-05T13:52:27+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/functional-test/main.go"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Time to wait in seconds before timeout",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--tpl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "template path",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/memogen/memogen.go"
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show Verbose output",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show version of nuclei",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2020-04-05T01:18:57+05:30",
+    "last_tag": "v1.0.1",
+    "last_date": "2020-04-05T01:18:57+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go"
+   },
+   "-H": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom header/cookie to include in all http request in header:value format (cli, file)",
+    "aliases": [
+     "-header"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-V": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom vars in key=value format",
+    "aliases": [
+     "-var"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-a": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to run based on authors (comma-separated, file)",
+    "aliases": [
+     "-author"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ai": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "generate and run template using ai prompt",
+    "aliases": [
+     "-prompt"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-as": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "automatic web scan using wappalyzer technology detection to tags mapping",
+    "aliases": [
+     "-automatic-scan"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-at": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "type of payload combinations to perform (batteringram,pitchfork,clusterbomb)",
+    "aliases": [
+     "-attack-type"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-auth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "configure projectdiscovery cloud (pdcp) api key (default true)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-bs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of hosts to be analyzed in parallel per template (default 25)",
+    "aliases": [
+     "-bulk-size"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of templates to be executed in parallel (default 25)",
+    "aliases": [
+     "-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ca": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "client certificate authority file (PEM-encoded) used for authenticating against scanned hosts",
+    "aliases": [
+     "-client-ca"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "client certificate file (PEM-encoded) used for authenticating against scanned hosts",
+    "aliases": [
+     "-client-cert"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cdpe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use remote browser via Chrome DevTools Protocol (CDP) endpoint",
+    "aliases": [
+     "-cdp-endpoint"
+    ],
+    "kind": "option",
+    "first_tag": "v3.7.0",
+    "first_date": "2026-01-28T16:45:46+07:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "client key file (PEM-encoded) used for authenticating against scanned hosts",
+    "aliases": [
+     "-client-key"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-code": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable loading code protocol-based templates",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "path to the nuclei configuration file",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cos": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "out of scope url regex to be excluded by fuzzer",
+    "aliases": [
+     "-fuzz-out-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "in scope url regex to be followed by fuzzer",
+    "aliases": [
+     "-fuzz-scope"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cup": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload scan results to pdcp dashboard [DEPRECATED use -dashboard]",
+    "aliases": [
+     "-cloud-upload"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dast": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable / run dast (fuzz) nuclei templates",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable clustering of requests",
+    "aliases": [
+     "-disable-clustering"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show all requests and responses",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dfp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display fuzz points in the output for debugging",
+    "aliases": [
+     "-display-fuzz-points"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dialer-timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "timeout for network requests.",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.2.9",
+    "last_date": "2024-06-16T18:12:35+04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "directory to process (default \"pkg/js/global\")",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "pkg/js/devtools/scrapefuncs/README.md"
+   },
+   "-dka": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "keep-alive duration for network requests.",
+    "aliases": [
+     "-dialer-keep-alive"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable redirects for http templates",
+    "aliases": [
+     "-disable-redirects"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dreq": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show all sent requests",
+    "aliases": [
+     "-debug-req"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dresp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show all received responses",
+    "aliases": [
+     "-debug-resp"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dtr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write dast scan report to file",
+    "aliases": [
+     "-dast-report"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable dast server mode (live fuzzing)",
+    "aliases": [
+     "-dast-server"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dtsa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "dast server address (default \"localhost:9055\")",
+    "aliases": [
+     "-dast-server-address"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dtst": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "dast server token (optional)",
+    "aliases": [
+     "-dast-server-token"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic nuclei/templates update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dut": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable running unsigned templates or templates with mismatched signature",
+    "aliases": [
+     "-disable-unsigned-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-egm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable loading global matchers templates",
+    "aliases": [
+     "-enable-global-matchers"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-eh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "hosts to exclude to scan from the input list (ip, cidr, hostname)",
+    "aliases": [
+     "-exclude-hosts"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-eid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to exclude based on template ids (comma-separated, file)",
+    "aliases": [
+     "-exclude-id"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-elog": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write sent requests error log",
+    "aliases": [
+     "-error-log"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-em": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "template matchers to exclude in result",
+    "aliases": [
+     "-exclude-matchers"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ep": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable pprof debugging server",
+    "aliases": [
+     "-enable-pprof"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ept": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to exclude based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+    "aliases": [
+     "-exclude-type"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-es": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to exclude based on severity. Possible values: info, low, medium, high, critical, unknown",
+    "aliases": [
+     "-exclude-severity"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-esc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable loading self-contained templates",
+    "aliases": [
+     "-enable-self-contained"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-et": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to template file or directory to exclude (comma-separated, file)",
+    "aliases": [
+     "-exclude-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-etags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to exclude based on tags (comma-separated, file)",
+    "aliases": [
+     "-exclude-tags"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ev": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable environment variables to be used in template",
+    "aliases": [
+     "-env-vars"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "fuzzing aggression level controls payload count for fuzz (low, medium, high) (default \"low\")",
+    "aliases": [
+     "-fuzz-aggression"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fh2": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "force http2 connection on requests",
+    "aliases": [
+     "-force-http2"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fhr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "follow redirects on the same host",
+    "aliases": [
+     "-follow-host-redirects"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable loading file templates",
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "overrides fuzzing mode set in template (multiple, single)",
+    "aliases": [
+     "-fuzzing-mode"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable following redirects for http templates",
+    "aliases": [
+     "-follow-redirects"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ft": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "overrides fuzzing type set in template (replace, prefix, postfix, infix)",
+    "aliases": [
+     "-fuzzing-type"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fuzz": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable loading fuzzing templates (Deprecated: use -dast instead)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-fuzz-param-frequency": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "frequency of uninteresting parameters for fuzzing before skipping (default 10)",
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hae": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "experimental http api endpoint",
+    "aliases": [
+     "-http-api-endpoint"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hbs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of headless hosts to be analyzed in parallel per template (default 10)",
+    "aliases": [
+     "-headless-bulk-size"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run diagnostic check up",
+    "aliases": [
+     "-health-check"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-headc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of headless templates to be executed in parallel (default 10)",
+    "aliases": [
+     "-headless-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-headless": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable templates that require headless browser support (root user on Linux will disable sandbox)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable nuclei hang monitoring",
+    "aliases": [
+     "-hang-monitor"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ho": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "start headless chrome with additional options",
+    "aliases": [
+     "-headless-options"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hpd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "detect potential honeypot hosts based on match concentration",
+    "aliases": [
+     "-honeypot-detect"
+    ],
+    "kind": "option",
+    "first_tag": "v3.8.0",
+    "first_date": "2026-04-17T01:04:38+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hps": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable http status capturing (experimental)",
+    "aliases": [
+     "-http-stats"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.9",
+    "first_date": "2025-02-13T18:57:24+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-hpt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of distinct template IDs required to flag a honeypot host (default 15)",
+    "aliases": [
+     "-honeypot-threshold"
+    ],
+    "kind": "option",
+    "first_tag": "v3.8.0",
+    "first_date": "2026-04-17T01:04:38+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "network interface to use for network scan",
+    "aliases": [
+     "-interface"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-id": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to run based on template ids (comma-separated, file, allow-wildcard)",
+    "aliases": [
+     "-template-id"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-im": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "mode of input file (list, burp, jsonl, yaml, openapi, swagger) (default \"list\")",
+    "aliases": [
+     "-input-mode"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-include-rr": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-interactions-cache-size": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of requests to keep in the interactions cache (default 5000)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-interactions-cooldown-period": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "extra time for interaction polling before exiting (default 5)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-interactions-eviction": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of seconds to wait before evicting requests from cache (default 60)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-interactions-poll-duration": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of seconds to wait before each interaction poll request (default 5)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-irr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)"
+   },
+   "-irt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout on input read (default 3m0s)",
+    "aliases": [
+     "-input-read-timeout"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-iserver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "interactsh server url for self-hosted instance (default: oast.pro,oast.live,oast.site,oast.online,oast.fun,oast.me)",
+    "aliases": [
+     "-interactsh-server"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-it": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to template file or directory to be executed even if they are excluded either by default or configuration",
+    "aliases": [
+     "-include-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-itags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "tags to be executed even if they are excluded either by default or configuration",
+    "aliases": [
+     "-include-tags"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-itoken": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "authentication token for self-hosted interactsh server",
+    "aliases": [
+     "-interactsh-token"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-iv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IP version to scan of hostname (4,6) - (default 4)",
+    "aliases": [
+     "-ip-version"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in JSONL(ines) format",
+    "aliases": [
+     "-jsonl"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-je": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to export results in JSON format",
+    "aliases": [
+     "-json-export"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-jle": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to export results in JSONL(ine) format",
+    "aliases": [
+     "-jsonl-export"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-jsc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of javascript runtimes to be executed in parallel (default 120)",
+    "aliases": [
+     "-js-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "openai api key",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "pkg/js/devtools/scrapefuncs/README.md"
+   },
+   "-keyfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "openai api key file",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "pkg/js/devtools/scrapefuncs/README.md"
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to file containing a list of target URLs/hosts to scan (one per line)",
+    "aliases": [
+     "-list"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ldf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list all supported DSL function signatures",
+    "aliases": [
+     "-list-dsl-function"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ldp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "leave default HTTP/HTTPS ports (eg. host:80,host:443)",
+    "aliases": [
+     "-leave-default-ports"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-lfa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "allows file (payload) access anywhere on the system",
+    "aliases": [
+     "-allow-local-file-access"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-lha": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list available headless actions",
+    "aliases": [
+     "-list-headless-action"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-lna": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "blocks connections to the local / private network",
+    "aliases": [
+     "-restrict-local-network-access"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-me": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "directory to export results in markdown format",
+    "aliases": [
+     "-markdown-export"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mhe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "max errors for a host before skipping from scan (default 30)",
+    "aliases": [
+     "-max-host-error"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "port to expose nuclei metrics on (default 9092)",
+    "aliases": [
+     "-metrics-port"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "max number of redirects to follow for http templates (default 10)",
+    "aliases": [
+     "-max-redirects"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ms": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display match failure status",
+    "aliases": [
+     "-matcher-status"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum time to run before automatic termination (e.g., 1h, 30m)",
+    "aliases": [
+     "-max-time"
+    ]
+   },
+   "-nc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable output content coloring (ANSI escape codes)",
+    "aliases": [
+     "-no-color"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable httpx probing for non-url input",
+    "aliases": [
+     "-no-httpx"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ni": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable interactsh server for OAST testing, exclude OAST based templates",
+    "aliases": [
+     "-no-interactsh"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable printing result metadata in cli output",
+    "aliases": [
+     "-no-meta"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nmhe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable skipping host from scan based on errors",
+    "aliases": [
+     "-no-mhe"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-no-stdin": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable stdin processing",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable strict syntax check on templates",
+    "aliases": [
+     "-no-strict-syntax"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run only new templates added in latest nuclei-templates release",
+    "aliases": [
+     "-new-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ntv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run new templates added in specific version",
+    "aliases": [
+     "-new-templates-version"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "output file to write found issues/vulnerabilities",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-omit-raw": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "include request/response pairs in the JSON, JSONL, and Markdown outputs (for findings only) [DEPRECATED use -omit-raw] (default true)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-or": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "omit request/response pairs in the JSON, JSONL, Markdown, and PDF outputs (for findings only)"
+   },
+   "-ot": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "omit encoded template in the JSON, JSONL output",
+    "aliases": [
+     "-omit-template"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-out": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output js file with declarations of all global functions",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "pkg/js/devtools/scrapefuncs/README.md"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of http/socks5 proxy to use (comma separated or file input)",
+    "aliases": [
+     "-proxy"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-page-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "seconds to wait for each page in headless mode (default 20)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-passive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable passive HTTP response processing mode",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "max payload concurrency for each template (default 25)",
+    "aliases": [
+     "-payload-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload / view nuclei results in projectdiscovery cloud (pdcp) UI dashboard",
+    "aliases": [
+     "-dashboard"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.5",
+    "first_date": "2024-10-19T17:24:01+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pdu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload / view nuclei results file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+    "aliases": [
+     "-dashboard-upload"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.5",
+    "first_date": "2024-10-19T17:24:01+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to export results in PDF format",
+    "aliases": [
+     "-pdf-export"
+    ]
+   },
+   "-per-host-rate-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable per-host rate limiting (global rate limit becomes unlimited when enabled)"
+   },
+   "-pi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "proxy all internal requests",
+    "aliases": [
+     "-proxy-internal"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-prc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "http probe concurrency with httpx (default 50)",
+    "aliases": [
+     "-probe-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-preflight-portscan": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run preflight resolve + TCP portscan and filter targets before scanning (disabled by default)"
+   },
+   "-profile-mem": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "generate memory (heap) profile & trace files",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-project": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use a project folder to avoid sending same request multiple times",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-project-path": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "set a specific project path (default \"/tmp\")",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ps": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "prefetch secrets from the secrets file",
+    "aliases": [
+     "-prefetch-secrets"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to run based on protocol type. Possible values: dns, file, http, headless, tcp, workflow, ssl, websocket, whois, code, javascript",
+    "aliases": [
+     "-type"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file containing resolver list for nuclei",
+    "aliases": [
+     "-resolvers"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "nuclei reporting module configuration file",
+    "aliases": [
+     "-report-config"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "redact given list of keys from query parameter, request header and body",
+    "aliases": [
+     "-redact"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.1",
+    "first_date": "2024-08-16T20:45:35+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rdb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "nuclei reporting database (always use this to persist report data)",
+    "aliases": [
+     "-report-db"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-reset": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "reset removes all nuclei configuration and data files (including nuclei-templates)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-response-read-timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "response read timeout in seconds (default 5s)",
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.2.9",
+    "last_date": "2024-06-16T18:12:35+04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-resume": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "resume scan from and save to specified file (clustering will be disabled)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-retries": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of times to retry a failed request (default 1)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of requests to send per second (default 150)",
+    "aliases": [
+     "-rate-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rld": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of requests to send per second (default 1s)",
+    "aliases": [
+     "-rate-limit-duration"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rlm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of requests to send per minute (DEPRECATED)",
+    "aliases": [
+     "-rate-limit-minute"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ro": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use only required fields in input format when generating requests",
+    "aliases": [
+     "-required-only"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rsr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "max response size to read in bytes",
+    "aliases": [
+     "-response-size-read"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "max response size to read in bytes (default 1048576)",
+    "aliases": [
+     "-response-size-save"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to run based on severity. Possible values: info, low, medium, high, critical, unknown",
+    "aliases": [
+     "-severity"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "scan all the IP's associated with dns record",
+    "aliases": [
+     "-scan-all-ips"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show the browser on the screen when running templates with headless mode",
+    "aliases": [
+     "-show-browser"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use local installed Chrome browser instead of nuclei installed",
+    "aliases": [
+     "-system-chrome"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-se": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to export results in SARIF format",
+    "aliases": [
+     "-sarif-export"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to config file containing secrets for nuclei authenticated scan",
+    "aliases": [
+     "-secret-file"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sfv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "skip format validation (like missing vars) when parsing input file",
+    "aliases": [
+     "-skip-format-validation"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-shp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "suppress output for flagged honeypot hosts",
+    "aliases": [
+     "-suppress-honeypot"
+    ],
+    "kind": "option",
+    "first_tag": "v3.8.0",
+    "first_date": "2026-04-17T01:04:38+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-si": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of seconds to wait between showing a statistics update (default 5)",
+    "aliases": [
+     "-stats-interval"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload scan results to existing scan id (optional)",
+    "aliases": [
+     "-scan-id"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sign": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "signs the templates with the private key defined in NUCLEI_SIGNATURE_PRIVATE_KEY env variable",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display findings only",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "source ip address to use for network scan",
+    "aliases": [
+     "-source-ip"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sj": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display statistics in JSONL(ines) format",
+    "aliases": [
+     "-stats-json"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sml": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show match lines for file templates, works with extractors only",
+    "aliases": [
+     "-show-match-line"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "scan name to set (optional)",
+    "aliases": [
+     "-scan-name"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.0",
+    "first_date": "2024-07-17T19:29:32+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sni": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "tls sni hostname to use (default: input domain name)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-spm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "stop processing HTTP requests after the first match (may break template/workflow logic)",
+    "aliases": [
+     "-stop-at-first-match"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use system DNS resolving as error fallback",
+    "aliases": [
+     "-system-resolvers"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-srd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store all request/response passed through nuclei to custom directory (default \"output\")",
+    "aliases": [
+     "-store-resp-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-sresp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "store all request/response passed through nuclei to output directory",
+    "aliases": [
+     "-store-resp"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "strategy to use while scanning(auto/host-spray/template-spray) (default auto)",
+    "aliases": [
+     "-scan-strategy"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-stats": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display statistics about the running scan",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-stream": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "stream mode - start elaborating without sorting the input",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-svd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show variables dump for debugging",
+    "aliases": [
+     "-show-var-dump"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of template or template directory to run (comma-separated, file)",
+    "aliases": [
+     "-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tags": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "templates to run based on tags (comma-separated, file)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-targets-inline": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "inline multiline target list (for use in template profiles)"
+   },
+   "-tc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "templates to run based on expression condition",
+    "aliases": [
+     "-template-condition"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-td": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "displays the templates content",
+    "aliases": [
+     "-template-display"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-te": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "adds given error to max-host-error watchlist (standard, file)",
+    "aliases": [
+     "-track-error"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tgl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list all available tags",
+    "kind": "option",
+    "first_tag": "v3.2.6",
+    "first_date": "2024-05-05T00:55:43+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload scan results to given team id (optional) (default \"none\")",
+    "aliases": [
+     "-team-id"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.1",
+    "first_date": "2024-08-16T20:45:35+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "time to wait in seconds before timeout (default 10)",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list all templates matching current filters",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tlc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of concurrent template loading operations (default 50)",
+    "aliases": [
+     "-template-loading-concurrency"
+    ],
+    "kind": "option",
+    "first_tag": "v3.5.0",
+    "first_date": "2025-11-14T19:16:48+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tlog": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write sent requests trace log",
+    "aliases": [
+     "-trace-log"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tlsi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable experimental client hello (ja3) tls randomization",
+    "aliases": [
+     "-tls-impersonate"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "template profile config file to run",
+    "aliases": [
+     "-profile"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tpl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list community template profiles",
+    "aliases": [
+     "-profile-list"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.9",
+    "first_date": "2024-06-16T18:12:35+04:00",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enables printing timestamp in cli output",
+    "aliases": [
+     "-timestamp"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-turl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "template url or list containing template urls to run (comma-separated, file)",
+    "aliases": [
+     "-template-url"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-tv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "shows the version of the installed nuclei-templates",
+    "aliases": [
+     "-templates-version"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-u": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "target URLs/hosts to scan",
+    "aliases": [
+     "-target"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-uc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable uncover engine",
+    "aliases": [
+     "-uncover"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ud": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom directory to install / update nuclei-templates",
+    "aliases": [
+     "-update-template-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ue": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "uncover search engine (shodan,censys,fofa,shodan-idb,quake,hunter,zoomeye,netlas,criminalip,publicwww,hunterhow,google,odin,binaryedge,onyphe,driftnet,greynoise,daydaymap,nerdydata) (default shodan)",
+    "aliases": [
+     "-uncover-engine"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-uf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "uncover fields to return (ip,port,host) (default \"ip:port\")",
+    "aliases": [
+     "-uncover-field"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ul": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "uncover results to return (default 100)",
+    "aliases": [
+     "-uncover-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update nuclei engine to the latest released version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-uq": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "uncover search query",
+    "aliases": [
+     "-uncover-query"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ur": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "override ratelimit of engines with unknown ratelimit (default 60 req/min) (default 60)",
+    "aliases": [
+     "-uncover-ratelimit"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ut": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update nuclei-templates to latest released version",
+    "aliases": [
+     "-update-templates"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show verbose output",
+    "aliases": [
+     "-verbose"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-validate": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "validate the passed templates to nuclei",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-vdl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "limit the number of characters displayed in var dump (default 255)",
+    "aliases": [
+     "-var-dump-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v3.3.5",
+    "first_date": "2024-10-19T17:24:01+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show nuclei version",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-vfp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of yaml file contained vars to inject into yaml input",
+    "aliases": [
+     "-var-file-paths"
+    ]
+   },
+   "-vtt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable text templating for vars in input file (only for yaml input mode)",
+    "aliases": [
+     "-vars-text-templating"
+    ]
+   },
+   "-vv": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display templates loaded for scan",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of workflow or workflow directory to run (comma-separated, file)",
+    "aliases": [
+     "-workflows"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-wurl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "workflow url or list containing workflow urls to run (comma-separated, file)",
+    "aliases": [
+     "-workflow-url"
+    ],
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ztls": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use ztls library with autofallback to standard one for tls13 [Deprecated] autofallback to ztls is enabled by default",
+    "kind": "option",
+    "first_tag": "v3.2.4",
+    "first_date": "2024-04-09T02:24:14+05:30",
+    "last_tag": "v3.11.0",
+    "last_date": "2026-07-06T11:41:09+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "tool": "nuclei",
+ "repo": "projectdiscovery/nuclei",
+ "head_sha": "89d43000cf96fd0091083d4a072c7778064d084f",
+ "analyzer": "exec",
+ "analyzer_version": "5",
+ "generated_at": "2026-07-27T01:32:38.863719+00:00"
+}
