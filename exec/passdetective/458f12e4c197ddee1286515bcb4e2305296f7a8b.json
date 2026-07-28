@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:4e485eab4e21640c56b3f3daedf7fdbe88a37ad0e54f107e75a338da6924d469",
-  "duration_s": 4.71,
-  "log_tail": "\n#8 [build 2/4] WORKDIR /src\n#8 DONE 0.2s\n\n#9 [internal] load .dockerignore\n#9 transferring context: 2B done\n#9 DONE 0.0s\n\n#10 [internal] load build context\n#10 transferring context: 73.36kB done\n#10 DONE 0.0s\n\n#11 [build 3/4] COPY . .\n#11 DONE 0.0s\n\n#12 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 0.113 go: downloading github.com/fatih/color v1.15.0\n#12 0.114 go: downloading github.com/spf13/cobra v1.7.0\n#12 0.334 go: downloading github.com/mattn/go-isatty v0.0.17\n#12 0.335 go: downloading github.com/mattn/go-colorable v0.1.13\n#12 0.559 go: downloading github.com/spf13/pflag v1.0.5\n#12 0.628 go: downloading golang.org/x/sys v0.6.0\n#12 DONE 3.3s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.103 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:c203479909f7f5dcdc6b950ed57e84680db13dfb1602a9eef2a46e7635069a77 done\n#18 exporting config sha256:ea73fd46f9d18795f4a6d7618b79751d4f3086ef3082a1781e77de35f2568237 done\n#18 exporting attestation manifest sha256:8e5f2a439de62138f25a3ab9eab9f5725953ab47d6e655d24b60ece2aa5fc350 done\n#18 exporting manifest list sha256:4e485eab4e21640c56b3f3daedf7fdbe88a37ad0e54f107e75a338da6924d469 done\n#18 naming to docker.io/ctk-exec/passdetective:458f12e4c197 done\n#18 unpacking to docker.io/ctk-exec/passdetective:458f12e4c197 0.0s done\n#18 DONE 0.2s",
+  "image_digest": "sha256:e51409fa1cd2afe2def1f81118329a41bd21d1f4316a64549454b9d98353c00e",
+  "duration_s": 15.85,
+  "log_tail": "#7 DONE 11.0s\n\n#7 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#7 extracting sha256:ddac8d5b0aacfe4ea7f2134918fbfc0ee8eb4182e7a012d86fc91d3d4ac70bba done\n#7 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done\n#7 DONE 11.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 DONE 0.2s\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.091 go: downloading github.com/spf13/cobra v1.7.0\n#10 0.091 go: downloading github.com/fatih/color v1.15.0\n#10 0.386 go: downloading github.com/mattn/go-isatty v0.0.17\n#10 0.386 go: downloading github.com/mattn/go-colorable v0.1.13\n#10 0.424 go: downloading github.com/spf13/pflag v1.0.5\n#10 0.454 go: downloading golang.org/x/sys v0.6.0\n#10 DONE 3.1s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.098 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers 0.1s done\n#17 exporting manifest sha256:41aace90d417fa5f6cf832dea78ad3289c17d5d2da653f8ccdeff7c4404df198 done\n#17 exporting config sha256:744199bcd2e7235559a7266d1220edf1095f0bbec32c3f13f2fd979206cc9bc3 done\n#17 exporting attestation manifest sha256:740ebb0b6d9415158af01ada3f817631ed67116300dfea78164807b6bc255b68 done\n#17 exporting manifest list sha256:e51409fa1cd2afe2def1f81118329a41bd21d1f4316a64549454b9d98353c00e done\n#17 naming to docker.io/ctk-exec/passdetective:458f12e4c197 done\n#17 unpacking to docker.io/ctk-exec/passdetective:458f12e4c197 0.0s done\n#17 DONE 0.2s",
   "error": null,
   "timed_out": false
  },
@@ -136,7 +136,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for PassDetective\n",
-   "duration_ms": 1,
+   "duration_ms": 0,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -157,10 +157,26 @@
    "source": "info"
   },
   {
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/opt/ctk/fixtures/shell-history; exec PassDetective extract -s -b"
+   ],
+   "exit_code": 0,
+   "stdout": "Error reading file:\n%!(EXTRA *fs.PathError=open /opt/ctk/fixtures/shell-history/.bashrc: no such file or directory)===============================================================\nScan is started.\n===============================================================\nAmazon AWS Access Key ID\naws configure set aws_access_key_id AKIAIOSFODNN7EXAMPLE\nAWS API Key\naws configure set aws_access_key_id AKIAIOSFODNN7EXAMPLE\n===============================================================\nScan is finished.\n===============================================================\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "extract-secrets",
+   "title": "Extract secrets from a seeded bash history"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 11,
+   "commands_run": 12,
    "binary": "PassDetective",
    "exit_code": null,
    "stdout": "",
@@ -170,7 +186,24 @@
    "error": null
   }
  ],
- "examples": [],
+ "input_fingerprint": "ec0fc2cd146d93c1",
+ "examples": [
+  {
+   "id": "extract-secrets",
+   "title": "Extract secrets from a seeded bash history",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/opt/ctk/fixtures/shell-history; exec PassDetective extract -s -b"
+   ],
+   "stdout": "Error reading file:\n%!(EXTRA *fs.PathError=open /opt/ctk/fixtures/shell-history/.bashrc: no such file or directory)===============================================================\nScan is started.\n===============================================================\nAmazon AWS Access Key ID\naws configure set aws_access_key_id AKIAIOSFODNN7EXAMPLE\nAWS API Key\naws configure set aws_access_key_id AKIAIOSFODNN7EXAMPLE\n===============================================================\nScan is finished.\n===============================================================\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "help": {
   "flags_seen": {
    "--help": "Help message for PassDetective",
@@ -209,6 +242,7 @@
    "extract",
    "help"
   ],
+  "binary": "PassDetective",
   "ladder_used": "--help",
   "depth": 2,
   "capped": false,
@@ -298,6 +332,6 @@
  "repo": "aydinnyunus/PassDetective",
  "head_sha": "458f12e4c197ddee1286515bcb4e2305296f7a8b",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:32:36.532514+00:00"
+ "analyzer_version": "6",
+ "generated_at": "2026-07-28T01:50:51.536665+00:00"
 }
