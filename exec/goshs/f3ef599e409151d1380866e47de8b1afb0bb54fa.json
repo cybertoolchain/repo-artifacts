@@ -1,0 +1,2537 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:d163070e57c2641f0378bba18a52a653a066340fa2ccea2cd113472eba573926",
+  "duration_s": 12.17,
+  "log_tail": "#10 1.855 go: downloading github.com/moby/sys/userns v0.1.0\n#10 1.855 go: downloading github.com/klauspost/compress v1.18.5\n#10 1.855 go: downloading github.com/moby/sys/sequential v0.6.0\n#10 1.855 go: downloading github.com/moby/sys/user v0.4.0\n#10 1.890 go: downloading github.com/moby/term v0.5.2\n#10 1.891 go: downloading go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.67.0\n#10 1.891 go: downloading github.com/docker/go-connections v0.7.0\n#10 1.891 go: downloading github.com/containerd/errdefs/pkg v0.3.0\n#10 1.891 go: downloading github.com/distribution/reference v0.6.0\n#10 1.891 go: downloading go.opentelemetry.io/otel/trace v1.43.0\n#10 1.894 go: downloading github.com/tklauser/go-sysconf v0.3.16\n#10 2.199 go: downloading go.opentelemetry.io/otel v1.43.0\n#10 2.199 go: downloading go.opentelemetry.io/otel/metric v1.43.0\n#10 2.199 go: downloading github.com/felixge/httpsnoop v1.0.4\n#10 2.293 go: downloading github.com/tklauser/numcpus v0.11.0\n#10 2.613 go: downloading github.com/cespare/xxhash/v2 v2.3.0\n#10 2.613 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#10 2.613 go: downloading github.com/go-logr/logr v1.4.3\n#10 2.613 go: downloading github.com/go-logr/stdr v1.2.2\n#10 DONE 10.2s\n\n#11 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.107 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.6s done\n#17 exporting manifest sha256:87d199943a486ae2a3c88ef3f9f1b748f313ab89b968bafa514a157a3d30bc0c done\n#17 exporting config sha256:61d85dd751e81774c6bb6fd34c0db7cbe6c7524189977f8fafd22f855f83c4b1 done\n#17 exporting attestation manifest sha256:d830fbe2157eb6bea9434fc7314d212fc9190a2a44b023ecaf8ca09406e7f2f5 done\n#17 exporting manifest list sha256:d163070e57c2641f0378bba18a52a653a066340fa2ccea2cd113472eba573926 done\n#17 naming to docker.io/ctk-exec/goshs:f3ef599e4091 done\n#17 unpacking to docker.io/ctk-exec/goshs:f3ef599e4091 0.1s done\n#17 DONE 0.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "goshs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\ngoshs v2.1.4\nUsage: goshs [options]\n\nWeb server options:\n  -i,  --ip             IP or Interface to listen on              (default: 0.0.0.0)\n  -p,  --port           The port to listen on                     (default: 8000)\n  -d,  --dir            The web root directory                    (default: current working path)\n  -w,  --webdav         Also serve using webdav protocol          (default: false)\n  -wp, --webdav-port    The port to listen on for webdav          (default: 8001)\n  -ro, --read-only      Read only mode, no upload possible        (default: false)\n  -uo, --upload-only    Upload only mode, no download possible    (default: false)\n  -uf, --upload-folder  Specify a different upload folder         (default: current working path)\n  -mu, --max-upload     Maximum upload size in bytes, 0=unlimited (default: 0)\n  -nc, --no-clipboard   Disable the clipboard sharing             (default: false)\n  -nd, --no-delete      Disable the delete option                 (default: false)\n  -si, --silent         Running without dir listing               (default: false)\n  -I,  --invisible      Invisible mode                            (default: false)\n  -c,  --cli            Enable cli (only with auth and tls)       (default: false)\n  --catcher, -rc        Enable reverse shell catcher              (default: false)\n  -e,  --embedded       Show embedded files in UI                 (default: false)\n  -o,  --output         Write output to logfile                   (default: false)\n  -t,  --tunnel         Enable tunnel                             (default: false)\n\nTLS options:\n  -s,     --ssl           Use TLS\n  -ss,    --self-signed   Use a self-signed certificate\n  -sk,    --server-key    Path to server key\n  -sc,    --server-cert   Path to server certificate\n  -p12,   --pkcs12        Path to server p12\n  -p12np, --p12-no-pass   Server p12 has empty password\n  -sl,    --lets-encrypt  Use Let's Encrypt as certification service\n  -sld,   --le-domains    Domain(s) to request from Let's Encrypt\t   (comma separated list)\n  -sle,   --le-email      Email to use with Let's Encrypt\n  -slh,   --le-http       Port to use for Let's Encrypt HTTP Challenge\t   (default: 80)\n  -slt,   --le-tls        Port to use for Let's Encrypt TLS ALPN Challenge (default: 443)\n\nFTP/SFTP server options:\n  -ftp                          Activate FTP server capabilities          (default: false)\n  -ftp-port                     The port FTP/SFTP listens on              (default: 2121)\n  -ftp-sftp                     Switch to SFTP instead of plain FTP       (default: false)\n  -fkf, --ftp-keyfile           Authorized_keys file for SFTP pubkey auth\n  -fhk, --ftp-host-keyfile      SSH host key file for SFTP identification\n\nTFTP server options:\n  -tftp, --tftp-server          Activate TFTP server capabilities         (default: false)\n  -tftp-port                    The port TFTP listens on                  (default: 69)\n\nSMB server options:\n  -smb                        Activate SMB server capabilities         (default: false)\n  -smb-port,   --smb-port     The port SMB listens on                  (default: 445)\n  -smb-domain, --smb-domain   The domain to use for SMB authentication (default: WORKGROUP)\n  -smb-share,  --smb-share    The share to use for SMB authentication  (default: goshs)\n  -smb-wordlist               Wordlist file for quick hash cracking    (default: none)\n\nLDAP server options:\n  -ldap, --ldap-server         Activate LDAP credential capture server (default: false)\n  -ldap-port                   The port LDAP listens on                 (default: 389)\n  -ldap-jndi                   Enable dynamic JNDI mode \u2014 baseDN in the search becomes the\n                               factory class name, fetched from the goshs HTTP server\n  -ldap-jndi-base              Override codeBase URL for JNDI payloads  (default: auto)\n  -ldap-wordlist               Wordlist file for quick LDAP NTLM hash cracking\n  Use -s -ss or -s -sc/-sk to enable LDAPS (TLS) on default port 636\n\nAuthentication options:\n  -b,  --basic-auth     Use basic authentication (user:pass - user can be empty)\n  -ca, --cert-auth      Use certificate based authentication - provide ca certificate\n  -H,  --hash           Hash a password for file based ACLs\n\nConnection restriction:\n  -ipw, --ip-whitelist             Comma separated list of IPs to whitelist\n  -tpw, --trusted-proxy-whitelist  Comma separated list of trusted proxies\n\nCollaboration options:\n  -dns, --dns-server           Enable DNS server                   (default: false)\n  -dns-port, --dns-port        DNS server port                     (default: 8053)\n  -dns-ip, --dns-ip            DNS server Reply IP                 (default: 127.0.0.1)\n  -smtp, --smtp-server         Enable SMTP server                  (default: false)\n  -smtp-port, --smtp-port      SMTP server port                    (default: 2525)\n  -smtp-domain, --smtp-domain  SMTP server domain                  (default: open relay)\n\nWebhook options:\n  -W,  --webhook            Enable webhook support                      (default: false)\n  -Wu, --webhook-url        URL to send webhook requests to\n  -We, --webhook-events     Comma separated list of events to notify\n                            [all, upload, delete, download, view, webdav,\n                            ftp, smb, dns, smtp, redirect, verbose]\t    (default: all)\n  -Wp, --webhook-provider   Webhook provider\n                            [Discord, Mattermost, Slack]                (default: Discord)\n\nPayload templating:\n      --template      Render {{.VAR}} placeholders in files requested with ?tpl (default: false)\n      --tpl-var       Template variable KEY=VALUE (repeatable), e.g. LPORT=4444\n                      LHOST defaults to -i when a single IP is bound; on 0.0.0.0 pass --tpl-var LHOST=\n\nMisc options:\n  -C  --config        Provide config file path                (default: false)\n  -P  --print-config  Print sample config to STDOUT           (default: false)\n  -u  --user          Drop privs to user (unix only)          (default: current user)\n      --update        Update goshs to most recent version\n  -m  --mdns          Enable zeroconf mDNS registration       (default: false)\n      --tui           Run the interactive terminal dashboard  (default: false)\n      --ttl           Self-destruct after a duration, e.g. 30m, 2h (default: disabled)\n  -V  --verbose       Activate verbose log output             (default: false)\n  -v                  Print the current goshs version\n\n      --completion    Install shell tab completion (bash|fish|zsh)\n\nUsage examples:\n  Start with default values:    \t./goshs\n  Start with config file:    \t        ./goshs -C /path/to/config.yaml\n  Start with wevdav support:    \t./goshs -w\n  Start with different port:    \t./goshs -p 8080\n  Start with self-signed cert:  \t./goshs -s -ss\n  Start with let's encrypt:\t\t./goshs -s -sl -sle your@mail.com -sld your.domain.com,your.seconddomain.com\n  Start with custom cert:       \t./goshs -s -sk <path to key> -sc <path to cert>\n  Start with basic auth:        \t./goshs -b 'secret-user:$up3r$3cur3'\n  Start with basic auth bcrypt hash:   \t./goshs -b 'secret-user:$2a$14$ydRJ//Ob4SctB/D7o.rvU.LmPs/vwXkeXCbtpCqzgOJDSShLgiY52'\n  Start with basic auth empty user:\t./goshs -b ':$up3r$3cur3'\n  Start with cli enabled:           \t./goshs -b 'secret-user:$up3r$3cur3' -s -ss -c\n  Start with payload templating:    \t./goshs -i 10.10.14.7 --template --tpl-var LPORT=4444\n\n",
+   "stderr": "",
+   "duration_ms": 11,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "goshs"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for goshs\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "goshs"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'goshs' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "goshs",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "  __ _  ___  ___| |__  ___ \n / _` |/ _ \\/ __| '_ \\/ __|\n| (_| | (_) \\__ \\ | | \\__ \\\n \\__, |\\___/|___/_| |_|___/\n  __/ |                    \n |___/              v2.1.4\n\n",
+   "stderr": "\u001b[33mWARNING\u001b[0m[2026-07-28 06:24:53] Could not create config directory: creating config directory /home/ctk/.config/goshs: mkdir /home/ctk/.config: read-only file system \n\u001b[33mWARNING\u001b[0m[2026-07-28 06:24:53] Failed to check for updates: Get \"https://api.github.com/repos/goshs-labs/goshs/releases/latest\": dial tcp: lookup api.github.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable \n\u001b[36mINFO   \u001b[0m[2026-07-28 06:24:53] Download embedded file at: /example.txt?embedded \n\u001b[36mINFO   \u001b[0m[2026-07-28 06:24:53] Serving on interface lo bound to 127.0.0.1:8000 \n\u001b[36mINFO   \u001b[0m[2026-07-28 06:24:53] Serving HTTP from /                          \n",
+   "duration_ms": 30033,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "surface-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "goshs",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-i": "--ip             IP or Interface to listen on              (default: 0.0.0.0)",
+   "-p": "--port           The port to listen on                     (default: 8000)",
+   "-d": "--dir            The web root directory                    (default: current working path)",
+   "-w": "--webdav         Also serve using webdav protocol          (default: false)",
+   "--webdav-port": "The port to listen on for webdav          (default: 8001)",
+   "-wp": "The port to listen on for webdav          (default: 8001)",
+   "--read-only": "Read only mode, no upload possible        (default: false)",
+   "-ro": "Read only mode, no upload possible        (default: false)",
+   "--upload-only": "Upload only mode, no download possible    (default: false)",
+   "-uo": "Upload only mode, no download possible    (default: false)",
+   "--upload-folder": "Specify a different upload folder         (default: current working path)",
+   "-uf": "Specify a different upload folder         (default: current working path)",
+   "--max-upload": "Maximum upload size in bytes, 0=unlimited (default: 0)",
+   "-mu": "Maximum upload size in bytes, 0=unlimited (default: 0)",
+   "--no-clipboard": "Disable the clipboard sharing             (default: false)",
+   "-nc": "Disable the clipboard sharing             (default: false)",
+   "--no-delete": "Disable the delete option                 (default: false)",
+   "-nd": "Disable the delete option                 (default: false)",
+   "--silent": "Running without dir listing               (default: false)",
+   "-si": "Running without dir listing               (default: false)",
+   "-I": "--invisible      Invisible mode                            (default: false)",
+   "-c": "--cli            Enable cli (only with auth and tls)       (default: false)",
+   "--catcher": "Enable reverse shell catcher              (default: false)",
+   "-rc": "Enable reverse shell catcher              (default: false)",
+   "-e": "--embedded       Show embedded files in UI                 (default: false)",
+   "-o": "--output         Write output to logfile                   (default: false)",
+   "-t": "--tunnel         Enable tunnel                             (default: false)",
+   "-s": "--ssl           Use TLS",
+   "-ss": "--self-signed   Use a self-signed certificate",
+   "-sk": "--server-key    Path to server key",
+   "-sc": "--server-cert   Path to server certificate",
+   "-p12": "--pkcs12        Path to server p12",
+   "--p12-no-pass": "Server p12 has empty password",
+   "-p12np": "Server p12 has empty password",
+   "-sl": "--lets-encrypt  Use Let's Encrypt as certification service",
+   "-sld": "--le-domains    Domain(s) to request from Let's Encrypt\t   (comma separated list)",
+   "-sle": "--le-email      Email to use with Let's Encrypt",
+   "-slh": "--le-http       Port to use for Let's Encrypt HTTP Challenge\t   (default: 80)",
+   "-slt": "--le-tls        Port to use for Let's Encrypt TLS ALPN Challenge (default: 443)",
+   "-ftp": "Activate FTP server capabilities          (default: false)",
+   "-ftp-port": "The port FTP/SFTP listens on              (default: 2121)",
+   "-ftp-sftp": "Switch to SFTP instead of plain FTP       (default: false)",
+   "--ftp-keyfile": "Authorized_keys file for SFTP pubkey auth",
+   "-fkf": "Authorized_keys file for SFTP pubkey auth",
+   "--ftp-host-keyfile": "SSH host key file for SFTP identification",
+   "-fhk": "SSH host key file for SFTP identification",
+   "--tftp-server": "Activate TFTP server capabilities         (default: false)",
+   "-tftp": "Activate TFTP server capabilities         (default: false)",
+   "-tftp-port": "The port TFTP listens on                  (default: 69)",
+   "-smb": "Activate SMB server capabilities         (default: false)",
+   "-smb-port": "--smb-port     The port SMB listens on                  (default: 445)",
+   "--smb-domain": "The domain to use for SMB authentication (default: WORKGROUP)",
+   "-smb-domain": "The domain to use for SMB authentication (default: WORKGROUP)",
+   "-smb-share": "--smb-share    The share to use for SMB authentication  (default: goshs)",
+   "-smb-wordlist": "Wordlist file for quick hash cracking    (default: none)",
+   "--ldap-server": "Activate LDAP credential capture server (default: false)",
+   "-ldap": "Activate LDAP credential capture server (default: false)",
+   "-ldap-port": "The port LDAP listens on                 (default: 389)",
+   "-ldap-jndi": "Enable dynamic JNDI mode \u2014 baseDN in the search becomes the factory class name, fetched from the goshs HTTP server",
+   "-ldap-jndi-base": "Override codeBase URL for JNDI payloads  (default: auto)",
+   "-ldap-wordlist": "Wordlist file for quick LDAP NTLM hash cracking",
+   "-b": "--basic-auth     Use basic authentication (user:pass - user can be empty)",
+   "--cert-auth": "Use certificate based authentication - provide ca certificate",
+   "-ca": "Use certificate based authentication - provide ca certificate",
+   "-H": "--hash           Hash a password for file based ACLs",
+   "--ip-whitelist": "Comma separated list of IPs to whitelist",
+   "-ipw": "Comma separated list of IPs to whitelist",
+   "--trusted-proxy-whitelist": "Comma separated list of trusted proxies",
+   "-tpw": "Comma separated list of trusted proxies",
+   "--dns-server": "Enable DNS server                   (default: false)",
+   "-dns": "Enable DNS server                   (default: false)",
+   "--dns-port": "DNS server port                     (default: 8053)",
+   "-dns-port": "DNS server port                     (default: 8053)",
+   "--dns-ip": "DNS server Reply IP                 (default: 127.0.0.1)",
+   "-dns-ip": "DNS server Reply IP                 (default: 127.0.0.1)",
+   "--smtp-server": "Enable SMTP server                  (default: false)",
+   "-smtp": "Enable SMTP server                  (default: false)",
+   "--smtp-port": "SMTP server port                    (default: 2525)",
+   "-smtp-port": "SMTP server port                    (default: 2525)",
+   "--smtp-domain": "SMTP server domain                  (default: open relay)",
+   "-smtp-domain": "SMTP server domain                  (default: open relay)",
+   "-W": "--webhook            Enable webhook support                      (default: false)",
+   "--webhook-url": "URL to send webhook requests to",
+   "-Wu": "URL to send webhook requests to",
+   "--webhook-events": "Comma separated list of events to notify [all, upload, delete, download, view, webdav, ftp, smb, dns, smtp, redirect, verbose] (default: all)",
+   "-We": "Comma separated list of events to notify [all, upload, delete, download, view, webdav, ftp, smb, dns, smtp, redirect, verbose] (default: all)",
+   "--webhook-provider": "Webhook provider [Discord, Mattermost, Slack] (default: Discord)",
+   "-Wp": "Webhook provider [Discord, Mattermost, Slack] (default: Discord)",
+   "--template": "Render {{.VAR}} placeholders in files requested with ?tpl (default: false)",
+   "--tpl-var": "Template variable KEY=VALUE (repeatable), e.g. LPORT=4444 LHOST defaults to -i when a single IP is bound; on 0.0.0.0 pass --tpl-var LHOST=",
+   "-C": "--config        Provide config file path                (default: false)",
+   "-P": "--print-config  Print sample config to STDOUT           (default: false)",
+   "-u": "--user          Drop privs to user (unix only)          (default: current user)",
+   "--update": "Update goshs to most recent version",
+   "-m": "--mdns          Enable zeroconf mDNS registration       (default: false)",
+   "--tui": "Run the interactive terminal dashboard  (default: false)",
+   "--ttl": "Self-destruct after a duration, e.g. 30m, 2h (default: disabled)",
+   "-V": "--verbose       Activate verbose log output             (default: false)",
+   "-v": "Print the current goshs version",
+   "--completion": "Install shell tab completion (bash|fish|zsh)"
+  },
+  "aliases": {
+   "--webdav-port": [
+    "-wp"
+   ],
+   "--read-only": [
+    "-ro"
+   ],
+   "--upload-only": [
+    "-uo"
+   ],
+   "--upload-folder": [
+    "-uf"
+   ],
+   "--max-upload": [
+    "-mu"
+   ],
+   "--no-clipboard": [
+    "-nc"
+   ],
+   "--no-delete": [
+    "-nd"
+   ],
+   "--silent": [
+    "-si"
+   ],
+   "--catcher": [
+    "-rc"
+   ],
+   "--p12-no-pass": [
+    "-p12np"
+   ],
+   "--ftp-keyfile": [
+    "-fkf"
+   ],
+   "--ftp-host-keyfile": [
+    "-fhk"
+   ],
+   "--tftp-server": [
+    "-tftp"
+   ],
+   "--smb-domain": [
+    "-smb-domain"
+   ],
+   "--ldap-server": [
+    "-ldap"
+   ],
+   "--cert-auth": [
+    "-ca"
+   ],
+   "--ip-whitelist": [
+    "-ipw"
+   ],
+   "--trusted-proxy-whitelist": [
+    "-tpw"
+   ],
+   "--dns-server": [
+    "-dns"
+   ],
+   "--dns-port": [
+    "-dns-port"
+   ],
+   "--dns-ip": [
+    "-dns-ip"
+   ],
+   "--smtp-server": [
+    "-smtp"
+   ],
+   "--smtp-port": [
+    "-smtp-port"
+   ],
+   "--smtp-domain": [
+    "-smtp-domain"
+   ],
+   "--webhook-url": [
+    "-Wu"
+   ],
+   "--webhook-events": [
+    "-We"
+   ],
+   "--webhook-provider": [
+    "-Wp"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "goshs",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2b3445c5ec8871dca3b7de9b872a0c5b9c38e8c10cec4e022d758c3d43c07a5b",
+  "text": "\ngoshs v2.1.4\nUsage: goshs [options]\n\nWeb server options:\n  -i,  --ip             IP or Interface to listen on              (default: 0.0.0.0)\n  -p,  --port           The port to listen on                     (default: 8000)\n  -d,  --dir            The web root directory                    (default: current working path)\n  -w,  --webdav         Also serve using webdav protocol          (default: false)\n  -wp, --webdav-port    The port to listen on for webdav          (default: 8001)\n  -ro, --read-only      Read only mode, no upload possible        (default: false)\n  -uo, --upload-only    Upload only mode, no download possible    (default: false)\n  -uf, --upload-folder  Specify a different upload folder         (default: current working path)\n  -mu, --max-upload     Maximum upload size in bytes, 0=unlimited (default: 0)\n  -nc, --no-clipboard   Disable the clipboard sharing             (default: false)\n  -nd, --no-delete      Disable the delete option                 (default: false)\n  -si, --silent         Running without dir listing               (default: false)\n  -I,  --invisible      Invisible mode                            (default: false)\n  -c,  --cli            Enable cli (only with auth and tls)       (default: false)\n  --catcher, -rc        Enable reverse shell catcher              (default: false)\n  -e,  --embedded       Show embedded files in UI                 (default: false)\n  -o,  --output         Write output to logfile                   (default: false)\n  -t,  --tunnel         Enable tunnel                             (default: false)\n\nTLS options:\n  -s,     --ssl           Use TLS\n  -ss,    --self-signed   Use a self-signed certificate\n  -sk,    --server-key    Path to server key\n  -sc,    --server-cert   Path to server certificate\n  -p12,   --pkcs12        Path to server p12\n  -p12np, --p12-no-pass   Server p12 has empty password\n  -sl,    --lets-encrypt  Use Let's Encrypt as certification service\n  -sld,   --le-domains    Domain(s) to request from Let's Encrypt\t   (comma separated list)\n  -sle,   --le-email      Email to use with Let's Encrypt\n  -slh,   --le-http       Port to use for Let's Encrypt HTTP Challenge\t   (default: 80)\n  -slt,   --le-tls        Port to use for Let's Encrypt TLS ALPN Challenge (default: 443)\n\nFTP/SFTP server options:\n  -ftp                          Activate FTP server capabilities          (default: false)\n  -ftp-port                     The port FTP/SFTP listens on              (default: 2121)\n  -ftp-sftp                     Switch to SFTP instead of plain FTP       (default: false)\n  -fkf, --ftp-keyfile           Authorized_keys file for SFTP pubkey auth\n  -fhk, --ftp-host-keyfile      SSH host key file for SFTP identification\n\nTFTP server options:\n  -tftp, --tftp-server          Activate TFTP server capabilities         (default: false)\n  -tftp-port                    The port TFTP listens on                  (default: 69)\n\nSMB server options:\n  -smb                        Activate SMB server capabilities         (default: false)\n  -smb-port,   --smb-port     The port SMB listens on                  (default: 445)\n  -smb-domain, --smb-domain   The domain to use for SMB authentication (default: WORKGROUP)\n  -smb-share,  --smb-share    The share to use for SMB authentication  (default: goshs)\n  -smb-wordlist               Wordlist file for quick hash cracking    (default: none)\n\nLDAP server options:\n  -ldap, --ldap-server         Activate LDAP credential capture server (default: false)\n  -ldap-port                   The port LDAP listens on                 (default: 389)\n  -ldap-jndi                   Enable dynamic JNDI mode \u2014 baseDN in the search becomes the\n                               factory class name, fetched from the goshs HTTP server\n  -ldap-jndi-base              Override codeBase URL for JNDI payloads  (default: auto)\n  -ldap-wordlist               Wordlist file for quick LDAP NTLM hash cracking\n  Use -s -ss or -s -sc/-sk to enable LDAPS (TLS) on default port 636\n\nAuthentication options:\n  -b,  --basic-auth     Use basic authentication (user:pass - user can be empty)\n  -ca, --cert-auth      Use certificate based authentication - provide ca certificate\n  -H,  --hash           Hash a password for file based ACLs\n\nConnection restriction:\n  -ipw, --ip-whitelist             Comma separated list of IPs to whitelist\n  -tpw, --trusted-proxy-whitelist  Comma separated list of trusted proxies\n\nCollaboration options:\n  -dns, --dns-server           Enable DNS server                   (default: false)\n  -dns-port, --dns-port        DNS server port                     (default: 8053)\n  -dns-ip, --dns-ip            DNS server Reply IP                 (default: 127.0.0.1)\n  -smtp, --smtp-server         Enable SMTP server                  (default: false)\n  -smtp-port, --smtp-port      SMTP server port                    (default: 2525)\n  -smtp-domain, --smtp-domain  SMTP server domain                  (default: open relay)\n\nWebhook options:\n  -W,  --webhook            Enable webhook support                      (default: false)\n  -Wu, --webhook-url        URL to send webhook requests to\n  -We, --webhook-events     Comma separated list of events to notify\n                            [all, upload, delete, download, view, webdav,\n                            ftp, smb, dns, smtp, redirect, verbose]\t    (default: all)\n  -Wp, --webhook-provider   Webhook provider\n                            [Discord, Mattermost, Slack]                (default: Discord)\n\nPayload templating:\n      --template      Render {{.VAR}} placeholders in files requested with ?tpl (default: false)\n      --tpl-var       Template variable KEY=VALUE (repeatable), e.g. LPORT=4444\n                      LHOST defaults to -i when a single IP is bound; on 0.0.0.0 pass --tpl-var LHOST=\n\nMisc options:\n  -C  --config        Provide config file path                (default: false)\n  -P  --print-config  Print sample config to STDOUT           (default: false)\n  -u  --user          Drop privs to user (unix only)          (default: current user)\n      --update        Update goshs to most recent version\n  -m  --mdns          Enable zeroconf mDNS registration       (default: false)\n      --tui           Run the interactive terminal dashboard  (default: false)\n      --ttl           Self-destruct after a duration, e.g. 30m, 2h (default: disabled)\n  -V  --verbose       Activate verbose log output             (default: false)\n  -v                  Print the current goshs version\n\n      --completion    Install shell tab completion (bash|fish|zsh)\n\nUsage examples:\n  Start with default values:    \t./goshs\n  Start with config file:    \t        ./goshs -C /path/to/config.yaml\n  Start with wevdav support:    \t./goshs -w\n  Start with different port:    \t./goshs -p 8080\n  Start with self-signed cert:  \t./goshs -s -ss\n  Start with let's encrypt:\t\t./goshs -s -sl -sle your@mail.com -sld your.domain.com,your.seconddomain.com\n  Start with custom cert:       \t./goshs -s -sk <path to key> -sc <path to cert>\n  Start with basic auth:        \t./goshs -b 'secret-user:$up3r$3cur3'\n  Start with basic auth bcrypt hash:   \t./goshs -b 'secret-user:$2a$14$ydRJ//Ob4SctB/D7o.rvU.LmPs/vwXkeXCbtpCqzgOJDSShLgiY52'\n  Start with basic auth empty user:\t./goshs -b ':$up3r$3cur3'\n  Start with cli enabled:           \t./goshs -b 'secret-user:$up3r$3cur3' -s -ss -c\n  Start with payload templating:    \t./goshs -i 10.10.14.7 --template --tpl-var LPORT=4444\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--catcher",
+   "--cert-auth",
+   "--completion",
+   "--dns-ip",
+   "--dns-port",
+   "--dns-server",
+   "--ftp-host-keyfile",
+   "--ftp-keyfile",
+   "--ip-whitelist",
+   "--ldap-server",
+   "--no-clipboard",
+   "--no-delete",
+   "--p12-no-pass",
+   "--read-only",
+   "--silent",
+   "--smb-domain",
+   "--smtp-domain",
+   "--smtp-port",
+   "--smtp-server",
+   "--template",
+   "--tftp-server",
+   "--trusted-proxy-whitelist",
+   "--ttl",
+   "--tui",
+   "--update",
+   "--upload-folder",
+   "--upload-only",
+   "--webdav-port",
+   "--webhook-events",
+   "--webhook-provider",
+   "--webhook-url"
+  ],
+  "unconfirmed": [
+   "--C",
+   "--H",
+   "--I",
+   "--P",
+   "--V",
+   "--W",
+   "--We",
+   "--Wh",
+   "--Wp",
+   "--Wu",
+   "--b",
+   "--basic-auth",
+   "--c",
+   "--ca",
+   "--cli",
+   "--config",
+   "--d",
+   "--dir",
+   "--dns",
+   "--e",
+   "--embedded",
+   "--fhk",
+   "--fkf",
+   "--ftp",
+   "--ftp-port",
+   "--ftp-sftp",
+   "--hash",
+   "--i",
+   "--invisible",
+   "--ip",
+   "--ipw",
+   "--ldap",
+   "--ldap-jndi",
+   "--ldap-jndi-base",
+   "--ldap-port",
+   "--ldap-wordlist",
+   "--le-domains",
+   "--le-email",
+   "--le-http",
+   "--le-tls",
+   "--lets-encrypt",
+   "--m",
+   "--mdns",
+   "--nc",
+   "--nd",
+   "--nm",
+   "--no-mdns",
+   "--o",
+   "--output",
+   "--p",
+   "--p12",
+   "--p12np",
+   "--pkcs12",
+   "--port",
+   "--print-config",
+   "--rc",
+   "--ro",
+   "--s",
+   "--sc",
+   "--self-signed",
+   "--server-cert",
+   "--server-key",
+   "--sftp",
+   "--sftp-host-keyfile",
+   "--sftp-keyfile",
+   "--sftp-port",
+   "--shk",
+   "--si",
+   "--sk",
+   "--skf",
+   "--sl",
+   "--sld",
+   "--sle",
+   "--slh",
+   "--slt",
+   "--smb",
+   "--smb-port",
+   "--smb-server",
+   "--smb-share",
+   "--smb-wordlist",
+   "--smtp",
+   "--sp",
+   "--ss",
+   "--ssl",
+   "--t",
+   "--tftp",
+   "--tftp-port",
+   "--tpw",
+   "--tunnel",
+   "--u",
+   "--uf",
+   "--uo",
+   "--user",
+   "--v",
+   "--verbose",
+   "--w",
+   "--webdav",
+   "--webhook",
+   "--wp"
+  ],
+  "help_only": [
+   "--max-upload",
+   "--tpl-var",
+   "-C",
+   "-H",
+   "-I",
+   "-P",
+   "-V",
+   "-W",
+   "-We",
+   "-Wp",
+   "-Wu",
+   "-b",
+   "-c",
+   "-ca",
+   "-d",
+   "-dns",
+   "-dns-ip",
+   "-dns-port",
+   "-e",
+   "-fhk",
+   "-fkf",
+   "-ftp",
+   "-ftp-port",
+   "-ftp-sftp",
+   "-i",
+   "-ipw",
+   "-ldap",
+   "-ldap-jndi",
+   "-ldap-jndi-base",
+   "-ldap-port",
+   "-ldap-wordlist",
+   "-m",
+   "-mu",
+   "-nc",
+   "-nd",
+   "-o",
+   "-p",
+   "-p12",
+   "-p12np",
+   "-rc",
+   "-ro",
+   "-s",
+   "-sc",
+   "-si",
+   "-sk",
+   "-sl",
+   "-sld",
+   "-sle",
+   "-slh",
+   "-slt",
+   "-smb",
+   "-smb-domain",
+   "-smb-port",
+   "-smb-share",
+   "-smb-wordlist",
+   "-smtp",
+   "-smtp-domain",
+   "-smtp-port",
+   "-ss",
+   "-t",
+   "-tftp",
+   "-tftp-port",
+   "-tpw",
+   "-u",
+   "-uf",
+   "-uo",
+   "-v",
+   "-w",
+   "-wp"
+  ],
+  "mining_coverage": 0.31
+ },
+ "surface": {
+  "flags": {
+   "--C": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "config",
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2025-04-16T14:13:14+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--H": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "hash",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--I": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable invisible mode",
+    "kind": "option",
+    "first_tag": "1.1.3",
+    "first_date": "2025-12-16T10:29:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--P": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "print config",
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2025-04-16T14:13:14+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--V": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "verbose",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--W": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.8",
+    "first_date": "2025-05-20T12:40:35+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--We": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--Wh": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v1.0.7",
+    "last_date": "2025-05-19T16:01:35+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--Wp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--Wu": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--b": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "basic auth",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--basic-auth": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "basic auth",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cli",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ca": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cert auth",
+    "kind": "option",
+    "first_tag": "v0.4.1",
+    "first_date": "2024-07-11T14:33:57+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--catcher": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable reverse shell catcher              (default: false)",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2026-04-27T08:08:59+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-rc"
+    ]
+   },
+   "--cert-auth": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use certificate based authentication - provide ca certificate",
+    "kind": "option",
+    "first_tag": "v0.4.1",
+    "first_date": "2024-07-11T14:33:57+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-ca"
+    ]
+   },
+   "--cli": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cli",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--completion": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Install shell tab completion (bash|fish|zsh)",
+    "kind": "option",
+    "first_tag": "v2.0.8",
+    "first_date": "2026-05-13T15:57:24+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "config",
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2025-04-16T14:13:14+02:00",
+    "last_tag": "v2.0.0-beta.1",
+    "last_date": "2026-03-25T15:27:17+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--d": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "web root",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "web root",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--dns": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable DNS server",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--dns-ip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNS server Reply IP                 (default: 127.0.0.1)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-dns-ip"
+    ]
+   },
+   "--dns-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNS server port                     (default: 8053)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-dns-port"
+    ]
+   },
+   "--dns-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable DNS server                   (default: false)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-dns"
+    ]
+   },
+   "--e": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--embedded": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--fhk": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--fkf": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ftp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable FTP server",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ftp-host-keyfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "SSH host key file for SFTP identification",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-fhk"
+    ]
+   },
+   "--ftp-keyfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Authorized_keys file for SFTP pubkey auth",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-fkf"
+    ]
+   },
+   "--ftp-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "FTP server port",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ftp-sftp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use SFTP instead of plain FTP",
+    "kind": "option",
+    "first_tag": "v2.0.9",
+    "first_date": "2026-05-27T15:49:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--hash": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "hash",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--i": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "ip",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--invisible": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable invisible mode",
+    "kind": "option",
+    "first_tag": "1.1.3",
+    "first_date": "2025-12-16T10:29:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ip": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "ip",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ip-whitelist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of IPs to whitelist",
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2025-05-28T10:20:50+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-ipw"
+    ]
+   },
+   "--ipw": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2025-05-28T10:20:50+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ldap": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable LDAP server",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ldap-jndi": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable dynamic JNDI mode (baseDN becomes the class name)",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ldap-jndi-base": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "JNDI codeBase URL override (default: auto from HTTP server)",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ldap-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "LDAP server port",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ldap-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Activate LDAP credential capture server (default: false)",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-ldap"
+    ]
+   },
+   "--ldap-wordlist": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Wordlist file for LDAP NTLM hash cracking",
+    "kind": "option",
+    "first_tag": "v2.0.5",
+    "first_date": "2026-04-27T15:48:07+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--le-domains": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--le-email": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--le-http": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--le-tls": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--lets-encrypt": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "letsencrypt",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--m": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable zeroconf mDNS registration",
+    "kind": "option",
+    "first_tag": "1.1.3",
+    "first_date": "2025-12-16T10:29:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--max-upload": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum upload size in bytes, 0=unlimited (default: 0)",
+    "aliases": [
+     "-mu"
+    ]
+   },
+   "--mdns": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable zeroconf mDNS registration",
+    "kind": "option",
+    "first_tag": "1.1.3",
+    "first_date": "2025-12-16T10:29:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--nc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2025-03-07T08:55:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--nd": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--nm": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Disable zeroconf mDNS registration",
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2025-09-22T09:54:08+02:00",
+    "last_tag": "v1.1.2",
+    "last_date": "2025-11-12T11:04:08+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--no-clipboard": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable the clipboard sharing             (default: false)",
+    "kind": "option",
+    "first_tag": "v1.0.2",
+    "first_date": "2025-03-07T08:55:53+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-nc"
+    ]
+   },
+   "--no-delete": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable the delete option                 (default: false)",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-nd"
+    ]
+   },
+   "--no-mdns": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Disable zeroconf mDNS registration",
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2025-09-22T09:54:08+02:00",
+    "last_tag": "v1.1.2",
+    "last_date": "2025-11-12T11:04:08+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2024-11-22T09:21:33+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.1",
+    "first_date": "2024-11-22T09:21:33+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--p": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "port",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--p12": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server p12",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--p12-no-pass": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Server p12 has empty password",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-p12np"
+    ]
+   },
+   "--p12np": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "p12 no pass",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--pkcs12": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server p12",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "port",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--print-config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "print config",
+    "kind": "option",
+    "first_tag": "v1.0.3",
+    "first_date": "2025-04-16T14:13:14+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--rc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable reverse shell catcher",
+    "kind": "option",
+    "first_tag": "v2.0.4",
+    "first_date": "2026-04-27T08:08:59+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--read-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Read only mode, no upload possible        (default: false)",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-ro"
+    ]
+   },
+   "--ro": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "read only",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--s": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "tls",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server cert",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--self-signed": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "self-signed",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--server-cert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server cert",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--server-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server key",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sftp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "sftp",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sftp-host-keyfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sftp-keyfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sftp-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "sftp port",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--shk": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--si": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "silent",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Running without dir listing               (default: false)",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-si"
+    ]
+   },
+   "--sk": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "server key",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--skf": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "letsencrypt",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sld": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--sle": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--slh": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--slt": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smb": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable SMB server",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smb-domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The domain to use for SMB authentication (default: WORKGROUP)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-smb-domain"
+    ]
+   },
+   "--smb-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "SMB server port",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smb-server": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable SMB server",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smb-share": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "SMB server share",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smb-wordlist": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Wordlist file for SMB hash cracking",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.5",
+    "first_date": "2026-04-10T15:07:32+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smtp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable SMTP server",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--smtp-domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "SMTP server domain                  (default: open relay)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.2",
+    "first_date": "2026-03-30T11:25:52+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-smtp-domain"
+    ]
+   },
+   "--smtp-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "SMTP server port                    (default: 2525)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-smtp-port"
+    ]
+   },
+   "--smtp-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable SMTP server                  (default: false)",
+    "kind": "option",
+    "first_tag": "v2.0.0-beta.1",
+    "first_date": "2026-03-25T15:27:17+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-smtp"
+    ]
+   },
+   "--sp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "sftp port",
+    "kind": "option",
+    "first_tag": "v1.0.7",
+    "first_date": "2025-05-19T16:01:35+02:00",
+    "last_tag": "v2.0.8",
+    "last_date": "2026-05-13T15:57:24+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ss": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "self-signed",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--ssl": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "tls",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable tunnel",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2026-03-13T15:11:55+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--template": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Render {{.VAR}} placeholders in files requested with ?tpl (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1.2",
+    "first_date": "2026-06-23T15:57:40+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--tftp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable TFTP server",
+    "kind": "option",
+    "first_tag": "v2.1.3",
+    "first_date": "2026-06-25T15:38:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--tftp-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "TFTP server port",
+    "kind": "option",
+    "first_tag": "v2.1.3",
+    "first_date": "2026-06-25T15:38:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--tftp-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Activate TFTP server capabilities         (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1.3",
+    "first_date": "2026-06-25T15:38:51+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-tftp"
+    ]
+   },
+   "--tpl-var": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Template variable KEY=VALUE (repeatable), e.g. LPORT=4444 LHOST defaults to -i when a single IP is bound; on 0.0.0.0 pass --tpl-var LHOST="
+   },
+   "--tpw": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2025-05-28T10:20:50+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--trusted-proxy-whitelist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of trusted proxies",
+    "kind": "option",
+    "first_tag": "v1.0.9",
+    "first_date": "2025-05-28T10:20:50+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-tpw"
+    ]
+   },
+   "--ttl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Self-destruct after a duration, e.g. 30m, 2h (default: disabled)",
+    "kind": "option",
+    "first_tag": "v2.1.1",
+    "first_date": "2026-06-17T20:39:08+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--tui": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Run the interactive terminal dashboard  (default: false)",
+    "kind": "option",
+    "first_tag": "v2.1.1",
+    "first_date": "2026-06-17T20:39:08+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--tunnel": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable tunnel",
+    "kind": "option",
+    "first_tag": "v1.1.4",
+    "first_date": "2026-03-13T15:11:55+01:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--u": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "user",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--uf": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2025-09-22T09:54:08+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--uo": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "upload only",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Update goshs to most recent version",
+    "kind": "option",
+    "first_tag": "v0.4.2",
+    "first_date": "2024-10-17T13:42:35+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--upload-folder": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify a different upload folder         (default: current working path)",
+    "kind": "option",
+    "first_tag": "v1.1.1",
+    "first_date": "2025-09-22T09:54:08+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-uf"
+    ]
+   },
+   "--upload-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Upload only mode, no download possible    (default: false)",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-uo"
+    ]
+   },
+   "--user": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "user",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "goshs version",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "verbose",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--w": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enable webdav",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--webdav": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "enable webdav",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--webdav-port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The port to listen on for webdav          (default: 8001)",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-wp"
+    ]
+   },
+   "--webhook": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "--webhook-events": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of events to notify [all, upload, delete, download, view, webdav, ftp, smb, dns, smtp, redirect, verbose] (default: all)",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-We"
+    ]
+   },
+   "--webhook-provider": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Webhook provider [Discord, Mattermost, Slack] (default: Discord)",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-Wp"
+    ]
+   },
+   "--webhook-url": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "URL to send webhook requests to",
+    "kind": "option",
+    "first_tag": "v1.0.4",
+    "first_date": "2025-05-02T16:16:38+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go",
+    "aliases": [
+     "-Wu"
+    ]
+   },
+   "--wp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "webdav port",
+    "kind": "option",
+    "first_tag": "v0.4.0",
+    "first_date": "2024-07-05T19:59:22+02:00",
+    "last_tag": "v2.1.4",
+    "last_date": "2026-07-03T09:19:58+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "options/options.go"
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--config        Provide config file path                (default: false)"
+   },
+   "-H": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--hash           Hash a password for file based ACLs"
+   },
+   "-I": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--invisible      Invisible mode                            (default: false)"
+   },
+   "-P": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-config  Print sample config to STDOUT           (default: false)"
+   },
+   "-V": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--verbose       Activate verbose log output             (default: false)"
+   },
+   "-W": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--webhook            Enable webhook support                      (default: false)"
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--basic-auth     Use basic authentication (user:pass - user can be empty)"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--cli            Enable cli (only with auth and tls)       (default: false)"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--dir            The web root directory                    (default: current working path)"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--embedded       Show embedded files in UI                 (default: false)"
+   },
+   "-ftp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Activate FTP server capabilities          (default: false)"
+   },
+   "-ftp-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The port FTP/SFTP listens on              (default: 2121)"
+   },
+   "-ftp-sftp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Switch to SFTP instead of plain FTP       (default: false)"
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--ip             IP or Interface to listen on              (default: 0.0.0.0)"
+   },
+   "-ldap-jndi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable dynamic JNDI mode \u2014 baseDN in the search becomes the factory class name, fetched from the goshs HTTP server"
+   },
+   "-ldap-jndi-base": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Override codeBase URL for JNDI payloads  (default: auto)"
+   },
+   "-ldap-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The port LDAP listens on                 (default: 389)"
+   },
+   "-ldap-wordlist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wordlist file for quick LDAP NTLM hash cracking"
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--mdns          Enable zeroconf mDNS registration       (default: false)"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--output         Write output to logfile                   (default: false)"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--port           The port to listen on                     (default: 8000)"
+   },
+   "-p12": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--pkcs12        Path to server p12"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--ssl           Use TLS"
+   },
+   "-sc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--server-cert   Path to server certificate"
+   },
+   "-sk": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--server-key    Path to server key"
+   },
+   "-sl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--lets-encrypt  Use Let's Encrypt as certification service"
+   },
+   "-sld": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--le-domains    Domain(s) to request from Let's Encrypt\t   (comma separated list)"
+   },
+   "-sle": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--le-email      Email to use with Let's Encrypt"
+   },
+   "-slh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--le-http       Port to use for Let's Encrypt HTTP Challenge\t   (default: 80)"
+   },
+   "-slt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--le-tls        Port to use for Let's Encrypt TLS ALPN Challenge (default: 443)"
+   },
+   "-smb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Activate SMB server capabilities         (default: false)"
+   },
+   "-smb-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--smb-port     The port SMB listens on                  (default: 445)"
+   },
+   "-smb-share": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--smb-share    The share to use for SMB authentication  (default: goshs)"
+   },
+   "-smb-wordlist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wordlist file for quick hash cracking    (default: none)"
+   },
+   "-ss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--self-signed   Use a self-signed certificate"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--tunnel         Enable tunnel                             (default: false)"
+   },
+   "-tftp-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The port TFTP listens on                  (default: 69)"
+   },
+   "-u": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--user          Drop privs to user (unix only)          (default: current user)"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the current goshs version"
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--webdav         Also serve using webdav protocol          (default: false)"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "surface-1",
+    "argv": [
+     "goshs",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "exit_code": null,
+    "output_bytes": 846
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "goshs --completion bash",
+    "source": "readme",
+    "path": "README.md",
+    "line": 105,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "goshs --completion fish",
+    "source": "readme",
+    "path": "README.md",
+    "line": 106,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "goshs --completion zsh",
+    "source": "readme",
+    "path": "README.md",
+    "line": 107,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "goshs",
+ "repo": "patrickhener/goshs",
+ "head_sha": "f3ef599e409151d1380866e47de8b1afb0bb54fa",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-28T06:25:23.415223+00:00"
+}
