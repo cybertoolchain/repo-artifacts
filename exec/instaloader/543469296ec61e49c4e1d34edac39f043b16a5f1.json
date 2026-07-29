@@ -1,0 +1,1140 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:5739db63a37570b81eb4d7486cfccf0ae48fa0b3af1de3a0c276ca46f0db74a6",
+  "duration_s": 10.1,
+  "log_tail": "#10 5.764   Downloading urllib3-2.7.0-py3-none-any.whl.metadata (6.9 kB)\n#10 5.796 Collecting certifi>=2023.5.7 (from requests>=2.25->instaloader==4.15.3)\n#10 5.824   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)\n#10 5.858 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#10 5.904 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#10 5.979 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#10 6.019 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 6.060 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#10 6.067 Building wheels for collected packages: instaloader\n#10 6.068   Building wheel for instaloader (pyproject.toml): started\n#10 6.285   Building wheel for instaloader (pyproject.toml): finished with status 'done'\n#10 6.288   Created wheel for instaloader: filename=instaloader-4.15.3-py3-none-any.whl size=70830 sha256=d1fb7d40f82cdd787bec792172412c32fc16354a7e0b292cc6256b42715b3ada\n#10 6.288   Stored in directory: /tmp/pip-ephem-wheel-cache-d9yyj30c/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 6.289 Successfully built instaloader\n#10 6.301 Installing collected packages: urllib3, idna, charset_normalizer, certifi, requests, instaloader\n#10 6.534 \n#10 6.535 Successfully installed certifi-2026.7.22 charset_normalizer-3.4.9 idna-3.18 instaloader-4.15.3 requests-2.34.2 urllib3-2.7.0\n#10 DONE 6.6s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.1s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.1s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.236 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.3s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.5s done\n#17 exporting manifest sha256:10de4b239c4554df14ae244da0df3407c0a413d5524476c6d77f0fc4ddf7a39f 0.0s done\n#17 exporting config sha256:8f894bbacdfcd025eecb0f8eb820f9d380c6d832041f42289638abc9de021878 0.0s done\n#17 exporting attestation manifest sha256:d9d0693c7b54311ab84655a68c4e860b0eda46105d557f93b6ffb9e15889f49a\n#17 exporting attestation manifest sha256:d9d0693c7b54311ab84655a68c4e860b0eda46105d557f93b6ffb9e15889f49a 0.1s done\n#17 exporting manifest list sha256:5739db63a37570b81eb4d7486cfccf0ae48fa0b3af1de3a0c276ca46f0db74a6 0.0s done\n#17 naming to docker.io/ctk-exec/instaloader:543469296ec6 done\n#17 unpacking to docker.io/ctk-exec/instaloader:543469296ec6\n#17 unpacking to docker.io/ctk-exec/instaloader:543469296ec6 1.2s done\n#17 DONE 1.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "instaloader",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: \ninstaloader [--comments] [--geotags]\n            [--stories] [--highlights] [--tagged] [--reels] [--igtv]\n            [--login YOUR-USERNAME] [--fast-update]\n            profile | \"#hashtag\" | %location_id | :stories | :feed | :saved\ninstaloader --help\n\nDownload pictures (or videos) along with their captions and other metadata\nfrom Instagram.\n\nWhat to Download:\n  Specify a list of targets. For each of these, Instaloader creates a folder\n  and downloads all posts. The following targets are supported:\n\n  profile               Download profile. If an already-downloaded profile has\n                        been renamed, Instaloader automatically finds it by\n                        its unique ID and renames the folder likewise.\n  @profile              Download all followees of profile. Requires login.\n                        Consider using :feed rather than @yourself.\n  \"#hashtag\"            Download #hashtag.\n  %location_id          Download %location_id. Requires login.\n  :feed                 Download pictures from your feed. Requires login.\n  :stories              Download the stories of your followees. Requires\n                        login.\n  :saved                Download the posts that you marked as saved. Requires\n                        login.\n  -- -shortcode         Download the post with the given shortcode\n  filename.json[.xz]    Re-Download the given object.\n  +args.txt             Read targets (and options) from given textfile.\n\nWhat to Download of each Post:\n  --slide SLIDE         Set what image/interval of a sidecar you want to\n                        download.\n  --no-pictures         Do not download post pictures. Cannot be used together\n                        with --fast-update. Implies --no-video-thumbnails,\n                        does not imply --no-videos.\n  -V, --no-videos       Do not download videos.\n  --no-video-thumbnails\n                        Do not download thumbnails of videos.\n  -G, --geotags         Download geotags when available. Geotags are stored as\n                        a text file with the location's name and a Google Maps\n                        link. This requires an additional request to the\n                        Instagram server for each picture. Requires login.\n  -C, --comments        Download and update comments for each post. This\n                        requires an additional request to the Instagram server\n                        for each post, which is why it is disabled by default.\n                        Requires login.\n  --no-captions         Do not create txt files.\n  --post-metadata-txt POST_METADATA_TXT\n                        Template to write in txt file for each Post.\n  --storyitem-metadata-txt STORYITEM_METADATA_TXT\n                        Template to write in txt file for each StoryItem.\n  --no-metadata-json    Do not create a JSON file containing the metadata of\n                        each post.\n  --no-compress-json    Do not xz compress JSON files, rather create pretty\n                        formatted JSONs.\n\nWhat to Download of each Profile:\n  --no-posts            Do not download regular posts.\n  --no-profile-pic      Do not download profile picture.\n  -s, --stories         Also download stories of each profile that is\n                        downloaded. Requires login.\n  --highlights          Also download highlights of each profile that is\n                        downloaded. Requires login.\n  --tagged              Also download posts where each profile is tagged.\n  --reels               Also download Reels videos.\n  --igtv                Also download IGTV videos.\n\nWhich Posts to Download:\n  -F, --fast-update     For each target, stop when encountering the first\n                        already-downloaded picture. This flag is recommended\n                        when you use Instaloader to update your personal\n                        Instagram archive.\n  --latest-stamps [STAMPSFILE]\n                        Store the timestamps of latest media scraped for each\n                        profile. This allows updating your personal Instagram\n                        archive even if you delete the destination\n                        directories. If STAMPSFILE is not provided, defaults\n                        to /home/ctk/.config/instaloader/latest-stamps.ini\n  --post-filter filter, --only-if filter\n                        Expression that, if given, must evaluate to True for\n                        each post to be downloaded. Must be a syntactically\n                        valid python expression. Variables are evaluated to\n                        instaloader.Post attributes. Example: --post-\n                        filter=viewer_has_liked.\n  --storyitem-filter filter\n                        Expression that, if given, must evaluate to True for\n                        each storyitem to be downloaded. Must be a\n                        syntactically valid python expression. Variables are\n                        evaluated to instaloader.StoryItem attributes.\n  -c COUNT, --count COUNT\n                        Do not attempt to download more than COUNT posts.\n                        Applies to #hashtag, %location_id, :feed, and :saved.\n\nLogin (Download Private Profiles):\n  Instaloader can login to Instagram. This allows downloading private\n  profiles. To login, pass the --login option. Your session cookie (not your\n  password!) will be saved to a local file to be reused next time you want\n  Instaloader to login. Instead of --login, the --load-cookies option can be\n  used to import a session from a browser.\n\n  -l YOUR-USERNAME, --login YOUR-USERNAME\n                        Login name (profile name) for your Instagram account.\n  -b BROWSER-NAME, --load-cookies BROWSER-NAME\n                        Browser name to load cookies from Instagram\n  -B COOKIE-FILE, --cookiefile COOKIE-FILE\n                        Cookie file of a profile to load cookies\n  -f SESSIONFILE, --sessionfile SESSIONFILE\n                        Path for loading and storing session key file.\n                        Defaults to\n                        /home/ctk/.config/instaloader/session-<login_name>\n  -p YOUR-PASSWORD, --password YOUR-PASSWORD\n                        Password for your Instagram account. Without this\n                        option, you'll be prompted for your password\n                        interactively if there is not yet a valid session\n                        file.\n\nHow to Download:\n  --dirname-pattern DIRNAME_PATTERN\n                        Name of directory where to store posts. {profile} is\n                        replaced by the profile name, {target} is replaced by\n                        the target you specified, i.e. either :feed, #hashtag\n                        or the profile name. Defaults to '{target}'.\n  --filename-pattern FILENAME_PATTERN\n                        Prefix of filenames for posts and stories, relative to\n                        the directory given with --dirname-pattern. {profile}\n                        is replaced by the profile name,{target} is replaced\n                        by the target you specified, i.e. either :feed#hashtag\n                        or the profile name. Defaults to '{date_utc}_UTC'\n  --title-pattern TITLE_PATTERN\n                        Prefix of filenames for profile pics, hashtag profile\n                        pics, and highlight covers. Defaults to\n                        '{date_utc}_UTC_{typename}' if --dirname-pattern\n                        contains '{target}' or '{dirname}', or if --dirname-\n                        pattern is not specified. Otherwise defaults to\n                        '{target}_{date_utc}_UTC_{typename}'.\n  --resume-prefix PREFIX\n                        Prefix for filenames that are used to save the\n                        information to resume an interrupted download.\n  --sanitize-paths      Sanitize paths so that the resulting file and\n                        directory names are valid on both Windows and Unix.\n  --no-resume           Do not resume a previously-aborted download iteration,\n                        and do not save such information when interrupted.\n  --user-agent USER_AGENT\n                        User Agent to use for HTTP requests. Defaults to\n                        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\n                        (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36'.\n  --max-connection-attempts N\n                        Maximum number of connection attempts until a request\n                        is aborted. Defaults to 3. If a connection fails, it\n                        can be manually skipped by hitting CTRL+C. Set this to\n                        0 to retry infinitely.\n  --request-timeout N   Seconds to wait before timing out a connection\n                        request. Defaults to 300.\n  --abort-on STATUS_CODES\n                        Comma-separated list of HTTP status codes that cause\n                        Instaloader to abort, bypassing all retry logic.\n  --no-iphone           Do not attempt to download iPhone version of images\n                        and videos.\n\nMiscellaneous Options:\n  -q, --quiet           Disable user interaction, i.e. do not print messages\n                        (except errors) and fail if login credentials are\n                        needed but not given. This makes Instaloader suitable\n                        as a cron job.\n  -h, --help            Show this help message and exit.\n  --version             Show version number and exit.\n\nThe complete documentation can be found at https://instaloader.github.io/.\n",
+   "stderr": "",
+   "duration_ms": 420,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "instaloader"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for instaloader\n",
+   "duration_ms": 9,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "instaloader"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'instaloader' in node '(dir)Top'\n",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "instaloader",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--slide": "Set what image/interval of a sidecar you want to download.",
+   "--no-pictures": "Do not download post pictures. Cannot be used together with --fast-update. Implies --no-video-thumbnails, does not imply --no-videos.",
+   "--no-videos": "Do not download videos.",
+   "-V": "Do not download videos.",
+   "--no-video-thumbnails": "Do not download thumbnails of videos.",
+   "--geotags": "Download geotags when available. Geotags are stored as a text file with the location's name and a Google Maps link. This requires an additional request to the Instagram server for each picture. Requires login.",
+   "-G": "Download geotags when available. Geotags are stored as a text file with the location's name and a Google Maps link. This requires an additional request to the Instagram server for each picture. Requires login.",
+   "--comments": "Download and update comments for each post. This requires an additional request to the Instagram server for each post, which is why it is disabled by default. Requires login.",
+   "-C": "Download and update comments for each post. This requires an additional request to the Instagram server for each post, which is why it is disabled by default. Requires login.",
+   "--no-captions": "Do not create txt files.",
+   "--post-metadata-txt": "Template to write in txt file for each Post.",
+   "--storyitem-metadata-txt": "Template to write in txt file for each StoryItem.",
+   "--no-metadata-json": "Do not create a JSON file containing the metadata of each post.",
+   "--no-compress-json": "Do not xz compress JSON files, rather create pretty formatted JSONs.",
+   "--no-posts": "Do not download regular posts.",
+   "--no-profile-pic": "Do not download profile picture.",
+   "--stories": "Also download stories of each profile that is downloaded. Requires login.",
+   "-s": "Also download stories of each profile that is downloaded. Requires login.",
+   "--highlights": "Also download highlights of each profile that is downloaded. Requires login.",
+   "--tagged": "Also download posts where each profile is tagged.",
+   "--reels": "Also download Reels videos.",
+   "--igtv": "Also download IGTV videos.",
+   "--fast-update": "For each target, stop when encountering the first already-downloaded picture. This flag is recommended when you use Instaloader to update your personal Instagram archive.",
+   "-F": "For each target, stop when encountering the first already-downloaded picture. This flag is recommended when you use Instaloader to update your personal Instagram archive.",
+   "--latest-stamps": "Store the timestamps of latest media scraped for each profile. This allows updating your personal Instagram archive even if you delete the destination directories. If STAMPSFILE is not provided, defaults to /home/ctk/.config/instaloader/latest-stamps.ini",
+   "--post-filter": "Expression that, if given, must evaluate to True for each post to be downloaded. Must be a syntactically valid python expression. Variables are evaluated to instaloader.Post attributes. Example: --post- filter=viewer_has_liked.",
+   "--only-if": "Expression that, if given, must evaluate to True for each post to be downloaded. Must be a syntactically valid python expression. Variables are evaluated to instaloader.Post attributes. Example: --post- filter=viewer_has_liked.",
+   "--storyitem-filter": "Expression that, if given, must evaluate to True for each storyitem to be downloaded. Must be a syntactically valid python expression. Variables are evaluated to instaloader.StoryItem attributes.",
+   "--count": "Do not attempt to download more than COUNT posts. Applies to #hashtag, %location_id, :feed, and :saved.",
+   "-c": "Do not attempt to download more than COUNT posts. Applies to #hashtag, %location_id, :feed, and :saved.",
+   "--login": "Login name (profile name) for your Instagram account.",
+   "-l": "Login name (profile name) for your Instagram account.",
+   "--load-cookies": "Browser name to load cookies from Instagram",
+   "-b": "Browser name to load cookies from Instagram",
+   "--cookiefile": "Cookie file of a profile to load cookies",
+   "-B": "Cookie file of a profile to load cookies",
+   "--sessionfile": "Path for loading and storing session key file. Defaults to /home/ctk/.config/instaloader/session-<login_name>",
+   "-f": "Path for loading and storing session key file. Defaults to /home/ctk/.config/instaloader/session-<login_name>",
+   "--password": "Password for your Instagram account. Without this option, you'll be prompted for your password interactively if there is not yet a valid session file.",
+   "-p": "Password for your Instagram account. Without this option, you'll be prompted for your password interactively if there is not yet a valid session file.",
+   "--dirname-pattern": "Name of directory where to store posts. {profile} is replaced by the profile name, {target} is replaced by the target you specified, i.e. either :feed, #hashtag or the profile name. Defaults to '{target}'.",
+   "--filename-pattern": "Prefix of filenames for posts and stories, relative to the directory given with --dirname-pattern. {profile} is replaced by the profile name,{target} is replaced by the target you specified, i.e. either :feed#hashtag or the profile name. Defaults to '{date_utc}_UTC'",
+   "--title-pattern": "Prefix of filenames for profile pics, hashtag profile pics, and highlight covers. Defaults to '{date_utc}_UTC_{typename}' if --dirname-pattern contains '{target}' or '{dirname}', or if --dirname- pattern is not specified. Otherwise defaults to '{target}_{date_utc}_UTC_{typename}'.",
+   "--resume-prefix": "Prefix for filenames that are used to save the information to resume an interrupted download.",
+   "--sanitize-paths": "Sanitize paths so that the resulting file and directory names are valid on both Windows and Unix.",
+   "--no-resume": "Do not resume a previously-aborted download iteration, and do not save such information when interrupted.",
+   "--user-agent": "User Agent to use for HTTP requests. Defaults to 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36'.",
+   "--max-connection-attempts": "Maximum number of connection attempts until a request is aborted. Defaults to 3. If a connection fails, it can be manually skipped by hitting CTRL+C. Set this to 0 to retry infinitely.",
+   "--request-timeout": "Seconds to wait before timing out a connection request. Defaults to 300.",
+   "--abort-on": "Comma-separated list of HTTP status codes that cause Instaloader to abort, bypassing all retry logic.",
+   "--no-iphone": "Do not attempt to download iPhone version of images and videos.",
+   "--quiet": "Disable user interaction, i.e. do not print messages (except errors) and fail if login credentials are needed but not given. This makes Instaloader suitable as a cron job.",
+   "-q": "Disable user interaction, i.e. do not print messages (except errors) and fail if login credentials are needed but not given. This makes Instaloader suitable as a cron job.",
+   "--help": "Show this help message and exit.",
+   "-h": "Show this help message and exit.",
+   "--version": "Show version number and exit."
+  },
+  "aliases": {
+   "--no-videos": [
+    "-V"
+   ],
+   "--geotags": [
+    "-G"
+   ],
+   "--comments": [
+    "-C"
+   ],
+   "--stories": [
+    "-s"
+   ],
+   "--fast-update": [
+    "-F"
+   ],
+   "--post-filter": [
+    "--only-if"
+   ],
+   "--count": [
+    "-c"
+   ],
+   "--login": [
+    "-l"
+   ],
+   "--load-cookies": [
+    "-b"
+   ],
+   "--cookiefile": [
+    "-B"
+   ],
+   "--sessionfile": [
+    "-f"
+   ],
+   "--password": [
+    "-p"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "instaloader",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "32d26befff3557d8e58ea69ec078d119d8bc3ff54b25a44e475b8901cfd41789",
+  "text": "usage: \ninstaloader [--comments] [--geotags]\n            [--stories] [--highlights] [--tagged] [--reels] [--igtv]\n            [--login YOUR-USERNAME] [--fast-update]\n            profile | \"#hashtag\" | %location_id | :stories | :feed | :saved\ninstaloader --help\n\nDownload pictures (or videos) along with their captions and other metadata\nfrom Instagram.\n\nWhat to Download:\n  Specify a list of targets. For each of these, Instaloader creates a folder\n  and downloads all posts. The following targets are supported:\n\n  profile               Download profile. If an already-downloaded profile has\n                        been renamed, Instaloader automatically finds it by\n                        its unique ID and renames the folder likewise.\n  @profile              Download all followees of profile. Requires login.\n                        Consider using :feed rather than @yourself.\n  \"#hashtag\"            Download #hashtag.\n  %location_id          Download %location_id. Requires login.\n  :feed                 Download pictures from your feed. Requires login.\n  :stories              Download the stories of your followees. Requires\n                        login.\n  :saved                Download the posts that you marked as saved. Requires\n                        login.\n  -- -shortcode         Download the post with the given shortcode\n  filename.json[.xz]    Re-Download the given object.\n  +args.txt             Read targets (and options) from given textfile.\n\nWhat to Download of each Post:\n  --slide SLIDE         Set what image/interval of a sidecar you want to\n                        download.\n  --no-pictures         Do not download post pictures. Cannot be used together\n                        with --fast-update. Implies --no-video-thumbnails,\n                        does not imply --no-videos.\n  -V, --no-videos       Do not download videos.\n  --no-video-thumbnails\n                        Do not download thumbnails of videos.\n  -G, --geotags         Download geotags when available. Geotags are stored as\n                        a text file with the location's name and a Google Maps\n                        link. This requires an additional request to the\n                        Instagram server for each picture. Requires login.\n  -C, --comments        Download and update comments for each post. This\n                        requires an additional request to the Instagram server\n                        for each post, which is why it is disabled by default.\n                        Requires login.\n  --no-captions         Do not create txt files.\n  --post-metadata-txt POST_METADATA_TXT\n                        Template to write in txt file for each Post.\n  --storyitem-metadata-txt STORYITEM_METADATA_TXT\n                        Template to write in txt file for each StoryItem.\n  --no-metadata-json    Do not create a JSON file containing the metadata of\n                        each post.\n  --no-compress-json    Do not xz compress JSON files, rather create pretty\n                        formatted JSONs.\n\nWhat to Download of each Profile:\n  --no-posts            Do not download regular posts.\n  --no-profile-pic      Do not download profile picture.\n  -s, --stories         Also download stories of each profile that is\n                        downloaded. Requires login.\n  --highlights          Also download highlights of each profile that is\n                        downloaded. Requires login.\n  --tagged              Also download posts where each profile is tagged.\n  --reels               Also download Reels videos.\n  --igtv                Also download IGTV videos.\n\nWhich Posts to Download:\n  -F, --fast-update     For each target, stop when encountering the first\n                        already-downloaded picture. This flag is recommended\n                        when you use Instaloader to update your personal\n                        Instagram archive.\n  --latest-stamps [STAMPSFILE]\n                        Store the timestamps of latest media scraped for each\n                        profile. This allows updating your personal Instagram\n                        archive even if you delete the destination\n                        directories. If STAMPSFILE is not provided, defaults\n                        to /home/ctk/.config/instaloader/latest-stamps.ini\n  --post-filter filter, --only-if filter\n                        Expression that, if given, must evaluate to True for\n                        each post to be downloaded. Must be a syntactically\n                        valid python expression. Variables are evaluated to\n                        instaloader.Post attributes. Example: --post-\n                        filter=viewer_has_liked.\n  --storyitem-filter filter\n                        Expression that, if given, must evaluate to True for\n                        each storyitem to be downloaded. Must be a\n                        syntactically valid python expression. Variables are\n                        evaluated to instaloader.StoryItem attributes.\n  -c COUNT, --count COUNT\n                        Do not attempt to download more than COUNT posts.\n                        Applies to #hashtag, %location_id, :feed, and :saved.\n\nLogin (Download Private Profiles):\n  Instaloader can login to Instagram. This allows downloading private\n  profiles. To login, pass the --login option. Your session cookie (not your\n  password!) will be saved to a local file to be reused next time you want\n  Instaloader to login. Instead of --login, the --load-cookies option can be\n  used to import a session from a browser.\n\n  -l YOUR-USERNAME, --login YOUR-USERNAME\n                        Login name (profile name) for your Instagram account.\n  -b BROWSER-NAME, --load-cookies BROWSER-NAME\n                        Browser name to load cookies from Instagram\n  -B COOKIE-FILE, --cookiefile COOKIE-FILE\n                        Cookie file of a profile to load cookies\n  -f SESSIONFILE, --sessionfile SESSIONFILE\n                        Path for loading and storing session key file.\n                        Defaults to\n                        /home/ctk/.config/instaloader/session-<login_name>\n  -p YOUR-PASSWORD, --password YOUR-PASSWORD\n                        Password for your Instagram account. Without this\n                        option, you'll be prompted for your password\n                        interactively if there is not yet a valid session\n                        file.\n\nHow to Download:\n  --dirname-pattern DIRNAME_PATTERN\n                        Name of directory where to store posts. {profile} is\n                        replaced by the profile name, {target} is replaced by\n                        the target you specified, i.e. either :feed, #hashtag\n                        or the profile name. Defaults to '{target}'.\n  --filename-pattern FILENAME_PATTERN\n                        Prefix of filenames for posts and stories, relative to\n                        the directory given with --dirname-pattern. {profile}\n                        is replaced by the profile name,{target} is replaced\n                        by the target you specified, i.e. either :feed#hashtag\n                        or the profile name. Defaults to '{date_utc}_UTC'\n  --title-pattern TITLE_PATTERN\n                        Prefix of filenames for profile pics, hashtag profile\n                        pics, and highlight covers. Defaults to\n                        '{date_utc}_UTC_{typename}' if --dirname-pattern\n                        contains '{target}' or '{dirname}', or if --dirname-\n                        pattern is not specified. Otherwise defaults to\n                        '{target}_{date_utc}_UTC_{typename}'.\n  --resume-prefix PREFIX\n                        Prefix for filenames that are used to save the\n                        information to resume an interrupted download.\n  --sanitize-paths      Sanitize paths so that the resulting file and\n                        directory names are valid on both Windows and Unix.\n  --no-resume           Do not resume a previously-aborted download iteration,\n                        and do not save such information when interrupted.\n  --user-agent USER_AGENT\n                        User Agent to use for HTTP requests. Defaults to\n                        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36\n                        (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36'.\n  --max-connection-attempts N\n                        Maximum number of connection attempts until a request\n                        is aborted. Defaults to 3. If a connection fails, it\n                        can be manually skipped by hitting CTRL+C. Set this to\n                        0 to retry infinitely.\n  --request-timeout N   Seconds to wait before timing out a connection\n                        request. Defaults to 300.\n  --abort-on STATUS_CODES\n                        Comma-separated list of HTTP status codes that cause\n                        Instaloader to abort, bypassing all retry logic.\n  --no-iphone           Do not attempt to download iPhone version of images\n                        and videos.\n\nMiscellaneous Options:\n  -q, --quiet           Disable user interaction, i.e. do not print messages\n                        (except errors) and fail if login credentials are\n                        needed but not given. This makes Instaloader suitable\n                        as a cron job.\n  -h, --help            Show this help message and exit.\n  --version             Show version number and exit.\n\nThe complete documentation can be found at https://instaloader.github.io/.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--abort-on",
+   "--comments",
+   "--cookiefile",
+   "--count",
+   "--dirname-pattern",
+   "--fast-update",
+   "--filename-pattern",
+   "--geotags",
+   "--help",
+   "--highlights",
+   "--igtv",
+   "--latest-stamps",
+   "--load-cookies",
+   "--login",
+   "--max-connection-attempts",
+   "--no-captions",
+   "--no-compress-json",
+   "--no-iphone",
+   "--no-metadata-json",
+   "--no-pictures",
+   "--no-posts",
+   "--no-profile-pic",
+   "--no-resume",
+   "--no-video-thumbnails",
+   "--no-videos",
+   "--password",
+   "--post-filter",
+   "--post-metadata-txt",
+   "--quiet",
+   "--reels",
+   "--request-timeout",
+   "--resume-prefix",
+   "--sanitize-paths",
+   "--sessionfile",
+   "--slide",
+   "--stories",
+   "--storyitem-filter",
+   "--storyitem-metadata-txt",
+   "--tagged",
+   "--title-pattern",
+   "--user-agent",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--commit-mode",
+   "--metadata-json",
+   "--no-sleep",
+   "--profile-pic-only",
+   "--skip-videos",
+   "--stories-only",
+   "--use-aged-resume-files",
+   "_at_profile",
+   "_feed",
+   "_fromfile",
+   "_hashtag",
+   "_json",
+   "_location",
+   "_saved",
+   "_singlepost",
+   "_stories",
+   "profile",
+   "targets"
+  ],
+  "help_only": [
+   "--only-if",
+   "-B",
+   "-C",
+   "-F",
+   "-G",
+   "-V",
+   "-b",
+   "-c",
+   "-f",
+   "-h",
+   "-l",
+   "-p",
+   "-q",
+   "-s"
+  ],
+  "mining_coverage": 0.75
+ },
+ "surface": {
+  "flags": {
+   "--abort-on": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Comma-separated list of HTTP status codes that cause Instaloader to abort, bypassing all retry logic.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--comments": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Download and update comments for each post. This requires an additional request to the Instagram server for each post, which is why it is disabled by default. Requires login.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--commit-mode": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--cookiefile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Cookie file of a profile to load cookies",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/codesnippets/615_import_firefox_session.py",
+    "aliases": [
+     "-B"
+    ]
+   },
+   "--count": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not attempt to download more than COUNT posts. Applies to #hashtag, %location_id, :feed, and :saved.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--dirname-pattern": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Name of directory where to store posts. {profile} is replaced by the profile name, {target} is replaced by the target you specified, i.e. either :feed, #hashtag or the profile name. Defaults to '{target}'.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--fast-update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "For each target, stop when encountering the first already-downloaded picture. This flag is recommended when you use Instaloader to update your personal Instagram archive.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-F"
+    ]
+   },
+   "--filename-pattern": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Prefix of filenames for posts and stories, relative to the directory given with --dirname-pattern. {profile} is replaced by the profile name,{target} is replaced by the target you specified, i.e. either :feed#hashtag or the profile name. Defaults to '{date_utc}_UTC'",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--geotags": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Download geotags when available. Geotags are stored as a text file with the location's name and a Google Maps link. This requires an additional request to the Instagram server for each picture. Requires login.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-G"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show this help message and exit.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--highlights": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also download highlights of each profile that is downloaded. Requires login.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--igtv": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also download IGTV videos.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--latest-stamps": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Store the timestamps of latest media scraped for each profile. This allows updating your personal Instagram archive even if you delete the destination directories. If STAMPSFILE is not provided, defaults to /home/ctk/.config/instaloader/latest-stamps.ini",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--load-cookies": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Browser name to load cookies from Instagram",
+    "kind": "option",
+    "first_tag": "v4.11rc1",
+    "first_date": "2023-11-15T08:03:28+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--login": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Login name (profile name) for your Instagram account.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--max-connection-attempts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Maximum number of connection attempts until a request is aborted. Defaults to 3. If a connection fails, it can be manually skipped by hitting CTRL+C. Set this to 0 to retry infinitely.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--metadata-json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-captions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not create txt files.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-compress-json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not xz compress JSON files, rather create pretty formatted JSONs.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-iphone": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not attempt to download iPhone version of images and videos.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-metadata-json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not create a JSON file containing the metadata of each post.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-pictures": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not download post pictures. Cannot be used together with --fast-update. Implies --no-video-thumbnails, does not imply --no-videos.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-posts": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not download regular posts.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-profile-pic": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not download profile picture.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-resume": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not resume a previously-aborted download iteration, and do not save such information when interrupted.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-sleep": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-video-thumbnails": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not download thumbnails of videos.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--no-videos": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not download videos.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--password": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Password for your Instagram account. Without this option, you'll be prompted for your password interactively if there is not yet a valid session file.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--post-filter": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Expression that, if given, must evaluate to True for each post to be downloaded. Must be a syntactically valid python expression. Variables are evaluated to instaloader.Post attributes. Example: --post- filter=viewer_has_liked.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "--only-if"
+    ]
+   },
+   "--post-metadata-txt": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Template to write in txt file for each Post.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--profile-pic-only": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable user interaction, i.e. do not print messages (except errors) and fail if login credentials are needed but not given. This makes Instaloader suitable as a cron job.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--reels": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also download Reels videos.",
+    "kind": "option",
+    "first_tag": "v4.14rc1",
+    "first_date": "2024-10-02T08:11:57+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--request-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Seconds to wait before timing out a connection request. Defaults to 300.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--resume-prefix": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Prefix for filenames that are used to save the information to resume an interrupted download.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--sanitize-paths": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Sanitize paths so that the resulting file and directory names are valid on both Windows and Unix.",
+    "kind": "option",
+    "first_tag": "v4.9b3",
+    "first_date": "2022-03-19T16:36:38+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--sessionfile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path for loading and storing session key file. Defaults to /home/ctk/.config/instaloader/session-<login_name>",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/codesnippets/615_import_firefox_session.py",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--skip-videos": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Do not download videos",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v1.0",
+    "last_date": "2016-07-28T18:30:44+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "instaloader.py"
+   },
+   "--slide": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set what image/interval of a sidecar you want to download.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--stories": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also download stories of each profile that is downloaded. Requires login.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--stories-only": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--storyitem-filter": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Expression that, if given, must evaluate to True for each storyitem to be downloaded. Must be a syntactically valid python expression. Variables are evaluated to instaloader.StoryItem attributes.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--storyitem-metadata-txt": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Template to write in txt file for each StoryItem.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--tagged": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Also download posts where each profile is tagged.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--title-pattern": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Prefix of filenames for profile pics, hashtag profile pics, and highlight covers. Defaults to '{date_utc}_UTC_{typename}' if --dirname-pattern contains '{target}' or '{dirname}', or if --dirname- pattern is not specified. Otherwise defaults to '{target}_{date_utc}_UTC_{typename}'.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--use-aged-resume-files": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--user-agent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "User Agent to use for HTTP requests. Defaults to 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36'.",
+    "kind": "option",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show version number and exit.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_at_profile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download all followees of profile. Requires login. Consider using :feed rather than @yourself.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_feed": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download pictures from your feed. Requires login.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_fromfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Read targets (and options) from given textfile.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_hashtag": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download #hashtag.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Re-Download the given object.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_location": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download %%location_id. Requires login.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_saved": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download the posts that you marked as saved. Requires login.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_singlepost": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download the post with the given shortcode",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "_stories": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download the stories of your followees. Requires login.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "profile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download profile. If an already-downloaded profile has been renamed, Instaloader automatically finds it by its unique ID and renames the folder likewise.",
+    "kind": "positional",
+    "first_tag": "v4.8.3",
+    "first_date": "2022-01-07T14:57:53+01:00",
+    "last_tag": "v4.15.3",
+    "last_date": "2026-07-26T11:02:56+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "instaloader/__main__.py"
+   },
+   "targets": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Names of profiles to download",
+    "kind": "positional",
+    "first_tag": "v1.0",
+    "first_date": "2016-07-28T18:30:44+02:00",
+    "last_tag": "v1.0",
+    "last_date": "2016-07-28T18:30:44+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "instaloader.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "net-1",
+    "argv": [
+     "instaloader",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 114
+   },
+   {
+    "id": "net-2",
+    "argv": [
+     "instaloader",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 1516
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "instaloader",
+ "repo": "instaloader/instaloader",
+ "head_sha": "543469296ec61e49c4e1d34edac39f043b16a5f1",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-29T02:15:26.262539+00:00"
+}

@@ -1,0 +1,130 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "dockerfile",
+  "image_digest": "sha256:3a316af03282791c592549f5f0cc32af4e2d4e11227377ac947a9acc08730548",
+  "duration_s": 375.05,
+  "log_tail": "#1 transferring dockerfile: 845B done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/ctk-exec-base/metasploit-framework:73a0914c4ac1\n#2 DONE 0.0s\n\n#3 [internal] load .dockerignore\n#3 transferring context: 2.63kB done\n#3 DONE 0.0s\n\n#4 [1/6] FROM docker.io/ctk-exec-base/metasploit-framework:73a0914c4ac1@sha256:906782d806003cbe0cec56b8666496cf49f4994bea050d203966a0bc7a3ae761\n#4 resolve docker.io/ctk-exec-base/metasploit-framework:73a0914c4ac1@sha256:906782d806003cbe0cec56b8666496cf49f4994bea050d203966a0bc7a3ae761 done\n#4 DONE 0.5s\n\n#5 [internal] load build context\n#5 transferring context: 31.44kB 0.5s done\n#5 DONE 0.6s\n\n#6 [2/6] RUN ((apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less && rm -rf /var/lib/apt/lists/*) ||      (apk add --no-cache python3 mandoc less) ||      (dnf install -y python3 man-db less) ||      true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in upstream image\" >&2; exit 1)\n#6 0.164 /bin/sh: apt-get: not found\n#6 0.184 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/main/aarch64/APKINDEX.tar.gz\n#6 0.870 fetch https://dl-cdn.alpinelinux.org/alpine/v3.21/community/aarch64/APKINDEX.tar.gz\n#6 1.360 (1/2) Installing less (668-r0)\n#6 1.420 (2/2) Installing mandoc (1.14.6-r13)\n#6 1.510 Executing busybox-1.37.0-r12.trigger\n#6 1.521 OK: 496 MiB in 152 packages\n#6 DONE 1.6s\n\n#7 [3/6] COPY agent.py /opt/ctk/agent.py\n#7 DONE 0.0s\n\n#8 [4/6] COPY helptext.py /opt/ctk/helptext.py\n#8 DONE 0.0s\n\n#9 [5/6] COPY fixtures/ /opt/ctk/fixtures/\n#9 DONE 0.0s\n\n#10 [6/6] RUN (useradd -u 65532 -m -s /usr/sbin/nologin ctk || adduser -D -u 65532 -s /usr/sbin/nologin ctk || true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in image\" >&2; exit 1)\n#10 0.299 /bin/sh: useradd: not found\n#10 DONE 0.4s\n\n#11 exporting to image\n#11 exporting layers 0.1s done\n#11 exporting manifest sha256:7f46d79f2c0b658779d1e3449aa0cd35d6407522ba0ebbda4b23dd75a7c87ed5 done\n#11 exporting config sha256:40542db31093ba611308468e302a238256a984a3870dce7508bb7059c5941a3d done\n#11 exporting attestation manifest sha256:67c2206fa5b089a5a2aa595acffab90e0496f01d18578c1ed4e100a168a5b5df done\n#11 exporting manifest list sha256:3a316af03282791c592549f5f0cc32af4e2d4e11227377ac947a9acc08730548 done\n#11 naming to docker.io/ctk-exec/metasploit-framework:73a0914c4ac1 done\n#11 unpacking to docker.io/ctk-exec/metasploit-framework:73a0914c4ac1 0.0s done\n#11 DONE 0.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "entrypoint.sh",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'entrypoint.sh'"
+  },
+  {
+   "argv": [
+    "metasploit-framework",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'metasploit-framework'"
+  },
+  {
+   "argv": [
+    "man",
+    "entrypoint.sh"
+   ],
+   "exit_code": 5,
+   "stdout": "",
+   "stderr": "man: No entry for entrypoint.sh in the manual.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "entrypoint.sh"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'info'",
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "net-1",
+    "argv": [
+     "metasploit-framework",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 323
+   },
+   {
+    "id": "net-2",
+    "argv": [
+     "metasploit-framework",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 323
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Metasploit Framework",
+ "repo": "rapid7/metasploit-framework",
+ "head_sha": "73a0914c4ac1d4c01919fb3b7dc1260c72ad6122",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-29T02:09:58.470593+00:00"
+}

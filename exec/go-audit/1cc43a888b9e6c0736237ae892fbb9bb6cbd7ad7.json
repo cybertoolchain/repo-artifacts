@@ -1,0 +1,191 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:232a6b370f46f08314ded8c31bdc981df605f940c8d251f5b74e9f48b4ecb5ec",
+  "duration_s": 12.53,
+  "log_tail": "#11 1.260 go: downloading github.com/containerd/platforms v1.0.0-rc.4\n#11 1.261 go: downloading github.com/moby/sys/signal v0.7.1\n#11 1.261 go: downloading github.com/containerd/plugin v1.1.0\n#11 1.261 go: downloading github.com/opencontainers/runtime-spec v1.3.0\n#11 1.261 go: downloading golang.org/x/sync v0.21.0\n#11 1.261 go: downloading google.golang.org/grpc v1.82.1\n#11 1.323 go: downloading google.golang.org/protobuf v1.36.12-0.20260120151049-f2248ac996af\n#11 1.323 go: downloading github.com/containerd/ttrpc v1.2.8\n#11 1.358 go: downloading github.com/containerd/continuity v0.5.0\n#11 1.396 go: downloading github.com/moby/sys/mountinfo v0.7.2\n#11 1.397 go: downloading github.com/moby/sys/userns v0.1.0\n#11 1.397 go: downloading github.com/klauspost/compress v1.18.5\n#11 1.481 go: downloading github.com/moby/locker v1.0.1\n#11 1.503 go: downloading github.com/moby/sys/user v0.4.0\n#11 1.515 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20260414002931-afd174a4e478\n#11 1.536 go: downloading github.com/go-logr/logr v1.4.3\n#11 1.536 go: downloading github.com/sirupsen/logrus v1.9.4\n#11 1.544 go: downloading github.com/gogo/protobuf v1.3.2\n#11 1.567 go: downloading github.com/cespare/xxhash/v2 v2.3.0\n#11 1.577 go: downloading github.com/go-logr/stdr v1.2.2\n#11 1.605 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 1.605 go: downloading golang.org/x/net v0.55.0\n#11 DONE 9.2s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.129 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.6s done\n#17 exporting manifest sha256:96be7356849d70118726336eba16a6f6942240356bec364f023fb3e21d303cf3 done\n#17 exporting config sha256:147f4dcd0377c3fd47dccdbc6c4fff2899e3673106021eb02e20388e5d13bc5a done\n#17 exporting attestation manifest sha256:050221d32f0ce3d31a21a467229280671997173111f323020d326b409591ab04 done\n#17 exporting manifest list sha256:232a6b370f46f08314ded8c31bdc981df605f940c8d251f5b74e9f48b4ecb5ec done\n#17 naming to docker.io/ctk-exec/go-audit:1cc43a888b9e done\n#17 unpacking to docker.io/ctk-exec/go-audit:1cc43a888b9e 0.1s done\n#17 DONE 0.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "go-audit",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of go-audit:\n  -config string\n    \tConfig file location\n  -version\n    \tPrint version\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "go-audit"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for go-audit\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "go-audit"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'go-audit' in node '(dir)Top'\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "go-audit",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "A config file must be provided\nUsage of go-audit:\n  -config string\n    \tConfig file location\n  -version\n    \tPrint version\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "surface-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "go-audit",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-config": "Config file location",
+   "-version": "Print version"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "go-audit",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "803b30954b9c0ba2d4deb5292590dea18f79b36dea8b1988eff4f51706308617",
+  "text": "Usage of go-audit:\n  -config string\n    \tConfig file location\n  -version\n    \tPrint version\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--config",
+   "--version"
+  ],
+  "help_only": [
+   "-config",
+   "-version"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Config file location",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-18T14:57:32-04:00",
+    "last_tag": "v1.2.2",
+    "last_date": "2026-06-19T16:11:53-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "audit.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print version",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-06-18T14:57:32-04:00",
+    "last_tag": "v1.2.2",
+    "last_date": "2026-06-19T16:11:53-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "audit.go"
+   },
+   "-config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Config file location"
+   },
+   "-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "surface-1",
+    "argv": [
+     "go-audit",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 123
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "go-audit",
+ "repo": "slackhq/go-audit",
+ "head_sha": "1cc43a888b9e6c0736237ae892fbb9bb6cbd7ad7",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-29T02:34:18.091473+00:00"
+}

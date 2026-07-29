@@ -1,0 +1,1286 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:ca99f49696e83bf064a7a51d7a7615060e3dd8d5fc8c617497bf2f516a27282e",
+  "duration_s": 65.9,
+  "log_tail": "#10 10.46 go: downloading github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee\n#10 10.46 go: downloading github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35\n#10 10.46 go: downloading github.com/klauspost/cpuid/v2 v2.3.0\n#10 10.46 go: downloading github.com/go-logr/stdr v1.2.2\n#10 10.46 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#10 10.48 go: downloading github.com/envoyproxy/go-control-plane/envoy v1.37.0\n#10 10.80 go: downloading github.com/spiffe/go-spiffe/v2 v2.6.0\n#10 11.24 go: downloading github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2\n#10 11.24 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#10 11.24 go: downloading modernc.org/mathutil v1.7.1\n#10 11.24 go: downloading github.com/envoyproxy/protoc-gen-validate v1.3.3\n#10 11.24 go: downloading modernc.org/memory v1.11.0\n#10 11.36 go: downloading cel.dev/expr v0.25.1\n#10 11.37 go: downloading github.com/remyoudompheng/bigfft v0.0.0-20230129092748-24d4a6f8daec\n#10 14.43 go: downloading github.com/googleapis/enterprise-certificate-proxy v0.3.14\n#10 14.43 go: downloading cloud.google.com/go/auth/oauth2adapt v0.2.8\n#10 14.43 go: downloading github.com/google/s2a-go v0.1.9\n#10 14.43 go: downloading go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.68.0\n#10 DONE 36.3s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.4s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.144 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 13.5s done\n#17 exporting manifest sha256:8b8767a19e8ba9c74025dad6a662bb7b74042e80a4e9a6dbcfeb9d03168fcfd0 done\n#17 exporting config sha256:f26e868ef740d53cd9df300bb6455f13969a45156e32d845031cd4115ea3fa2e done\n#17 exporting attestation manifest sha256:8529fa880a2ef8c67218d04d31566e67cbd16a3cf35675e7043561d7092f972b done\n#17 exporting manifest list sha256:ca99f49696e83bf064a7a51d7a7615060e3dd8d5fc8c617497bf2f516a27282e done\n#17 naming to docker.io/ctk-exec/syft:16223e6dd789 done\n#17 unpacking to docker.io/ctk-exec/syft:16223e6dd789\n#17 unpacking to docker.io/ctk-exec/syft:16223e6dd789 2.2s done\n#17 DONE 15.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "syft",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate a packaged-based Software Bill Of Materials (SBOM) from container images and filesystems\n\nUsage:\n  syft [SOURCE] [flags]\n  syft [command]\n\nExamples:\n  syft scan alpine:latest                                a summary of discovered packages\n  syft scan alpine:latest -o json                        show all possible cataloging details\n  syft scan alpine:latest -o cyclonedx                   show a CycloneDX formatted SBOM\n  syft scan alpine:latest -o cyclonedx-json              show a CycloneDX JSON formatted SBOM\n  syft scan alpine:latest -o spdx                        show a SPDX 2.3 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx@2.2                    show a SPDX 2.2 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx-json                   show a SPDX 2.3 JSON formatted SBOM\n  syft scan alpine:latest -o spdx-json@2.2               show a SPDX 2.2 JSON formatted SBOM\n  syft scan alpine:latest -vv                            show verbose debug information\n  syft scan alpine:latest -o template -t my_format.tmpl  show a SBOM formatted according to given template file\n\n  Supports the following image sources:\n    syft scan yourrepo/yourimage:tag     defaults to using images from a Docker daemon. If Docker is not present, the image is pulled directly from the registry.\n    syft scan path/to/a/file/or/dir      a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\n  You can also explicitly specify the scheme to use:\n    syft scan docker:yourrepo/yourimage:tag            explicitly use the Docker daemon\n    syft scan podman:yourrepo/yourimage:tag            explicitly use the Podman daemon\n    syft scan registry:yourrepo/yourimage:tag          pull image directly from a registry (no container runtime required)\n    syft scan docker-archive:path/to/yourimage.tar     use a tarball from disk for archives created from \"docker save\"\n    syft scan oci-archive:path/to/yourimage.tar        use a tarball from disk for OCI archives (from Skopeo or otherwise)\n    syft scan oci-dir:path/to/yourimage                read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    syft scan singularity:path/to/yourimage.sif        read directly from a Singularity Image Format (SIF) container on disk\n    syft scan oci-model-registry:ai/llama3.2           scan an OCI model artifact from a registry (e.g. Docker Hub AI models)\n    syft scan dir:path/to/yourproject                  read directly from a path on disk (any directory)\n    syft scan file:path/to/yourproject/file            read directly from a path on disk (any single file)\n\n\nAvailable Commands:\n  attest      Generate an SBOM as an attestation for the given [SOURCE] container image\n  cataloger   Show available catalogers and configuration\n  completion  Generate the autocompletion script for the specified shell\n  config      show the syft configuration\n  convert     Convert between SBOM formats\n  help        Help about any command\n  login       Log in to a registry\n  scan        Generate an SBOM\n  version     show version information\n\nFlags:\n      --base-path string                          base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory\n  -c, --config stringArray                        syft configuration file(s) to use\n      --enrich stringArray                        enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)\n      --exclude stringArray                       exclude paths from being scanned using a glob expression\n      --file string                               file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)\n      --from stringArray                          specify the source behavior to use (e.g. docker, registry, oci-dir, ...)\n  -h, --help                                      help for syft\n  -o, --output stringArray                        report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])\n      --override-default-catalogers stringArray   set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)\n      --parallelism int                           number of cataloger workers to run in parallel\n      --platform string                           an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray                       configuration profiles to use\n  -q, --quiet                                     suppress all logging output\n  -s, --scope string                              selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --select-catalogers stringArray             add, remove, and filter the catalogers to be used\n      --source-name string                        set the name of the target being analyzed\n      --source-supplier string                    the organization that supplied the component, which often may be the manufacturer, distributor, or repackager\n      --source-version string                     set the version of the target being analyzed\n  -t, --template string                           specify the path to a Go template file\n  -v, --verbose count                             increase verbosity (-v = info, -vv = debug)\n      --version                                   version for syft\n\nUse \"syft [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 27,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "attest",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate a packaged-based Software Bill Of Materials (SBOM) from a container image as the predicate of an in-toto attestation that will be uploaded to the image registry\n\nUsage:\n  syft attest --output [FORMAT] <IMAGE> [flags]\n\nExamples:\n  syft attest --output [FORMAT] alpine:latest            defaults to using images from a Docker daemon. If Docker is not present, the image is pulled directly from the registry\n\n  You can also explicitly specify the scheme to use:\n    syft attest docker:yourrepo/yourimage:tag            explicitly use the Docker daemon\n    syft attest podman:yourrepo/yourimage:tag            explicitly use the Podman daemon\n    syft attest registry:yourrepo/yourimage:tag          pull image directly from a registry (no container runtime required)\n    syft attest docker-archive:path/to/yourimage.tar     use a tarball from disk for archives created from \"docker save\"\n    syft attest oci-archive:path/to/yourimage.tar        use a tarball from disk for OCI archives (from Skopeo or otherwise)\n    syft attest oci-dir:path/to/yourimage                read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    syft attest singularity:path/to/yourimage.sif        read directly from a Singularity Image Format (SIF) container on disk\n\n\nFlags:\n      --base-path string                          base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory\n      --enrich stringArray                        enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)\n      --exclude stringArray                       exclude paths from being scanned using a glob expression\n      --from stringArray                          specify the source behavior to use (e.g. docker, registry, oci-dir, ...)\n  -h, --help                                      help for attest\n  -k, --key string                                the key to use for the attestation\n  -o, --output stringArray                        report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-json])\n      --override-default-catalogers stringArray   set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)\n      --parallelism int                           number of cataloger workers to run in parallel\n      --platform string                           an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n  -s, --scope string                              selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --select-catalogers stringArray             add, remove, and filter the catalogers to be used\n      --source-name string                        set the name of the target being analyzed\n      --source-supplier string                    the organization that supplied the component, which often may be the manufacturer, distributor, or repackager\n      --source-version string                     set the version of the target being analyzed\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "cataloger",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show available catalogers and configuration\n\nUsage:\n  syft cataloger [command]\n\nAvailable Commands:\n  list        List available catalogers\n\nFlags:\n  -h, --help   help for cataloger\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"syft cataloger [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "cataloger",
+    "list",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List available catalogers\n\nUsage:\n  syft cataloger list [OPTIONS] [flags]\n\nFlags:\n  -h, --help                                      help for list\n  -o, --output string                             format to output the cataloger list (available: table, json)\n      --override-default-catalogers stringArray   set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source) (default [all])\n      --select-catalogers stringArray             add, remove, and filter the catalogers to be used\n  -s, --show-hidden                               show catalogers that have been de-selected\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 23,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for syft for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  syft completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"syft completion [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 22,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(syft completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tsyft completion bash > /etc/bash_completion.d/syft\n\n#### macOS:\n\n\tsyft completion bash > $(brew --prefix)/etc/bash_completion.d/syft\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  syft completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tsyft completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tsyft completion fish > ~/.config/fish/completions/syft.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  syft completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 23,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tsyft completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  syft completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(syft completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tsyft completion zsh > \"${fpath[1]}/_syft\"\n\n#### macOS:\n\n\tsyft completion zsh > $(brew --prefix)/share/zsh/site-functions/_syft\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  syft completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "config",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "show the syft configuration\n\nUsage:\n  syft config [flags]\n  syft config [command]\n\nAvailable Commands:\n  locations   shows all locations and the order in which syft will look for a configuration file\n\nFlags:\n  -h, --help   help for config\n      --load   load and validate the syft configuration\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"syft config [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 23,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "config",
+    "locations",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "shows all locations and the order in which syft will look for a configuration file\n\nUsage:\n  syft config locations [flags]\n\nFlags:\n      --all    include every file extension supported\n  -h, --help   help for locations\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "convert",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "[Experimental] Convert SBOM files to, and from, SPDX, CycloneDX and Syft's format. For more info about data loss between formats see https://github.com/anchore/syft/wiki/format-conversion\n\nUsage:\n  syft convert [SOURCE-SBOM] -o [FORMAT] [flags]\n\nExamples:\n  syft convert img.syft.json -o spdx-json                      convert a syft SBOM to spdx-json, output goes to stdout\n  syft convert img.syft.json -o cyclonedx-json=img.cdx.json    convert a syft SBOM to CycloneDX, output is written to the file \"img.cdx.json\"\n  syft convert - -o spdx-json                                  convert an SBOM from STDIN to spdx-json\n\n\nFlags:\n      --file string          file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)\n  -h, --help                 help for convert\n  -o, --output stringArray   report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])\n  -t, --template string      specify the path to a Go template file\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 23,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type syft help [path to command] for full details.\n\nUsage:\n  syft help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "login",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Log in to a registry\n\nUsage:\n  syft login [OPTIONS] [SERVER] [flags]\n\nExamples:\n  # Log in to reg.example.com\n  syft login reg.example.com -u AzureDiamond -p hunter2\n\nFlags:\n  -h, --help              help for login\n  -p, --password string   Password\n      --password-stdin    Take the password from stdin\n  -u, --username string   Username\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "scan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate a packaged-based Software Bill Of Materials (SBOM) from container images and filesystems\n\nUsage:\n  syft scan [SOURCE] [flags]\n\nExamples:\n  syft scan alpine:latest                                a summary of discovered packages\n  syft scan alpine:latest -o json                        show all possible cataloging details\n  syft scan alpine:latest -o cyclonedx                   show a CycloneDX formatted SBOM\n  syft scan alpine:latest -o cyclonedx-json              show a CycloneDX JSON formatted SBOM\n  syft scan alpine:latest -o spdx                        show a SPDX 2.3 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx@2.2                    show a SPDX 2.2 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx-json                   show a SPDX 2.3 JSON formatted SBOM\n  syft scan alpine:latest -o spdx-json@2.2               show a SPDX 2.2 JSON formatted SBOM\n  syft scan alpine:latest -vv                            show verbose debug information\n  syft scan alpine:latest -o template -t my_format.tmpl  show a SBOM formatted according to given template file\n\n  Supports the following image sources:\n    syft scan yourrepo/yourimage:tag     defaults to using images from a Docker daemon. If Docker is not present, the image is pulled directly from the registry.\n    syft scan path/to/a/file/or/dir      a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\n  You can also explicitly specify the scheme to use:\n    syft scan docker:yourrepo/yourimage:tag            explicitly use the Docker daemon\n    syft scan podman:yourrepo/yourimage:tag            explicitly use the Podman daemon\n    syft scan registry:yourrepo/yourimage:tag          pull image directly from a registry (no container runtime required)\n    syft scan docker-archive:path/to/yourimage.tar     use a tarball from disk for archives created from \"docker save\"\n    syft scan oci-archive:path/to/yourimage.tar        use a tarball from disk for OCI archives (from Skopeo or otherwise)\n    syft scan oci-dir:path/to/yourimage                read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    syft scan singularity:path/to/yourimage.sif        read directly from a Singularity Image Format (SIF) container on disk\n    syft scan oci-model-registry:ai/llama3.2           scan an OCI model artifact from a registry (e.g. Docker Hub AI models)\n    syft scan dir:path/to/yourproject                  read directly from a path on disk (any directory)\n    syft scan file:path/to/yourproject/file            read directly from a path on disk (any single file)\n\n\nFlags:\n      --base-path string                          base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory\n      --enrich stringArray                        enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)\n      --exclude stringArray                       exclude paths from being scanned using a glob expression\n      --file string                               file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)\n      --from stringArray                          specify the source behavior to use (e.g. docker, registry, oci-dir, ...)\n  -h, --help                                      help for scan\n  -o, --output stringArray                        report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])\n      --override-default-catalogers stringArray   set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)\n      --parallelism int                           number of cataloger workers to run in parallel\n      --platform string                           an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n  -s, --scope string                              selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --select-catalogers stringArray             add, remove, and filter the catalogers to be used\n      --source-name string                        set the name of the target being analyzed\n      --source-supplier string                    the organization that supplied the component, which often may be the manufacturer, distributor, or repackager\n      --source-version string                     set the version of the target being analyzed\n  -t, --template string                           specify the path to a Go template file\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 24,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "syft",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "show version information\n\nUsage:\n  syft version [flags]\n\nFlags:\n  -h, --help            help for version\n  -o, --output string   the format to show the results (allowable: [text json]) (default \"text\")\n\nGlobal Flags:\n  -c, --config stringArray    syft configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 27,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "syft"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for syft\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "syft"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'syft' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "syft",
+    "dir:/opt/ctk/fixtures/source-corpus",
+    "-o",
+    "table"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME          VERSION  TYPE    \ncryptography  2.3      python  \njinja2        2.10     python  \npyyaml        5.1      python  \nrequests      2.19.1   python  \nurllib3       1.24.1   python\n",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)\n",
+   "duration_ms": 456,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "sbom-table",
+   "title": "Generate an SBOM from a source tree"
+  },
+  {
+   "argv": [
+    "syft",
+    "dir:/opt/ctk/fixtures/source-corpus",
+    "-o",
+    "cyclonedx-json"
+   ],
+   "exit_code": 0,
+   "stdout": "{\"$schema\":\"http://cyclonedx.org/schema/bom-1.7.schema.json\",\"bomFormat\":\"CycloneDX\",\"specVersion\":\"1.7\",\"serialNumber\":\"urn:uuid:90a93fe0-dc48-4249-93d4-26018a43a660\",\"version\":1,\"metadata\":{\"timestamp\":\"2026-07-28T23:44:26Z\",\"tools\":{\"components\":[{\"type\":\"application\",\"author\":\"anchore\",\"name\":\"syft\",\"version\":\"[not provided]\"}]},\"component\":{\"bom-ref\":\"549f9a9ac1c220be\",\"type\":\"file\",\"name\":\"/opt/ctk/fixtures/source-corpus\"}},\"components\":[{\"bom-ref\":\"pkg:pypi/cryptography@2.3?package-id=8c1c510a2a2867db\",\"type\":\"library\",\"name\":\"cryptography\",\"version\":\"2.3\",\"cpe\":\"cpe:2.3:a:cryptography.io:cryptography:2.3:*:*:*:*:python:*:*\",\"purl\":\"pkg:pypi/cryptography@2.3\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:cryptography.io:cryptography:2.3:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/jinja2@2.10?package-id=d51e03b7f2a59975\",\"type\":\"library\",\"name\":\"jinja2\",\"version\":\"2.10\",\"cpe\":\"cpe:2.3:a:python-jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/jinja2@2.10\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/pyyaml@5.1?package-id=5ce2a31c144a5e4f\",\"type\":\"library\",\"name\":\"pyyaml\",\"version\":\"5.1\",\"cpe\":\"cpe:2.3:a:python-pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/pyyaml@5.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/requests@2.19.1?package-id=928fc3c958241ddd\",\"type\":\"library\",\"name\":\"requests\",\"version\":\"2.19.1\",\"cpe\":\"cpe:2.3:a:python:requests:2.19.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/requests@2.19.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/urllib3@1.24.1?package-id=c6b61662f2e91e7e\",\"type\":\"library\",\"name\":\"urllib3\",\"version\":\"1.24.1\",\"cpe\":\"cpe:2.3:a:python:urllib3:1.24.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/urllib3@1.24.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"26ca2b7dc025d550\",\"type\":\"file\",\"name\":\"/opt/ctk/fixtures/source-corpus/requirements.txt\",\"hashes\":[{\"alg\":\"SHA-1\",\"content\":\"572cd7e2ec248a7adfd8ac69595b0edf9cba1aef\"},{\"alg\":\"SHA-256\",\"content\":\"60e1f00a001218f04e576f50c56e2fa7699e3662e56083997c46347dfa5efaee\"}]}]}\n",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)\n",
+   "duration_ms": 433,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "sbom-json-summary",
+   "title": "Emit CycloneDX JSON instead of a table"
+  },
+  {
+   "argv": [
+    "syft",
+    "/opt/ctk/fixtures/source-corpus/requirements.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME          VERSION  TYPE    \ncryptography  2.3      python  \njinja2        2.10     python  \npyyaml        5.1      python  \nrequests      2.19.1   python  \nurllib3       1.24.1   python\n",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n",
+   "duration_ms": 432,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "surface-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "syft",
+    "/opt/ctk/fixtures/container-image/image.tar"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n[0008] ERROR could not determine source: errors occurred attempting to resolve '/opt/ctk/fixtures/container-image/image.tar':\n  - docker-archive: unable to provide image from tarball: open /opt/ctk/fixtures/container-image/image.tar: permission denied\n  - oci-archive: unable to open OCI tarball: open /opt/ctk/fixtures/container-image/image.tar: permission denied\n  - oci-dir: unable to read image from OCI directory path \"/opt/ctk/fixtures/container-image/image.tar\": stat /opt/ctk/fixtures/container-image/image.tar/index.json: not a directory\n  - singularity: failed to load image: open /opt/ctk/fixtures/container-image/image.tar: permission denied\n  - snap: unable to open file=\"/opt/ctk/fixtures/container-image/image.tar\": open /opt/ctk/fixtures/container-image/image.tar: permission denied\n  - local-file: unable to open file=\"/opt/ctk/fixtures/container-image/image.tar\": open /opt/ctk/fixtures/container-image/image.tar: permission denied\n  - local-directory: not a directory source: /opt/ctk/fixtures/container-image/image.tar\n  - docker: docker not available: failed to connect to Docker daemon. Ensure Docker is running and accessible\n  - podman: podman not available: no host address\n  - containerd: containerd not available: no grpc connection or services is available: unavailable\n  - oci-registry: failed to get image descriptor from registry: Get \"https://index.docker.io/v2/\": dial tcp: lookup index.docker.io on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n  - oci-model: failed to fetch descriptor: Get \"https://index.docker.io/v2/\": dial tcp: lookup index.docker.io on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n  - snap: failed to send HTTP request: Get \"https://api.snapcraft.io/v2/snaps/info//opt/ctk/fixtures/container-image/image.tar\": dial tcp: lookup api.snapcraft.io on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 8392,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "surface-2",
+   "title": "Built from the tool's own advertised flags \u2014 run against container-image"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 23,
+   "binary": "syft",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "38600756989bd8c3",
+ "examples": [
+  {
+   "id": "sbom-table",
+   "title": "Generate an SBOM from a source tree",
+   "argv": [
+    "syft",
+    "dir:/opt/ctk/fixtures/source-corpus",
+    "-o",
+    "table"
+   ],
+   "stdout": "NAME          VERSION  TYPE    \ncryptography  2.3      python  \njinja2        2.10     python  \npyyaml        5.1      python  \nrequests      2.19.1   python  \nurllib3       1.24.1   python\n",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)\n",
+   "exit_code": 0,
+   "duration_ms": 456,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "sbom-json-summary",
+   "title": "Emit CycloneDX JSON instead of a table",
+   "argv": [
+    "syft",
+    "dir:/opt/ctk/fixtures/source-corpus",
+    "-o",
+    "cyclonedx-json"
+   ],
+   "stdout": "{\"$schema\":\"http://cyclonedx.org/schema/bom-1.7.schema.json\",\"bomFormat\":\"CycloneDX\",\"specVersion\":\"1.7\",\"serialNumber\":\"urn:uuid:90a93fe0-dc48-4249-93d4-26018a43a660\",\"version\":1,\"metadata\":{\"timestamp\":\"2026-07-28T23:44:26Z\",\"tools\":{\"components\":[{\"type\":\"application\",\"author\":\"anchore\",\"name\":\"syft\",\"version\":\"[not provided]\"}]},\"component\":{\"bom-ref\":\"549f9a9ac1c220be\",\"type\":\"file\",\"name\":\"/opt/ctk/fixtures/source-corpus\"}},\"components\":[{\"bom-ref\":\"pkg:pypi/cryptography@2.3?package-id=8c1c510a2a2867db\",\"type\":\"library\",\"name\":\"cryptography\",\"version\":\"2.3\",\"cpe\":\"cpe:2.3:a:cryptography.io:cryptography:2.3:*:*:*:*:python:*:*\",\"purl\":\"pkg:pypi/cryptography@2.3\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:cryptography.io:cryptography:2.3:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/jinja2@2.10?package-id=d51e03b7f2a59975\",\"type\":\"library\",\"name\":\"jinja2\",\"version\":\"2.10\",\"cpe\":\"cpe:2.3:a:python-jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/jinja2@2.10\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python-jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python_jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:jinja2:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:jinja2:2.10:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/pyyaml@5.1?package-id=5ce2a31c144a5e4f\",\"type\":\"library\",\"name\":\"pyyaml\",\"version\":\"5.1\",\"cpe\":\"cpe:2.3:a:python-pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/pyyaml@5.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python-pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python_pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:python-pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:python_pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:python:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:cpe23\",\"value\":\"cpe:2.3:a:pyyaml:pyyaml:5.1:*:*:*:*:*:*:*\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/requests@2.19.1?package-id=928fc3c958241ddd\",\"type\":\"library\",\"name\":\"requests\",\"version\":\"2.19.1\",\"cpe\":\"cpe:2.3:a:python:requests:2.19.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/requests@2.19.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"pkg:pypi/urllib3@1.24.1?package-id=c6b61662f2e91e7e\",\"type\":\"library\",\"name\":\"urllib3\",\"version\":\"1.24.1\",\"cpe\":\"cpe:2.3:a:python:urllib3:1.24.1:*:*:*:*:*:*:*\",\"purl\":\"pkg:pypi/urllib3@1.24.1\",\"properties\":[{\"name\":\"syft:package:foundBy\",\"value\":\"python-package-cataloger\"},{\"name\":\"syft:package:language\",\"value\":\"python\"},{\"name\":\"syft:package:type\",\"value\":\"python\"},{\"name\":\"syft:package:metadataType\",\"value\":\"python-pip-requirements-entry\"},{\"name\":\"syft:location:0:path\",\"value\":\"/requirements.txt\"}]},{\"bom-ref\":\"26ca2b7dc025d550\",\"type\":\"file\",\"name\":\"/opt/ctk/fixtures/source-corpus/requirements.txt\",\"hashes\":[{\"alg\":\"SHA-1\",\"content\":\"572cd7e2ec248a7adfd8ac69595b0edf9cba1aef\"},{\"alg\":\"SHA-256\",\"content\":\"60e1f00a001218f04e576f50c56e2fa7699e3662e56083997c46347dfa5efaee\"}]}]}\n",
+   "stderr": "[0000]  WARN unable to get filesystem cache at /home/ctk/.cache/syft: unable to create directory at '/home/ctk/.cache/syft': mkdir /home/ctk/.cache: read-only file system\n[0000]  WARN no explicit name and version provided for directory source, deriving artifact ID from the given path (which is not ideal)\n",
+   "exit_code": 0,
+   "duration_ms": 433,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--base-path": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory",
+   "--config": "syft configuration file(s) to use",
+   "-c": "syft configuration file(s) to use",
+   "--enrich": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)",
+   "--exclude": "exclude paths from being scanned using a glob expression",
+   "--file": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)",
+   "--from": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)",
+   "--help": "help for syft",
+   "-h": "help for syft",
+   "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+   "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+   "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)",
+   "--parallelism": "number of cataloger workers to run in parallel",
+   "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+   "--profile": "configuration profiles to use",
+   "--quiet": "suppress all logging output",
+   "-q": "suppress all logging output",
+   "--scope": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+   "-s": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+   "--select-catalogers": "add, remove, and filter the catalogers to be used",
+   "--source-name": "set the name of the target being analyzed",
+   "--source-supplier": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager",
+   "--source-version": "set the version of the target being analyzed",
+   "--template": "specify the path to a Go template file",
+   "-t": "specify the path to a Go template file",
+   "--verbose": "increase verbosity (-v = info, -vv = debug)",
+   "-v": "increase verbosity (-v = info, -vv = debug)",
+   "--version": "version for syft"
+  },
+  "aliases": {
+   "--config": [
+    "-c"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--scope": [
+    "-s"
+   ],
+   "--template": [
+    "-t"
+   ],
+   "--verbose": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "attest": {
+    "--base-path": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory",
+    "--enrich": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--from": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)",
+    "--help": "help for attest",
+    "-h": "help for attest",
+    "--key": "the key to use for the attestation",
+    "-k": "the key to use for the attestation",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-json])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-json])",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)",
+    "--parallelism": "number of cataloger workers to run in parallel",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--scope": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "-s": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--source-name": "set the name of the target being analyzed",
+    "--source-supplier": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager",
+    "--source-version": "set the version of the target being analyzed",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "cataloger": {
+    "--help": "help for list",
+    "-h": "help for list",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--output": "format to output the cataloger list (available: table, json)",
+    "-o": "format to output the cataloger list (available: table, json)",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source) (default [all])",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--show-hidden": "show catalogers that have been de-selected",
+    "-s": "show catalogers that have been de-selected"
+   },
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "config": {
+    "--help": "help for locations",
+    "-h": "help for locations",
+    "--load": "load and validate the syft configuration",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--all": "include every file extension supported"
+   },
+   "convert": {
+    "--file": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)",
+    "--help": "help for convert",
+    "-h": "help for convert",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "--template": "specify the path to a Go template file",
+    "-t": "specify the path to a Go template file",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "login": {
+    "--help": "help for login",
+    "-h": "help for login",
+    "--password": "Password",
+    "-p": "Password",
+    "--password-stdin": "Take the password from stdin",
+    "--username": "Username",
+    "-u": "Username",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "scan": {
+    "--base-path": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory",
+    "--enrich": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--file": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)",
+    "--help": "help for scan",
+    "-h": "help for scan",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)",
+    "--parallelism": "number of cataloger workers to run in parallel",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--scope": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "-s": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--source-name": "set the name of the target being analyzed",
+    "--source-supplier": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager",
+    "--source-version": "set the version of the target being analyzed",
+    "--template": "specify the path to a Go template file",
+    "-t": "specify the path to a Go template file",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "version": {
+    "--help": "help for version",
+    "-h": "help for version",
+    "--output": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "-o": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   }
+  },
+  "subcommands": [
+   "attest",
+   "cataloger",
+   "completion",
+   "config",
+   "convert",
+   "help",
+   "login",
+   "scan",
+   "version"
+  ],
+  "binary": "syft",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "29ee10392c43e71b696a4d6bc582333c87534591c06c63cb5daf76b9f07c8692",
+  "text": "Generate a packaged-based Software Bill Of Materials (SBOM) from container images and filesystems\n\nUsage:\n  syft [SOURCE] [flags]\n  syft [command]\n\nExamples:\n  syft scan alpine:latest                                a summary of discovered packages\n  syft scan alpine:latest -o json                        show all possible cataloging details\n  syft scan alpine:latest -o cyclonedx                   show a CycloneDX formatted SBOM\n  syft scan alpine:latest -o cyclonedx-json              show a CycloneDX JSON formatted SBOM\n  syft scan alpine:latest -o spdx                        show a SPDX 2.3 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx@2.2                    show a SPDX 2.2 Tag-Value formatted SBOM\n  syft scan alpine:latest -o spdx-json                   show a SPDX 2.3 JSON formatted SBOM\n  syft scan alpine:latest -o spdx-json@2.2               show a SPDX 2.2 JSON formatted SBOM\n  syft scan alpine:latest -vv                            show verbose debug information\n  syft scan alpine:latest -o template -t my_format.tmpl  show a SBOM formatted according to given template file\n\n  Supports the following image sources:\n    syft scan yourrepo/yourimage:tag     defaults to using images from a Docker daemon. If Docker is not present, the image is pulled directly from the registry.\n    syft scan path/to/a/file/or/dir      a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\n  You can also explicitly specify the scheme to use:\n    syft scan docker:yourrepo/yourimage:tag            explicitly use the Docker daemon\n    syft scan podman:yourrepo/yourimage:tag            explicitly use the Podman daemon\n    syft scan registry:yourrepo/yourimage:tag          pull image directly from a registry (no container runtime required)\n    syft scan docker-archive:path/to/yourimage.tar     use a tarball from disk for archives created from \"docker save\"\n    syft scan oci-archive:path/to/yourimage.tar        use a tarball from disk for OCI archives (from Skopeo or otherwise)\n    syft scan oci-dir:path/to/yourimage                read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    syft scan singularity:path/to/yourimage.sif        read directly from a Singularity Image Format (SIF) container on disk\n    syft scan oci-model-registry:ai/llama3.2           scan an OCI model artifact from a registry (e.g. Docker Hub AI models)\n    syft scan dir:path/to/yourproject                  read directly from a path on disk (any directory)\n    syft scan file:path/to/yourproject/file            read directly from a path on disk (any single file)\n\n\nAvailable Commands:\n  attest      Generate an SBOM as an attestation for the given [SOURCE] container image\n  cataloger   Show available catalogers and configuration\n  completion  Generate the autocompletion script for the specified shell\n  config      show the syft configuration\n  convert     Convert between SBOM formats\n  help        Help about any command\n  login       Log in to a registry\n  scan        Generate an SBOM\n  version     show version information\n\nFlags:\n      --base-path string                          base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory\n  -c, --config stringArray                        syft configuration file(s) to use\n      --enrich stringArray                        enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)\n      --exclude stringArray                       exclude paths from being scanned using a glob expression\n      --file string                               file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)\n      --from stringArray                          specify the source behavior to use (e.g. docker, registry, oci-dir, ...)\n  -h, --help                                      help for syft\n  -o, --output stringArray                        report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])\n      --override-default-catalogers stringArray   set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)\n      --parallelism int                           number of cataloger workers to run in parallel\n      --platform string                           an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray                       configuration profiles to use\n  -q, --quiet                                     suppress all logging output\n  -s, --scope string                              selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --select-catalogers stringArray             add, remove, and filter the catalogers to be used\n      --source-name string                        set the name of the target being analyzed\n      --source-supplier string                    the organization that supplied the component, which often may be the manufacturer, distributor, or repackager\n      --source-version string                     set the version of the target being analyzed\n  -t, --template string                           specify the path to a Go template file\n  -v, --verbose count                             increase verbosity (-v = info, -vv = debug)\n      --version                                   version for syft\n\nUse \"syft [command] --help\" for more information about a command.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--version"
+  ],
+  "unconfirmed": [
+   "--cache-only",
+   "--dry-run",
+   "--full",
+   "--length",
+   "--name",
+   "--o",
+   "--offset",
+   "--prefix-length",
+   "--search-for",
+   "add-snippet",
+   "attest",
+   "cataloger",
+   "convert",
+   "download",
+   "info",
+   "list",
+   "manager",
+   "packages",
+   "scan",
+   "version",
+   "write-snippet"
+  ],
+  "help_only": [
+   "--base-path",
+   "--config",
+   "--enrich",
+   "--exclude",
+   "--file",
+   "--from",
+   "--help",
+   "--output",
+   "--override-default-catalogers",
+   "--parallelism",
+   "--platform",
+   "--profile",
+   "--quiet",
+   "--scope",
+   "--select-catalogers",
+   "--source-name",
+   "--source-supplier",
+   "--source-version",
+   "--template",
+   "--verbose",
+   "-c",
+   "-h",
+   "-o",
+   "-q",
+   "-s",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.03571428571428571
+ },
+ "surface": {
+  "flags": {
+   "--base-path": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory"
+   },
+   "--cache-only": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only update cache from NVD API, don't generate index",
+    "kind": "option",
+    "first_tag": "v1.38.0",
+    "first_date": "2025-11-17T17:42:45Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator/main.go"
+   },
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "syft configuration file(s) to use",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--dry-run": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show what would be removed without deleting anything",
+    "kind": "option",
+    "first_tag": "v1.45.0",
+    "first_date": "2026-06-02T20:22:47Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": ".github/scripts/prune_orphan_fingerprints.py"
+   },
+   "--enrich": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)"
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude paths from being scanned using a glob expression"
+   },
+   "--file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)"
+   },
+   "--from": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)"
+   },
+   "--full": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "force full refresh instead of incremental update",
+    "kind": "option",
+    "first_tag": "v1.38.0",
+    "first_date": "2025-11-17T17:42:45Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator/main.go"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for syft",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--length": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "the length of the snippet to capture",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/add_snippet.go"
+   },
+   "--name": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "the name of the snippet",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/write_snippet.go"
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "file location to save CPE index (required for build mode)",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/internal/cpegenerate/dictionary/index-generator/main.go"
+   },
+   "--offset": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "the offset in the binary to start the snippet",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/write_snippet.go"
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--override-default-catalogers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)"
+   },
+   "--parallelism": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of cataloger workers to run in parallel"
+   },
+   "--platform": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')"
+   },
+   "--prefix-length": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "number of bytes before the search hit to capture",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/add_snippet.go"
+   },
+   "--profile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "configuration profiles to use"
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "suppress all logging output",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--scope": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--search-for": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "the pattern to search for in the binary (defaults to the version)",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/add_snippet.go"
+   },
+   "--select-catalogers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "add, remove, and filter the catalogers to be used"
+   },
+   "--source-name": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set the name of the target being analyzed"
+   },
+   "--source-supplier": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager"
+   },
+   "--source-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set the version of the target being analyzed"
+   },
+   "--template": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "specify the path to a Go template file",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "increase verbosity (-v = info, -vv = debug)",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "version for syft",
+    "kind": "option",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/write_snippet.go"
+   },
+   "add-snippet": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "capture snippets from binaries",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/add_snippet.go"
+   },
+   "attest": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate an SBOM as an attestation for the given [SOURCE] container image",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/attest.go"
+   },
+   "cataloger": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show available catalogers and configuration",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/cataloger.go"
+   },
+   "convert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Convert between SBOM formats",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/convert.go"
+   },
+   "download": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "download binaries [name@version ...]",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/download.go"
+   },
+   "info": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show detailed capabilities of catalogers",
+    "kind": "subcommand",
+    "first_tag": "v1.39.0",
+    "first_date": "2025-12-22T21:00:04Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/cataloger_info.go"
+   },
+   "list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List available catalogers",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/cataloger_list.go"
+   },
+   "manager": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "manager is a tool for managing binaries and snippets",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/root.go"
+   },
+   "packages": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/packages.go"
+   },
+   "scan": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate an SBOM",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/syft/internal/commands/scan.go"
+   },
+   "version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "show the version",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T09:55:11-04:00",
+    "last_tag": "v0.1.0-beta.1",
+    "last_date": "2020-07-27T09:55:11-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/version.go"
+   },
+   "write-snippet": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "capture snippets from binaries",
+    "kind": "subcommand",
+    "first_tag": "v1.26.0",
+    "first_date": "2025-05-20T21:27:25Z",
+    "last_tag": "v1.49.0",
+    "last_date": "2026-07-21T13:11:42Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "syft/pkg/cataloger/binary/internal/manager/internal/cli/commands/write_snippet.go"
+   }
+  },
+  "subcommands": [
+   "attest",
+   "cataloger",
+   "completion",
+   "config",
+   "convert",
+   "help",
+   "login",
+   "scan",
+   "version"
+  ],
+  "subcommand_flags": {
+   "attest": {
+    "--base-path": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory",
+    "--enrich": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--from": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)",
+    "--help": "help for attest",
+    "-h": "help for attest",
+    "--key": "the key to use for the attestation",
+    "-k": "the key to use for the attestation",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-json])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-json])",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)",
+    "--parallelism": "number of cataloger workers to run in parallel",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--scope": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "-s": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--source-name": "set the name of the target being analyzed",
+    "--source-supplier": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager",
+    "--source-version": "set the version of the target being analyzed",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "cataloger": {
+    "--help": "help for list",
+    "-h": "help for list",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--output": "format to output the cataloger list (available: table, json)",
+    "-o": "format to output the cataloger list (available: table, json)",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source) (default [all])",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--show-hidden": "show catalogers that have been de-selected",
+    "-s": "show catalogers that have been de-selected"
+   },
+   "completion": {
+    "--help": "help for zsh",
+    "-h": "help for zsh",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "config": {
+    "--help": "help for locations",
+    "-h": "help for locations",
+    "--load": "load and validate the syft configuration",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)",
+    "--all": "include every file extension supported"
+   },
+   "convert": {
+    "--file": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)",
+    "--help": "help for convert",
+    "-h": "help for convert",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "--template": "specify the path to a Go template file",
+    "-t": "specify the path to a Go template file",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "help": {
+    "--help": "help for help",
+    "-h": "help for help",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "login": {
+    "--help": "help for login",
+    "-h": "help for login",
+    "--password": "Password",
+    "-p": "Password",
+    "--password-stdin": "Take the password from stdin",
+    "--username": "Username",
+    "-u": "Username",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "scan": {
+    "--base-path": "base directory for scanning, no links will be followed above this directory, and all paths will be reported relative to this directory",
+    "--enrich": "enable package data enrichment from local and online sources (options: all, golang, java, javascript, python, vcpkg)",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--file": "file to write the default report output to (default is STDOUT) (DEPRECATED: use: --output FORMAT=PATH)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, oci-dir, ...)",
+    "--help": "help for scan",
+    "-h": "help for scan",
+    "--output": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "-o": "report output format (<format>=<file> to output to a file), formats=[cyclonedx-json cyclonedx-xml github-json purls spdx-json spdx-tag-value syft-json syft-table syft-text template] (default [syft-table])",
+    "--override-default-catalogers": "set the base set of catalogers to use (defaults to 'image' or 'directory' depending on the scan source)",
+    "--parallelism": "number of cataloger workers to run in parallel",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--scope": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "-s": "selection of layers to catalog, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--select-catalogers": "add, remove, and filter the catalogers to be used",
+    "--source-name": "set the name of the target being analyzed",
+    "--source-supplier": "the organization that supplied the component, which often may be the manufacturer, distributor, or repackager",
+    "--source-version": "set the version of the target being analyzed",
+    "--template": "specify the path to a Go template file",
+    "-t": "specify the path to a Go template file",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "version": {
+    "--help": "help for version",
+    "-h": "help for version",
+    "--output": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "-o": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "--config": "syft configuration file(s) to use",
+    "-c": "syft configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "-q": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "-v": "increase verbosity (-v = info, -vv = debug)"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "surface-1",
+    "argv": [
+     "syft",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 0,
+    "output_bytes": 361
+   },
+   {
+    "id": "surface-2",
+    "argv": [
+     "syft",
+     "/opt/ctk/fixtures/container-image/image.tar"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 1,
+    "output_bytes": 2109
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "syft",
+ "repo": "anchore/syft",
+ "head_sha": "16223e6dd7893fe578787658ceb876257483d404",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-28T23:44:35.502651+00:00"
+}
