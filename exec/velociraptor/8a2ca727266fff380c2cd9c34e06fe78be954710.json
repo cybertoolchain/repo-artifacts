@@ -1,0 +1,141 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:4c9eec393622fb0312505694edbb7d14802f560ba9d445eef01b0ab96cb628aa",
+  "duration_s": 65.36,
+  "log_tail": "#12 13.90 go: downloading github.com/blevesearch/mmap-go v1.2.0\n#12 13.91 go: downloading golang.org/x/arch v0.23.0\n#12 13.91 go: downloading go.mongodb.org/mongo-driver v1.17.7\n#12 14.21 go: downloading github.com/modern-go/reflect2 v1.0.2\n#12 14.21 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd\n#12 14.37 go: downloading kernel.org/pub/linux/libs/security/libcap/psx v1.2.71\n#12 14.74 go: downloading github.com/elastic/elastic-transport-go/v8 v8.9.1-0.20260224212447-513c84c73cc8\n#12 14.94 go: downloading go.opentelemetry.io/otel/trace v1.43.0\n#12 14.94 go: downloading go.opentelemetry.io/otel v1.43.0\n#12 15.64 go: downloading github.com/go-logr/logr v1.4.3\n#12 15.64 go: downloading github.com/go-logr/stdr v1.2.2\n#12 15.64 go: downloading go.opentelemetry.io/otel/metric v1.43.0\n#12 15.64 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#12 29.74 go: downloading github.com/mschoch/smat v0.2.0\n#12 38.67 # www.velocidex.com/golang/velociraptor/utils\n#12 38.67 utils/reflect.go:11:22: undefined: assets.ReadFile\n#12 ...\n\n#13 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#13 CACHED\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 DONE 60.4s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.0s\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.110 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.2s done\n#19 exporting manifest sha256:753a91069df0c806023857b3be72c3e0a0a66e0ad7935542490211064f223b66 done\n#19 exporting config sha256:6b56167cee8ba81ef4600d97a1740c20d89b9d66c16693caa3fa6222b917d3a8 done\n#19 exporting attestation manifest sha256:2352bae9ec7e85b72a6fe89c0d50484d723f7d20ffb04e7bdfe39340bf4069a4 0.0s done\n#19 exporting manifest list sha256:4c9eec393622fb0312505694edbb7d14802f560ba9d445eef01b0ab96cb628aa done\n#19 naming to docker.io/ctk-exec/velociraptor:8a2ca727266f done\n#19 unpacking to docker.io/ctk-exec/velociraptor:8a2ca727266f 0.1s done\n#19 DONE 0.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'tool'"
+  },
+  {
+   "argv": [
+    "velociraptor",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'velociraptor'"
+  },
+  {
+   "argv": [
+    "man",
+    "tool"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for tool\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "tool"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'tool' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "velociraptor",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'velociraptor'",
+   "kind": "scenario",
+   "id": "t-surface-6e2b0fb2",
+   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 1,
+  "tried_this_wave": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-6e2b0fb2",
+    "argv": [
+     "velociraptor",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'velociraptor'",
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "velociraptor gui",
+    "source": "readme",
+    "path": "README.md",
+    "line": 19,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "velociraptor config repack --exe velociraptor.msi client.config.yaml repacked_velociraptor.msi -v",
+    "source": "readme",
+    "path": "docs/wix/README.md",
+    "line": 88,
+    "reason": "needs-live-target",
+    "token": "velociraptor.msi"
+   }
+  ]
+ },
+ "tool": "Velociraptor",
+ "repo": "Velocidex/velociraptor",
+ "head_sha": "8a2ca727266fff380c2cd9c34e06fe78be954710",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T04:41:09.777100+00:00"
+}

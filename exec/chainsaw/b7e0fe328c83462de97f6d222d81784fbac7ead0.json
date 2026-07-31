@@ -1,0 +1,650 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:0be62c6298ea6efb25c9ce0bfddb22df3ea0fe6b9e1f723a1f85c9bdd6dcb899",
+  "duration_s": 60.35,
+  "log_tail": "#11 42.04    Compiling cargo-platform v0.1.9\n#11 42.10    Compiling chrono v0.4.45\n#11 42.11    Compiling faststr v0.2.34\n#11 42.14    Compiling serde_yaml v0.9.34+deprecated\n#11 42.16    Compiling quick-xml v0.41.0\n#11 42.17    Compiling bincode v2.0.1\n#11 42.27    Compiling cargo_metadata v0.14.2\n#11 42.39    Compiling sonic-rs v0.5.8\n#11 43.04    Compiling skeptic v0.13.7\n#11 43.14    Compiling winstructs v0.3.2\n#11 43.46    Compiling tau-engine v1.15.0\n#11 43.59    Compiling mft v0.6.1 (https://github.com/alexkornitzer/mft.git#b7248177)\n#11 43.75    Compiling notatin v1.0.1 (https://github.com/alexkornitzer/notatin.git#61b2d3dc)\n#11 44.46    Compiling libesedb-sys v0.3.0+20260704 (https://github.com/alexkornitzer/rust-libesedb.git#9c5389e2)\n#11 44.56    Compiling utf16-simd v0.1.0\n#11 44.68    Compiling evtx v0.12.2\n#11 48.67    Compiling libesedb v0.2.7 (https://github.com/alexkornitzer/rust-libesedb.git#9c5389e2)\n#11 48.80    Compiling chainsaw v2.16.3-beta.0 (/src)\n#11 54.35     Finished `release` profile [optimized] target(s) in 54.20s\n#11 DONE 54.5s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.9s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 CACHED\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.120 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:6f9681435d9fc4b4dacdad0847beab76fc53ca1fd2c3917e3cf4a9d3f4a49b4f 0.0s done\n#19 exporting config sha256:9524fa17735b6a7862db926fe8fa33e46eae7aff6bb816cc80a43596a9b06b11 done\n#19 exporting attestation manifest sha256:29f6e6c17ed8ba320968b9578f80509a26aba7af3c16ed03900c880292f364d0 0.0s done\n#19 exporting manifest list sha256:0be62c6298ea6efb25c9ce0bfddb22df3ea0fe6b9e1f723a1f85c9bdd6dcb899 done\n#19 naming to docker.io/ctk-exec/chainsaw:b7e0fe328c83 done\n#19 unpacking to docker.io/ctk-exec/chainsaw:b7e0fe328c83\n#19 unpacking to docker.io/ctk-exec/chainsaw:b7e0fe328c83 0.9s done\n#19 DONE 1.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "chainsaw",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Rapidly work with Forensic Artefacts\n\nUsage: chainsaw [OPTIONS] <COMMAND>\n\nCommands:\n  dump     Dump artefacts into a different format\n  hunt     Hunt through artefacts using detection rules for threat detection\n  lint     Lint provided rules to ensure that they load correctly\n  search   Search through forensic artefacts for keywords or patterns\n  analyse  Perform various analyses on artefacts\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n      --no-banner                  Hide Chainsaw's banner\n      --num-threads <NUM_THREADS>  Limit the thread number (default: num of CPUs)\n  -v...                            Print verbose output\n  -h, --help                       Print help\n  -V, --version                    Print version\n\nExamples:\n\n    Hunt with Sigma and Chainsaw Rules:\n        ./chainsaw hunt evtx_attack_samples/ -s sigma/ --mapping mappings/sigma-event-logs-all.yml -r rules/\n\n    Hunt with Sigma rules and output in JSON:\n        ./chainsaw hunt evtx_attack_samples/ -s sigma/ --mapping mappings/sigma-event-logs-all.yml --json\n\n    Search for the case-insensitive word 'mimikatz':\n        ./chainsaw search mimikatz -i evtx_attack_samples/\n\n    Search for Powershell Script Block Events (EventID 4014):\n        ./chainsaw search -t 'Event.System.EventID: =4104' evtx_attack_samples/\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "dump",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Dump artefacts into a different format\n\nUsage: chainsaw dump [OPTIONS] [PATH]...\n\nArguments:\n  [PATH]...  The paths containing files to dump\n\nOptions:\n  -j, --json                   Dump in json format\n      --jsonl                  Print the output in jsonl format\n      --load-unknown           Allow chainsaw to try and load files it cannot identify\n      --extension <EXTENSION>  Only dump files with the provided extension\n  -o, --output <OUTPUT>        A path to output results to\n  -q                           Suppress informational output\n      --skip-errors            Continue to hunt when an error is encountered\n  -h, --help                   Print help\n\nMFT Specific Options:\n      --decode-data-streams\n          Attempt to decode all extracted data streams from Hex to UTF-8\n      --data-streams-directory <DATA_STREAMS_DIRECTORY>\n          Extracted data streams will be decoded and written to this directory\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "hunt",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Hunt through artefacts using detection rules for threat detection\n\nUsage: chainsaw hunt [OPTIONS] [RULES] [PATH]...\n\nArguments:\n  [RULES]    The path to a collection of rules to use for hunting\n  [PATH]...  The paths containing files to load and hunt through\n\nOptions:\n  -m, --mapping <MAPPING>            A mapping file to tell Chainsaw how to use third-party rules\n  -r, --rule <RULE>                  A path containing additional rules to hunt with\n  -c, --cache-to-disk                Cache results to disk to reduce memory usage at the cost of performance\n      --column-width <COLUMN_WIDTH>  Set the column width for the tabular output\n      --csv                          Print the output in csv format\n      --extension <EXTENSION>        Only hunt through files with the provided extension\n      --from <FROM>                  The timestamp to hunt from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)\n      --full                         Print the full values for the tabular output\n  -j, --json                         Print the output in json format\n      --jsonl                        Print the output in jsonl format\n      --kind <KIND>                  Restrict loaded rules to specified kinds\n      --level <LEVEL>                Restrict loaded rules to specified levels\n      --load-unknown                 Allow chainsaw to try and load files it cannot identify\n      --local                        Output the timestamp using the local machine's timestamp\n      --metadata                     Display additional metadata in the tablar output\n  -o, --output <OUTPUT>              A path to output results to\n      --log                          Print the output in log like format\n      --preprocess                   (BETA) Enable preprocessing, which can result in increased performance\n  -q                                 Suppress informational output\n  -s, --sigma <SIGMA>                A path containing Sigma rules to hunt with\n      --skip-errors                  Continue to hunt when an error is encountered\n      --status <STATUS>              Restrict loaded rules to specified statuses\n      --timezone <TIMEZONE>          Output the timestamp using the timezone provided\n      --to <TO>                      The timestamp to hunt up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)\n  -h, --help                         Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "lint",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Lint provided rules to ensure that they load correctly\n\nUsage: chainsaw lint [OPTIONS] --kind <KIND> <PATH>\n\nArguments:\n  <PATH>  The path to a collection of rules\n\nOptions:\n      --kind <KIND>  The kind of rule to lint: chainsaw, sigma or stalker\n  -t, --tau          Output tau logic\n  -h, --help         Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "search",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Search through forensic artefacts for keywords or patterns\n\nUsage: chainsaw search [OPTIONS] [PATTERN] [PATH]...\n\nArguments:\n  [PATTERN]  A string or regular expression pattern to search for. Not used when -e or -t is specified\n  [PATH]...  The paths containing files to load and hunt through\n\nOptions:\n  -e, --regex <pattern>        A string or regular expression pattern to search for\n      --extension <EXTENSION>  Only search through files with the provided extension\n      --from <FROM>            The timestamp to search from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)\n  -i, --ignore-case            Ignore the case when searching patterns\n  -j, --json                   Print the output in json format\n      --jsonl                  Print the output in jsonl format\n      --load-unknown           Allow chainsaw to try and load files it cannot identify\n      --local                  Output the timestamp using the local machine's timestamp\n      --match-any              Require any of the provided patterns to be found to constitute a match\n  -o, --output <OUTPUT>        The path to output results to\n  -q                           Suppress informational output\n      --skip-errors            Continue to search when an error is encountered\n  -t, --tau <TAU>              Tau expressions to search with. e.g. 'Event.System.EventID: =4104'. Multiple conditions are logical ANDs unless the 'match-any' flag is specified\n      --timestamp <TIMESTAMP>  The field that contains the timestamp\n      --timezone <TIMEZONE>    Output the timestamp using the timezone provided\n      --to <TO>                The timestamp to search up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)\n  -h, --help                   Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Perform various analyses on artefacts\n\nUsage: chainsaw analyse <COMMAND>\n\nCommands:\n  shimcache  Create an execution timeline from the shimcache with optional amcache enrichments\n  gaps       Detect chronological or RecordID gaps in evtx files (possible selective record deletion)\n  evtx       Summarise evtx files (per-Channel record counts and per-Event-ID frequency)\n  srum       Analyse the SRUM database\n  help       Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "shimcache",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Create an execution timeline from the shimcache with optional amcache enrichments\n\nUsage: chainsaw analyse shimcache [OPTIONS] <SHIMCACHE>\n\nArguments:\n  <SHIMCACHE>  The path to the shimcache artefact (SYSTEM registry file)\n\nOptions:\n  -e, --regex <pattern>         A string or regular expression for detecting shimcache entries whose timestamp matches their insertion time\n  -r, --regexfile <REGEX_FILE>  The path to a newline delimited file containing regex patterns for detecting shimcache entries whose timestamp matches their insertion time\n  -o, --output <OUTPUT>         The path to output the result csv file\n  -a, --amcache <AMCACHE>       The path to the amcache artefact (Amcache.hve) for timeline enrichment\n  -p, --tspair                  Enable near timestamp pair detection between shimcache and amcache for finding additional insertion timestamps for shimcache entries\n  -h, --help                    Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "gaps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Detect chronological or RecordID gaps in evtx files (possible selective record deletion)\n\nUsage: chainsaw analyse gaps [OPTIONS] [PATH]...\n\nArguments:\n  [PATH]...  The path(s) to evtx files or directories containing them\n\nOptions:\n      --min-time-gap-minutes <MIN_TIME_GAP_MINUTES>\n          Minimum time gap (in minutes) between consecutive events to flag as suspicious [default: 30]\n      --no-record-id-gaps\n          Skip RecordID gap detection\n      --no-time-gaps\n          Skip time gap detection\n      --from <FROM>\n          The timestamp to analyse from. Drops any records older than the value provided. (YYYY-MM-ddTHH:mm:SS)\n      --to <TO>\n          The timestamp to analyse up to. Drops any records newer than the value provided. (YYYY-MM-ddTHH:mm:SS)\n      --local\n          Output the timestamp using the local machine's timezone\n      --timezone <TIMEZONE>\n          Output the timestamp using the timezone provided\n  -j, --json\n          Print the output in json format\n  -o, --output <OUTPUT>\n          Save the output to a file\n  -q\n          Suppress informational output\n      --skip-errors\n          Continue when an error is encountered\n  -h, --help\n          Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "evtx",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Summarise evtx files (per-Channel record counts and per-Event-ID frequency)\n\nUsage: chainsaw analyse evtx [OPTIONS] [PATH]...\n\nArguments:\n  [PATH]...  The path(s) to evtx files or directories containing them\n\nOptions:\n  -j, --json             Print the output in json format\n  -o, --output <OUTPUT>  Save the output to a file\n  -q                     Suppress informational output\n      --skip-errors      Continue when an error is encountered\n  -h, --help             Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "srum",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyse the SRUM database\n\nUsage: chainsaw analyse srum [OPTIONS] --software <SOFTWARE_HIVE_PATH> <SRUM_PATH>\n\nArguments:\n  <SRUM_PATH>  The path to the SRUM database\n\nOptions:\n  -s, --software <SOFTWARE_HIVE_PATH>  The path to the SOFTWARE hive\n      --stats-only                     Only output details about the SRUM database\n  -q                                   Suppress informational output\n  -o, --output <OUTPUT>                Save the output to a file\n  -h, --help                           Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "analyse",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: chainsaw analyse <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "chainsaw",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: chainsaw [OPTIONS] <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "chainsaw"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for chainsaw\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "chainsaw"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'chainsaw' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "chainsaw",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--no-banner": "Hide Chainsaw's banner",
+   "--num-threads": "Limit the thread number (default: num of CPUs)",
+   "-v": "Print verbose output",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "--num-threads": "<NUM_THREADS>"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {
+   "dump": {
+    "--json": "Dump in json format",
+    "-j": "Dump in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--extension": "Only dump files with the provided extension",
+    "--output": "A path to output results to",
+    "-o": "A path to output results to",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue to hunt when an error is encountered",
+    "--help": "Print help",
+    "-h": "Print help",
+    "--decode-data-streams": "Attempt to decode all extracted data streams from Hex to UTF-8",
+    "--data-streams-directory": "Extracted data streams will be decoded and written to this directory"
+   },
+   "hunt": {
+    "--mapping": "A mapping file to tell Chainsaw how to use third-party rules",
+    "-m": "A mapping file to tell Chainsaw how to use third-party rules",
+    "--rule": "A path containing additional rules to hunt with",
+    "-r": "A path containing additional rules to hunt with",
+    "--cache-to-disk": "Cache results to disk to reduce memory usage at the cost of performance",
+    "-c": "Cache results to disk to reduce memory usage at the cost of performance",
+    "--column-width": "Set the column width for the tabular output",
+    "--csv": "Print the output in csv format",
+    "--extension": "Only hunt through files with the provided extension",
+    "--from": "The timestamp to hunt from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--full": "Print the full values for the tabular output",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--kind": "Restrict loaded rules to specified kinds",
+    "--level": "Restrict loaded rules to specified levels",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--local": "Output the timestamp using the local machine's timestamp",
+    "--metadata": "Display additional metadata in the tablar output",
+    "--output": "A path to output results to",
+    "-o": "A path to output results to",
+    "--log": "Print the output in log like format",
+    "--preprocess": "(BETA) Enable preprocessing, which can result in increased performance",
+    "-q": "Suppress informational output",
+    "--sigma": "A path containing Sigma rules to hunt with",
+    "-s": "A path containing Sigma rules to hunt with",
+    "--skip-errors": "Continue to hunt when an error is encountered",
+    "--status": "Restrict loaded rules to specified statuses",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--to": "The timestamp to hunt up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "lint": {
+    "--kind": "The kind of rule to lint: chainsaw, sigma or stalker",
+    "--tau": "Output tau logic",
+    "-t": "Output tau logic",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "search": {
+    "--regex": "A string or regular expression pattern to search for",
+    "-e": "A string or regular expression pattern to search for",
+    "--extension": "Only search through files with the provided extension",
+    "--from": "The timestamp to search from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--ignore-case": "Ignore the case when searching patterns",
+    "-i": "Ignore the case when searching patterns",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--local": "Output the timestamp using the local machine's timestamp",
+    "--match-any": "Require any of the provided patterns to be found to constitute a match",
+    "--output": "The path to output results to",
+    "-o": "The path to output results to",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue to search when an error is encountered",
+    "--tau": "Tau expressions to search with. e.g. 'Event.System.EventID: =4104'. Multiple conditions are logical ANDs unless the 'match-any' flag is specified",
+    "-t": "Tau expressions to search with. e.g. 'Event.System.EventID: =4104'. Multiple conditions are logical ANDs unless the 'match-any' flag is specified",
+    "--timestamp": "The field that contains the timestamp",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--to": "The timestamp to search up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "analyse": {
+    "--help": "Print help",
+    "-h": "Print help",
+    "--regex": "A string or regular expression for detecting shimcache entries whose timestamp matches their insertion time",
+    "-e": "A string or regular expression for detecting shimcache entries whose timestamp matches their insertion time",
+    "--regexfile": "The path to a newline delimited file containing regex patterns for detecting shimcache entries whose timestamp matches their insertion time",
+    "-r": "The path to a newline delimited file containing regex patterns for detecting shimcache entries whose timestamp matches their insertion time",
+    "--output": "Save the output to a file",
+    "-o": "Save the output to a file",
+    "--amcache": "The path to the amcache artefact (Amcache.hve) for timeline enrichment",
+    "-a": "The path to the amcache artefact (Amcache.hve) for timeline enrichment",
+    "--tspair": "Enable near timestamp pair detection between shimcache and amcache for finding additional insertion timestamps for shimcache entries",
+    "-p": "Enable near timestamp pair detection between shimcache and amcache for finding additional insertion timestamps for shimcache entries",
+    "--min-time-gap-minutes": "Minimum time gap (in minutes) between consecutive events to flag as suspicious [default: 30]",
+    "--no-record-id-gaps": "Skip RecordID gap detection",
+    "--no-time-gaps": "Skip time gap detection",
+    "--from": "The timestamp to analyse from. Drops any records older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--to": "The timestamp to analyse up to. Drops any records newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--local": "Output the timestamp using the local machine's timezone",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue when an error is encountered",
+    "--software": "The path to the SOFTWARE hive",
+    "-s": "The path to the SOFTWARE hive",
+    "--stats-only": "Only output details about the SRUM database"
+   },
+   "help": {}
+  },
+  "subcommands": [
+   "dump",
+   "hunt",
+   "lint",
+   "search",
+   "analyse",
+   "help"
+  ],
+  "binary": "chainsaw",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "3fe98d4ab6f1699d3766436320f0bb513bf1f9f1dcc2a62519a1989d1e4c66ff",
+  "text": "Rapidly work with Forensic Artefacts\n\nUsage: chainsaw [OPTIONS] <COMMAND>\n\nCommands:\n  dump     Dump artefacts into a different format\n  hunt     Hunt through artefacts using detection rules for threat detection\n  lint     Lint provided rules to ensure that they load correctly\n  search   Search through forensic artefacts for keywords or patterns\n  analyse  Perform various analyses on artefacts\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n      --no-banner                  Hide Chainsaw's banner\n      --num-threads <NUM_THREADS>  Limit the thread number (default: num of CPUs)\n  -v...                            Print verbose output\n  -h, --help                       Print help\n  -V, --version                    Print version\n\nExamples:\n\n    Hunt with Sigma and Chainsaw Rules:\n        ./chainsaw hunt evtx_attack_samples/ -s sigma/ --mapping mappings/sigma-event-logs-all.yml -r rules/\n\n    Hunt with Sigma rules and output in JSON:\n        ./chainsaw hunt evtx_attack_samples/ -s sigma/ --mapping mappings/sigma-event-logs-all.yml --json\n\n    Search for the case-insensitive word 'mimikatz':\n        ./chainsaw search mimikatz -i evtx_attack_samples/\n\n    Search for Powershell Script Block Events (EventID 4014):\n        ./chainsaw search -t 'Event.System.EventID: =4104' evtx_attack_samples/\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--help"
+  ],
+  "unconfirmed": [
+   "--output",
+   "--software",
+   "--stats-only"
+  ],
+  "help_only": [
+   "--no-banner",
+   "--num-threads",
+   "--version",
+   "-V",
+   "-h",
+   "-v"
+  ],
+  "mining_coverage": 0.14285714285714285
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2023-10-07T13:41:58+01:00",
+    "last_tag": "v2.16.3-beta.0",
+    "last_date": "2026-07-26T15:53:51+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--no-banner": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hide Chainsaw's banner"
+   },
+   "--num-threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Limit the thread number (default: num of CPUs)",
+    "metavar": "<NUM_THREADS>"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Save the output to a file",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2023-10-07T13:41:58+01:00",
+    "last_tag": "v2.16.3-beta.0",
+    "last_date": "2026-07-26T15:53:51+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--software": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The path to the SOFTWARE hive",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2023-10-07T13:41:58+01:00",
+    "last_tag": "v2.16.3-beta.0",
+    "last_date": "2026-07-26T15:53:51+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--stats-only": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only output details about the SRUM database",
+    "kind": "option",
+    "first_tag": "v2.8.1",
+    "first_date": "2023-11-21T09:51:48Z",
+    "last_tag": "v2.16.3-beta.0",
+    "last_date": "2026-07-26T15:53:51+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print verbose output"
+   }
+  },
+  "subcommands": [
+   "analyse",
+   "dump",
+   "help",
+   "hunt",
+   "lint",
+   "search"
+  ],
+  "subcommand_flags": {
+   "dump": {
+    "--json": "Dump in json format",
+    "-j": "Dump in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--extension": "Only dump files with the provided extension",
+    "--output": "A path to output results to",
+    "-o": "A path to output results to",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue to hunt when an error is encountered",
+    "--help": "Print help",
+    "-h": "Print help",
+    "--decode-data-streams": "Attempt to decode all extracted data streams from Hex to UTF-8",
+    "--data-streams-directory": "Extracted data streams will be decoded and written to this directory"
+   },
+   "hunt": {
+    "--mapping": "A mapping file to tell Chainsaw how to use third-party rules",
+    "-m": "A mapping file to tell Chainsaw how to use third-party rules",
+    "--rule": "A path containing additional rules to hunt with",
+    "-r": "A path containing additional rules to hunt with",
+    "--cache-to-disk": "Cache results to disk to reduce memory usage at the cost of performance",
+    "-c": "Cache results to disk to reduce memory usage at the cost of performance",
+    "--column-width": "Set the column width for the tabular output",
+    "--csv": "Print the output in csv format",
+    "--extension": "Only hunt through files with the provided extension",
+    "--from": "The timestamp to hunt from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--full": "Print the full values for the tabular output",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--kind": "Restrict loaded rules to specified kinds",
+    "--level": "Restrict loaded rules to specified levels",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--local": "Output the timestamp using the local machine's timestamp",
+    "--metadata": "Display additional metadata in the tablar output",
+    "--output": "A path to output results to",
+    "-o": "A path to output results to",
+    "--log": "Print the output in log like format",
+    "--preprocess": "(BETA) Enable preprocessing, which can result in increased performance",
+    "-q": "Suppress informational output",
+    "--sigma": "A path containing Sigma rules to hunt with",
+    "-s": "A path containing Sigma rules to hunt with",
+    "--skip-errors": "Continue to hunt when an error is encountered",
+    "--status": "Restrict loaded rules to specified statuses",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--to": "The timestamp to hunt up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "lint": {
+    "--kind": "The kind of rule to lint: chainsaw, sigma or stalker",
+    "--tau": "Output tau logic",
+    "-t": "Output tau logic",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "search": {
+    "--regex": "A string or regular expression pattern to search for",
+    "-e": "A string or regular expression pattern to search for",
+    "--extension": "Only search through files with the provided extension",
+    "--from": "The timestamp to search from. Drops any documents older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--ignore-case": "Ignore the case when searching patterns",
+    "-i": "Ignore the case when searching patterns",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "--jsonl": "Print the output in jsonl format",
+    "--load-unknown": "Allow chainsaw to try and load files it cannot identify",
+    "--local": "Output the timestamp using the local machine's timestamp",
+    "--match-any": "Require any of the provided patterns to be found to constitute a match",
+    "--output": "The path to output results to",
+    "-o": "The path to output results to",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue to search when an error is encountered",
+    "--tau": "Tau expressions to search with. e.g. 'Event.System.EventID: =4104'. Multiple conditions are logical ANDs unless the 'match-any' flag is specified",
+    "-t": "Tau expressions to search with. e.g. 'Event.System.EventID: =4104'. Multiple conditions are logical ANDs unless the 'match-any' flag is specified",
+    "--timestamp": "The field that contains the timestamp",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--to": "The timestamp to search up to. Drops any documents newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--help": "Print help",
+    "-h": "Print help"
+   },
+   "analyse": {
+    "--help": "Print help",
+    "-h": "Print help",
+    "--regex": "A string or regular expression for detecting shimcache entries whose timestamp matches their insertion time",
+    "-e": "A string or regular expression for detecting shimcache entries whose timestamp matches their insertion time",
+    "--regexfile": "The path to a newline delimited file containing regex patterns for detecting shimcache entries whose timestamp matches their insertion time",
+    "-r": "The path to a newline delimited file containing regex patterns for detecting shimcache entries whose timestamp matches their insertion time",
+    "--output": "Save the output to a file",
+    "-o": "Save the output to a file",
+    "--amcache": "The path to the amcache artefact (Amcache.hve) for timeline enrichment",
+    "-a": "The path to the amcache artefact (Amcache.hve) for timeline enrichment",
+    "--tspair": "Enable near timestamp pair detection between shimcache and amcache for finding additional insertion timestamps for shimcache entries",
+    "-p": "Enable near timestamp pair detection between shimcache and amcache for finding additional insertion timestamps for shimcache entries",
+    "--min-time-gap-minutes": "Minimum time gap (in minutes) between consecutive events to flag as suspicious [default: 30]",
+    "--no-record-id-gaps": "Skip RecordID gap detection",
+    "--no-time-gaps": "Skip time gap detection",
+    "--from": "The timestamp to analyse from. Drops any records older than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--to": "The timestamp to analyse up to. Drops any records newer than the value provided. (YYYY-MM-ddTHH:mm:SS)",
+    "--local": "Output the timestamp using the local machine's timezone",
+    "--timezone": "Output the timestamp using the timezone provided",
+    "--json": "Print the output in json format",
+    "-j": "Print the output in json format",
+    "-q": "Suppress informational output",
+    "--skip-errors": "Continue when an error is encountered",
+    "--software": "The path to the SOFTWARE hive",
+    "-s": "The path to the SOFTWARE hive",
+    "--stats-only": "Only output details about the SRUM database"
+   },
+   "help": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-b6f9569d",
+    "argv": [
+     "chainsaw",
+     "hunt",
+     "/opt/ctk/fixtures/source-corpus",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "--mapping",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 112,
+    "grade": "rejected",
+    "reason": "operand-not-read",
+    "exit_code": 1,
+    "output_bytes": 589,
+    "stability": 1.0
+   },
+   {
+    "id": "t-surface-33652799",
+    "argv": [
+     "chainsaw",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 139
+   },
+   {
+    "id": "t-surface-72551a1a",
+    "argv": [
+     "chainsaw",
+     "analyse",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 137
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "chainsaw",
+ "repo": "WithSecureLabs/chainsaw",
+ "head_sha": "b7e0fe328c83462de97f6d222d81784fbac7ead0",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:54:37.679152+00:00"
+}

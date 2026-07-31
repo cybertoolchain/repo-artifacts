@@ -1,19 +1,407 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "rust",
-  "image_digest": null,
-  "duration_s": 25.78,
-  "log_tail": "#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 169.87MB / 248.53MB 18.8s\n#7 sha256:d71ace0e8bbdcfcf795b836e24a37a6ed0054100e14d6aa6e5a63f7e162ba729 202.65MB / 202.65MB 18.8s done\n#7 extracting sha256:d71ace0e8bbdcfcf795b836e24a37a6ed0054100e14d6aa6e5a63f7e162ba729\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 182.45MB / 248.53MB 19.5s\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 196.08MB / 248.53MB 20.2s\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 208.67MB / 248.53MB 20.9s\n#7 extracting sha256:d71ace0e8bbdcfcf795b836e24a37a6ed0054100e14d6aa6e5a63f7e162ba729 2.0s done\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 222.30MB / 248.53MB 21.5s\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 236.98MB / 248.53MB 22.1s\n#7 sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 248.53MB / 248.53MB 22.6s done\n#7 extracting sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0\n#7 extracting sha256:16c70a9d34bb788145305c907ff9a5ed64690b67c5abbc4b676ff607611081e0 2.1s done\n#7 DONE 24.8s\n\n#9 [build 2/5] WORKDIR /src\n#9 DONE 0.1s\n\n#10 [build 3/5] COPY . .\n#10 DONE 0.0s\n\n#11 [build 4/5] RUN cargo build --release\n#11 0.115 error: failed to parse manifest at `/src/Cargo.toml`\n#11 0.115 \n#11 0.115 Caused by:\n#11 0.115   feature `edition2024` is required\n#11 0.115 \n#11 0.115   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n#11 0.115   Consider trying a newer version of Cargo (this may require the nightly release).\n#11 0.115   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n#11 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 4/5] RUN cargo build --release:\n0.115 error: failed to parse manifest at `/src/Cargo.toml`\n0.115 \n0.115 Caused by:\n0.115   feature `edition2024` is required\n0.115 \n0.115   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n0.115   Consider trying a newer version of Cargo (this may require the nightly release).\n0.115   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN cargo build --release\n   5 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n   6 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
-  "error": "docker build failed",
+  "image_digest": "sha256:105c2fb806869dc0854902fccea46a4e5a537cc7f80d2a1f2547d03edb43533b",
+  "duration_s": 57.82,
+  "log_tail": "#12 31.16 33 |     Internal(InternalExtractor),\n#12 31.16    |              ^^^^^^^^^^^^^^^^^\n#12 31.16    |\n#12 31.16    = note: the address of the same function can vary between different codegen units\n#12 31.16    = note: furthermore, different functions could have the same address after being merged together\n#12 31.16    = note: for more information visit <https://doc.rust-lang.org/nightly/core/ptr/fn.fn_addr_eq.html>\n#12 31.16 \n#12 31.87 warning: `binwalk` (lib) generated 3 warnings\n#12 ...\n\n#10 [build 3/6] WORKDIR /src\n#10 CACHED\n\n#12 [build 5/6] RUN cargo build --release\n#12 54.15 warning: `binwalk` (bin \"binwalk\") generated 3 warnings (3 duplicates)\n#12 54.15     Finished `release` profile [optimized] target(s) in 53.86s\n#12 DONE 54.2s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.2s\n\n#14 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2 libsodium23  && rm -rf /var/lib/apt/lists/*\n#14 CACHED\n\n#15 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#15 DONE 0.1s\n\n#16 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers 0.1s done\n#20 exporting manifest sha256:52fe3bc9d331ae67101a636e8756098d3287fb6361dcc7a2a045c7601c648e2f done\n#20 exporting config sha256:e2075c2225221dab21bff92a23539ba14351a18e8a8674c4cefa8332918ce96e done\n#20 exporting attestation manifest sha256:ed582a70898b02c655b7d64aa6ae3d89abf476a9d741b08e9c5e095d688ead62 done\n#20 exporting manifest list sha256:105c2fb806869dc0854902fccea46a4e5a537cc7f80d2a1f2547d03edb43533b done\n#20 naming to docker.io/ctk-exec/binwalk:704286902ee6 done\n#20 unpacking to docker.io/ctk-exec/binwalk:704286902ee6\n#20 unpacking to docker.io/ctk-exec/binwalk:704286902ee6 0.7s done\n#20 DONE 0.9s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "docker build failed",
+ "captures": [
+  {
+   "argv": [
+    "binwalk",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyzes data for embedded file types\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nArguments:\n  [FILE_NAME]  Path to the file to analyze\n\nOptions:\n  -L, --list                   List supported signatures and extractors\n  -s, --stdin                  Read data from standard input\n  -q, --quiet                  Supress normal stdout output\n  -v, --verbose                During recursive extraction display *all* results\n  -e, --extract                Automatically extract known file types\n  -c, --carve                  Carve both known and unknown file contents to disk\n  -M, --matryoshka             Recursively scan extracted files\n  -a, --search-all             Search for all signatures at all offsets\n  -E, --entropy                Generate an entropy graph with Plotly\n  -p, --png <PNG>              Save entropy graph as a PNG file\n  -l, --log <LOG>              Log JSON results to a file ('-' for stdout)\n  -t, --threads <THREADS>      Manually specify the number of threads to use\n  -x, --exclude <EXCLUDE>...   Do no scan for these signatures\n  -y, --include <INCLUDE>...   Only scan for these signatures\n  -d, --directory <DIRECTORY>  Extract files/folders to a custom directory [default: extractions]\n  -h, --help                   Print help\n  -V, --version                Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "binwalk"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for binwalk\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "binwalk"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'binwalk' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "binwalk",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--list": "List supported signatures and extractors",
+   "-L": "List supported signatures and extractors",
+   "--stdin": "Read data from standard input",
+   "-s": "Read data from standard input",
+   "--quiet": "Supress normal stdout output",
+   "-q": "Supress normal stdout output",
+   "--verbose": "During recursive extraction display *all* results",
+   "-v": "During recursive extraction display *all* results",
+   "--extract": "Automatically extract known file types",
+   "-e": "Automatically extract known file types",
+   "--carve": "Carve both known and unknown file contents to disk",
+   "-c": "Carve both known and unknown file contents to disk",
+   "--matryoshka": "Recursively scan extracted files",
+   "-M": "Recursively scan extracted files",
+   "--search-all": "Search for all signatures at all offsets",
+   "-a": "Search for all signatures at all offsets",
+   "--entropy": "Generate an entropy graph with Plotly",
+   "-E": "Generate an entropy graph with Plotly",
+   "--png": "Save entropy graph as a PNG file",
+   "-p": "Save entropy graph as a PNG file",
+   "--log": "Log JSON results to a file ('-' for stdout)",
+   "-l": "Log JSON results to a file ('-' for stdout)",
+   "--threads": "Manually specify the number of threads to use",
+   "-t": "Manually specify the number of threads to use",
+   "--exclude": "Do no scan for these signatures",
+   "-x": "Do no scan for these signatures",
+   "--include": "Only scan for these signatures",
+   "-y": "Only scan for these signatures",
+   "--directory": "Extract files/folders to a custom directory [default: extractions]",
+   "-d": "Extract files/folders to a custom directory [default: extractions]",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "-p": "<PNG>",
+   "--png": "<PNG>",
+   "-l": "<LOG>",
+   "--log": "<LOG>",
+   "-t": "<THREADS>",
+   "--threads": "<THREADS>",
+   "-d": "<DIRECTORY>",
+   "--directory": "<DIRECTORY>"
+  },
+  "aliases": {
+   "--list": [
+    "-L"
+   ],
+   "--stdin": [
+    "-s"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--extract": [
+    "-e"
+   ],
+   "--carve": [
+    "-c"
+   ],
+   "--matryoshka": [
+    "-M"
+   ],
+   "--search-all": [
+    "-a"
+   ],
+   "--entropy": [
+    "-E"
+   ],
+   "--png": [
+    "-p"
+   ],
+   "--log": [
+    "-l"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--exclude": [
+    "-x"
+   ],
+   "--include": [
+    "-y"
+   ],
+   "--directory": [
+    "-d"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "binwalk",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "95bf6cd059ccf0ec5a05ffd3ec05e20e137ef885fef53017dd6c79d5c6aa657e",
+  "text": "Analyzes data for embedded file types\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nArguments:\n  [FILE_NAME]  Path to the file to analyze\n\nOptions:\n  -L, --list                   List supported signatures and extractors\n  -s, --stdin                  Read data from standard input\n  -q, --quiet                  Supress normal stdout output\n  -v, --verbose                During recursive extraction display *all* results\n  -e, --extract                Automatically extract known file types\n  -c, --carve                  Carve both known and unknown file contents to disk\n  -M, --matryoshka             Recursively scan extracted files\n  -a, --search-all             Search for all signatures at all offsets\n  -E, --entropy                Generate an entropy graph with Plotly\n  -p, --png <PNG>              Save entropy graph as a PNG file\n  -l, --log <LOG>              Log JSON results to a file ('-' for stdout)\n  -t, --threads <THREADS>      Manually specify the number of threads to use\n  -x, --exclude <EXCLUDE>...   Do no scan for these signatures\n  -y, --include <INCLUDE>...   Only scan for these signatures\n  -d, --directory <DIRECTORY>  Extract files/folders to a custom directory [default: extractions]\n  -h, --help                   Print help\n  -V, --version                Print version\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--carve",
+   "--directory",
+   "--entropy",
+   "--exclude",
+   "--extract",
+   "--help",
+   "--include",
+   "--list",
+   "--log",
+   "--matryoshka",
+   "--png",
+   "--quiet",
+   "--search-all",
+   "--stdin",
+   "--threads",
+   "--verbose",
+   "--version",
+   "-E",
+   "-L",
+   "-M",
+   "-V",
+   "-a",
+   "-c",
+   "-d",
+   "-e",
+   "-h",
+   "-l",
+   "-p",
+   "-q",
+   "-s",
+   "-t",
+   "-v",
+   "-x",
+   "-y"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--carve": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Carve both known and unknown file contents to disk",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--directory": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extract files/folders to a custom directory [default: extractions]",
+    "metavar": "<DIRECTORY>",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--entropy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate an entropy graph with Plotly",
+    "aliases": [
+     "-E"
+    ]
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do no scan for these signatures",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--extract": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically extract known file types",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--include": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only scan for these signatures",
+    "aliases": [
+     "-y"
+    ]
+   },
+   "--list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List supported signatures and extractors",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--log": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Log JSON results to a file ('-' for stdout)",
+    "metavar": "<LOG>",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--matryoshka": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Recursively scan extracted files",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--png": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save entropy graph as a PNG file",
+    "metavar": "<PNG>",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Supress normal stdout output",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--search-all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Search for all signatures at all offsets",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--stdin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read data from standard input",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Manually specify the number of threads to use",
+    "metavar": "<THREADS>",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "During recursive extraction display *all* results",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-1d959088",
+    "argv": [
+     "binwalk",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 30,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.714",
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "stability": 0.714
+   },
+   {
+    "id": "t-surface-826a89ef",
+    "argv": [
+     "binwalk",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/3-lines",
+    "exit_code": 0,
+    "output_bytes": 309
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "binwalk",
  "repo": "ReFirmLabs/binwalk",
  "head_sha": "704286902ee66922a028551048cc4a1009f46e6a",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:15:08.255329+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:53:55.612683+00:00"
 }

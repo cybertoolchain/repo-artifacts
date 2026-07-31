@@ -1,19 +1,203 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:1d0c1b30e9cd399caa3aa0a73f1336184b3c98d66384c5cea28daf95564d5c83",
+  "duration_s": 4.6,
+  "log_tail": "\n#7 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#7 CACHED\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 55.35kB done\n#9 DONE 0.0s\n\n#10 [build 3/5] COPY . .\n#10 DONE 0.0s\n\n#11 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#11 0.159 go: creating new go.mod: module ctk/tool\n#11 0.160 go: to add module requirements and sums:\n#11 0.160 \tgo mod tidy\n#11 DONE 0.2s\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 DONE 3.2s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.102 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:cad6fcaf27a233abae2066d3b5ea1e3148a52ee10c8db95f31b30e0e6d9f4058 done\n#18 exporting config sha256:ad9537b7bab8471b205ae6de97ad467056958966b76b2213d3a6e5c1892a1bc0 done\n#18 exporting attestation manifest sha256:c466f29316135e0437036e4d4e9444051c9f6990ada107e27a16a3a5d091da92 done\n#18 exporting manifest list sha256:1d0c1b30e9cd399caa3aa0a73f1336184b3c98d66384c5cea28daf95564d5c83 done\n#18 naming to docker.io/ctk-exec/assetfinder:4e95d8701aae done\n#18 unpacking to docker.io/ctk-exec/assetfinder:4e95d8701aae 0.0s done\n#18 DONE 0.3s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage of tool:\n  -subs-only\n    \tOnly include subdomains of search domain\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "tool"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for tool\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "tool"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'tool' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "tool",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-subs-only": "Only include subdomains of search domain"
+  },
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "tool",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "6ef0da8db92a2afde6e065b10f455a602d6896157683a3aac5d7f144f41cb482",
+  "text": "Usage of tool:\n  -subs-only\n    \tOnly include subdomains of search domain\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--subs-only"
+  ],
+  "help_only": [
+   "-subs-only"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--subs-only": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only include subdomains of search domain",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2019-06-23T20:27:03Z",
+    "last_tag": "v0.1.1",
+    "last_date": "2020-04-15T11:38:43+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "-subs-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only include subdomains of search domain"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-0529ee44",
+    "argv": [
+     "assetfinder",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:seed failed: dvwa",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "seed_failed",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-6fbbbc4b",
+    "argv": [
+     "assetfinder",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:seed failed: dvwa",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "seed_failed",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-540ceaf9",
+    "argv": [
+     "tool",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-56403aa2",
+    "argv": [
+     "tool",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "assetfinder",
  "repo": "tomnomnom/assetfinder",
  "head_sha": "4e95d8701aae8cff1c27af2626eb22ba110ad583",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:14:22.329884+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:52:35.006452+00:00"
 }

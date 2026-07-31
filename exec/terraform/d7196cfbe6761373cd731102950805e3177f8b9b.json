@@ -1,0 +1,437 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:1539cef94c599ba290e4d2647492eba09dfffa8f2adf328009766926020c0f62",
+  "duration_s": 101.23,
+  "log_tail": "#12 11.82 go: downloading cel.dev/expr v0.25.1\n#12 11.82 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#12 11.82 go: downloading github.com/mailru/easyjson v0.7.7\n#12 11.82 go: downloading github.com/go-openapi/jsonpointer v0.21.0\n#12 12.04 go: downloading github.com/felixge/httpsnoop v1.0.4\n#12 12.04 go: downloading github.com/hashicorp/golang-lru v1.0.2\n#12 12.04 go: downloading github.com/josharian/intern v1.0.0\n#12 12.35 go: downloading github.com/youmark/pkcs8 v0.0.0-20240726163527-a2c0da244d78\n#12 12.35 go: downloading github.com/gofrs/flock v0.10.0\n#12 12.35 go: downloading github.com/sony/gobreaker v0.5.0\n#12 54.13 go: downloading github.com/hashicorp/terraform-plugin-sdk/v2 v2.36.1\n#12 54.31 go: downloading github.com/hashicorp/go-cty v1.4.1\n#12 54.31 go: downloading github.com/hashicorp/terraform-plugin-go v0.26.0\n#12 54.31 go: downloading github.com/hashicorp/logutils v1.0.0\n#12 54.31 go: downloading github.com/mitchellh/go-testing-interface v1.14.1\n#12 ...\n\n#13 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#13 CACHED\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 DONE 82.2s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.2s\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.189 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 5.7s done\n#19 exporting manifest sha256:a647f3a87c4eb9223210e90a3df57594cfed45f4fc7e7aaf439cda20b9030b68 done\n#19 exporting config sha256:b6e127bc52dfcf6961fabd61dc64219c83c488261ed94a0eaf1faebf91898912 done\n#19 exporting attestation manifest sha256:42779b9b99f50babf43c30701fa5c4899310ac10a77d7b664b04bec6e89e4529 0.0s done\n#19 exporting manifest list sha256:1539cef94c599ba290e4d2647492eba09dfffa8f2adf328009766926020c0f62 done\n#19 naming to docker.io/ctk-exec/terraform:d7196cfbe676 done\n#19 unpacking to docker.io/ctk-exec/terraform:d7196cfbe676\n#19 unpacking to docker.io/ctk-exec/terraform:d7196cfbe676 1.0s done\n#19 DONE 6.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "terraform",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] <subcommand> [args]\n\nThe available commands for execution are listed below.\nThe primary workflow commands are given first, followed by\nless common or more advanced commands.\n\nMain commands:\n  init          Prepare your working directory for other commands\n  validate      Check whether the configuration is valid\n  plan          Show changes required by the current configuration\n  apply         Create or update infrastructure\n  destroy       Destroy previously-created infrastructure\n\nAll other commands:\n  console       Try Terraform expressions at an interactive command prompt\n  fmt           Reformat your configuration in the standard style\n  force-unlock  Release a stuck lock on the current workspace\n  get           Install or upgrade remote Terraform modules\n  graph         Generate a Graphviz graph of the steps in an operation\n  import        Associate existing infrastructure with a Terraform resource\n  login         Obtain and save credentials for a remote host\n  logout        Remove locally-stored credentials for a remote host\n  metadata      Metadata related commands\n  modules       Show all declared modules in a working directory\n  output        Show output values from your root module\n  providers     Show the providers required for this configuration\n  query         Search and list remote infrastructure with Terraform\n  refresh       Update the state to match remote systems\n  show          Show the current state or a saved plan\n  stacks        Manage HCP Terraform stack operations\n  state         Advanced state management\n  taint         Mark a resource instance as not fully functional\n  test          Execute integration tests for Terraform modules\n  untaint       Remove the 'tainted' state from a resource instance\n  version       Show the current Terraform version\n  workspace     Workspace management\n\nGlobal options (use these before the subcommand, if any):\n  -chdir=DIR    Switch to a different working directory before executing the\n                given subcommand.\n  -help         Show this help output or the help for a specified subcommand.\n  -version      An alias for the \"version\" subcommand.\n",
+   "stderr": "",
+   "duration_ms": 35,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "terraform",
+    "init",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] init [options]\n\n  Initialize a new or existing Terraform working directory by creating\n  initial files, loading any remote state, downloading modules, etc.\n\n  This is the first command that should be run for any new or existing\n  Terraform configuration per machine. This sets up all the local data\n  necessary to run Terraform that is typically not committed to version\n  control.\n\n  This command is always safe to run multiple times. Though subsequent runs\n  may give errors, this command will never delete your configuration or\n  state. Even so, if you have important information, please back it up prior\n  to running this command, just in case.\n\nOptions:\n\n  -backend=false          Disable backend or HCP Terraform initialization\n                          for this configuration and use what was previously\n                          initialized instead.\n\n                          aliases: -cloud=false\n\n  -backend-config=path    Configuration to be merged with what is in the\n                          configuration file's 'backend' block. This can be\n                          either a path to an HCL file with key/value\n                          assignments (same format as terraform.tfvars) or a\n                          'key=value' format, and can be specified multiple\n                          times. The backend type must be in the configuration\n                          itself.\n\n  -force-copy             Suppress prompts about copying state data when\n                          initializing a new state backend. This is\n                          equivalent to providing a \"yes\" to all confirmation\n                          prompts.\n\n  -from-module=SOURCE     Copy the contents of the given module into the target\n                          directory before initialization.\n\n  -get=false              Disable downloading modules for this configuration.\n\n  -input=false            Disable interactive prompts. Note that some actions may\n                          require interactive prompts and will error if input is\n                          disabled.\n\n  -lock=false             Don't hold a state lock during backend migration.\n                          This is dangerous if others might concurrently run\n                          commands against the same workspace.\n\n  -lock-timeout=0s        Duration to retry a state lock.\n\n  -no-color               If specified, output won't contain any color.\n\n  -json                   If specified, machine readable output will be\n                          printed in JSON format.\n\n  -plugin-dir             Directory containing plugin binaries. This overrides all\n                          default search paths for plugins, and prevents the\n                          automatic installation of plugins. This flag can be used\n                          multiple times.\n\n  -reconfigure            Reconfigure a backend, ignoring any saved\n                          configuration.\n\n  -migrate-state          Reconfigure a backend, and attempt to migrate any\n                          existing state.\n\n  -upgrade                Install the latest module and provider versions\n                          allowed within configured constraints, overriding the\n                          default behavior of selecting exactly the version\n                          recorded in the dependency lockfile.\n\n  -lockfile=MODE          Set a dependency lockfile mode.\n                          Currently only \"readonly\" is valid.\n\n  -ignore-remote-version  A rare option used for HCP Terraform and the remote backend\n                          only. Set this to ignore checking that the local and remote\n                          Terraform versions use compatible state representations, making\n                          an operation proceed even when there is a potential mismatch.\n                          See the documentation on configuring Terraform with\n                          HCP Terraform or Terraform Enterprise for more information.\n\n  -test-directory=path    Set the Terraform test directory, defaults to \"tests\".\n\n  -var 'foo=bar'          Set a value for one of the input variables in the root\n                          module of the configuration. Use this option more than\n                          once to set more than one variable.\n\n  -var-file=filename      Load variable values from the given file, in addition\n                          to the default files terraform.tfvars and *.auto.tfvars.\n                          Use this option more than once to include more than one\n                          variables file.\n\n  -enable-pluggable-state-storage-experiment [EXPERIMENTAL]\n                          A flag to enable an alternative init command that allows use of\n                          pluggable state storage. Only usable with experiments enabled.\n\n  -state-provider-lock-file [EXPERIMENTAL]\n                          Specifies a lock file Terraform should use to establish trust in \n                          a provider before initializing a state store for the first time.\n                          Only usable when input is disabled through -input=false.\n                          Only usable with experiments enabled and the\n                          -enable-pluggable-state-storage-experiment flag present.\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "terraform",
+    "validate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] validate [options]\n\n  Validate the configuration files in a directory, referring only to the\n  configuration and not accessing any remote services such as remote state,\n  provider APIs, etc.\n\n  Validate runs checks that verify whether a configuration is syntactically\n  valid and internally consistent, regardless of any provided variables or\n  existing state. It is thus primarily useful for general verification of\n  reusable modules, including correctness of attribute names and value types.\n\n  It is safe to run this command automatically, for example as a post-save\n  check in a text editor or as a test step for a re-usable module in a CI\n  system.\n\n  Validation requires an initialized working directory with any referenced\n  plugins and modules installed. To initialize a working directory for\n  validation without accessing any configured remote backend, use:\n      terraform init -backend=false\n\n  To verify configuration in the context of a particular run (a particular\n  target workspace, input variable values, etc), use the 'terraform plan'\n  command instead, which includes an implied validation check.\n\nOptions:\n\n  -json                 Produce output in a machine-readable JSON format, \n                        suitable for use in text editor integrations and other \n                        automated systems. Always disables color.\n\n  -no-color             If specified, output won't contain any color.\n\n  -no-tests             If specified, Terraform will not validate test files.\n\n  -test-directory=path  Set the Terraform test directory, defaults to \"tests\".\n\n  -query                If specified, the command will also validate .tfquery.hcl files.\n\n  -var 'foo=bar'        Set a value for one of the input variables in the root\n                        module of the configuration. Use this option more than\n                        once to set more than one variable.\n\n  -var-file=filename    Load variable values from the given file, in addition\n                        to the default files terraform.tfvars and *.auto.tfvars.\n                        Use this option more than once to include more than one\n                        variables file.\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "terraform",
+    "plan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] plan [options]\n\n  Generates a speculative execution plan, showing what actions Terraform\n  would take to apply the current configuration. This command will not\n  actually perform the planned actions.\n\n  You can optionally save the plan to a file, which you can then pass to\n  the \"apply\" command to perform exactly the actions described in the plan.\n\nPlan Customization Options:\n\n  The following options customize how Terraform will produce its plan. You\n  can also use these options when you run \"terraform apply\" without passing\n  it a saved plan, in order to plan and apply in a single command.\n\n  -destroy            Select the \"destroy\" planning mode, which creates a plan\n                      to destroy all objects currently managed by this\n                      Terraform configuration instead of the usual behavior.\n\n  -refresh-only       Select the \"refresh only\" planning mode, which checks\n                      whether remote objects still match the outcome of the\n                      most recent Terraform apply but does not propose any\n                      actions to undo any changes made outside of Terraform.\n\n  -refresh=false      Skip checking for external changes to remote objects\n                      while creating the plan. This can potentially make\n                      planning faster, but at the expense of possibly planning\n                      against a stale record of the remote system state.\n\n  -replace=resource   Force replacement of a particular resource instance using\n                      its resource address. If the plan would've normally\n                      produced an update or no-op action for this instance,\n                      Terraform will plan to replace it instead. You can use\n                      this option multiple times to replace more than one object.\n\n  -target=resource    Limit the planning operation to only the given module,\n                      resource, or resource instance and all of its\n                      dependencies. You can use this option multiple times to\n                      include more than one object. This is for exceptional\n                      use only.\n\n  -var 'foo=bar'      Set a value for one of the input variables in the root\n                      module of the configuration. Use this option more than\n                      once to set more than one variable.\n\n  -var-file=filename  Load variable values from the given file, in addition\n                      to the default files terraform.tfvars and *.auto.tfvars.\n                      Use this option more than once to include more than one\n                      variables file.\n\nOther Options:\n\n  -compact-warnings          If Terraform produces any warnings that are not\n                             accompanied by errors, shows them in a more compact\n                             form that includes only the summary messages.\n\n  -detailed-exitcode         Return detailed exit codes when the command exits.\n                             This will change the meaning of exit codes to:\n                             0 - Succeeded, diff is empty (no changes)\n                             1 - Errored\n                             2 - Succeeded, there is a diff\n\n  -generate-config-out=path  (Experimental) If import blocks are present in\n                             configuration, instructs Terraform to generate HCL\n                             for any imported resources not already present. The\n                             configuration is written to a new file at PATH,\n                             which must not already exist. Terraform may still\n                             attempt to write configuration if the plan errors.\n\n  -input=true                Ask for input for variables if not directly set.\n\n  -lock=false                Don't hold a state lock during the operation. This\n                             is dangerous if others might concurrently run\n                             commands against the same workspace.\n\n  -lock-timeout=0s           Duration to retry a state lock.\n\n  -no-color                  If specified, output won't contain any color.\n\n  -out=path                  Write a plan file to the given path. This can be\n                             used as input to the \"apply\" command.\n\n  -parallelism=n             Limit the number of concurrent operations. Defaults\n                             to 10.\n\n  -state=statefile           A legacy option used for the local backend only.\n                             See the local backend's documentation for more\n                             information.\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "terraform",
+    "apply",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] apply [options] [PLAN]\n\n  Creates or updates infrastructure according to Terraform configuration\n  files in the current directory.\n\n  By default, Terraform will generate a new plan and present it for your\n  approval before taking any action. You can optionally provide a plan\n  file created by a previous call to \"terraform plan\", in which case\n  Terraform will take the actions described in that plan without any\n  confirmation prompt.\n\nOptions:\n\n  -auto-approve          Skip interactive approval of plan before applying.\n\n  -backup=path           Path to backup the existing state file before\n                         modifying. Defaults to the \"-state-out\" path with\n                         \".backup\" extension. Set to \"-\" to disable backup.\n\n  -compact-warnings      If Terraform produces any warnings that are not\n                         accompanied by errors, show them in a more compact\n                         form that includes only the summary messages.\n\n  -destroy               Destroy Terraform-managed infrastructure.\n                         The command \"terraform destroy\" is a convenience alias\n                         for this option.\n\n  -lock=false            Don't hold a state lock during the operation. This is\n                         dangerous if others might concurrently run commands\n                         against the same workspace.\n\n  -lock-timeout=0s       Duration to retry a state lock.\n\n  -input=true            Ask for input for variables if not directly set.\n\n  -no-color              If specified, output won't contain any color.\n\n  -parallelism=n         Limit the number of parallel resource operations.\n                         Defaults to 10.\n\n  -replace=resource      Terraform will plan to replace this resource instance\n                         instead of doing an update or no-op action.\n\n  -state=path            Path to read and save state (unless state-out\n                         is specified). Defaults to \"terraform.tfstate\".\n                         Legacy option for the local backend only. See the local\n                         backend's documentation for more information.\n\n  -state-out=path        Path to write state to that is different than\n                         \"-state\". This can be used to preserve the old\n                         state.\n                         Legacy option for the local backend only. See the local\n                         backend's documentation for more information.\n\n\n  -var 'foo=bar'         Set a value for one of the input variables in the root\n                         module of the configuration. Use this option more than\n                         once to set more than one variable.\n\n  -var-file=filename     Load variable values from the given file, in addition\n                         to the default files terraform.tfvars and *.auto.tfvars.\n                         Use this option more than once to include more than one\n                         variables file.\n\n  If you don't provide a saved plan file then this command will also accept\n  all of the plan-customization options accepted by the terraform plan command.\n  For more information on those options, run:\n      terraform plan -help\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "terraform",
+    "destroy",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: terraform [global options] destroy [options]\n\n  Destroy Terraform-managed infrastructure.\n\n  This command is a convenience alias for:\n      terraform apply -destroy\n\n  This command also accepts many of the plan-customization options accepted by\n  the terraform plan command. For more information on those options, run:\n      terraform plan -help\n",
+   "stderr": "",
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "terraform"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for terraform\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "terraform"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'terraform' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "terraform",
+    "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Terraform has no command named \"/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml\".\n\nTo see all of Terraform's top-level commands, run:\n  terraform -help\n\n",
+   "duration_ms": 16,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "surface-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "terraform",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Terraform has no command named \"/opt/ctk/fixtures/source-corpus\".\n\nTo see all of Terraform's top-level commands, run:\n  terraform -help\n\n",
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "surface-2",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 11,
+   "binary": "terraform",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "634bcdbee9f8c32a",
+ "examples": [
+  {
+   "id": "surface-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus",
+   "argv": [
+    "terraform",
+    "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+   ],
+   "stdout": "",
+   "stderr": "Terraform has no command named \"/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml\".\n\nTo see all of Terraform's top-level commands, run:\n  terraform -help\n\n",
+   "exit_code": 1,
+   "duration_ms": 16,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "surface-2",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus",
+   "argv": [
+    "terraform",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "",
+   "stderr": "Terraform has no command named \"/opt/ctk/fixtures/source-corpus\".\n\nTo see all of Terraform's top-level commands, run:\n  terraform -help\n\n",
+   "exit_code": 1,
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "-chdir": "Switch to a different working directory before executing the given subcommand.",
+   "-help": "Show this help output or the help for a specified subcommand.",
+   "-version": "An alias for the \"version\" subcommand."
+  },
+  "values_seen": {
+   "-chdir": "DIR"
+  },
+  "aliases": {},
+  "subcommand_flags": {
+   "init": {
+    "-backend": "Disable backend or HCP Terraform initialization for this configuration and use what was previously initialized instead.",
+    "-backend-config": "Configuration to be merged with what is in the configuration file's 'backend' block. This can be either a path to an HCL file with key/value assignments (same format as terraform.tfvars) or a 'key=value' format, and can be specified multiple times. The backend type must be in the configuration itself.",
+    "-force-copy": "Suppress prompts about copying state data when initializing a new state backend. This is equivalent to providing a \"yes\" to all confirmation prompts.",
+    "-from-module": "Copy the contents of the given module into the target directory before initialization.",
+    "-get": "Disable downloading modules for this configuration.",
+    "-input": "Disable interactive prompts. Note that some actions may require interactive prompts and will error if input is disabled.",
+    "-lock": "Don't hold a state lock during backend migration. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-json": "If specified, machine readable output will be printed in JSON format.",
+    "-plugin-dir": "Directory containing plugin binaries. This overrides all default search paths for plugins, and prevents the automatic installation of plugins. This flag can be used multiple times.",
+    "-reconfigure": "Reconfigure a backend, ignoring any saved configuration.",
+    "-migrate-state": "Reconfigure a backend, and attempt to migrate any existing state.",
+    "-upgrade": "Install the latest module and provider versions allowed within configured constraints, overriding the default behavior of selecting exactly the version recorded in the dependency lockfile.",
+    "-lockfile": "Set a dependency lockfile mode. Currently only \"readonly\" is valid.",
+    "-ignore-remote-version": "A rare option used for HCP Terraform and the remote backend only. Set this to ignore checking that the local and remote Terraform versions use compatible state representations, making an operation proceed even when there is a potential mismatch. See the documentation on configuring Terraform with HCP Terraform or Terraform Enterprise for more information.",
+    "-test-directory": "Set the Terraform test directory, defaults to \"tests\".",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file.",
+    "-enable-pluggable-state-storage-experiment": "A flag to enable an alternative init command that allows use of pluggable state storage. Only usable with experiments enabled.",
+    "-state-provider-lock-file": "Specifies a lock file Terraform should use to establish trust in a provider before initializing a state store for the first time. Only usable when input is disabled through -input=false. Only usable with experiments enabled and the"
+   },
+   "validate": {
+    "-json": "Produce output in a machine-readable JSON format, suitable for use in text editor integrations and other automated systems. Always disables color.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-no-tests": "If specified, Terraform will not validate test files.",
+    "-test-directory": "Set the Terraform test directory, defaults to \"tests\".",
+    "-query": "If specified, the command will also validate .tfquery.hcl files.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file."
+   },
+   "plan": {
+    "-destroy": "Select the \"destroy\" planning mode, which creates a plan to destroy all objects currently managed by this Terraform configuration instead of the usual behavior.",
+    "-refresh-only": "Select the \"refresh only\" planning mode, which checks whether remote objects still match the outcome of the most recent Terraform apply but does not propose any actions to undo any changes made outside of Terraform.",
+    "-refresh": "Skip checking for external changes to remote objects while creating the plan. This can potentially make planning faster, but at the expense of possibly planning against a stale record of the remote system state.",
+    "-replace": "Force replacement of a particular resource instance using its resource address. If the plan would've normally produced an update or no-op action for this instance, Terraform will plan to replace it instead. You can use this option multiple times to replace more than one object.",
+    "-target": "Limit the planning operation to only the given module, resource, or resource instance and all of its dependencies. You can use this option multiple times to include more than one object. This is for exceptional use only.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file.",
+    "-compact-warnings": "If Terraform produces any warnings that are not accompanied by errors, shows them in a more compact form that includes only the summary messages.",
+    "-detailed-exitcode": "Return detailed exit codes when the command exits. This will change the meaning of exit codes to: 0 - Succeeded, diff is empty (no changes) 1 - Errored 2 - Succeeded, there is a diff",
+    "-generate-config-out": "(Experimental) If import blocks are present in configuration, instructs Terraform to generate HCL for any imported resources not already present. The configuration is written to a new file at PATH, which must not already exist. Terraform may still attempt to write configuration if the plan errors.",
+    "-input": "Ask for input for variables if not directly set.",
+    "-lock": "Don't hold a state lock during the operation. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-out": "Write a plan file to the given path. This can be used as input to the \"apply\" command.",
+    "-parallelism": "Limit the number of concurrent operations. Defaults to 10.",
+    "-state": "A legacy option used for the local backend only. See the local backend's documentation for more information."
+   },
+   "apply": {
+    "-auto-approve": "Skip interactive approval of plan before applying.",
+    "-backup": "Path to backup the existing state file before modifying. Defaults to the \"-state-out\" path with \".backup\" extension. Set to \"-\" to disable backup.",
+    "-compact-warnings": "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages.",
+    "-destroy": "Destroy Terraform-managed infrastructure. The command \"terraform destroy\" is a convenience alias for this option.",
+    "-lock": "Don't hold a state lock during the operation. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-input": "Ask for input for variables if not directly set.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-parallelism": "Limit the number of parallel resource operations. Defaults to 10.",
+    "-replace": "Terraform will plan to replace this resource instance instead of doing an update or no-op action.",
+    "-state": "Path to read and save state (unless state-out is specified). Defaults to \"terraform.tfstate\". Legacy option for the local backend only. See the local backend's documentation for more information.",
+    "-state-out": "Path to write state to that is different than \"-state\". This can be used to preserve the old state. Legacy option for the local backend only. See the local backend's documentation for more information.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file."
+   },
+   "destroy": {}
+  },
+  "subcommands": [
+   "init",
+   "validate",
+   "plan",
+   "apply",
+   "destroy"
+  ],
+  "binary": "terraform",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "a4788f52ff12e451a6784c546c3c2e599c319b12b74063e1e586a21428a260cf",
+  "text": "Usage: terraform [global options] <subcommand> [args]\n\nThe available commands for execution are listed below.\nThe primary workflow commands are given first, followed by\nless common or more advanced commands.\n\nMain commands:\n  init          Prepare your working directory for other commands\n  validate      Check whether the configuration is valid\n  plan          Show changes required by the current configuration\n  apply         Create or update infrastructure\n  destroy       Destroy previously-created infrastructure\n\nAll other commands:\n  console       Try Terraform expressions at an interactive command prompt\n  fmt           Reformat your configuration in the standard style\n  force-unlock  Release a stuck lock on the current workspace\n  get           Install or upgrade remote Terraform modules\n  graph         Generate a Graphviz graph of the steps in an operation\n  import        Associate existing infrastructure with a Terraform resource\n  login         Obtain and save credentials for a remote host\n  logout        Remove locally-stored credentials for a remote host\n  metadata      Metadata related commands\n  modules       Show all declared modules in a working directory\n  output        Show output values from your root module\n  providers     Show the providers required for this configuration\n  query         Search and list remote infrastructure with Terraform\n  refresh       Update the state to match remote systems\n  show          Show the current state or a saved plan\n  stacks        Manage HCP Terraform stack operations\n  state         Advanced state management\n  taint         Mark a resource instance as not fully functional\n  test          Execute integration tests for Terraform modules\n  untaint       Remove the 'tainted' state from a resource instance\n  version       Show the current Terraform version\n  workspace     Workspace management\n\nGlobal options (use these before the subcommand, if any):\n  -chdir=DIR    Switch to a different working directory before executing the\n                given subcommand.\n  -help         Show this help output or the help for a specified subcommand.\n  -version      An alias for the \"version\" subcommand.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "-chdir",
+   "-help",
+   "-version"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "-chdir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Switch to a different working directory before executing the given subcommand.",
+    "metavar": "DIR"
+   },
+   "-help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this help output or the help for a specified subcommand."
+   },
+   "-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "An alias for the \"version\" subcommand."
+   }
+  },
+  "subcommands": [
+   "apply",
+   "destroy",
+   "init",
+   "plan",
+   "validate"
+  ],
+  "subcommand_flags": {
+   "init": {
+    "-backend": "Disable backend or HCP Terraform initialization for this configuration and use what was previously initialized instead.",
+    "-backend-config": "Configuration to be merged with what is in the configuration file's 'backend' block. This can be either a path to an HCL file with key/value assignments (same format as terraform.tfvars) or a 'key=value' format, and can be specified multiple times. The backend type must be in the configuration itself.",
+    "-force-copy": "Suppress prompts about copying state data when initializing a new state backend. This is equivalent to providing a \"yes\" to all confirmation prompts.",
+    "-from-module": "Copy the contents of the given module into the target directory before initialization.",
+    "-get": "Disable downloading modules for this configuration.",
+    "-input": "Disable interactive prompts. Note that some actions may require interactive prompts and will error if input is disabled.",
+    "-lock": "Don't hold a state lock during backend migration. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-json": "If specified, machine readable output will be printed in JSON format.",
+    "-plugin-dir": "Directory containing plugin binaries. This overrides all default search paths for plugins, and prevents the automatic installation of plugins. This flag can be used multiple times.",
+    "-reconfigure": "Reconfigure a backend, ignoring any saved configuration.",
+    "-migrate-state": "Reconfigure a backend, and attempt to migrate any existing state.",
+    "-upgrade": "Install the latest module and provider versions allowed within configured constraints, overriding the default behavior of selecting exactly the version recorded in the dependency lockfile.",
+    "-lockfile": "Set a dependency lockfile mode. Currently only \"readonly\" is valid.",
+    "-ignore-remote-version": "A rare option used for HCP Terraform and the remote backend only. Set this to ignore checking that the local and remote Terraform versions use compatible state representations, making an operation proceed even when there is a potential mismatch. See the documentation on configuring Terraform with HCP Terraform or Terraform Enterprise for more information.",
+    "-test-directory": "Set the Terraform test directory, defaults to \"tests\".",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file.",
+    "-enable-pluggable-state-storage-experiment": "A flag to enable an alternative init command that allows use of pluggable state storage. Only usable with experiments enabled.",
+    "-state-provider-lock-file": "Specifies a lock file Terraform should use to establish trust in a provider before initializing a state store for the first time. Only usable when input is disabled through -input=false. Only usable with experiments enabled and the"
+   },
+   "validate": {
+    "-json": "Produce output in a machine-readable JSON format, suitable for use in text editor integrations and other automated systems. Always disables color.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-no-tests": "If specified, Terraform will not validate test files.",
+    "-test-directory": "Set the Terraform test directory, defaults to \"tests\".",
+    "-query": "If specified, the command will also validate .tfquery.hcl files.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file."
+   },
+   "plan": {
+    "-destroy": "Select the \"destroy\" planning mode, which creates a plan to destroy all objects currently managed by this Terraform configuration instead of the usual behavior.",
+    "-refresh-only": "Select the \"refresh only\" planning mode, which checks whether remote objects still match the outcome of the most recent Terraform apply but does not propose any actions to undo any changes made outside of Terraform.",
+    "-refresh": "Skip checking for external changes to remote objects while creating the plan. This can potentially make planning faster, but at the expense of possibly planning against a stale record of the remote system state.",
+    "-replace": "Force replacement of a particular resource instance using its resource address. If the plan would've normally produced an update or no-op action for this instance, Terraform will plan to replace it instead. You can use this option multiple times to replace more than one object.",
+    "-target": "Limit the planning operation to only the given module, resource, or resource instance and all of its dependencies. You can use this option multiple times to include more than one object. This is for exceptional use only.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file.",
+    "-compact-warnings": "If Terraform produces any warnings that are not accompanied by errors, shows them in a more compact form that includes only the summary messages.",
+    "-detailed-exitcode": "Return detailed exit codes when the command exits. This will change the meaning of exit codes to: 0 - Succeeded, diff is empty (no changes) 1 - Errored 2 - Succeeded, there is a diff",
+    "-generate-config-out": "(Experimental) If import blocks are present in configuration, instructs Terraform to generate HCL for any imported resources not already present. The configuration is written to a new file at PATH, which must not already exist. Terraform may still attempt to write configuration if the plan errors.",
+    "-input": "Ask for input for variables if not directly set.",
+    "-lock": "Don't hold a state lock during the operation. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-out": "Write a plan file to the given path. This can be used as input to the \"apply\" command.",
+    "-parallelism": "Limit the number of concurrent operations. Defaults to 10.",
+    "-state": "A legacy option used for the local backend only. See the local backend's documentation for more information."
+   },
+   "apply": {
+    "-auto-approve": "Skip interactive approval of plan before applying.",
+    "-backup": "Path to backup the existing state file before modifying. Defaults to the \"-state-out\" path with \".backup\" extension. Set to \"-\" to disable backup.",
+    "-compact-warnings": "If Terraform produces any warnings that are not accompanied by errors, show them in a more compact form that includes only the summary messages.",
+    "-destroy": "Destroy Terraform-managed infrastructure. The command \"terraform destroy\" is a convenience alias for this option.",
+    "-lock": "Don't hold a state lock during the operation. This is dangerous if others might concurrently run commands against the same workspace.",
+    "-lock-timeout": "Duration to retry a state lock.",
+    "-input": "Ask for input for variables if not directly set.",
+    "-no-color": "If specified, output won't contain any color.",
+    "-parallelism": "Limit the number of parallel resource operations. Defaults to 10.",
+    "-replace": "Terraform will plan to replace this resource instance instead of doing an update or no-op action.",
+    "-state": "Path to read and save state (unless state-out is specified). Defaults to \"terraform.tfstate\". Legacy option for the local backend only. See the local backend's documentation for more information.",
+    "-state-out": "Path to write state to that is different than \"-state\". This can be used to preserve the old state. Legacy option for the local backend only. See the local backend's documentation for more information.",
+    "-var": "Set a value for one of the input variables in the root module of the configuration. Use this option more than once to set more than one variable.",
+    "-var-file": "Load variable values from the given file, in addition to the default files terraform.tfvars and *.auto.tfvars. Use this option more than once to include more than one variables file."
+   },
+   "destroy": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 1,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-opt-a3dbf4fb",
+    "argv": [
+     "terraform",
+     "-chdir",
+     "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml",
+     "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 101,
+    "flag": "-chdir"
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "terraform",
+ "repo": "hashicorp/terraform",
+ "head_sha": "d7196cfbe6761373cd731102950805e3177f8b9b",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:44:42.131773+00:00"
+}

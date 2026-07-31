@@ -1,19 +1,82 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:17dad46e51aacf3eab620ba631e9bd4153ad78590866ec3197f8a8edeb532a66",
+  "duration_s": 42.44,
+  "log_tail": "#11 8.316   \u2570\u2500> [3 lines of output]\n#11 8.316       /tmp/pip-build-env-vlz9rcd5/overlay/lib/python3.12/site-packages/setuptools/_vendor/wheel/bdist_wheel.py:4: FutureWarning: The 'wheel' package is no longer the canonical location of the 'bdist_wheel' command, and will be removed in a future release. Please update to setuptools v70.1 or later which contains an integrated version of this command.\n#11 8.316         warn(\n#11 8.316       error in PyBluez setup command: use_2to3 is invalid.\n#11 8.316       [end of output]\n#11 8.316   \n#11 8.316   note: This error originates from a subprocess, and is likely not a problem with pip.\n#11 8.316 ERROR: Failed to build 'pybluez' when getting requirements to build wheel\n#11 DONE 8.4s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 19.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.6s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.5s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 5.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 1.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.1s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.1s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.283 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.4s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 1.1s done\n#21 exporting manifest sha256:a61474d1eca25b4f4557cbe7528f6870c2e01637516bcb992e6e72d145ac206b 0.0s done\n#21 exporting config sha256:a8fa5ed39ec913115b2a538c8a79c89bfb7894c3aca4ecd20813e32094afc4dd 0.0s done\n#21 exporting attestation manifest sha256:5625ae973301d894a18ce8c727a3c61bde5bc6f35f35b2e9d38244418a45c623 0.0s done\n#21 exporting manifest list sha256:17dad46e51aacf3eab620ba631e9bd4153ad78590866ec3197f8a8edeb532a66 0.0s done\n#21 naming to docker.io/ctk-exec/apple_bleee:1f8022959be6\n#21 naming to docker.io/ctk-exec/apple_bleee:1f8022959be6 done\n#21 unpacking to docker.io/ctk-exec/apple_bleee:1f8022959be6\n#21 unpacking to docker.io/ctk-exec/apple_bleee:1f8022959be6 0.4s done\n#21 DONE 1.7s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "apple_bleee",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'apple_bleee'"
+  },
+  {
+   "argv": [
+    "man",
+    "apple_bleee"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for apple_bleee\n",
+   "duration_ms": 30,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "apple_bleee"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'apple_bleee' in node '(dir)Top'\n",
+   "duration_ms": 9,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 0,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [],
+  "not_attempted": []
+ },
  "tool": "apple-bleee",
  "repo": "hexway/apple_bleee",
  "head_sha": "1f8022959be660b561e6004b808dd93fa252bc90",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:14:00.076268+00:00"
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T01:35:08.446777+00:00"
 }

@@ -8,6 +8,15 @@
    "help": "Filters the search on Wayback Machine (archive.org) to only get at most 1 capture per hour (h), day (d) or month (m). This filter is used for responses only. The default is 'd' but can also be set to 'none' to not filter anything and get all responses.",
    "kind": "option",
    "default": "d",
+   "aliases": [
+    "-ci"
+   ],
+   "choices": [
+    "h",
+    "d",
+    "m",
+    "none"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -21,6 +30,9 @@
    "help": "This will make a few minimal requests to show you how many requests, and roughly how long it could take, to get URLs from the sources and downloaded responses from Wayback Machine (unfortunately it isn't possible to check how long it will take to download responses from URLScan).",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-co"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -34,6 +46,9 @@
    "help": "Path to the YML config file. If not passed, it looks for file 'config.yml' in the same directory as runtime file 'waymore.py'.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-c"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -47,6 +62,9 @@
    "help": "The initial links from Wayback Machine will not be filtered (MIME Type and Response Code), only the responses that are downloaded, e.g. it maybe useful to still see all available paths from the links even if you don't want to check the content.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-f"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -60,6 +78,9 @@
    "help": "What date to get responses from. If not specified it will get from the earliest possible results. A partial value can be passed, e.g. 2016, 201805, etc.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-from"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -73,6 +94,9 @@
    "help": "The target domain (or file of domains) to find links for. This can be a domain only, or a domain with a specific path. If it is a domain only to get everything for that domain, don't prefix with \"www.\"",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-i"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -86,6 +110,9 @@
    "help": "Only return links and responses that contain keywords that you are interested in. This can reduce the time it takes to get results. If you provide the flag with no value, Keywords are taken from the comma separated list in the \\\"config.yml\\\" file with the \\\"FILTER_KEYWORDS\\\" key, otherwise you can pass a specific Python Regex value. e.g. -ko 'admin' to only get links containing the word admin, or -ko '\\.js(\\?.*|$)' to only get JS files. The Regex check is NOT case sensitive. NOTE: The pattern is used as an approximate pre-filter on the Wayback CDX API (wrapped as .*pattern.*, so anchors like $ may not behave as expected at the CDX level), then applied exactly as a Python regex locally. Use single quotes to avoid shell expansion of $ and other special characters.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-ko"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -99,6 +126,9 @@
    "help": "",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-l"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -112,6 +142,9 @@
    "help": "Limit the number of requests that will be made when getting links from a source (this doesn't apply to Common Crawl). Some targets can return a huge amount of requests needed that are just not feasible to get, so this can be used to manage that situation. This defaults to 0 (Zero) which means there is no limit.",
    "kind": "option",
    "default": "0",
+   "aliases": [
+    "-lr"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -125,6 +158,9 @@
    "help": "The memory threshold percentage. If the machines memory goes above the threshold, the program will be stopped and ended gracefully before running out of memory (default: 95)",
    "kind": "option",
    "default": "95",
+   "aliases": [
+    "-m"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -138,6 +174,9 @@
    "help": "If this argument is passed, a .new file will also be written that will contain links for the latest run. This is only relevant for mode U.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-nlf"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -151,6 +190,9 @@
    "help": "Don't include subdomains of the target domain (only used if input is not a domain with a specific path).",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-n"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -164,6 +206,9 @@
    "help": "Whether to send a notification to Discord when waymore completes. It requires WEBHOOK_DISCORD to be provided in the config.yml file.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-nd"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -177,6 +222,9 @@
    "help": "Whether to send a notification to Telegram when waymore completes. It requires TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID to be provided in the config.yml file.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-nt"
+   ],
    "first_tag": "v7.2",
    "first_date": "2025-12-25T15:17:45Z",
    "last_tag": "v8.9",
@@ -190,6 +238,9 @@
    "help": "Whether to save combined inline javascript of all relevant files in the response directory when \"-mode R\" (or \"-mode B\") has been used. The files are saved with the name \"combined_inline{}.js\" where \"{}\" is the number of the file, saving 1000 unique scripts per file. ",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-oijs"
+   ],
    "first_tag": "v4.0",
    "first_date": "2024-04-01T19:00:24+01:00",
    "last_tag": "v8.9",
@@ -203,6 +254,9 @@
    "help": "If the URL output file (default waymore.txt) already exists, it will be overwritten instead of being appended to.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-ow"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -216,6 +270,9 @@
    "help": "The directory to save the response output files to, including path if necessary. If the argument is not passed, a \"results\" directory will be created in the path specified by the DEFAULT_OUTPUT_DIR key in config.yml file (typically defaults to \"~/.config/waymore/\"). Within that, a directory will be created with target domain (or domain with path) passed with \"-i\" (or for each line of a file passed with \"-i\").",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-oR"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -229,6 +286,9 @@
    "help": "The file to save the Links output to, including path if necessary. If the \"-oR\" argument is not passed, a \"results\" directory will be created in the path specified by the DEFAULT_OUTPUT_DIR key in config.yml file (typically defaults to \"~/.config/waymore/\"). Within that, a directory will be created with target domain (or domain with path) passed with \"-i\" (or for each line of a file passed with \"-i\").",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-oU"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -242,6 +302,9 @@
    "help": "Basic multithreading is done when getting requests for a file of URLs. This argument determines the number of processes (threads) used (default: 2)",
    "kind": "option",
    "default": "2",
+   "aliases": [
+    "-p"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -268,6 +331,9 @@
    "help": "RegEx for filtering purposes against links found all sources of URLs AND responses downloaded. Only positive matches will be output.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-ra"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -281,6 +347,9 @@
    "help": "The number of retries for requests that get connection error or rate limited (default: 1).",
    "kind": "option",
    "default": "1",
+   "aliases": [
+    "-r"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -294,6 +363,10 @@
    "help": "Bind outbound HTTP/HTTPS requests to this source IP (useful on multi-homed hosts).",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-sip",
+    "--bind-ip"
+   ],
    "first_tag": "v7.6",
    "first_date": "2026-01-14T00:00:02Z",
    "last_tag": "v8.9",
@@ -320,6 +393,9 @@
    "help": "",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-t"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -333,6 +409,9 @@
    "help": "What date to get responses to. If not specified it will get to the latest possible results. A partial value can be passed, e.g. 2016, 201805, etc.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-to"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -346,6 +425,9 @@
    "help": "The number of minutes the user wants to wait for a rate limit pause on URLScan.io instead of stopping with a 429 error (default: 1).",
    "kind": "option",
    "default": "1",
+   "aliases": [
+    "-urlr"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -359,6 +441,9 @@
    "help": "Verbose output",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-v"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -385,6 +470,9 @@
    "help": "The number of minutes the user wants to wait for a rate limit pause on Watback Machine (archive.org) instead of stopping with a 429 error (default: 3).",
    "kind": "option",
    "default": "3",
+   "aliases": [
+    "-wrlr"
+   ],
    "first_tag": "v3.4",
    "first_date": "2024-03-12T19:44:24Z",
    "last_tag": "v8.9",
@@ -463,6 +551,11 @@
    "help": "The mode to run: U (retrieve URLs only), R (download Responses only) or B (Both).",
    "kind": "option",
    "default": "B",
+   "choices": [
+    "U",
+    "R",
+    "B"
+   ],
    "first_tag": "v1.11",
    "first_date": "2022-10-09T22:35:38+01:00",
    "last_tag": "v8.9",
@@ -1437,6 +1530,6 @@
  "repo": "xnl-h4ck3r/waymore",
  "head_sha": "4e02de512fd6b110be92dc8bffb3002edfebcb6c",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-25T08:43:34.741111+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T23:20:35.424606+00:00"
 }

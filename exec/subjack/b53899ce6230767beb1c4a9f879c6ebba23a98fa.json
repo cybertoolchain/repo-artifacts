@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:b4479fadd148a9a94cecf5dbd626d7f8ac8a7e45832e837a8a4aae4e1af082dc",
-  "duration_s": 9.4,
-  "log_tail": "#9 [internal] load build context\n#9 transferring context: 3.65MB 0.0s done\n#9 DONE 0.0s\n\n#10 [build 3/4] COPY . .\n#10 DONE 0.0s\n\n#11 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.137 go: downloading github.com/valyala/fasthttp v1.69.0\n#11 0.137 go: downloading github.com/miekg/dns v1.1.72\n#11 0.141 go: downloading github.com/haccer/available v0.0.0-20240515180643-5940a1670ee3\n#11 0.425 go: downloading golang.org/x/sys v0.39.0\n#11 0.425 go: downloading golang.org/x/net v0.48.0\n#11 0.555 go: downloading github.com/domainr/whois v0.1.0\n#11 0.609 go: downloading github.com/klauspost/compress v1.18.2\n#11 0.609 go: downloading github.com/valyala/bytebufferpool v1.0.0\n#11 0.609 go: downloading github.com/andybalholm/brotli v1.2.0\n#11 0.761 go: downloading github.com/zonedb/zonedb v1.0.3544\n#11 0.761 go: downloading golang.org/x/text v0.32.0\n#11 0.761 go: downloading github.com/andybalholm/cascadia v1.3.1\n#11 0.761 go: downloading github.com/PuerkitoBio/goquery v1.8.0\n#11 0.761 go: downloading github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca\n#11 DONE 7.7s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:ffebd3147a8fda15fa46b3b98f9ea79f6bb23c7307aec431933c9f92a60657d0 done\n#17 exporting config sha256:3c439078c012e104fc4a0b0f21ea1614b31d03b9ec766dd34567cbc8897a3709 done\n#17 exporting attestation manifest sha256:34d4468b9b150724c57f189d174650907096a192a08d7eefd93dccae6f7f7f45 0.0s done\n#17 exporting manifest list sha256:b4479fadd148a9a94cecf5dbd626d7f8ac8a7e45832e837a8a4aae4e1af082dc done\n#17 naming to docker.io/ctk-exec/subjack:b53899ce6230 done\n#17 unpacking to docker.io/ctk-exec/subjack:b53899ce6230 0.1s done\n#17 DONE 0.5s",
+  "image_digest": "sha256:37ed960bd779cfa2acdb433b553bc235e1735c2e43e422abe018ca8c1e1e090f",
+  "duration_s": 14.21,
+  "log_tail": "#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.165 go: downloading github.com/haccer/available v0.0.0-20240515180643-5940a1670ee3\n#11 0.171 go: downloading github.com/miekg/dns v1.1.72\n#11 0.180 go: downloading github.com/valyala/fasthttp v1.69.0\n#11 0.472 go: downloading golang.org/x/sys v0.39.0\n#11 0.472 go: downloading golang.org/x/net v0.48.0\n#11 0.602 go: downloading github.com/domainr/whois v0.1.0\n#11 0.602 go: downloading github.com/valyala/bytebufferpool v1.0.0\n#11 0.603 go: downloading github.com/andybalholm/brotli v1.2.0\n#11 0.603 go: downloading github.com/klauspost/compress v1.18.2\n#11 0.986 go: downloading github.com/zonedb/zonedb v1.0.3544\n#11 0.986 go: downloading golang.org/x/text v0.32.0\n#11 0.986 go: downloading github.com/andybalholm/cascadia v1.3.1\n#11 0.986 go: downloading github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca\n#11 0.986 go: downloading github.com/PuerkitoBio/goquery v1.8.0\n#11 DONE 11.7s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.175 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.4s done\n#18 exporting manifest sha256:3b3b98fb59f507252f474da5f87c3a5e443dfb98ab81e59cac0554c3225b5c12\n#18 exporting manifest sha256:3b3b98fb59f507252f474da5f87c3a5e443dfb98ab81e59cac0554c3225b5c12 0.0s done\n#18 exporting config sha256:287452f4b8846d8b5baea9b9af68ac41f3fa511eca75883a54ed89ec10091c47 done\n#18 exporting attestation manifest sha256:a93639440790e99d22b4f6d6ecf20f6a2e31fc05607bf0276d654d4193f7b29b 0.0s done\n#18 exporting manifest list sha256:37ed960bd779cfa2acdb433b553bc235e1735c2e43e422abe018ca8c1e1e090f done\n#18 naming to docker.io/ctk-exec/subjack:b53899ce6230 done\n#18 unpacking to docker.io/ctk-exec/subjack:b53899ce6230 0.1s done\n#18 DONE 0.6s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage: subjack [options]\n\nOptions:\n  -a\tSend requests to every URL, not just those with identified CNAMEs.\n  -ar\n    \tCheck for stale A records pointing to dead IPs (may require root for ICMP).\n  -axfr\n    \tCheck for zone transfers (AXFR) including NS bruteforce.\n  -d string\n    \tSingle domain to check.\n  -m\tFlag dead CNAME records even if the domain is not available for registration.\n  -mail\n    \tCheck for SPF include and MX record takeovers.\n  -ns\n    \tCheck if nameservers are available for purchase (NS takeover).\n  -o string\n    \tOutput results to file (use .json extension for JSON output).\n  -r string\n    \tPath to a list of DNS resolvers.\n  -ssl\n    \tForce HTTPS connections (may increase accuracy).\n  -t int\n    \tNumber of concurrent threads. (default 10)\n  -timeout int\n    \tSeconds to wait before connection timeout. (default 10)\n  -v\tDisplay more information per request.\n  -w string\n    \tPath to wordlist.\n",
-   "duration_ms": 3,
+   "duration_ms": 6,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for subjack\n",
-   "duration_ms": 2,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -94,6 +94,7 @@
    "-v": "",
    "-w": "Path to wordlist."
   },
+  "values_seen": {},
   "aliases": {},
   "subcommand_flags": {},
   "subcommands": [],
@@ -149,19 +150,6 @@
  },
  "surface": {
   "flags": {
-   "--a": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Send requests to every URL, not just those with identified CNAMEs.",
-    "kind": "option",
-    "first_tag": "1.2",
-    "first_date": "2018-03-29T14:54:21-04:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--alts": {
     "source": "source",
     "runtime_confirmed": false,
@@ -227,19 +215,6 @@
     "attribution": "own",
     "source_path": "main.go"
    },
-   "--d": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Single domain to check.",
-    "kind": "option",
-    "first_tag": "1.2",
-    "first_date": "2018-03-29T14:54:21-04:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--dL": {
     "source": "source",
     "runtime_confirmed": false,
@@ -266,19 +241,6 @@
     "attribution": "own",
     "source_path": "main.go"
    },
-   "--m": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Flag dead CNAME records even if the domain is not available for registration.",
-    "kind": "option",
-    "first_tag": "2.1",
-    "first_date": "2018-12-14T21:08:59-05:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--mail": {
     "source": "source",
     "runtime_confirmed": false,
@@ -299,32 +261,6 @@
     "kind": "option",
     "first_tag": "v3.0.0",
     "first_date": "2026-03-16T01:54:56-04:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--o": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Output results to file (use .json extension for JSON output).",
-    "kind": "option",
-    "first_tag": "1.0",
-    "first_date": "2018-02-18T17:55:19-05:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--r": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Path to a list of DNS resolvers.",
-    "kind": "option",
-    "first_tag": "1.2",
-    "first_date": "2018-03-29T14:54:21-04:00",
     "last_tag": "v3.0.0",
     "last_date": "2026-03-16T01:54:56-04:00",
     "live": true,
@@ -370,19 +306,6 @@
     "attribution": "own",
     "source_path": "main.go"
    },
-   "--t": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Number of concurrent threads.",
-    "kind": "option",
-    "first_tag": "1.0",
-    "first_date": "2018-02-18T17:55:19-05:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--timeout": {
     "source": "source",
     "runtime_confirmed": false,
@@ -396,36 +319,18 @@
     "attribution": "own",
     "source_path": "main.go"
    },
-   "--v": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Display more information per request.",
-    "kind": "option",
-    "first_tag": "1.4",
-    "first_date": "2018-06-25T19:18:23-04:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--w": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Path to wordlist.",
-    "kind": "option",
-    "first_tag": "1.0",
-    "first_date": "2018-02-18T17:55:19-05:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2026-03-16T01:54:56-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "-a": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": ""
+    "help": "",
+    "kind": "option",
+    "first_tag": "1.2",
+    "first_date": "2018-03-29T14:54:21-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-ar": {
     "source": "runtime",
@@ -440,12 +345,28 @@
    "-d": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": "Single domain to check."
+    "help": "Single domain to check.",
+    "kind": "option",
+    "first_tag": "1.2",
+    "first_date": "2018-03-29T14:54:21-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-m": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": ""
+    "help": "",
+    "kind": "option",
+    "first_tag": "2.1",
+    "first_date": "2018-12-14T21:08:59-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-mail": {
     "source": "runtime",
@@ -460,12 +381,28 @@
    "-o": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": "Output results to file (use .json extension for JSON output)."
+    "help": "Output results to file (use .json extension for JSON output).",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-02-18T17:55:19-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-r": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": "Path to a list of DNS resolvers."
+    "help": "Path to a list of DNS resolvers.",
+    "kind": "option",
+    "first_tag": "1.2",
+    "first_date": "2018-03-29T14:54:21-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-ssl": {
     "source": "runtime",
@@ -475,7 +412,15 @@
    "-t": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": "Number of concurrent threads. (default 10)"
+    "help": "Number of concurrent threads. (default 10)",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-02-18T17:55:19-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-timeout": {
     "source": "runtime",
@@ -485,12 +430,28 @@
    "-v": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": ""
+    "help": "",
+    "kind": "option",
+    "first_tag": "1.4",
+    "first_date": "2018-06-25T19:18:23-04:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    },
    "-w": {
     "source": "runtime",
     "runtime_confirmed": true,
-    "help": "Path to wordlist."
+    "help": "Path to wordlist.",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-02-18T17:55:19-05:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-03-16T01:54:56-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go"
    }
   },
   "subcommands": []
@@ -498,6 +459,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 2,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -592,6 +554,6 @@
  "repo": "haccer/subjack",
  "head_sha": "b53899ce6230767beb1c4a9f879c6ebba23a98fa",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-29T02:28:19.892689+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:31:05.743739+00:00"
 }

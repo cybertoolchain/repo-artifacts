@@ -47,6 +47,11 @@
    "help": "Auth mode for the streamable-http transport. Unset \u2192 inferred: DECEPTICON_MCP_TOKEN \u21d2 shared-secret; --issuer + key \u21d2 jwt; else none. The shared-secret value is read only from DECEPTICON_MCP_TOKEN, never argv.",
    "kind": "option",
    "default": null,
+   "choices": [
+    "none",
+    "shared-secret",
+    "jwt"
+   ],
    "first_tag": "v1.1.16",
    "first_date": "2026-06-22T00:53:27+09:00",
    "last_tag": "v1.1.40",
@@ -125,6 +130,11 @@
    "help": "",
    "kind": "option",
    "default": "auto",
+   "choices": [
+    "auto",
+    "desktop",
+    "mobile"
+   ],
    "first_tag": "v1.1.16",
    "first_date": "2026-06-22T00:53:27+09:00",
    "last_tag": "v1.1.40",
@@ -151,6 +161,9 @@
    "help": "Filter to this root domain only",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-d"
+   ],
    "first_tag": "v1.0.0",
    "first_date": "2026-03-25T13:04:29-07:00",
    "last_tag": "v1.1.40",
@@ -190,6 +203,13 @@
    "help": "Minimum severity that triggers a non-zero exit.",
    "kind": "option",
    "default": "high",
+   "choices": [
+    "critical",
+    "high",
+    "medium",
+    "low",
+    "none"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -216,8 +236,8 @@
    "help": "Overwrite an existing engagement directory instead of failing.",
    "kind": "option",
    "default": null,
-   "first_tag": "v1.1.16",
-   "first_date": "2026-06-22T00:53:27+09:00",
+   "first_tag": "v1.1.1",
+   "first_date": "2026-05-22T21:30:52+09:00",
    "last_tag": "v1.1.40",
    "last_date": "2026-07-27T18:56:31+09:00",
    "live": true,
@@ -391,6 +411,10 @@
    "help": "warn: exit 0 even with violations. strict: exit 1 on any.",
    "kind": "option",
    "default": "warn",
+   "choices": [
+    "warn",
+    "strict"
+   ],
    "first_tag": "v1.1.7",
    "first_date": "2026-06-06T14:20:27+09:00",
    "last_tag": "v1.1.40",
@@ -469,6 +493,9 @@
    "help": "Disable interactive UI; print JSONL events to stdout instead.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-n"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -640,6 +667,11 @@
    "help": "Scan depth/timeout profile.",
    "kind": "option",
    "default": "standard",
+   "choices": [
+    "quick",
+    "standard",
+    "deep"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -653,6 +685,10 @@
    "help": "``diff`` restricts the scan to files changed against --diff-base.",
    "kind": "option",
    "default": "full",
+   "choices": [
+    "full",
+    "diff"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -744,6 +780,9 @@
    "help": "Target to scan (filesystem path, git URL, or HTTP URL). Repeatable.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-t"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -770,6 +809,10 @@
    "help": "MCP transport (default: stdio).",
    "kind": "option",
    "default": "stdio",
+   "choices": [
+    "stdio",
+    "streamable-http"
+   ],
    "first_tag": "v1.1.16",
    "first_date": "2026-06-22T00:53:27+09:00",
    "last_tag": "v1.1.40",
@@ -783,6 +826,10 @@
    "help": "",
    "kind": "option",
    "default": null,
+   "choices": [
+    "zero_day",
+    "one_day"
+   ],
    "first_tag": "v1.1.16",
    "first_date": "2026-06-22T00:53:27+09:00",
    "last_tag": "v1.1.40",
@@ -796,6 +843,9 @@
    "help": "Enable debug logging to stderr.",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-v"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -887,6 +937,10 @@
    "help": "status (default) prints the report; doctor also exits non-zero when nothing is usable.",
    "kind": "positional",
    "default": "status",
+   "choices": [
+    "status",
+    "doctor"
+   ],
    "first_tag": "v1.1.4",
    "first_date": "2026-05-31T15:41:58+09:00",
    "last_tag": "v1.1.40",
@@ -1222,6 +1276,17 @@
   }
  },
  "events": [
+  {
+   "flag": "--force",
+   "event": "added",
+   "tag": "v1.1.1",
+   "date": "2026-05-22T21:30:52+09:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Refresh config files and Docker images even if version unchanged",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
   {
    "flag": "--reset",
    "event": "added",
@@ -1848,16 +1913,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--force",
-   "event": "added",
-   "tag": "v1.1.16",
-   "date": "2026-06-22T00:53:27+09:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Overwrite an existing engagement directory instead of failing.",
-   "attribution": "own"
-  },
-  {
    "flag": "--host",
    "event": "added",
    "tag": "v1.1.16",
@@ -2098,6 +2153,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--force",
+   "event": "help_changed",
+   "tag": "v1.1.16",
+   "date": "2026-06-22T00:53:27+09:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Overwrite an existing engagement directory instead of failing.",
+   "previous_help": "Refresh config files and Docker images even if version unchanged",
+   "attribution": "own"
+  },
+  {
    "flag": "--output",
    "event": "help_changed",
    "tag": "v1.1.16",
@@ -2230,7 +2296,7 @@
    "files_matched": 565,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 15,
+   "flags": 16,
    "errors": 0
   },
   {
@@ -2240,7 +2306,7 @@
    "files_matched": 607,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 15,
+   "flags": 16,
    "errors": 0
   },
   {
@@ -2250,7 +2316,7 @@
    "files_matched": 699,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 15,
+   "flags": 16,
    "errors": 0
   },
   {
@@ -2260,7 +2326,7 @@
    "files_matched": 796,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 32,
+   "flags": 33,
    "errors": 0
   },
   {
@@ -2270,7 +2336,7 @@
    "files_matched": 796,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 32,
+   "flags": 33,
    "errors": 0
   },
   {
@@ -2280,7 +2346,7 @@
    "files_matched": 796,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 32,
+   "flags": 33,
    "errors": 0
   },
   {
@@ -2290,7 +2356,7 @@
    "files_matched": 959,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 50,
+   "flags": 51,
    "errors": 0
   },
   {
@@ -2300,7 +2366,7 @@
    "files_matched": 998,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 54,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2310,7 +2376,7 @@
    "files_matched": 998,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 54,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2320,7 +2386,7 @@
    "files_matched": 998,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 54,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2330,7 +2396,7 @@
    "files_matched": 998,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 54,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2340,7 +2406,7 @@
    "files_matched": 998,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 55,
+   "flags": 56,
    "errors": 0
   },
   {
@@ -2350,7 +2416,7 @@
    "files_matched": 1003,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 56,
+   "flags": 57,
    "errors": 0
   },
   {
@@ -2360,7 +2426,7 @@
    "files_matched": 1008,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 56,
+   "flags": 57,
    "errors": 0
   },
   {
@@ -2370,7 +2436,7 @@
    "files_matched": 1009,
    "capped": false,
    "docs_excluded": 1,
-   "flags": 56,
+   "flags": 57,
    "errors": 0
   },
   {
@@ -2622,6 +2688,6 @@
  "repo": "PurpleAILAB/Decepticon",
  "head_sha": "e34afba0db5879501113578d1013026686fa5482",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-28T12:06:52.244292+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T23:43:16.450544+00:00"
 }

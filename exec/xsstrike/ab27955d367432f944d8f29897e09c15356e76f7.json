@@ -1,19 +1,670 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:3252acf85eb7fdc87869e5524855a30b730755aa73175bf1f521b2bf4315f9af",
+  "duration_s": 12.26,
+  "log_tail": "#8 7.246 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 7.246 debconf: falling back to frontend: Readline\n#8 7.249 debconf: unable to initialize frontend: Readline\n#8 7.249 debconf: (This frontend requires a controlling tty.)\n#8 7.249 debconf: falling back to frontend: Teletype\n#8 7.268 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 7.280 Setting up texinfo (6.8-6+b1) ...\n#8 7.288 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 7.296 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 7.3s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 2.7s done\n#21 exporting manifest sha256:2a08cdad010a3024fea0008d429022af7e3acdeba8c9b00b48589016cff8a008 done\n#21 exporting config sha256:19afc4515417ba3a221d58997825ea6df58ad2acfdb3bd6630eec4206b8432bb done\n#21 exporting attestation manifest sha256:e90d22794e946ea4630fc2fac3df0f73d33c802a2cdc188bd7251a68ddbc0f3e done\n#21 exporting manifest list sha256:3252acf85eb7fdc87869e5524855a30b730755aa73175bf1f521b2bf4315f9af done\n#21 naming to docker.io/ctk-exec/xsstrike:ab27955d3674 done\n#21 unpacking to docker.io/ctk-exec/xsstrike:ab27955d3674\n#21 unpacking to docker.io/ctk-exec/xsstrike:ab27955d3674 0.6s done\n#21 DONE 3.4s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "XSStrike",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'XSStrike'"
+  },
+  {
+   "argv": [
+    "xsstrike",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\u001b[91m\n\tXSStrike \u001b[97mv3.1.5\n\u001b[0m\nusage: xsstrike.py [-h] [-u TARGET] [--data PARAMDATA] [-e ENCODE] [--fuzzer]\n                   [--update] [--timeout TIMEOUT] [--proxy] [--crawl] [--json]\n                   [--path] [--seeds ARGS_SEEDS] [-f ARGS_FILE] [-l LEVEL]\n                   [--headers [ADD_HEADERS]] [-t THREADCOUNT] [-d DELAY]\n                   [--skip] [--skip-dom] [--blind]\n                   [--console-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}]\n                   [--file-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}]\n                   [--log-file LOG_FILE]\n\noptions:\n  -h, --help            show this help message and exit\n  -u TARGET, --url TARGET\n                        url\n  --data PARAMDATA      post data\n  -e ENCODE, --encode ENCODE\n                        encode payloads\n  --fuzzer              fuzzer\n  --update              update\n  --timeout TIMEOUT     timeout\n  --proxy               use prox(y|ies)\n  --crawl               crawl\n  --json                treat post data as json\n  --path                inject payloads in the path\n  --seeds ARGS_SEEDS    load crawling seeds from a file\n  -f ARGS_FILE, --file ARGS_FILE\n                        load payloads from a file\n  -l LEVEL, --level LEVEL\n                        level of crawling\n  --headers [ADD_HEADERS]\n                        add headers\n  -t THREADCOUNT, --threads THREADCOUNT\n                        number of threads\n  -d DELAY, --delay DELAY\n                        delay between requests\n  --skip                don't ask to continue\n  --skip-dom            skip dom checking\n  --blind               inject blind XSS payload while crawling\n  --console-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}\n                        Console logging level\n  --file-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}\n                        File logging level\n  --log-file LOG_FILE   Name of the file to log\n",
+   "stderr": "",
+   "duration_ms": 123,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "xsstrike"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for xsstrike\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "xsstrike"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'xsstrike' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "xsstrike",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--url": "url",
+   "-u": "url",
+   "--data": "post data",
+   "--encode": "encode payloads",
+   "-e": "encode payloads",
+   "--fuzzer": "fuzzer",
+   "--update": "update",
+   "--timeout": "timeout",
+   "--proxy": "use prox(y|ies)",
+   "--crawl": "crawl",
+   "--json": "treat post data as json",
+   "--path": "inject payloads in the path",
+   "--seeds": "load crawling seeds from a file",
+   "--file": "load payloads from a file",
+   "-f": "load payloads from a file",
+   "--level": "level of crawling",
+   "-l": "level of crawling",
+   "--headers": "add headers",
+   "--threads": "number of threads",
+   "-t": "number of threads",
+   "--delay": "delay between requests",
+   "-d": "delay between requests",
+   "--skip": "don't ask to continue",
+   "--skip-dom": "skip dom checking",
+   "--blind": "inject blind XSS payload while crawling",
+   "--console-log-level": "Console logging level",
+   "--file-log-level": "File logging level",
+   "--log-file": "Name of the file to log"
+  },
+  "values_seen": {
+   "--data": "PARAMDATA",
+   "--timeout": "TIMEOUT",
+   "--seeds": "ARGS_SEEDS",
+   "--log-file": "LOG_FILE"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--url": [
+    "-u"
+   ],
+   "--encode": [
+    "-e"
+   ],
+   "--file": [
+    "-f"
+   ],
+   "--level": [
+    "-l"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--delay": [
+    "-d"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "xsstrike",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "bcaf6184b78679e871215b65de9b94c21e98eb53d5ff094bd055aa56726404e5",
+  "text": "\u001b[91m\n\tXSStrike \u001b[97mv3.1.5\n\u001b[0m\nusage: xsstrike.py [-h] [-u TARGET] [--data PARAMDATA] [-e ENCODE] [--fuzzer]\n                   [--update] [--timeout TIMEOUT] [--proxy] [--crawl] [--json]\n                   [--path] [--seeds ARGS_SEEDS] [-f ARGS_FILE] [-l LEVEL]\n                   [--headers [ADD_HEADERS]] [-t THREADCOUNT] [-d DELAY]\n                   [--skip] [--skip-dom] [--blind]\n                   [--console-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}]\n                   [--file-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}]\n                   [--log-file LOG_FILE]\n\noptions:\n  -h, --help            show this help message and exit\n  -u TARGET, --url TARGET\n                        url\n  --data PARAMDATA      post data\n  -e ENCODE, --encode ENCODE\n                        encode payloads\n  --fuzzer              fuzzer\n  --update              update\n  --timeout TIMEOUT     timeout\n  --proxy               use prox(y|ies)\n  --crawl               crawl\n  --json                treat post data as json\n  --path                inject payloads in the path\n  --seeds ARGS_SEEDS    load crawling seeds from a file\n  -f ARGS_FILE, --file ARGS_FILE\n                        load payloads from a file\n  -l LEVEL, --level LEVEL\n                        level of crawling\n  --headers [ADD_HEADERS]\n                        add headers\n  -t THREADCOUNT, --threads THREADCOUNT\n                        number of threads\n  -d DELAY, --delay DELAY\n                        delay between requests\n  --skip                don't ask to continue\n  --skip-dom            skip dom checking\n  --blind               inject blind XSS payload while crawling\n  --console-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}\n                        Console logging level\n  --file-log-level {DEBUG,INFO,RUN,GOOD,WARNING,ERROR,CRITICAL,VULN}\n                        File logging level\n  --log-file LOG_FILE   Name of the file to log\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--blind",
+   "--console-log-level",
+   "--crawl",
+   "--data",
+   "--delay",
+   "--encode",
+   "--file",
+   "--file-log-level",
+   "--fuzzer",
+   "--headers",
+   "--json",
+   "--level",
+   "--log-file",
+   "--path",
+   "--proxy",
+   "--seeds",
+   "--skip",
+   "--skip-dom",
+   "--threads",
+   "--timeout",
+   "--update",
+   "--url"
+  ],
+  "unconfirmed": [
+   "--cookie",
+   "--headless",
+   "--params",
+   "--skip-poc",
+   "--vectors"
+  ],
+  "help_only": [
+   "--help",
+   "-d",
+   "-e",
+   "-f",
+   "-h",
+   "-l",
+   "-t",
+   "-u"
+  ],
+  "mining_coverage": 0.7333333333333333
+ },
+ "surface": {
+  "flags": {
+   "--blind": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "inject blind XSS payload while crawling",
+    "kind": "option",
+    "first_tag": "3.0.3",
+    "first_date": "2018-11-14T23:59:03+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--console-log-level": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Console logging level",
+    "kind": "option",
+    "first_tag": "3.1.3",
+    "first_date": "2019-04-06T22:03:34+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--cookie": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cookie",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.0-beta",
+    "last_date": "2018-10-27T19:01:21+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--crawl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "crawl",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--data": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "post data",
+    "kind": "option",
+    "metavar": "PARAMDATA",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--delay": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "delay between requests",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--encode": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "encode payloads",
+    "kind": "option",
+    "first_tag": "3.0.2",
+    "first_date": "2018-11-13T17:11:16+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "load payloads from a file",
+    "kind": "option",
+    "first_tag": "3.0.2",
+    "first_date": "2018-11-13T17:11:16+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--file-log-level": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "File logging level",
+    "kind": "option",
+    "first_tag": "3.1.3",
+    "first_date": "2019-04-06T22:03:34+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--fuzzer": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "fuzzer",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "add headers",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--headless": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "3.1.0",
+    "first_date": "2018-11-21T19:59:15+05:30",
+    "last_tag": "3.1.2",
+    "last_date": "2018-12-31T04:37:48+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "core/browserEngine.py"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "treat post data as json",
+    "kind": "option",
+    "first_tag": "3.1.2",
+    "first_date": "2018-12-31T04:37:48+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--level": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "level of crawling",
+    "kind": "option",
+    "first_tag": "3.0-rc-1",
+    "first_date": "2018-10-31T13:10:36+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--log-file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Name of the file to log",
+    "kind": "option",
+    "metavar": "LOG_FILE",
+    "first_tag": "3.1.3",
+    "first_date": "2019-04-06T22:03:34+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--params": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "find params",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.5",
+    "last_date": "2019-12-20T02:17:35+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--path": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "inject payloads in the path",
+    "kind": "option",
+    "first_tag": "3.1.2",
+    "first_date": "2018-12-31T04:37:48+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use prox(y|ies)",
+    "kind": "option",
+    "first_tag": "3.0.3",
+    "first_date": "2018-11-14T23:59:03+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--seeds": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "load crawling seeds from a file",
+    "kind": "option",
+    "metavar": "ARGS_SEEDS",
+    "first_tag": "3.0.5",
+    "first_date": "2018-11-17T23:47:33+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--skip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "don't ask to continue",
+    "kind": "option",
+    "first_tag": "3.0.1",
+    "first_date": "2018-11-12T14:44:33+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--skip-dom": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "skip dom checking",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--skip-poc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "skip poc generation",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.0.1",
+    "last_date": "2018-11-12T14:44:33+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--threads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "number of threads",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "timeout",
+    "kind": "option",
+    "metavar": "TIMEOUT",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "update",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   },
+   "--url": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "url",
+    "kind": "option",
+    "first_tag": "3.0-beta",
+    "first_date": "2018-10-27T19:01:21+05:30",
+    "last_tag": "3.1.6",
+    "last_date": "2025-03-17T16:54:27+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "xsstrike.py",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--vectors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "verbose output",
+    "kind": "option",
+    "first_tag": "3.0.2",
+    "first_date": "2018-11-13T17:11:16+05:30",
+    "last_tag": "3.1.2",
+    "last_date": "2018-12-31T04:37:48+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "xsstrike.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-99261ceb",
+    "argv": [
+     "xsstrike",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 665
+   },
+   {
+    "id": "t-net-8a7c558d",
+    "argv": [
+     "xsstrike",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 658
+   },
+   {
+    "id": "t-net-1263c195",
+    "argv": [
+     "xsstrike",
+     "-u",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 125
+   },
+   {
+    "id": "t-net-3f3445db",
+    "argv": [
+     "xsstrike",
+     "--url",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 125
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "xsstrike",
  "repo": "s0md3v/XSStrike",
  "head_sha": "ab27955d367432f944d8f29897e09c15356e76f7",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:43:05.017683+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:33:24.705621+00:00"
 }

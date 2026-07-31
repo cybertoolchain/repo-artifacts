@@ -1,0 +1,342 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:30048035199c3f76120dfeb61abf4add0e898aa816ff823aa89dc0cb8fcdb6a0",
+  "duration_s": 182.35,
+  "log_tail": "#12 29.79    Compiling ambient-id v0.0.11\n#12 29.88    Compiling sigstore-oidc v0.11.0\n#12 30.20    Compiling sigstore-bundle v0.11.0\n#12 30.21    Compiling sigstore-bundle v0.9.0\n#12 30.22    Compiling sigstore-fulcio v0.11.0\n#12 30.24    Compiling sigstore-trust-root v0.11.0\n#12 30.27    Compiling sigstore-verify v0.9.0\n#12 30.45    Compiling aws-runtime v1.8.1\n#12 30.63    Compiling sigstore-sign v0.11.0\n#12 31.10    Compiling aws-sdk-sso v1.103.0\n#12 31.10    Compiling aws-sdk-sts v1.108.0\n#12 31.10    Compiling aws-sdk-ssooidc v1.105.0\n#12 32.30    Compiling aws-config v1.9.0\n#12 34.02    Compiling nono-proxy v0.70.0 (/src/crates/nono-proxy)\n#12 169.6     Finished `release` profile [optimized] target(s) in 2m 49s\n#12 DONE 173.3s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 3.8s\n\n#14 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2 libsodium23  && rm -rf /var/lib/apt/lists/*\n#14 CACHED\n\n#15 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#15 DONE 0.2s\n\n#16 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.5s done\n#20 exporting manifest sha256:21d233c5455460ba4cb58f2c417d461aec8ec9936e6f2c3d62dffc786887de90 done\n#20 exporting config sha256:314d6c40f1d2076adbc138502984881ca620462cfb28e7abde8cde58f54ebc63 done\n#20 exporting attestation manifest sha256:3b8f3e35cef91876592bac485f5cf62afa1b9d2e6827dcea9f8355643fecc7ea 0.0s done\n#20 exporting manifest list sha256:30048035199c3f76120dfeb61abf4add0e898aa816ff823aa89dc0cb8fcdb6a0 done\n#20 naming to docker.io/ctk-exec/nono:a04da5931b54 done\n#20 unpacking to docker.io/ctk-exec/nono:a04da5931b54\n#20 unpacking to docker.io/ctk-exec/nono:a04da5931b54 1.0s done\n#20 DONE 1.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "nono",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "CLI for nono capability-based sandbox\n\nUSAGE\n  nono <command> [flags]\n\nGETTING STARTED\n  setup      Set up nono on this system\n\nCORE USAGE\n  run        Run a command inside the sandbox\n  shell      Start an interactive shell inside the sandbox\n  wrap       Apply sandbox and exec into command (nono disappears)\n\nEXPLORATION & DEBUGGING\n  learn      [deprecated] Use `nono run` to learn from sandbox denials\n  why        Check why filesystem, network, scope, or command access would be allowed or denied\n  proxy      Run the network filtering / credential proxy as a standalone server\n\nSESSION MANAGEMENT\n  ps         List running or detached sandbox sessions\n  stop       Stop a running sandbox session\n  detach     Detach from an interactive runtime session\n  attach     Attach to a detached runtime session\n  logs       View runtime session event logs\n  inspect    Show detailed runtime session state\n  session    Manage runtime session storage\n  rollback   Manage rollback sessions (browse, restore, cleanup)\n  audit      View audit trail of sandboxed commands\n  trust      Manage file trust and attestation\n\nPACKS\n  pull       Install a signed nono pack from the registry\n  remove     Remove an installed nono pack\n  update     Update installed nono packs\n  outdated   Show which installed packs have newer versions available\n  pin        Pin a pack to its current version\n  unpin      Unpin a pack to re-include it in updates\n  search     Search the registry for nono packs\n  list       List installed nono packs\n\nPOLICY & PROFILES\n  policy     [deprecated] Use 'nono profile' instead\n  profile    Create, inspect, and compare nono profiles\n\nSHELL\n  completion   Generate shell completion scripts\n\nOPTIONS\n  -s, --silent           Silent mode - suppress all nono output (banner, summary, status)\n      --theme <THEME>    Color theme for output (mocha, latte, frappe, macchiato, tokyo-night, minimal) [env: NONO_THEME=]\n      --log-file <PATH>  Write logs to a file instead of stderr [env: NONO_LOG_FILE=]\n  -h, --help             Print help\n  -V, --version          Print version\n\nLEARN MORE\n  Use `nono <command> --help` for more information about a command.\n  Read the docs at https://nono.sh/docs\n",
+   "stderr": "",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nono"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for nono\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nono"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'nono' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "nono",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--silent": "Silent mode - suppress all nono output (banner, summary, status)",
+   "-s": "Silent mode - suppress all nono output (banner, summary, status)",
+   "--theme": "Color theme for output (mocha, latte, frappe, macchiato, tokyo-night, minimal) [env: NONO_THEME=]",
+   "--log-file": "Write logs to a file instead of stderr [env: NONO_LOG_FILE=]",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "--theme": "<THEME>",
+   "--log-file": "<PATH>"
+  },
+  "aliases": {
+   "--silent": [
+    "-s"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "nono",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "eab47551a82386f2a0aea033181d426cf3b18d51fe1e69750618dee69d67514b",
+  "text": "CLI for nono capability-based sandbox\n\nUSAGE\n  nono <command> [flags]\n\nGETTING STARTED\n  setup      Set up nono on this system\n\nCORE USAGE\n  run        Run a command inside the sandbox\n  shell      Start an interactive shell inside the sandbox\n  wrap       Apply sandbox and exec into command (nono disappears)\n\nEXPLORATION & DEBUGGING\n  learn      [deprecated] Use `nono run` to learn from sandbox denials\n  why        Check why filesystem, network, scope, or command access would be allowed or denied\n  proxy      Run the network filtering / credential proxy as a standalone server\n\nSESSION MANAGEMENT\n  ps         List running or detached sandbox sessions\n  stop       Stop a running sandbox session\n  detach     Detach from an interactive runtime session\n  attach     Attach to a detached runtime session\n  logs       View runtime session event logs\n  inspect    Show detailed runtime session state\n  session    Manage runtime session storage\n  rollback   Manage rollback sessions (browse, restore, cleanup)\n  audit      View audit trail of sandboxed commands\n  trust      Manage file trust and attestation\n\nPACKS\n  pull       Install a signed nono pack from the registry\n  remove     Remove an installed nono pack\n  update     Update installed nono packs\n  outdated   Show which installed packs have newer versions available\n  pin        Pin a pack to its current version\n  unpin      Unpin a pack to re-include it in updates\n  search     Search the registry for nono packs\n  list       List installed nono packs\n\nPOLICY & PROFILES\n  policy     [deprecated] Use 'nono profile' instead\n  profile    Create, inspect, and compare nono profiles\n\nSHELL\n  completion   Generate shell completion scripts\n\nOPTIONS\n  -s, --silent           Silent mode - suppress all nono output (banner, summary, status)\n      --theme <THEME>    Color theme for output (mocha, latte, frappe, macchiato, tokyo-night, minimal) [env: NONO_THEME=]\n      --log-file <PATH>  Write logs to a file instead of stderr [env: NONO_LOG_FILE=]\n  -h, --help             Print help\n  -V, --version          Print version\n\nLEARN MORE\n  Use `nono <command> --help` for more information about a command.\n  Read the docs at https://nono.sh/docs\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--allow",
+   "--audience",
+   "--issuer",
+   "--latest",
+   "--override-deny",
+   "--port",
+   "--read",
+   "--read-file",
+   "--write",
+   "-vv"
+  ],
+  "help_only": [
+   "--help",
+   "--log-file",
+   "--silent",
+   "--theme",
+   "--version",
+   "-V",
+   "-h",
+   "-s"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--allow": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2026-02-01T16:38:28Z",
+    "last_tag": "v0.1.0",
+    "last_date": "2026-02-01T16:38:28Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/usage/flags.md"
+   },
+   "--audience": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Expected audience claim",
+    "kind": "option",
+    "first_tag": "v0.69.0",
+    "first_date": "2026-07-20T10:57:19+01:00",
+    "last_tag": "v0.70.0",
+    "last_date": "2026-07-27T20:08:18+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/spiffe-mock-server.py"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--issuer": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "SPIRE JWT issuer URL",
+    "kind": "option",
+    "first_tag": "v0.69.0",
+    "first_date": "2026-07-20T10:57:19+01:00",
+    "last_tag": "v0.70.0",
+    "last_date": "2026-07-27T20:08:18+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/spiffe-mock-server.py"
+   },
+   "--latest": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Version to report as latest",
+    "kind": "option",
+    "first_tag": "v0.42.0",
+    "first_date": "2026-04-25T10:12:46+01:00",
+    "last_tag": "v0.70.0",
+    "last_date": "2026-07-27T20:08:18+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "tools/test-update-server.py"
+   },
+   "--log-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write logs to a file instead of stderr [env: NONO_LOG_FILE=]",
+    "metavar": "<PATH>"
+   },
+   "--override-deny": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "\u2192 `--bypass-protection`. Clap definition:",
+    "kind": "option",
+    "first_tag": "v0.47.0",
+    "first_date": "2026-05-05T08:55:49+01:00",
+    "last_tag": "v0.70.0",
+    "last_date": "2026-07-27T20:08:18+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/plans/2026-04-24-issue-594-phase-2-schema-design.md"
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.42.0",
+    "first_date": "2026-04-25T10:12:46+01:00",
+    "last_tag": "v0.70.0",
+    "last_date": "2026-07-27T20:08:18+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/spiffe-mock-server.py"
+   },
+   "--read": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2026-02-01T16:38:28Z",
+    "last_tag": "v0.1.0",
+    "last_date": "2026-02-01T16:38:28Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/usage/flags.md"
+   },
+   "--read-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2026-02-01T16:38:28Z",
+    "last_tag": "v0.1.0",
+    "last_date": "2026-02-01T16:38:28Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/usage/flags.md"
+   },
+   "--silent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Silent mode - suppress all nono output (banner, summary, status)",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--theme": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Color theme for output (mocha, latte, frappe, macchiato, tokyo-night, minimal) [env: NONO_THEME=]",
+    "metavar": "<THEME>"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--write": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2026-02-01T16:38:28Z",
+    "last_tag": "v0.1.0",
+    "last_date": "2026-02-01T16:38:28Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/usage/flags.md"
+   },
+   "-vv": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2026-02-01T16:38:28Z",
+    "last_tag": "v0.1.0",
+    "last_date": "2026-02-01T16:38:28Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/usage/flags.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 1,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-3910c88b",
+    "argv": [
+     "nono",
+     "profile",
+     "init",
+     "opencode",
+     "--extends",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 89,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 1,
+    "output_bytes": 200
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "nono search opencode",
+    "source": "readme",
+    "path": "README.md",
+    "line": 74,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "nono",
+ "repo": "nolabs-ai/nono",
+ "head_sha": "a04da5931b5403f1315f0c33fca7fa1651d3d462",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:27:57.478182+00:00"
+}

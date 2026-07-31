@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:cac23bcea30ae37c31cd704d3c88b34768f67f46376191c8276db85849c57f46",
-  "duration_s": 10.87,
-  "log_tail": "\n#7 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#7 extracting sha256:ddac8d5b0aacfe4ea7f2134918fbfc0ee8eb4182e7a012d86fc91d3d4ac70bba done\n#7 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 done\n#7 DONE 9.6s\n\n#8 [build 2/4] WORKDIR /src\n#8 DONE 0.2s\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.132 go: downloading github.com/fatih/color v1.13.0\n#10 0.132 go: downloading github.com/spf13/cobra v1.5.0\n#10 0.431 go: downloading github.com/mattn/go-isatty v0.0.14\n#10 0.431 go: downloading github.com/mattn/go-colorable v0.1.9\n#10 0.479 go: downloading github.com/spf13/pflag v1.0.5\n#10 0.568 go: downloading golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c\n#10 DONE 5.1s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.125 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.3s done\n#17 exporting manifest sha256:3c152acad1a8c3f20daa6421792fa2d2125fffdaa19959e5c90cdbe0d9c1f1b8 0.0s done\n#17 exporting config sha256:494eade472fa6b47f8438057f00e959b3cd3de765dc22e7ffda5eac895ff463b done\n#17 exporting attestation manifest sha256:9b96ab8c061224e4c6a5612a4e429fe9944ad4142340fd86fb42bc9b849310b3 0.0s done\n#17 exporting manifest list sha256:cac23bcea30ae37c31cd704d3c88b34768f67f46376191c8276db85849c57f46 done\n#17 naming to docker.io/ctk-exec/exiflooter:b8cc568f00f2 done\n#17 unpacking to docker.io/ctk-exec/exiflooter:b8cc568f00f2 0.1s done\n#17 DONE 0.5s",
+  "image_digest": "sha256:965e90a2d1b8ec7ccb3c88975e6f917d6c23f5dd535004d968771a7f71810e67",
+  "duration_s": 7.13,
+  "log_tail": "\n#8 [internal] load build context\n#8 transferring context: 349.15kB done\n#8 DONE 0.0s\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.2s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.2s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.183 go: downloading github.com/spf13/cobra v1.5.0\n#11 0.183 go: downloading github.com/fatih/color v1.13.0\n#11 0.360 go: downloading github.com/mattn/go-isatty v0.0.14\n#11 0.360 go: downloading github.com/mattn/go-colorable v0.1.9\n#11 0.441 go: downloading golang.org/x/sys v0.0.0-20210630005230-0f9fa26af87c\n#11 0.636 go: downloading github.com/spf13/pflag v1.0.5\n#11 DONE 5.1s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.151 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:4384207971f61f139242c7e0b2db93bb95bd45f5197aea83291c76c512febb53 done\n#18 exporting config sha256:a228c6e7e84f4478778b78f26751fb931b00191bd7acb43f116b02e499655563 done\n#18 exporting attestation manifest sha256:428b9aab0dfdf8106df8570d93f720a5ae9521dc55af937cfc8b1f39755f0692 0.0s done\n#18 exporting manifest list sha256:965e90a2d1b8ec7ccb3c88975e6f917d6c23f5dd535004d968771a7f71810e67 done\n#18 naming to docker.io/ctk-exec/exiflooter:b8cc568f00f2 done\n#18 unpacking to docker.io/ctk-exec/exiflooter:b8cc568f00f2\n#18 unpacking to docker.io/ctk-exec/exiflooter:b8cc568f00f2 0.2s done\n#18 DONE 0.5s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "ExifLooter finds GeoLocation Metadata and display. You can use with pipe and flags\n\nUsage:\n  exifLooter [flags]\n\nFlags:\n  -d, --directory string   Specify a directory for Analyzing\n  -h, --help               help for exifLooter\n  -i, --image string       Specify a image for Analyzing\n  -m, --open-street-map    Get Open Street Map Link\n  -p, --pipe               Pipe with other scripts\n  -r, --remove             Remove metadata from Image\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for exifLooter\n",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -56,66 +56,16 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'exifLooter' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
-   "argv": [
-    "exifLooter",
-    "-d",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "2026/07/29 02:11:52 exec: \"exiftool\": executable file not found in $PATH\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "readme-1",
-   "title": "From the project's documentation \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "exifLooter",
-    "--remove",
-    "--directory",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "2026/07/29 02:11:52 exec: \"exiftool\": executable file not found in $PATH\n",
-   "duration_ms": 2,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "readme-2",
-   "title": "From the project's documentation \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "exifLooter",
-    "--open-street-map",
-    "--directory",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "2026/07/29 02:11:52 exec: \"exiftool\": executable file not found in $PATH\n",
-   "duration_ms": 2,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "readme-3",
-   "title": "From the project's documentation \u2014 run against source-corpus"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 7,
+   "commands_run": 4,
    "binary": "exifLooter",
    "exit_code": null,
    "stdout": "",
@@ -141,6 +91,12 @@
    "-p": "Pipe with other scripts",
    "--remove": "Remove metadata from Image",
    "-r": "Remove metadata from Image"
+  },
+  "values_seen": {
+   "-d": "string",
+   "--directory": "string",
+   "-i": "string",
+   "--image": "string"
   },
   "aliases": {
    "--directory": [
@@ -172,17 +128,18 @@
   "text": "ExifLooter finds GeoLocation Metadata and display. You can use with pipe and flags\n\nUsage:\n  exifLooter [flags]\n\nFlags:\n  -d, --directory string   Specify a directory for Analyzing\n  -h, --help               help for exifLooter\n  -i, --image string       Specify a image for Analyzing\n  -m, --open-street-map    Get Open Street Map Link\n  -p, --pipe               Pipe with other scripts\n  -r, --remove             Remove metadata from Image\n"
  },
  "validation": {
-  "confirmed": [],
+  "confirmed": [
+   "--directory",
+   "--image",
+   "--open-street-map",
+   "--pipe",
+   "--remove"
+  ],
   "unconfirmed": [
    "exifLooter"
   ],
   "help_only": [
-   "--directory",
    "--help",
-   "--image",
-   "--open-street-map",
-   "--pipe",
-   "--remove",
    "-d",
    "-h",
    "-i",
@@ -190,14 +147,23 @@
    "-p",
    "-r"
   ],
-  "mining_coverage": 0.0
+  "mining_coverage": 0.4166666666666667
  },
  "surface": {
   "flags": {
    "--directory": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Specify a directory for Analyzing",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-12-10T15:22:40+03:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2023-12-10T15:22:40+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-d"
     ]
@@ -211,33 +177,66 @@
     ]
    },
    "--image": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Specify a image for Analyzing",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-12-10T15:22:40+03:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2023-12-10T15:22:40+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-i"
     ]
    },
    "--open-street-map": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Get Open Street Map Link",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-12-10T15:22:40+03:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2023-12-10T15:22:40+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-m"
     ]
    },
    "--pipe": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Pipe with other scripts",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-12-10T15:22:40+03:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2023-12-10T15:22:40+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-p"
     ]
    },
    "--remove": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Remove metadata from Image",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-12-10T15:22:40+03:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2023-12-10T15:22:40+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-r"
     ]
@@ -261,6 +260,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 5,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -378,6 +378,6 @@
  "repo": "aydinnyunus/exiflooter",
  "head_sha": "b8cc568f00f29b4eaec707f58e7b5066d0ec835f",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-29T02:12:02.432225+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:07:07.322506+00:00"
 }

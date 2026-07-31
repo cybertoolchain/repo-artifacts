@@ -1,19 +1,240 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "c",
-  "image_digest": null,
-  "duration_s": 2.9,
-  "log_tail": "#12 2.095 checking for stdlib.h... yes\n#12 2.106 checking for string.h... yes\n#12 2.118 checking for inttypes.h... yes\n#12 2.135 checking for stdint.h... yes\n#12 2.148 checking for strings.h... yes\n#12 2.161 checking for sys/stat.h... yes\n#12 2.174 checking for sys/types.h... yes\n#12 2.186 checking for unistd.h... yes\n#12 2.199 checking for sys/time.h... yes\n#12 2.213 checking for sys/endian.h... no\n#12 2.226 checking for sys/param.h... yes\n#12 2.242 checking for unistd.h... (cached) yes\n#12 2.242 checking for fnmatch.h... yes\n#12 2.256 checking for string.h... (cached) yes\n#12 2.256 checking for utmp.h... yes\n#12 2.270 checking for utmpx.h... yes\n#12 2.284 checking for pty.h... yes\n#12 2.299 checking for openssl/srp.h... no\n#12 2.313 checking for util.h... no\n#12 2.352 checking for libutil.h... no\n#12 2.367 checking for netinet/in_systm.h... yes\n#12 2.381 checking for sys/loadavg.h... no\n#12 2.396 checking for libproc.h... no\n#12 2.412 checking for wordexp.h... yes\n#12 2.426 checking for openssl/srp.h... (cached) no\n#12 2.426 configure: error: openssl/srp.h not found. Update OpenSSL or apt install libssl-dev?\n#12 ERROR: process \"/bin/sh -c if [ -x ./configure ]; then ./configure && make -j\\\"$(nproc)\\\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\\\"$(nproc)\\\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\\\"$(nproc)\\\";     else make -j\\\"$(nproc)\\\"; fi\" did not complete successfully: exit code: 1\n------\n > [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi:\n2.284 checking for pty.h... yes\n2.299 checking for openssl/srp.h... no\n2.313 checking for util.h... no\n2.352 checking for libutil.h... no\n2.367 checking for netinet/in_systm.h... yes\n2.381 checking for sys/loadavg.h... no\n2.396 checking for libproc.h... no\n2.412 checking for wordexp.h... yes\n2.426 checking for openssl/srp.h... (cached) no\n2.426 configure: error: openssl/srp.h not found. Update OpenSSL or apt install libssl-dev?\n------\nDockerfile.ctk:7\n--------------------\n   6 |     COPY . .\n   7 | >>> RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\"; \\\n   8 | >>>     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\"; \\\n   9 | >>>     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\"; \\\n  10 | >>>     else make -j\"$(nproc)\"; fi\n  11 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c if [ -x ./configure ]; then ./configure && make -j\\\"$(nproc)\\\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\\\"$(nproc)\\\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\\\"$(nproc)\\\";     else make -j\\\"$(nproc)\\\"; fi\" did not complete successfully: exit code: 1",
-  "error": "docker build failed",
+  "image_digest": "sha256:526f09120c175ccd9e5bf84e62b1f119d12c1522d879c81693588f954189cf8b",
+  "duration_s": 6.64,
+  "log_tail": "#11 4.579 make[2]: Nothing to be done for 'all'.\n#11 4.579 make[2]: Leaving directory '/src/man'\n#11 4.579 Making all in examples\n#11 4.580 make[2]: Entering directory '/src/examples'\n#11 4.580 make[2]: Nothing to be done for 'all'.\n#11 4.580 make[2]: Leaving directory '/src/examples'\n#11 4.581 Making all in include\n#11 4.582 make[2]: Entering directory '/src/include'\n#11 4.584 Making all in gsocket\n#11 4.584 make[3]: Entering directory '/src/include/gsocket'\n#11 4.584 make[3]: Nothing to be done for 'all'.\n#11 4.584 make[3]: Leaving directory '/src/include/gsocket'\n#11 4.585 make[3]: Entering directory '/src/include'\n#11 4.585 make[3]: Nothing to be done for 'all-am'.\n#11 4.585 make[3]: Leaving directory '/src/include'\n#11 4.585 make[2]: Leaving directory '/src/include'\n#11 4.586 make[2]: Entering directory '/src'\n#11 4.587 make[2]: Leaving directory '/src'\n#11 4.588 make[1]: Leaving directory '/src'\n#11 DONE 4.7s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.137 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.3s done\n#19 exporting manifest sha256:2780ff50cd728b48ca48d8625a5c730274c7bd28e5469755db60db34478a5992 done\n#19 exporting config sha256:3a3920b453679a67e644037a1248779ab4b7d5af8542c22e0e4202deddf54f4d done\n#19 exporting attestation manifest sha256:d67121fb1944e5f9a85c2cd64dcfe74358988fa66c02ee23c2ddef4fc6e3c18e 0.0s done\n#19 exporting manifest list sha256:526f09120c175ccd9e5bf84e62b1f119d12c1522d879c81693588f954189cf8b done\n#19 naming to docker.io/ctk-exec/gsocket:232e2b6e31a1 done\n#19 unpacking to docker.io/ctk-exec/gsocket:232e2b6e31a1 0.1s done\n#19 DONE 0.5s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "docker build failed",
+ "captures": [
+  {
+   "argv": [
+    "gsocket",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'gsocket'"
+  },
+  {
+   "argv": [
+    "man",
+    "gsocket"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for gsocket\n",
+   "duration_ms": 9,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "gsocket"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'gsocket' in node '(dir)Top'\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "man",
+    "--local-file",
+    "man/blitz.1"
+   ],
+   "exit_code": 0,
+   "stdout": "BLITZ(1)                  BSD General Commands Manual                 BLITZ(1)\n\nNAME\n     blitz \u2014 Securely transfer files between two workstations through\n     NAT/Firewall.\n\nSYNOPSIS\n     blitz [-lT] [-s secret] [-k keyfile] [-f list] [-o RSOPT=] [files ...]\n\nDESCRIPTION\n     The blitz utility is a wrapper script for gs-netcat and rsync. It allows\n     one to send files from one workstation to another workstation via the\n     Global Socket Relay Network (GSRN).\n\n     A typical use-case is where both workstations are separated by a Firewall\n     or NAT and not able to establish a direct connection between each other.\n\nOPTIONS\n     -l      Server mode. The default mode is client.\n\n     -s secret\n             A password chosen by the user. Both users need to use the same\n             password to connect.\n\n     -k FILE\n             A file containing the password.\n\n     -f FILE\n             Read list of file names from FILE. If FILE is -, the list will be\n             read from standard input.\n\n     -o RSOPT=\n             Options passed to rsync. See rsync(1) for available options.\n\n     -T      Use TOR. The blitz tool will connect via TOR to the GSRN. This\n             requires TOR to be installed and running. The IP and PORT of the\n             TOR server can be set using environment variables.\n\n     See gs-netcat(1) for more options.\n\nEXAMPLES\n     Listen for clients with password 'MySecret':\n           $ mkdir /tmp/foo && cd /tmp/foo\n           $ blitz -s MySecret -l\n\n     Copy 'file.dat' to /tmp/foo/file.dat on the server:\n           $ blitz -s MySecret file.dat\n\n     Copy '/etc/ssh/ssh*config' to /tmp/foo/etc/ssh/ on the server:\n           $ blitz -s MySecret /etc/ssh/ssh*config\n\n     It is also possible to limit the amount of path information that is sent\n     as implied directories for each path you specify. You can insert a dot\n     and a slash into the source path, like this:\n\n           $ blitz -s MySecret /etc/./ssh/ssh*config\n     The received files will be stored to /tmp/foo/ssh/ instead of\n     /tmp/foo/etc/ssh.\n\n     Copy recursively and limit bandwidth to 10kB/sec:\n           $ blitz -s MySecret -o 'RSOPT=--bwlimit=10' /usr/./share\n\n     Copy the entire root file-system:\n           $ blitz -s MySecret -o 'RSOPT=-x' /\n\n     Copy specific files read from standard input:\n           $ find . -name '*.conf' | blitz -s MySecret -f -\n\n     Run a permanent server (daemon) through TOR:\n           $ blitz -s MySecret -l -D -T\n\nENVIRONMENT\n     See gs-netcat(1) for a list of supported environment variables.\n\nSEE ALSO\n     gsocket(1), gs-netcat(1), gs-sftp(1), gs-mount(1), rsync(1)\n\nBUGS\n     Efforts have been made to have blitz \"do the right thing\" in all its var\u2010\n     ious modes. If you believe that it is doing the wrong thing under what\u2010\n     ever circumstances, please notify me (skyper@thc.org) and tell me how you\n     think it should behave.\n\nBSD                            October 12, 2020                            BSD\n",
+   "stderr": "",
+   "duration_ms": 46,
+   "truncated": false,
+   "error": null,
+   "source": "man-file"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-l": "Server mode. The default mode is client.",
+   "-s": "A password chosen by the user. Both users need to use the same password to connect.",
+   "-k": "A file containing the password.",
+   "-f": "Read list of file names from FILE. If FILE is -, the list will be read from standard input.",
+   "-o": "Options passed to rsync. See rsync(1) for available options.",
+   "-T": "Use TOR. The blitz tool will connect via TOR to the GSRN. This requires TOR to be installed and running. The IP and PORT of the TOR server can be set using environment variables."
+  },
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": null,
+  "ladder_used": "man-file",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5befd708be6b574c69ee56c46c5c31469c3d74031e4343d36e74ba0d24794ac2",
+  "text": "BLITZ(1)                  BSD General Commands Manual                 BLITZ(1)\n\nNAME\n     blitz \u2014 Securely transfer files between two workstations through\n     NAT/Firewall.\n\nSYNOPSIS\n     blitz [-lT] [-s secret] [-k keyfile] [-f list] [-o RSOPT=] [files ...]\n\nDESCRIPTION\n     The blitz utility is a wrapper script for gs-netcat and rsync. It allows\n     one to send files from one workstation to another workstation via the\n     Global Socket Relay Network (GSRN).\n\n     A typical use-case is where both workstations are separated by a Firewall\n     or NAT and not able to establish a direct connection between each other.\n\nOPTIONS\n     -l      Server mode. The default mode is client.\n\n     -s secret\n             A password chosen by the user. Both users need to use the same\n             password to connect.\n\n     -k FILE\n             A file containing the password.\n\n     -f FILE\n             Read list of file names from FILE. If FILE is -, the list will be\n             read from standard input.\n\n     -o RSOPT=\n             Options passed to rsync. See rsync(1) for available options.\n\n     -T      Use TOR. The blitz tool will connect via TOR to the GSRN. This\n             requires TOR to be installed and running. The IP and PORT of the\n             TOR server can be set using environment variables.\n\n     See gs-netcat(1) for more options.\n\nEXAMPLES\n     Listen for clients with password 'MySecret':\n           $ mkdir /tmp/foo && cd /tmp/foo\n           $ blitz -s MySecret -l\n\n     Copy 'file.dat' to /tmp/foo/file.dat on the server:\n           $ blitz -s MySecret file.dat\n\n     Copy '/etc/ssh/ssh*config' to /tmp/foo/etc/ssh/ on the server:\n           $ blitz -s MySecret /etc/ssh/ssh*config\n\n     It is also possible to limit the amount of path information that is sent\n     as implied directories for each path you specify. You can insert a dot\n     and a slash into the source path, like this:\n\n           $ blitz -s MySecret /etc/./ssh/ssh*config\n     The received files will be stored to /tmp/foo/ssh/ instead of\n     /tmp/foo/etc/ssh.\n\n     Copy recursively and limit bandwidth to 10kB/sec:\n           $ blitz -s MySecret -o 'RSOPT=--bwlimit=10' /usr/./share\n\n     Copy the entire root file-system:\n           $ blitz -s MySecret -o 'RSOPT=-x' /\n\n     Copy specific files read from standard input:\n           $ find . -name '*.conf' | blitz -s MySecret -f -\n\n     Run a permanent server (daemon) through TOR:\n           $ blitz -s MySecret -l -D -T\n\nENVIRONMENT\n     See gs-netcat(1) for a list of supported environment variables.\n\nSEE ALSO\n     gsocket(1), gs-netcat(1), gs-sftp(1), gs-mount(1), rsync(1)\n\nBUGS\n     Efforts have been made to have blitz \"do the right thing\" in all its var\u2010\n     ious modes. If you believe that it is doing the wrong thing under what\u2010\n     ever circumstances, please notify me (skyper@thc.org) and tell me how you\n     think it should behave.\n\nBSD                            October 12, 2020                            BSD\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "-T",
+   "-f",
+   "-k",
+   "-l",
+   "-o",
+   "-s"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use TOR. The blitz tool will connect via TOR to the GSRN. This requires TOR to be installed and running. The IP and PORT of the TOR server can be set using environment variables."
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read list of file names from FILE. If FILE is -, the list will be read from standard input."
+   },
+   "-k": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "A file containing the password."
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Server mode. The default mode is client."
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Options passed to rsync. See rsync(1) for available options."
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "A password chosen by the user. Both users need to use the same password to connect."
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-360b9f4b",
+    "argv": [
+     "gsocket",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 97,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'gsocket'",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-74393575",
+    "argv": [
+     "gsocket",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 310
+   },
+   {
+    "id": "t-net-e4e426c0",
+    "argv": [
+     "gsocket",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 310
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "gsocket ssh root@gsocket   # Workstation B",
+    "source": "readme",
+    "path": "README.md",
+    "line": 98,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "gsocket openvpn --dev tun1 --proto tcp-server --ifconfig 10.9.8.1 10.9.8.2                   # Workstation A",
+    "source": "readme",
+    "path": "README.md",
+    "line": 131,
+    "reason": "needs-live-target",
+    "token": "10.9.8.1"
+   },
+   {
+    "raw": "gsocket openvpn --dev tun1 --proto tcp-client --ifconfig 10.9.8.2 10.9.8.1 --remote gsocket  # Workstation B",
+    "source": "readme",
+    "path": "README.md",
+    "line": 132,
+    "reason": "needs-live-target",
+    "token": "10.9.8.2"
+   }
+  ]
+ },
  "tool": "gsocket",
  "repo": "hackerschoice/gsocket",
  "head_sha": "232e2b6e31a134d596417e8b3265ad8be32d0e38",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:26:06.881195+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:07:59.587602+00:00"
 }

@@ -1,0 +1,1285 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:7c015970a85731df9cd29a3ebb42c889242fdd1350546c0c17b4d38c9d0c7093",
+  "duration_s": 21.34,
+  "log_tail": "#11 2.528 go: downloading github.com/gaissmai/bart v0.28.0\n#11 2.528 go: downloading github.com/tklauser/numcpus v0.11.0\n#11 2.752 go: downloading github.com/dlclark/regexp2 v1.11.5\n#11 2.753 go: downloading github.com/akrylysov/pogreb v0.10.1\n#11 2.753 go: downloading github.com/syndtr/goleveldb v1.0.0\n#11 2.839 go: downloading github.com/tidwall/buntdb v1.3.0\n#11 3.062 go: downloading go.etcd.io/bbolt v1.3.7\n#11 3.296 go: downloading github.com/tidwall/btree v1.6.0\n#11 3.296 go: downloading github.com/tidwall/grect v0.1.4\n#11 3.296 go: downloading github.com/tidwall/rtred v0.1.2\n#11 3.296 go: downloading github.com/golang/snappy v0.0.4\n#11 3.369 go: downloading github.com/andybalholm/brotli v1.2.0\n#11 3.406 go: downloading github.com/tidwall/tinyqueue v0.1.1\n#11 3.410 go: downloading github.com/weppos/publicsuffix-go v0.50.3-0.20260104170930-90713dec78f2\n#11 3.529 go: downloading github.com/zmap/rc2 v0.0.0-20190804163417-abaa70531248\n#11 ...\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 15.4s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.2s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.140 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 1.9s done\n#18 exporting manifest sha256:86f693eedef937b66ce919d1e600cb92106718a1fc7f03b0097fb224c5827595 done\n#18 exporting config sha256:f40d4721251c890aefeb5fb893b5596e0054a8f585ff4c2300b531bbd86ec33f 0.0s done\n#18 exporting attestation manifest sha256:59e452f8bbaa4c2289d8c853c1413a8b62fef056bda38e4f2367dd95412dfa7b 0.0s done\n#18 exporting manifest list sha256:7c015970a85731df9cd29a3ebb42c889242fdd1350546c0c17b4d38c9d0c7093 done\n#18 naming to docker.io/ctk-exec/subfinder:146a9fb884fc done\n#18 unpacking to docker.io/ctk-exec/subfinder:146a9fb884fc\n#18 unpacking to docker.io/ctk-exec/subfinder:146a9fb884fc 0.3s done\n#18 DONE 2.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "subfinder",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Subfinder is a subdomain discovery tool that discovers subdomains for websites by using passive online sources.\n\nUsage:\n  subfinder [flags]\n\nFlags:\nINPUT:\n   -d, -domain string[]  domains to find subdomains for\n   -dL, -list string     file containing list of domains for subdomain discovery\n\nSOURCE:\n   -s, -sources string[]           specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.\n   -recursive                      use only sources that can handle subdomains recursively rather than both recursive and non-recursive sources\n   -all                            use all sources for enumeration (slow)\n   -es, -exclude-sources string[]  sources to exclude from enumeration (-es alienvault,zoomeyeapi)\n\nFILTER:\n   -m, -match string[]   subdomain or list of subdomain to match (file or comma separated)\n   -f, -filter string[]   subdomain or list of subdomain to filter (file or comma separated)\n\nRATE-LIMIT:\n   -rl, -rate-limit int      maximum number of http requests to send per second (global)\n   -rls, -rate-limits value  maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"pugrecon=10/s\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\", \"urlscan=1/s\"])\n   -t int                    number of concurrent goroutines for resolving (-active only) (default 10)\n\nUPDATE:\n   -up, -update                 update subfinder to latest version\n   -duc, -disable-update-check  disable automatic subfinder update check\n\nOUTPUT:\n   -o, -output string       file to write output to\n   -oJ, -json               write output in JSONL(ines) format\n   -oD, -output-dir string  directory to write output (-dL only)\n   -cs, -collect-sources    include all sources in the output (-json only)\n   -oI, -ip                 include host IP in output (-active only)\n\nCONFIGURATION:\n   -config string                flag config file (default \"/home/ctk/.config/subfinder/config.yaml\")\n   -pc, -provider-config string  provider config file (default \"/home/ctk/.config/subfinder/provider-config.yaml\")\n   -r string[]                   comma separated list of resolvers to use\n   -rL, -rlist string            file containing list of resolvers to use\n   -nW, -active                  display active subdomains only\n   -proxy string                 http proxy to use with subfinder\n   -ei, -exclude-ip              exclude IPs from the list of domains\n   -mr, -max-results int         limit the number of results per source (0 = unlimited; honored by paginating sources such as virustotal)\n\nDEBUG:\n   -silent             show only subdomains in output\n   -version            show version of subfinder\n   -v                  show verbose output\n   -nc, -no-color      disable color in output\n   -ls, -list-sources  list all available sources\n   -stats              report source statistics\n\nOPTIMIZATION:\n   -timeout int   seconds to wait before timing out (default 30)\n   -max-time int  minutes to wait for enumeration results (default 10)\n\n",
+   "stderr": "",
+   "duration_ms": 57,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "subfinder"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for subfinder\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "subfinder"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'subfinder' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "subfinder",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "-d": "domains to find subdomains for",
+   "-domain": "domains to find subdomains for",
+   "-dL": "file containing list of domains for subdomain discovery",
+   "-list": "file containing list of domains for subdomain discovery",
+   "-s": "specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.",
+   "-sources": "specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.",
+   "-recursive": "use only sources that can handle subdomains recursively rather than both recursive and non-recursive sources",
+   "-all": "use all sources for enumeration (slow)",
+   "-es": "sources to exclude from enumeration (-es alienvault,zoomeyeapi)",
+   "-exclude-sources": "sources to exclude from enumeration (-es alienvault,zoomeyeapi)",
+   "-m": "subdomain or list of subdomain to match (file or comma separated)",
+   "-match": "subdomain or list of subdomain to match (file or comma separated)",
+   "-f": "subdomain or list of subdomain to filter (file or comma separated)",
+   "-filter": "subdomain or list of subdomain to filter (file or comma separated)",
+   "-rl": "maximum number of http requests to send per second (global)",
+   "-rate-limit": "maximum number of http requests to send per second (global)",
+   "-rls": "maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"pugrecon=10/s\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\", \"urlscan=1/s\"])",
+   "-rate-limits": "maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"pugrecon=10/s\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\", \"urlscan=1/s\"])",
+   "-t": "number of concurrent goroutines for resolving (-active only) (default 10)",
+   "-up": "update subfinder to latest version",
+   "-update": "update subfinder to latest version",
+   "-duc": "disable automatic subfinder update check",
+   "-disable-update-check": "disable automatic subfinder update check",
+   "-o": "file to write output to",
+   "-output": "file to write output to",
+   "-oJ": "write output in JSONL(ines) format",
+   "-json": "write output in JSONL(ines) format",
+   "-oD": "directory to write output (-dL only)",
+   "-output-dir": "directory to write output (-dL only)",
+   "-cs": "include all sources in the output (-json only)",
+   "-collect-sources": "include all sources in the output (-json only)",
+   "-oI": "include host IP in output (-active only)",
+   "-ip": "include host IP in output (-active only)",
+   "-config": "flag config file (default \"/home/ctk/.config/subfinder/config.yaml\")",
+   "-pc": "provider config file (default \"/home/ctk/.config/subfinder/provider-config.yaml\")",
+   "-provider-config": "provider config file (default \"/home/ctk/.config/subfinder/provider-config.yaml\")",
+   "-r": "comma separated list of resolvers to use",
+   "-rL": "file containing list of resolvers to use",
+   "-rlist": "file containing list of resolvers to use",
+   "-nW": "display active subdomains only",
+   "-active": "display active subdomains only",
+   "-proxy": "http proxy to use with subfinder",
+   "-ei": "exclude IPs from the list of domains",
+   "-exclude-ip": "exclude IPs from the list of domains",
+   "-mr": "limit the number of results per source (0 = unlimited; honored by paginating sources such as virustotal)",
+   "-max-results": "limit the number of results per source (0 = unlimited; honored by paginating sources such as virustotal)",
+   "-silent": "show only subdomains in output",
+   "-version": "show version of subfinder",
+   "-v": "show verbose output",
+   "-nc": "disable color in output",
+   "-no-color": "disable color in output",
+   "-ls": "list all available sources",
+   "-list-sources": "list all available sources",
+   "-stats": "report source statistics",
+   "-timeout": "seconds to wait before timing out (default 30)",
+   "-max-time": "minutes to wait for enumeration results (default 10)"
+  },
+  "values_seen": {
+   "-dL": "string",
+   "-list": "string",
+   "-rl": "int",
+   "-rate-limit": "int",
+   "-rls": "value",
+   "-rate-limits": "value",
+   "-t": "int",
+   "-o": "string",
+   "-output": "string",
+   "-oD": "string",
+   "-output-dir": "string",
+   "-config": "string",
+   "-pc": "string",
+   "-provider-config": "string",
+   "-rL": "string",
+   "-rlist": "string",
+   "-proxy": "string",
+   "-mr": "int",
+   "-max-results": "int",
+   "-timeout": "int",
+   "-max-time": "int"
+  },
+  "aliases": {
+   "-d": [
+    "-domain"
+   ],
+   "-dL": [
+    "-list"
+   ],
+   "-s": [
+    "-sources"
+   ],
+   "-es": [
+    "-exclude-sources"
+   ],
+   "-m": [
+    "-match"
+   ],
+   "-f": [
+    "-filter"
+   ],
+   "-rl": [
+    "-rate-limit"
+   ],
+   "-rls": [
+    "-rate-limits"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-oJ": [
+    "-json"
+   ],
+   "-oD": [
+    "-output-dir"
+   ],
+   "-cs": [
+    "-collect-sources"
+   ],
+   "-oI": [
+    "-ip"
+   ],
+   "-pc": [
+    "-provider-config"
+   ],
+   "-rL": [
+    "-rlist"
+   ],
+   "-nW": [
+    "-active"
+   ],
+   "-ei": [
+    "-exclude-ip"
+   ],
+   "-mr": [
+    "-max-results"
+   ],
+   "-nc": [
+    "-no-color"
+   ],
+   "-ls": [
+    "-list-sources"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "subfinder",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "518f4b9576a86ef379ba4a8575813cedca371a681a8fdb06af673f15382f8c7c",
+  "text": "Subfinder is a subdomain discovery tool that discovers subdomains for websites by using passive online sources.\n\nUsage:\n  subfinder [flags]\n\nFlags:\nINPUT:\n   -d, -domain string[]  domains to find subdomains for\n   -dL, -list string     file containing list of domains for subdomain discovery\n\nSOURCE:\n   -s, -sources string[]           specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.\n   -recursive                      use only sources that can handle subdomains recursively rather than both recursive and non-recursive sources\n   -all                            use all sources for enumeration (slow)\n   -es, -exclude-sources string[]  sources to exclude from enumeration (-es alienvault,zoomeyeapi)\n\nFILTER:\n   -m, -match string[]   subdomain or list of subdomain to match (file or comma separated)\n   -f, -filter string[]   subdomain or list of subdomain to filter (file or comma separated)\n\nRATE-LIMIT:\n   -rl, -rate-limit int      maximum number of http requests to send per second (global)\n   -rls, -rate-limits value  maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"pugrecon=10/s\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\", \"urlscan=1/s\"])\n   -t int                    number of concurrent goroutines for resolving (-active only) (default 10)\n\nUPDATE:\n   -up, -update                 update subfinder to latest version\n   -duc, -disable-update-check  disable automatic subfinder update check\n\nOUTPUT:\n   -o, -output string       file to write output to\n   -oJ, -json               write output in JSONL(ines) format\n   -oD, -output-dir string  directory to write output (-dL only)\n   -cs, -collect-sources    include all sources in the output (-json only)\n   -oI, -ip                 include host IP in output (-active only)\n\nCONFIGURATION:\n   -config string                flag config file (default \"/home/ctk/.config/subfinder/config.yaml\")\n   -pc, -provider-config string  provider config file (default \"/home/ctk/.config/subfinder/provider-config.yaml\")\n   -r string[]                   comma separated list of resolvers to use\n   -rL, -rlist string            file containing list of resolvers to use\n   -nW, -active                  display active subdomains only\n   -proxy string                 http proxy to use with subfinder\n   -ei, -exclude-ip              exclude IPs from the list of domains\n   -mr, -max-results int         limit the number of results per source (0 = unlimited; honored by paginating sources such as virustotal)\n\nDEBUG:\n   -silent             show only subdomains in output\n   -version            show version of subfinder\n   -v                  show verbose output\n   -nc, -no-color      disable color in output\n   -ls, -list-sources  list all available sources\n   -stats              report source statistics\n\nOPTIMIZATION:\n   -timeout int   seconds to wait before timing out (default 30)\n   -max-time int  minutes to wait for enumeration results (default 10)\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "-active",
+   "-all",
+   "-collect-sources",
+   "-config",
+   "-disable-update-check",
+   "-domain",
+   "-exclude-ip",
+   "-exclude-sources",
+   "-filter",
+   "-json",
+   "-list",
+   "-list-sources",
+   "-ls",
+   "-match",
+   "-max-time",
+   "-no-color",
+   "-oI",
+   "-output",
+   "-output-dir",
+   "-provider-config",
+   "-proxy",
+   "-rate-limit",
+   "-recursive",
+   "-rlist",
+   "-rls",
+   "-silent",
+   "-sources",
+   "-timeout",
+   "-update",
+   "-version"
+  ],
+  "unconfirmed": [
+   "--all",
+   "--b",
+   "--c",
+   "--cd",
+   "--collect-sources",
+   "--config",
+   "--d",
+   "--dL",
+   "--exclude-sources",
+   "--fw",
+   "--json",
+   "--ls",
+   "--max-time",
+   "--nC",
+   "--nW",
+   "--nw",
+   "--o",
+   "--oD",
+   "--oI",
+   "--oJ",
+   "--proxy",
+   "--r",
+   "--rL",
+   "--rate-limit",
+   "--recursive",
+   "--set-config",
+   "--set-settings",
+   "--silent",
+   "--sources",
+   "--t",
+   "--timeout",
+   "--v",
+   "--version",
+   "--w"
+  ],
+  "help_only": [
+   "-cs",
+   "-d",
+   "-dL",
+   "-duc",
+   "-ei",
+   "-es",
+   "-f",
+   "-ip",
+   "-m",
+   "-max-results",
+   "-mr",
+   "-nW",
+   "-nc",
+   "-o",
+   "-oD",
+   "-oJ",
+   "-pc",
+   "-r",
+   "-rL",
+   "-rate-limits",
+   "-rl",
+   "-s",
+   "-stats",
+   "-t",
+   "-up",
+   "-v"
+  ],
+  "mining_coverage": 0.5357142857142857
+ },
+ "surface": {
+  "flags": {
+   "--all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use all sources (slow) for enumeration",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--b": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "IP address to be used as local bind",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use colour in outpout",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--cd": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Upload results to the Chaos API (api-key required)",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.5",
+    "last_date": "2020-09-26T00:02:31+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--collect-sources": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Output host source as array of sources instead of single (first) source",
+    "kind": "option",
+    "first_tag": "v2.4.6",
+    "first_date": "2021-02-21T20:21:30+01:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Configuration file for API Keys, etc",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--dL": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File containing list of domains to enumerate",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--exclude-sources": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List of sources to exclude from enumeration",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--fw": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Force Bruteforcing of Wildcard DNS",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--json": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output in JSON lines Format",
+    "kind": "option",
+    "first_tag": "v2.4.3",
+    "first_date": "2020-08-25T01:42:37+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--ls": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List all available sources",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--max-time": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Minutes to wait for enumeration results",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--nC": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't Use colors in output",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--nW": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Remove Wildcard & Dead Subdomains from output",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--nw": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Remove Wildcard Subdomains from output",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--oD": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Directory to write enumeration results to (optional)",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--oI": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output in Host,IP format",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--oJ": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output in JSON lines Format",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "HTTP proxy to use with subfinder",
+    "kind": "option",
+    "first_tag": "v2.4.9",
+    "first_date": "2021-09-26T00:02:29+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--rL": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Text file containing list of resolvers to use",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--rate-limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Maximum number of HTTP requests to send per second",
+    "kind": "option",
+    "first_tag": "v2.4.9",
+    "first_date": "2021-09-26T00:02:29+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--recursive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use only recursive subdomain enumeration sources",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--set-config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Comma separated list of configuration details",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--set-settings": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Comma separated list of settings",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only subdomains in output",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--sources": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Comma separated list of sources to use",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Seconds to wait before timing out",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show version of subfinder",
+    "kind": "option",
+    "first_tag": "v2.4.0",
+    "first_date": "2020-08-12T02:57:45+05:30",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "--w": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Wordlist for doing subdomain bruteforcing",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v0.1.1",
+    "last_date": "2018-05-01T09:18:49+10:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "main.go"
+   },
+   "-all": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use all sources for enumeration (slow)",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "flag config file (default \"/home/ctk/.config/subfinder/config.yaml\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-cs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "include all sources in the output (-json only)",
+    "aliases": [
+     "-collect-sources"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "domains to find subdomains for",
+    "aliases": [
+     "-domain"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-dL": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file containing list of domains for subdomain discovery",
+    "metavar": "string",
+    "aliases": [
+     "-list"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic subfinder update check",
+    "aliases": [
+     "-disable-update-check"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.7",
+    "first_date": "2023-03-17T21:42:07+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ei": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude IPs from the list of domains",
+    "aliases": [
+     "-exclude-ip"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.4",
+    "first_date": "2022-10-18T01:53:28+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-es": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "sources to exclude from enumeration (-es alienvault,zoomeyeapi)",
+    "aliases": [
+     "-exclude-sources"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "subdomain or list of subdomain to filter (file or comma separated)",
+    "aliases": [
+     "-filter"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.4",
+    "first_date": "2022-10-18T01:53:28+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-ls": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "list all available sources",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.5.3",
+    "last_date": "2022-08-03T16:39:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-list-sources"
+    ]
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "subdomain or list of subdomain to match (file or comma separated)",
+    "aliases": [
+     "-match"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.4",
+    "first_date": "2022-10-18T01:53:28+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-max-time": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "minutes to wait for enumeration results (default 10)",
+    "kind": "option",
+    "metavar": "int",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-mr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "limit the number of results per source (0 = unlimited; honored by paginating sources such as virustotal)",
+    "metavar": "int",
+    "aliases": [
+     "-max-results"
+    ]
+   },
+   "-nW": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display active subdomains only",
+    "aliases": [
+     "-active"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-nc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable color in output",
+    "aliases": [
+     "-no-color"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write output to",
+    "metavar": "string",
+    "aliases": [
+     "-output"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-oD": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "directory to write output (-dL only)",
+    "metavar": "string",
+    "aliases": [
+     "-output-dir"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-oI": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "include host IP in output (-active only)",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-ip"
+    ]
+   },
+   "-oJ": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in JSONL(ines) format",
+    "aliases": [
+     "-json"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-pc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provider config file (default \"/home/ctk/.config/subfinder/provider-config.yaml\")",
+    "metavar": "string",
+    "aliases": [
+     "-provider-config"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "http proxy to use with subfinder",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "comma separated list of resolvers to use",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "-rL": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file containing list of resolvers to use",
+    "metavar": "string",
+    "aliases": [
+     "-rlist"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-recursive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use only sources that can handle subdomains recursively rather than both recursive and non-recursive sources",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "maximum number of http requests to send per second (global)",
+    "metavar": "int",
+    "aliases": [
+     "-rate-limit"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-rls": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "maximum number of http requests to send per second for providers in key=value format (-rls hackertarget=10/m) (default [\"github=30/m\", \"fullhunt=60/m\", \"pugrecon=10/s\", \"robtex=18446744073709551615/ms\", \"securitytrails=1/s\", \"shodan=1/s\", \"virustotal=4/m\", \"hackertarget=2/s\", \"waybackarchive=15/m\", \"whoisxmlapi=50/s\", \"securitytrails=2/s\", \"sitedossier=8/m\", \"netlas=1/s\", \"github=83/m\", \"hudsonrock=5/s\", \"urlscan=1/s\"])",
+    "kind": "option",
+    "metavar": "value",
+    "first_tag": "v2.6.2",
+    "first_date": "2023-08-12T23:40:07+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-rate-limits"
+    ]
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "specific sources to use for discovery (-s crtsh,github). Use -ls to display all available sources.",
+    "aliases": [
+     "-sources"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show only subdomains in output",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-stats": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "report source statistics"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of concurrent goroutines for resolving (-active only) (default 10)",
+    "metavar": "int",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "-timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "seconds to wait before timing out (default 30)",
+    "kind": "option",
+    "metavar": "int",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update subfinder to latest version",
+    "aliases": [
+     "-update"
+    ],
+    "kind": "option",
+    "first_tag": "v2.5.7",
+    "first_date": "2023-03-17T21:42:07+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show verbose output",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2018-05-01T09:18:49+10:00",
+    "last_tag": "v2.4.9",
+    "last_date": "2021-09-26T00:02:29+05:30",
+    "live": false,
+    "attribution": "own",
+    "source_path": "v2/pkg/runner/options.go"
+   },
+   "-version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show version of subfinder",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2022-03-07T00:28:37+05:30",
+    "last_tag": "v2.14.0",
+    "last_date": "2026-04-25T16:37:21+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-46b5a7ff",
+    "argv": [
+     "subfinder",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 72
+   },
+   {
+    "id": "t-net-9fef23ab",
+    "argv": [
+     "subfinder",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 72
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "subfinder -h",
+    "source": "readme",
+    "path": "README.md",
+    "line": 51,
+    "reason": "needs-network-or-interactive",
+    "token": "-h"
+   }
+  ]
+ },
+ "tool": "subfinder",
+ "repo": "projectdiscovery/subfinder",
+ "head_sha": "146a9fb884fc57983e9a9cf5cfb615e933f7b5eb",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:31:08.577905+00:00"
+}

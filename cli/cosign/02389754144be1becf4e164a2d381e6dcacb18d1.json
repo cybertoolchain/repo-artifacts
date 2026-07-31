@@ -34,36 +34,38 @@
    "also_documented": true
   },
   "--annotation": {
-   "source": "documented",
-   "help": "annotations to set (default [])",
+   "source": "parsed",
+   "help": "annotations to set",
    "kind": "option",
    "default": null,
-   "first_tag": "v1.13.2",
-   "first_date": "2023-12-01T18:28:54-08:00",
-   "last_tag": "v3.0.6",
-   "last_date": "2026-04-06T14:43:54-07:00",
-   "live": false,
-   "attribution": "own",
-   "source_path": "doc/cosign_upload_blob.md",
-   "doc_path": "doc/cosign_upload_blob.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ]
-  },
-  "--annotations": {
-   "source": "documented",
-   "help": "extra key=value pairs to sign",
-   "kind": "option",
-   "default": null,
+   "aliases": [
+    "-a"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_sign.md",
-   "doc_path": "doc/cosign_sign.md"
+   "source_path": "cmd/cosign/cli/options/upload.go"
+  },
+  "--annotations": {
+   "source": "parsed",
+   "help": "extra key=value pairs to sign",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-a"
+   ],
+   "first_tag": "v1.13.2",
+   "first_date": "2023-12-01T18:28:54-08:00",
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/cosign/cli/options/annotations.go",
+   "doc_path": "doc/cosign_sign.md",
+   "also_documented": true
   },
   "--artifact": {
    "source": "parsed",
@@ -108,16 +110,16 @@
   },
   "--attestation": {
    "source": "parsed",
-   "help": "path to attestation FILE",
+   "help": "path to the attestation envelope",
    "kind": "option",
-   "default": "",
+   "default": null,
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/cosign/cli/options/bundle.go",
+   "source_path": "cmd/cosign/cli/options/attach.go",
    "doc_path": "doc/cosign_bundle_create.md",
    "also_documented": true
   },
@@ -416,8 +418,8 @@
    "source_path": "cmd/cosign/cli/options/upload.go"
   },
   "--ctfe": {
-   "source": "documented",
-   "help": "ctfe service specification, as a comma-separated key-value list.",
+   "source": "parsed",
+   "help": "ctfe service specification, as a comma-separated key-value list.\\nRequired keys: url, public-key (path to PEM-encoded public key), start-time. Optional keys: end-time, origin.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.3",
@@ -426,50 +428,61 @@
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go",
+   "doc_path": "doc/cosign_trusted-root_create.md",
+   "also_documented": true
+  },
+  "--ctfe-end-time": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v2.5.3",
+   "first_date": "2025-07-17T12:57:34-07:00",
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--ctfe-key": {
-   "source": "documented",
-   "help": "path to a PEM-encoded public key used by certificate authority for certificate transparency log.",
+   "source": "parsed",
+   "help": "",
    "kind": "option",
    "default": null,
    "first_tag": "v2.4.2",
    "first_date": "2025-02-04T15:02:24-05:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--ctfe-start-time": {
-   "source": "documented",
-   "help": "RFC 3339 string describing validity start time for key use by certificate transparency log.",
+   "source": "parsed",
+   "help": "",
    "kind": "option",
    "default": null,
    "first_tag": "v2.4.2",
    "first_date": "2025-02-04T15:02:24-05:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--ctfe-url": {
-   "source": "documented",
+   "source": "parsed",
    "help": "URL of the certificate transparency log.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.1",
    "first_date": "2025-06-16T10:26:20-07:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--digest": {
    "source": "parsed",
@@ -568,58 +581,58 @@
    ]
   },
   "--file": {
-   "source": "documented",
+   "source": "parsed",
    "help": "path to the wasm file to upload",
    "kind": "option",
-   "default": null,
-   "first_tag": "v1.13.2",
-   "first_date": "2023-12-01T18:28:54-08:00",
-   "last_tag": "v3.0.6",
-   "last_date": "2026-04-06T14:43:54-07:00",
-   "live": false,
-   "attribution": "own",
-   "source_path": "doc/cosign_upload_wasm.md",
-   "doc_path": "doc/cosign_upload_wasm.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ]
-  },
-  "--files": {
-   "source": "documented",
-   "help": "<filepath>:[platform/arch]",
-   "kind": "option",
-   "default": null,
-   "first_tag": "v1.13.2",
-   "first_date": "2023-12-01T18:28:54-08:00",
-   "last_tag": "v3.0.6",
-   "last_date": "2026-04-06T14:43:54-07:00",
-   "live": false,
-   "attribution": "own",
-   "source_path": "doc/cosign_upload_blob.md",
-   "doc_path": "doc/cosign_upload_blob.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ]
-  },
-  "--force": {
-   "source": "documented",
-   "help": "do not prompt for confirmation",
-   "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-f"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_clean.md",
-   "doc_path": "doc/cosign_clean.md"
+   "source_path": "cmd/cosign/cli/options/upload.go"
+  },
+  "--files": {
+   "source": "parsed",
+   "help": "<filepath>:[platform/arch]",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v1.13.2",
+   "first_date": "2023-12-01T18:28:54-08:00",
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/cosign/cli/options/files.go"
+  },
+  "--force": {
+   "source": "parsed",
+   "help": "do not prompt for confirmation",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v1.13.2",
+   "first_date": "2023-12-01T18:28:54-08:00",
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/cosign/cli/options/clean.go",
+   "doc_path": "doc/cosign_clean.md",
+   "also_documented": true
   },
   "--fulcio": {
-   "source": "documented",
-   "help": "fulcio service specification, as a comma-separated key-value list.",
+   "source": "parsed",
+   "help": "fulcio service specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.3",
@@ -628,8 +641,9 @@
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_signing-config_create.md",
-   "doc_path": "doc/cosign_signing-config_create.md"
+   "source_path": "cmd/cosign/cli/options/signingconfig.go",
+   "doc_path": "doc/cosign_signing-config_create.md",
+   "also_documented": true
   },
   "--fulcio-auth-flow": {
    "source": "parsed",
@@ -647,18 +661,17 @@
    "also_documented": true
   },
   "--fulcio-uri": {
-   "source": "documented",
+   "source": "parsed",
    "help": "URI of the Fulcio server issuing certificates.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.1",
    "first_date": "2025-06-16T10:26:20-07:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--fulcio-url": {
    "source": "parsed",
@@ -895,18 +908,22 @@
    "also_documented": true
   },
   "--maintainers": {
-   "source": "documented",
+   "source": "parsed",
    "help": "list of maintainers to add to the root policy",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-m"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v2.0.0",
    "last_date": "2023-02-23T20:26:35+01:00",
    "live": false,
    "attribution": "own",
-   "source_path": "doc/cosign_policy_init.md",
+   "source_path": "cmd/cosign/cli/options/policy.go",
    "doc_path": "doc/cosign_policy_init.md",
+   "also_documented": true,
    "low_confidence_removal": true,
    "low_confidence_reasons": [
     "evidence_source_lost"
@@ -1140,18 +1157,22 @@
    "also_documented": true
   },
   "--no-input": {
-   "source": "documented",
+   "source": "parsed",
    "help": "skip warnings and confirmations",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-f"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_piv-tool.md",
-   "doc_path": "doc/cosign_piv-tool.md"
+   "source_path": "cmd/cosign/cli/piv_tool.go",
+   "doc_path": "doc/cosign_piv-tool.md",
+   "also_documented": true
   },
   "--no-tlog-upload": {
    "source": "parsed",
@@ -1378,16 +1399,19 @@
   },
   "--output": {
    "source": "parsed",
-   "help": "write the signature to FILE",
+   "help": "format to output attestation information in. (text|json)",
    "kind": "option",
-   "default": "",
+   "default": "text",
+   "aliases": [
+    "-o"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/cosign/cli/options/signblob.go",
+   "source_path": "cmd/cosign/cli/options/piv_tool.go",
    "doc_path": "doc/cosign_piv-tool_attestation.md",
    "also_documented": true
   },
@@ -1661,18 +1685,22 @@
    "source_path": "cmd/cosign/cli/options/attest.go"
   },
   "--recursive": {
-   "source": "documented",
+   "source": "parsed",
    "help": "if a multi-arch image is specified, additionally sign each discrete image",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-r"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_sign.md",
-   "doc_path": "doc/cosign_sign.md"
+   "source_path": "cmd/cosign/cli/options/sign.go",
+   "doc_path": "doc/cosign_sign.md",
+   "also_documented": true
   },
   "--registry-cacert": {
    "source": "parsed",
@@ -1794,8 +1822,8 @@
    "also_documented": true
   },
   "--rekor": {
-   "source": "documented",
-   "help": "rekor service specification, as a comma-separated key-value list.",
+   "source": "parsed",
+   "help": "rekor service specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.3",
@@ -1804,8 +1832,9 @@
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_signing-config_create.md",
-   "doc_path": "doc/cosign_signing-config_create.md"
+   "source_path": "cmd/cosign/cli/options/signingconfig.go",
+   "doc_path": "doc/cosign_signing-config_create.md",
+   "also_documented": true
   },
   "--rekor-config": {
    "source": "parsed",
@@ -1822,6 +1851,19 @@
    "doc_path": "doc/cosign_signing-config_create.md",
    "also_documented": true
   },
+  "--rekor-end-time": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v2.5.3",
+   "first_date": "2025-07-17T12:57:34-07:00",
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
+  },
   "--rekor-entry-type": {
    "source": "parsed",
    "help": "",
@@ -1836,18 +1878,17 @@
    "source_path": "cmd/cosign/cli/options/attest.go"
   },
   "--rekor-key": {
-   "source": "documented",
-   "help": "path to a PEM-encoded public key used by transparency log like Rekor. For Rekor V2, append the Rekor server name with ',', e.g. '--rekor-key=/path/to/key.pub,rekor.example.test'.",
+   "source": "parsed",
+   "help": "",
    "kind": "option",
    "default": null,
    "first_tag": "v2.4.2",
    "first_date": "2025-02-04T15:02:24-05:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--rekor-response": {
    "source": "parsed",
@@ -1863,18 +1904,17 @@
    "source_path": "cmd/cosign/cli/options/attach.go"
   },
   "--rekor-start-time": {
-   "source": "documented",
-   "help": "RFC 3339 string describing validity start time for key use by transparency log like Rekor.",
+   "source": "parsed",
+   "help": "",
    "kind": "option",
    "default": null,
    "first_tag": "v2.4.2",
    "first_date": "2025-02-04T15:02:24-05:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--rekor-url": {
    "source": "parsed",
@@ -1892,18 +1932,17 @@
    "also_documented": true
   },
   "--replace": {
-   "source": "documented",
+   "source": "parsed",
    "help": "",
    "kind": "option",
-   "default": null,
+   "default": "false",
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
-   "last_tag": "v3.0.6",
-   "last_date": "2026-04-06T14:43:54-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_attest.md",
-   "doc_path": "doc/cosign_attest.md"
+   "source_path": "cmd/cosign/cli/options/attest.go"
   },
   "--rfc3161-timestamp": {
    "source": "parsed",
@@ -2134,18 +2173,19 @@
    "also_documented": true
   },
   "--slot-id": {
-   "source": "documented",
+   "source": "parsed",
    "help": "id of the PKCS11 slot, uses 0 if empty",
    "kind": "option",
-   "default": null,
+   "default": "0",
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_pkcs11-tool_list-keys-uris.md",
-   "doc_path": "doc/cosign_pkcs11-tool_list-keys-uris.md"
+   "source_path": "cmd/cosign/cli/options/pkcs11_tool.go",
+   "doc_path": "doc/cosign_pkcs11-tool_list-keys-uris.md",
+   "also_documented": true
   },
   "--staging": {
    "source": "parsed",
@@ -2197,31 +2237,35 @@
    ]
   },
   "--timeout": {
-   "source": "documented",
-   "help": "timeout for commands (default 3m0s)",
+   "source": "parsed",
+   "help": "timeout for commands",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-t"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign.md",
-   "doc_path": "doc/cosign.md"
+   "source_path": "cmd/cosign/cli/options/root.go",
+   "doc_path": "doc/cosign.md",
+   "also_documented": true
   },
   "--timestamp-certificate-chain": {
    "source": "parsed",
    "help": "",
    "kind": "option",
-   "default": "",
+   "default": null,
    "first_tag": "v2.0.0",
    "first_date": "2023-02-23T20:26:35+01:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/cosign/cli/options/verify.go"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--timestamp-client-cacert": {
    "source": "parsed",
@@ -2297,18 +2341,17 @@
    "source_path": "cmd/cosign/cli/options/attest.go"
   },
   "--timestamp-uri": {
-   "source": "documented",
+   "source": "parsed",
    "help": "URI of the timestamp authority server.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.1",
    "first_date": "2025-06-16T10:26:20-07:00",
-   "last_tag": "v2.5.2",
-   "last_date": "2025-06-17T13:21:53-07:00",
-   "live": false,
+   "last_tag": "v3.1.2",
+   "last_date": "2026-07-17T10:44:07-04:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_trusted-root_create.md",
-   "doc_path": "doc/cosign_trusted-root_create.md"
+   "source_path": "cmd/cosign/cli/options/trustedroot.go"
   },
   "--tlog-upload": {
    "source": "parsed",
@@ -2354,8 +2397,8 @@
    "also_documented": true
   },
   "--tsa": {
-   "source": "documented",
-   "help": "timestamping authority specification, as a comma-separated key-value list.",
+   "source": "parsed",
+   "help": "timestamping authority specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "kind": "option",
    "default": null,
    "first_tag": "v2.5.3",
@@ -2364,8 +2407,9 @@
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_signing-config_create.md",
-   "doc_path": "doc/cosign_signing-config_create.md"
+   "source_path": "cmd/cosign/cli/options/signingconfig.go",
+   "doc_path": "doc/cosign_signing-config_create.md",
+   "also_documented": true
   },
   "--tsa-config": {
    "source": "parsed",
@@ -2470,18 +2514,22 @@
    "doc_path": "doc/cosign_login.md"
   },
   "--verbose": {
-   "source": "documented",
+   "source": "parsed",
    "help": "log debug output",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-d"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign.md",
-   "doc_path": "doc/cosign.md"
+   "source_path": "cmd/cosign/cli/options/root.go",
+   "doc_path": "doc/cosign.md",
+   "also_documented": true
   },
   "--with-default-rekor-v2": {
    "source": "parsed",
@@ -2514,18 +2562,22 @@
    "also_documented": true
   },
   "--yes": {
-   "source": "documented",
+   "source": "parsed",
    "help": "skip confirmation prompts for non-destructive operations",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-y"
+   ],
    "first_tag": "v1.13.2",
    "first_date": "2023-12-01T18:28:54-08:00",
    "last_tag": "v3.1.2",
    "last_date": "2026-07-17T10:44:07-04:00",
    "live": true,
    "attribution": "own",
-   "source_path": "doc/cosign_attest-blob.md",
-   "doc_path": "doc/cosign_attest-blob.md"
+   "source_path": "cmd/cosign/cli/options/attest.go",
+   "doc_path": "doc/cosign_attest-blob.md",
+   "also_documented": true
   },
   "attach": {
    "source": "parsed",
@@ -3266,9 +3318,9 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "annotations to set (default [])",
+   "help": "annotations to set",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -3277,7 +3329,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "extra key=value pairs to sign",
    "spans_untracked_releases": true,
@@ -3310,7 +3362,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "path to the attestation envelope",
    "spans_untracked_releases": true,
@@ -3519,7 +3571,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "path to the wasm file to upload",
    "spans_untracked_releases": true,
@@ -3530,7 +3582,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "<filepath>:[platform/arch]",
    "spans_untracked_releases": true,
@@ -3541,7 +3593,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "skip warnings and confirmations",
    "spans_untracked_releases": true,
@@ -3684,7 +3736,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "list of maintainers to add to the root policy",
    "spans_untracked_releases": true,
@@ -3783,7 +3835,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "skip warnings and confirmations",
    "spans_untracked_releases": true,
@@ -3939,7 +3991,7 @@
    "date": "2023-12-01T18:28:54-08:00",
    "source": "parsed",
    "kind": "option",
-   "help": "write the signature to FILE",
+   "help": "format to output attestation information in. (text|json)",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -4102,7 +4154,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "if a multi-arch image is specified, additionally sign each discrete image",
    "spans_untracked_releases": true,
@@ -4124,7 +4176,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "",
    "spans_untracked_releases": true,
@@ -4234,7 +4286,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "id of the PKCS11 slot, uses 0 if empty",
    "spans_untracked_releases": true,
@@ -4256,9 +4308,9 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "timeout for commands (default 3m0s)",
+   "help": "timeout for commands",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -4311,7 +4363,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "log debug output",
    "spans_untracked_releases": true,
@@ -4322,7 +4374,7 @@
    "event": "added",
    "tag": "v1.13.2",
    "date": "2023-12-01T18:28:54-08:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "skip confirmation prompts for non-destructive operations",
    "spans_untracked_releases": true,
@@ -5073,7 +5125,7 @@
    "event": "help_changed",
    "tag": "v2.0.0",
    "date": "2023-02-23T20:26:35+01:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "do not prompt for confirmation",
    "previous_help": "skip warnings and confirmations",
@@ -5149,7 +5201,7 @@
    "event": "removed",
    "tag": "v2.0.1",
    "date": "2023-04-06T19:14:05Z",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "list of maintainers to add to the root policy",
    "low_confidence": true,
@@ -5756,9 +5808,9 @@
    "event": "added",
    "tag": "v2.4.2",
    "date": "2025-02-04T15:02:24-05:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "path to a PEM-encoded public key used by certificate authority for certificate transparency log.",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -5766,9 +5818,9 @@
    "event": "added",
    "tag": "v2.4.2",
    "date": "2025-02-04T15:02:24-05:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "RFC 3339 string describing validity start time for key use by certificate transparency log.",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -5836,7 +5888,7 @@
    "event": "added",
    "tag": "v2.4.2",
    "date": "2025-02-04T15:02:24-05:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "path to a PEM-encoded public key used by transparency log like Rekor.",
    "attribution": "own"
@@ -5846,9 +5898,9 @@
    "event": "added",
    "tag": "v2.4.2",
    "date": "2025-02-04T15:02:24-05:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "RFC 3339 string describing validity start time for key use by transparency log like Rekor.",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -5995,7 +6047,7 @@
    "event": "added",
    "tag": "v2.5.1",
    "date": "2025-06-16T10:26:20-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "URL of the certificate transparency log.",
    "attribution": "own"
@@ -6005,7 +6057,7 @@
    "event": "added",
    "tag": "v2.5.1",
    "date": "2025-06-16T10:26:20-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "URI of the Fulcio server issuing certificates.",
    "attribution": "own"
@@ -6015,7 +6067,7 @@
    "event": "added",
    "tag": "v2.5.1",
    "date": "2025-06-16T10:26:20-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "URI of the timestamp authority server.",
    "attribution": "own"
@@ -6025,9 +6077,9 @@
    "event": "help_changed",
    "tag": "v2.5.1",
    "date": "2025-06-16T10:26:20-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "path to a PEM-encoded public key used by transparency log like Rekor. For Rekor V2, append the Rekor server name with ',', e.g. '--rekor-key=/path/to/key.pub,rekor.example.test'.",
+   "help": "",
    "previous_help": "path to a PEM-encoded public key used by transparency log like Rekor.",
    "attribution": "own"
   },
@@ -6047,9 +6099,19 @@
    "event": "added",
    "tag": "v2.5.3",
    "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "ctfe service specification, as a comma-separated key-value list.",
+   "help": "ctfe service specification, as a comma-separated key-value list.\\nRequired keys: url, public-key (path to PEM-encoded public key), start-time. Optional keys: end-time.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--ctfe-end-time",
+   "event": "added",
+   "tag": "v2.5.3",
+   "date": "2025-07-17T12:57:34-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -6057,9 +6119,9 @@
    "event": "added",
    "tag": "v2.5.3",
    "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "fulcio service specification, as a comma-separated key-value list.",
+   "help": "fulcio service specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "attribution": "own"
   },
   {
@@ -6067,9 +6129,9 @@
    "event": "added",
    "tag": "v2.5.3",
    "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "rekor service specification, as a comma-separated key-value list.",
+   "help": "rekor service specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "attribution": "own"
   },
   {
@@ -6083,13 +6145,23 @@
    "attribution": "own"
   },
   {
+   "flag": "--rekor-end-time",
+   "event": "added",
+   "tag": "v2.5.3",
+   "date": "2025-07-17T12:57:34-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
    "flag": "--tsa",
    "event": "added",
    "tag": "v2.5.3",
    "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "timestamping authority specification, as a comma-separated key-value list.",
+   "help": "timestamping authority specification, as a comma-separated key-value list.\\nRequired keys: url, api-version (integer), start-time, operator. Optional keys: end-time.",
    "attribution": "own"
   },
   {
@@ -6110,76 +6182,6 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "Interact with a Sigstore protobuf signing config",
-   "attribution": "own"
-  },
-  {
-   "flag": "--ctfe-key",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "path to a PEM-encoded public key used by certificate authority for certificate transparency log.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--ctfe-start-time",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "RFC 3339 string describing validity start time for key use by certificate transparency log.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--ctfe-url",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "URL of the certificate transparency log.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--fulcio-uri",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "URI of the Fulcio server issuing certificates.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--rekor-key",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "path to a PEM-encoded public key used by transparency log like Rekor. For Rekor V2, append the Rekor server name with ',', e.g. '--rekor-key=/path/to/key.pub,rekor.example.test'.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--rekor-start-time",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "RFC 3339 string describing validity start time for key use by transparency log like Rekor.",
-   "attribution": "own"
-  },
-  {
-   "flag": "--timestamp-uri",
-   "event": "removed",
-   "tag": "v2.5.3",
-   "date": "2025-07-17T12:57:34-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "URI of the timestamp authority server.",
    "attribution": "own"
   },
   {
@@ -6379,6 +6381,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--ctfe",
+   "event": "help_changed",
+   "tag": "v3.0.5",
+   "date": "2026-02-19T11:55:39-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ctfe service specification, as a comma-separated key-value list.\\nRequired keys: url, public-key (path to PEM-encoded public key), start-time. Optional keys: end-time, origin.",
+   "previous_help": "ctfe service specification, as a comma-separated key-value list.\\nRequired keys: url, public-key (path to PEM-encoded public key), start-time. Optional keys: end-time.",
+   "attribution": "own"
+  },
+  {
    "flag": "--with-default-rekor-v2",
    "event": "added",
    "tag": "v3.1.0",
@@ -6396,58 +6409,6 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "Upgrade a Sigstore protobuf bundle",
-   "attribution": "own"
-  },
-  {
-   "flag": "--annotation",
-   "event": "removed",
-   "tag": "v3.1.0",
-   "date": "2026-06-05T15:21:18-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "annotations to set (default [])",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ],
-   "attribution": "own"
-  },
-  {
-   "flag": "--file",
-   "event": "removed",
-   "tag": "v3.1.0",
-   "date": "2026-06-05T15:21:18-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "path to the wasm file to upload",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ],
-   "attribution": "own"
-  },
-  {
-   "flag": "--files",
-   "event": "removed",
-   "tag": "v3.1.0",
-   "date": "2026-06-05T15:21:18-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "<filepath>:[platform/arch]",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "evidence_source_lost"
-   ],
-   "attribution": "own"
-  },
-  {
-   "flag": "--replace",
-   "event": "removed",
-   "tag": "v3.1.0",
-   "date": "2026-06-05T15:21:18-07:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "",
    "attribution": "own"
   },
   {
@@ -7027,7 +6988,7 @@
    "files_matched": 315,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 191,
+   "flags": 200,
    "errors": 0
   },
   {
@@ -7037,7 +6998,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7047,7 +7008,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7057,7 +7018,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7067,7 +7028,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7077,7 +7038,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7087,7 +7048,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7097,7 +7058,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7107,7 +7068,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 196,
+   "flags": 205,
    "errors": 0
   },
   {
@@ -7117,7 +7078,7 @@
    "files_matched": 322,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 198,
+   "flags": 207,
    "errors": 0
   },
   {
@@ -7127,7 +7088,7 @@
    "files_matched": 322,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 204,
+   "flags": 213,
    "errors": 0
   },
   {
@@ -7137,7 +7098,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 204,
+   "flags": 213,
    "errors": 0
   },
   {
@@ -7147,7 +7108,7 @@
    "files_matched": 320,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 204,
+   "flags": 213,
    "errors": 0
   },
   {
@@ -7157,7 +7118,7 @@
    "files_matched": 310,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 202,
+   "flags": 215,
    "errors": 0
   },
   {
@@ -7167,7 +7128,7 @@
    "files_matched": 310,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 202,
+   "flags": 215,
    "errors": 0
   },
   {
@@ -7177,7 +7138,7 @@
    "files_matched": 298,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 204,
+   "flags": 217,
    "errors": 0
   }
  ],
@@ -7189,6 +7150,6 @@
  "repo": "sigstore/cosign",
  "head_sha": "02389754144be1becf4e164a2d381e6dcacb18d1",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-26T19:00:28.728330+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T22:55:15.661807+00:00"
 }

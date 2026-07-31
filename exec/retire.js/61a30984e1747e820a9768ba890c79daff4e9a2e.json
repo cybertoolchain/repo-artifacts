@@ -1,0 +1,612 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:afa1d9c7bcbee7ab0fe27871c06c5d86acb6057c7f951cede62a5785d5e9aa20",
+  "duration_s": 9.65,
+  "log_tail": "#11 2.236   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)\n#11 2.273 Downloading pip-26.2-py3-none-any.whl (1.8 MB)\n#11 2.462    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 12.6 MB/s eta 0:00:00\n#11 2.470 Installing collected packages: pip\n#11 2.470   Attempting uninstall: pip\n#11 2.471     Found existing installation: pip 25.0.1\n#11 2.484     Uninstalling pip-25.0.1:\n#11 2.487       Successfully uninstalled pip-25.0.1\n#11 2.952 Successfully installed pip-26.2\n#11 DONE 3.5s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.5s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.4s done\n#21 exporting manifest sha256:35873146c21a41224c6231e0f964f7018b97963e8e41c58f53d5b65307f1bd1d 0.0s done\n#21 exporting config sha256:6ca12706570038d8f69913badb133722ade255025e9e78843217fee9f00e38fd done\n#21 exporting attestation manifest sha256:8a442044a85212b3c3de0bbefac6044487ca2815ed0be89b8fcf349f068d55a4 0.0s done\n#21 exporting manifest list sha256:afa1d9c7bcbee7ab0fe27871c06c5d86acb6057c7f951cede62a5785d5e9aa20 done\n#21 naming to docker.io/ctk-exec/retire.js:61a30984e174 done\n#21 unpacking to docker.io/ctk-exec/retire.js:61a30984e174\n#21 unpacking to docker.io/ctk-exec/retire.js:61a30984e174 1.0s done\n#21 DONE 1.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "simpleserver",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/simpleserver.py\", line 3\n    PYTHON_VERSION=$(python -c 'import sys; print(\"%i\" % (sys.hexversion<0x03000000))')\n                   ^\nSyntaxError: invalid syntax\n",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "simpleserver",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/simpleserver.py\", line 3\n    PYTHON_VERSION=$(python -c 'import sys; print(\"%i\" % (sys.hexversion<0x03000000))')\n                   ^\nSyntaxError: invalid syntax\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "simpleserver",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/simpleserver.py\", line 3\n    PYTHON_VERSION=$(python -c 'import sys; print(\"%i\" % (sys.hexversion<0x03000000))')\n                   ^\nSyntaxError: invalid syntax\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "simpleserver",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/simpleserver.py\", line 3\n    PYTHON_VERSION=$(python -c 'import sys; print(\"%i\" % (sys.hexversion<0x03000000))')\n                   ^\nSyntaxError: invalid syntax\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "simpleserver"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/simpleserver.py\", line 3\n    PYTHON_VERSION=$(python -c 'import sys; print(\"%i\" % (sys.hexversion<0x03000000))')\n                   ^\nSyntaxError: invalid syntax\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "simpleserver.py",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: server.py [-h] [--cgi] [-b ADDRESS] [-d DIRECTORY] [-p VERSION] [port]\n\npositional arguments:\n  port                  bind to this port (default: 8000)\n\noptions:\n  -h, --help            show this help message and exit\n  --cgi                 run as CGI server\n  -b ADDRESS, --bind ADDRESS\n                        bind to this address (default: all interfaces)\n  -d DIRECTORY, --directory DIRECTORY\n                        serve this directory (default: current directory)\n  -p VERSION, --protocol VERSION\n                        conform to this HTTP version (default: HTTP/1.0)\n",
+   "stderr": "",
+   "duration_ms": 237,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "simpleserver.py"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for simpleserver.py\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "simpleserver.py"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(simpleserver.py)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 8,
+   "binary": "simpleserver.py",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--cgi": "run as CGI server",
+   "--bind": "bind to this address (default: all interfaces)",
+   "-b": "bind to this address (default: all interfaces)",
+   "--directory": "serve this directory (default: current directory)",
+   "-d": "serve this directory (default: current directory)",
+   "--protocol": "conform to this HTTP version (default: HTTP/1.0)",
+   "-p": "conform to this HTTP version (default: HTTP/1.0)"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--bind": [
+    "-b"
+   ],
+   "--directory": [
+    "-d"
+   ],
+   "--protocol": [
+    "-p"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "simpleserver.py",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "13c0f8e2725a159a71c41e187a7c340d25b50410b3af8d002f187203e40428d3",
+  "text": "usage: server.py [-h] [--cgi] [-b ADDRESS] [-d DIRECTORY] [-p VERSION] [port]\n\npositional arguments:\n  port                  bind to this port (default: 8000)\n\noptions:\n  -h, --help            show this help message and exit\n  --cgi                 run as CGI server\n  -b ADDRESS, --bind ADDRESS\n                        bind to this address (default: all interfaces)\n  -d DIRECTORY, --directory DIRECTORY\n                        serve this directory (default: current directory)\n  -p VERSION, --protocol VERSION\n                        conform to this HTTP version (default: HTTP/1.0)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--help"
+  ],
+  "unconfirmed": [
+   "--cacert",
+   "--cachedir",
+   "--colors",
+   "--deep",
+   "--exitwith",
+   "--ext",
+   "--ignore",
+   "--ignorefile",
+   "--includeOsv",
+   "--insecure",
+   "--jspath",
+   "--jsrepo",
+   "--nocache",
+   "--outputformat",
+   "--outputpath",
+   "--path",
+   "--proxy",
+   "--severity",
+   "--verbose",
+   "--version"
+  ],
+  "help_only": [
+   "--bind",
+   "--cgi",
+   "--directory",
+   "--protocol",
+   "-b",
+   "-d",
+   "-h",
+   "-p"
+  ],
+  "mining_coverage": 0.1111111111111111
+ },
+ "surface": {
+  "flags": {
+   "--bind": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "bind to this address (default: all interfaces)",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--cacert": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use the specified certificate file to verify the peer used for fetching remote jsrepo/noderepo files",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--cachedir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to use for local cache instead of /tmp/.retire-cache",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--cgi": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run as CGI server"
+   },
+   "--colors": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable color output (console output only)",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--deep": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Deep scan (slower and experimental)",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--directory": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "serve this directory (default: current directory)",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--exitwith": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Custom exit code (default: 13) when vulnerabilities are found",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--ext": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Comma separated list of file extensions for JavaScript files. The default is \"js\"",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--ignore": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Comma delimited list of paths to ignore",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--ignorefile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Custom ignore file, defaults to .retireignore / .retireignore.json",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--includeOsv": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Include OSV advisories in the output",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--insecure": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable fetching remote jsrepo/noderepo files from hosts using an insecure or self-signed SSL (TLS) certificate",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--jspath": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Folder to scan for javascript files (deprecated)",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--jsrepo": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Local or internal version of repo. Can be multiple comma separated. Default: 'central')",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--nocache": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't use local cache",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--outputformat": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Valid formats: text, json, jsonsimple, depcheck (experimental), cyclonedx and cyclonedxJSON",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--outputpath": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "File to which output should be written",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--path": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Folder to scan for javascript files",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--protocol": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "conform to this HTTP version (default: HTTP/1.0)",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Proxy url (http://some.host:8080)",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--severity": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the bug severity level from which the process fails. Allowed levels none, low, medium, high, critical.",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show identified files (by default only vulnerable files are shown)",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   },
+   "--version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output the version number",
+    "kind": "option",
+    "first_tag": "5.0.0-beta.1",
+    "first_date": "2024-03-12T08:30:25+01:00",
+    "last_tag": "5.4.3",
+    "last_date": "2026-05-26T11:13:55+02:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "node/README.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 6,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-c09448a8",
+    "argv": [
+     "retire.js",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'retire.js'",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-surface-f65af1ba",
+    "argv": [
+     "retire.js",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'retire.js'",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-surface-f4e8104b",
+    "argv": [
+     "simpleserver.py",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 181
+   },
+   {
+    "id": "t-surface-c44a0f2c",
+    "argv": [
+     "simpleserver.py",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 164
+   },
+   {
+    "id": "t-surface-796d70b8",
+    "argv": [
+     "simpleserver.py",
+     "-p",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 142
+   },
+   {
+    "id": "t-surface-c89b7171",
+    "argv": [
+     "simpleserver.py",
+     "--path",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 2,
+    "output_bytes": 127
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Retire.js",
+ "repo": "RetireJS/retire.js",
+ "head_sha": "61a30984e1747e820a9768ba890c79daff4e9a2e",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:26:29.420337+00:00"
+}

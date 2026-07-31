@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:786a66cccefd94de4e735a59dc65968e285bbdd45267051a32760e92b50bb3f4",
-  "duration_s": 13.71,
-  "log_tail": "#6 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 extracting sha256:ddac8d5b0aacfe4ea7f2134918fbfc0ee8eb4182e7a012d86fc91d3d4ac70bba 0.0s done\n#6 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.0s done\n#6 DONE 6.7s\n\n#8 [build 2/4] WORKDIR /src\n#8 DONE 0.0s\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.275 go: downloading github.com/spf13/pflag v1.0.10\n#10 0.276 go: downloading github.com/miekg/dns v1.1.72\n#10 0.276 go: downloading github.com/logrusorgru/aurora v2.0.3+incompatible\n#10 0.276 go: downloading github.com/jamesog/iptoasn v0.1.0\n#10 0.793 go: downloading golang.org/x/sys v0.47.0\n#10 0.793 go: downloading golang.org/x/net v0.52.0\n#10 0.983 go: downloading github.com/pkg/errors v0.9.1\n#10 DONE 4.7s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.1s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.129 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.3s done\n#17 exporting manifest sha256:9cae59e31249f3119b6b8f56e645a00b1cce60221eb84ebded89d7ff6a211d16 done\n#17 exporting config sha256:9b5d098203ab4c3ec1268f9f6395b6ee23ef041096ab06f956f916c3c1b629c0 done\n#17 exporting attestation manifest sha256:7e232b66ccceb3ecc08974cd3f47dd130c2d2ff1a84739c3a3ce5effa1257366 0.0s done\n#17 exporting manifest list sha256:786a66cccefd94de4e735a59dc65968e285bbdd45267051a32760e92b50bb3f4 done\n#17 naming to docker.io/ctk-exec/mxcheck:08ac69d7a299 done\n#17 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299 0.1s done\n#17 DONE 0.5s",
+  "image_digest": "sha256:5388a4c87d6555536b97eb707a8c7cf426f1db631360ba744afdf5ff22b08f7f",
+  "duration_s": 15.07,
+  "log_tail": "\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.2s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.3s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.350 go: downloading github.com/miekg/dns v1.1.72\n#11 0.358 go: downloading github.com/jamesog/iptoasn v0.1.0\n#11 0.358 go: downloading github.com/logrusorgru/aurora v2.0.3+incompatible\n#11 0.361 go: downloading github.com/spf13/pflag v1.0.10\n#11 0.815 go: downloading golang.org/x/sys v0.47.0\n#11 0.816 go: downloading golang.org/x/net v0.52.0\n#11 0.837 go: downloading github.com/pkg/errors v0.9.1\n#11 DONE 10.0s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.180 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.5s done\n#18 exporting manifest sha256:5120ef5f0162f23a26497203594d15840a1ab749367b08a7b7049fc9931bf73c 0.0s done\n#18 exporting config sha256:db6b4f20ccc1f7ada7f3502702925fe3b23ffe0481e38006be9e9ade45f6e6ed 0.0s done\n#18 exporting attestation manifest sha256:3095c497547dc8c16c5cf4a5fb0fb502d72bae030e72ed431337ca5a3467644f 0.0s done\n#18 exporting manifest list sha256:5388a4c87d6555536b97eb707a8c7cf426f1db631360ba744afdf5ff22b08f7f 0.0s done\n#18 naming to docker.io/ctk-exec/mxcheck:08ac69d7a299 done\n#18 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299\n#18 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299 0.2s done\n#18 DONE 0.8s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage of mxcheck:\n  -b, --blacklist              Check if the service is on blacklists\n  -p, --disable-port-scan      Disable SMTP port scan\n  -S, --dkim-selector string   The DKIM selector. If set a DKIM check is performed on the provided service domain\n  -d, --dnsserver string       The dns server to be requested (default \"8.8.8.8\")\n  -f, --mailfrom string        Set the mailFrom address (default \"info@foo.wtf\")\n  -t, --mailto string          Set the mailTo address (default \"info@baz.wtf\")\n  -n, --no-prompt              Answer yes to all questions\n  -s, --service string         The service host to check\n  -g, --smuggle                Test for SMTPSmuggling vulnerability\n  -u, --updatecheck            Check for new version of mxcheck\n  -V, --verbose                Show timestamps in output\n  -v, --version                Version and license\n  -w, --write-tsv              Write tsv formated report to file\n",
-   "duration_ms": 3,
+   "duration_ms": 5,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for mxcheck\n",
-   "duration_ms": 1,
+   "duration_ms": 12,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'mxcheck' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -105,6 +105,18 @@
    "-v": "Version and license",
    "--write-tsv": "Write tsv formated report to file",
    "-w": "Write tsv formated report to file"
+  },
+  "values_seen": {
+   "-S": "string",
+   "--dkim-selector": "string",
+   "-d": "string",
+   "--dnsserver": "string",
+   "-f": "string",
+   "--mailfrom": "string",
+   "-t": "string",
+   "--mailto": "string",
+   "-s": "string",
+   "--service": "string"
   },
   "aliases": {
    "--blacklist": [
@@ -157,13 +169,7 @@
   "text": "Usage of mxcheck:\n  -b, --blacklist              Check if the service is on blacklists\n  -p, --disable-port-scan      Disable SMTP port scan\n  -S, --dkim-selector string   The DKIM selector. If set a DKIM check is performed on the provided service domain\n  -d, --dnsserver string       The dns server to be requested (default \"8.8.8.8\")\n  -f, --mailfrom string        Set the mailFrom address (default \"info@foo.wtf\")\n  -t, --mailto string          Set the mailTo address (default \"info@baz.wtf\")\n  -n, --no-prompt              Answer yes to all questions\n  -s, --service string         The service host to check\n  -g, --smuggle                Test for SMTPSmuggling vulnerability\n  -u, --updatecheck            Check for new version of mxcheck\n  -V, --verbose                Show timestamps in output\n  -v, --version                Version and license\n  -w, --write-tsv              Write tsv formated report to file\n"
  },
  "validation": {
-  "confirmed": [],
-  "unconfirmed": [
-   "--d",
-   "--t",
-   "--v"
-  ],
-  "help_only": [
+  "confirmed": [
    "--blacklist",
    "--disable-port-scan",
    "--dkim-selector",
@@ -176,7 +182,14 @@
    "--updatecheck",
    "--verbose",
    "--version",
-   "--write-tsv",
+   "--write-tsv"
+  ],
+  "unconfirmed": [
+   "--d",
+   "--t",
+   "--v"
+  ],
+  "help_only": [
    "-S",
    "-V",
    "-b",
@@ -191,14 +204,22 @@
    "-v",
    "-w"
   ],
-  "mining_coverage": 0.0
+  "mining_coverage": 0.5
  },
  "surface": {
   "flags": {
    "--blacklist": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Check if the service is on blacklists",
+    "kind": "option",
+    "first_tag": "v1.4.0-BETA",
+    "first_date": "2022-10-05T21:00:43+02:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-b"
     ]
@@ -217,65 +238,134 @@
     "source_path": "main.go"
    },
    "--disable-port-scan": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Disable SMTP port scan",
+    "kind": "option",
+    "first_tag": "v1.7.0",
+    "first_date": "2025-06-03T13:39:05+02:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-p"
     ]
    },
    "--dkim-selector": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "The DKIM selector. If set a DKIM check is performed on the provided service domain",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.2.2",
+    "first_date": "2022-02-18T22:37:54+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-S"
     ]
    },
    "--dnsserver": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "The dns server to be requested (default \"8.8.8.8\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-d"
     ]
    },
    "--mailfrom": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Set the mailFrom address (default \"info@foo.wtf\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-f"
     ]
    },
    "--mailto": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Set the mailTo address (default \"info@baz.wtf\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-t"
     ]
    },
    "--no-prompt": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Answer yes to all questions",
+    "kind": "option",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-n"
     ]
    },
    "--service": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "The service host to check",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-s"
     ]
    },
    "--smuggle": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Test for SMTPSmuggling vulnerability",
+    "kind": "option",
+    "first_tag": "v1.8.0",
+    "first_date": "2025-11-24T14:31:57+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-g"
     ]
@@ -294,9 +384,17 @@
     "source_path": "main.go"
    },
    "--updatecheck": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Check for new version of mxcheck",
+    "kind": "option",
+    "first_tag": "v1.5.2",
+    "first_date": "2023-05-30T23:38:10+02:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-u"
     ]
@@ -315,25 +413,49 @@
     "source_path": "main.go"
    },
    "--verbose": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Show timestamps in output",
+    "kind": "option",
+    "first_tag": "v1.2.0-BETA",
+    "first_date": "2021-11-26T22:31:38+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-V"
     ]
    },
    "--version": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Version and license",
+    "kind": "option",
+    "first_tag": "v1.2.0-RC1",
+    "first_date": "2022-01-03T00:52:24+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-v"
     ]
    },
    "--write-tsv": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Write tsv formated report to file",
+    "kind": "option",
+    "first_tag": "v1.2.1-RC1",
+    "first_date": "2022-02-03T23:39:52+01:00",
+    "last_tag": "v2.0.0",
+    "last_date": "2026-04-07T20:54:49+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "main.go",
     "aliases": [
      "-w"
     ]
@@ -344,6 +466,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 3,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -408,6 +531,6 @@
  "repo": "steffenfritz/mxcheck",
  "head_sha": "08ac69d7a299e1af62506b836f1f60fe0a4afc3d",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-29T02:17:16.342687+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:18:57.719479+00:00"
 }

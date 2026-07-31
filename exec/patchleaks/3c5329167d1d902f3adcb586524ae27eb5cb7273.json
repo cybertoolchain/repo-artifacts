@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:e530fb2369df2f9d7a31d0f1a49c3320bfafd7cdf3e005ca4f5e35dbb4f89111",
-  "duration_s": 9.83,
-  "log_tail": "#7 DONE 0.3s\n\n#2 [internal] load metadata for docker.io/library/golang:1.26-bookworm\n#2 DONE 0.3s\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 2.48MB 0.0s done\n#9 DONE 0.0s\n\n#10 [build 3/4] COPY . .\n#10 DONE 0.0s\n\n#11 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.132 go: downloading github.com/smacker/go-tree-sitter v0.0.0-20240827094217-dd81d9e9be82\n#11 0.132 go: downloading github.com/google/uuid v1.6.0\n#11 0.132 go: downloading github.com/gorilla/mux v1.8.1\n#11 0.132 go: downloading github.com/gorilla/sessions v1.4.0\n#11 0.475 go: downloading github.com/gorilla/securecookie v1.1.2\n#11 DONE 8.0s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.101 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.5s done\n#17 exporting manifest sha256:b78375103f998d83621257555ff4d935ce7614a0e31a527cf1afd5f409e90455 done\n#17 exporting config sha256:784dc0e9af5ec908ba8e85097d96975fa06645e6bea5a931c437b03242719c9e done\n#17 exporting attestation manifest sha256:0eb5a7c5e49f859a93409b58e9b353eaec235cff037682c40b39ac914c100c6c done\n#17 exporting manifest list sha256:e530fb2369df2f9d7a31d0f1a49c3320bfafd7cdf3e005ca4f5e35dbb4f89111 done\n#17 naming to docker.io/ctk-exec/patchleaks:3c5329167d1d done\n#17 unpacking to docker.io/ctk-exec/patchleaks:3c5329167d1d 0.1s done\n#17 DONE 0.6s",
+  "image_digest": "sha256:ae3226d882e929c78f3362a413f4e9e012cf72208af64bdd09db303186b7f352",
+  "duration_s": 15.86,
+  "log_tail": "#8 [internal] load build context\n#8 transferring context: 2.48MB 0.0s done\n#8 DONE 0.0s\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.2s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.142 go: downloading github.com/smacker/go-tree-sitter v0.0.0-20240827094217-dd81d9e9be82\n#11 0.142 go: downloading github.com/gorilla/mux v1.8.1\n#11 0.142 go: downloading github.com/gorilla/sessions v1.4.0\n#11 0.143 go: downloading github.com/google/uuid v1.6.0\n#11 0.435 go: downloading github.com/gorilla/securecookie v1.1.2\n#11 DONE 9.3s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 2.5s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.141 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 1.0s done\n#18 exporting manifest sha256:a3d1ff46724cc7b80f6430b5fc493cec57363aca9162d8237ca9d38ecb2f1e00\n#18 exporting manifest sha256:a3d1ff46724cc7b80f6430b5fc493cec57363aca9162d8237ca9d38ecb2f1e00 0.0s done\n#18 exporting config sha256:2bf628d0376be6c8e58b2dfde9ef71d8eed6ebb841f776cf969a89477f1b5c8f 0.0s done\n#18 exporting attestation manifest sha256:32dac4684c5681690683d96c8e9d6b85ed989c9135231c09611a8a56de2e7aad 0.1s done\n#18 exporting manifest list sha256:ae3226d882e929c78f3362a413f4e9e012cf72208af64bdd09db303186b7f352\n#18 exporting manifest list sha256:ae3226d882e929c78f3362a413f4e9e012cf72208af64bdd09db303186b7f352 0.0s done\n#18 naming to docker.io/ctk-exec/patchleaks:3c5329167d1d done\n#18 unpacking to docker.io/ctk-exec/patchleaks:3c5329167d1d\n#18 unpacking to docker.io/ctk-exec/patchleaks:3c5329167d1d 0.3s done\n#18 DONE 1.5s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage of PatchLeaks:\n  -host string\n    \tHost address to bind to (default \"127.0.0.1\")\n  -language string\n    \tComma-separated list of languages to test (php,javascript,python)\n  -p int\n    \tPort to run the server on (default: random free port)\n  -t int\n    \tNumber of threads for AI analysis (default: 1) (default 1)\n  -test-real-world\n    \tRun real-world tests instead of starting server\n",
-   "duration_ms": 2,
+   "duration_ms": 5,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for PatchLeaks\n",
-   "duration_ms": 0,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -56,63 +56,16 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'PatchLeaks' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 3,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
-   "argv": [
-    "PatchLeaks",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 3,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-1",
-   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "PatchLeaks",
-    "-p",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 2,
-   "stdout": "",
-   "stderr": "invalid value \"/opt/ctk/fixtures/source-corpus\" for flag -p: parse error\nUsage of PatchLeaks:\n  -host string\n    \tHost address to bind to (default \"127.0.0.1\")\n  -language string\n    \tComma-separated list of languages to test (php,javascript,python)\n  -p int\n    \tPort to run the server on (default: random free port)\n  -t int\n    \tNumber of threads for AI analysis (default: 1) (default 1)\n  -test-real-world\n    \tRun real-world tests instead of starting server\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-2",
-   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "PatchLeaks",
-    "-t",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 2,
-   "stdout": "",
-   "stderr": "invalid value \"/opt/ctk/fixtures/source-corpus\" for flag -t: parse error\nUsage of PatchLeaks:\n  -host string\n    \tHost address to bind to (default \"127.0.0.1\")\n  -language string\n    \tComma-separated list of languages to test (php,javascript,python)\n  -p int\n    \tPort to run the server on (default: random free port)\n  -t int\n    \tNumber of threads for AI analysis (default: 1) (default 1)\n  -test-real-world\n    \tRun real-world tests instead of starting server\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-3",
-   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 7,
+   "commands_run": 4,
    "binary": "PatchLeaks",
    "exit_code": null,
    "stdout": "",
@@ -132,23 +85,9 @@
    "-t": "Number of threads for AI analysis (default: 1) (default 1)",
    "-test-real-world": "Run real-world tests instead of starting server"
   },
+  "values_seen": {},
   "aliases": {},
-  "subcommand_flags": {
-   "-p": {
-    "-host": "Host address to bind to (default \"127.0.0.1\")",
-    "-language": "Comma-separated list of languages to test (php,javascript,python)",
-    "-p": "Port to run the server on (default: random free port)",
-    "-t": "Number of threads for AI analysis (default: 1) (default 1)",
-    "-test-real-world": "Run real-world tests instead of starting server"
-   },
-   "-t": {
-    "-host": "Host address to bind to (default \"127.0.0.1\")",
-    "-language": "Comma-separated list of languages to test (php,javascript,python)",
-    "-p": "Port to run the server on (default: random free port)",
-    "-t": "Number of threads for AI analysis (default: 1) (default 1)",
-    "-test-real-world": "Run real-world tests instead of starting server"
-   }
-  },
+  "subcommand_flags": {},
   "subcommands": [],
   "binary": "PatchLeaks",
   "ladder_used": "--help",
@@ -197,27 +136,12 @@
     "help": "Run real-world tests instead of starting server"
    }
   },
-  "subcommands": [],
-  "subcommand_flags": {
-   "-p": {
-    "-host": "Host address to bind to (default \"127.0.0.1\")",
-    "-language": "Comma-separated list of languages to test (php,javascript,python)",
-    "-p": "Port to run the server on (default: random free port)",
-    "-t": "Number of threads for AI analysis (default: 1) (default 1)",
-    "-test-real-world": "Run real-world tests instead of starting server"
-   },
-   "-t": {
-    "-host": "Host address to bind to (default \"127.0.0.1\")",
-    "-language": "Comma-separated list of languages to test (php,javascript,python)",
-    "-p": "Port to run the server on (default: random free port)",
-    "-t": "Number of threads for AI analysis (default: 1) (default 1)",
-    "-test-real-world": "Run real-world tests instead of starting server"
-   }
-  }
+  "subcommands": []
  },
  "skipped_reason": null,
  "example_trials": {
   "tried": 5,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -356,6 +280,6 @@
  "repo": "hatlesswizard/PatchLeaks",
  "head_sha": "3c5329167d1d902f3adcb586524ae27eb5cb7273",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-29T02:19:42.269909+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:22:59.972155+00:00"
 }

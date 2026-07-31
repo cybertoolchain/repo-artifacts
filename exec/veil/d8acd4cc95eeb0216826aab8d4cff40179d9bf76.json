@@ -1,19 +1,364 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:06991aa0046b6286fea266bfcbef9e54147830f77b70c56016407d4734d3e463",
+  "duration_s": 10.82,
+  "log_tail": "#10 2.850   Attempting uninstall: pip\n#10 2.851     Found existing installation: pip 25.0.1\n#10 2.865     Uninstalling pip-25.0.1:\n#10 2.868       Successfully uninstalled pip-25.0.1\n#10 3.357 Successfully installed pip-26.2\n#10 DONE 3.8s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 1.9s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.3s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.1s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.200 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.3s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.6s done\n#21 exporting manifest sha256:40c79efbe63b37f6db5be00dfe64e69213645fe6ca01b491111cbb94f9cc887e 0.0s done\n#21 exporting config sha256:a612253963c6c65cbfbd441708e2947932f3635716a21af257c6a108512f9e07 0.0s done\n#21 exporting attestation manifest sha256:938eed24db5656ef4d3b677e7d510a166766bf3960f8677562b2081b9876b674 0.1s done\n#21 exporting manifest list sha256:06991aa0046b6286fea266bfcbef9e54147830f77b70c56016407d4734d3e463\n#21 exporting manifest list sha256:06991aa0046b6286fea266bfcbef9e54147830f77b70c56016407d4734d3e463 0.0s done\n#21 naming to docker.io/ctk-exec/veil:d8acd4cc95ee done\n#21 unpacking to docker.io/ctk-exec/veil:d8acd4cc95ee\n#21 unpacking to docker.io/ctk-exec/veil:d8acd4cc95ee 0.9s done\n#21 DONE 1.7s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "Veil",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 85,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil",
+    "-h"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 71,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil",
+    "help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 68,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil",
+    "--usage"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 72,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 70,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil.py",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 69,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil.py",
+    "-h"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 69,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil.py",
+    "help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 68,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil.py",
+    "--usage"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 68,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Veil.py"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 69,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "veil",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'veil'"
+  },
+  {
+   "argv": [
+    "man",
+    "Veil"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for Veil\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "Veil"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'Veil' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "Veil.py",
+    "-t",
+    "Evasion",
+    "-p",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py",
+    "--ip",
+    "127.0.0.1",
+    "--port",
+    "4444"
+   ],
+   "exit_code": 0,
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "duration_ms": 70,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-221f2ca6",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "Veil",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "e38c30f5ec0b2115",
+ "examples": [
+  {
+   "id": "t-readme-221f2ca6",
+   "title": "From the project's documentation \u2014 run against source-corpus",
+   "argv": [
+    "Veil.py",
+    "-t",
+    "Evasion",
+    "-p",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py",
+    "--ip",
+    "127.0.0.1",
+    "--port",
+    "4444"
+   ],
+   "stdout": "\n [!] ERROR #1-3: Can't import /etc/veil/settings.py.   Run: /src/config/update-config.py\n\n",
+   "stderr": "/src/lib/common/helpers.py:144: SyntaxWarning: invalid escape sequence '\\d'\n  allowed = re.compile(\"(?!-)[A-Z\\d-]{1,63}(?<!-)$\", re.IGNORECASE)\n",
+   "exit_code": 0,
+   "duration_ms": 70,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 5,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-6c53f25f",
+    "argv": [
+     "veil",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 307
+   },
+   {
+    "id": "t-net-74f0ca16",
+    "argv": [
+     "veil",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 307
+   },
+   {
+    "id": "t-net-551008ef",
+    "argv": [
+     "Veil",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 235
+   },
+   {
+    "id": "t-net-b5e1ca5c",
+    "argv": [
+     "Veil",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 235
+   },
+   {
+    "id": "t-readme-221f2ca6",
+    "argv": [
+     "Veil.py",
+     "-t",
+     "Evasion",
+     "-p",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "--ip",
+     "127.0.0.1",
+     "--port",
+     "4444"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 185,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 235,
+    "stability": 1.0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "./Veil.py",
+    "source": "readme",
+    "path": "README.md",
+    "line": 97,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "./Veil.py --help",
+    "source": "readme",
+    "path": "README.md",
+    "line": 127,
+    "reason": "needs-network-or-interactive",
+    "token": "--help"
+   },
+   {
+    "raw": "./Veil.py -t Ordnance --ordnance-payload rev_tcp --ip 127.0.0.1 --port 4444",
+    "source": "readme",
+    "path": "README.md",
+    "line": 229,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "veil",
  "repo": "Veil-Framework/Veil",
  "head_sha": "d8acd4cc95eeb0216826aab8d4cff40179d9bf76",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:41:38.858153+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:54:42.498668+00:00"
 }

@@ -1,0 +1,3078 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:b327dc4fb45b611773877250386bad4fb40dc60383c90f265317922f9d89f8fd",
+  "duration_s": 94.91,
+  "log_tail": "#11 20.54 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 NpingTarget.cc -o NpingTarget.o\n#11 20.54 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 EchoHeader.cc -o EchoHeader.o\n#11 20.55 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 EchoServer.cc -o EchoServer.o\n#11 20.55 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 EchoClient.cc -o EchoClient.o\n#11 20.55 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 ProbeMode.cc -o ProbeMode.o\n#11 20.55 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 NEPContext.cc -o NEPContext.o\n#11 20.55 g++ -c -I../libdnet-stripped/include  -I../nbase -I../nsock/include -g -O2 -Wall  -fno-strict-aliasing   -DHAVE_CONFIG_H -DNPING_NAME=\\\"Nping\\\" -DNPING_URL=\\\"https://nmap.org/nping\\\" -DNPING_PLATFORM=\\\"aarch64-unknown-linux-gnu\\\" -D_FORTIFY_SOURCE=2 Crypto.cc -o Crypto.o\n#11 20.89 EchoHeader.cc: In member function 'int EchoHeader::setErrorMessage(const char*)':\n#11 20.89 EchoHeader.cc:852:12: warning: 'char* __builtin_strncpy(char*, const char*, long unsigned int)' specified bound 80 equals destination size [-Wstringop-truncation]\n#11 20.89   852 |     strncpy((char *)this->data_error->errmsg, err, ERROR_MSG_LEN);\n#11 20.89       |            ^\n#11 21.38 Compiling nping\n#11 21.38 rm -f nping\n#11 21.38 g++   -o nping ArgParser.o common_modified.o nping.o NpingOps.o utils.o utils_net.o output.o stats.o NpingTargets.o NpingTarget.o EchoHeader.o EchoServer.o EchoClient.o ProbeMode.o NEPContext.o Crypto.o ../nsock/src/libnsock.a ../libnetutil/libnetutil.a ../nbase/libnbase.a -lssl -lcrypto -lpcap ../libdnet-stripped/src/.libs/libdnet.a \n#11 21.48 Nping compiled successfully!\n#11 21.48 make[2]: Leaving directory '/src/nping'\n#11 21.48 make[1]: Leaving directory '/src/nping'\n#11 DONE 21.5s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.158 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 4.2s done\n#19 exporting manifest sha256:b51b5ce21c20172d718d6b34a26352fb0a2dd5bbee3fac0cedc0de7c678e37d6 0.0s done\n#19 exporting config sha256:39a764383d0594b79bc74bb8e43f739ea5cca992ad55c732bbc63f28cbd5687a 0.0s done\n#19 exporting attestation manifest sha256:ae47fe8cff7dc81ad72120a6e2ba0474c875520d47757097d1233e440eced15d 0.0s done\n#19 exporting manifest list sha256:b327dc4fb45b611773877250386bad4fb40dc60383c90f265317922f9d89f8fd done\n#19 naming to docker.io/ctk-exec/nmap:7b0c3025c537\n#19 naming to docker.io/ctk-exec/nmap:7b0c3025c537 done\n#19 unpacking to docker.io/ctk-exec/nmap:7b0c3025c537\n#19 unpacking to docker.io/ctk-exec/nmap:7b0c3025c537 1.7s done\n#19 DONE 6.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "nmap",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Nmap 7.99SVN ( https://nmap.org )\nUsage: nmap [Scan Type(s)] [Options] {target specification}\nTARGET SPECIFICATION:\n  Can pass hostnames, IP addresses, networks, etc.\n  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254\n  -iL <inputfilename>: Input from list of hosts/networks\n  -iR <num hosts>: Choose random targets\n  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks\n  --excludefile <exclude_file>: Exclude list from file\nHOST DISCOVERY:\n  -sL: List Scan - simply list targets to scan\n  -sn: Ping Scan - disable port scan\n  -Pn: Treat all hosts as online -- skip host discovery\n  -PS/PA/PU/PY[portlist]: TCP SYN, TCP ACK, UDP or SCTP discovery to given ports\n  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes\n  -PO[protocol list]: IP Protocol Ping\n  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]\n  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers\n  --system-dns: Use OS's DNS resolver\n  --traceroute: Trace hop path to each host\nSCAN TECHNIQUES:\n  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans\n  -sU: UDP Scan\n  -sN/sF/sX: TCP Null, FIN, and Xmas scans\n  --scanflags <flags>: Customize TCP scan flags\n  -sI <zombie host[:probeport]>: Idle scan\n  -sY/sZ: SCTP INIT/COOKIE-ECHO scans\n  -sO: IP protocol scan\n  -b <FTP relay host>: FTP bounce scan\nPORT SPECIFICATION AND SCAN ORDER:\n  -p <port ranges>: Only scan specified ports\n    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9\n  --exclude-ports <port ranges>: Exclude the specified ports from scanning\n  -F: Fast mode - Scan fewer ports than the default scan\n  -r: Scan ports sequentially - don't randomize\n  --top-ports <number>: Scan <number> most common ports\n  --port-ratio <ratio>: Scan ports more common than <ratio>\nSERVICE/VERSION DETECTION:\n  -sV: Probe open ports to determine service/version info\n  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)\n  --version-light: Limit to most likely probes (intensity 2)\n  --version-all: Try every single probe (intensity 9)\n  --version-trace: Show detailed version scan activity (for debugging)\nSCRIPT SCAN:\n  -sC: equivalent to --script=default\n  --script=<Lua scripts>: <Lua scripts> is a comma separated list of\n           directories, script-files or script-categories\n  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts\n  --script-args-file=filename: provide NSE script args in a file\n  --script-trace: Show all data sent and received\n  --script-updatedb: Update the script database.\n  --script-help=<Lua scripts>: Show help about scripts.\n           <Lua scripts> is a comma-separated list of script-files or\n           script-categories.\nOS DETECTION:\n  -O: Enable OS detection\n  --osscan-limit: Limit OS detection to promising targets\n  --osscan-guess: Guess OS more aggressively\nTIMING AND PERFORMANCE:\n  Options which take <time> are in seconds, or append 'ms' (milliseconds),\n  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).\n  -T<0-5>: Set timing template (higher is faster)\n  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes\n  --min-parallelism/max-parallelism <numprobes>: Probe parallelization\n  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies\n      probe round trip time.\n  --max-retries <tries>: Caps number of port scan probe retransmissions.\n  --host-timeout <time>: Give up on target after this long\n  --scan-delay/--max-scan-delay <time>: Adjust delay between probes\n  --min-rate <number>: Send packets no slower than <number> per second\n  --max-rate <number>: Send packets no faster than <number> per second\nFIREWALL/IDS EVASION AND SPOOFING:\n  -f; --mtu <val>: fragment packets (optionally w/given MTU)\n  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys\n  -S <IP_Address>: Spoof source address\n  -e <iface>: Use specified interface\n  -g/--source-port <portnum>: Use given port number\n  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies\n  --data <hex string>: Append a custom payload to sent packets\n  --data-string <string>: Append a custom ASCII string to sent packets\n  --data-length <num>: Append random data to sent packets\n  --ip-options <options>: Send packets with specified ip options\n  --ttl <val>: Set IP time-to-live field\n  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address\n  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum\nOUTPUT:\n  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,\n     and Grepable format, respectively, to the given filename.\n  -oA <basename>: Output in the three major formats at once\n  -v: Increase verbosity level (use -vv or more for greater effect)\n  -d: Increase debugging level (use -dd or more for greater effect)\n  --reason: Display the reason a port is in a particular state\n  --open: Only show open (or possibly open) ports\n  --packet-trace: Show all packets sent and received\n  --iflist: Print host interfaces and routes (for debugging)\n  --append-output: Append to rather than clobber specified output files\n  --resume <filename>: Resume an aborted scan\n  --noninteractive: Disable runtime interactions via keyboard\n  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML\n  --webxml: Reference stylesheet from Nmap.Org for more portable XML\n  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output\nMISC:\n  -6: Enable IPv6 scanning\n  -A: Enable OS detection, version detection, script scanning, and traceroute\n  --datadir <dirname>: Specify custom Nmap data file location\n  --send-eth/--send-ip: Send using raw ethernet frames or IP packets\n  --privileged: Assume that the user is fully privileged\n  --unprivileged: Assume the user lacks raw socket privileges\n  -V: Print version number\n  -h: Print this help summary page.\nEXAMPLES:\n  nmap -v -A scanme.nmap.org\n  nmap -v -sn 192.168.0.0/16 10.0.0.0/8\n  nmap -v -iR 10000 -Pn -p 80\nSEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES\n",
+   "stderr": "",
+   "duration_ms": 14,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nmap"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for nmap\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nmap"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(nmap)Top'\n",
+   "duration_ms": 13,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "nmap",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "exit_code": 0,
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "list-scan",
+   "title": "List the targets a scan would cover, without sending packets"
+  },
+  {
+   "argv": [
+    "nmap",
+    "--version"
+   ],
+   "exit_code": 0,
+   "stdout": "Nmap version 7.99SVN ( https://nmap.org )\nPlatform: aarch64-unknown-linux-gnu\nCompiled with: nmap-liblua-5.4.8 openssl-3.0.20 nmap-libssh2-1.11.1_NMAP1 libz-1.2.13 libpcre2-10.42 libpcap-1.10.3 nmap-libdnet-1.18.0 ipv6\nCompiled without:\nAvailable nsock engines: epoll poll select\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "version",
+   "title": "Version and build-time feature summary"
+  },
+  {
+   "argv": [
+    "nmap",
+    "--badsum",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "exit_code": 0,
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "You have specified some options that require raw socket access.\nThese options will not be honored without the necessary privileges.\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-9add924f",
+   "title": "The --badsum option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "argv": [
+    "nmap",
+    "--iflist",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "exit_code": 0,
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\n************************INTERFACES************************\nDEV      (SHORT)    IP/MASK     TYPE     UP   MTU   MAC\nlo       (lo)       127.0.0.1/8 loopback up   65536\nlo       (lo)       ::1/128     loopback up   65536\ntunl0    (tunl0)    (none)/0    other    down 1480\ngre0     (gre0)     (none)/0    other    down 1476\ngretap0  (gretap0)  (none)/0    ethernet down 1462  00:00:00:00:00:00\nerspan0  (erspan0)  (none)/0    ethernet down 1450  00:00:00:00:00:00\nip_vti0  (ip_vti0)  (none)/0    other    down 1480\nip6_vti0 (ip6_vti0) (none)/0    other    down 1428\nsit0     (sit0)     (none)/0    other    down 1480\nip6tnl0  (ip6tnl0)  (none)/0    other    down 1452\nip6gre0  (ip6gre0)  (none)/0    other    down 1448\n\n**************************ROUTES**************************\nDST/MASK DEV METRIC GATEWAY\n::1/128  lo  0\n\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-991c1282",
+   "title": "The --iflist option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "argv": [
+    "nmap",
+    "--min-hostgroup",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "exit_code": 0,
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.01 seconds\n",
+   "stderr": "",
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d6e87044",
+   "title": "The --min-hostgroup option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "argv": [
+    "nmap",
+    "--version-trace",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "exit_code": 0,
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\n--------------- Timing report ---------------\n  hostgroups: min 1, max 100000\n  rtt-timeouts: init 1000, min 100, max 10000\n  max-scan-delay: TCP 1000, UDP 1000, SCTP 1000\n  parallelism: min 0, max 0\n  max-retries: 10, host-timeout: 0\n  min-rate: 0, max-rate: 0\n---------------------------------------------\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNo data files read.\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-668f3619",
+   "title": "The --version-trace option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 9,
+   "binary": "nmap",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "bc769c93c7c1735d",
+ "examples": [
+  {
+   "id": "list-scan",
+   "title": "List the targets a scan would cover, without sending packets",
+   "argv": [
+    "nmap",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "version",
+   "title": "Version and build-time feature summary",
+   "argv": [
+    "nmap",
+    "--version"
+   ],
+   "stdout": "Nmap version 7.99SVN ( https://nmap.org )\nPlatform: aarch64-unknown-linux-gnu\nCompiled with: nmap-liblua-5.4.8 openssl-3.0.20 nmap-libssh2-1.11.1_NMAP1 libz-1.2.13 libpcre2-10.42 libpcap-1.10.3 nmap-libdnet-1.18.0 ipv6\nCompiled without:\nAvailable nsock engines: epoll poll select\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-9add924f",
+   "title": "The --badsum option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--badsum",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "You have specified some options that require raw socket access.\nThese options will not be honored without the necessary privileges.\n",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-991c1282",
+   "title": "The --iflist option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--iflist",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\n************************INTERFACES************************\nDEV      (SHORT)    IP/MASK     TYPE     UP   MTU   MAC\nlo       (lo)       127.0.0.1/8 loopback up   65536\nlo       (lo)       ::1/128     loopback up   65536\ntunl0    (tunl0)    (none)/0    other    down 1480\ngre0     (gre0)     (none)/0    other    down 1476\ngretap0  (gretap0)  (none)/0    ethernet down 1462  00:00:00:00:00:00\nerspan0  (erspan0)  (none)/0    ethernet down 1450  00:00:00:00:00:00\nip_vti0  (ip_vti0)  (none)/0    other    down 1480\nip6_vti0 (ip6_vti0) (none)/0    other    down 1428\nsit0     (sit0)     (none)/0    other    down 1480\nip6tnl0  (ip6tnl0)  (none)/0    other    down 1452\nip6gre0  (ip6gre0)  (none)/0    other    down 1448\n\n**************************ROUTES**************************\nDST/MASK DEV METRIC GATEWAY\n::1/128  lo  0\n\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-d6e87044",
+   "title": "The --min-hostgroup option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--min-hostgroup",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.01 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-668f3619",
+   "title": "The --version-trace option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--version-trace",
+    "-sL",
+    "-n",
+    "192.0.2.0/29"
+   ],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\n--------------- Timing report ---------------\n  hostgroups: min 1, max 100000\n  rtt-timeouts: init 1000, min 100, max 10000\n  max-scan-delay: TCP 1000, UDP 1000, SCTP 1000\n  parallelism: min 0, max 0\n  max-retries: 10, host-timeout: 0\n  min-rate: 0, max-rate: 0\n---------------------------------------------\nNmap scan report for 192.0.2.0\nNmap scan report for 192.0.2.1\nNmap scan report for 192.0.2.2\nNmap scan report for 192.0.2.3\nNmap scan report for 192.0.2.4\nNmap scan report for 192.0.2.5\nNmap scan report for 192.0.2.6\nNmap scan report for 192.0.2.7\nNo data files read.\nNmap done: 8 IP addresses (0 hosts up) scanned in 0.00 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "dvwa-connect",
+   "title": "TCP connect scan of the live DVWA target",
+   "argv": [
+    "nmap",
+    "-sT",
+    "-Pn",
+    "-n",
+    "dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for dvwa\nHost is up (0.000047s latency).\nNot shown: 999 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.02 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "net-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "nmap",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap done: 0 IP addresses (0 hosts up) scanned in 0.01 seconds\n",
+   "stderr": "Unable to split netmask from target expression: \"http://dvwa\"\nWARNING: No targets were specified, so 0 hosts scanned.\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-net-9a12de4b",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "nmap",
+    "dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for dvwa (dvwa)\nHost is up (0.000048s latency).\nNot shown: 999 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.02 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-44213887",
+   "title": "The --append-output option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--append-output",
+    "-sT",
+    "-Pn",
+    "-n",
+    "dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for dvwa\nHost is up (0.000040s latency).\nNot shown: 999 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.02 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-c39f9371",
+   "title": "The --badsum option, advertised by the tool's own help, against no fixture",
+   "argv": [
+    "nmap",
+    "--badsum",
+    "-sT",
+    "-Pn",
+    "-n",
+    "dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "Starting Nmap 7.99SVN ( https://nmap.org ) at 2026-07-30 06:14 +0000\nNmap scan report for dvwa\nHost is up (0.000058s latency).\nNot shown: 999 closed tcp ports (conn-refused)\nPORT   STATE SERVICE\n80/tcp open  http\n\nNmap done: 1 IP address (1 host up) scanned in 0.02 seconds\n",
+   "stderr": "You have specified some options that require raw socket access.\nThese options will not be honored without the necessary privileges.\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "-iL": "Input from list of hosts/networks",
+   "-iR": "Choose random targets",
+   "--exclude": "Exclude hosts/networks",
+   "--excludefile": "Exclude list from file",
+   "-sL": "List Scan - simply list targets to scan",
+   "-sn": "Ping Scan - disable port scan",
+   "-Pn": "Treat all hosts as online -- skip host discovery",
+   "-PS": "TCP SYN, TCP ACK, UDP or SCTP discovery to given ports",
+   "-PE": "ICMP echo, timestamp, and netmask request discovery probes",
+   "-PO": "IP Protocol Ping",
+   "-n": "Never do DNS resolution/Always resolve [default: sometimes]",
+   "-R": "Never do DNS resolution/Always resolve [default: sometimes]",
+   "--dns-servers": "Specify custom DNS servers",
+   "--system-dns": "Use OS's DNS resolver",
+   "--traceroute": "Trace hop path to each host",
+   "-sS": "TCP SYN/Connect()/ACK/Window/Maimon scans",
+   "-sU": "UDP Scan",
+   "-sN": "TCP Null, FIN, and Xmas scans",
+   "--scanflags": "Customize TCP scan flags",
+   "-sI": "Idle scan",
+   "-sY": "SCTP INIT/COOKIE-ECHO scans",
+   "-sO": "IP protocol scan",
+   "-b": "FTP bounce scan",
+   "-p": "Only scan specified ports Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9",
+   "--exclude-ports": "Exclude the specified ports from scanning",
+   "-F": "Fast mode - Scan fewer ports than the default scan",
+   "-r": "Scan ports sequentially - don't randomize",
+   "--top-ports": "Scan <number> most common ports",
+   "--port-ratio": "Scan ports more common than <ratio>",
+   "-sV": "Probe open ports to determine service/version info",
+   "--version-intensity": "Set from 0 (light) to 9 (try all probes)",
+   "--version-light": "Limit to most likely probes (intensity 2)",
+   "--version-all": "Try every single probe (intensity 9)",
+   "--version-trace": "Show detailed version scan activity (for debugging)",
+   "-sC": "equivalent to --script=default",
+   "--script": "<Lua scripts> is a comma separated list of directories, script-files or script-categories",
+   "--script-args": "provide arguments to scripts",
+   "--script-args-file": "provide NSE script args in a file",
+   "--script-trace": "Show all data sent and received",
+   "--script-updatedb": "Update the script database.",
+   "--script-help": "Show help about scripts. <Lua scripts> is a comma-separated list of script-files or script-categories.",
+   "-O": "Enable OS detection",
+   "--osscan-limit": "Limit OS detection to promising targets",
+   "--osscan-guess": "Guess OS more aggressively",
+   "-T": "Set timing template (higher is faster)",
+   "--min-hostgroup": "Parallel host scan group sizes",
+   "--min-parallelism": "Probe parallelization",
+   "--min-rtt-timeout": "Specifies probe round trip time.",
+   "--max-retries": "Caps number of port scan probe retransmissions.",
+   "--host-timeout": "Give up on target after this long",
+   "--scan-delay": "Adjust delay between probes",
+   "--max-scan-delay": "Adjust delay between probes",
+   "--min-rate": "Send packets no slower than <number> per second",
+   "--max-rate": "Send packets no faster than <number> per second",
+   "-f": "fragment packets (optionally w/given MTU)",
+   "--mtu": "fragment packets (optionally w/given MTU)",
+   "-D": "Cloak a scan with decoys",
+   "-S": "Spoof source address",
+   "-e": "Use specified interface",
+   "-g": "Use given port number",
+   "--source-port": "Use given port number",
+   "--proxies": "Relay connections through HTTP/SOCKS4 proxies",
+   "--data": "Append a custom payload to sent packets",
+   "--data-string": "Append a custom ASCII string to sent packets",
+   "--data-length": "Append random data to sent packets",
+   "--ip-options": "Send packets with specified ip options",
+   "--ttl": "Set IP time-to-live field",
+   "--spoof-mac": "Spoof your MAC address",
+   "--badsum": "Send packets with a bogus TCP/UDP/SCTP checksum",
+   "-oN": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+   "-oX": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+   "-oS": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+   "-oG": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+   "-oA": "Output in the three major formats at once",
+   "-v": "Increase verbosity level (use -vv or more for greater effect)",
+   "-d": "Increase debugging level (use -dd or more for greater effect)",
+   "--reason": "Display the reason a port is in a particular state",
+   "--open": "Only show open (or possibly open) ports",
+   "--packet-trace": "Show all packets sent and received",
+   "--iflist": "Print host interfaces and routes (for debugging)",
+   "--append-output": "Append to rather than clobber specified output files",
+   "--resume": "Resume an aborted scan",
+   "--noninteractive": "Disable runtime interactions via keyboard",
+   "--stylesheet": "XSL stylesheet to transform XML output to HTML",
+   "--webxml": "Reference stylesheet from Nmap.Org for more portable XML",
+   "--no-stylesheet": "Prevent associating of XSL stylesheet w/XML output",
+   "-6": "Enable IPv6 scanning",
+   "-A": "Enable OS detection, version detection, script scanning, and traceroute",
+   "--datadir": "Specify custom Nmap data file location",
+   "--send-eth": "Send using raw ethernet frames or IP packets",
+   "--send-ip": "Send using raw ethernet frames or IP packets",
+   "--privileged": "Assume that the user is fully privileged",
+   "--unprivileged": "Assume the user lacks raw socket privileges",
+   "-V": "Print version number",
+   "-h": "Print this help summary page."
+  },
+  "values_seen": {
+   "-iL": "<inputfilename>",
+   "-iR": "<num hosts>",
+   "--exclude": "<host1[,host2][,host3],...>",
+   "--excludefile": "<exclude_file>",
+   "-PO": "[protocol list]",
+   "--dns-servers": "<serv1[,serv2],...>",
+   "--scanflags": "<flags>",
+   "-sI": "<zombie host[:probeport]>",
+   "-b": "<FTP relay host>",
+   "-p": "<port ranges>",
+   "--exclude-ports": "<port ranges>",
+   "--top-ports": "<number>",
+   "--port-ratio": "<ratio>",
+   "--version-intensity": "<level>",
+   "--script": "<Lua scripts>",
+   "--script-args": "<n1=v1,[n2=v2,...]>",
+   "--script-help": "<Lua scripts>",
+   "-T": "<0-5>",
+   "--max-retries": "<tries>",
+   "--host-timeout": "<time>",
+   "--scan-delay": "<time>",
+   "--max-scan-delay": "<time>",
+   "--min-rate": "<number>",
+   "--max-rate": "<number>",
+   "-f": "<val>",
+   "--mtu": "<val>",
+   "-D": "<decoy1,decoy2[,ME],...>",
+   "-S": "<IP_Address>",
+   "-e": "<iface>",
+   "-g": "<portnum>",
+   "--source-port": "<portnum>",
+   "--proxies": "<url1,[url2],...>",
+   "--data": "<hex string>",
+   "--data-string": "<string>",
+   "--data-length": "<num>",
+   "--ip-options": "<options>",
+   "--ttl": "<val>",
+   "--spoof-mac": "<mac address/prefix/vendor name>",
+   "-oN": "<file>",
+   "-oX": "<file>",
+   "-oS": "<file>",
+   "-oG": "<file>",
+   "-oA": "<basename>",
+   "--resume": "<filename>",
+   "--stylesheet": "<path/URL>",
+   "--datadir": "<dirname>"
+  },
+  "aliases": {},
+  "subcommand_flags": {
+   "--badsum": {}
+  },
+  "subcommands": [],
+  "binary": "nmap",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "fb9cfdc157b23f725a5b620ca1102d158a697370edf84c30aae56eb7084d9f3b",
+  "text": "Nmap 7.99SVN ( https://nmap.org )\nUsage: nmap [Scan Type(s)] [Options] {target specification}\nTARGET SPECIFICATION:\n  Can pass hostnames, IP addresses, networks, etc.\n  Ex: scanme.nmap.org, microsoft.com/24, 192.168.0.1; 10.0.0-255.1-254\n  -iL <inputfilename>: Input from list of hosts/networks\n  -iR <num hosts>: Choose random targets\n  --exclude <host1[,host2][,host3],...>: Exclude hosts/networks\n  --excludefile <exclude_file>: Exclude list from file\nHOST DISCOVERY:\n  -sL: List Scan - simply list targets to scan\n  -sn: Ping Scan - disable port scan\n  -Pn: Treat all hosts as online -- skip host discovery\n  -PS/PA/PU/PY[portlist]: TCP SYN, TCP ACK, UDP or SCTP discovery to given ports\n  -PE/PP/PM: ICMP echo, timestamp, and netmask request discovery probes\n  -PO[protocol list]: IP Protocol Ping\n  -n/-R: Never do DNS resolution/Always resolve [default: sometimes]\n  --dns-servers <serv1[,serv2],...>: Specify custom DNS servers\n  --system-dns: Use OS's DNS resolver\n  --traceroute: Trace hop path to each host\nSCAN TECHNIQUES:\n  -sS/sT/sA/sW/sM: TCP SYN/Connect()/ACK/Window/Maimon scans\n  -sU: UDP Scan\n  -sN/sF/sX: TCP Null, FIN, and Xmas scans\n  --scanflags <flags>: Customize TCP scan flags\n  -sI <zombie host[:probeport]>: Idle scan\n  -sY/sZ: SCTP INIT/COOKIE-ECHO scans\n  -sO: IP protocol scan\n  -b <FTP relay host>: FTP bounce scan\nPORT SPECIFICATION AND SCAN ORDER:\n  -p <port ranges>: Only scan specified ports\n    Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9\n  --exclude-ports <port ranges>: Exclude the specified ports from scanning\n  -F: Fast mode - Scan fewer ports than the default scan\n  -r: Scan ports sequentially - don't randomize\n  --top-ports <number>: Scan <number> most common ports\n  --port-ratio <ratio>: Scan ports more common than <ratio>\nSERVICE/VERSION DETECTION:\n  -sV: Probe open ports to determine service/version info\n  --version-intensity <level>: Set from 0 (light) to 9 (try all probes)\n  --version-light: Limit to most likely probes (intensity 2)\n  --version-all: Try every single probe (intensity 9)\n  --version-trace: Show detailed version scan activity (for debugging)\nSCRIPT SCAN:\n  -sC: equivalent to --script=default\n  --script=<Lua scripts>: <Lua scripts> is a comma separated list of\n           directories, script-files or script-categories\n  --script-args=<n1=v1,[n2=v2,...]>: provide arguments to scripts\n  --script-args-file=filename: provide NSE script args in a file\n  --script-trace: Show all data sent and received\n  --script-updatedb: Update the script database.\n  --script-help=<Lua scripts>: Show help about scripts.\n           <Lua scripts> is a comma-separated list of script-files or\n           script-categories.\nOS DETECTION:\n  -O: Enable OS detection\n  --osscan-limit: Limit OS detection to promising targets\n  --osscan-guess: Guess OS more aggressively\nTIMING AND PERFORMANCE:\n  Options which take <time> are in seconds, or append 'ms' (milliseconds),\n  's' (seconds), 'm' (minutes), or 'h' (hours) to the value (e.g. 30m).\n  -T<0-5>: Set timing template (higher is faster)\n  --min-hostgroup/max-hostgroup <size>: Parallel host scan group sizes\n  --min-parallelism/max-parallelism <numprobes>: Probe parallelization\n  --min-rtt-timeout/max-rtt-timeout/initial-rtt-timeout <time>: Specifies\n      probe round trip time.\n  --max-retries <tries>: Caps number of port scan probe retransmissions.\n  --host-timeout <time>: Give up on target after this long\n  --scan-delay/--max-scan-delay <time>: Adjust delay between probes\n  --min-rate <number>: Send packets no slower than <number> per second\n  --max-rate <number>: Send packets no faster than <number> per second\nFIREWALL/IDS EVASION AND SPOOFING:\n  -f; --mtu <val>: fragment packets (optionally w/given MTU)\n  -D <decoy1,decoy2[,ME],...>: Cloak a scan with decoys\n  -S <IP_Address>: Spoof source address\n  -e <iface>: Use specified interface\n  -g/--source-port <portnum>: Use given port number\n  --proxies <url1,[url2],...>: Relay connections through HTTP/SOCKS4 proxies\n  --data <hex string>: Append a custom payload to sent packets\n  --data-string <string>: Append a custom ASCII string to sent packets\n  --data-length <num>: Append random data to sent packets\n  --ip-options <options>: Send packets with specified ip options\n  --ttl <val>: Set IP time-to-live field\n  --spoof-mac <mac address/prefix/vendor name>: Spoof your MAC address\n  --badsum: Send packets with a bogus TCP/UDP/SCTP checksum\nOUTPUT:\n  -oN/-oX/-oS/-oG <file>: Output scan in normal, XML, s|<rIpt kIddi3,\n     and Grepable format, respectively, to the given filename.\n  -oA <basename>: Output in the three major formats at once\n  -v: Increase verbosity level (use -vv or more for greater effect)\n  -d: Increase debugging level (use -dd or more for greater effect)\n  --reason: Display the reason a port is in a particular state\n  --open: Only show open (or possibly open) ports\n  --packet-trace: Show all packets sent and received\n  --iflist: Print host interfaces and routes (for debugging)\n  --append-output: Append to rather than clobber specified output files\n  --resume <filename>: Resume an aborted scan\n  --noninteractive: Disable runtime interactions via keyboard\n  --stylesheet <path/URL>: XSL stylesheet to transform XML output to HTML\n  --webxml: Reference stylesheet from Nmap.Org for more portable XML\n  --no-stylesheet: Prevent associating of XSL stylesheet w/XML output\nMISC:\n  -6: Enable IPv6 scanning\n  -A: Enable OS detection, version detection, script scanning, and traceroute\n  --datadir <dirname>: Specify custom Nmap data file location\n  --send-eth/--send-ip: Send using raw ethernet frames or IP packets\n  --privileged: Assume that the user is fully privileged\n  --unprivileged: Assume the user lacks raw socket privileges\n  -V: Print version number\n  -h: Print this help summary page.\nEXAMPLES:\n  nmap -v -A scanme.nmap.org\n  nmap -v -sn 192.168.0.0/16 10.0.0.0/8\n  nmap -v -iR 10000 -Pn -p 80\nSEE THE MAN PAGE (https://nmap.org/book/man.html) FOR MORE OPTIONS AND EXAMPLES\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--append-output",
+   "--badsum",
+   "--data",
+   "--data-length",
+   "--data-string",
+   "--datadir",
+   "--dns-servers",
+   "--exclude",
+   "--exclude-ports",
+   "--excludefile",
+   "--host-timeout",
+   "--iflist",
+   "--ip-options",
+   "--max-rate",
+   "--max-retries",
+   "--max-scan-delay",
+   "--min-hostgroup",
+   "--min-parallelism",
+   "--min-rate",
+   "--min-rtt-timeout",
+   "--mtu",
+   "--no-stylesheet",
+   "--noninteractive",
+   "--open",
+   "--osscan-guess",
+   "--osscan-limit",
+   "--packet-trace",
+   "--port-ratio",
+   "--privileged",
+   "--proxies",
+   "--reason",
+   "--resume",
+   "--scan-delay",
+   "--scanflags",
+   "--script",
+   "--script-args",
+   "--script-args-file",
+   "--script-help",
+   "--script-trace",
+   "--script-updatedb",
+   "--send-eth",
+   "--send-ip",
+   "--source-port",
+   "--spoof-mac",
+   "--stylesheet",
+   "--system-dns",
+   "--top-ports",
+   "--traceroute",
+   "--ttl",
+   "--unprivileged",
+   "--version-all",
+   "--version-intensity",
+   "--version-light",
+   "--version-trace",
+   "--webxml",
+   "-6",
+   "-A",
+   "-D",
+   "-F",
+   "-O",
+   "-PE",
+   "-PO",
+   "-PS",
+   "-Pn",
+   "-R",
+   "-S",
+   "-T",
+   "-V",
+   "-b",
+   "-d",
+   "-e",
+   "-f",
+   "-g",
+   "-h",
+   "-iL",
+   "-iR",
+   "-n",
+   "-oA",
+   "-oG",
+   "-oN",
+   "-oS",
+   "-oX",
+   "-p",
+   "-r",
+   "-sC",
+   "-sI",
+   "-sL",
+   "-sN",
+   "-sO",
+   "-sS",
+   "-sU",
+   "-sV",
+   "-sY",
+   "-sn",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--append-output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Append to rather than clobber specified output files"
+   },
+   "--badsum": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send packets with a bogus TCP/UDP/SCTP checksum"
+   },
+   "--data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Append a custom payload to sent packets",
+    "metavar": "<hex string>"
+   },
+   "--data-length": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Append random data to sent packets",
+    "metavar": "<num>"
+   },
+   "--data-string": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Append a custom ASCII string to sent packets",
+    "metavar": "<string>"
+   },
+   "--datadir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify custom Nmap data file location",
+    "metavar": "<dirname>"
+   },
+   "--dns-servers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify custom DNS servers",
+    "metavar": "<serv1[,serv2],...>"
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude hosts/networks",
+    "metavar": "<host1[,host2][,host3],...>"
+   },
+   "--exclude-ports": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude the specified ports from scanning",
+    "metavar": "<port ranges>"
+   },
+   "--excludefile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude list from file",
+    "metavar": "<exclude_file>"
+   },
+   "--host-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Give up on target after this long",
+    "metavar": "<time>"
+   },
+   "--iflist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print host interfaces and routes (for debugging)"
+   },
+   "--ip-options": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send packets with specified ip options",
+    "metavar": "<options>"
+   },
+   "--max-rate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send packets no faster than <number> per second",
+    "metavar": "<number>"
+   },
+   "--max-retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Caps number of port scan probe retransmissions.",
+    "metavar": "<tries>"
+   },
+   "--max-scan-delay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Adjust delay between probes",
+    "metavar": "<time>"
+   },
+   "--min-hostgroup": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Parallel host scan group sizes"
+   },
+   "--min-parallelism": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Probe parallelization"
+   },
+   "--min-rate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send packets no slower than <number> per second",
+    "metavar": "<number>"
+   },
+   "--min-rtt-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specifies probe round trip time."
+   },
+   "--mtu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "fragment packets (optionally w/given MTU)",
+    "metavar": "<val>"
+   },
+   "--no-stylesheet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prevent associating of XSL stylesheet w/XML output"
+   },
+   "--noninteractive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable runtime interactions via keyboard"
+   },
+   "--open": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only show open (or possibly open) ports"
+   },
+   "--osscan-guess": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Guess OS more aggressively"
+   },
+   "--osscan-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Limit OS detection to promising targets"
+   },
+   "--packet-trace": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show all packets sent and received"
+   },
+   "--port-ratio": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan ports more common than <ratio>",
+    "metavar": "<ratio>"
+   },
+   "--privileged": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Assume that the user is fully privileged"
+   },
+   "--proxies": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Relay connections through HTTP/SOCKS4 proxies",
+    "metavar": "<url1,[url2],...>"
+   },
+   "--reason": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display the reason a port is in a particular state"
+   },
+   "--resume": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Resume an aborted scan",
+    "metavar": "<filename>"
+   },
+   "--scan-delay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Adjust delay between probes",
+    "metavar": "<time>"
+   },
+   "--scanflags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Customize TCP scan flags",
+    "metavar": "<flags>"
+   },
+   "--script": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "<Lua scripts> is a comma separated list of directories, script-files or script-categories",
+    "metavar": "<Lua scripts>"
+   },
+   "--script-args": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provide arguments to scripts",
+    "metavar": "<n1=v1,[n2=v2,...]>"
+   },
+   "--script-args-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provide NSE script args in a file"
+   },
+   "--script-help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show help about scripts. <Lua scripts> is a comma-separated list of script-files or script-categories.",
+    "metavar": "<Lua scripts>"
+   },
+   "--script-trace": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show all data sent and received"
+   },
+   "--script-updatedb": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Update the script database."
+   },
+   "--send-eth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send using raw ethernet frames or IP packets"
+   },
+   "--send-ip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send using raw ethernet frames or IP packets"
+   },
+   "--source-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use given port number",
+    "metavar": "<portnum>"
+   },
+   "--spoof-mac": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Spoof your MAC address",
+    "metavar": "<mac address/prefix/vendor name>"
+   },
+   "--stylesheet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "XSL stylesheet to transform XML output to HTML",
+    "metavar": "<path/URL>"
+   },
+   "--system-dns": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use OS's DNS resolver"
+   },
+   "--top-ports": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan <number> most common ports",
+    "metavar": "<number>"
+   },
+   "--traceroute": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Trace hop path to each host"
+   },
+   "--ttl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set IP time-to-live field",
+    "metavar": "<val>"
+   },
+   "--unprivileged": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Assume the user lacks raw socket privileges"
+   },
+   "--version-all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Try every single probe (intensity 9)"
+   },
+   "--version-intensity": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set from 0 (light) to 9 (try all probes)",
+    "metavar": "<level>"
+   },
+   "--version-light": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Limit to most likely probes (intensity 2)"
+   },
+   "--version-trace": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show detailed version scan activity (for debugging)"
+   },
+   "--webxml": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Reference stylesheet from Nmap.Org for more portable XML"
+   },
+   "-6": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable IPv6 scanning"
+   },
+   "-A": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable OS detection, version detection, script scanning, and traceroute"
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Cloak a scan with decoys",
+    "metavar": "<decoy1,decoy2[,ME],...>"
+   },
+   "-F": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Fast mode - Scan fewer ports than the default scan"
+   },
+   "-O": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable OS detection"
+   },
+   "-PE": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP echo, timestamp, and netmask request discovery probes"
+   },
+   "-PO": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IP Protocol Ping",
+    "metavar": "[protocol list]"
+   },
+   "-PS": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP SYN, TCP ACK, UDP or SCTP discovery to given ports"
+   },
+   "-Pn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Treat all hosts as online -- skip host discovery"
+   },
+   "-R": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Never do DNS resolution/Always resolve [default: sometimes]"
+   },
+   "-S": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Spoof source address",
+    "metavar": "<IP_Address>"
+   },
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set timing template (higher is faster)",
+    "metavar": "<0-5>"
+   },
+   "-V": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version number"
+   },
+   "-b": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "FTP bounce scan",
+    "metavar": "<FTP relay host>"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Increase debugging level (use -dd or more for greater effect)"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use specified interface",
+    "metavar": "<iface>"
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "fragment packets (optionally w/given MTU)",
+    "metavar": "<val>"
+   },
+   "-g": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use given port number",
+    "metavar": "<portnum>"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print this help summary page."
+   },
+   "-iL": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Input from list of hosts/networks",
+    "metavar": "<inputfilename>"
+   },
+   "-iR": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Choose random targets",
+    "metavar": "<num hosts>"
+   },
+   "-n": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Never do DNS resolution/Always resolve [default: sometimes]"
+   },
+   "-oA": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in the three major formats at once",
+    "metavar": "<basename>"
+   },
+   "-oG": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+    "metavar": "<file>"
+   },
+   "-oN": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+    "metavar": "<file>"
+   },
+   "-oS": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+    "metavar": "<file>"
+   },
+   "-oX": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output scan in normal, XML, s|<rIpt kIddi3, and Grepable format, respectively, to the given filename.",
+    "metavar": "<file>"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only scan specified ports Ex: -p22; -p1-65535; -p U:53,111,137,T:21-25,80,139,8080,S:9",
+    "metavar": "<port ranges>"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan ports sequentially - don't randomize"
+   },
+   "-sC": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "equivalent to --script=default"
+   },
+   "-sI": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Idle scan",
+    "metavar": "<zombie host[:probeport]>"
+   },
+   "-sL": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List Scan - simply list targets to scan"
+   },
+   "-sN": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP Null, FIN, and Xmas scans"
+   },
+   "-sO": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IP protocol scan"
+   },
+   "-sS": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP SYN/Connect()/ACK/Window/Maimon scans"
+   },
+   "-sU": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "UDP Scan"
+   },
+   "-sV": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Probe open ports to determine service/version info"
+   },
+   "-sY": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "SCTP INIT/COOKIE-ECHO scans"
+   },
+   "-sn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ping Scan - disable port scan"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Increase verbosity level (use -vv or more for greater effect)"
+   }
+  },
+  "subcommands": [],
+  "subcommand_flags": {
+   "--badsum": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 88,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-opt-b3ac5cb3",
+    "argv": [
+     "nmap",
+     "--data-length",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 512,
+    "flag": "--data-length",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-9378837a",
+    "argv": [
+     "nmap",
+     "--exclude-ports",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--exclude-ports",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-524048fa",
+    "argv": [
+     "nmap",
+     "--host-timeout",
+     "1s",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--host-timeout",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-581b1ef3",
+    "argv": [
+     "nmap",
+     "--max-rate",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--max-rate",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-96b2d7b8",
+    "argv": [
+     "nmap",
+     "--max-scan-delay",
+     "1s",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--max-scan-delay",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-22213d98",
+    "argv": [
+     "nmap",
+     "--min-parallelism",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "--min-parallelism"
+   },
+   {
+    "id": "t-opt-45ae0231",
+    "argv": [
+     "nmap",
+     "--min-rate",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--min-rate",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-9fa2ff22",
+    "argv": [
+     "nmap",
+     "--min-rtt-timeout",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 1,
+    "output_bytes": 53,
+    "flag": "--min-rtt-timeout"
+   },
+   {
+    "id": "t-opt-4b1c4ffe",
+    "argv": [
+     "nmap",
+     "--no-stylesheet",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--no-stylesheet",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-4616ab75",
+    "argv": [
+     "nmap",
+     "--noninteractive",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--noninteractive",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-f8987abf",
+    "argv": [
+     "nmap",
+     "--open",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--open",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-1ce5e603",
+    "argv": [
+     "nmap",
+     "--osscan-guess",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--osscan-guess",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-f808027e",
+    "argv": [
+     "nmap",
+     "--osscan-limit",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--osscan-limit",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-0600fb10",
+    "argv": [
+     "nmap",
+     "--packet-trace",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--packet-trace",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-5d0243f2",
+    "argv": [
+     "nmap",
+     "--privileged",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--privileged",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-e917d8bd",
+    "argv": [
+     "nmap",
+     "--reason",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--reason",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-60dc3791",
+    "argv": [
+     "nmap",
+     "--scan-delay",
+     "1s",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--scan-delay",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-3a3efcd9",
+    "argv": [
+     "nmap",
+     "--script-args-file",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 132,
+    "flag": "--script-args-file",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-1fe35014",
+    "argv": [
+     "nmap",
+     "--script-trace",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--script-trace",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-92c9d328",
+    "argv": [
+     "nmap",
+     "--script-updatedb",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 1,
+    "output_bytes": 1074,
+    "flag": "--script-updatedb"
+   },
+   {
+    "id": "t-opt-efe7a5df",
+    "argv": [
+     "nmap",
+     "--send-eth",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--send-eth",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-f73eab44",
+    "argv": [
+     "nmap",
+     "--send-ip",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--send-ip",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-b76591f2",
+    "argv": [
+     "nmap",
+     "--system-dns",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--system-dns",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-4780c068",
+    "argv": [
+     "nmap",
+     "--top-ports",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--top-ports",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-660036a2",
+    "argv": [
+     "nmap",
+     "--traceroute",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 112,
+    "flag": "--traceroute"
+   },
+   {
+    "id": "t-opt-6def6779",
+    "argv": [
+     "nmap",
+     "--unprivileged",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--unprivileged",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-c85a8a34",
+    "argv": [
+     "nmap",
+     "--version-all",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--version-all",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-cf5a2a27",
+    "argv": [
+     "nmap",
+     "--version-intensity",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--version-intensity",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-6b1a314e",
+    "argv": [
+     "nmap",
+     "--version-light",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--version-light",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-ec9b585d",
+    "argv": [
+     "nmap",
+     "--webxml",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "--webxml",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-e1683721",
+    "argv": [
+     "nmap",
+     "-6",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": -6,
+    "output_bytes": 169,
+    "flag": "-6"
+   },
+   {
+    "id": "t-opt-4766cfe7",
+    "argv": [
+     "nmap",
+     "-A",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-A",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-371dbdf5",
+    "argv": [
+     "nmap",
+     "-F",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 168,
+    "flag": "-F"
+   },
+   {
+    "id": "t-opt-dfc1adee",
+    "argv": [
+     "nmap",
+     "-PE",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-PE",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-6ffed143",
+    "argv": [
+     "nmap",
+     "-PS",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-PS",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-ffd450e9",
+    "argv": [
+     "nmap",
+     "-R",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-R",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-776655e5",
+    "argv": [
+     "nmap",
+     "-d",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 708,
+    "flag": "-d",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-e869e447",
+    "argv": [
+     "nmap",
+     "-iR",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.5",
+    "exit_code": 0,
+    "output_bytes": 165,
+    "flag": "-iR",
+    "stability": 0.5
+   },
+   {
+    "id": "t-opt-d2032a93",
+    "argv": [
+     "nmap",
+     "-p",
+     "1",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 168,
+    "flag": "-p"
+   },
+   {
+    "id": "t-opt-b61480a5",
+    "argv": [
+     "nmap",
+     "-r",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-r",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-96045f75",
+    "argv": [
+     "nmap",
+     "-sC",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-sC",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-6c0f6638",
+    "argv": [
+     "nmap",
+     "-sN",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "-sN"
+   },
+   {
+    "id": "t-opt-eb18942d",
+    "argv": [
+     "nmap",
+     "-sO",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "-sO"
+   },
+   {
+    "id": "t-opt-4545447e",
+    "argv": [
+     "nmap",
+     "-sS",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "-sS"
+   },
+   {
+    "id": "t-opt-994a26e6",
+    "argv": [
+     "nmap",
+     "-sU",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "-sU"
+   },
+   {
+    "id": "t-opt-353f9eec",
+    "argv": [
+     "nmap",
+     "-sV",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-sV",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-f8e9bcab",
+    "argv": [
+     "nmap",
+     "-sY",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "-sY"
+   },
+   {
+    "id": "t-opt-da075400",
+    "argv": [
+     "nmap",
+     "-sn",
+     "-sL",
+     "-n",
+     "192.0.2.0/29"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "exit_code": 0,
+    "output_bytes": 380,
+    "flag": "-sn",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-36112c76",
+    "argv": [
+     "nmap",
+     "--data-length",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-647e81c1",
+    "argv": [
+     "nmap",
+     "--exclude-ports",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-2dfe5ed1",
+    "argv": [
+     "nmap",
+     "--host-timeout",
+     "1s",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-9cc0b139",
+    "argv": [
+     "nmap",
+     "--max-rate",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-7ff675fa",
+    "argv": [
+     "nmap",
+     "--max-scan-delay",
+     "1s",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-fb48bcbc",
+    "argv": [
+     "nmap",
+     "--min-parallelism",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-1923cebd",
+    "argv": [
+     "nmap",
+     "--min-rate",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-bd59ad51",
+    "argv": [
+     "nmap",
+     "--min-rtt-timeout",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-1d41f347",
+    "argv": [
+     "nmap",
+     "--no-stylesheet",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-0e55f6e8",
+    "argv": [
+     "nmap",
+     "--noninteractive",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-6a05e25a",
+    "argv": [
+     "nmap",
+     "--open",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-9d818311",
+    "argv": [
+     "nmap",
+     "--osscan-guess",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-0f1cd967",
+    "argv": [
+     "nmap",
+     "--osscan-limit",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-ae423081",
+    "argv": [
+     "nmap",
+     "--packet-trace",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-ad671c86",
+    "argv": [
+     "nmap",
+     "--privileged",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-22e546e1",
+    "argv": [
+     "nmap",
+     "--reason",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-592f8223",
+    "argv": [
+     "nmap",
+     "--scan-delay",
+     "1s",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-e4a37f6b",
+    "argv": [
+     "nmap",
+     "--script-args-file",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-0a93fcb0",
+    "argv": [
+     "nmap",
+     "--script-trace",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-1432e93f",
+    "argv": [
+     "nmap",
+     "--script-updatedb",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-4b5a221f",
+    "argv": [
+     "nmap",
+     "--send-eth",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-167abd5d",
+    "argv": [
+     "nmap",
+     "--send-ip",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-7b224c1e",
+    "argv": [
+     "nmap",
+     "--system-dns",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-06f8ead1",
+    "argv": [
+     "nmap",
+     "--top-ports",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-86da0eb8",
+    "argv": [
+     "nmap",
+     "--traceroute",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-f3ea932d",
+    "argv": [
+     "nmap",
+     "--unprivileged",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-636799fc",
+    "argv": [
+     "nmap",
+     "--version-all",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-fc8981ae",
+    "argv": [
+     "nmap",
+     "--version-intensity",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-c9e2a598",
+    "argv": [
+     "nmap",
+     "--version-light",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-e14c8da6",
+    "argv": [
+     "nmap",
+     "--webxml",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-bbf2b42a",
+    "argv": [
+     "nmap",
+     "-6",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-da220d04",
+    "argv": [
+     "nmap",
+     "-A",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-26345a64",
+    "argv": [
+     "nmap",
+     "-F",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-73dc21c1",
+    "argv": [
+     "nmap",
+     "-PE",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-17376047",
+    "argv": [
+     "nmap",
+     "-PS",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-77306ca0",
+    "argv": [
+     "nmap",
+     "-R",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-0e2e81ae",
+    "argv": [
+     "nmap",
+     "-d",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-3c9a3f2e",
+    "argv": [
+     "nmap",
+     "-iR",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-92f6352e",
+    "argv": [
+     "nmap",
+     "-p",
+     "1",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-aec95cb1",
+    "argv": [
+     "nmap",
+     "-r",
+     "-sT",
+     "-Pn",
+     "-n",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Nmap",
+ "repo": "nmap/nmap",
+ "head_sha": "7b0c3025c53700b6daa95a82ab9b674b6c26f3bd",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T06:14:59.852568+00:00"
+}

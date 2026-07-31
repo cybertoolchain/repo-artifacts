@@ -21,6 +21,9 @@
    "help": "number of pages for perf buffer, defaults to %(default)s",
    "kind": "option",
    "default": "64",
+   "aliases": [
+    "-b"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
    "last_tag": "v0.0.1",
@@ -34,19 +37,69 @@
     "evidence_source_lost"
    ]
   },
-  "--capture": {
-   "source": "documented",
-   "help": "This flag is used to specify which events should be captured by Tracee, so it cannot be set through the configuration file.",
+  "--bypass-flags": {
+   "source": "parsed",
+   "help": "\\t\\t\\tPrint tracee bypass flags",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-b"
+   ],
+   "first_tag": "v0.24.0-rc",
+   "first_date": "2025-11-14T10:20:39-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/evt/cmd/trigger/cobra.go"
+  },
+  "--cache": {
+   "source": "parsed",
+   "help": "[type|mem-cache-size]\\t\\tControl event caching queues",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-a"
+   ],
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
-   "last_tag": "v0.16.2",
-   "last_date": "2023-07-20T15:37:26+03:00",
+   "last_tag": "v0.23.2",
+   "last_date": "2025-07-18T10:21:55-03:00",
    "live": false,
    "attribution": "own",
-   "source_path": "docs/docs/config/overview.md",
-   "doc_path": "docs/docs/config/overview.md"
+   "source_path": "cmd/tracee/cmd/root.go"
+  },
+  "--capabilities": {
+   "source": "parsed",
+   "help": "[bypass|add|drop]\\t\\t\\tDefine capabilities for tracee to run with",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-C"
+   ],
+   "first_tag": "v0.14.0",
+   "first_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go"
+  },
+  "--capture": {
+   "source": "parsed",
+   "help": "[write|exec|network...]\\t\\tCapture artifacts that were written, executed or found to be suspicious",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-c"
+   ],
+   "first_tag": "v0.14.0",
+   "first_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go"
   },
   "--config": {
    "source": "parsed",
@@ -66,6 +119,9 @@
    "help": "only trace newly created containers",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-c"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
    "last_tag": "v0.0.1",
@@ -95,22 +151,35 @@
    "source_path": "docs/docs/flags/containers.1.md",
    "doc_path": "docs/docs/flags/containers.1.md"
   },
+  "--cri": {
+   "source": "parsed",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.19.0-rc",
+   "first_date": "2023-11-03T00:16:47-03:00",
+   "last_tag": "v0.23.2",
+   "last_date": "2025-07-18T10:21:55-03:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go"
+  },
   "--crs": {
    "source": "parsed",
-   "help": "Define connected container runtimes",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
    "kind": "option",
    "default": null,
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
-   "last_tag": "v0.14.0",
-   "last_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.18.1",
+   "last_date": "2023-10-18T15:19:30-03:00",
    "live": false,
    "attribution": "own",
    "source_path": "cmd/tracee/cmd/root.go"
   },
   "--dnscache": {
-   "source": "documented",
-   "help": "",
+   "source": "parsed",
+   "help": "\\t\\t\\t\\t\\tEnable DNS Cache",
    "kind": "option",
    "default": null,
    "first_tag": "v0.20.0-rc",
@@ -119,8 +188,9 @@
    "last_date": "2025-11-18T20:47:50-03:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/docs/advanced/data-sources/builtin/dns.md",
-   "doc_path": "docs/docs/advanced/data-sources/builtin/dns.md"
+   "source_path": "cmd/tracee/cmd/root.go",
+   "doc_path": "docs/docs/advanced/data-sources/builtin/dns.md",
+   "also_documented": true
   },
   "--ebpf": {
    "source": "parsed",
@@ -141,40 +211,36 @@
    ]
   },
   "--event": {
-   "source": "documented",
-   "help": "allows you to specify a specific event to trace. You can use this flag multiple times, for example `--event execve --event openat`.",
+   "source": "parsed",
+   "help": "<name>...\\t\\tSelect event to trigger",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-e"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-18T14:29:04+03:00",
-   "live": false,
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "README.md",
-   "doc_path": "README.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/evt/cmd/trigger/cobra.go"
   },
   "--events": {
    "source": "parsed",
-   "help": "trace only the specified events and syscalls (default: trace all)",
+   "help": "Define which signature events to load",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-e"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-18T14:29:04+03:00",
-   "live": false,
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "start.py",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "evidence_source_lost"
-   ]
+   "source_path": "cmd/tracee/cmd/analyze.go"
   },
   "--exec-env": {
    "source": "parsed",
@@ -195,18 +261,22 @@
    ]
   },
   "--filter": {
-   "source": "documented",
-   "help": "This flag is used to specify an event filter for Tracee via CLI and via policy file loading mechanism (the --policy flag), so it cannot be set through the configuration file.",
+   "source": "parsed",
+   "help": "Select events to trace by defining filter expressions",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-f"
+   ],
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
    "last_tag": "v0.16.2",
    "last_date": "2023-07-20T15:37:26+03:00",
    "live": false,
    "attribution": "own",
-   "source_path": "docs/docs/config/overview.md",
-   "doc_path": "docs/docs/config/overview.md"
+   "source_path": "cmd/tracee/cmd/root.go",
+   "doc_path": "docs/docs/config/overview.md",
+   "also_documented": true
   },
   "--health-probe-bind-address": {
    "source": "parsed",
@@ -220,6 +290,22 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/tracee-operator/main.go"
+  },
+  "--help": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-h"
+   ],
+   "first_tag": "v0.18.0-rc",
+   "first_date": "2023-09-28T18:12:36-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go"
   },
   "--install-path": {
    "source": "parsed",
@@ -239,6 +325,9 @@
    "help": "save events in json format",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-j"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
    "last_tag": "v0.0.1",
@@ -270,6 +359,9 @@
    "help": "list events",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-l"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-18T14:29:04+03:00",
    "last_tag": "v0.0.1",
@@ -284,6 +376,22 @@
     "untracked_releases",
     "evidence_source_lost"
    ]
+  },
+  "--log": {
+   "source": "parsed",
+   "help": "Logger options [debug|info|warn...]",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v0.14.0",
+   "first_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/analyze.go"
   },
   "--metrics-bind-address": {
    "source": "parsed",
@@ -324,6 +432,22 @@
    "attribution": "own",
    "source_path": "cmd/tracee/cmd/root.go"
   },
+  "--ops": {
+   "source": "parsed",
+   "help": "<number>...\\t\\tNumber of operations to perform",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-o"
+   ],
+   "first_tag": "v0.24.0-rc",
+   "first_date": "2025-11-14T10:20:39-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/evt/cmd/trigger/cobra.go"
+  },
   "--output": {
    "source": "parsed",
    "help": "Output destination (file, webhook, fluentbit) and format (json, gotemplate=, table) set as <output_path>:<format>",
@@ -336,6 +460,22 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/tracee/cmd/analyze.go"
+  },
+  "--perf-buffer-size": {
+   "source": "parsed",
+   "help": "<size>\\t\\t\\t\\tSize, in pages, of the internal perf ring buffer used to submit events from the kernel",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-b"
+   ],
+   "first_tag": "v0.14.0",
+   "first_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go"
   },
   "--pipeline-channel-size": {
    "source": "parsed",
@@ -351,32 +491,38 @@
    "source_path": "cmd/tracee/cmd/root.go"
   },
   "--policy": {
-   "source": "documented",
-   "help": "This flag is used to specify a policy file for Tracee, so it cannot be set through the configuration file.",
+   "source": "parsed",
+   "help": "[file|dir]\\t\\t\\t\\tPath to a policy or directory with policies",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-p"
+   ],
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
-   "last_tag": "v0.16.2",
-   "last_date": "2023-07-20T15:37:26+03:00",
-   "live": false,
-   "attribution": "own",
-   "source_path": "docs/docs/config/overview.md",
-   "doc_path": "docs/docs/config/overview.md"
-  },
-  "--proctree": {
-   "source": "documented",
-   "help": "",
-   "kind": "option",
-   "default": null,
-   "first_tag": "v0.18.1",
-   "first_date": "2023-10-18T15:19:30-03:00",
    "last_tag": "v0.24.1",
    "last_date": "2025-11-18T20:47:50-03:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/docs/advanced/data-sources/builtin/process-tree.md",
-   "doc_path": "docs/docs/advanced/data-sources/builtin/process-tree.md"
+   "source_path": "cmd/tracee/cmd/root.go"
+  },
+  "--proctree": {
+   "source": "parsed",
+   "help": "[source=[events|signals|both]...]\\tControl process tree options",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "v0.18.0-rc",
+   "first_date": "2023-09-28T18:12:36-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/root.go",
+   "doc_path": "docs/docs/advanced/data-sources/builtin/process-tree.md",
+   "also_documented": true
   },
   "--q": {
    "source": "parsed",
@@ -411,9 +557,25 @@
    "default": null,
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
-   "last_tag": "v0.14.0",
-   "last_date": "2023-05-03T02:13:12-03:00",
+   "last_tag": "v0.22.6",
+   "last_date": "2025-02-18T15:43:08-03:00",
    "live": false,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/analyze.go"
+  },
+  "--scope": {
+   "source": "parsed",
+   "help": "[uid|comm|container...]\\t\\tSelect workloads to trace by defining filter expressions",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-s"
+   ],
+   "first_tag": "v0.17.0-rc",
+   "first_date": "2023-07-25T12:11:08-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
    "attribution": "own",
    "source_path": "cmd/tracee/cmd/root.go"
   },
@@ -437,16 +599,32 @@
   },
   "--signatures-dir": {
    "source": "parsed",
-   "help": "Directory where to search for signatures in CEL (.yaml), OPA (.rego), and Go plugin (.so) formats",
+   "help": "Directory where to search for signatures in Go plugin (.so) format",
    "kind": "option",
-   "default": "",
+   "default": null,
    "first_tag": "v0.14.0",
    "first_date": "2023-05-03T02:13:12-03:00",
-   "last_tag": "v0.15.1",
-   "last_date": "2023-06-13T16:14:37-03:00",
-   "live": false,
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/tracee/cmd/list.go"
+   "source_path": "cmd/tracee/cmd/analyze.go"
+  },
+  "--sleep": {
+   "source": "parsed",
+   "help": "<duration>...\\t\\tSleep time between operations",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-s"
+   ],
+   "first_tag": "v0.24.0-rc",
+   "first_date": "2025-11-14T10:20:39-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/evt/cmd/trigger/cobra.go"
   },
   "--source": {
    "source": "parsed",
@@ -486,6 +664,38 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/tracee-operator/main.go"
+  },
+  "--wait-signal": {
+   "source": "parsed",
+   "help": "\\t\\t\\tWait for start signal (SIGUSR1)",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-w"
+   ],
+   "first_tag": "v0.24.0-rc",
+   "first_date": "2025-11-14T10:20:39-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/evt/cmd/trigger/cobra.go"
+  },
+  "--wide": {
+   "source": "parsed",
+   "help": "no wrapping of output lines",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-w"
+   ],
+   "first_tag": "v0.18.0-rc",
+   "first_date": "2023-09-28T18:12:36-03:00",
+   "last_tag": "v0.24.1",
+   "last_date": "2025-11-18T20:47:50-03:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/tracee/cmd/list.go"
   },
   "-extldflags": {
    "source": "documented",
@@ -1042,7 +1252,27 @@
    "date": "2023-05-03T02:13:12-03:00",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "Size, in pages, of the internal perf ring buffer used to send blobs from the kernel",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cache",
+   "event": "added",
+   "tag": "v0.14.0",
+   "date": "2023-05-03T02:13:12-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Control event caching queues",
+   "attribution": "own"
+  },
+  {
+   "flag": "--capabilities",
+   "event": "added",
+   "tag": "v0.14.0",
+   "date": "2023-05-03T02:13:12-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Define capabilities for tracee to run with",
    "attribution": "own"
   },
   {
@@ -1050,9 +1280,9 @@
    "event": "added",
    "tag": "v0.14.0",
    "date": "2023-05-03T02:13:12-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify which events should be captured by Tracee, so it cannot be set through the configuration file.",
+   "help": "Capture artifacts that were written, executed or found to be suspicious",
    "attribution": "own"
   },
   {
@@ -1090,9 +1320,9 @@
    "event": "added",
    "tag": "v0.14.0",
    "date": "2023-05-03T02:13:12-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify an event filter for Tracee via CLI and via policy file loading mechanism (the --policy flag), so it cannot be set through the configuration file.",
+   "help": "Select events to trace by defining filter expressions",
    "attribution": "own"
   },
   {
@@ -1106,13 +1336,43 @@
    "attribution": "own"
   },
   {
+   "flag": "--log",
+   "event": "added",
+   "tag": "v0.14.0",
+   "date": "2023-05-03T02:13:12-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Logger options",
+   "attribution": "own"
+  },
+  {
+   "flag": "--output",
+   "event": "added",
+   "tag": "v0.14.0",
+   "date": "2023-05-03T02:13:12-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Control how and where output is printed",
+   "attribution": "own"
+  },
+  {
+   "flag": "--perf-buffer-size",
+   "event": "added",
+   "tag": "v0.14.0",
+   "date": "2023-05-03T02:13:12-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Size, in pages, of the internal perf ring buffer used to submit events from the kernel",
+   "attribution": "own"
+  },
+  {
    "flag": "--policy",
    "event": "added",
    "tag": "v0.14.0",
    "date": "2023-05-03T02:13:12-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify a policy file for Tracee, so it cannot be set through the configuration file.",
+   "help": "Path to a policy or directory with policies",
    "attribution": "own"
   },
   {
@@ -1166,23 +1426,13 @@
    "attribution": "own"
   },
   {
-   "flag": "--crs",
-   "event": "removed",
-   "tag": "v0.14.1",
-   "date": "2023-05-10T00:44:29-03:00",
+   "flag": "--event",
+   "event": "added",
+   "tag": "v0.16.0-rc",
+   "date": "2023-06-26T23:26:15-03:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Define connected container runtimes",
-   "attribution": "own"
-  },
-  {
-   "flag": "--rego",
-   "event": "removed",
-   "tag": "v0.14.1",
-   "date": "2023-05-10T00:44:29-03:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Control event rego settings",
+   "help": "Define which signature events to load",
    "attribution": "own"
   },
   {
@@ -1196,23 +1446,33 @@
    "attribution": "own"
   },
   {
-   "flag": "--signatures-dir",
-   "event": "removed",
-   "tag": "v0.16.0-rc",
-   "date": "2023-06-26T23:26:15-03:00",
+   "flag": "--events",
+   "event": "added",
+   "tag": "v0.17.0-rc",
+   "date": "2023-07-25T12:11:08-03:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Directory where to search for signatures in CEL (.yaml), OPA (.rego), and Go plugin (.so) formats",
+   "help": "Define which signature events to load",
    "attribution": "own"
   },
   {
-   "flag": "--capture",
+   "flag": "--scope",
+   "event": "added",
+   "tag": "v0.17.0-rc",
+   "date": "2023-07-25T12:11:08-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Select workloads to trace by defining filter expressions",
+   "attribution": "own"
+  },
+  {
+   "flag": "--event",
    "event": "removed",
    "tag": "v0.17.0-rc",
    "date": "2023-07-25T12:11:08-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify which events should be captured by Tracee, so it cannot be set through the configuration file.",
+   "help": "Define which signature events to load",
    "attribution": "own"
   },
   {
@@ -1220,19 +1480,53 @@
    "event": "removed",
    "tag": "v0.17.0-rc",
    "date": "2023-07-25T12:11:08-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify an event filter for Tracee via CLI and via policy file loading mechanism (the --policy flag), so it cannot be set through the configuration file.",
+   "help": "Select events to trace by defining filter expressions",
    "attribution": "own"
   },
   {
-   "flag": "--policy",
-   "event": "removed",
-   "tag": "v0.17.0-rc",
-   "date": "2023-07-25T12:11:08-03:00",
-   "source": "documented",
+   "flag": "--blob-perf-buffer-size",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
    "kind": "option",
-   "help": "This flag is used to specify a policy file for Tracee, so it cannot be set through the configuration file.",
+   "help": "<size>\\t\\t\\t\\tSize, in pages, of the internal perf ring buffer used to send blobs from the kernel",
+   "previous_help": "Size, in pages, of the internal perf ring buffer used to send blobs from the kernel",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cache",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[type|mem-cache-size]\\t\\tControl event caching queues",
+   "previous_help": "Control event caching queues",
+   "attribution": "own"
+  },
+  {
+   "flag": "--capabilities",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[bypass|add|drop]\\t\\t\\tDefine capabilities for tracee to run with",
+   "previous_help": "Define capabilities for tracee to run with",
+   "attribution": "own"
+  },
+  {
+   "flag": "--capture",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[write|exec|network...]\\t\\tCapture artifacts that were written, executed or found to be suspicious",
+   "previous_help": "Capture artifacts that were written, executed or found to be suspicious",
    "attribution": "own"
   },
   {
@@ -1258,6 +1552,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--crs",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
+   "previous_help": "Define connected container runtimes",
+   "attribution": "own"
+  },
+  {
    "flag": "--install-path",
    "event": "help_changed",
    "tag": "v0.17.0",
@@ -1269,13 +1574,98 @@
    "attribution": "own"
   },
   {
-   "flag": "--proctree",
+   "flag": "--log",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[debug|info|warn...]\\t\\tLogger options",
+   "previous_help": "Logger options",
+   "attribution": "own"
+  },
+  {
+   "flag": "--output",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[json|none|webhook...]\\t\\tControl how and where output is printed",
+   "previous_help": "Control how and where output is printed",
+   "attribution": "own"
+  },
+  {
+   "flag": "--perf-buffer-size",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<size>\\t\\t\\t\\tSize, in pages, of the internal perf ring buffer used to submit events from the kernel",
+   "previous_help": "Size, in pages, of the internal perf ring buffer used to submit events from the kernel",
+   "attribution": "own"
+  },
+  {
+   "flag": "--policy",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[file|dir]\\t\\t\\t\\tPath to a policy or directory with policies",
+   "previous_help": "Path to a policy or directory with policies",
+   "attribution": "own"
+  },
+  {
+   "flag": "--scope",
+   "event": "help_changed",
+   "tag": "v0.17.0",
+   "date": "2023-07-28T14:15:50-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[uid|comm|container...]\\t\\tSelect workloads to trace by defining filter expressions",
+   "previous_help": "Select workloads to trace by defining filter expressions",
+   "attribution": "own"
+  },
+  {
+   "flag": "--help",
    "event": "added",
-   "tag": "v0.18.1",
-   "date": "2023-10-18T15:19:30-03:00",
-   "source": "documented",
+   "tag": "v0.18.0-rc",
+   "date": "2023-09-28T18:12:36-03:00",
+   "source": "parsed",
    "kind": "option",
    "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--proctree",
+   "event": "added",
+   "tag": "v0.18.0-rc",
+   "date": "2023-09-28T18:12:36-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[process|thread]\\t\\t\\tControl process tree options",
+   "attribution": "own"
+  },
+  {
+   "flag": "--wide",
+   "event": "added",
+   "tag": "v0.18.0-rc",
+   "date": "2023-09-28T18:12:36-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "no wrapping of output lines",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cri",
+   "event": "added",
+   "tag": "v0.19.0-rc",
+   "date": "2023-11-03T00:16:47-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
    "attribution": "own"
   },
   {
@@ -1459,13 +1849,45 @@
    "attribution": "own"
   },
   {
+   "flag": "--crs",
+   "event": "removed",
+   "tag": "v0.19.0-rc",
+   "date": "2023-11-03T00:16:47-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
+   "attribution": "own"
+  },
+  {
+   "flag": "--signatures-dir",
+   "event": "help_changed",
+   "tag": "v0.19.0-rc",
+   "date": "2023-11-03T00:16:47-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Directory where to search for signatures in OPA (.rego) and Go plugin (.so) formats",
+   "previous_help": "Directory where to search for signatures in CEL (.yaml), OPA (.rego), and Go plugin (.so) formats",
+   "attribution": "own"
+  },
+  {
    "flag": "--dnscache",
    "event": "added",
    "tag": "v0.20.0-rc",
    "date": "2024-02-08T13:52:56-03:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "\\t\\t\\t\\t\\tEnable DNS Cache",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log",
+   "event": "help_changed",
+   "tag": "v0.21.0-rc",
+   "date": "2024-04-26T19:36:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Logger options [debug|info|warn...]",
+   "previous_help": "[debug|info|warn...]\\t\\tLogger options",
    "attribution": "own"
   },
   {
@@ -1479,16 +1901,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--output",
-   "event": "added",
-   "tag": "v0.23.0-rc",
-   "date": "2025-01-20T12:07:24-03:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Output destination (file, webhook, fluentbit) and format (json, gotemplate=, table) set as <output_path>:<format>",
-   "attribution": "own"
-  },
-  {
    "flag": "--source",
    "event": "added",
    "tag": "v0.23.0-rc",
@@ -1496,6 +1908,16 @@
    "source": "parsed",
    "kind": "option",
    "help": "Source file to analyze (required). Currently only JSON is supported.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--rego",
+   "event": "removed",
+   "tag": "v0.23.0-rc",
+   "date": "2025-01-20T12:07:24-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Control event rego settings",
    "attribution": "own"
   },
   {
@@ -1529,6 +1951,49 @@
    "attribution": "own"
   },
   {
+   "flag": "--output",
+   "event": "help_changed",
+   "tag": "v0.23.0-rc",
+   "date": "2025-01-20T12:07:24-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Output destination (file, webhook, fluentbit) and format (json, gotemplate=, table) set as <output_path>:<format>",
+   "previous_help": "[json|none|webhook...]\\t\\tControl how and where output is printed",
+   "attribution": "own"
+  },
+  {
+   "flag": "--signatures-dir",
+   "event": "help_changed",
+   "tag": "v0.23.0-rc",
+   "date": "2025-01-20T12:07:24-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Directory where to search for signatures in Go plugin (.so) format",
+   "previous_help": "Directory where to search for signatures in OPA (.rego) and Go plugin (.so) formats",
+   "attribution": "own"
+  },
+  {
+   "flag": "--proctree",
+   "event": "help_changed",
+   "tag": "v0.23.0",
+   "date": "2025-02-19T11:09:59-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[source=[events|signals|both]...]\\tControl process tree options",
+   "previous_help": "[process|thread]\\t\\t\\tControl process tree options",
+   "attribution": "own"
+  },
+  {
+   "flag": "--bypass-flags",
+   "event": "added",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "\\t\\t\\tPrint tracee bypass flags",
+   "attribution": "own"
+  },
+  {
    "flag": "--containers",
    "event": "added",
    "tag": "v0.24.0-rc",
@@ -1539,6 +2004,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--event",
+   "event": "added",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<name>...\\t\\tSelect event to trigger",
+   "attribution": "own"
+  },
+  {
    "flag": "--no-signatures",
    "event": "added",
    "tag": "v0.24.0-rc",
@@ -1546,6 +2021,16 @@
    "source": "parsed",
    "kind": "option",
    "help": "\\t\\t\\t\\t\\tDisable signature processing while keeping the same events loaded (for performance testing)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--ops",
+   "event": "added",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<number>...\\t\\tNumber of operations to perform",
    "attribution": "own"
   },
   {
@@ -1566,6 +2051,26 @@
    "source": "parsed",
    "kind": "option",
    "help": "Suppress output, only return exit code",
+   "attribution": "own"
+  },
+  {
+   "flag": "--sleep",
+   "event": "added",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<duration>...\\t\\tSleep time between operations",
+   "attribution": "own"
+  },
+  {
+   "flag": "--wait-signal",
+   "event": "added",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "\\t\\t\\tWait for start signal (SIGUSR1)",
    "attribution": "own"
   },
   {
@@ -1679,6 +2184,26 @@
    "attribution": "own"
   },
   {
+   "flag": "--cache",
+   "event": "removed",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "[type|mem-cache-size]\\t\\tControl event caching queues",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cri",
+   "event": "removed",
+   "tag": "v0.24.0-rc",
+   "date": "2025-11-14T10:20:39-03:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "<runtime:socket>\\t\\t\\tDefine connected container runtimes",
+   "attribution": "own"
+  },
+  {
    "flag": "--no-containers",
    "event": "removed",
    "tag": "v0.24.0-rc",
@@ -1706,17 +2231,6 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "containers flag help",
-   "attribution": "own"
-  },
-  {
-   "flag": "--blob-perf-buffer-size",
-   "event": "help_changed",
-   "tag": "v0.24.0-rc",
-   "date": "2025-11-14T10:20:39-03:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "<size>\\t\\t\\t\\tSize, in pages, of the internal perf ring buffer used to send blobs from the kernel",
-   "previous_help": "",
    "attribution": "own"
   },
   {
@@ -1846,7 +2360,7 @@
    "files_matched": 742,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 15,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1856,7 +2370,7 @@
    "files_matched": 742,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1866,7 +2380,7 @@
    "files_matched": 742,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1876,7 +2390,7 @@
    "files_matched": 726,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1886,7 +2400,7 @@
    "files_matched": 727,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1896,7 +2410,7 @@
    "files_matched": 731,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1906,7 +2420,7 @@
    "files_matched": 731,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1916,7 +2430,7 @@
    "files_matched": 731,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1926,7 +2440,7 @@
    "files_matched": 731,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1936,7 +2450,7 @@
    "files_matched": 733,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 10,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1946,7 +2460,7 @@
    "files_matched": 743,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 10,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1956,7 +2470,7 @@
    "files_matched": 743,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 10,
+   "flags": 22,
    "errors": 0
   },
   {
@@ -1966,7 +2480,7 @@
    "files_matched": 783,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 10,
+   "flags": 25,
    "errors": 0
   },
   {
@@ -1976,7 +2490,7 @@
    "files_matched": 783,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 10,
+   "flags": 25,
    "errors": 0
   },
   {
@@ -1986,7 +2500,7 @@
    "files_matched": 797,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 11,
+   "flags": 25,
    "errors": 0
   },
   {
@@ -1996,7 +2510,7 @@
    "files_matched": 852,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 27,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -2006,7 +2520,7 @@
    "files_matched": 852,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 27,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -2016,7 +2530,7 @@
    "files_matched": 875,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 42,
    "errors": 0
   },
   {
@@ -2026,7 +2540,7 @@
    "files_matched": 875,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 42,
    "errors": 0
   },
   {
@@ -2036,7 +2550,7 @@
    "files_matched": 881,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 42,
    "errors": 0
   },
   {
@@ -2046,7 +2560,7 @@
    "files_matched": 889,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 42,
    "errors": 0
   },
   {
@@ -2056,7 +2570,7 @@
    "files_matched": 903,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2066,7 +2580,7 @@
    "files_matched": 903,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2076,7 +2590,7 @@
    "files_matched": 903,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2086,7 +2600,7 @@
    "files_matched": 902,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2096,7 +2610,7 @@
    "files_matched": 902,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2106,7 +2620,7 @@
    "files_matched": 902,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2116,7 +2630,7 @@
    "files_matched": 901,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2126,7 +2640,7 @@
    "files_matched": 905,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2136,7 +2650,7 @@
    "files_matched": 904,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 29,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -2146,7 +2660,7 @@
    "files_matched": 902,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -2156,7 +2670,7 @@
    "files_matched": 906,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -2166,7 +2680,7 @@
    "files_matched": 906,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -2176,7 +2690,7 @@
    "files_matched": 906,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 28,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -2186,7 +2700,7 @@
    "files_matched": 691,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 40,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2196,7 +2710,7 @@
    "files_matched": 691,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 40,
+   "flags": 55,
    "errors": 0
   },
   {
@@ -2206,7 +2720,7 @@
    "files_matched": 691,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 40,
+   "flags": 55,
    "errors": 0
   }
  ],
@@ -2218,6 +2732,6 @@
  "repo": "aquasecurity/tracee",
  "head_sha": "3e22b078c075f763df0cc855510ed1201ba0cd40",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-28T08:39:08.646725+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T22:47:52.091604+00:00"
 }

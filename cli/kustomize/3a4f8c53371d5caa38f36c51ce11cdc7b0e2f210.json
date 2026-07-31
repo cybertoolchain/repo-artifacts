@@ -29,6 +29,38 @@
    "attribution": "own",
    "source_path": "kustomize/internal/commands/create/create.go"
   },
+  "--directory": {
+   "source": "parsed",
+   "help": "Directory to save the default transformer configurations",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.0.9",
+   "first_date": "2018-10-24T14:23:54-07:00",
+   "last_tag": "v3.3.1",
+   "last_date": "2019-10-08T16:10:32-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "kustomize/internal/commands/config/config.go"
+  },
+  "--force": {
+   "source": "parsed",
+   "help": "overwrite commonLabel if it already exists",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v2.1.0",
+   "first_date": "2019-06-18T15:01:11-07:00",
+   "last_tag": "v3.3.1",
+   "last_date": "2019-10-08T16:10:32-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "kustomize/internal/commands/edit/add/addmetadata.go"
+  },
   "--from-env-file": {
    "source": "parsed",
    "help": "Specify the path to a file to read lines of key=val pairs to create a configmap (i.e. a Docker .env file).",
@@ -54,6 +86,35 @@
    "live": true,
    "attribution": "own",
    "source_path": "kustomize/internal/commands/edit/add/configmap.go"
+  },
+  "--from-literal": {
+   "source": "parsed",
+   "help": "Specify a key and literal value to insert in configmap (i.e. mykey=somevalue)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.0.0",
+   "first_date": "2018-05-21T14:45:38-07:00",
+   "last_tag": "v3.3.1",
+   "last_date": "2019-10-08T16:10:32-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "kustomize/internal/commands/edit/add/configmap.go"
+  },
+  "--ignore-non-existence": {
+   "source": "parsed",
+   "help": "ignore error if the given label doesn't exist",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-i"
+   ],
+   "first_tag": "v3.0.0",
+   "first_date": "2019-07-03T11:20:36-07:00",
+   "last_tag": "v3.3.1",
+   "last_date": "2019-10-08T16:10:32-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "kustomize/internal/commands/edit/remove/removemetadata.go"
   },
   "--labels": {
    "source": "parsed",
@@ -106,6 +167,26 @@
    "live": true,
    "attribution": "own",
    "source_path": "kustomize/internal/commands/create/create.go"
+  },
+  "--output": {
+   "source": "parsed",
+   "help": "If specified, write the build output to this path.",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-o"
+   ],
+   "first_tag": "v1.0.6",
+   "first_date": "2018-08-10T09:20:55-07:00",
+   "last_tag": "v1.0.8",
+   "last_date": "2018-09-13T12:11:46-07:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "pkg/commands/build.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ]
   },
   "--recursive": {
    "source": "parsed",
@@ -570,6 +651,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--output",
+   "event": "added",
+   "tag": "v1.0.6",
+   "date": "2018-08-10T09:20:55-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "If specified, write the build output to this path.",
+   "attribution": "own"
+  },
+  {
    "flag": "annotation",
    "event": "added",
    "tag": "v1.0.7",
@@ -647,6 +738,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--directory",
+   "event": "added",
+   "tag": "v1.0.9",
+   "date": "2018-10-24T14:23:54-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Directory to save the default transformer configurations",
+   "attribution": "own"
+  },
+  {
    "flag": "config",
    "event": "added",
    "tag": "v1.0.9",
@@ -664,6 +765,20 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "Save default kustomize transformer configurations to a local directory",
+   "attribution": "own"
+  },
+  {
+   "flag": "--output",
+   "event": "removed",
+   "tag": "v1.0.9",
+   "date": "2018-10-24T14:23:54-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "If specified, write the build output to this path.",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ],
    "attribution": "own"
   },
   {
@@ -756,6 +871,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--force",
+   "event": "added",
+   "tag": "v2.1.0",
+   "date": "2019-06-18T15:01:11-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "overwrite commonLabel if it already exists",
+   "attribution": "own"
+  },
+  {
    "flag": "remove",
    "event": "added",
    "tag": "v2.1.0",
@@ -773,6 +898,16 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "kustomize manages declarative configuration of Kubernetes",
+   "attribution": "own"
+  },
+  {
+   "flag": "--ignore-non-existence",
+   "event": "added",
+   "tag": "v3.0.0",
+   "date": "2019-07-03T11:20:36-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ignore error if the given label doesn't exist",
    "attribution": "own"
   },
   {
@@ -895,7 +1030,7 @@
    "files_matched": 72,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 14,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -905,7 +1040,7 @@
    "files_matched": 72,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 14,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -915,7 +1050,7 @@
    "files_matched": 70,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 14,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -925,7 +1060,7 @@
    "files_matched": 75,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 14,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -935,7 +1070,7 @@
    "files_matched": 75,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 14,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -945,7 +1080,7 @@
    "files_matched": 74,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 15,
+   "flags": 16,
    "errors": 0
   },
   {
@@ -955,7 +1090,7 @@
    "files_matched": 76,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 15,
+   "flags": 17,
    "errors": 0
   },
   {
@@ -965,7 +1100,7 @@
    "files_matched": 77,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 17,
+   "flags": 19,
    "errors": 0
   },
   {
@@ -975,7 +1110,7 @@
    "files_matched": 83,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 17,
+   "flags": 19,
    "errors": 0
   },
   {
@@ -985,7 +1120,7 @@
    "files_matched": 100,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 18,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -995,7 +1130,7 @@
    "files_matched": 100,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 18,
+   "flags": 20,
    "errors": 0
   },
   {
@@ -1005,7 +1140,7 @@
    "files_matched": 102,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 19,
+   "flags": 21,
    "errors": 0
   },
   {
@@ -1015,7 +1150,7 @@
    "files_matched": 110,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 22,
+   "flags": 24,
    "errors": 0
   },
   {
@@ -1025,7 +1160,7 @@
    "files_matched": 112,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 22,
+   "flags": 24,
    "errors": 0
   },
   {
@@ -1035,7 +1170,7 @@
    "files_matched": 111,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 22,
+   "flags": 24,
    "errors": 0
   },
   {
@@ -1045,7 +1180,7 @@
    "files_matched": 111,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 22,
+   "flags": 24,
    "errors": 0
   },
   {
@@ -1055,7 +1190,7 @@
    "files_matched": 163,
    "capped": false,
    "docs_excluded": 3,
-   "flags": 22,
+   "flags": 25,
    "errors": 0
   },
   {
@@ -1065,7 +1200,7 @@
    "files_matched": 168,
    "capped": false,
    "docs_excluded": 4,
-   "flags": 22,
+   "flags": 26,
    "errors": 0
   },
   {
@@ -1075,7 +1210,7 @@
    "files_matched": 168,
    "capped": false,
    "docs_excluded": 4,
-   "flags": 22,
+   "flags": 26,
    "errors": 0
   },
   {
@@ -1085,7 +1220,7 @@
    "files_matched": 169,
    "capped": false,
    "docs_excluded": 4,
-   "flags": 22,
+   "flags": 26,
    "errors": 0
   },
   {
@@ -1095,7 +1230,7 @@
    "files_matched": 170,
    "capped": false,
    "docs_excluded": 4,
-   "flags": 22,
+   "flags": 26,
    "errors": 0
   },
   {
@@ -1105,7 +1240,7 @@
    "files_matched": 172,
    "capped": false,
    "docs_excluded": 4,
-   "flags": 22,
+   "flags": 26,
    "errors": 0
   },
   {
@@ -1115,7 +1250,7 @@
    "files_matched": 201,
    "capped": false,
    "docs_excluded": 5,
-   "flags": 32,
+   "flags": 36,
    "errors": 0
   },
   {
@@ -1125,7 +1260,7 @@
    "files_matched": 209,
    "capped": false,
    "docs_excluded": 5,
-   "flags": 32,
+   "flags": 36,
    "errors": 0
   },
   {
@@ -1135,7 +1270,7 @@
    "files_matched": 211,
    "capped": false,
    "docs_excluded": 5,
-   "flags": 32,
+   "flags": 36,
    "errors": 0
   }
  ],
@@ -1147,6 +1282,6 @@
  "repo": "kubernetes-sigs/kustomize",
  "head_sha": "3a4f8c53371d5caa38f36c51ce11cdc7b0e2f210",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-28T09:07:17.089905+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T22:57:31.008598+00:00"
 }

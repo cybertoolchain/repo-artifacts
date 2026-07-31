@@ -3,6 +3,22 @@
  "tags_considered": 40,
  "truncated": true,
  "surface": {
+  "--all-namespaces": {
+   "source": "parsed",
+   "help": "Show data from pods in all namespaces",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-A"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/utils/flags.go"
+  },
   "--allowed-gadgets": {
    "source": "parsed",
    "help": "List of allowed gadgets, if gadget is not part of it, execution will be denied. By default, all gadgets are allowed.",
@@ -10,6 +26,19 @@
    "default": null,
    "first_tag": "v0.31.0",
    "first_date": "2024-08-05T19:57:48+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--apparmor-profile": {
+   "source": "parsed",
+   "help": "AppArmor profile to use",
+   "kind": "option",
+   "default": "unconfined",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.54.1",
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
@@ -56,6 +85,45 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/common/utils/flags.go"
+  },
+  "--auto-mount-filesystems": {
+   "source": "parsed",
+   "help": "Automatically mount bpffs, debugfs and tracefs if they are not already mounted",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "pkg/utils/host/host.go"
+  },
+  "--auto-sd-unit-restart": {
+   "source": "parsed",
+   "help": "Automatically run in a privileged systemd unit if lacking enough capabilities",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.29.0",
+   "last_date": "2024-05-31T12:55:03-05:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "pkg/utils/host/host.go"
+  },
+  "--auto-wsl-workaround": {
+   "source": "parsed",
+   "help": "Automatically find the host procfs when running in WSL2",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "pkg/utils/host/host.go"
   },
   "--btfgen": {
    "source": "parsed",
@@ -234,8 +302,8 @@
    "also_documented": true
   },
   "--containerd-socketpath": {
-   "source": "documented",
-   "help": "containerd CRI Unix socket path (default \"/run/containerd/containerd.sock\")",
+   "source": "parsed",
+   "help": "containerd CRI Unix socket path",
    "kind": "option",
    "default": null,
    "first_tag": "v0.28.1",
@@ -244,8 +312,9 @@
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/common/utils/flags.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
   },
   "--containerid": {
    "source": "parsed",
@@ -260,11 +329,53 @@
    "attribution": "own",
    "source_path": "gadget-container/gadgettracermanager/main.go"
   },
-  "--containername": {
+  "--containerimage-digest": {
    "source": "parsed",
-   "help": "container name to use in add-container",
+   "help": "Show data only from containers with the runtime-assigned image digest (alias: runtime-containerimage-digest)",
    "kind": "option",
    "default": "",
+   "first_tag": "v0.50.0",
+   "first_date": "2026-02-27T09:12:59-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
+  "--containerimage-id": {
+   "source": "parsed",
+   "help": "Show data only from containers with the runtime-assigned image ID (alias: runtime-containerimage-id)",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.50.0",
+   "first_date": "2026-02-27T09:12:59-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
+  "--containername": {
+   "source": "parsed",
+   "help": "Show data only from containers with the runtime-assigned name (not the name defined in the pod spec) (alias: runtime-containername)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-c"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
+  "--containerpid": {
+   "source": "parsed",
+   "help": "container PID to use in add-container",
+   "kind": "option",
+   "default": "0",
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.42.0",
@@ -301,8 +412,8 @@
    "source_path": "gadget-container/gadgettracermanager/main.go"
   },
   "--crio-socketpath": {
-   "source": "documented",
-   "help": "CRI-O CRI Unix socket path (default \"/run/crio/crio.sock\")",
+   "source": "parsed",
+   "help": "CRI-O CRI Unix socket path",
    "kind": "option",
    "default": null,
    "first_tag": "v0.28.1",
@@ -311,8 +422,9 @@
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/common/utils/flags.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
   },
   "--daemon-config": {
    "source": "parsed",
@@ -326,6 +438,48 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--daemon-log-level": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "info",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--debug": {
+   "source": "parsed",
+   "help": "show extra debug information",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--delete-namespace": {
+   "source": "parsed",
+   "help": "delete the entire namespace",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.43.0",
+   "first_date": "2025-07-31T11:57:22-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/undeploy.go"
   },
   "--disallow-gadgets-pulling": {
    "source": "parsed",
@@ -341,8 +495,8 @@
    "source_path": "cmd/kubectl-gadget/deploy.go"
   },
   "--docker-socketpath": {
-   "source": "documented",
-   "help": "Docker Engine API Unix socket path (default \"/run/docker.sock\")",
+   "source": "parsed",
+   "help": "Docker Engine API Unix socket path",
    "kind": "option",
    "default": null,
    "first_tag": "v0.28.1",
@@ -351,8 +505,9 @@
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/common/utils/flags.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
   },
   "--dryrun": {
    "source": "parsed",
@@ -406,6 +561,19 @@
    "attribution": "unattributed",
    "source_path": "tools/bench/main.go"
   },
+  "--events-buffer-length": {
+   "source": "parsed",
+   "help": "The events buffer length. A low value could impact horizontal scaling.",
+   "kind": "option",
+   "default": "16384",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/daemon.go"
+  },
   "--events-per-second": {
    "source": "parsed",
    "help": "Maximum requests per second (0 for unlimited)",
@@ -447,16 +615,48 @@
   },
   "--fallback-podinformer": {
    "source": "parsed",
-   "help": "Use pod informer as a fallback for main hook",
+   "help": "use pod informer as a fallback for the main hook",
    "kind": "option",
    "default": "true",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.42.0",
+   "last_date": "2025-07-07T00:20:59-05:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--file": {
+   "source": "parsed",
+   "help": "Path to build.yaml",
+   "kind": "option",
+   "default": "build.yaml",
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/common/image/build.go"
+  },
+  "--filter": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-F"
+   ],
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.41.2",
    "last_date": "2026-01-07T11:58:19-05:00",
    "live": false,
    "attribution": "own",
-   "source_path": "gadget-container/gadgettracermanager/main.go"
+   "source_path": "cmd/common/registry.go"
   },
   "--gadgets-public-keys": {
    "source": "parsed",
@@ -470,6 +670,22 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--group": {
+   "source": "parsed",
+   "help": "Group name or id that the unix socket should use (if daemon-socket is set to e.g. unix:///path/to.socket)",
+   "kind": "option",
+   "default": "0",
+   "aliases": [
+    "-G"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/daemon.go"
   },
   "--hook": {
    "source": "parsed",
@@ -486,16 +702,58 @@
   },
   "--hook-mode": {
    "source": "parsed",
-   "help": "how to get containers start/stop notifications (podinformer, fanotify, auto, none)",
+   "help": "",
    "kind": "option",
    "default": "auto",
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
-   "last_tag": "v0.41.2",
-   "last_date": "2026-01-07T11:58:19-05:00",
+   "last_tag": "v0.42.0",
+   "last_date": "2025-07-07T00:20:59-05:00",
    "live": false,
    "attribution": "own",
-   "source_path": "gadget-container/gadgettracermanager/main.go"
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--host": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-H"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/daemon.go"
+  },
+  "--image": {
+   "source": "parsed",
+   "help": "container image",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--image-pull-policy": {
+   "source": "parsed",
+   "help": "pull policy for the container image",
+   "kind": "option",
+   "default": "Always",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
   },
   "--in": {
    "source": "parsed",
@@ -509,6 +767,23 @@
    "live": true,
    "attribution": "unattributed",
    "source_path": "tools/testjson2md/testjson2md.go"
+  },
+  "--input": {
+   "source": "parsed",
+   "help": "File with recorded network activity",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.41.2",
+   "last_date": "2026-01-07T11:58:19-05:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/advise/network-policy.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ]
   },
   "--insecure": {
    "source": "parsed",
@@ -629,6 +904,19 @@
    "attribution": "own",
    "source_path": "gadget-container/gadgettracermanager/main.go"
   },
+  "--legacy-host-pid": {
+   "source": "parsed",
+   "help": "use hostPID=true for the gadget pod (legacy)",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.34.0",
+   "last_date": "2024-11-04T16:43:14+01:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
   "--liveness": {
    "source": "parsed",
    "help": "Execute as client and perform liveness probe",
@@ -642,6 +930,19 @@
    "attribution": "own",
    "source_path": "gadget-container/gadgettracermanager/main.go"
   },
+  "--liveness-probe": {
+   "source": "parsed",
+   "help": "enable liveness probes",
+   "kind": "option",
+   "default": "true",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
   "--liveness-socketfile": {
    "source": "parsed",
    "help": "Path to socket file for liveness checks",
@@ -654,6 +955,22 @@
    "live": true,
    "attribution": "own",
    "source_path": "gadget-container/gadgettracermanager/main.go"
+  },
+  "--local": {
+   "source": "parsed",
+   "help": "Build using local tools",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/common/image/build.go"
   },
   "--namespace": {
    "source": "parsed",
@@ -693,6 +1010,19 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/kubectl-gadget/utils/flags.go"
+  },
+  "--node-selector": {
+   "source": "parsed",
+   "help": "node labels selector for the Inspektor Gadget DaemonSet",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
   },
   "--notation-certificates": {
    "source": "parsed",
@@ -774,24 +1104,43 @@
   },
   "--output": {
    "source": "parsed",
-   "help": "output file",
+   "help": "Path to a folder to store generated files while building",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-o"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/common/image/build.go"
+  },
+  "--output-mode": {
+   "source": "parsed",
+   "help": "The trace output mode, possibles values are terminal and seccomp-profile.",
+   "kind": "option",
+   "default": "terminal",
+   "aliases": [
+    "-m"
+   ],
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.41.2",
    "last_date": "2026-01-07T11:58:19-05:00",
    "live": false,
    "attribution": "own",
-   "source_path": "pkg/gadgets/trace/tcpdrop/tracer/dropreasongen/dropreasongen.go",
+   "source_path": "cmd/kubectl-gadget/advise/seccomp-profile.go",
    "low_confidence_removal": true,
    "low_confidence_reasons": [
     "evidence_source_lost"
    ]
   },
   "--podman-socketpath": {
-   "source": "documented",
-   "help": "Podman Unix socket path (default \"/run/podman/podman.sock\")",
+   "source": "parsed",
+   "help": "Podman Unix socket path",
    "kind": "option",
    "default": null,
    "first_tag": "v0.28.1",
@@ -800,21 +1149,25 @@
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/common/utils/flags.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
   },
   "--podname": {
    "source": "parsed",
-   "help": "podname to use in add-container",
+   "help": "Show only data from pods with that name",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-p"
+   ],
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
-   "last_tag": "v0.42.0",
-   "last_date": "2025-07-07T00:20:59-05:00",
-   "live": false,
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "gadget-container/gadgettracermanager/main.go"
+   "source_path": "cmd/kubectl-gadget/utils/flags.go"
   },
   "--pprof-addr": {
    "source": "parsed",
@@ -828,6 +1181,37 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/ig/main.go"
+  },
+  "--print-only": {
+   "source": "parsed",
+   "help": "only print YAML of resources",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--print-stack": {
+   "source": "parsed",
+   "help": "Print kernel and userspace call stack of cap_capable()",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.1.0-alpha.1",
+   "first_date": "2019-10-12T17:35:08+02:00",
+   "last_tag": "v0.1.0-alpha.1",
+   "last_date": "2019-10-12T17:35:08+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/inspektor-gadget/cmd/bcck8s.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
+   ]
   },
   "--profile-prefix": {
    "source": "parsed",
@@ -846,6 +1230,19 @@
     "evidence_source_lost"
    ]
   },
+  "--public-key": {
+   "source": "parsed",
+   "help": "Public key used to verify the container image",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
   "--public-keys": {
    "source": "parsed",
    "help": "Public keys used to verify the gadgets with cosign",
@@ -858,6 +1255,22 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/common/image/verify.go"
+  },
+  "--quiet": {
+   "source": "parsed",
+   "help": "supress information messages",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-q"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
   },
   "--repo": {
    "source": "parsed",
@@ -890,6 +1303,45 @@
    "source_path": "docs/reference/kubernetes-flags.md",
    "doc_path": "docs/reference/kubernetes-flags.md"
   },
+  "--runtime-containerimage-digest": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.50.0",
+   "first_date": "2026-02-27T09:12:59-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
+  "--runtime-containerimage-id": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.50.0",
+   "first_date": "2026-02-27T09:12:59-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
+  "--runtime-containername": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.45.0",
+   "first_date": "2025-10-03T08:05:35-05:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/utils/flags.go"
+  },
   "--runtime-protocol": {
    "source": "parsed",
    "help": "",
@@ -904,18 +1356,51 @@
    "source_path": "cmd/ig/utils/flags.go"
   },
   "--runtimes": {
-   "source": "documented",
-   "help": "Comma-separated list of container runtimes. Supported values are: docker, containerd, cri-o, podman (default \"docker,containerd,cri-o,podman\")",
+   "source": "parsed",
+   "help": "",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-r"
+   ],
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.54.1",
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/ig/utils/flags.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
+  },
+  "--seccomp-profile": {
+   "source": "parsed",
+   "help": "restrict gadget pod syscalls using the given seccomp profile",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--selector": {
+   "source": "parsed",
+   "help": "Labels selector to filter on. Only '=' is supported (e.g. key1=value1,key2=value2).",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/utils/flags.go"
   },
   "--serve": {
    "source": "parsed",
@@ -969,6 +1454,19 @@
    "attribution": "own",
    "source_path": "cmd/common/image/inspect.go"
   },
+  "--skip-selinux-opts": {
+   "source": "parsed",
+   "help": "skip setting SELinux options on the gadget pod",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
   "--socketfile": {
    "source": "parsed",
    "help": "Socket file",
@@ -981,6 +1479,39 @@
    "live": true,
    "attribution": "own",
    "source_path": "gadget-container/hooks/oci/main.go"
+  },
+  "--syscall-filters": {
+   "source": "parsed",
+   "help": "Filter out by syscall names. Join multiple names with ','",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.41.2",
+   "last_date": "2026-01-07T11:58:19-05:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/traceloop.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ]
+  },
+  "--tag": {
+   "source": "parsed",
+   "help": "Name for the built image (format name:tag)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/common/image/build.go"
   },
   "--tcp": {
    "source": "parsed",
@@ -997,16 +1528,19 @@
   },
   "--timeout": {
    "source": "parsed",
-   "help": "Number of seconds that the gadget will run for",
+   "help": "Number of seconds that the gadget will run for, 0 to run indefinitely",
    "kind": "option",
    "default": "0",
+   "aliases": [
+    "-t"
+   ],
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.54.1",
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/ig/utils/flags.go"
+   "source_path": "cmd/common/oci.go"
   },
   "--tls-cert-file": {
    "source": "parsed",
@@ -1172,6 +1706,22 @@
    "attribution": "own",
    "source_path": "cmd/common/image/build.go"
   },
+  "--verbose": {
+   "source": "parsed",
+   "help": "Print debug information",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-v"
+   ],
+   "first_tag": "v0.1.0-alpha.1",
+   "first_date": "2019-10-12T17:35:08+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/common/utils/flags.go"
+  },
   "--verify-gadgets": {
    "source": "parsed",
    "help": "Verify gadgets using the provided public keys",
@@ -1185,19 +1735,49 @@
    "attribution": "own",
    "source_path": "cmd/kubectl-gadget/deploy.go"
   },
-  "--watch": {
-   "source": "documented",
-   "help": "After listing the containers, watch for new containers",
+  "--verify-image": {
+   "source": "parsed",
+   "help": "verify container image if policy-controller is installed on the cluster",
    "kind": "option",
-   "default": null,
+   "default": "true",
    "first_tag": "v0.28.1",
    "first_date": "2024-05-16T12:38:02+02:00",
    "last_tag": "v0.54.1",
    "last_date": "2026-07-13T16:50:27+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "docs/reference/ig.md",
-   "doc_path": "docs/reference/ig.md"
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--wait": {
+   "source": "parsed",
+   "help": "wait for gadget pod to be ready",
+   "kind": "option",
+   "default": "true",
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubectl-gadget/deploy.go"
+  },
+  "--watch": {
+   "source": "parsed",
+   "help": "After listing the containers, watch for new containers",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-w"
+   ],
+   "first_tag": "v0.28.1",
+   "first_date": "2024-05-16T12:38:02+02:00",
+   "last_tag": "v0.54.1",
+   "last_date": "2026-07-13T16:50:27+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/ig/containers/containers.go",
+   "doc_path": "docs/reference/ig.md",
+   "also_documented": true
   },
   "advise": {
    "source": "parsed",
@@ -1849,6 +2429,28 @@
  },
  "events": [
   {
+   "flag": "--all-namespaces",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show data from pods in all namespaces",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--apparmor-profile",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "AppArmor profile to use",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--as",
    "event": "added",
    "tag": "v0.28.1",
@@ -1878,6 +2480,39 @@
    "source": "parsed",
    "kind": "option",
    "help": "Path of the authentication file. This overrides the REGISTRY_AUTH_FILE environment variable",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--auto-mount-filesystems",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Automatically mount bpffs, debugfs and tracefs if they are not already mounted",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--auto-sd-unit-restart",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Automatically run in a privileged systemd unit if lacking enough capabilities",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--auto-wsl-workaround",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Automatically find the host procfs when running in WSL2",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2007,9 +2642,9 @@
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "containerd CRI Unix socket path (default \"/run/containerd/containerd.sock\")",
+   "help": "containerd CRI Unix socket path",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2031,7 +2666,18 @@
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "container name to use in add-container",
+   "help": "Show only data from containers with that name",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--containerpid",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "container PID to use in add-container",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2062,9 +2708,31 @@
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "CRI-O CRI Unix socket path (default \"/run/crio/crio.sock\")",
+   "help": "CRI-O CRI Unix socket path",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--daemon-log-level",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--debug",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "show extra debug information",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2073,9 +2741,9 @@
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "Docker Engine API Unix socket path (default \"/run/docker.sock\")",
+   "help": "Docker Engine API Unix socket path",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2102,6 +2770,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--events-buffer-length",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "The events buffer length. A low value could impact horizontal scaling.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--experimental",
    "event": "added",
    "tag": "v0.28.1",
@@ -2119,7 +2798,40 @@
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Use pod informer as a fallback for main hook",
+   "help": "use pod informer as a fallback for the main hook",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--file",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to build.yaml",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--filter",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--group",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Group name or id that the unix socket should use (if daemon-socket is set to e.g. unix:///path/to.socket)",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2141,7 +2853,40 @@
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "how to get containers start/stop notifications (podinformer, fanotify, auto, none)",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--host",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--image",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "container image",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--image-pull-policy",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "pull policy for the container image",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2155,6 +2900,17 @@
    "help": "path to JSON file produced by go tool test2json",
    "spans_untracked_releases": true,
    "attribution": "unattributed"
+  },
+  {
+   "flag": "--input",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "File with recorded network activity",
+   "spans_untracked_releases": true,
+   "attribution": "own"
   },
   {
    "flag": "--insecure",
@@ -2190,6 +2946,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--legacy-host-pid",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "use hostPID=true for the gadget pod (legacy)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--liveness",
    "event": "added",
    "tag": "v0.28.1",
@@ -2197,6 +2964,28 @@
    "source": "parsed",
    "kind": "option",
    "help": "Execute as client and perform liveness probe",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--liveness-probe",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "enable liveness probes",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--local",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Build using local tools",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2234,6 +3023,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--node-selector",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "node labels selector for the Inspektor Gadget DaemonSet",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--out",
    "event": "added",
    "tag": "v0.28.1",
@@ -2262,7 +3062,18 @@
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "output file",
+   "help": "Path to a folder to store generated files while building",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--output-mode",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "The trace output mode, possibles values are terminal and seccomp-profile.",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2271,9 +3082,9 @@
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "Podman Unix socket path (default \"/run/podman/podman.sock\")",
+   "help": "Podman Unix socket path",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2284,7 +3095,18 @@
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "podname to use in add-container",
+   "help": "Show only data from pods with that name",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--print-only",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only print YAML of resources",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2296,6 +3118,28 @@
    "source": "parsed",
    "kind": "option",
    "help": "Name prefix of the seccomp profile to be created when using --output-mode=seccomp-profile.\\nNamespace can be specified by using namespace/profile-prefix.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--public-key",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Public key used to verify the container image",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--quiet",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "supress information messages",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2337,9 +3181,31 @@
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "Container runtimes to be used separated by comma. Supported values are: docker, containerd, cri-o, podman (default \"docker,containerd,cri-o,podman\")",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--seccomp-profile",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "restrict gadget pod syscalls using the given seccomp profile",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--selector",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Labels selector to filter on. Only '=' is supported (e.g. key1=value1,key2=value2).",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2366,6 +3232,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--skip-selinux-opts",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "skip setting SELinux options on the gadget pod",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--socketfile",
    "event": "added",
    "tag": "v0.28.1",
@@ -2377,13 +3254,35 @@
    "attribution": "own"
   },
   {
+   "flag": "--syscall-filters",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Filter out by syscall names. Join multiple names with ','",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--tag",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Name for the built image (format name:tag)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--timeout",
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Number of seconds that the gadget will run for",
+   "help": "Number of seconds that the gadget will run for, 0 to run indefinitely",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2465,11 +3364,33 @@
    "attribution": "own"
   },
   {
+   "flag": "--verify-image",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "verify container image if policy-controller is installed on the cluster",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--wait",
+   "event": "added",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "wait for gadget pod to be ready",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--watch",
    "event": "added",
    "tag": "v0.28.1",
    "date": "2024-05-16T12:38:02+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "After listing the containers, watch for new containers",
    "spans_untracked_releases": true,
@@ -2751,6 +3672,22 @@
    "attribution": "own"
   },
   {
+   "flag": "--print-stack",
+   "event": "removed",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Print kernel and userspace call stack of cap_capable()",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
+   ],
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--update-from-path",
    "event": "removed",
    "tag": "v0.28.1",
@@ -2894,6 +3831,18 @@
    "attribution": "own"
   },
   {
+   "flag": "--verbose",
+   "event": "help_changed",
+   "tag": "v0.28.1",
+   "date": "2024-05-16T12:38:02+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Print debug information",
+   "previous_help": "Include non-audit",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "list",
    "event": "help_changed",
    "tag": "v0.28.1",
@@ -2915,6 +3864,16 @@
    "help": "Get strace-like logs of a container from the past",
    "previous_help": "Get strace-like logs of a pod from the past",
    "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--auto-sd-unit-restart",
+   "event": "removed",
+   "tag": "v0.30.0",
+   "date": "2024-07-01T10:24:09+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Automatically run in a privileged systemd unit if lacking enough capabilities",
    "attribution": "own"
   },
   {
@@ -3068,17 +4027,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--runtimes",
-   "event": "help_changed",
-   "tag": "v0.33.0",
-   "date": "2024-10-07T04:11:45+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Comma-separated list of container runtimes. Supported values are: docker, containerd, cri-o, podman (default \"docker,containerd,cri-o,podman\")",
-   "previous_help": "Container runtimes to be used separated by comma. Supported values are: docker, containerd, cri-o, podman (default \"docker,containerd,cri-o,podman\")",
-   "attribution": "own"
-  },
-  {
    "flag": "delete",
    "event": "help_changed",
    "tag": "v0.33.0",
@@ -3087,6 +4035,16 @@
    "kind": "subcommand",
    "help": "Delete one or more gadget instances",
    "previous_help": "delete one trace",
+   "attribution": "own"
+  },
+  {
+   "flag": "--legacy-host-pid",
+   "event": "removed",
+   "tag": "v0.35.0",
+   "date": "2024-11-28T16:52:04+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "use hostPID=true for the gadget pod (legacy)",
    "attribution": "own"
   },
   {
@@ -3231,33 +4189,37 @@
    "attribution": "own"
   },
   {
-   "flag": "--fallback-podinformer",
+   "flag": "--filter",
    "event": "removed",
    "tag": "v0.42.0",
    "date": "2025-07-07T00:20:59-05:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Use pod informer as a fallback for main hook",
+   "help": "",
    "attribution": "own"
   },
   {
-   "flag": "--hook-mode",
+   "flag": "--input",
    "event": "removed",
    "tag": "v0.42.0",
    "date": "2025-07-07T00:20:59-05:00",
    "source": "parsed",
    "kind": "option",
-   "help": "how to get containers start/stop notifications (podinformer, fanotify, auto, none)",
+   "help": "File with recorded network activity",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ],
    "attribution": "own"
   },
   {
-   "flag": "--output",
+   "flag": "--output-mode",
    "event": "removed",
    "tag": "v0.42.0",
    "date": "2025-07-07T00:20:59-05:00",
    "source": "parsed",
    "kind": "option",
-   "help": "output file",
+   "help": "The trace output mode, possibles values are terminal and seccomp-profile.",
    "low_confidence": true,
    "low_confidence_reasons": [
     "evidence_source_lost"
@@ -3286,6 +4248,20 @@
    "source": "parsed",
    "kind": "option",
    "help": "path to the repository",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "evidence_source_lost"
+   ],
+   "attribution": "own"
+  },
+  {
+   "flag": "--syscall-filters",
+   "event": "removed",
+   "tag": "v0.42.0",
+   "date": "2025-07-07T00:20:59-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Filter out by syscall names. Join multiple names with ','",
    "low_confidence": true,
    "low_confidence_reasons": [
     "evidence_source_lost"
@@ -3440,6 +4416,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--delete-namespace",
+   "event": "added",
+   "tag": "v0.43.0",
+   "date": "2025-07-31T11:57:22-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "delete the entire namespace",
+   "attribution": "own"
+  },
+  {
    "flag": "--liveness-socketfile",
    "event": "added",
    "tag": "v0.43.0",
@@ -3470,13 +4456,13 @@
    "attribution": "own"
   },
   {
-   "flag": "--containername",
+   "flag": "--containerpid",
    "event": "removed",
    "tag": "v0.43.0",
    "date": "2025-07-31T11:57:22-05:00",
    "source": "parsed",
    "kind": "option",
-   "help": "container name to use in add-container",
+   "help": "container PID to use in add-container",
    "attribution": "own"
   },
   {
@@ -3487,6 +4473,26 @@
    "source": "parsed",
    "kind": "option",
    "help": "Dump state for debugging specifying the items to print: containers, traces, stacks, all",
+   "attribution": "own"
+  },
+  {
+   "flag": "--fallback-podinformer",
+   "event": "removed",
+   "tag": "v0.43.0",
+   "date": "2025-07-31T11:57:22-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "use pod informer as a fallback for the main hook",
+   "attribution": "own"
+  },
+  {
+   "flag": "--hook-mode",
+   "event": "removed",
+   "tag": "v0.43.0",
+   "date": "2025-07-31T11:57:22-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -3507,16 +4513,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "namespace to use in add-container",
-   "attribution": "own"
-  },
-  {
-   "flag": "--podname",
-   "event": "removed",
-   "tag": "v0.43.0",
-   "date": "2025-07-31T11:57:22-05:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "podname to use in add-container",
    "attribution": "own"
   },
   {
@@ -3584,6 +4580,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--runtime-containername",
+   "event": "added",
+   "tag": "v0.45.0",
+   "date": "2025-10-03T08:05:35-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
    "flag": "bench",
    "event": "added",
    "tag": "v0.45.0",
@@ -3592,6 +4598,17 @@
    "kind": "subcommand",
    "help": "benchmark tool for IG",
    "attribution": "unattributed"
+  },
+  {
+   "flag": "--containername",
+   "event": "help_changed",
+   "tag": "v0.45.0",
+   "date": "2025-10-03T08:05:35-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show data only from containers with the runtime-assigned name (not the name defined in the pod spec) (alias: runtime-containername)",
+   "previous_help": "Show only data from containers with that name",
+   "attribution": "own"
   },
   {
    "flag": "show",
@@ -3644,6 +4661,46 @@
    "attribution": "own"
   },
   {
+   "flag": "--containerimage-digest",
+   "event": "added",
+   "tag": "v0.50.0",
+   "date": "2026-02-27T09:12:59-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show data only from containers with the runtime-assigned image digest (alias: runtime-containerimage-digest)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--containerimage-id",
+   "event": "added",
+   "tag": "v0.50.0",
+   "date": "2026-02-27T09:12:59-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show data only from containers with the runtime-assigned image ID (alias: runtime-containerimage-id)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--runtime-containerimage-digest",
+   "event": "added",
+   "tag": "v0.50.0",
+   "date": "2026-02-27T09:12:59-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--runtime-containerimage-id",
+   "event": "added",
+   "tag": "v0.50.0",
+   "date": "2026-02-27T09:12:59-05:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
    "flag": "--tls-insecure",
    "event": "added",
    "tag": "v0.53.0",
@@ -3662,7 +4719,7 @@
    "files_matched": 28,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 15,
+   "flags": 17,
    "errors": 0
   },
   {
@@ -3672,7 +4729,7 @@
    "files_matched": 564,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 88,
+   "flags": 120,
    "errors": 0
   },
   {
@@ -3682,7 +4739,7 @@
    "files_matched": 567,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 88,
+   "flags": 120,
    "errors": 0
   },
   {
@@ -3692,7 +4749,7 @@
    "files_matched": 607,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 88,
+   "flags": 119,
    "errors": 0
   },
   {
@@ -3702,7 +4759,7 @@
    "files_matched": 614,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 129,
    "errors": 0
   },
   {
@@ -3712,7 +4769,7 @@
    "files_matched": 616,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 130,
    "errors": 0
   },
   {
@@ -3722,7 +4779,7 @@
    "files_matched": 638,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 130,
    "errors": 0
   },
   {
@@ -3732,7 +4789,7 @@
    "files_matched": 646,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 130,
    "errors": 0
   },
   {
@@ -3742,7 +4799,7 @@
    "files_matched": 652,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 129,
    "errors": 0
   },
   {
@@ -3752,7 +4809,7 @@
    "files_matched": 658,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 101,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -3762,7 +4819,7 @@
    "files_matched": 658,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 101,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -3772,7 +4829,7 @@
    "files_matched": 669,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 102,
+   "flags": 132,
    "errors": 0
   },
   {
@@ -3782,7 +4839,7 @@
    "files_matched": 680,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 103,
+   "flags": 133,
    "errors": 0
   },
   {
@@ -3792,7 +4849,7 @@
    "files_matched": 680,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 103,
+   "flags": 133,
    "errors": 0
   },
   {
@@ -3802,7 +4859,7 @@
    "files_matched": 685,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 104,
+   "flags": 134,
    "errors": 0
   },
   {
@@ -3812,7 +4869,7 @@
    "files_matched": 725,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 106,
+   "flags": 136,
    "errors": 0
   },
   {
@@ -3822,7 +4879,7 @@
    "files_matched": 737,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 107,
+   "flags": 137,
    "errors": 0
   },
   {
@@ -3832,7 +4889,7 @@
    "files_matched": 737,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 107,
+   "flags": 137,
    "errors": 0
   },
   {
@@ -3842,7 +4899,7 @@
    "files_matched": 737,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 107,
+   "flags": 137,
    "errors": 0
   },
   {
@@ -3852,7 +4909,7 @@
    "files_matched": 466,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 93,
+   "flags": 122,
    "errors": 0
   },
   {
@@ -3862,7 +4919,7 @@
    "files_matched": 456,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 86,
+   "flags": 115,
    "errors": 0
   },
   {
@@ -3872,7 +4929,7 @@
    "files_matched": 459,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 86,
+   "flags": 115,
    "errors": 0
   },
   {
@@ -3882,7 +4939,7 @@
    "files_matched": 459,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 86,
+   "flags": 115,
    "errors": 0
   },
   {
@@ -3892,7 +4949,7 @@
    "files_matched": 492,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 92,
+   "flags": 122,
    "errors": 0
   },
   {
@@ -3902,7 +4959,7 @@
    "files_matched": 499,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 93,
+   "flags": 123,
    "errors": 0
   },
   {
@@ -3912,7 +4969,7 @@
    "files_matched": 506,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 127,
    "errors": 0
   },
   {
@@ -3922,7 +4979,7 @@
    "files_matched": 507,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 127,
    "errors": 0
   },
   {
@@ -3932,7 +4989,7 @@
    "files_matched": 507,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 127,
    "errors": 0
   },
   {
@@ -3942,7 +4999,7 @@
    "files_matched": 510,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 127,
    "errors": 0
   },
   {
@@ -3952,7 +5009,7 @@
    "files_matched": 510,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 127,
    "errors": 0
   },
   {
@@ -3962,7 +5019,7 @@
    "files_matched": 513,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -3972,7 +5029,7 @@
    "files_matched": 513,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -3982,7 +5039,7 @@
    "files_matched": 521,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -3992,7 +5049,7 @@
    "files_matched": 523,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -4002,7 +5059,7 @@
    "files_matched": 528,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 131,
    "errors": 0
   },
   {
@@ -4012,7 +5069,7 @@
    "files_matched": 530,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 132,
    "errors": 0
   },
   {
@@ -4022,7 +5079,7 @@
    "files_matched": 531,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 132,
    "errors": 0
   },
   {
@@ -4032,7 +5089,7 @@
    "files_matched": 531,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 132,
    "errors": 0
   },
   {
@@ -4042,7 +5099,7 @@
    "files_matched": 532,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 132,
    "errors": 0
   },
   {
@@ -4052,7 +5109,7 @@
    "files_matched": 532,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 132,
    "errors": 0
   }
  ],
@@ -4064,6 +5121,6 @@
  "repo": "inspektor-gadget/inspektor-gadget",
  "head_sha": "ecf0c372eb711a268a915e40066ef5755198f83f",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-29T10:30:26.961048+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T23:22:41.506452+00:00"
 }

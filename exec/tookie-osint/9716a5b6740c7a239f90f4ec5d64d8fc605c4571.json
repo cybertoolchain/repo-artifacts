@@ -1,19 +1,119 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:115c493106d14388e232ebae8d2e59adcd0f2ff2527c09fda43690eab0c2a613",
+  "duration_s": 13.49,
+  "log_tail": "#11 7.383 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)\n#11 7.416 Downloading wsproto-1.3.2-py3-none-any.whl (24 kB)\n#11 7.450 Downloading h11-0.16.0-py3-none-any.whl (37 kB)\n#11 7.483 Downloading packaging-26.2-py3-none-any.whl (100 kB)\n#11 7.514 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)\n#11 7.543 Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)\n#11 7.632 Installing collected packages: sortedcontainers, argparse, websocket-client, urllib3, typing_extensions, sniffio, python-dotenv, pysocks, packaging, idna, h11, colorama, charset_normalizer, certifi, attrs, wsproto, requests, outcome, webdriver-manager, trio, trio-websocket, selenium\n#11 8.729 \n#11 8.730 Successfully installed argparse-1.4.0 attrs-26.1.0 certifi-2026.7.22 charset_normalizer-3.4.9 colorama-0.4.6 h11-0.16.0 idna-3.18 outcome-1.3.0.post0 packaging-26.2 pysocks-1.7.1 python-dotenv-1.2.2 requests-2.34.2 selenium-4.46.0 sniffio-1.3.1 sortedcontainers-2.4.0 trio-0.33.0 trio-websocket-0.12.2 typing_extensions-4.16.0 urllib3-2.7.0 webdriver-manager-4.1.2 websocket-client-1.9.0 wsproto-1.3.2\n#11 DONE 8.8s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.120 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 1.2s done\n#21 exporting manifest sha256:a75f3ed67f7a693ae6a459e3bfbc3ae004f866e564de62cee8fa162f02f34fd9 done\n#21 exporting config sha256:2273ffe87867ce4f165e01594a31fe26077b308c854408d19810d9c397188551 done\n#21 exporting attestation manifest sha256:14ce18129627ddbb45b178494dcd887a4006dce6f8198573d22a48b8745739ba done\n#21 exporting manifest list sha256:115c493106d14388e232ebae8d2e59adcd0f2ff2527c09fda43690eab0c2a613 done\n#21 naming to docker.io/ctk-exec/tookie-osint:9716a5b6740c done\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c 0.7s done\n#21 DONE 2.0s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "tookie-osint",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'"
+  },
+  {
+   "argv": [
+    "man",
+    "tookie-osint"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for tookie-osint\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "tookie-osint"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'tookie-osint' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-fcfbd392",
+    "argv": [
+     "tookie-osint",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   },
+   {
+    "id": "t-net-e20ae12c",
+    "argv": [
+     "tookie-osint",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "tookie-osint",
  "repo": "Alfredredbird/tookie-osint",
  "head_sha": "9716a5b6740c7a239f90f4ec5d64d8fc605c4571",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:40:50.563828+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:31:13.992136+00:00"
 }

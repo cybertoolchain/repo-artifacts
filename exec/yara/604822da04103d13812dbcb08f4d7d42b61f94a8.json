@@ -1,0 +1,430 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:2560bb1b23645b4856484a8a5d26b8d14c6ddbbedc4c4e4cfa626c29b26bb879",
+  "duration_s": 57.56,
+  "log_tail": "#11 6.327   522 |   YR_TRYCATCH(\n#11 6.327       |   ^~~~~~~~~~~\n#11 6.330 libyara/exception.h:259:11: warning: unused variable 'yr_debug_indent_before_jump' [-Wunused-variable]\n#11 6.330   259 |       int yr_debug_indent_before_jump = YR_DEBUG_INDENT_INITIAL;      \\\n#11 6.330       |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~\n#11 6.330 libyara/scanner.c:570:3: note: in expansion of macro 'YR_TRYCATCH'\n#11 6.330   570 |   YR_TRYCATCH(\n#11 6.330       |   ^~~~~~~~~~~\n#11 6.406   CC       libyara/tlshc/la-tlsh_util.lo\n#11 6.415   CC       libyara/la-threading.lo\n#11 6.416   CC       libyara/proc/la-linux.lo\n#11 7.623   CCLD     libyara.la\n#11 7.874 copying selected object files to avoid basename conflicts...\n#11 7.973   CCLD     yara\n#11 7.973   CCLD     yarac\n#11 8.062 make[1]: Leaving directory '/src'\n#11 DONE 8.1s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.145 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.7s done\n#19 exporting manifest sha256:e147ebc47747bc2cf8a20fe6cf87fbb0a65498f34d34b343299c47695eabe8f5 done\n#19 exporting config sha256:62df7560ecbf5f40d89b4ddfdc15d657b893411f9a69e6571d2311cf97da7cc9 0.0s done\n#19 exporting attestation manifest sha256:acbe44b976194cd8cc07fe01b88b756376f666da7844b9dcb401801573df7a03 0.0s done\n#19 exporting manifest list sha256:2560bb1b23645b4856484a8a5d26b8d14c6ddbbedc4c4e4cfa626c29b26bb879 0.0s done\n#19 naming to docker.io/ctk-exec/yara:604822da0410 done\n#19 unpacking to docker.io/ctk-exec/yara:604822da0410 0.1s done\n#19 DONE 0.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "yara",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "YARA 4.5.8, the pattern matching swiss army knife.\nUsage: yara [OPTION]... [NAMESPACE:]RULES_FILE... FILE | DIR | PID\n\nMandatory arguments to long options are mandatory for short options too.\n\n       --atom-quality-table=FILE           path to a file with the atom quality table\n  -C,  --compiled-rules                    load compiled rules\n  -c,  --count                             print only number of matches\n  -E,  --strict-escape                     warn on unknown escape sequences\n  -d,  --define=VAR=VALUE                  define external variable\n  -q,  --disable-console-logs              disable printing console log messages\n       --fail-on-warnings                  fail on warnings\n  -f,  --fast-scan                         fast matching mode\n  -h,  --help                              show this help and exit\n  -i,  --identifier=IDENTIFIER             print only rules named IDENTIFIER\n       --max-process-memory-chunk=NUMBER   set maximum chunk size while reading process memory (default=1073741824)\n  -l,  --max-rules=NUMBER                  abort scanning after matching a NUMBER of rules\n       --max-strings-per-rule=NUMBER       set maximum number of strings per rule (default=10000)\n  -x,  --module-data=MODULE=FILE           pass FILE's content as extra data to MODULE\n  -n,  --negate                            print only not satisfied rules (negate)\n  -N,  --no-follow-symlinks                do not follow symlinks when scanning\n  -w,  --no-warnings                       disable warnings\n  -m,  --print-meta                        print metadata\n  -D,  --print-module-data                 print module data\n  -M,  --module-names                      show module names\n  -e,  --print-namespace                   print rules' namespace\n  -S,  --print-stats                       print rules' statistics\n  -s,  --print-strings                     print matching strings\n  -L,  --print-string-length               print length of matched strings\n  -X,  --print-xor-key                     print xor key and plaintext of matched strings\n  -g,  --print-tags                        print tags\n  -r,  --recursive                         recursively search directories\n       --scan-list                         scan files listed in FILE, one per line\n  -z,  --skip-larger=NUMBER                skip files larger than the given size when scanning a directory\n  -k,  --stack-size=SLOTS                  set maximum stack size (default=16384)\n  -t,  --tag=TAG                           print only rules tagged as TAG\n  -p,  --threads=NUMBER                    use the specified NUMBER of threads to scan a directory\n  -a,  --timeout=SECONDS                   abort scanning after the given number of SECONDS\n  -v,  --version                           show version information\n\nSend bug reports and suggestions to: vmalvarez@virustotal.com.\n",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "yara"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for yara\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "yara"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: Cannot find node '(yara)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "sh",
+    "-c",
+    "printf 'rule aws_key { strings: $a = \"AKIAIOSFODNN7EXAMPLE\" condition: $a }' > /tmp/r.yar && yara -r /tmp/r.yar /opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 0,
+   "stdout": "aws_key /opt/ctk/fixtures/source-corpus/Dockerfile\naws_key /opt/ctk/fixtures/source-corpus/app/settings.py\n",
+   "stderr": "",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "scan-with-inline-rule",
+   "title": "Match a rule against files (rule finds the planted AWS key id)"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "yara",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "17f1068880a7b867",
+ "examples": [
+  {
+   "id": "scan-with-inline-rule",
+   "title": "Match a rule against files (rule finds the planted AWS key id)",
+   "argv": [
+    "sh",
+    "-c",
+    "printf 'rule aws_key { strings: $a = \"AKIAIOSFODNN7EXAMPLE\" condition: $a }' > /tmp/r.yar && yara -r /tmp/r.yar /opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "aws_key /opt/ctk/fixtures/source-corpus/Dockerfile\naws_key /opt/ctk/fixtures/source-corpus/app/settings.py\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--atom-quality-table": "path to a file with the atom quality table",
+   "-C": "--compiled-rules                    load compiled rules",
+   "-c": "--count                             print only number of matches",
+   "-E": "--strict-escape                     warn on unknown escape sequences",
+   "-d": "--define=VAR=VALUE                  define external variable",
+   "-q": "--disable-console-logs              disable printing console log messages",
+   "--fail-on-warnings": "fail on warnings",
+   "-f": "--fast-scan                         fast matching mode",
+   "-h": "--help                              show this help and exit",
+   "-i": "--identifier=IDENTIFIER             print only rules named IDENTIFIER",
+   "--max-process-memory-chunk": "set maximum chunk size while reading process memory (default=1073741824)",
+   "-l": "--max-rules=NUMBER                  abort scanning after matching a NUMBER of rules",
+   "--max-strings-per-rule": "set maximum number of strings per rule (default=10000)",
+   "-x": "--module-data=MODULE=FILE           pass FILE's content as extra data to MODULE",
+   "-n": "--negate                            print only not satisfied rules (negate)",
+   "-N": "--no-follow-symlinks                do not follow symlinks when scanning",
+   "-w": "--no-warnings                       disable warnings",
+   "-m": "--print-meta                        print metadata",
+   "-D": "--print-module-data                 print module data",
+   "-M": "--module-names                      show module names",
+   "-e": "--print-namespace                   print rules' namespace",
+   "-S": "--print-stats                       print rules' statistics",
+   "-s": "--print-strings                     print matching strings",
+   "-L": "--print-string-length               print length of matched strings",
+   "-X": "--print-xor-key                     print xor key and plaintext of matched strings",
+   "-g": "--print-tags                        print tags",
+   "-r": "--recursive                         recursively search directories",
+   "--scan-list": "scan files listed in FILE, one per line",
+   "-z": "--skip-larger=NUMBER                skip files larger than the given size when scanning a directory",
+   "-k": "--stack-size=SLOTS                  set maximum stack size (default=16384)",
+   "-t": "--tag=TAG                           print only rules tagged as TAG",
+   "-p": "--threads=NUMBER                    use the specified NUMBER of threads to scan a directory",
+   "-a": "--timeout=SECONDS                   abort scanning after the given number of SECONDS",
+   "-v": "--version                           show version information"
+  },
+  "values_seen": {
+   "--atom-quality-table": "FILE",
+   "--max-process-memory-chunk": "NUMBER",
+   "--max-strings-per-rule": "NUMBER"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "yara",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "816b4acf543867ce5c9ac2e1f8e7e2de486d00119973665e823eda1192eb42fa",
+  "text": "YARA 4.5.8, the pattern matching swiss army knife.\nUsage: yara [OPTION]... [NAMESPACE:]RULES_FILE... FILE | DIR | PID\n\nMandatory arguments to long options are mandatory for short options too.\n\n       --atom-quality-table=FILE           path to a file with the atom quality table\n  -C,  --compiled-rules                    load compiled rules\n  -c,  --count                             print only number of matches\n  -E,  --strict-escape                     warn on unknown escape sequences\n  -d,  --define=VAR=VALUE                  define external variable\n  -q,  --disable-console-logs              disable printing console log messages\n       --fail-on-warnings                  fail on warnings\n  -f,  --fast-scan                         fast matching mode\n  -h,  --help                              show this help and exit\n  -i,  --identifier=IDENTIFIER             print only rules named IDENTIFIER\n       --max-process-memory-chunk=NUMBER   set maximum chunk size while reading process memory (default=1073741824)\n  -l,  --max-rules=NUMBER                  abort scanning after matching a NUMBER of rules\n       --max-strings-per-rule=NUMBER       set maximum number of strings per rule (default=10000)\n  -x,  --module-data=MODULE=FILE           pass FILE's content as extra data to MODULE\n  -n,  --negate                            print only not satisfied rules (negate)\n  -N,  --no-follow-symlinks                do not follow symlinks when scanning\n  -w,  --no-warnings                       disable warnings\n  -m,  --print-meta                        print metadata\n  -D,  --print-module-data                 print module data\n  -M,  --module-names                      show module names\n  -e,  --print-namespace                   print rules' namespace\n  -S,  --print-stats                       print rules' statistics\n  -s,  --print-strings                     print matching strings\n  -L,  --print-string-length               print length of matched strings\n  -X,  --print-xor-key                     print xor key and plaintext of matched strings\n  -g,  --print-tags                        print tags\n  -r,  --recursive                         recursively search directories\n       --scan-list                         scan files listed in FILE, one per line\n  -z,  --skip-larger=NUMBER                skip files larger than the given size when scanning a directory\n  -k,  --stack-size=SLOTS                  set maximum stack size (default=16384)\n  -t,  --tag=TAG                           print only rules tagged as TAG\n  -p,  --threads=NUMBER                    use the specified NUMBER of threads to scan a directory\n  -a,  --timeout=SECONDS                   abort scanning after the given number of SECONDS\n  -v,  --version                           show version information\n\nSend bug reports and suggestions to: vmalvarez@virustotal.com.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--atom-quality-table",
+   "--fail-on-warnings",
+   "--max-process-memory-chunk",
+   "--max-strings-per-rule",
+   "--scan-list",
+   "-C",
+   "-D",
+   "-E",
+   "-L",
+   "-M",
+   "-N",
+   "-S",
+   "-X",
+   "-a",
+   "-c",
+   "-d",
+   "-e",
+   "-f",
+   "-g",
+   "-h",
+   "-i",
+   "-k",
+   "-l",
+   "-m",
+   "-n",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-v",
+   "-w",
+   "-x",
+   "-z"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--atom-quality-table": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to a file with the atom quality table",
+    "metavar": "FILE"
+   },
+   "--fail-on-warnings": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "fail on warnings"
+   },
+   "--max-process-memory-chunk": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set maximum chunk size while reading process memory (default=1073741824)",
+    "metavar": "NUMBER"
+   },
+   "--max-strings-per-rule": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "set maximum number of strings per rule (default=10000)",
+    "metavar": "NUMBER"
+   },
+   "--scan-list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "scan files listed in FILE, one per line"
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--compiled-rules                    load compiled rules"
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-module-data                 print module data"
+   },
+   "-E": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--strict-escape                     warn on unknown escape sequences"
+   },
+   "-L": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-string-length               print length of matched strings"
+   },
+   "-M": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--module-names                      show module names"
+   },
+   "-N": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--no-follow-symlinks                do not follow symlinks when scanning"
+   },
+   "-S": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-stats                       print rules' statistics"
+   },
+   "-X": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-xor-key                     print xor key and plaintext of matched strings"
+   },
+   "-a": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--timeout=SECONDS                   abort scanning after the given number of SECONDS"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--count                             print only number of matches"
+   },
+   "-d": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--define=VAR=VALUE                  define external variable"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-namespace                   print rules' namespace"
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--fast-scan                         fast matching mode"
+   },
+   "-g": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-tags                        print tags"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--help                              show this help and exit"
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--identifier=IDENTIFIER             print only rules named IDENTIFIER"
+   },
+   "-k": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--stack-size=SLOTS                  set maximum stack size (default=16384)"
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--max-rules=NUMBER                  abort scanning after matching a NUMBER of rules"
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-meta                        print metadata"
+   },
+   "-n": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--negate                            print only not satisfied rules (negate)"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--threads=NUMBER                    use the specified NUMBER of threads to scan a directory"
+   },
+   "-q": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--disable-console-logs              disable printing console log messages"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--recursive                         recursively search directories"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--print-strings                     print matching strings"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--tag=TAG                           print only rules tagged as TAG"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--version                           show version information"
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--no-warnings                       disable warnings"
+   },
+   "-x": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--module-data=MODULE=FILE           pass FILE's content as extra data to MODULE"
+   },
+   "-z": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "--skip-larger=NUMBER                skip files larger than the given size when scanning a directory"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-44d4e986",
+    "argv": [
+     "yara",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 130
+   },
+   {
+    "id": "t-surface-b54fb53f",
+    "argv": [
+     "yara",
+     "-f",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 130
+   },
+   {
+    "id": "t-surface-26d123ff",
+    "argv": [
+     "yara",
+     "-i",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 130
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "YARA",
+ "repo": "VirusTotal/yara",
+ "head_sha": "604822da04103d13812dbcb08f4d7d42b61f94a8",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:53:18.635805+00:00"
+}

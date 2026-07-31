@@ -1,0 +1,126 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:c42cf74c1e742275c15cb8d9dfd59ea7952a1878fdeb72c28207432605f9c50c",
+  "duration_s": 30.58,
+  "log_tail": "#11 5.419 go: downloading go.opentelemetry.io/otel v1.44.0\n#11 5.419 go: downloading go.opentelemetry.io/otel/trace v1.44.0\n#11 5.420 go: downloading github.com/go-openapi/analysis v0.25.2\n#11 5.420 go: downloading github.com/go-openapi/loads v0.24.0\n#11 5.747 go: downloading github.com/go-openapi/spec v0.22.6\n#11 5.747 go: downloading github.com/dlclark/regexp2 v1.11.5\n#11 5.795 go: downloading github.com/go-logr/logr v1.4.3\n#11 5.795 go: downloading github.com/go-openapi/jsonpointer v0.23.1\n#11 5.795 go: downloading github.com/shibumi/go-pathspec v1.3.0\n#11 5.795 go: downloading github.com/gorilla/css v1.0.1\n#11 6.200 go: downloading github.com/go-openapi/jsonreference v0.21.6\n#11 6.216 go: downloading go.opentelemetry.io/otel/metric v1.44.0\n#11 6.216 go: downloading github.com/cespare/xxhash/v2 v2.3.0\n#11 6.216 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 6.216 go: downloading github.com/go-logr/stdr v1.2.2\n#11 ...\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 24.2s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.108 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 2.2s done\n#18 exporting manifest sha256:f6963211793e3431d072483ef379ad93be10d03c09cb119080af8512b8c7bb65 0.0s done\n#18 exporting config sha256:a44b52294b85767b9893c70f6859e35394340d81fc92039b52a42d1803850f11 0.0s done\n#18 exporting attestation manifest sha256:a1ee786571c2bd4e2523976e07133753223ce35f26a69aecd35483c3e3192096 0.0s done\n#18 exporting manifest list sha256:c42cf74c1e742275c15cb8d9dfd59ea7952a1878fdeb72c28207432605f9c50c done\n#18 naming to docker.io/ctk-exec/cli:b1a9f7b183c1 done\n#18 unpacking to docker.io/ctk-exec/cli:b1a9f7b183c1\n#18 unpacking to docker.io/ctk-exec/cli:b1a9f7b183c1 0.6s done\n#18 DONE 3.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cli",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'cli'"
+  },
+  {
+   "argv": [
+    "man",
+    "tool"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for tool\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "tool"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'tool' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 1,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-f3a2e7c0",
+    "argv": [
+     "cli",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'cli'",
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "\"cli/cli\"",
+    "source": "ci",
+    "path": ".github/workflows/issue-triage.lock.yml",
+    "line": 749,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "\"private:cli/cli\"",
+    "source": "ci",
+    "path": ".github/workflows/issue-triage.lock.yml",
+    "line": 783,
+    "reason": "bare-invocation",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "GitHub CLI",
+ "repo": "cli/cli",
+ "head_sha": "b1a9f7b183c12ae111ea63048d49aad2a53e9101",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T06:34:14.497831+00:00"
+}

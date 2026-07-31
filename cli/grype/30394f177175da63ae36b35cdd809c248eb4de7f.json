@@ -3,6 +3,19 @@
  "tags_considered": 40,
  "truncated": true,
  "surface": {
+  "--add-cpes-if-none": {
+   "source": "parsed",
+   "help": "generate CPEs for packages with no CPE data",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
   "--append": {
    "source": "documented",
    "help": "",
@@ -17,19 +30,307 @@
    "source_path": "internal/dbtest/README.md",
    "doc_path": "internal/dbtest/README.md"
   },
-  "--provider": {
-   "source": "documented",
-   "help": "",
+  "--broad-cpe-matching": {
+   "source": "parsed",
+   "help": "allow for specific package CPE attributes to match with '*' values on the vulnerability",
    "kind": "option",
    "default": null,
-   "first_tag": "v0.112.0",
-   "first_date": "2026-05-01T18:57:08Z",
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
    "last_tag": "v0.116.1",
    "last_date": "2026-07-28T21:39:05Z",
    "live": true,
-   "attribution": "unattributed",
-   "source_path": "internal/dbtest/README.md",
-   "doc_path": "internal/dbtest/README.md"
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_packages.go"
+  },
+  "--by-cve": {
+   "source": "parsed",
+   "help": "orient results by CVE instead of the original vulnerability ID when possible",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--config": {
+   "source": "parsed",
+   "help": "application config file",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-c"
+   ],
+   "first_tag": "v0.1.0-beta.1",
+   "first_date": "2020-07-27T10:12:40-04:00",
+   "last_tag": "v0.1.0-beta.1",
+   "last_date": "2020-07-27T10:12:40-04:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/cmd.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
+   ]
+  },
+  "--distro": {
+   "source": "parsed",
+   "help": "refine to results with the given operating system (format: 'name', 'name[-:@]version', 'name[-:@]maj.min', 'name[-:@]codename')",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_os.go"
+  },
+  "--ecosystem": {
+   "source": "parsed",
+   "help": "ecosystem of the package to search within",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_packages.go"
+  },
+  "--exclude": {
+   "source": "parsed",
+   "help": "exclude paths from being scanned using a glob expression",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--fail-on": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--file": {
+   "source": "parsed",
+   "help": "file to write the default report output to (default is STDOUT)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--fixed-state": {
+   "source": "parsed",
+   "help": "only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.101.0",
+   "first_date": "2025-10-15T16:59:50Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go"
+  },
+  "--from": {
+   "source": "parsed",
+   "help": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.104.0",
+   "first_date": "2025-11-17T22:23:33Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--id": {
+   "source": "parsed",
+   "help": "CVE IDs to explain",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/commands/explain.go"
+  },
+  "--ignore-states": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--limit": {
+   "source": "parsed",
+   "help": "limit the number of results returned, use 0 for no limit",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_bounds.go"
+  },
+  "--modified-after": {
+   "source": "parsed",
+   "help": "only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go"
+  },
+  "--name": {
+   "source": "parsed",
+   "help": "set the name of the target being analyzed",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--only-fixed": {
+   "source": "parsed",
+   "help": "ignore matches for vulnerabilities that are not fixed",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--only-notfixed": {
+   "source": "parsed",
+   "help": "ignore matches for vulnerabilities that are fixed",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--output": {
+   "source": "parsed",
+   "help": "format to display results (available=[text, json])",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-o"
+   ],
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/commands/db_check.go"
+  },
+  "--pkg": {
+   "source": "parsed",
+   "help": "package name/CPE/PURL to search for",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_packages.go"
+  },
+  "--platform": {
+   "source": "parsed",
+   "help": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--provider": {
+   "source": "parsed",
+   "help": "only show vulnerabilities from the given provider",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+   "doc_path": "internal/dbtest/README.md",
+   "also_documented": true
+  },
+  "--published-after": {
+   "source": "parsed",
+   "help": "only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go"
   },
   "--pull": {
    "source": "parsed",
@@ -73,6 +374,111 @@
    "low_confidence_reasons": [
     "untracked_releases"
    ]
+  },
+  "--scope": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-s"
+   ],
+   "first_tag": "v0.1.0-beta.1",
+   "first_date": "2020-07-27T10:12:40-04:00",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--show-suppressed": {
+   "source": "parsed",
+   "help": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--sort-by": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/sort_by.go"
+  },
+  "--template": {
+   "source": "parsed",
+   "help": "specify the path to a Go template file (requires 'template' output to be selected)",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--verbose": {
+   "source": "parsed",
+   "help": "increase verbosity (-v = info, -vv = debug)",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-v"
+   ],
+   "first_tag": "v0.1.0-beta.1",
+   "first_date": "2020-07-27T10:12:40-04:00",
+   "last_tag": "v0.1.0-beta.1",
+   "last_date": "2020-07-27T10:12:40-04:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/cmd.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
+   ]
+  },
+  "--vex": {
+   "source": "parsed",
+   "help": "a list of VEX documents to consider when producing scanning results",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/grype.go"
+  },
+  "--vuln": {
+   "source": "parsed",
+   "help": "only show results for the given vulnerability ID",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v0.92.1",
+   "first_date": "2025-05-16T20:12:06Z",
+   "last_tag": "v0.116.1",
+   "last_date": "2026-07-28T21:39:05Z",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go"
   },
   "--vunnel-data": {
    "source": "documented",
@@ -277,6 +683,281 @@
  },
  "events": [
   {
+   "flag": "--add-cpes-if-none",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "generate CPEs for packages with no CPE data",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--broad-cpe-matching",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "allow for specific package CPE attributes to match with '*' values on the vulnerability",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--by-cve",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "orient results by CVE instead of the original vulnerability ID when possible",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--distro",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "refine to results with the given operating system (format: 'name', 'name@version', 'name@maj.min', 'name@codename')",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--ecosystem",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ecosystem of the package to search within",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--exclude",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "exclude paths from being scanned using a glob expression",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--fail-on",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--file",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "file to write the default report output to (default is STDOUT)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--id",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "CVE IDs to explain",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--ignore-states",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--limit",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "limit the number of results returned, use 0 for no limit",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--modified-after",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--name",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "set the name of the target being analyzed",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--only-fixed",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ignore matches for vulnerabilities that are not fixed",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--only-notfixed",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ignore matches for vulnerabilities that are fixed",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--output",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "format to display results (available=[text, json])",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--pkg",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "package name/CPE/PURL to search for",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--platform",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--provider",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only show vulnerabilities from the given provider",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--published-after",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--show-suppressed",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--sort-by",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--template",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "specify the path to a Go template file (requires 'template' output to be selected)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--vex",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "a list of VEX documents to consider when producing scanning results",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--vuln",
+   "event": "added",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only show results for the given vulnerability ID",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "completion",
    "event": "added",
    "tag": "v0.92.1",
@@ -343,6 +1024,22 @@
    "attribution": "own"
   },
   {
+   "flag": "--config",
+   "event": "removed",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "application config file",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
+   ],
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--schema",
    "event": "removed",
    "tag": "v0.92.1",
@@ -353,6 +1050,22 @@
    "low_confidence": true,
    "low_confidence_reasons": [
     "untracked_releases"
+   ],
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--verbose",
+   "event": "removed",
+   "tag": "v0.92.1",
+   "date": "2025-05-16T20:12:06Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "increase verbosity (-v = info, -vv = debug)",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "untracked_releases",
+    "evidence_source_lost"
    ],
    "spans_untracked_releases": true,
    "attribution": "own"
@@ -433,6 +1146,37 @@
    "attribution": "own"
   },
   {
+   "flag": "--fixed-state",
+   "event": "added",
+   "tag": "v0.101.0",
+   "date": "2025-10-15T16:59:50Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--distro",
+   "event": "help_changed",
+   "tag": "v0.103.0",
+   "date": "2025-11-03T19:45:38Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "refine to results with the given operating system (format: 'name', 'name[-:@]version', 'name[-:@]maj.min', 'name[-:@]codename')",
+   "previous_help": "refine to results with the given operating system (format: 'name', 'name@version', 'name@maj.min', 'name@codename')",
+   "attribution": "own"
+  },
+  {
+   "flag": "--from",
+   "event": "added",
+   "tag": "v0.104.0",
+   "date": "2025-11-17T22:23:33Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+   "attribution": "own"
+  },
+  {
    "flag": "diff",
    "event": "added",
    "tag": "v0.111.0",
@@ -444,16 +1188,6 @@
   },
   {
    "flag": "--append",
-   "event": "added",
-   "tag": "v0.112.0",
-   "date": "2026-05-01T18:57:08Z",
-   "source": "documented",
-   "kind": "option",
-   "help": "",
-   "attribution": "unattributed"
-  },
-  {
-   "flag": "--provider",
    "event": "added",
    "tag": "v0.112.0",
    "date": "2026-05-01T18:57:08Z",
@@ -501,7 +1235,7 @@
    "files_matched": 70,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 8,
+   "flags": 11,
    "errors": 0
   },
   {
@@ -511,7 +1245,7 @@
    "files_matched": 313,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -521,7 +1255,7 @@
    "files_matched": 313,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -531,7 +1265,7 @@
    "files_matched": 315,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -541,7 +1275,7 @@
    "files_matched": 315,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -551,7 +1285,7 @@
    "files_matched": 305,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -561,7 +1295,7 @@
    "files_matched": 308,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -571,7 +1305,7 @@
    "files_matched": 308,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -581,7 +1315,7 @@
    "files_matched": 318,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -591,7 +1325,7 @@
    "files_matched": 318,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -601,7 +1335,7 @@
    "files_matched": 318,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -611,7 +1345,7 @@
    "files_matched": 318,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -621,7 +1355,7 @@
    "files_matched": 322,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -631,7 +1365,7 @@
    "files_matched": 322,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -641,7 +1375,7 @@
    "files_matched": 328,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 38,
    "errors": 0
   },
   {
@@ -651,7 +1385,7 @@
    "files_matched": 332,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 39,
    "errors": 0
   },
   {
@@ -661,7 +1395,7 @@
    "files_matched": 332,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 39,
    "errors": 0
   },
   {
@@ -671,7 +1405,7 @@
    "files_matched": 334,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 39,
    "errors": 0
   },
   {
@@ -681,7 +1415,7 @@
    "files_matched": 335,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 39,
    "errors": 0
   },
   {
@@ -691,7 +1425,7 @@
    "files_matched": 335,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -701,7 +1435,7 @@
    "files_matched": 335,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -711,7 +1445,7 @@
    "files_matched": 335,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -721,7 +1455,7 @@
    "files_matched": 334,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -731,7 +1465,7 @@
    "files_matched": 334,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -741,7 +1475,7 @@
    "files_matched": 336,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -751,7 +1485,7 @@
    "files_matched": 338,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -761,7 +1495,7 @@
    "files_matched": 339,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -771,7 +1505,7 @@
    "files_matched": 339,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -781,7 +1515,7 @@
    "files_matched": 340,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -791,7 +1525,7 @@
    "files_matched": 400,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -801,7 +1535,7 @@
    "files_matched": 385,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -811,7 +1545,7 @@
    "files_matched": 385,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 12,
+   "flags": 40,
    "errors": 0
   },
   {
@@ -821,7 +1555,7 @@
    "files_matched": 400,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -831,7 +1565,7 @@
    "files_matched": 400,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 13,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -841,7 +1575,7 @@
    "files_matched": 417,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 16,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -851,7 +1585,7 @@
    "files_matched": 423,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 16,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -861,7 +1595,7 @@
    "files_matched": 424,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 16,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -871,7 +1605,7 @@
    "files_matched": 427,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 18,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -881,7 +1615,7 @@
    "files_matched": 431,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 18,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -891,7 +1625,7 @@
    "files_matched": 431,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 18,
+   "flags": 45,
    "errors": 0
   }
  ],
@@ -903,6 +1637,6 @@
  "repo": "anchore/grype",
  "head_sha": "30394f177175da63ae36b35cdd809c248eb4de7f",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-29T08:16:23.360798+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T22:43:22.553810+00:00"
 }

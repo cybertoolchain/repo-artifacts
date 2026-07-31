@@ -1,19 +1,214 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:4734b548471f28e8b502098ce1c44b371ce3490deae1eab4b629fbbc1a933735",
+  "duration_s": 12.84,
+  "log_tail": "#11 6.308   Building wheel for netifaces (pyproject.toml): started\n#11 7.417   Building wheel for netifaces (pyproject.toml): finished with status 'done'\n#11 7.417   Created wheel for netifaces: filename=netifaces-0.11.0-cp312-cp312-linux_aarch64.whl size=35717 sha256=3ae7b4d486331dd2d768f721056914ad8842259a9157a35a3b390c0f2b5e3dd7\n#11 7.417   Stored in directory: /tmp/pip-ephem-wheel-cache-_lckn33j/wheels/63/fa/57/da80d0ffc8f993315c479b7cd4c8fb1c23910c8baccf6b1b27\n#11 7.418 Successfully built netifaces\n#11 7.432 Installing collected packages: pyperclip, netifaces, gnureadline, urllib3, pycryptodomex, idna, charset_normalizer, certifi, Requests\n#11 7.805 \n#11 7.806 Successfully installed Requests-2.34.2 certifi-2026.7.22 charset_normalizer-3.4.9 gnureadline-8.3.3 idna-3.18 netifaces-0.11.0 pycryptodomex-3.23.0 pyperclip-1.11.0 urllib3-2.7.0\n#11 DONE 8.0s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.3s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.116 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.7s done\n#21 exporting manifest sha256:bd7721c9bbce7097deda7256ed43db7fe67a09c7681a04bccfe11b1a1e0bf83c 0.0s done\n#21 exporting config sha256:0107a4ab06f0d22dd81c2f43bebd0c6fc286e555a6722ed800798d5eee9d5957 0.0s done\n#21 exporting attestation manifest sha256:40ef69a8ea92f52bdbf828f0d83753bf95ac151533d210e97180649ae7425f11 0.0s done\n#21 exporting manifest list sha256:4734b548471f28e8b502098ce1c44b371ce3490deae1eab4b629fbbc1a933735 0.0s done\n#21 naming to docker.io/ctk-exec/villain:87e5dd18927f\n#21 naming to docker.io/ctk-exec/villain:87e5dd18927f done\n#21 unpacking to docker.io/ctk-exec/villain:87e5dd18927f\n#21 unpacking to docker.io/ctk-exec/villain:87e5dd18927f 1.7s done\n#21 DONE 2.7s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "Villain",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/Villain.py\", line 13, in <module>\n    from Core.logging import clear_metadata\n  File \"/src/Core/logging.py\", line 83, in <module>\n    os.makedirs(main_meta_folder)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.local'\n",
+   "duration_ms": 248,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Villain",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/Villain.py\", line 13, in <module>\n    from Core.logging import clear_metadata\n  File \"/src/Core/logging.py\", line 83, in <module>\n    os.makedirs(main_meta_folder)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.local'\n",
+   "duration_ms": 173,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Villain",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/Villain.py\", line 13, in <module>\n    from Core.logging import clear_metadata\n  File \"/src/Core/logging.py\", line 83, in <module>\n    os.makedirs(main_meta_folder)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.local'\n",
+   "duration_ms": 182,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Villain",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/Villain.py\", line 13, in <module>\n    from Core.logging import clear_metadata\n  File \"/src/Core/logging.py\", line 83, in <module>\n    os.makedirs(main_meta_folder)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.local'\n",
+   "duration_ms": 212,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Villain"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/Villain.py\", line 13, in <module>\n    from Core.logging import clear_metadata\n  File \"/src/Core/logging.py\", line 83, in <module>\n    os.makedirs(main_meta_folder)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.local'\n",
+   "duration_ms": 189,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "villain",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'villain'"
+  },
+  {
+   "argv": [
+    "man",
+    "Villain"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for Villain\n",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "Villain"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'Villain' in node '(dir)Top'\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 8,
+   "binary": "Villain",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-21c6a6fa",
+    "argv": [
+     "villain",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 310
+   },
+   {
+    "id": "t-net-afbd0140",
+    "argv": [
+     "villain",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 310
+   },
+   {
+    "id": "t-net-27bf8370",
+    "argv": [
+     "Villain",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 362
+   },
+   {
+    "id": "t-net-40a24811",
+    "argv": [
+     "Villain",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 362
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "villain",
  "repo": "t3l3machus/Villain",
  "head_sha": "87e5dd18927febcd0fbad91bb1ebc10583be1766",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:41:38.892720+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:31:26.895430+00:00"
 }

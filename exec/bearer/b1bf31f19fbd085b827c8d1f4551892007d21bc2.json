@@ -1,0 +1,979 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:d6cdf30c23acafd80028f3c1a7c61f22eb8ebd5b220024ab3abe5c95f804eee2",
+  "duration_s": 23.06,
+  "log_tail": "#11 3.973 go: downloading golang.org/x/crypto v0.54.0\n#11 3.974 go: downloading github.com/lestrrat-go/httprc/v3 v3.0.5\n#11 4.126 go: downloading github.com/lestrrat-go/httpcc v1.0.1\n#11 10.81 # github.com/smacker/go-tree-sitter/yaml\n#11 10.81 scanner.cc: In member function 'bool {anonymous}::Scanner::scn_dir_tag_pfx(TSLexer*, TSSymbol)':\n#11 10.81 scanner.cc:635:9: warning: case label value is less than minimum value for type [-Wswitch-outside-range]\n#11 10.81   635 |         case SCN_FAIL:\n#11 10.81       |         ^~~~\n#11 10.81 scanner.cc: In member function 'bool {anonymous}::Scanner::scn_tag(TSLexer*, TSSymbol)':\n#11 10.81 scanner.cc:664:11: warning: case label value is less than minimum value for type [-Wswitch-outside-range]\n#11 10.81   664 |           case SCN_FAIL:\n#11 10.81       |           ^~~~\n#11 10.81 scanner.cc:674:11: warning: case label value is less than minimum value for type [-Wswitch-outside-range]\n#11 10.81   674 |           case SCN_FAIL:\n#11 10.81       |           ^~~~\n#11 ...\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 16.2s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.4s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.184 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 2.5s done\n#18 exporting manifest sha256:2905b4eae4f47a29bcdb0ca14cedaa6d55b85a1f73df34087e9360a5039bc410 done\n#18 exporting config sha256:94ffa4ed1411d74bdc1f68f768b9c1205fe44780941b7d48290bab676c49dce6 done\n#18 exporting attestation manifest sha256:5e9833cbb5e2ccb17be25cac6653ab64695af615ec5a4fb4666500f63d0da7b5 done\n#18 exporting manifest list sha256:d6cdf30c23acafd80028f3c1a7c61f22eb8ebd5b220024ab3abe5c95f804eee2 done\n#18 naming to docker.io/ctk-exec/bearer:b1bf31f19fbd done\n#18 unpacking to docker.io/ctk-exec/bearer:b1bf31f19fbd\n#18 unpacking to docker.io/ctk-exec/bearer:b1bf31f19fbd 0.4s done\n#18 DONE 2.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "bearer",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\u001b[0;1;34;94m\u2584\u2584\u2584\u2584\u2584\u001b[0m\n\u001b[0;34m\u2588\u001b[0m    \u001b[0;34m\u2588\u001b[0m  \u001b[0;34m\u2584\u2584\u2584\u001b[0m    \u001b[0;37m\u2584\u2584\u2584\u001b[0m    \u001b[0;37m\u2584\u001b[0m \u001b[0;37m\u2584\u2584\u001b[0m   \u001b[0;37m\u2584\u2584\u001b[0;1;30;90m\u2584\u001b[0m    \u001b[0;1;30;90m\u2584\u001b[0m \u001b[0;1;30;90m\u2584\u2584\u001b[0m\n\u001b[0;34m\u2588\u2584\u2584\u2584\u2584\u2580\u001b[0m \u001b[0;37m\u2588\u2580\u001b[0m  \u001b[0;37m\u2588\u001b[0m  \u001b[0;37m\u2580\u001b[0m   \u001b[0;37m\u2588\u001b[0m   \u001b[0;37m\u2588\u001b[0;1;30;90m\u2580\u001b[0m  \u001b[0;1;30;90m\u2580\u001b[0m \u001b[0;1;30;90m\u2588\u2580\u001b[0m  \u001b[0;1;30;90m\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u2580\u001b[0m  \u001b[0;1;34;94m\u2580\u001b[0m\n\u001b[0;37m\u2588\u001b[0m    \u001b[0;37m\u2588\u001b[0m \u001b[0;37m\u2588\u2580\u2580\u2580\u2580\u001b[0m  \u001b[0;37m\u2584\u001b[0;1;30;90m\u2580\u2580\u2580\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u001b[0m     \u001b[0;1;30;90m\u2588\u2580\u2580\u001b[0;1;34;94m\u2580\u2580\u001b[0m   \u001b[0;1;34;94m\u2588\u001b[0m\n\u001b[0;37m\u2588\u2584\u2584\u2584\u2584\u2580\u001b[0m \u001b[0;1;30;90m\u2580\u2588\u2584\u2584\u2580\u001b[0m  \u001b[0;1;30;90m\u2580\u2584\u2584\u2580\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u001b[0m     \u001b[0;1;34;94m\u2580\u2588\u2584\u2584\u2580\u001b[0m   \u001b[0;1;34;94m\u2588\u001b[0m\n\nScan your source code to discover, filter and prioritize security and privacy risks.\n\nUsage: bearer <command> [flags]\n\nAvailable Commands:\n\tcompletion        Generate the autocompletion script for your shell\n\tscan              Scan a directory or file\n\tinit              Write the default config to bearer.yml\n\tignore            Manage ignored fingerprints\n\tversion           Print the version\n\nExamples:\n\t# Scan local directory or file and output security risks\n\t$ bearer scan <path> --scanner=sast,secrets\n\n\t# Scan current directory and output the privacy report to a file\n\t$ bearer scan --report privacy --output <output-path> .\n\n\t# Scan local directory and output details about the underlying\n\t# detections and classifications\n\t$ bearer scan . --report dataflow\n\nLearn More:\n\tBearer is a code security tool that scans your source code to\n\tidentify OWASP/CWE top security risks, privacy impact, and sensitive dataflows\n\n\tFor more examples, tutorials, and to learn more about the project\n\tvisit https://docs.bearer.com\n",
+   "stderr": "",
+   "duration_ms": 337,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the your shell.\n\n\nUsage: bearer completion [command]\n\nAvailable Commands:\n    bash        Generate the autocompletion script for bash\n    fish        Generate the autocompletion script for fish\n    powershell  Generate the autocompletion script for powershell\n    zsh         Generate the autocompletion script for zsh\n",
+   "stderr": "",
+   "duration_ms": 324,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the your shell.\n\n\nUsage: bearer completion [command]\n\nAvailable Commands:\n    bash        Generate the autocompletion script for bash\n    fish        Generate the autocompletion script for fish\n    powershell  Generate the autocompletion script for powershell\n    zsh         Generate the autocompletion script for zsh\n",
+   "stderr": "",
+   "duration_ms": 414,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the your shell.\n\n\nUsage: bearer completion [command]\n\nAvailable Commands:\n    bash        Generate the autocompletion script for bash\n    fish        Generate the autocompletion script for fish\n    powershell  Generate the autocompletion script for powershell\n    zsh         Generate the autocompletion script for zsh\n",
+   "stderr": "",
+   "duration_ms": 343,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the your shell.\n\n\nUsage: bearer completion [command]\n\nAvailable Commands:\n    bash        Generate the autocompletion script for bash\n    fish        Generate the autocompletion script for fish\n    powershell  Generate the autocompletion script for powershell\n    zsh         Generate the autocompletion script for zsh\n",
+   "stderr": "",
+   "duration_ms": 337,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the your shell.\n\n\nUsage: bearer completion [command]\n\nAvailable Commands:\n    bash        Generate the autocompletion script for bash\n    fish        Generate the autocompletion script for fish\n    powershell  Generate the autocompletion script for powershell\n    zsh         Generate the autocompletion script for zsh\n",
+   "stderr": "",
+   "duration_ms": 354,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "scan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Scan a directory or file\n\nUsage:\n  bearer scan [flags] <path>\nAliases:\n  scan, s\nExamples:\n  # Scan a local project, including language-specific files\n  $ bearer scan /path/to/your_project\n\n\nReport Flags\n      --fail-on-severity string   Specify which severities cause the report to fail. Works in conjunction with --exit-code. (default \"critical,high,medium,low\")\n  -f, --format string             Specify report format (json, yaml, sarif, gitlab-sast, rdjson, html)\n      --include-stats             Include language usage statistics in reports that support them.\n      --no-extract                Do not include code extract in report.\n      --no-rule-meta              Do not include rule description content.\n      --output string             Specify the output path for the report.\n      --report string             Specify the type of report (security, privacy, dataflow). (default \"security\")\n      --severity string           Specify which severities are included in the report. (default \"critical,high,medium,low,warning\")\n\nRule Flags\n      --disable-default-rules   Disables all default and built-in rules.\n      --only-rule strings       Specify the comma-separated ids of the rules you would like to run. Skips all other rules.\n      --skip-rule strings       Specify the comma-separated ids of the rules you would like to skip. Runs all other rules.\n\nScan Flags\n      --context string                       Expand context of schema classification e.g., --context=health, to include data types particular to health\n      --data-subject-mapping string          Override default data subject mapping by providing a path to a custom mapping JSON file\n      --diff                                 Only report differences in findings relative to a base branch.\n      --disable-domain-resolution            Do not attempt to resolve detected domains during classification (default true)\n      --domain-resolution-timeout duration   Set timeout when attempting to resolve detected domains during classification, e.g. --domain-resolution-timeout=3s (default 3s)\n      --exit-code int                        Force a given exit code for the scan command. Set this to 0 (success) to always return a success exit code despite any findings from the scan. (default -1)\n      --external-rule-dir strings            Specify directories paths that contain .yaml files with external rules configuration\n      --force                                Disable the cache and runs the detections again\n      --hide-progress-bar                    Hide progress bar from output\n      --internal-domains strings             Define regular expressions for better classification of private or unreachable domains e.g. --internal-domains=\".*.my-company.com,private.sh\"\n      --parallel int                         Specify the amount of parallelism to use during the scan\n      --quiet                                Suppress non-essential messages\n      --scanner strings                      Specify which scanner to use e.g. --scanner=secrets, --scanner=secrets,sast (default [sast])\n      --skip-git-ignore                      Scan files even if their paths match patterns in .gitignore\n      --skip-path strings                    Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql\n      --skip-test                            Disable automatic skipping of test files (default true)\n\nGeneral Flags\n      --api-key string          Legacy.\n      --config-file string      Load configuration from the specified path. (default \"bearer.yml\")\n      --debug                   Enable debug logs. Equivalent to --log-level=debug\n      --disable-version-check   Disable Bearer version checking\n      --ignore-file string      Load ignore file from the specified path. (default \"bearer.ignore\")\n      --log-level string        Set log level (error, info, debug, trace) (default \"info\")\n      --no-color                Disable color in output\n\n",
+   "stderr": "",
+   "duration_ms": 350,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "init",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generates a default config to `bearer.yml`\n\n",
+   "stderr": "",
+   "duration_ms": 350,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "ignore",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Manage ignored fingerprints\n\n\nUsage: bearer ignore <command> [flags]\n\nAvailable Commands:\n    add              Add an ignored fingerprint\n    show             Show an ignored fingerprint\n    remove           Remove an ignored fingerprint\n    migrate          Migrate ignored fingerprints\n\nExamples:\n    # Add an ignored fingerprint to your ignore file\n    $ bearer ignore add <fingerprint> --author Mish --comment \"investigate this\"\n\n    # Show the details of an ignored fingerprint from your ignore file\n    $ bearer ignore show <fingerprint>\n\n    # Remove an ignored fingerprint from your ignore file\n    $ bearer ignore remove <fingerprint>\n\n    # Migrate existing ignored (excluded) fingerprints from bearer.yml file\n    $ bearer ignore migrate\n\n",
+   "stderr": "",
+   "duration_ms": 350,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "ignore",
+    "add",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Add an ignored fingerprint\n\nUsage:\n  bearer ignore add <fingerprint> [flags]\nExamples:\n# Add an ignored fingerprint to your ignore file\n$ bearer ignore add <fingerprint> --author Mish --comment \"Possible false positive\"\n\n\nIgnore Add Flags\n  -a, --author string    Add author information to this ignored finding. (default output of \"git config user.name\")\n      --comment string   Add a comment to this ignored finding.\n      --false-positive   Mark an this ignored finding as false positive.\n      --force            Overwrite an existing ignored finding.\n\nGeneral Flags\n      --api-key string          Legacy.\n      --config-file string      Load configuration from the specified path. (default \"bearer.yml\")\n      --debug                   Enable debug logs. Equivalent to --log-level=debug\n      --disable-version-check   Disable Bearer version checking\n      --ignore-file string      Load ignore file from the specified path. (default \"bearer.ignore\")\n      --log-level string        Set log level (error, info, debug, trace) (default \"info\")\n      --no-color                Disable color in output\n\n",
+   "stderr": "",
+   "duration_ms": 337,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "ignore",
+    "show",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show an ignored fingerprint\n\nUsage:\n  bearer ignore show <fingerprint> [flags]\nExamples:\n# Show the details of an ignored fingerprint from your ignore file\n$ bearer ignore show <fingerprint>\n\n\nGeneral Flags\n      --api-key string          Legacy.\n      --config-file string      Load configuration from the specified path. (default \"bearer.yml\")\n      --debug                   Enable debug logs. Equivalent to --log-level=debug\n      --disable-version-check   Disable Bearer version checking\n      --ignore-file string      Load ignore file from the specified path. (default \"bearer.ignore\")\n      --log-level string        Set log level (error, info, debug, trace) (default \"info\")\n      --no-color                Disable color in output\n\nIgnore Show Flags\n      --all   Show all ignored fingerprints.\n\n",
+   "stderr": "",
+   "duration_ms": 341,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "ignore",
+    "remove",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Remove an ignored fingerprint\n\nUsage:\n  bearer ignore remove <fingerprint> [flags]\nExamples:\n# Remove an ignored fingerprint from your ignore file\n$ bearer ignore remove <fingerprint>\n\n\nGeneral Flags\n      --api-key string          Legacy.\n      --config-file string      Load configuration from the specified path. (default \"bearer.yml\")\n      --debug                   Enable debug logs. Equivalent to --log-level=debug\n      --disable-version-check   Disable Bearer version checking\n      --ignore-file string      Load ignore file from the specified path. (default \"bearer.ignore\")\n      --log-level string        Set log level (error, info, debug, trace) (default \"info\")\n      --no-color                Disable color in output\n\n",
+   "stderr": "",
+   "duration_ms": 344,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "ignore",
+    "migrate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Migrate ignored fingerprints from bearer.yml to ignore file\n\nUsage:\n  bearer ignore migrate [flags]\nExamples:\n# Migrate existing ignored (excluded) fingerprints from bearer.yml file to ignore file\n$ bearer ignore migrate\n\n\nGeneral Flags\n      --api-key string          Legacy.\n      --config-file string      Load configuration from the specified path. (default \"bearer.yml\")\n      --debug                   Enable debug logs. Equivalent to --log-level=debug\n      --disable-version-check   Disable Bearer version checking\n      --ignore-file string      Load ignore file from the specified path. (default \"bearer.ignore\")\n      --log-level string        Set log level (error, info, debug, trace) (default \"info\")\n      --no-color                Disable color in output\n\nIgnore Migrate Flags\n      --force   Overwrite an existing ignored finding.\n\n",
+   "stderr": "",
+   "duration_ms": 341,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "bearer",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Print the version\n\n",
+   "stderr": "",
+   "duration_ms": 336,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "bearer"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for bearer\n",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "bearer"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'bearer' in node '(dir)Top'\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "bearer",
+    "scan",
+    "/opt/ctk/fixtures/source-corpus",
+    "--scanner=secrets",
+    "--format",
+    "json",
+    "--exit-code",
+    "0",
+    "--disable-version-check",
+    "--ignore-git",
+    "--quiet"
+   ],
+   "exit_code": 0,
+   "stdout": "{\"high\":[{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":5,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/Dockerfile\",\"filename\":\"Dockerfile\",\"source\":{\"start\":5,\"end\":5,\"column\":{\"start\":15,\"end\":34}},\"sink\":{\"start\":5,\"end\":5,\"column\":{\"start\":15,\"end\":34},\"content\":\"\"},\"parent_line_number\":5,\"fingerprint\":\"2eb118a8857111a9213696ee40472f42_0\",\"old_fingerprint\":\"0f2e2a06d9c74d3e7f96bd5ff934ff21_0\",\"detailed_context\":\"AWS Access Token\",\"code_extract\":\"ENV API_KEY=\\\"AKIAIOSFODNN7EXAMPLE\\\"\"},{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":10,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/app/db.py\",\"filename\":\"app/db.py\",\"source\":{\"start\":10,\"end\":10,\"column\":{\"start\":15,\"end\":54}},\"sink\":{\"start\":10,\"end\":10,\"column\":{\"start\":15,\"end\":54},\"content\":\"\"},\"parent_line_number\":10,\"fingerprint\":\"08aeb32f3070cdd2053b769afb0bbd77_0\",\"old_fingerprint\":\"8b238ebdafa569d563b9f422d791365d_2\",\"detailed_context\":\"Github Personal Access Token\",\"code_extract\":\"API_TOKEN = \\\"[REDACTED:github-token]\\\"\"},{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":7,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/app/settings.py\",\"filename\":\"app/settings.py\",\"source\":{\"start\":7,\"end\":7,\"column\":{\"start\":23,\"end\":42}},\"sink\":{\"start\":7,\"end\":7,\"column\":{\"start\":23,\"end\":42},\"content\":\"\"},\"parent_line_number\":7,\"fingerprint\":\"9da4bd559810c44e9005ef72ce60c0f0_0\",\"old_fingerprint\":\"5e1ae99d1a8d3603b52e5f0f8e58caec_1\",\"detailed_context\":\"AWS Access Token\",\"code_extract\":\"AWS_ACCESS_KEY_ID = \\\"AKIAIOSFODNN7EXAMPLE\\\"\"}]}\n",
+   "stderr": "Analyzing codebase\n",
+   "duration_ms": 856,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "scan-source-corpus",
+   "title": "Secrets scan of the fixture source tree"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 18,
+   "binary": "bearer",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "10da0e8b40cae82c",
+ "examples": [
+  {
+   "id": "scan-source-corpus",
+   "title": "Secrets scan of the fixture source tree",
+   "argv": [
+    "bearer",
+    "scan",
+    "/opt/ctk/fixtures/source-corpus",
+    "--scanner=secrets",
+    "--format",
+    "json",
+    "--exit-code",
+    "0",
+    "--disable-version-check",
+    "--ignore-git",
+    "--quiet"
+   ],
+   "stdout": "{\"high\":[{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":5,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/Dockerfile\",\"filename\":\"Dockerfile\",\"source\":{\"start\":5,\"end\":5,\"column\":{\"start\":15,\"end\":34}},\"sink\":{\"start\":5,\"end\":5,\"column\":{\"start\":15,\"end\":34},\"content\":\"\"},\"parent_line_number\":5,\"fingerprint\":\"2eb118a8857111a9213696ee40472f42_0\",\"old_fingerprint\":\"0f2e2a06d9c74d3e7f96bd5ff934ff21_0\",\"detailed_context\":\"AWS Access Token\",\"code_extract\":\"ENV API_KEY=\\\"AKIAIOSFODNN7EXAMPLE\\\"\"},{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":10,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/app/db.py\",\"filename\":\"app/db.py\",\"source\":{\"start\":10,\"end\":10,\"column\":{\"start\":15,\"end\":54}},\"sink\":{\"start\":10,\"end\":10,\"column\":{\"start\":15,\"end\":54},\"content\":\"\"},\"parent_line_number\":10,\"fingerprint\":\"08aeb32f3070cdd2053b769afb0bbd77_0\",\"old_fingerprint\":\"8b238ebdafa569d563b9f422d791365d_2\",\"detailed_context\":\"Github Personal Access Token\",\"code_extract\":\"API_TOKEN = \\\"[REDACTED:github-token]\\\"\"},{\"cwe_ids\":[\"798\"],\"id\":\"gitleaks\",\"title\":\"Hard-coded secret detected.\",\"description\":\"## Description\\n\\nHard-coding secrets in a project opens them up to leakage. This rule checks for common secret types such as keys, tokens, and passwords using the popular Gitleaks library and ensures they aren't hard-coded. This rule is part of the secrets scanner and language agnostic.\\n\\n## Remediations\\n\\nDo not hard-code secrets in committed code. Instead, use environment variables and a secret management system.\\n\\n## Resources\\n- [Gitleaks](https://gitleaks.io/)\\n\",\"documentation_url\":\"https://docs.bearer.com/reference/rules/gitleaks\",\"line_number\":7,\"full_filename\":\"/opt/ctk/fixtures/source-corpus/app/settings.py\",\"filename\":\"app/settings.py\",\"source\":{\"start\":7,\"end\":7,\"column\":{\"start\":23,\"end\":42}},\"sink\":{\"start\":7,\"end\":7,\"column\":{\"start\":23,\"end\":42},\"content\":\"\"},\"parent_line_number\":7,\"fingerprint\":\"9da4bd559810c44e9005ef72ce60c0f0_0\",\"old_fingerprint\":\"5e1ae99d1a8d3603b52e5f0f8e58caec_1\",\"detailed_context\":\"AWS Access Token\",\"code_extract\":\"AWS_ACCESS_KEY_ID = \\\"AKIAIOSFODNN7EXAMPLE\\\"\"}]}\n",
+   "stderr": "Analyzing codebase\n",
+   "exit_code": 0,
+   "duration_ms": 856,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {},
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {
+   "completion": {},
+   "scan": {
+    "--fail-on-severity": "Specify which severities cause the report to fail. Works in conjunction with --exit-code. (default \"critical,high,medium,low\")",
+    "--format": "Specify report format (json, yaml, sarif, gitlab-sast, rdjson, html)",
+    "-f": "Specify report format (json, yaml, sarif, gitlab-sast, rdjson, html)",
+    "--include-stats": "Include language usage statistics in reports that support them.",
+    "--no-extract": "Do not include code extract in report.",
+    "--no-rule-meta": "Do not include rule description content.",
+    "--output": "Specify the output path for the report.",
+    "--report": "Specify the type of report (security, privacy, dataflow). (default \"security\")",
+    "--severity": "Specify which severities are included in the report. (default \"critical,high,medium,low,warning\")",
+    "--disable-default-rules": "Disables all default and built-in rules.",
+    "--only-rule": "Specify the comma-separated ids of the rules you would like to run. Skips all other rules.",
+    "--skip-rule": "Specify the comma-separated ids of the rules you would like to skip. Runs all other rules.",
+    "--context": "Expand context of schema classification e.g., --context=health, to include data types particular to health",
+    "--data-subject-mapping": "Override default data subject mapping by providing a path to a custom mapping JSON file",
+    "--diff": "Only report differences in findings relative to a base branch.",
+    "--disable-domain-resolution": "Do not attempt to resolve detected domains during classification (default true)",
+    "--domain-resolution-timeout": "Set timeout when attempting to resolve detected domains during classification, e.g. --domain-resolution-timeout=3s (default 3s)",
+    "--exit-code": "Force a given exit code for the scan command. Set this to 0 (success) to always return a success exit code despite any findings from the scan. (default -1)",
+    "--external-rule-dir": "Specify directories paths that contain .yaml files with external rules configuration",
+    "--force": "Disable the cache and runs the detections again",
+    "--hide-progress-bar": "Hide progress bar from output",
+    "--internal-domains": "Define regular expressions for better classification of private or unreachable domains e.g. --internal-domains=\".*.my-company.com,private.sh\"",
+    "--parallel": "Specify the amount of parallelism to use during the scan",
+    "--quiet": "Suppress non-essential messages",
+    "--scanner": "Specify which scanner to use e.g. --scanner=secrets, --scanner=secrets,sast (default [sast])",
+    "--skip-git-ignore": "Scan files even if their paths match patterns in .gitignore",
+    "--skip-path": "Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql",
+    "--skip-test": "Disable automatic skipping of test files (default true)",
+    "--api-key": "Legacy.",
+    "--config-file": "Load configuration from the specified path. (default \"bearer.yml\")",
+    "--debug": "Enable debug logs. Equivalent to --log-level=debug",
+    "--disable-version-check": "Disable Bearer version checking",
+    "--ignore-file": "Load ignore file from the specified path. (default \"bearer.ignore\")",
+    "--log-level": "Set log level (error, info, debug, trace) (default \"info\")",
+    "--no-color": "Disable color in output"
+   },
+   "ignore": {
+    "--author": "Add author information to this ignored finding. (default output of \"git config user.name\")",
+    "-a": "Add author information to this ignored finding. (default output of \"git config user.name\")",
+    "--comment": "Add a comment to this ignored finding.",
+    "--false-positive": "Mark an this ignored finding as false positive.",
+    "--force": "Overwrite an existing ignored finding.",
+    "--api-key": "Legacy.",
+    "--config-file": "Load configuration from the specified path. (default \"bearer.yml\")",
+    "--debug": "Enable debug logs. Equivalent to --log-level=debug",
+    "--disable-version-check": "Disable Bearer version checking",
+    "--ignore-file": "Load ignore file from the specified path. (default \"bearer.ignore\")",
+    "--log-level": "Set log level (error, info, debug, trace) (default \"info\")",
+    "--no-color": "Disable color in output",
+    "--all": "Show all ignored fingerprints."
+   }
+  },
+  "subcommands": [
+   "completion",
+   "scan",
+   "init",
+   "ignore",
+   "version"
+  ],
+  "binary": "bearer",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "42c49c529ca650a62a68013fd9bc711e36262c4da44258fdd10364a2a2be7a3d",
+  "text": "\n\u001b[0;1;34;94m\u2584\u2584\u2584\u2584\u2584\u001b[0m\n\u001b[0;34m\u2588\u001b[0m    \u001b[0;34m\u2588\u001b[0m  \u001b[0;34m\u2584\u2584\u2584\u001b[0m    \u001b[0;37m\u2584\u2584\u2584\u001b[0m    \u001b[0;37m\u2584\u001b[0m \u001b[0;37m\u2584\u2584\u001b[0m   \u001b[0;37m\u2584\u2584\u001b[0;1;30;90m\u2584\u001b[0m    \u001b[0;1;30;90m\u2584\u001b[0m \u001b[0;1;30;90m\u2584\u2584\u001b[0m\n\u001b[0;34m\u2588\u2584\u2584\u2584\u2584\u2580\u001b[0m \u001b[0;37m\u2588\u2580\u001b[0m  \u001b[0;37m\u2588\u001b[0m  \u001b[0;37m\u2580\u001b[0m   \u001b[0;37m\u2588\u001b[0m   \u001b[0;37m\u2588\u001b[0;1;30;90m\u2580\u001b[0m  \u001b[0;1;30;90m\u2580\u001b[0m \u001b[0;1;30;90m\u2588\u2580\u001b[0m  \u001b[0;1;30;90m\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u2580\u001b[0m  \u001b[0;1;34;94m\u2580\u001b[0m\n\u001b[0;37m\u2588\u001b[0m    \u001b[0;37m\u2588\u001b[0m \u001b[0;37m\u2588\u2580\u2580\u2580\u2580\u001b[0m  \u001b[0;37m\u2584\u001b[0;1;30;90m\u2580\u2580\u2580\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u001b[0m     \u001b[0;1;30;90m\u2588\u2580\u2580\u001b[0;1;34;94m\u2580\u2580\u001b[0m   \u001b[0;1;34;94m\u2588\u001b[0m\n\u001b[0;37m\u2588\u2584\u2584\u2584\u2584\u2580\u001b[0m \u001b[0;1;30;90m\u2580\u2588\u2584\u2584\u2580\u001b[0m  \u001b[0;1;30;90m\u2580\u2584\u2584\u2580\u2588\u001b[0m   \u001b[0;1;30;90m\u2588\u001b[0m     \u001b[0;1;34;94m\u2580\u2588\u2584\u2584\u2580\u001b[0m   \u001b[0;1;34;94m\u2588\u001b[0m\n\nScan your source code to discover, filter and prioritize security and privacy risks.\n\nUsage: bearer <command> [flags]\n\nAvailable Commands:\n\tcompletion        Generate the autocompletion script for your shell\n\tscan              Scan a directory or file\n\tinit              Write the default config to bearer.yml\n\tignore            Manage ignored fingerprints\n\tversion           Print the version\n\nExamples:\n\t# Scan local directory or file and output security risks\n\t$ bearer scan <path> --scanner=sast,secrets\n\n\t# Scan current directory and output the privacy report to a file\n\t$ bearer scan --report privacy --output <output-path> .\n\n\t# Scan local directory and output details about the underlying\n\t# detections and classifications\n\t$ bearer scan . --report dataflow\n\nLearn More:\n\tBearer is a code security tool that scans your source code to\n\tidentify OWASP/CWE top security risks, privacy impact, and sensitive dataflows\n\n\tFor more examples, tutorials, and to learn more about the project\n\tvisit https://docs.bearer.com\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "add",
+   "bearer",
+   "completion",
+   "ignore",
+   "init",
+   "migrate",
+   "processing-worker",
+   "pull",
+   "remove",
+   "scan",
+   "show",
+   "version"
+  ],
+  "help_only": [],
+  "mining_coverage": null
+ },
+ "surface": {
+  "flags": {
+   "add": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Add an ignored fingerprint",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/ignore.go"
+   },
+   "bearer": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/app.go"
+   },
+   "completion": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate the autocompletion script for the your shell.",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/completion.go"
+   },
+   "ignore": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Manage ignored fingerprints",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/ignore.go"
+   },
+   "init": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generates a default config to `bearer.yml`",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/init.go"
+   },
+   "migrate": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Migrate ignored fingerprints from bearer.yml to ignore file",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/ignore.go"
+   },
+   "processing-worker": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "start scan processing server",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/processing_worker.go"
+   },
+   "pull": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Pull ignored fingerprints from Cloud",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v1.43.7",
+    "last_date": "2024-05-27T11:58:18+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "internal/commands/ignore.go"
+   },
+   "remove": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Remove an ignored fingerprint",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/ignore.go"
+   },
+   "scan": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Scan a directory or file",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/scan.go"
+   },
+   "show": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show an ignored fingerprint",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/ignore.go"
+   },
+   "version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the version",
+    "kind": "subcommand",
+    "first_tag": "v1.34.0",
+    "first_date": "2024-01-09T10:56:25Z",
+    "last_tag": "v2.0.2",
+    "last_date": "2026-05-18T12:19:23+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "pkg/commands/version.go"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "ignore",
+   "init",
+   "scan",
+   "version"
+  ],
+  "subcommand_flags": {
+   "completion": {},
+   "scan": {
+    "--fail-on-severity": "Specify which severities cause the report to fail. Works in conjunction with --exit-code. (default \"critical,high,medium,low\")",
+    "--format": "Specify report format (json, yaml, sarif, gitlab-sast, rdjson, html)",
+    "-f": "Specify report format (json, yaml, sarif, gitlab-sast, rdjson, html)",
+    "--include-stats": "Include language usage statistics in reports that support them.",
+    "--no-extract": "Do not include code extract in report.",
+    "--no-rule-meta": "Do not include rule description content.",
+    "--output": "Specify the output path for the report.",
+    "--report": "Specify the type of report (security, privacy, dataflow). (default \"security\")",
+    "--severity": "Specify which severities are included in the report. (default \"critical,high,medium,low,warning\")",
+    "--disable-default-rules": "Disables all default and built-in rules.",
+    "--only-rule": "Specify the comma-separated ids of the rules you would like to run. Skips all other rules.",
+    "--skip-rule": "Specify the comma-separated ids of the rules you would like to skip. Runs all other rules.",
+    "--context": "Expand context of schema classification e.g., --context=health, to include data types particular to health",
+    "--data-subject-mapping": "Override default data subject mapping by providing a path to a custom mapping JSON file",
+    "--diff": "Only report differences in findings relative to a base branch.",
+    "--disable-domain-resolution": "Do not attempt to resolve detected domains during classification (default true)",
+    "--domain-resolution-timeout": "Set timeout when attempting to resolve detected domains during classification, e.g. --domain-resolution-timeout=3s (default 3s)",
+    "--exit-code": "Force a given exit code for the scan command. Set this to 0 (success) to always return a success exit code despite any findings from the scan. (default -1)",
+    "--external-rule-dir": "Specify directories paths that contain .yaml files with external rules configuration",
+    "--force": "Disable the cache and runs the detections again",
+    "--hide-progress-bar": "Hide progress bar from output",
+    "--internal-domains": "Define regular expressions for better classification of private or unreachable domains e.g. --internal-domains=\".*.my-company.com,private.sh\"",
+    "--parallel": "Specify the amount of parallelism to use during the scan",
+    "--quiet": "Suppress non-essential messages",
+    "--scanner": "Specify which scanner to use e.g. --scanner=secrets, --scanner=secrets,sast (default [sast])",
+    "--skip-git-ignore": "Scan files even if their paths match patterns in .gitignore",
+    "--skip-path": "Specify the comma separated files and directories to skip. Supports * syntax, e.g. --skip-path users/*.go,users/admin.sql",
+    "--skip-test": "Disable automatic skipping of test files (default true)",
+    "--api-key": "Legacy.",
+    "--config-file": "Load configuration from the specified path. (default \"bearer.yml\")",
+    "--debug": "Enable debug logs. Equivalent to --log-level=debug",
+    "--disable-version-check": "Disable Bearer version checking",
+    "--ignore-file": "Load ignore file from the specified path. (default \"bearer.ignore\")",
+    "--log-level": "Set log level (error, info, debug, trace) (default \"info\")",
+    "--no-color": "Disable color in output"
+   },
+   "ignore": {
+    "--author": "Add author information to this ignored finding. (default output of \"git config user.name\")",
+    "-a": "Add author information to this ignored finding. (default output of \"git config user.name\")",
+    "--comment": "Add a comment to this ignored finding.",
+    "--false-positive": "Mark an this ignored finding as false positive.",
+    "--force": "Overwrite an existing ignored finding.",
+    "--api-key": "Legacy.",
+    "--config-file": "Load configuration from the specified path. (default \"bearer.yml\")",
+    "--debug": "Enable debug logs. Equivalent to --log-level=debug",
+    "--disable-version-check": "Disable Bearer version checking",
+    "--ignore-file": "Load ignore file from the specified path. (default \"bearer.ignore\")",
+    "--log-level": "Set log level (error, info, debug, trace) (default \"info\")",
+    "--no-color": "Disable color in output",
+    "--all": "Show all ignored fingerprints."
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 18,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-4987ca7d",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report=privacy",
+     "--data-subject-mapping=/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/explanations/reports.md",
+    "line": 110,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-d5daa335",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--scanner",
+     "secrets"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 22,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-bf800300",
+    "argv": [
+     "bearer",
+     "scan",
+     "--diff",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 42,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-3b695c57",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--only-rule",
+     "ruby_lang_cookies"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 142,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-3da05ba9",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--severity",
+     "critical,high"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 150,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-8400c61f",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--exit-code",
+     "0"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 158,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-4738939a",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--format",
+     "yaml"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 166,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-eb129f18",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "dataflow",
+     "--output",
+     "dataflow.json"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 174,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-0875519f",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--format",
+     "html",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 196,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-ea7071e7",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--external-rule-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/custom-rule.md",
+    "line": 212,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-e0ff5282",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "dataflow"
+    ],
+    "source": "readme",
+    "path": "docs/guides/dataflow.md",
+    "line": 23,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-a1dcc978",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "dataflow",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/dataflow.md",
+    "line": 149,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-6453c2c8",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/integration-strategy.md",
+    "line": 21,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-bdd7350a",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "privacy"
+    ],
+    "source": "readme",
+    "path": "docs/guides/privacy.md",
+    "line": 22,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-310eae8e",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "privacy",
+     "--format",
+     "json"
+    ],
+    "source": "readme",
+    "path": "docs/guides/privacy.md",
+    "line": 30,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-b7553eae",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "privacy",
+     "--output",
+     "report.csv"
+    ],
+    "source": "readme",
+    "path": "docs/guides/privacy.md",
+    "line": 102,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-readme-e0b5d657",
+    "argv": [
+     "bearer",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--report",
+     "privacy",
+     "--data-subject-mapping",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/guides/privacy.md",
+    "line": 112,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "exit_code": 1,
+    "output_bytes": 149
+   },
+   {
+    "id": "t-surface-c1065fa1",
+    "argv": [
+     "bearer",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 0,
+    "output_bytes": 1690
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "bearer scan juice-shop",
+    "source": "readme",
+    "path": "README.md",
+    "line": 204,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "bearer ignore add 4b0883d52334dfd9a4acce2fcf810121_0 --author=\"Mish Bear\" --comment=\"Ignore this finding\"",
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 66,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "bearer scan . --format sarif --output sarif-report.sarif",
+    "source": "readme",
+    "path": "docs/guides/configure-scan.md",
+    "line": 182,
+    "reason": "needs-live-target",
+    "token": "sarif-report.sarif"
+   },
+   {
+    "raw": "bearer init",
+    "source": "readme",
+    "path": "docs/reference/config.md",
+    "line": 13,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "Bearer",
+ "repo": "Bearer/bearer",
+ "head_sha": "b1bf31f19fbd085b827c8d1f4551892007d21bc2",
+ "analyzer": "exec",
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T06:32:59.320232+00:00"
+}

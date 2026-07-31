@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:e038af1bb7dd7cfc2e41e5862455dc20dfa88f7c07f4bccbad508d7e5310498b",
-  "duration_s": 14.79,
-  "log_tail": "#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.128 go: downloading go.uber.org/automaxprocs v1.6.0\n#10 0.128 go: downloading software.sslmate.com/src/go-pkcs12 v0.6.0\n#10 0.128 go: downloading github.com/urfave/cli/v2 v2.27.7\n#10 0.130 go: downloading golang.org/x/term v0.37.0\n#10 0.130 go: downloading github.com/google/uuid v1.6.0\n#10 0.130 go: downloading github.com/pin/tftp/v3 v3.1.0\n#10 0.132 go: downloading github.com/fatih/color v1.18.0\n#10 0.463 go: downloading golang.org/x/net v0.47.0\n#10 0.508 go: downloading github.com/mattn/go-isatty v0.0.20\n#10 0.508 go: downloading github.com/mattn/go-colorable v0.1.14\n#10 0.518 go: downloading golang.org/x/sys v0.38.0\n#10 0.533 go: downloading golang.org/x/crypto v0.45.0\n#10 0.832 go: downloading github.com/cpuguy83/go-md2man/v2 v2.0.7\n#10 0.832 go: downloading github.com/xrash/smetrics v0.0.0-20250705151800-55b8f293f342\n#10 0.969 go: downloading github.com/russross/blackfriday/v2 v2.1.0\n#10 DONE 4.6s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.094 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.1s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.5s done\n#17 exporting manifest sha256:6d9e530aee6a5f6c2bfc6c62f613b3f0b00bf792b06e12498eb8bf7393b82d6e done\n#17 exporting config sha256:5f7d2c368f54415d1fbfc1fe9e22b8882cd8526e98bfdb7f81fc5b78a8d70336 done\n#17 exporting attestation manifest sha256:7cef72dfe2010d9bb18468ce9c6c4a559ba012391681b4dc1c585cbdadb0892b done\n#17 exporting manifest list sha256:e038af1bb7dd7cfc2e41e5862455dc20dfa88f7c07f4bccbad508d7e5310498b done\n#17 naming to docker.io/ctk-exec/gobuster:c77583fbb882 done\n#17 unpacking to docker.io/ctk-exec/gobuster:c77583fbb882 0.1s done\n#17 DONE 0.6s",
+  "image_digest": "sha256:4fe1a9795e10f3b6544097c61c81e796c61572490c8208432713f0166a64b351",
+  "duration_s": 9.98,
+  "log_tail": "\n#11 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#11 DONE 0.3s\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 0.257 go: downloading github.com/urfave/cli/v2 v2.27.7\n#12 0.257 go: downloading github.com/pin/tftp/v3 v3.1.0\n#12 0.258 go: downloading github.com/google/uuid v1.6.0\n#12 0.258 go: downloading github.com/fatih/color v1.18.0\n#12 0.263 go: downloading go.uber.org/automaxprocs v1.6.0\n#12 0.264 go: downloading golang.org/x/term v0.37.0\n#12 0.265 go: downloading software.sslmate.com/src/go-pkcs12 v0.6.0\n#12 0.551 go: downloading golang.org/x/sys v0.38.0\n#12 0.551 go: downloading golang.org/x/net v0.47.0\n#12 0.666 go: downloading github.com/mattn/go-isatty v0.0.20\n#12 0.666 go: downloading github.com/mattn/go-colorable v0.1.14\n#12 0.742 go: downloading golang.org/x/crypto v0.45.0\n#12 1.351 go: downloading github.com/cpuguy83/go-md2man/v2 v2.0.7\n#12 1.351 go: downloading github.com/xrash/smetrics v0.0.0-20250705151800-55b8f293f342\n#12 1.543 go: downloading github.com/russross/blackfriday/v2 v2.1.0\n#12 DONE 7.1s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.177 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.7s done\n#18 exporting manifest sha256:8e93b07cc663e459c33ad08f24910bce3891088392c19ba8e0f2cdf8d83d5801 0.0s done\n#18 exporting config sha256:c15a93b984069f6e5c2b9ef77bcbde3151b3fd77cd2f66811b08bf5f8788cf78 0.0s done\n#18 exporting attestation manifest sha256:360d3bb72eb96317ec4b93f4d05e6ad6d368710cae50f5fb648153b7de5ba8e0 0.1s done\n#18 exporting manifest list sha256:4fe1a9795e10f3b6544097c61c81e796c61572490c8208432713f0166a64b351\n#18 exporting manifest list sha256:4fe1a9795e10f3b6544097c61c81e796c61572490c8208432713f0166a64b351 0.0s done\n#18 naming to docker.io/ctk-exec/gobuster:c77583fbb882 done\n#18 unpacking to docker.io/ctk-exec/gobuster:c77583fbb882\n#18 unpacking to docker.io/ctk-exec/gobuster:c77583fbb882 0.2s done\n#18 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster - the tool you love\n\nUSAGE:\n   gobuster command [command options]\n\nVERSION:\n   3.8.2\n\nAUTHORS:\n   Christian Mehlmauer (@firefart)\n   OJ Reeves (@TheColonial)\n\nCOMMANDS:\n   dir      Uses directory/file enumeration mode\n   vhost    Uses VHOST enumeration mode (you most probably want to use the IP address as the URL parameter)\n   dns      Uses DNS subdomain enumeration mode\n   fuzz     Uses fuzzing mode. Replaces the keyword FUZZ in the URL, Headers and the request body\n   tftp     Uses TFTP enumeration mode\n   s3       Uses aws bucket enumeration mode\n   gcs      Uses gcs bucket enumeration mode\n   help, h  Shows a list of commands or help for one command\n\nGLOBAL OPTIONS:\n   --help, -h     show help\n   --version, -v  print the version\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null
   },
@@ -42,7 +42,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster dir - Uses directory/file enumeration mode\n\nUSAGE:\n   gobuster dir [command options]\n\nOPTIONS:\n   --url value, -u value                                    The target URL\n   --cookies value, -c value                                Cookies to use for the requests\n   --username value, -U value                               Username for Basic Auth\n   --password value, -P value                               Password for Basic Auth\n   --follow-redirect, -r                                    Follow redirects (default: false)\n   --headers value, -H value [ --headers value, -H value ]  Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'\n   --no-canonicalize-headers, --nch                         Do not canonicalize HTTP header names. If set header names are sent as is (default: false)\n   --method value, -m value                                 the password to the p12 file (default: \"GET\")\n   --useragent value, -a value                              Set the User-Agent string (default: \"gobuster/3.8.2\")\n   --random-agent, --rua                                    Use a random User-Agent string (default: false)\n   --proxy value                                            Proxy to use for requests [http(s)://host:port] or [socks5://host:port]\n   --timeout value, --to value                              HTTP Timeout (default: 10s)\n   --no-tls-validation, -k                                  Skip TLS certificate verification (default: false)\n   --retry                                                  Should retry on request timeout (default: false)\n   --retry-attempts value, --ra value                       Times to retry on request timeout (default: 3)\n   --client-cert-pem value, --ccp value                     public key in PEM format for optional TLS client certificates]\n   --client-cert-pem-key value, --ccpk value                private key in PEM format for optional TLS client certificates (this key needs to have no password)\n   --client-cert-p12 value, --ccp12 value                   a p12 file to use for options TLS client certificates\n   --client-cert-p12-password value, --ccp12p value         the password to the p12 file\n   --tls-renegotiation                                      Enable TLS renegotiation (default: false)\n   --interface value, --iface value                         specify network interface to use. Can't be used with local-ip\n   --local-ip value                                         specify local ip of network interface to use. Can't be used with interface\n   --wordlist value, -w value                               Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value                                  Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value                                Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value                      Resume from a given position in the wordlist (default: 0)\n   --output value, -o value                                 Output file to write results to (defaults to stdout)\n   --quiet, -q                                              Don't print the banner and other noise (default: false)\n   --no-progress, --np                                      Don't display progress (default: false)\n   --no-error, --ne                                         Don't display errors (default: false)\n   --pattern value, -p value                                File containing replacement patterns\n   --discover-pattern value, --pd value                     File containing replacement patterns applied to successful guesses\n   --no-color, --nc                                         Disable color output (default: false)\n   --debug                                                  enable debug output (default: false)\n   --status-codes value, -s value                           Positive status codes (will be overwritten with status-codes-blacklist if set). Can also handle ranges like 200,300-400,404\n   --status-codes-blacklist value, -b value                 Negative status codes (will override status-codes if set). Can also handle ranges like 200,300-400,404. (default: \"404\")\n   --extensions value, -x value                             File extension(s) to search for\n   --extensions-file value, -X value                        Read file extension(s) to search from the file\n   --expanded, -e                                           Expanded mode, print full URLs (default: false)\n   --no-status, -n                                          Don't print status codes (default: false)\n   --hide-length, --hl                                      Hide the length of the body in the output (default: false)\n   --add-slash, -f                                          Append / to each request (default: false)\n   --discover-backup, --db                                  Upon finding a file search for backup files by appending multiple backup extensions (default: false)\n   --exclude-length value, --xl value                       exclude the following content lengths (completely ignores the status). You can separate multiple lengths by comma and it also supports ranges like 203-206\n   --force                                                  Continue even if the prechecks fail. Please only use this if you know what you are doing, it can lead to unexpected results. (default: false)\n   --help, -h                                               show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -55,7 +55,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster vhost - Uses VHOST enumeration mode (you most probably want to use the IP address as the URL parameter)\n\nUSAGE:\n   gobuster vhost [command options]\n\nOPTIONS:\n   --url value, -u value                                    The target URL\n   --cookies value, -c value                                Cookies to use for the requests\n   --username value, -U value                               Username for Basic Auth\n   --password value, -P value                               Password for Basic Auth\n   --follow-redirect, -r                                    Follow redirects (default: false)\n   --headers value, -H value [ --headers value, -H value ]  Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'\n   --no-canonicalize-headers, --nch                         Do not canonicalize HTTP header names. If set header names are sent as is (default: false)\n   --method value, -m value                                 the password to the p12 file (default: \"GET\")\n   --useragent value, -a value                              Set the User-Agent string (default: \"gobuster/3.8.2\")\n   --random-agent, --rua                                    Use a random User-Agent string (default: false)\n   --proxy value                                            Proxy to use for requests [http(s)://host:port] or [socks5://host:port]\n   --timeout value, --to value                              HTTP Timeout (default: 10s)\n   --no-tls-validation, -k                                  Skip TLS certificate verification (default: false)\n   --retry                                                  Should retry on request timeout (default: false)\n   --retry-attempts value, --ra value                       Times to retry on request timeout (default: 3)\n   --client-cert-pem value, --ccp value                     public key in PEM format for optional TLS client certificates]\n   --client-cert-pem-key value, --ccpk value                private key in PEM format for optional TLS client certificates (this key needs to have no password)\n   --client-cert-p12 value, --ccp12 value                   a p12 file to use for options TLS client certificates\n   --client-cert-p12-password value, --ccp12p value         the password to the p12 file\n   --tls-renegotiation                                      Enable TLS renegotiation (default: false)\n   --interface value, --iface value                         specify network interface to use. Can't be used with local-ip\n   --local-ip value                                         specify local ip of network interface to use. Can't be used with interface\n   --wordlist value, -w value                               Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value                                  Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value                                Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value                      Resume from a given position in the wordlist (default: 0)\n   --output value, -o value                                 Output file to write results to (defaults to stdout)\n   --quiet, -q                                              Don't print the banner and other noise (default: false)\n   --no-progress, --np                                      Don't display progress (default: false)\n   --no-error, --ne                                         Don't display errors (default: false)\n   --pattern value, -p value                                File containing replacement patterns\n   --discover-pattern value, --pd value                     File containing replacement patterns applied to successful guesses\n   --no-color, --nc                                         Disable color output (default: false)\n   --debug                                                  enable debug output (default: false)\n   --append-domain, --ad                                    Append main domain from URL to words from wordlist. Otherwise the fully qualified domains need to be specified in the wordlist. (default: false)\n   --exclude-length value, --xl value                       exclude the following content lengths. You can separate multiple lengths by comma and it also supports ranges like 203-206\n   --exclude-status value, --xs value                       exclude the following status codes. Can also handle ranges like 200,300-400,404.\n   --domain value, --do value                               the domain to append when using an IP address as URL. If left empty and you specify a domain based URL the hostname from the URL is extracted\n   --force                                                  Force execution even when result is not guaranteed. (default: false)\n   --exclude-hostname-length, --xh                          Automatically adjust exclude-length based on dynamic hostname length in responses (default: false)\n   --help, -h                                               show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -68,7 +68,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster dns - Uses DNS subdomain enumeration mode\n\nUSAGE:\n   gobuster dns [command options]\n\nOPTIONS:\n   --domain value, --do value            The target domain\n   --check-cname, -c                     Also check CNAME records (default: false)\n   --timeout value, --to value           DNS resolver timeout (default: 1s)\n   --wildcard, --wc                      Force continued operation when wildcard found (default: false)\n   --no-fqdn, --nf                       Do not automatically add a trailing dot to the domain, so the resolver uses the DNS search domain (default: false)\n   --resolver value                      Use custom DNS server (format server.com or server.com:port)\n   --protocol value                      Use either 'udp' or 'tcp' as protocol on the custom resolver (default: \"udp\")\n   --wordlist value, -w value            Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value               Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value             Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value   Resume from a given position in the wordlist (default: 0)\n   --output value, -o value              Output file to write results to (defaults to stdout)\n   --quiet, -q                           Don't print the banner and other noise (default: false)\n   --no-progress, --np                   Don't display progress (default: false)\n   --no-error, --ne                      Don't display errors (default: false)\n   --pattern value, -p value             File containing replacement patterns\n   --discover-pattern value, --pd value  File containing replacement patterns applied to successful guesses\n   --no-color, --nc                      Disable color output (default: false)\n   --debug                               enable debug output (default: false)\n   --help, -h                            show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -81,7 +81,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster fuzz - Uses fuzzing mode. Replaces the keyword FUZZ in the URL, Headers and the request body\n\nUSAGE:\n   gobuster fuzz [command options]\n\nOPTIONS:\n   --url value, -u value                                    The target URL\n   --cookies value, -c value                                Cookies to use for the requests\n   --username value, -U value                               Username for Basic Auth\n   --password value, -P value                               Password for Basic Auth\n   --follow-redirect, -r                                    Follow redirects (default: false)\n   --headers value, -H value [ --headers value, -H value ]  Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'\n   --no-canonicalize-headers, --nch                         Do not canonicalize HTTP header names. If set header names are sent as is (default: false)\n   --method value, -m value                                 the password to the p12 file (default: \"GET\")\n   --useragent value, -a value                              Set the User-Agent string (default: \"gobuster/3.8.2\")\n   --random-agent, --rua                                    Use a random User-Agent string (default: false)\n   --proxy value                                            Proxy to use for requests [http(s)://host:port] or [socks5://host:port]\n   --timeout value, --to value                              HTTP Timeout (default: 10s)\n   --no-tls-validation, -k                                  Skip TLS certificate verification (default: false)\n   --retry                                                  Should retry on request timeout (default: false)\n   --retry-attempts value, --ra value                       Times to retry on request timeout (default: 3)\n   --client-cert-pem value, --ccp value                     public key in PEM format for optional TLS client certificates]\n   --client-cert-pem-key value, --ccpk value                private key in PEM format for optional TLS client certificates (this key needs to have no password)\n   --client-cert-p12 value, --ccp12 value                   a p12 file to use for options TLS client certificates\n   --client-cert-p12-password value, --ccp12p value         the password to the p12 file\n   --tls-renegotiation                                      Enable TLS renegotiation (default: false)\n   --interface value, --iface value                         specify network interface to use. Can't be used with local-ip\n   --local-ip value                                         specify local ip of network interface to use. Can't be used with interface\n   --wordlist value, -w value                               Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value                                  Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value                                Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value                      Resume from a given position in the wordlist (default: 0)\n   --output value, -o value                                 Output file to write results to (defaults to stdout)\n   --quiet, -q                                              Don't print the banner and other noise (default: false)\n   --no-progress, --np                                      Don't display progress (default: false)\n   --no-error, --ne                                         Don't display errors (default: false)\n   --pattern value, -p value                                File containing replacement patterns\n   --discover-pattern value, --pd value                     File containing replacement patterns applied to successful guesses\n   --no-color, --nc                                         Disable color output (default: false)\n   --debug                                                  enable debug output (default: false)\n   --exclude-statuscodes value, -b value                    Excluded status codes. Can also handle ranges like 200,300-400,404.\n   --exclude-length value, --xl value                       exclude the following content lengths (completely ignores the status). You can separate multiple lengths by comma and it also supports ranges like 203-206\n   --body value, -B value                                   Request body\n   --help, -h                                               show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -94,7 +94,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster tftp - Uses TFTP enumeration mode\n\nUSAGE:\n   gobuster tftp [command options]\n\nOPTIONS:\n   --server value, -s value              The target TFTP server\n   --timeout value, --to value           TFTP timeout (default: 1s)\n   --wordlist value, -w value            Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value               Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value             Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value   Resume from a given position in the wordlist (default: 0)\n   --output value, -o value              Output file to write results to (defaults to stdout)\n   --quiet, -q                           Don't print the banner and other noise (default: false)\n   --no-progress, --np                   Don't display progress (default: false)\n   --no-error, --ne                      Don't display errors (default: false)\n   --pattern value, -p value             File containing replacement patterns\n   --discover-pattern value, --pd value  File containing replacement patterns applied to successful guesses\n   --no-color, --nc                      Disable color output (default: false)\n   --debug                               enable debug output (default: false)\n   --help, -h                            show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -107,7 +107,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster s3 - Uses aws bucket enumeration mode\n\nUSAGE:\n   gobuster s3 [command options]\n\nOPTIONS:\n   --max-files value, -m value                       max files to list when listing buckets (default: 5)\n   --show-files, -s                                  show files from found buckets (default: true)\n   --wordlist value, -w value                        Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value                           Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value                         Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value               Resume from a given position in the wordlist (default: 0)\n   --output value, -o value                          Output file to write results to (defaults to stdout)\n   --quiet, -q                                       Don't print the banner and other noise (default: false)\n   --no-progress, --np                               Don't display progress (default: false)\n   --no-error, --ne                                  Don't display errors (default: false)\n   --pattern value, -p value                         File containing replacement patterns\n   --discover-pattern value, --pd value              File containing replacement patterns applied to successful guesses\n   --no-color, --nc                                  Disable color output (default: false)\n   --debug                                           enable debug output (default: false)\n   --useragent value, -a value                       Set the User-Agent string (default: \"gobuster/3.8.2\")\n   --random-agent, --rua                             Use a random User-Agent string (default: false)\n   --proxy value                                     Proxy to use for requests [http(s)://host:port] or [socks5://host:port]\n   --timeout value, --to value                       HTTP Timeout (default: 10s)\n   --no-tls-validation, -k                           Skip TLS certificate verification (default: false)\n   --retry                                           Should retry on request timeout (default: false)\n   --retry-attempts value, --ra value                Times to retry on request timeout (default: 3)\n   --client-cert-pem value, --ccp value              public key in PEM format for optional TLS client certificates]\n   --client-cert-pem-key value, --ccpk value         private key in PEM format for optional TLS client certificates (this key needs to have no password)\n   --client-cert-p12 value, --ccp12 value            a p12 file to use for options TLS client certificates\n   --client-cert-p12-password value, --ccp12p value  the password to the p12 file\n   --tls-renegotiation                               Enable TLS renegotiation (default: false)\n   --interface value, --iface value                  specify network interface to use. Can't be used with local-ip\n   --local-ip value                                  specify local ip of network interface to use. Can't be used with interface\n   --help, -h                                        show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -120,7 +120,7 @@
    "exit_code": 0,
    "stdout": "NAME:\n   gobuster gcs - Uses gcs bucket enumeration mode\n\nUSAGE:\n   gobuster gcs [command options]\n\nOPTIONS:\n   --max-files value, -m value                       max files to list when listing buckets (default: 5)\n   --show-files, -s                                  show files from found buckets (default: true)\n   --wordlist value, -w value                        Path to the wordlist. Set to - to use STDIN.\n   --delay value, -d value                           Time each thread waits between requests (e.g. 1500ms) (default: 0s)\n   --threads value, -t value                         Number of concurrent threads (default: 10)\n   --wordlist-offset value, --wo value               Resume from a given position in the wordlist (default: 0)\n   --output value, -o value                          Output file to write results to (defaults to stdout)\n   --quiet, -q                                       Don't print the banner and other noise (default: false)\n   --no-progress, --np                               Don't display progress (default: false)\n   --no-error, --ne                                  Don't display errors (default: false)\n   --pattern value, -p value                         File containing replacement patterns\n   --discover-pattern value, --pd value              File containing replacement patterns applied to successful guesses\n   --no-color, --nc                                  Disable color output (default: false)\n   --debug                                           enable debug output (default: false)\n   --useragent value, -a value                       Set the User-Agent string (default: \"gobuster/3.8.2\")\n   --random-agent, --rua                             Use a random User-Agent string (default: false)\n   --proxy value                                     Proxy to use for requests [http(s)://host:port] or [socks5://host:port]\n   --timeout value, --to value                       HTTP Timeout (default: 10s)\n   --no-tls-validation, -k                           Skip TLS certificate verification (default: false)\n   --retry                                           Should retry on request timeout (default: false)\n   --retry-attempts value, --ra value                Times to retry on request timeout (default: 3)\n   --client-cert-pem value, --ccp value              public key in PEM format for optional TLS client certificates]\n   --client-cert-pem-key value, --ccpk value         private key in PEM format for optional TLS client certificates (this key needs to have no password)\n   --client-cert-p12 value, --ccp12 value            a p12 file to use for options TLS client certificates\n   --client-cert-p12-password value, --ccp12p value  the password to the p12 file\n   --tls-renegotiation                               Enable TLS renegotiation (default: false)\n   --interface value, --iface value                  specify network interface to use. Can't be used with local-ip\n   --local-ip value                                  specify local ip of network interface to use. Can't be used with interface\n   --help, -h                                        show help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -132,7 +132,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for gobuster\n",
-   "duration_ms": 0,
+   "duration_ms": 3,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -147,16 +147,235 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'gobuster' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
+   "argv": [
+    "gobuster",
+    "dns",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "readme-2",
+   "title": "From the project's documentation \u2014 run against hashes"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--c",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-423cd3db",
+   "title": "The --c option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--check-cname",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-0bd640a0",
+   "title": "The --check-cname option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-color",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-c9d246c1",
+   "title": "The --no-color option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-error",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n",
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d8c97074",
+   "title": "The --no-error option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-fqdn",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-4f556f8a",
+   "title": "The --no-fqdn option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-progress",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-1ec38fe8",
+   "title": "The --no-progress option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--np",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 209,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-a33ad5dd",
+   "title": "The --np option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "--wildcard",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:            example.com\n[+] Threads:           10\n[+] Wildcard forced:   true\n[+] Timeout:           1s\n[+] Wordlist:          /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-9d6ef879",
+   "title": "The --wildcard option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "-c",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-7b0fb6ee",
+   "title": "The -c option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
+   "argv": [
+    "gobuster",
+    "dns",
+    "-np",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-aaf96529",
+   "title": "The -np option, advertised by the tool's own help, against hashes, web-wordlist"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 11,
+   "commands_run": 22,
    "binary": "gobuster",
    "exit_code": null,
    "stdout": "",
@@ -166,8 +385,216 @@
    "error": null
   }
  ],
- "input_fingerprint": "c58a008936e2d8ca",
+ "input_fingerprint": "f8dedb68ff39dcc5",
  "examples": [
+  {
+   "id": "readme-2",
+   "title": "From the project's documentation \u2014 run against hashes",
+   "argv": [
+    "gobuster",
+    "dns",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-423cd3db",
+   "title": "The --c option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--c",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-0bd640a0",
+   "title": "The --check-cname option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--check-cname",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-c9d246c1",
+   "title": "The --no-color option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-color",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-d8c97074",
+   "title": "The --no-error option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-error",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n",
+   "exit_code": 0,
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-4f556f8a",
+   "title": "The --no-fqdn option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-fqdn",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 204,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-1ec38fe8",
+   "title": "The --no-progress option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--no-progress",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-a33ad5dd",
+   "title": "The --np option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--np",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 209,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-9d6ef879",
+   "title": "The --wildcard option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "--wildcard",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:            example.com\n[+] Threads:           10\n[+] Wildcard forced:   true\n[+] Timeout:           1s\n[+] Wordlist:          /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-7b0fb6ee",
+   "title": "The -c option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "-c",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:        example.com\n[+] Threads:       10\n[+] Check CNAME:   true\n[+] Timeout:       1s\n[+] Wordlist:      /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-aaf96529",
+   "title": "The -np option, advertised by the tool's own help, against hashes, web-wordlist",
+   "argv": [
+    "gobuster",
+    "dns",
+    "-np",
+    "-do",
+    "example.com",
+    "-w",
+    "/opt/ctk/fixtures/hashes/wordlist.txt"
+   ],
+   "stdout": "===============================================================\nGobuster v3.8.2\nby OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)\n===============================================================\n[+] Domain:     example.com\n[+] Threads:    10\n[+] Timeout:    1s\n[+] Wordlist:   /opt/ctk/fixtures/hashes/wordlist.txt\n===============================================================\nStarting gobuster in DNS enumeration mode\n===============================================================\n===============================================================\nFinished\n===============================================================\n",
+   "stderr": "[INFO] [-] Unable to validate base domain: example.com (lookup example.com on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable)\n[ERROR] error on word ctk-charlie: lookup ctk-charlie.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-echo: lookup ctk-echo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-hotel-99: lookup ctk-hotel-99.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-papa: lookup ctk-papa.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-november: lookup ctk-november.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-oscar: lookup ctk-oscar.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-bravo: lookup ctk-bravo.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-delta: lookup ctk-delta.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word hunter2: lookup hunter2.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-foxtrot-2026: lookup ctk-foxtrot-2026.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n[ERROR] error on word ctk-alpha: lookup ctk-alpha.example.com. on 192.168.65.7:53: dial udp 192.168.65.7:53: connect: network is unreachable\n",
+   "exit_code": 0,
+   "duration_ms": 203,
+   "truncated": false,
+   "error": null
+  },
   {
    "id": "dvwa-dir-brute",
    "title": "Directory brute force of the live DVWA target",
@@ -199,7 +626,7 @@
    ],
    "caps_granted": [],
    "command_display": "gobuster dir -u http://dvwa -w wordlist.txt -q",
-   "stdout": "about.php            (Status: 200) [Size: 3966]\nindex.php            (Status: 302) [Size: 0] [--> login.php]\nrobots.txt           (Status: 200) [Size: 25]\nphpinfo.php          (Status: 302) [Size: 0] [--> login.php]\nCHANGELOG.md         (Status: 200) [Size: 7134]\nREADME.md            (Status: 200) [Size: 33149]\nfavicon.ico          (Status: 200) [Size: 1406]\ndocs                 (Status: 301) [Size: 347] [--> http://dvwa/docs/]\nvulnerabilities      (Status: 301) [Size: 358] [--> http://dvwa/vulnerabilities/]\ninstructions.php     (Status: 200) [Size: 41966]\nsecurity.php         (Status: 302) [Size: 0] [--> login.php]\nsetup.php            (Status: 200) [Size: 4429]\nlogout.php           (Status: 302) [Size: 0] [--> login.php]\nlogin.php            (Status: 200) [Size: 1342]\n",
+   "stdout": "index.php            (Status: 302) [Size: 0] [--> login.php]\nsecurity.php         (Status: 302) [Size: 0] [--> login.php]\nabout.php            (Status: 200) [Size: 3966]\nsetup.php            (Status: 200) [Size: 4429]\nfavicon.ico          (Status: 200) [Size: 1406]\nlogout.php           (Status: 302) [Size: 0] [--> login.php]\nREADME.md            (Status: 200) [Size: 33149]\ndocs                 (Status: 301) [Size: 347] [--> http://dvwa/docs/]\nvulnerabilities      (Status: 301) [Size: 358] [--> http://dvwa/vulnerabilities/]\nlogin.php            (Status: 200) [Size: 1342]\ninstructions.php     (Status: 200) [Size: 41966]\nrobots.txt           (Status: 200) [Size: 25]\nphpinfo.php          (Status: 302) [Size: 0] [--> login.php]\nCHANGELOG.md         (Status: 200) [Size: 7134]\n",
    "stderr": "",
    "exit_code": 0,
    "duration_ms": null,
@@ -219,6 +646,7 @@
    "--version": "print the version",
    "-v": "print the version"
   },
+  "values_seen": {},
   "aliases": {
    "--help": [
     "-h"
@@ -811,45 +1239,6 @@
  },
  "surface": {
   "flags": {
-   "--P": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Password for Basic Auth (dir mode only)",
-    "kind": "option",
-    "first_tag": "v1.1",
-    "first_date": "2016-06-04T10:07:38+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--U": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Username for Basic Auth (dir mode only)",
-    "kind": "option",
-    "first_tag": "v1.1",
-    "first_date": "2016-06-04T10:07:38+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--a": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Set the User-Agent string (dir mode only)",
-    "kind": "option",
-    "first_tag": "v1.1",
-    "first_date": "2016-06-04T10:07:38+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--add-slash": {
     "source": "source",
     "runtime_confirmed": false,
@@ -874,7 +1263,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dir.go"
    },
    "--append-domain": {
     "source": "source",
@@ -894,26 +1283,13 @@
     "runtime_confirmed": false,
     "help": "Request body",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
-   },
-   "--c": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Cookies to use for the requests (dir mode only)",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
    },
    "--check-cname": {
     "source": "source",
@@ -933,8 +1309,8 @@
     "runtime_confirmed": false,
     "help": "a p12 file to use for options TLS client certificates",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -946,8 +1322,8 @@
     "runtime_confirmed": false,
     "help": "the password to the p12 file",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -959,8 +1335,8 @@
     "runtime_confirmed": false,
     "help": "public key in PEM format for optional TLS client certificates]",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -972,8 +1348,8 @@
     "runtime_confirmed": false,
     "help": "private key in PEM format for optional TLS client certificates (this key needs to have no password)",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1071,26 +1447,13 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--e": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Expanded mode, print full URLs",
-    "kind": "option",
-    "first_tag": "v0.8",
-    "first_date": "2015-07-22T07:46:18+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--exclude-length": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "exclude the following content lengths (completely ignores the status). You can separate multiple lengths by comma and it also supports ranges like 203-206",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1126,15 +1489,15 @@
    "--excludestatuscodes": {
     "source": "source",
     "runtime_confirmed": false,
-    "help": "Negative status codes (will override statuscodes if set)",
+    "help": "Excluded status codes. Can also handle ranges like 200,300-400,404.",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.6.0",
     "last_date": "2023-08-14T10:27:51+02:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/fuzz.go"
    },
    "--expanded": {
     "source": "source",
@@ -1167,26 +1530,13 @@
     "runtime_confirmed": false,
     "help": "Read file extension(s) to search from the file",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
-   },
-   "--f": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Append a forward-slash to each directory request (dir mode only)",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
    },
    "--follow-redirect": {
     "source": "source",
@@ -1212,7 +1562,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/http.go"
    },
    "--force": {
     "source": "source",
@@ -1245,8 +1595,8 @@
     "runtime_confirmed": false,
     "help": "Specify HTTP headers, -H 'Header1: val1' -H 'Header2: val2'",
     "kind": "option",
-    "first_tag": "v3.0.1",
-    "first_date": "2019-06-21T10:15:26+10:00",
+    "first_tag": "v3.0.0",
+    "first_date": "2019-06-20T09:20:27+10:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1282,19 +1632,6 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--i": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Show IP addresses (dns mode only)",
-    "kind": "option",
-    "first_tag": "v1.0",
-    "first_date": "2016-01-28T10:24:06+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--include-length": {
     "source": "source",
     "runtime_confirmed": false,
@@ -1319,7 +1656,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dir.go"
    },
    "--insecuressl": {
     "source": "source",
@@ -1332,7 +1669,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/http.go"
    },
    "--interface": {
     "source": "source",
@@ -1347,32 +1684,6 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--k": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Skip SSL certificate verification",
-    "kind": "option",
-    "first_tag": "v1.3",
-    "first_date": "2017-03-01T18:50:32+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--l": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Include the length of the body in the output (dir mode only)",
-    "kind": "option",
-    "first_tag": "v1.0",
-    "first_date": "2016-01-28T10:24:06+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--local-ip": {
     "source": "source",
     "runtime_confirmed": false,
@@ -1385,19 +1696,6 @@
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
-   },
-   "--m": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Directory/File mode (dir) or DNS mode (dns)",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
    },
    "--max-files": {
     "source": "source",
@@ -1415,49 +1713,36 @@
    "--maxfiles": {
     "source": "source",
     "runtime_confirmed": false,
-    "help": "max files to list when listing buckets (only shown in verbose mode) (default 5)",
+    "help": "max files to list when listing buckets (only shown in verbose mode)",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.6.0",
     "last_date": "2023-08-14T10:27:51+02:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/gcs.go"
    },
    "--method": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "the password to the p12 file (default: \"GET\")",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--n": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Don't print status codes",
-    "kind": "option",
-    "first_tag": "v0.8",
-    "first_date": "2015-07-22T07:46:18+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--no-canonicalize-headers": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "Do not canonicalize HTTP header names. If set header names are sent as is (default: false)",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.3.0",
+    "first_date": "2022-10-29T16:38:13+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1495,8 +1780,8 @@
     "runtime_confirmed": false,
     "help": "Do not automatically add a trailing dot to the domain, so the resolver uses the DNS search domain (default: false)",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.6.0",
+    "first_date": "2023-08-14T10:27:51+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1553,7 +1838,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/root.go"
    },
    "--nostatus": {
     "source": "source",
@@ -1566,7 +1851,7 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dir.go"
    },
    "--np": {
     "source": "source",
@@ -1575,19 +1860,6 @@
     "kind": "option",
     "first_tag": "v2.0.0",
     "first_date": "2018-08-27T12:17:21+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--o": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Output file to write results to (defaults to stdout)",
-    "kind": "option",
-    "first_tag": "v1.3",
-    "first_date": "2017-03-01T18:50:32+10:00",
     "last_tag": "v2.0.1",
     "last_date": "2018-08-30T09:07:50+10:00",
     "live": false,
@@ -1607,19 +1879,6 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--p": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Proxy to use for requests [http(s)://host:port] (dir mode only)",
-    "kind": "option",
-    "first_tag": "v0.9",
-    "first_date": "2016-01-15T16:53:45+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--password": {
     "source": "source",
     "runtime_confirmed": false,
@@ -1638,8 +1897,8 @@
     "runtime_confirmed": false,
     "help": "File containing replacement patterns",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1672,19 +1931,6 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--q": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Don't print the banner and other noise",
-    "kind": "option",
-    "first_tag": "v0.8",
-    "first_date": "2015-07-22T07:46:18+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--quiet": {
     "source": "source",
     "runtime_confirmed": false,
@@ -1698,26 +1944,13 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--r": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Follow redirects",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--random-agent": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "Use a random User-Agent string (default: false)",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1763,26 +1996,13 @@
     "attribution": "own",
     "source_path": "README.md"
    },
-   "--s": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Positive status codes (dir mode only)",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
    "--server": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "The target TFTP server",
     "kind": "option",
-    "first_tag": "v3.5.0",
-    "first_date": "2023-02-20T09:33:04+01:00",
+    "first_tag": "v3.4.0",
+    "first_date": "2022-12-19T11:48:36+01:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
@@ -1794,13 +2014,13 @@
     "runtime_confirmed": false,
     "help": "Show CNAME records (cannot be used with '-i' option)",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.6.0",
     "last_date": "2023-08-14T10:27:51+02:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dns.go"
    },
    "--show-files": {
     "source": "source",
@@ -1820,13 +2040,13 @@
     "runtime_confirmed": false,
     "help": "Show IP addresses",
     "kind": "option",
-    "first_tag": "v3.2.0",
-    "first_date": "2022-10-08T18:51:58+02:00",
+    "first_tag": "v3.1.0",
+    "first_date": "2020-10-08T09:51:47+10:00",
     "last_tag": "v3.6.0",
     "last_date": "2023-08-14T10:27:51+02:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dns.go"
    },
    "--showcname": {
     "source": "source",
@@ -1835,11 +2055,11 @@
     "kind": "option",
     "first_tag": "v3.0.0",
     "first_date": "2019-06-20T09:20:27+10:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2019-06-20T09:20:27+10:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dns.go"
    },
    "--showips": {
     "source": "source",
@@ -1848,11 +2068,11 @@
     "kind": "option",
     "first_tag": "v3.0.0",
     "first_date": "2019-06-20T09:20:27+10:00",
-    "last_tag": "v3.0.0",
-    "last_date": "2019-06-20T09:20:27+10:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dns.go"
    },
    "--status-codes": {
     "source": "source",
@@ -1883,7 +2103,7 @@
    "--statuscodes": {
     "source": "source",
     "runtime_confirmed": false,
-    "help": "Positive status codes (will be overwritten with statuscodesblacklist if set) (default \"200,204,301,302,307,401,403\")",
+    "help": "Positive status codes (will be overwritten with statuscodesblacklist if set)",
     "kind": "option",
     "first_tag": "v3.0.0",
     "first_date": "2019-06-20T09:20:27+10:00",
@@ -1891,33 +2111,20 @@
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/dir.go"
    },
    "--statuscodesblacklist": {
     "source": "source",
     "runtime_confirmed": false,
     "help": "Negative status codes (will override statuscodes if set)",
     "kind": "option",
-    "first_tag": "v3.0.1",
-    "first_date": "2019-06-21T10:15:26+10:00",
+    "first_tag": "v3.0.0",
+    "first_date": "2019-06-20T09:20:27+10:00",
     "last_tag": "v3.0.1",
     "last_date": "2019-06-21T10:15:26+10:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
-   },
-   "--t": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Number of concurrent threads",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
+    "source_path": "cli/cmd/dir.go"
    },
    "--threads": {
     "source": "source",
@@ -1965,19 +2172,6 @@
     "kind": "option",
     "first_tag": "v2.0.0",
     "first_date": "2018-08-27T12:17:21+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
-   },
-   "--u": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "The target URL or Domain",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
     "last_tag": "v2.0.1",
     "last_date": "2018-08-30T09:07:50+10:00",
     "live": false,
@@ -2047,7 +2241,7 @@
     "last_date": "2023-08-14T10:27:51+02:00",
     "live": false,
     "attribution": "own",
-    "source_path": "README.md"
+    "source_path": "cli/cmd/root.go"
    },
    "--version": {
     "source": "runtime",
@@ -2064,19 +2258,6 @@
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
-   },
-   "--w": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Path to the wordlist",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
    },
    "--wildcard": {
     "source": "source",
@@ -2109,26 +2290,13 @@
     "runtime_confirmed": false,
     "help": "Resume from a given position in the wordlist (default: 0)",
     "kind": "option",
-    "first_tag": "v3.7.0",
-    "first_date": "2025-06-30T17:45:05+02:00",
+    "first_tag": "v3.6.0",
+    "first_date": "2023-08-14T10:27:51+02:00",
     "last_tag": "v3.7.0",
     "last_date": "2025-06-30T17:45:05+02:00",
     "live": false,
     "attribution": "own",
     "source_path": "README.md"
-   },
-   "--x": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "File extension(s) to search for (dir mode only)",
-    "kind": "option",
-    "first_tag": "v0.7",
-    "first_date": "2015-07-22T07:48:16+10:00",
-    "last_tag": "v2.0.1",
-    "last_date": "2018-08-30T09:07:50+10:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "main.go"
    },
    "-P": {
     "source": "source",
@@ -2992,10 +3160,3167 @@
   }
  },
  "skipped_reason": null,
+ "example_trials": {
+  "tried": 150,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-dcf176cd",
+    "argv": [
+     "gobuster",
+     "/opt/ctk/fixtures/source-corpus",
+     "-u",
+     "https://example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 115,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 3,
+    "output_bytes": 52
+   },
+   {
+    "id": "t-readme-4372fc56",
+    "argv": [
+     "gobuster",
+     "vhost",
+     "-u",
+     "https://example.com",
+     "--append-domain",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 161,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 1,
+    "output_bytes": 970
+   },
+   {
+    "id": "t-opt-97e45c27",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--P",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--P"
+   },
+   {
+    "id": "t-opt-f244a3f5",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--U",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--U"
+   },
+   {
+    "id": "t-opt-6025e3db",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--a",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--a"
+   },
+   {
+    "id": "t-opt-8ca47cce",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--add-slash",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--add-slash"
+   },
+   {
+    "id": "t-opt-77e9c1cb",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--addslash",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--addslash"
+   },
+   {
+    "id": "t-opt-9e5674c0",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--append-domain",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2136,
+    "flag": "--append-domain"
+   },
+   {
+    "id": "t-opt-462ab14f",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--body",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2118,
+    "flag": "--body"
+   },
+   {
+    "id": "t-opt-6a98cf5a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--client-cert-p12",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2140,
+    "flag": "--client-cert-p12"
+   },
+   {
+    "id": "t-opt-61557f9a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--client-cert-p12-password",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2158,
+    "flag": "--client-cert-p12-password"
+   },
+   {
+    "id": "t-opt-c3cf1b95",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--client-cert-pem",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2140,
+    "flag": "--client-cert-pem"
+   },
+   {
+    "id": "t-opt-dace4b85",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--client-cert-pem-key",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2148,
+    "flag": "--client-cert-pem-key"
+   },
+   {
+    "id": "t-opt-f00bcc3d",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--cn",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2114,
+    "flag": "--cn"
+   },
+   {
+    "id": "t-opt-9b292f39",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--cookies",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2124,
+    "flag": "--cookies"
+   },
+   {
+    "id": "t-opt-0dffa58b",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--debug",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.607",
+    "exit_code": 0,
+    "output_bytes": 5377,
+    "flag": "--debug",
+    "stability": 0.607
+   },
+   {
+    "id": "t-opt-aeb3e906",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--delay",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2142,
+    "flag": "--delay"
+   },
+   {
+    "id": "t-opt-9b706d79",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--discover-backup",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2140,
+    "flag": "--discover-backup"
+   },
+   {
+    "id": "t-opt-3e40295e",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--discover-pattern",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "--discover-pattern"
+   },
+   {
+    "id": "t-opt-8e3192d5",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--domain",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 1,
+    "output_bytes": 53,
+    "flag": "--domain"
+   },
+   {
+    "id": "t-opt-59e0fd74",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--e",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--e"
+   },
+   {
+    "id": "t-opt-e37a37bf",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--exclude-length",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2138,
+    "flag": "--exclude-length"
+   },
+   {
+    "id": "t-opt-297016ed",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--exclude-status",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2138,
+    "flag": "--exclude-status"
+   },
+   {
+    "id": "t-opt-6f4e7f93",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--exclude-statuscodes",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2148,
+    "flag": "--exclude-statuscodes"
+   },
+   {
+    "id": "t-opt-b5a07e62",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--excludestatuscodes",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2146,
+    "flag": "--excludestatuscodes"
+   },
+   {
+    "id": "t-opt-71468a75",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--expanded",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--expanded"
+   },
+   {
+    "id": "t-opt-00e9eb65",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--extensions",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2130,
+    "flag": "--extensions"
+   },
+   {
+    "id": "t-opt-084c4aad",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--extensions-file",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2140,
+    "flag": "--extensions-file"
+   },
+   {
+    "id": "t-opt-1565ab22",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--f",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--f"
+   },
+   {
+    "id": "t-opt-b6c97d6c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--follow-redirect",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2140,
+    "flag": "--follow-redirect"
+   },
+   {
+    "id": "t-opt-1c318eee",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--followredirect",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2138,
+    "flag": "--followredirect"
+   },
+   {
+    "id": "t-opt-0e15bbf6",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--force",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2120,
+    "flag": "--force"
+   },
+   {
+    "id": "t-opt-032aa154",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--fw",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2114,
+    "flag": "--fw"
+   },
+   {
+    "id": "t-opt-c3319e4a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--headers",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2124,
+    "flag": "--headers"
+   },
+   {
+    "id": "t-opt-ec420998",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--hide-length",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2132,
+    "flag": "--hide-length"
+   },
+   {
+    "id": "t-opt-7532c181",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--i",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--i"
+   },
+   {
+    "id": "t-opt-f04b3589",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--include-length",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2138,
+    "flag": "--include-length"
+   },
+   {
+    "id": "t-opt-6e37f35b",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--includelength",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2136,
+    "flag": "--includelength"
+   },
+   {
+    "id": "t-opt-b0e72cf2",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--insecuressl",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2132,
+    "flag": "--insecuressl"
+   },
+   {
+    "id": "t-opt-1c81fbf8",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--interface",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--interface"
+   },
+   {
+    "id": "t-opt-76893673",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--k",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--k"
+   },
+   {
+    "id": "t-opt-aed0603c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--l",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--l"
+   },
+   {
+    "id": "t-opt-a097aeb7",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--local-ip",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--local-ip"
+   },
+   {
+    "id": "t-opt-770766e9",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--m",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--m"
+   },
+   {
+    "id": "t-opt-849f8cc4",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--max-files",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--max-files"
+   },
+   {
+    "id": "t-opt-16e8bafd",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--maxfiles",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--maxfiles"
+   },
+   {
+    "id": "t-opt-286f5e51",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--method",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2122,
+    "flag": "--method"
+   },
+   {
+    "id": "t-opt-85081f01",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--n",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--n"
+   },
+   {
+    "id": "t-opt-75704834",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--no-canonicalize-headers",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2156,
+    "flag": "--no-canonicalize-headers"
+   },
+   {
+    "id": "t-opt-d9dd5dd6",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--no-status",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--no-status"
+   },
+   {
+    "id": "t-opt-6b172c87",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--no-tls-validation",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2144,
+    "flag": "--no-tls-validation"
+   },
+   {
+    "id": "t-opt-ed8c4960",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--noprogress",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2130,
+    "flag": "--noprogress"
+   },
+   {
+    "id": "t-opt-ef7bcae1",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--nostatus",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--nostatus"
+   },
+   {
+    "id": "t-opt-8de6c777",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--p",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "--p"
+   },
+   {
+    "id": "t-opt-a4c9a701",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--password",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--password"
+   },
+   {
+    "id": "t-opt-8f968867",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--pattern",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "--pattern"
+   },
+   {
+    "id": "t-opt-e389d3ce",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--protocol",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "--protocol"
+   },
+   {
+    "id": "t-opt-8c29c160",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--q",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 0,
+    "output_bytes": 0,
+    "flag": "--q"
+   },
+   {
+    "id": "t-opt-f6c7d60c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--quiet",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 0,
+    "output_bytes": 0,
+    "flag": "--quiet"
+   },
+   {
+    "id": "t-opt-70f80725",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--r",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--r"
+   },
+   {
+    "id": "t-opt-58c0f2e2",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--random-agent",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2134,
+    "flag": "--random-agent"
+   },
+   {
+    "id": "t-opt-1ba397b4",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--resolver",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "--resolver"
+   },
+   {
+    "id": "t-opt-ec05ca64",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--retry",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2120,
+    "flag": "--retry"
+   },
+   {
+    "id": "t-opt-961ed652",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--retry-attempts",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2138,
+    "flag": "--retry-attempts"
+   },
+   {
+    "id": "t-opt-f721fe30",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--s",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--s"
+   },
+   {
+    "id": "t-opt-126ed1e6",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--show-cname",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2130,
+    "flag": "--show-cname"
+   },
+   {
+    "id": "t-opt-2491f646",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--show-files",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2130,
+    "flag": "--show-files"
+   },
+   {
+    "id": "t-opt-65fc4412",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--show-ips",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--show-ips"
+   },
+   {
+    "id": "t-opt-4917ec73",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--showcname",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--showcname"
+   },
+   {
+    "id": "t-opt-3fc9f7ad",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--showips",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2124,
+    "flag": "--showips"
+   },
+   {
+    "id": "t-opt-d969f07c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--status-codes",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2134,
+    "flag": "--status-codes"
+   },
+   {
+    "id": "t-opt-c87a244e",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--status-codes-blacklist",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2154,
+    "flag": "--status-codes-blacklist"
+   },
+   {
+    "id": "t-opt-8a56b21f",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--statuscodes",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2132,
+    "flag": "--statuscodes"
+   },
+   {
+    "id": "t-opt-f0c04bcb",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--statuscodesblacklist",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2150,
+    "flag": "--statuscodesblacklist"
+   },
+   {
+    "id": "t-opt-6dad2ccf",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--t",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2134,
+    "flag": "--t"
+   },
+   {
+    "id": "t-opt-3ff97e04",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--threads",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2146,
+    "flag": "--threads"
+   },
+   {
+    "id": "t-opt-8208762a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--timeout",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2146,
+    "flag": "--timeout"
+   },
+   {
+    "id": "t-opt-f265b33b",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--tls-renegotiation",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2144,
+    "flag": "--tls-renegotiation"
+   },
+   {
+    "id": "t-opt-8c842d03",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--to",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2136,
+    "flag": "--to"
+   },
+   {
+    "id": "t-opt-2f235438",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--u",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--u"
+   },
+   {
+    "id": "t-opt-f08f7106",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--url",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2116,
+    "flag": "--url"
+   },
+   {
+    "id": "t-opt-08d0de39",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--useragent",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2128,
+    "flag": "--useragent"
+   },
+   {
+    "id": "t-opt-d3f0d94a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--username",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2126,
+    "flag": "--username"
+   },
+   {
+    "id": "t-opt-06d33f5a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--verbose",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2124,
+    "flag": "--verbose"
+   },
+   {
+    "id": "t-opt-f329d1cd",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--w",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 1,
+    "output_bytes": 51,
+    "flag": "--w"
+   },
+   {
+    "id": "t-opt-2752fd54",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--wordlist",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "exit_code": 1,
+    "output_bytes": 51,
+    "flag": "--wordlist"
+   },
+   {
+    "id": "t-opt-142326c3",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--wordlist-offset",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2162,
+    "flag": "--wordlist-offset"
+   },
+   {
+    "id": "t-opt-f81b916f",
+    "argv": [
+     "gobuster",
+     "dns",
+     "--x",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "--x"
+   },
+   {
+    "id": "t-opt-86bafb1f",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-P",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-P"
+   },
+   {
+    "id": "t-opt-5332799a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-U",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-U"
+   },
+   {
+    "id": "t-opt-08692a7c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-a",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-a"
+   },
+   {
+    "id": "t-opt-58d02b33",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-cn",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2114,
+    "flag": "-cn"
+   },
+   {
+    "id": "t-opt-6a95cd78",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-e",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-e"
+   },
+   {
+    "id": "t-opt-493bf191",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-f",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-f"
+   },
+   {
+    "id": "t-opt-d788272a",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-fw",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2114,
+    "flag": "-fw"
+   },
+   {
+    "id": "t-opt-a3884add",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-i",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-i"
+   },
+   {
+    "id": "t-opt-d3b1cbb9",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-k",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-k"
+   },
+   {
+    "id": "t-opt-9832fe34",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-l",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-l"
+   },
+   {
+    "id": "t-opt-d397483c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-m",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-m"
+   },
+   {
+    "id": "t-opt-1d03795c",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-n",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-n"
+   },
+   {
+    "id": "t-opt-ebaacf34",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-p",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "-p"
+   },
+   {
+    "id": "t-opt-39ca8236",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-r",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-r"
+   },
+   {
+    "id": "t-opt-c20a380e",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-s",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-s"
+   },
+   {
+    "id": "t-opt-ec75c413",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-t",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2134,
+    "flag": "-t"
+   },
+   {
+    "id": "t-opt-7cce79ca",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-to",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2136,
+    "flag": "-to"
+   },
+   {
+    "id": "t-opt-6917c7d0",
+    "argv": [
+     "gobuster",
+     "dns",
+     "-x",
+     "-do",
+     "example.com",
+     "-w",
+     "/opt/ctk/fixtures/hashes/wordlist.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "exit_code": 1,
+    "output_bytes": 2112,
+    "flag": "-x"
+   },
+   {
+    "id": "t-net-9d4285e0",
+    "argv": [
+     "gobuster",
+     "-u",
+     "http://dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-net-48a0ff7e",
+    "argv": [
+     "gobuster",
+     "--url",
+     "http://dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 871
+   },
+   {
+    "id": "t-net-309a068e",
+    "argv": [
+     "gobuster",
+     "--server",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 877
+   },
+   {
+    "id": "t-net-dbd65a28",
+    "argv": [
+     "gobuster",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 3,
+    "output_bytes": 32
+   },
+   {
+    "id": "t-opt-33c8b193",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --P dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-c9cd7dd7",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --U dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-d4d84bf2",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --a dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-abda9f7a",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --add-slash dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 883
+   },
+   {
+    "id": "t-opt-d1431013",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --addslash dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 881
+   },
+   {
+    "id": "t-opt-e51549a5",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --append-domain dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 891
+   },
+   {
+    "id": "t-opt-3490167e",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --body dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 873
+   },
+   {
+    "id": "t-opt-a24fec9b",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --client-cert-p12 dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 895
+   },
+   {
+    "id": "t-opt-00eef274",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --client-cert-p12-password dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 913
+   },
+   {
+    "id": "t-opt-e6ae13fb",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --client-cert-pem dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 895
+   },
+   {
+    "id": "t-opt-1c9e9141",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --client-cert-pem-key dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 903
+   },
+   {
+    "id": "t-opt-b6e20d38",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --cn dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 869
+   },
+   {
+    "id": "t-opt-5fd6dac0",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --cookies dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 879
+   },
+   {
+    "id": "t-opt-58de0920",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --debug dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 875
+   },
+   {
+    "id": "t-opt-143e2f6c",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --delay dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 875
+   },
+   {
+    "id": "t-opt-65571f80",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --discover-backup dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 895
+   },
+   {
+    "id": "t-opt-bfeeca59",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --discover-pattern dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 897
+   },
+   {
+    "id": "t-opt-e1cb04e0",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --domain dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 877
+   },
+   {
+    "id": "t-opt-f8e63d28",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --e dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-c0cfb61d",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --exclude-length dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 893
+   },
+   {
+    "id": "t-opt-598a32f6",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --exclude-status dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 893
+   },
+   {
+    "id": "t-opt-8d43383c",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --exclude-statuscodes dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 903
+   },
+   {
+    "id": "t-opt-e8c7048b",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --excludestatuscodes dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 901
+   },
+   {
+    "id": "t-opt-d0166705",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --expanded dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 881
+   },
+   {
+    "id": "t-opt-9829ad88",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --extensions dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 885
+   },
+   {
+    "id": "t-opt-5bc0d30d",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --extensions-file dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 895
+   },
+   {
+    "id": "t-opt-5c66ad4f",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --f dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-b1ab8660",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --follow-redirect dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 895
+   },
+   {
+    "id": "t-opt-7b41e5f7",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --followredirect dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 893
+   },
+   {
+    "id": "t-opt-49104778",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --force dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 875
+   },
+   {
+    "id": "t-opt-005c1d80",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --fw dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 869
+   },
+   {
+    "id": "t-opt-37edaa46",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --headers dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 879
+   },
+   {
+    "id": "t-opt-605b549a",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --hide-length dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 887
+   },
+   {
+    "id": "t-opt-39f2976e",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --i dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-78d11c89",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --include-length dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 893
+   },
+   {
+    "id": "t-opt-82431c99",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --includelength dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 891
+   },
+   {
+    "id": "t-opt-69a2c154",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --insecuressl dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 887
+   },
+   {
+    "id": "t-opt-e3ead02b",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --interface dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 883
+   },
+   {
+    "id": "t-opt-525a69a7",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --k dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   },
+   {
+    "id": "t-opt-21ed3ea2",
+    "argv": [
+     "sh",
+     "-c",
+     "exec gobuster --l dir -u \"$1\" -w \"$2\" -q --no-color",
+     "--",
+     "http://dvwa",
+     "/opt/ctk/fixtures/web-wordlist/dvwa-paths.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 867
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "gobuster [mode] [options]",
+    "source": "readme",
+    "path": "README.md",
+    "line": 95,
+    "reason": "syntax-template",
+    "token": "[mode]"
+   },
+   {
+    "raw": "gobuster help                   # Show general help",
+    "source": "readme",
+    "path": "README.md",
+    "line": 101,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "gobuster help [mode]            # Show help for specific mode",
+    "source": "readme",
+    "path": "README.md",
+    "line": 102,
+    "reason": "syntax-template",
+    "token": "[mode]"
+   },
+   {
+    "raw": "gobuster [mode] --help          # Alternative help syntax",
+    "source": "readme",
+    "path": "README.md",
+    "line": 103,
+    "reason": "syntax-template",
+    "token": "[mode]"
+   },
+   {
+    "raw": "gobuster s3 -w bucket-names.txt",
+    "source": "readme",
+    "path": "README.md",
+    "line": 171,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "gobuster s3 -w bucket-names.txt --debug",
+    "source": "readme",
+    "path": "README.md",
+    "line": 177,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "gobuster tftp -s 10.0.0.1 -w wordlist.txt",
+    "source": "readme",
+    "path": "README.md",
+    "line": 187,
+    "reason": "needs-live-target",
+    "token": "10.0.0.1"
+   },
+   {
+    "raw": "gobuster gcs -w bucket-names.txt",
+    "source": "readme",
+    "path": "README.md",
+    "line": 197,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "gobuster gcs -w bucket-names.txt --debug",
+    "source": "readme",
+    "path": "README.md",
+    "line": 203,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "gobuster",
  "repo": "OJ/gobuster",
  "head_sha": "c77583fbb8824058d74d38240896eff610683c8e",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-28T23:39:17.395752+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:38:24.306486+00:00"
 }

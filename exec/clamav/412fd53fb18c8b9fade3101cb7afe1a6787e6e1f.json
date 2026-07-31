@@ -3,17 +3,18 @@
   "ok": false,
   "tier": "rust",
   "image_digest": null,
-  "duration_s": 29.02,
-  "log_tail": "#10 [build 3/5] COPY . .\n#10 DONE 0.3s\n\n#11 [build 4/5] RUN cargo build --release\n#11 0.195 warning: virtual workspace defaulting to `resolver = \"1\"` despite one or more workspace members being on edition 2021 which implies `resolver = \"2\"`\n#11 0.196 note: to keep the current resolver, specify `workspace.resolver = \"1\"` in the workspace root's manifest\n#11 0.196 note: to use the edition 2021 resolver, specify `workspace.resolver = \"2\"` in the workspace root's manifest\n#11 0.196 note: for more details see https://doc.rust-lang.org/cargo/reference/resolver.html#resolver-versions\n#11 0.258     Updating crates.io index\n#11 0.424     Updating git repository `https://github.com/Cisco-Talos/clamav-signature-util`\n#11 0.906     Updating git repository `https://github.com/Cisco-Talos/onenote.rs.git`\n#11 6.824  Downloading crates ...\n#11 6.981   Downloaded block-buffer v0.10.4\n#11 7.008   Downloaded avif-serialize v0.8.6\n#11 7.014   Downloaded aligned-vec v0.6.4\n#11 7.017   Downloaded adler2 v2.0.1\n#11 7.020   Downloaded anstyle v1.0.13\n#11 7.043   Downloaded bit-set v0.5.3\n#11 7.047   Downloaded hex-literal v1.0.0\n#11 7.085 error: failed to parse manifest at `/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/hex-literal-1.0.0/Cargo.toml`\n#11 7.085 \n#11 7.085 Caused by:\n#11 7.085   feature `edition2024` is required\n#11 7.085 \n#11 7.085   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n#11 7.085   Consider trying a newer version of Cargo (this may require the nightly release).\n#11 7.085   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n#11 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 4/5] RUN cargo build --release:\n7.043   Downloaded bit-set v0.5.3\n7.047   Downloaded hex-literal v1.0.0\n7.085 error: failed to parse manifest at `/usr/local/cargo/registry/src/index.crates.io-6f17d22bba15001f/hex-literal-1.0.0/Cargo.toml`\n7.085 \n7.085 Caused by:\n7.085   feature `edition2024` is required\n7.085 \n7.085   The package requires the Cargo feature called `edition2024`, but that feature is not stabilized in this version of Cargo (1.81.0 (2dbb1af80 2024-08-20)).\n7.085   Consider trying a newer version of Cargo (this may require the nightly release).\n7.085   See https://doc.rust-lang.org/nightly/cargo/reference/unstable.html#edition-2024 for more information about the status of this feature.\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN cargo build --release\n   5 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n   6 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
-  "error": "docker build failed",
-  "timed_out": false
+  "duration_s": 1800.49,
+  "log_tail": "",
+  "error": "TimeoutExpired: Command '['docker', 'build', '-f', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-sc_x81i4/clamav/Dockerfile.ctk', '--label', 'ctk.exec=1', '-t', 'ctk-exec/clamav:412fd53fb18c', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-sc_x81i4/clamav']' timed out after 1800 seconds",
+  "timed_out": true
  },
  "captures": [],
- "skipped_reason": "docker build failed",
+ "input_fingerprint": null,
+ "skipped_reason": "build_timeout",
  "tool": "ClamAV",
  "repo": "Cisco-Talos/clamav",
  "head_sha": "412fd53fb18c8b9fade3101cb7afe1a6787e6e1f",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:08:44.529195+00:00"
+ "analyzer_version": "6",
+ "generated_at": "2026-07-30T02:03:38.992351+00:00"
 }

@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:8a5991318479fd0c81cee0d065544b5f2d0bbb673f212680ac7b0353e563ff4a",
-  "duration_s": 6.91,
-  "log_tail": "#7 [internal] load build context\n#7 transferring context: 139.96kB done\n#7 DONE 0.0s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 0.630 go: downloading github.com/rs/zerolog v1.31.0\n#10 0.631 go: downloading github.com/miekg/dns v1.1.57\n#10 0.632 go: downloading github.com/spf13/cobra v1.8.0\n#10 0.723 go: downloading github.com/spf13/pflag v1.0.5\n#10 0.746 go: downloading github.com/mattn/go-colorable v0.1.13\n#10 0.772 go: downloading golang.org/x/sys v0.15.0\n#10 0.772 go: downloading golang.org/x/net v0.19.0\n#10 0.781 go: downloading github.com/mattn/go-isatty v0.0.20\n#10 DONE 5.0s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.0s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.423 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.5s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:ef2dc700a2d38fdee36dc40bbc7bcf151fb85ff51a2acacacae34c525a19c2f3 done\n#17 exporting config sha256:f1bb240c50f960fa8a09c2629f5e14c13d59b143b0ee8fecedf8ef604743b2b0 done\n#17 exporting attestation manifest sha256:456ffa97a820bc7136a5bdcd7ee6b75946c3255ce7a10d40dd16090fd2510a5b done\n#17 exporting manifest list sha256:8a5991318479fd0c81cee0d065544b5f2d0bbb673f212680ac7b0353e563ff4a done\n#17 naming to docker.io/ctk-exec/godoh:f1edcfc473f4 done\n#17 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4 0.1s done\n#17 DONE 0.5s",
+  "image_digest": "sha256:751b3d72465a05ff568e90dc94d61f5b2a3ac5f3fc99cc2cc45ea19fb800b4ed",
+  "duration_s": 11.18,
+  "log_tail": "#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.2s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 1.228 go: downloading github.com/rs/zerolog v1.31.0\n#11 1.229 go: downloading github.com/miekg/dns v1.1.57\n#11 1.233 go: downloading github.com/spf13/cobra v1.8.0\n#11 1.345 go: downloading github.com/mattn/go-colorable v0.1.13\n#11 1.383 go: downloading golang.org/x/sys v0.15.0\n#11 1.383 go: downloading golang.org/x/net v0.19.0\n#11 1.398 go: downloading github.com/mattn/go-isatty v0.0.20\n#11 1.404 go: downloading github.com/spf13/pflag v1.0.5\n#11 DONE 7.6s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.211 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.6s done\n#18 exporting manifest sha256:d094f16983cce3ea996db909d2d55fb482baaec50917acd7c3d5af2ece2cc536\n#18 exporting manifest sha256:d094f16983cce3ea996db909d2d55fb482baaec50917acd7c3d5af2ece2cc536 0.0s done\n#18 exporting config sha256:51d3147ff124bb19554a1cd3620959501b8414308d2c4c5c1dad82450883d867 0.0s done\n#18 exporting attestation manifest sha256:0c3b4d6f240aea5008bfeefcead5fdf204800700e927e76649f9ac0d220bacc4 0.0s done\n#18 exporting manifest list sha256:751b3d72465a05ff568e90dc94d61f5b2a3ac5f3fc99cc2cc45ea19fb800b4ed 0.0s done\n#18 naming to docker.io/ctk-exec/godoh:f1edcfc473f4 done\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4 0.2s done\n#18 DONE 0.9s",
   "error": null,
   "timed_out": false
  },
@@ -110,7 +110,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tgodoh completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  godoh completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 3,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -188,7 +188,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for godoh\n",
-   "duration_ms": 1,
+   "duration_ms": 9,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -203,7 +203,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'godoh' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -236,6 +236,12 @@
    "-p": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
    "--validate-certificate": "Validate DoH provider SSL certificates",
    "-K": "Validate DoH provider SSL certificates"
+  },
+  "values_seen": {
+   "-d": "string",
+   "--domain": "string",
+   "-p": "string",
+   "--provider": "string"
   },
   "aliases": {
    "--domain": [
@@ -368,9 +374,15 @@
   "confirmed": [
    "--domain",
    "--help",
-   "--provider"
+   "--provider",
+   "--validate-certificate"
   ],
   "unconfirmed": [
+   "--agent-name",
+   "--file",
+   "--name",
+   "--poll-time",
+   "--type",
    "agent",
    "c2",
    "godoh",
@@ -381,16 +393,28 @@
   "help_only": [
    "--debug",
    "--disable-logging",
-   "--validate-certificate",
    "-K",
    "-d",
    "-h",
    "-p"
   ],
-  "mining_coverage": 0.3
+  "mining_coverage": 0.4
  },
  "surface": {
   "flags": {
+   "--agent-name": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Agent name to use. (default: random)",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/agent.go"
+   },
    "--debug": {
     "source": "runtime",
     "runtime_confirmed": true,
@@ -406,16 +430,30 @@
     "runtime_confirmed": true,
     "help": "DNS Domain to use. (ie: example.com)",
     "kind": "option",
+    "metavar": "string",
     "first_tag": "1.0",
     "first_date": "2018-10-23T23:41:46+02:00",
     "last_tag": "1.6",
     "last_date": "2019-10-23T16:06:10+02:00",
     "live": true,
     "attribution": "own",
-    "source_path": "README.md",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-d"
     ]
+   },
+   "--file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The file to send.",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/send.go"
    },
    "--help": {
     "source": "both",
@@ -433,10 +471,10 @@
      "-h"
     ]
    },
-   "--provider": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+   "--name": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Name to lookup.",
     "kind": "option",
     "first_tag": "1.0",
     "first_date": "2018-10-23T23:41:46+02:00",
@@ -444,15 +482,63 @@
     "last_date": "2019-10-23T16:06:10+02:00",
     "live": true,
     "attribution": "own",
-    "source_path": "README.md",
+    "source_path": "cmd/test.go"
+   },
+   "--poll-time": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Time in seconds between polls.",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/agent.go"
+   },
+   "--provider": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-p"
     ]
    },
+   "--type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Record type to lookup.",
+    "kind": "option",
+    "first_tag": "1.0",
+    "first_date": "2018-10-23T23:41:46+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/test.go"
+   },
    "--validate-certificate": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Validate DoH provider SSL certificates",
+    "kind": "option",
+    "first_tag": "1.3",
+    "first_date": "2018-10-26T14:52:51+02:00",
+    "last_tag": "1.6",
+    "last_date": "2019-10-23T16:06:10+02:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-K"
     ]
@@ -646,6 +732,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 2,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -691,6 +778,6 @@
  "repo": "sensepost/goDoH",
  "head_sha": "f1edcfc473f4571f23af4f9c7df5ae3a5c976133",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-29T02:13:27.832989+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:07:33.676840+00:00"
 }

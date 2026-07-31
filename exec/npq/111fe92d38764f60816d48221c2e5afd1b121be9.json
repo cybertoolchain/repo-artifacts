@@ -1,19 +1,336 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "node",
-  "image_digest": null,
-  "duration_s": 4.52,
-  "log_tail": "#10 [build 2/4] WORKDIR /src\n#10 DONE 0.2s\n\n#9 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#9 ...\n\n#11 [build 3/4] COPY . .\n#11 DONE 0.0s\n\n#12 [build 4/4] RUN npm ci --omit=dev || npm install --omit=dev\n#12 0.322 npm error code EBADENGINE\n#12 0.322 npm error engine Unsupported engine\n#12 0.322 npm error engine Not compatible with your version of node/npm: npq@0.0.0-development\n#12 0.322 npm error notsup Not compatible with your version of node/npm: npq@0.0.0-development\n#12 0.322 npm error notsup Required: {\"npm\":\">=11.10.0\",\"node\":\">=24.0.0\"}\n#12 0.322 npm error notsup Actual:   {\"npm\":\"10.9.8\",\"node\":\"v22.23.1\"}\n#12 0.323 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-07-27T02_17_27_744Z-debug-0.log\n#12 0.536 npm error code EBADENGINE\n#12 0.536 npm error engine Unsupported engine\n#12 0.536 npm error engine Not compatible with your version of node/npm: npq@0.0.0-development\n#12 0.536 npm error notsup Not compatible with your version of node/npm: npq@0.0.0-development\n#12 0.536 npm error notsup Required: {\"npm\":\">=11.10.0\",\"node\":\">=24.0.0\"}\n#12 0.536 npm error notsup Actual:   {\"npm\":\"10.9.8\",\"node\":\"v22.23.1\"}\n#12 0.536 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-07-27T02_17_27_986Z-debug-0.log\n#12 ERROR: process \"/bin/sh -c npm ci --omit=dev || npm install --omit=dev\" did not complete successfully: exit code: 1\n\n#9 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#9 CANCELED\n------\n > [build 4/4] RUN npm ci --omit=dev || npm install --omit=dev:\n0.322 npm error notsup Required: {\"npm\":\">=11.10.0\",\"node\":\">=24.0.0\"}\n0.322 npm error notsup Actual:   {\"npm\":\"10.9.8\",\"node\":\"v22.23.1\"}\n0.323 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-07-27T02_17_27_744Z-debug-0.log\n0.536 npm error code EBADENGINE\n0.536 npm error engine Unsupported engine\n0.536 npm error engine Not compatible with your version of node/npm: npq@0.0.0-development\n0.536 npm error notsup Not compatible with your version of node/npm: npq@0.0.0-development\n0.536 npm error notsup Required: {\"npm\":\">=11.10.0\",\"node\":\">=24.0.0\"}\n0.536 npm error notsup Actual:   {\"npm\":\"10.9.8\",\"node\":\"v22.23.1\"}\n0.536 npm error A complete log of this run can be found in: /root/.npm/_logs/2026-07-27T02_17_27_986Z-debug-0.log\n------\nDockerfile.ctk:4\n--------------------\n   2 |     WORKDIR /src\n   3 |     COPY . .\n   4 | >>> RUN npm ci --omit=dev || npm install --omit=dev\n   5 |     \n   6 |     FROM node:22-bookworm-slim\n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c npm ci --omit=dev || npm install --omit=dev\" did not complete successfully: exit code: 1",
-  "error": "docker build failed",
+  "image_digest": "sha256:f5b1ff73fe4fd269375464f33e4bf577f41ea176292c2270464eb4561122c03c",
+  "duration_s": 8.51,
+  "log_tail": "#10 2.285   run `npm fund` for details\n#10 2.287 \n#10 2.287 6 vulnerabilities (3 moderate, 3 high)\n#10 2.287 \n#10 2.287 To address all issues, run:\n#10 2.287   npm audit fix\n#10 2.287 \n#10 2.287 Run `npm audit` for details.\n#10 DONE 2.4s\n\n#11 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/9] COPY --from=build /src /src\n#12 DONE 0.2s\n\n#13 [stage-1 4/9] WORKDIR /src\n#13 DONE 0.0s\n\n#14 [stage-1 5/9] RUN npm link || npm install -g . || true\n#14 0.719 \n#14 0.719 added 1 package, and audited 3 packages in 400ms\n#14 0.720 \n#14 0.720 found 0 vulnerabilities\n#14 DONE 0.8s\n\n#15 [stage-1 6/9] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 7/9] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 8/9] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 9/9] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.139 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.9s done\n#19 exporting manifest sha256:1c445b3026bd9947511c2db4b8422b65b1f5232b2e230a98718c034f06ae5507 0.0s done\n#19 exporting config sha256:5d68a7f04ff6bef26360f9c74db574cbd638bf6f3ce6eda392a4508a29938f45 0.0s done\n#19 exporting attestation manifest sha256:c6487f8d405f878876bfd8be6a1c9c6f690c0738b81c32e4454a8b077436683e 0.0s done\n#19 exporting manifest list sha256:f5b1ff73fe4fd269375464f33e4bf577f41ea176292c2270464eb4561122c03c 0.0s done\n#19 naming to docker.io/ctk-exec/npq:111fe92d3876 done\n#19 unpacking to docker.io/ctk-exec/npq:111fe92d3876\n#19 unpacking to docker.io/ctk-exec/npq:111fe92d3876 1.3s done\n#19 DONE 2.4s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "docker build failed",
+ "captures": [
+  {
+   "argv": [
+    "npq",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: npq install <package> [options]\n\nCommands:\n  install [package...]  install a package (required to run the package manager)\n\n  With no install subcommand, npq audits packages only (current project deps from\n  package.json, or package names you pass) and does not invoke npm install.\n\nOptions:\n      --dry-run               Run checks only, don't install\n      --plain                 Force non-rich text output\n      --packageManager        Package Manager to use (default: npm)\n      --pkgMgr                Alias for packageManager\n      --disable-auto-continue Disable auto-continue countdown, always prompt\n      --registry              npm registry used for audit and install\n      --userconfig            Path to the user npm configuration file\n      --globalconfig          Path to the global npm configuration file\n  -h, --help                  Show help\n  -v, --version               Show version\n\nEnvironment Variables:\n  NPQ_PKG_MGR                 Package manager to use; overrides --packageManager when set (default: npm)\n  NPQ_DISABLE_AUTO_CONTINUE   Set to 'true' to disable auto-continue\n\nExamples:\n  npq install express\n\ncurated by Liran Tal at https://github.com/lirantal/npq\n",
+   "stderr": "",
+   "duration_ms": 298,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "npq",
+    "install",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: npq install <package> [options]\n\nCommands:\n  install [package...]  install a package (required to run the package manager)\n\n  With no install subcommand, npq audits packages only (current project deps from\n  package.json, or package names you pass) and does not invoke npm install.\n\nOptions:\n      --dry-run               Run checks only, don't install\n      --plain                 Force non-rich text output\n      --packageManager        Package Manager to use (default: npm)\n      --pkgMgr                Alias for packageManager\n      --disable-auto-continue Disable auto-continue countdown, always prompt\n      --registry              npm registry used for audit and install\n      --userconfig            Path to the user npm configuration file\n      --globalconfig          Path to the global npm configuration file\n  -h, --help                  Show help\n  -v, --version               Show version\n\nEnvironment Variables:\n  NPQ_PKG_MGR                 Package manager to use; overrides --packageManager when set (default: npm)\n  NPQ_DISABLE_AUTO_CONTINUE   Set to 'true' to disable auto-continue\n\nExamples:\n  npq install express\n\ncurated by Liran Tal at https://github.com/lirantal/npq\n",
+   "stderr": "",
+   "duration_ms": 79,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "npq",
+    "install",
+    "install",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: npq install <package> [options]\n\nCommands:\n  install [package...]  install a package (required to run the package manager)\n\n  With no install subcommand, npq audits packages only (current project deps from\n  package.json, or package names you pass) and does not invoke npm install.\n\nOptions:\n      --dry-run               Run checks only, don't install\n      --plain                 Force non-rich text output\n      --packageManager        Package Manager to use (default: npm)\n      --pkgMgr                Alias for packageManager\n      --disable-auto-continue Disable auto-continue countdown, always prompt\n      --registry              npm registry used for audit and install\n      --userconfig            Path to the user npm configuration file\n      --globalconfig          Path to the global npm configuration file\n  -h, --help                  Show help\n  -v, --version               Show version\n\nEnvironment Variables:\n  NPQ_PKG_MGR                 Package manager to use; overrides --packageManager when set (default: npm)\n  NPQ_DISABLE_AUTO_CONTINUE   Set to 'true' to disable auto-continue\n\nExamples:\n  npq install express\n\ncurated by Liran Tal at https://github.com/lirantal/npq\n",
+   "stderr": "",
+   "duration_ms": 94,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "npq"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for npq\n",
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "npq"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'npq' in node '(dir)Top'\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "npq",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--dry-run": "Run checks only, don't install",
+   "--plain": "Force non-rich text output",
+   "--packageManager": "Package Manager to use (default: npm)",
+   "--pkgMgr": "Alias for packageManager",
+   "--disable-auto-continue": "",
+   "--registry": "npm registry used for audit and install",
+   "--userconfig": "Path to the user npm configuration file",
+   "--globalconfig": "Path to the global npm configuration file",
+   "--help": "Show help",
+   "-h": "Show help",
+   "--version": "Show version",
+   "-v": "Show version"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "install": {
+    "--dry-run": "Run checks only, don't install",
+    "--plain": "Force non-rich text output",
+    "--packageManager": "Package Manager to use (default: npm)",
+    "--pkgMgr": "Alias for packageManager",
+    "--disable-auto-continue": "",
+    "--registry": "npm registry used for audit and install",
+    "--userconfig": "Path to the user npm configuration file",
+    "--globalconfig": "Path to the global npm configuration file",
+    "--help": "Show help",
+    "-h": "Show help",
+    "--version": "Show version",
+    "-v": "Show version"
+   }
+  },
+  "subcommands": [
+   "install"
+  ],
+  "binary": "npq",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "0a0a37d52e6be09379474f7c7b0992b1738111e041e179159df4005a269dfa3a",
+  "text": "Usage: npq install <package> [options]\n\nCommands:\n  install [package...]  install a package (required to run the package manager)\n\n  With no install subcommand, npq audits packages only (current project deps from\n  package.json, or package names you pass) and does not invoke npm install.\n\nOptions:\n      --dry-run               Run checks only, don't install\n      --plain                 Force non-rich text output\n      --packageManager        Package Manager to use (default: npm)\n      --pkgMgr                Alias for packageManager\n      --disable-auto-continue Disable auto-continue countdown, always prompt\n      --registry              npm registry used for audit and install\n      --userconfig            Path to the user npm configuration file\n      --globalconfig          Path to the global npm configuration file\n  -h, --help                  Show help\n  -v, --version               Show version\n\nEnvironment Variables:\n  NPQ_PKG_MGR                 Package manager to use; overrides --packageManager when set (default: npm)\n  NPQ_DISABLE_AUTO_CONTINUE   Set to 'true' to disable auto-continue\n\nExamples:\n  npq install express\n\ncurated by Liran Tal at https://github.com/lirantal/npq\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--disable-auto-continue",
+   "--dry-run",
+   "--globalconfig",
+   "--help",
+   "--packageManager",
+   "--pkgMgr",
+   "--plain",
+   "--registry",
+   "--userconfig",
+   "--version",
+   "-h",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--disable-auto-continue": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--dry-run": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Run checks only, don't install"
+   },
+   "--globalconfig": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to the global npm configuration file"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--packageManager": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Package Manager to use (default: npm)"
+   },
+   "--pkgMgr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Alias for packageManager"
+   },
+   "--plain": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force non-rich text output"
+   },
+   "--registry": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "npm registry used for audit and install"
+   },
+   "--userconfig": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to the user npm configuration file"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show version",
+    "aliases": [
+     "-v"
+    ]
+   }
+  },
+  "subcommands": [
+   "install"
+  ],
+  "subcommand_flags": {
+   "install": {
+    "--dry-run": "Run checks only, don't install",
+    "--plain": "Force non-rich text output",
+    "--packageManager": "Package Manager to use (default: npm)",
+    "--pkgMgr": "Alias for packageManager",
+    "--disable-auto-continue": "",
+    "--registry": "npm registry used for audit and install",
+    "--userconfig": "Path to the user npm configuration file",
+    "--globalconfig": "Path to the global npm configuration file",
+    "--help": "Show help",
+    "-h": "Show help",
+    "--version": "Show version",
+    "-v": "Show version"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-e25d9ac1",
+    "argv": [
+     "npq",
+     "install",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/feature/signature-verification-fix.md",
+    "line": 133,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-surface-99e36bd4",
+    "argv": [
+     "npq",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "npq install express",
+    "source": "readme",
+    "path": "README.md",
+    "line": 37,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "npq install @company/tool --registry=https://artifactory.example.com/artifactory/api/npm/npm-virtual/",
+    "source": "readme",
+    "path": "README.md",
+    "line": 86,
+    "reason": "needs-live-target",
+    "token": "https://artifactory.example.com/artifactory/api/npm/npm-virtual/"
+   },
+   {
+    "raw": "npq install express --dry-run",
+    "source": "readme",
+    "path": "README.md",
+    "line": 216,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "npq install express --plain",
+    "source": "readme",
+    "path": "README.md",
+    "line": 222,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "npq install express --disable-auto-continue",
+    "source": "readme",
+    "path": "README.md",
+    "line": 232,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "npq install internal-tool --registry=https://artifactory.example.com/artifactory/api/npm/npm-virtual/",
+    "source": "readme",
+    "path": "docs/feature/custom-registry.md",
+    "line": 17,
+    "reason": "needs-live-target",
+    "token": "https://artifactory.example.com/artifactory/api/npm/npm-virtual/"
+   }
+  ]
+ },
  "tool": "npq",
  "repo": "lirantal/npq",
  "head_sha": "111fe92d38764f60816d48221c2e5afd1b121be9",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T02:17:28.229665+00:00"
+ "analyzer_version": "8",
+ "generated_at": "2026-07-31T15:13:29.632033+00:00"
 }

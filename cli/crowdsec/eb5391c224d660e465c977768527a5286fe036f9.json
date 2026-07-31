@@ -20,18 +20,54 @@
     "untracked_releases"
    ]
   },
+  "--acquis-dir": {
+   "source": "parsed",
+   "help": "Directory for the acquisition configuration",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.7.0-rc2",
+   "first_date": "2025-07-31T17:00:41+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/acquisition.go"
+  },
+  "--alert": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-a"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.7",
+   "last_date": "2026-03-23T15:16:44+01:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clinotifications/notifications.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "parse_failures"
+   ]
+  },
   "--all": {
    "source": "parsed",
-   "help": "Run all tests",
+   "help": "delete all alerts",
    "kind": "option",
    "default": "false",
+   "aliases": [
+    "-a"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
    "last_tag": "v1.8.0-rc1",
    "last_date": "2026-07-27T17:03:29+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec-cli/clihubtest/clean.go"
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
   },
   "--api": {
    "source": "parsed",
@@ -83,6 +119,55 @@
     "evidence_source_lost"
    ]
   },
+  "--auto": {
+   "source": "parsed",
+   "help": "automatically generate password (and username if not provided)",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-a"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/climachine/add.go"
+  },
+  "--batch": {
+   "source": "parsed",
+   "help": "Split import in batches of N decisions",
+   "kind": "option",
+   "default": "0",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.7",
+   "last_date": "2026-03-23T15:16:44+01:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/import.go",
+   "low_confidence_removal": true,
+   "low_confidence_reasons": [
+    "parse_failures"
+   ]
+  },
+  "--bypass-allowlist": {
+   "source": "parsed",
+   "help": "Add decision even if value is in allowlist",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-B"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/decisions.go"
+  },
   "--c": {
    "source": "parsed",
    "help": "configuration file",
@@ -109,24 +194,56 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clihubtest/run.go"
   },
-  "--config-dir": {
-   "source": "documented",
-   "help": "Configuration directory to use. (default \"/etc/crowdsec/cscli/\")",
+  "--comment": {
+   "source": "parsed",
+   "help": "comment for the value",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliallowlists/allowlists.go"
+  },
+  "--config-dir": {
+   "source": "parsed",
+   "help": "Configuration directory to use.",
+   "kind": "option",
+   "default": "/etc/crowdsec/cscli/",
+   "aliases": [
+    "-c"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
    "last_tag": "v0.0.1",
    "last_date": "2020-05-15T14:35:51+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli.md",
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/main.go",
    "doc_path": "cmd/crowdsec-cli/doc/cscli.md",
+   "also_documented": true,
    "low_confidence_removal": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed"
+    "untracked_releases"
    ]
+  },
+  "--contained": {
+   "source": "parsed",
+   "help": "query decisions contained by range",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
   },
   "--cpu-profile": {
    "source": "parsed",
@@ -152,7 +269,7 @@
    "last_date": "2026-07-27T17:03:29+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec-cli/clihubtest/hubtest.go"
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
   },
   "--cscli": {
    "source": "parsed",
@@ -234,58 +351,140 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
   },
-  "--dir": {
-   "source": "documented",
-   "help": "Shared directory with metabase container. (default \"/var/lib/crowdsec/data\")",
+  "--description": {
+   "source": "parsed",
+   "help": "description of the allowlist",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliallowlists/allowlists.go"
+  },
+  "--details": {
+   "source": "parsed",
+   "help": "show alerts with events",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--detect-config": {
+   "source": "parsed",
+   "help": "path to service detection configuration, will use $CROWDSEC_SETUP_DETECT_CONFIG if defined",
    "kind": "option",
    "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--diff": {
+   "source": "parsed",
+   "help": "Show diff with latest version (for tainted items)",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinspect.go"
+  },
+  "--dir": {
+   "source": "parsed",
+   "help": "Shared directory with metabase container",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-d"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ]
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
+  },
+  "--disable": {
+   "source": "parsed",
+   "help": "Disable console options",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
   },
   "--download-only": {
-   "source": "documented",
+   "source": "parsed",
    "help": "Only download packages, don't enable",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-d"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
-   "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_install.md",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_install.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ]
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinstall.go"
+  },
+  "--dry-run": {
+   "source": "parsed",
+   "help": "Don't install or remove anything; print the execution plan",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihub/hub.go"
   },
   "--dsn": {
    "source": "parsed",
-   "help": "Process a single data source in time-machine",
+   "help": "DSN to test",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-d"
+   ],
    "first_tag": "v1.6.9-rc4",
    "first_date": "2025-06-09T14:51:30+02:00",
-   "last_tag": "v1.7.4",
-   "last_date": "2025-12-03T16:35:16+01:00",
-   "live": false,
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec/flags.go"
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
   },
   "--dump-data": {
    "source": "parsed",
@@ -317,6 +516,54 @@
     "untracked_releases"
    ]
   },
+  "--duration": {
+   "source": "parsed",
+   "help": "Decision duration (ie. 1h,4h,30m)",
+   "kind": "option",
+   "default": "4h",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/decisions.go"
+  },
+  "--enable": {
+   "source": "parsed",
+   "help": "Enable console options",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-e"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
+  },
+  "--env": {
+   "source": "parsed",
+   "help": "Additional environment variables to pass to the metabase container",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-e"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
+  },
   "--error": {
    "source": "parsed",
    "help": "set log level to 'error'",
@@ -329,6 +576,35 @@
    "live": false,
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
+  },
+  "--expr": {
+   "source": "parsed",
+   "help": "Expression to eval",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-e"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihubtest/eval.go"
+  },
+  "--failures": {
+   "source": "parsed",
+   "help": "Only show failed lines",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
   },
   "--fast": {
    "source": "parsed",
@@ -358,39 +634,143 @@
   },
   "--file": {
    "source": "parsed",
-   "help": "Process a single file in time-machine",
+   "help": "output file destination",
    "kind": "option",
    "default": "",
+   "aliases": [
+    "-f"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
-   "live": false,
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "pkg/config/crowdsec/config.go",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/crowdsec-cli/clicapi/capi.go"
   },
   "--force": {
    "source": "parsed",
-   "help": "Force install : Overwrite tainted and outdated files",
+   "help": "force prune without asking for confirmation",
    "kind": "option",
    "default": "false",
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clibouncer/prune.go"
+  },
+  "--force-os-family": {
+   "source": "parsed",
+   "help": "override OS.Family: one of linux, freebsd, windows or darwin",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
    "live": false,
    "attribution": "own",
-   "source_path": "cmd/crowdsec-cli/install.go",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "also_documented": true,
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--force-os-id": {
+   "source": "parsed",
+   "help": "override OS.ID=[debian | ubuntu | redhat...]",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--force-os-version": {
+   "source": "parsed",
+   "help": "override OS.RawVersion (of OS or Linux distribution)",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--force-process": {
+   "source": "parsed",
+   "help": "force detection of a running process (can be repeated)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--force-unit": {
+   "source": "parsed",
+   "help": "force detection of a systemd unit (can be repeated)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--format": {
+   "source": "parsed",
+   "help": "Input format: 'json', 'csv' or 'values' (each line is a value, no headers)",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.7",
+   "last_date": "2026-03-23T15:16:44+01:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/import.go",
    "low_confidence_removal": true,
    "low_confidence_reasons": [
-    "untracked_releases"
+    "parse_failures"
    ]
+  },
+  "--full": {
+   "source": "parsed",
+   "help": "List every installed item individually instead of summarizing collection contents",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.8.0-rc1",
+   "first_date": "2026-07-27T17:03:29+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihub/hub.go"
+  },
+  "--global": {
+   "source": "parsed",
+   "help": "Disable global simulation (reverse mode)",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-g"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisimulation/simulation.go"
   },
   "--help": {
    "source": "documented",
@@ -437,6 +817,45 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clihubtest/hubtest.go"
   },
+  "--id": {
+   "source": "parsed",
+   "help": "alert ID",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--ignore": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinstall.go"
+  },
+  "--ignore-missing": {
+   "source": "parsed",
+   "help": "don't print errors if one or more bouncers don't exist",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clibouncer/delete.go"
+  },
   "--ignore-parsers": {
    "source": "parsed",
    "help": "Don't run test on parsers",
@@ -463,25 +882,188 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
   },
+  "--input": {
+   "source": "parsed",
+   "help": "Input file (use - for stdin)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-i"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliallowlists/import.go"
+  },
+  "--interactive": {
+   "source": "parsed",
+   "help": "Ask for confirmation before proceeding",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-i"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihub/hub.go"
+  },
+  "--ip": {
+   "source": "parsed",
+   "help": "Source ip (shorthand for --scope ip --value <IP>)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-i"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--key": {
+   "source": "parsed",
+   "help": "api key for the bouncer",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-k"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clibouncer/add.go"
+  },
+  "--kind": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.7.7-rc1",
+   "first_date": "2026-03-23T15:16:44+01:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--labels": {
+   "source": "parsed",
+   "help": "Additional labels to add to the acquisition format (key:value,key2:value2)",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
+  },
+  "--length": {
+   "source": "parsed",
+   "help": "length of the api key",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clibouncer/add.go"
+  },
+  "--limit": {
+   "source": "parsed",
+   "help": "limit size of alerts list table (0 to view all alerts)",
+   "kind": "option",
+   "default": "50",
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--list-supported-services": {
+   "source": "parsed",
+   "help": "do not detect; only print supported services",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
   "--listen": {
-   "source": "documented",
-   "help": "Listen address of container (default \"127.0.0.1\")",
+   "source": "parsed",
+   "help": "Listen address of container",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-l"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ]
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
+  },
+  "--log": {
+   "source": "parsed",
+   "help": "Log line to test",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-l"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
+  },
+  "--machine": {
+   "source": "parsed",
+   "help": "print machines that sent alerts",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-m"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
   },
   "--max-items": {
    "source": "parsed",
@@ -495,6 +1077,48 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--max-jobs": {
+   "source": "parsed",
+   "help": "Max number of concurrent tests (does not apply to appsec)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihubtest/run.go"
+  },
+  "--metabase-image": {
+   "source": "parsed",
+   "help": "Metabase image to use",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
+  },
+  "--name": {
+   "source": "parsed",
+   "help": "Name to display in the console",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-n"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
   },
   "--no-api": {
    "source": "parsed",
@@ -524,7 +1148,7 @@
   },
   "--no-clean": {
    "source": "parsed",
-   "help": "Don't clean runtime environment if test succeed",
+   "help": "Don't clean runtime environment after tests",
    "kind": "option",
    "default": "false",
    "first_tag": "v1.6.9-rc4",
@@ -533,7 +1157,7 @@
    "last_date": "2026-07-27T17:03:29+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec-cli/clihubtest/run.go"
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
   },
   "--no-cs": {
    "source": "parsed",
@@ -548,6 +1172,71 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
   },
+  "--no-metrics": {
+   "source": "parsed",
+   "help": "Don't show metrics (when cscli.output=human)",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinspect.go"
+  },
+  "--no-simu": {
+   "source": "parsed",
+   "help": "exclude decisions in simulation mode",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/decisions.go"
+  },
+  "--no-unit": {
+   "source": "parsed",
+   "help": "Show the real number instead of formatted with units",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/climetrics/metrics.go"
+  },
+  "--not-validated-only": {
+   "source": "parsed",
+   "help": "only prune machines that are not validated",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/climachine/prune.go"
+  },
+  "--only-successful-parsers": {
+   "source": "parsed",
+   "help": "Only show successful parsers",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
+  },
   "--order-event": {
    "source": "parsed",
    "help": "enforce event ordering with significant performance cost",
@@ -561,24 +1250,69 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
   },
-  "--output": {
-   "source": "documented",
-   "help": "Output format : human, json, raw. (default \"human\")",
+  "--origin": {
+   "source": "parsed",
+   "help": "",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--outFile": {
+   "source": "parsed",
+   "help": "File to dump the information to",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisupport/support.go"
+  },
+  "--output": {
+   "source": "parsed",
+   "help": "Output format : human, json, raw.",
+   "kind": "option",
+   "default": "human",
+   "aliases": [
+    "-o"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
    "last_tag": "v0.0.1",
    "last_date": "2020-05-15T14:35:51+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli.md",
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/main.go",
    "doc_path": "cmd/crowdsec-cli/doc/cscli.md",
+   "also_documented": true,
    "low_confidence_removal": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed"
+    "untracked_releases"
    ]
+  },
+  "--overwrite": {
+   "source": "parsed",
+   "help": "Force enroll the instance",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
   },
   "--parsers": {
    "source": "parsed",
@@ -592,6 +1326,19 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clihubtest/coverage.go"
+  },
+  "--password": {
+   "source": "parsed",
+   "help": "metabase password",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
   },
   "--percent": {
    "source": "parsed",
@@ -607,24 +1354,20 @@
    "source_path": "cmd/crowdsec-cli/clihubtest/coverage.go"
   },
   "--port": {
-   "source": "documented",
-   "help": "Listen port of container (default \"3000\")",
+   "source": "parsed",
+   "help": "Listen port of container",
    "kind": "option",
    "default": null,
+   "aliases": [
+    "-p"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_dashboard_setup.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ]
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
   },
   "--postoverflows": {
    "source": "parsed",
@@ -675,23 +1418,64 @@
   },
   "--purge": {
    "source": "parsed",
-   "help": "Delete source file in ~/.cscli/hub/ too",
+   "help": "Delete source file too",
    "kind": "option",
    "default": "false",
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
-   "live": false,
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec-cli/remove.go",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_remove.md",
-   "also_documented": true,
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "evidence_source_lost"
-   ]
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdremove.go"
+  },
+  "--quick": {
+   "source": "parsed",
+   "help": "Enrolls the instance without an enroll key by visiting a link to the CrowdSec console.",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-q"
+   ],
+   "first_tag": "v1.7.8-rc1",
+   "first_date": "2026-05-05T16:51:53+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
+  },
+  "--range": {
+   "source": "parsed",
+   "help": "Range source ip (shorthand for --scope range --value <RANGE>)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-r"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--reason": {
+   "source": "parsed",
+   "help": "Decision reason (ie. scenario-name)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-R"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clidecision/decisions.go"
   },
   "--remediation": {
    "source": "parsed",
@@ -714,23 +1498,25 @@
    ]
   },
   "--remove": {
-   "source": "documented",
+   "source": "parsed",
    "help": "remove (docker rm) container as well.",
    "kind": "option",
-   "default": null,
+   "default": "false",
+   "aliases": [
+    "-r"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
    "last_tag": "v0.0.1",
    "last_date": "2020-05-15T14:35:51+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_dashboard_stop.md",
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go",
    "doc_path": "cmd/crowdsec-cli/doc/cscli_dashboard_stop.md",
+   "also_documented": true,
    "low_confidence_removal": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
+    "untracked_releases"
    ]
   },
   "--report-success": {
@@ -763,6 +1549,48 @@
     "untracked_releases"
    ]
   },
+  "--retired": {
+   "source": "parsed",
+   "help": "Show retired features",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconfig/feature_flags.go"
+  },
+  "--rev": {
+   "source": "parsed",
+   "help": "Reverse diff output",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinspect.go"
+  },
+  "--scenario": {
+   "source": "parsed",
+   "help": "the scenario (ie. crowdsecurity/ssh-bf)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-s"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
   "--scenarios": {
    "source": "parsed",
    "help": "Show only scenarios coverage",
@@ -789,6 +1617,58 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clicapi/capi.go"
   },
+  "--scope": {
+   "source": "parsed",
+   "help": "the scope (ie. ip,range)",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--skip-service": {
+   "source": "parsed",
+   "help": "ignore a service, don't recommend hub/datasources (can be repeated)",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--skip-systemd": {
+   "source": "parsed",
+   "help": "don't use systemd, even if available",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.7.0-rc2",
+   "first_date": "2025-07-31T17:00:41+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--snub-systemd": {
+   "source": "parsed",
+   "help": "don't use systemd, even if available",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc1",
+   "last_date": "2025-07-30T14:03:16+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/setup.go"
+  },
   "--sqlite": {
    "source": "parsed",
    "help": "write overflows to sqlite",
@@ -806,6 +1686,19 @@
     "untracked_releases"
    ]
   },
+  "--status": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "first_tag": "v1.8.0-rc1",
+   "first_date": "2026-07-27T17:03:29+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihub/hub.go"
+  },
   "--t": {
    "source": "parsed",
    "help": "only test configs",
@@ -819,6 +1712,22 @@
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
   },
+  "--tags": {
+   "source": "parsed",
+   "help": "Tags to display in the console",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliconsole/console.go"
+  },
   "--target": {
    "source": "parsed",
    "help": "Target for AppSec Test",
@@ -831,6 +1740,32 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/crowdsec-cli/clihubtest/run.go"
+  },
+  "--to-dir": {
+   "source": "parsed",
+   "help": "write the configuration to a directory, in multiple files",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc1",
+   "last_date": "2025-07-30T14:03:16+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/setup.go"
+  },
+  "--token": {
+   "source": "parsed",
+   "help": "Auto registration token to use",
+   "kind": "option",
+   "default": "",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clilapi/register.go"
   },
   "--trace": {
    "source": "parsed",
@@ -860,56 +1795,86 @@
   },
   "--type": {
    "source": "parsed",
-   "help": "Labels.type for file in time-machine",
+   "help": "restrict to alerts with given decision type (ie. ban, captcha)",
    "kind": "option",
    "default": "",
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v1.7.4",
-   "last_date": "2025-12-03T16:35:16+01:00",
-   "live": false,
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/crowdsec/flags.go"
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
   },
   "--url": {
-   "source": "documented",
-   "help": "Prometheus url (default \"http://127.0.0.1:6060/metrics\")",
+   "source": "parsed",
+   "help": "Prometheus url",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-u"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2020-05-15T14:35:51+02:00",
-   "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_metrics.md",
-   "doc_path": "cmd/crowdsec-cli/doc/cscli_metrics.md",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ]
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliitem/cmdinspect.go"
   },
   "--user": {
-   "source": "documented",
+   "source": "parsed",
    "help": "User ID (required)",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-u"
+   ],
    "first_tag": "v0.0.1",
    "first_date": "2020-05-15T14:35:51+02:00",
    "last_tag": "v0.0.1",
    "last_date": "2020-05-15T14:35:51+02:00",
    "live": false,
-   "attribution": "unattributed",
-   "source_path": "cmd/crowdsec-cli/doc/cscli_api_enroll.md",
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/api.go",
    "doc_path": "cmd/crowdsec-cli/doc/cscli_api_enroll.md",
+   "also_documented": true,
    "low_confidence_removal": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
+    "untracked_releases"
    ]
+  },
+  "--value": {
+   "source": "parsed",
+   "help": "the value to match for in the specified scope",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-v"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clialert/alerts.go"
+  },
+  "--verbose": {
+   "source": "parsed",
+   "help": "Display individual changes",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-v"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/cliexplain/explain.go"
   },
   "--version": {
    "source": "parsed",
@@ -949,6 +1914,48 @@
    "live": false,
    "attribution": "own",
    "source_path": "cmd/crowdsec/flags.go"
+  },
+  "--with-content": {
+   "source": "parsed",
+   "help": "Download index with embedded item content",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clihub/hub.go"
+  },
+  "--yaml": {
+   "source": "parsed",
+   "help": "output yaml, not json",
+   "kind": "option",
+   "default": "false",
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.8.0-rc1",
+   "last_date": "2026-07-27T17:03:29+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/clisetup/detect.go"
+  },
+  "--yes": {
+   "source": "parsed",
+   "help": "force  yes",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-y"
+   ],
+   "first_tag": "v1.6.9-rc4",
+   "first_date": "2025-06-09T14:51:30+02:00",
+   "last_tag": "v1.7.0-rc3",
+   "last_date": "2025-08-01T11:26:54+02:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "cmd/crowdsec-cli/dashboard.go"
   },
   "add": {
    "source": "parsed",
@@ -2216,6 +3223,17 @@
  },
  "events": [
   {
+   "flag": "--alert",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "JSON string used to override alert fields in the reinjected alert (see crowdsec/pkg/models/alert.go in the source tree for the full definition of the object)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--appsec",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2227,6 +3245,39 @@
    "attribution": "own"
   },
   {
+   "flag": "--auto",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "automatically generate password (and username if not provided)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--batch",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Split import in batches of N decisions",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--bypass-allowlist",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Add decision even if value is in allowlist",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--clean",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2234,6 +3285,28 @@
    "source": "parsed",
    "kind": "option",
    "help": "Clean runtime environment if test fail",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--comment",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "comment for the value",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--contained",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "query decisions contained by range",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2271,13 +3344,79 @@
    "attribution": "own"
   },
   {
+   "flag": "--description",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "description of the allowlist",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--details",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "show alerts with events",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--detect-config",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "path to service detection configuration",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--diff",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show diff with latest version (for tainted items)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--disable",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Disable console options",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--dry-run",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Don't install or remove anything; print the execution plan",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--dsn",
    "event": "added",
    "tag": "v1.6.9-rc4",
    "date": "2025-06-09T14:51:30+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Process a single data source in time-machine",
+   "help": "DSN to test",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2293,6 +3432,61 @@
    "attribution": "own"
   },
   {
+   "flag": "--duration",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Decision duration (ie. 1h,4h,30m)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--enable",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Enable console options",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--env",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Additional environment variables to pass to the metabase container",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--expr",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Expression to eval",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--failures",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Only show failed lines",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--fatal",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2300,6 +3494,83 @@
    "source": "parsed",
    "kind": "option",
    "help": "set log level to 'fatal'",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-family",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.Family: one of linux, freebsd, windows or darwin",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-id",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.ID=[debian | ubuntu | , redhat...]",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-version",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.RawVersion (of OS or Linux distribution)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-process",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force detection of a running process (can be repeated)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-unit",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force detection of a systemd unit (can be repeated)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--format",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Input format: 'json', 'csv' or 'values' (each line is a value, no headers)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--global",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Disable global simulation (reverse mode)",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2326,6 +3597,39 @@
    "attribution": "own"
   },
   {
+   "flag": "--id",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "alert ID",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--ignore",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--ignore-missing",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "don't print errors if one or more bouncers don't exist",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--ignore-parsers",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2337,6 +3641,116 @@
    "attribution": "own"
   },
   {
+   "flag": "--input",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Input file",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--interactive",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Ask for confirmation before proceeding",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--ip",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Source ip (shorthand for --scope ip --value <IP>)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--key",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "api key for the bouncer",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--labels",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Additional labels to add to the acquisition format (key:value,key2:value2)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--length",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "length of the api key",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--limit",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "limit size of alerts list table (0 to view all alerts)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--list-supported-services",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "do not detect; only print supported services",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--log",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Log line to test",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--machine",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "print machines that sent alerts",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--max-items",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2344,6 +3758,39 @@
    "source": "parsed",
    "kind": "option",
    "help": "Maximum number of alert items to keep in the database",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--max-jobs",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Max number of concurrent tests (does not apply to appsec)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--metabase-image",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Metabase image to use",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--name",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Name to display in the console",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2376,7 +3823,7 @@
    "date": "2025-06-09T14:51:30+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Don't clean runtime environment if test succeed",
+   "help": "Don't clean runtime environment after tests",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2392,6 +3839,61 @@
    "attribution": "own"
   },
   {
+   "flag": "--no-metrics",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Don't show metrics (when cscli.output=human)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--no-simu",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "exclude decisions in simulation mode",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--no-unit",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show the real number instead of formatted with units",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--not-validated-only",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "only prune machines that are not validated",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--only-successful-parsers",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Only show successful parsers",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--order-event",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2403,6 +3905,39 @@
    "attribution": "own"
   },
   {
+   "flag": "--origin",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--outFile",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "File to dump the information to",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--overwrite",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Force enroll the instance",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--parsers",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2410,6 +3945,17 @@
    "source": "parsed",
    "kind": "option",
    "help": "Show only parsers coverage",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--password",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "metabase password",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2436,6 +3982,28 @@
    "attribution": "own"
   },
   {
+   "flag": "--range",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Range source ip (shorthand for --scope range --value <RANGE>)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--reason",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Decision reason (ie. scenario-name)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--report-success",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2443,6 +4011,39 @@
    "source": "parsed",
    "kind": "option",
    "help": "Report successful tests too (implied with json output)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--retired",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Show retired features",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--rev",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Reverse diff output",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--scenario",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "the scenario (ie. crowdsecurity/ssh-bf)",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2469,6 +4070,50 @@
    "attribution": "own"
   },
   {
+   "flag": "--scope",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "the scope (ie. ip,range)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--skip-service",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ignore a service, don't recommend hub/datasources (can be repeated)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--snub-systemd",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "don't use systemd, even if available",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--tags",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Tags to display in the console",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--target",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2476,6 +4121,28 @@
    "source": "parsed",
    "kind": "option",
    "help": "Target for AppSec Test",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--to-dir",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "write the configuration to a directory, in multiple files",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--token",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Auto registration token to use",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -2491,6 +4158,28 @@
    "attribution": "own"
   },
   {
+   "flag": "--value",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "the value to match for in the specified scope",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--verbose",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Display individual changes",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--winsvc",
    "event": "added",
    "tag": "v1.6.9-rc4",
@@ -2498,6 +4187,39 @@
    "source": "parsed",
    "kind": "option",
    "help": "Windows service Action: Install, Remove etc..",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--with-content",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Download index with embedded item content",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--yaml",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "output yaml, not json",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--yes",
+   "event": "added",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force  yes",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -3014,16 +4736,15 @@
    "event": "removed",
    "tag": "v1.6.9-rc4",
    "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "Configuration directory to use. (default \"/etc/crowdsec/cscli/\")",
+   "help": "Configuration directory to use.",
    "low_confidence": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed"
+    "untracked_releases"
    ],
    "spans_untracked_releases": true,
-   "attribution": "unattributed"
+   "attribution": "own"
   },
   {
    "flag": "--custom-config",
@@ -3072,40 +4793,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--dir",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Shared directory with metabase container. (default \"/var/lib/crowdsec/data\")",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "unattributed"
-  },
-  {
-   "flag": "--download-only",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Only download packages, don't enable",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "unattributed"
-  },
-  {
    "flag": "--dump-state",
    "event": "removed",
    "tag": "v1.6.9-rc4",
@@ -3113,36 +4800,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "[dev] Dump bucket state at the end of run.",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
-   "flag": "--file",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Process a single file in time-machine",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
-   "flag": "--force",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Force install : Overwrite tainted and outdated files",
    "low_confidence": true,
    "low_confidence_reasons": [
     "untracked_releases"
@@ -3167,54 +4824,19 @@
    "attribution": "unattributed"
   },
   {
-   "flag": "--listen",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Listen address of container (default \"127.0.0.1\")",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "unattributed"
-  },
-  {
    "flag": "--output",
    "event": "removed",
    "tag": "v1.6.9-rc4",
    "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
-   "help": "Output format : human, json, raw. (default \"human\")",
+   "help": "Output format : human, json, raw.",
    "low_confidence": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed"
+    "untracked_releases"
    ],
    "spans_untracked_releases": true,
-   "attribution": "unattributed"
-  },
-  {
-   "flag": "--port",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Listen port of container (default \"3000\")",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "unattributed"
+   "attribution": "own"
   },
   {
    "flag": "--profile",
@@ -3247,22 +4869,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--purge",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Delete source file in ~/.cscli/hub/ too",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
    "flag": "--remediation",
    "event": "removed",
    "tag": "v1.6.9-rc4",
@@ -3283,17 +4889,15 @@
    "event": "removed",
    "tag": "v1.6.9-rc4",
    "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "remove (docker rm) container as well.",
    "low_confidence": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
+    "untracked_releases"
    ],
    "spans_untracked_releases": true,
-   "attribution": "unattributed"
+   "attribution": "own"
   },
   {
    "flag": "--restore-state",
@@ -3326,38 +4930,19 @@
    "attribution": "own"
   },
   {
-   "flag": "--url",
-   "event": "removed",
-   "tag": "v1.6.9-rc4",
-   "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
-   "kind": "option",
-   "help": "Prometheus url (default \"http://127.0.0.1:6060/metrics\")",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "unattributed"
-  },
-  {
    "flag": "--user",
    "event": "removed",
    "tag": "v1.6.9-rc4",
    "date": "2025-06-09T14:51:30+02:00",
-   "source": "documented",
+   "source": "parsed",
    "kind": "option",
    "help": "User ID (required)",
    "low_confidence": true,
    "low_confidence_reasons": [
-    "untracked_releases",
-    "unattributed",
-    "evidence_source_lost"
+    "untracked_releases"
    ],
    "spans_untracked_releases": true,
-   "attribution": "unattributed"
+   "attribution": "own"
   },
   {
    "flag": "api",
@@ -3702,8 +5287,8 @@
    "date": "2025-06-09T14:51:30+02:00",
    "source": "parsed",
    "kind": "option",
-   "help": "Run all tests",
-   "previous_help": "Delete all the files in selected scope",
+   "help": "delete all alerts",
+   "previous_help": "List as well bans received from API",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -3720,6 +5305,18 @@
    "attribution": "own"
   },
   {
+   "flag": "--dir",
+   "event": "help_changed",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Shared directory with metabase container",
+   "previous_help": "Shared directory with metabase container.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--error",
    "event": "help_changed",
    "tag": "v1.6.9-rc4",
@@ -3728,6 +5325,30 @@
    "kind": "option",
    "help": "set log level to 'error'",
    "previous_help": "Set logging to error.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--file",
+   "event": "help_changed",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "output file destination",
+   "previous_help": "Process a single file in time-machine",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--force",
+   "event": "help_changed",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force prune without asking for confirmation",
+   "previous_help": "Force setup : override existing files.",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -3744,6 +5365,18 @@
    "attribution": "own"
   },
   {
+   "flag": "--purge",
+   "event": "help_changed",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Delete source file too",
+   "previous_help": "Delete source file in ~/.cscli/hub/ too",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--trace",
    "event": "help_changed",
    "tag": "v1.6.9-rc4",
@@ -3752,6 +5385,18 @@
    "kind": "option",
    "help": "set log level to 'trace' (VERY verbose)",
    "previous_help": "VERY verbose",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--type",
+   "event": "help_changed",
+   "tag": "v1.6.9-rc4",
+   "date": "2025-06-09T14:51:30+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "restrict to alerts with given decision type (ie. ban, captcha)",
+   "previous_help": "Labels.type for file in time-machine",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -3958,6 +5603,26 @@
    "attribution": "own"
   },
   {
+   "flag": "--acquis-dir",
+   "event": "added",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Directory for the acquisition configuration",
+   "attribution": "own"
+  },
+  {
+   "flag": "--skip-systemd",
+   "event": "added",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "don't use systemd, even if available",
+   "attribution": "own"
+  },
+  {
    "flag": "install-acquisition",
    "event": "added",
    "tag": "v1.7.0-rc2",
@@ -3988,6 +5653,26 @@
    "attribution": "own"
   },
   {
+   "flag": "--snub-systemd",
+   "event": "removed",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "don't use systemd, even if available",
+   "attribution": "own"
+  },
+  {
+   "flag": "--to-dir",
+   "event": "removed",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "write the configuration to a directory, in multiple files",
+   "attribution": "own"
+  },
+  {
    "flag": "datasources",
    "event": "removed",
    "tag": "v1.7.0-rc2",
@@ -3995,6 +5680,28 @@
    "source": "parsed",
    "kind": "subcommand",
    "help": "generate datasource (acquisition) configuration from a setup file",
+   "attribution": "own"
+  },
+  {
+   "flag": "--detect-config",
+   "event": "help_changed",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "path to service detection configuration, will use $CROWDSEC_SETUP_DETECT_CONFIG if defined",
+   "previous_help": "path to service detection configuration",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-id",
+   "event": "help_changed",
+   "tag": "v1.7.0-rc2",
+   "date": "2025-07-31T17:00:41+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.ID=[debian | ubuntu | redhat...]",
+   "previous_help": "override OS.ID=[debian | ubuntu | , redhat...]",
    "attribution": "own"
   },
   {
@@ -4017,6 +5724,136 @@
    "kind": "subcommand",
    "help": "Setup a metabase container.",
    "previous_help": "Tools to configure crowdsec",
+   "attribution": "own"
+  },
+  {
+   "flag": "--dir",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Shared directory with metabase container",
+   "attribution": "own"
+  },
+  {
+   "flag": "--env",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Additional environment variables to pass to the metabase container",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-family",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.Family: one of linux, freebsd, windows or darwin",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-id",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.ID=[debian | ubuntu | redhat...]",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-os-version",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override OS.RawVersion (of OS or Linux distribution)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-process",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force detection of a running process (can be repeated)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--force-unit",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force detection of a systemd unit (can be repeated)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--listen",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Listen address of container",
+   "attribution": "own"
+  },
+  {
+   "flag": "--metabase-image",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Metabase image to use",
+   "attribution": "own"
+  },
+  {
+   "flag": "--password",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "metabase password",
+   "attribution": "own"
+  },
+  {
+   "flag": "--port",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Listen port of container",
+   "attribution": "own"
+  },
+  {
+   "flag": "--skip-service",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "ignore a service, don't recommend hub/datasources (can be repeated)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--yes",
+   "event": "removed",
+   "tag": "v1.7.0-rc4",
+   "date": "2025-08-06T18:18:34+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "force  yes",
    "attribution": "own"
   },
   {
@@ -4070,6 +5907,17 @@
    "attribution": "own"
   },
   {
+   "flag": "--alert",
+   "event": "help_changed",
+   "tag": "v1.7.4-rc1",
+   "date": "2025-11-27T10:01:08+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "previous_help": "JSON string used to override alert fields in the reinjected alert (see crowdsec/pkg/models/alert.go in the source tree for the full definition of the object)",
+   "attribution": "own"
+  },
+  {
    "flag": "--c",
    "event": "removed",
    "tag": "v1.7.5-rc1",
@@ -4097,16 +5945,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "set log level to 'debug'",
-   "attribution": "own"
-  },
-  {
-   "flag": "--dsn",
-   "event": "removed",
-   "tag": "v1.7.5-rc1",
-   "date": "2026-01-19T12:30:31+01:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Process a single data source in time-machine",
    "attribution": "own"
   },
   {
@@ -4220,16 +6058,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--type",
-   "event": "removed",
-   "tag": "v1.7.5-rc1",
-   "date": "2026-01-19T12:30:31+01:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Labels.type for file in time-machine",
-   "attribution": "own"
-  },
-  {
    "flag": "--version",
    "event": "removed",
    "tag": "v1.7.5-rc1",
@@ -4260,6 +6088,27 @@
    "attribution": "own"
   },
   {
+   "flag": "--kind",
+   "event": "added",
+   "tag": "v1.7.7-rc1",
+   "date": "2026-03-23T15:16:44+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--input",
+   "event": "help_changed",
+   "tag": "v1.7.7-rc1",
+   "date": "2026-03-23T15:16:44+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Input file (use - for stdin)",
+   "previous_help": "Input file",
+   "attribution": "own"
+  },
+  {
    "flag": "import",
    "event": "help_changed",
    "tag": "v1.7.7-rc1",
@@ -4268,6 +6117,58 @@
    "kind": "subcommand",
    "help": "Import values to an allowlist from a CSV file",
    "previous_help": "Import decisions from a file or pipe",
+   "attribution": "own"
+  },
+  {
+   "flag": "--quick",
+   "event": "added",
+   "tag": "v1.7.8-rc1",
+   "date": "2026-05-05T16:51:53+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Enrolls the instance without an enroll key by visiting a link to the CrowdSec console.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--alert",
+   "event": "removed",
+   "tag": "v1.7.8-rc1",
+   "date": "2026-05-05T16:51:53+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "parse_failures"
+   ],
+   "attribution": "own"
+  },
+  {
+   "flag": "--batch",
+   "event": "removed",
+   "tag": "v1.7.8-rc1",
+   "date": "2026-05-05T16:51:53+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Split import in batches of N decisions",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "parse_failures"
+   ],
+   "attribution": "own"
+  },
+  {
+   "flag": "--format",
+   "event": "removed",
+   "tag": "v1.7.8-rc1",
+   "date": "2026-05-05T16:51:53+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Input format: 'json', 'csv' or 'values' (each line is a value, no headers)",
+   "low_confidence": true,
+   "low_confidence_reasons": [
+    "parse_failures"
+   ],
    "attribution": "own"
   },
   {
@@ -4313,6 +6214,26 @@
    "attribution": "own"
   },
   {
+   "flag": "--full",
+   "event": "added",
+   "tag": "v1.8.0-rc1",
+   "date": "2026-07-27T17:03:29+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "List every installed item individually instead of summarizing collection contents",
+   "attribution": "own"
+  },
+  {
+   "flag": "--status",
+   "event": "added",
+   "tag": "v1.8.0-rc1",
+   "date": "2026-07-27T17:03:29+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
    "flag": "search",
    "event": "added",
    "tag": "v1.8.0-rc1",
@@ -4341,7 +6262,7 @@
    "files_matched": 581,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 171,
    "errors": 0
   },
   {
@@ -4351,7 +6272,7 @@
    "files_matched": 581,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 171,
    "errors": 0
   },
   {
@@ -4361,7 +6282,7 @@
    "files_matched": 581,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 171,
    "errors": 0
   },
   {
@@ -4371,7 +6292,7 @@
    "files_matched": 583,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 172,
    "errors": 0
   },
   {
@@ -4381,7 +6302,7 @@
    "files_matched": 583,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 172,
    "errors": 0
   },
   {
@@ -4391,7 +6312,7 @@
    "files_matched": 583,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 172,
    "errors": 0
   },
   {
@@ -4401,7 +6322,7 @@
    "files_matched": 606,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 99,
+   "flags": 172,
    "errors": 0
   },
   {
@@ -4411,7 +6332,7 @@
    "files_matched": 625,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 101,
+   "flags": 174,
    "errors": 0
   },
   {
@@ -4421,7 +6342,7 @@
    "files_matched": 625,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 101,
+   "flags": 174,
    "errors": 0
   },
   {
@@ -4431,7 +6352,7 @@
    "files_matched": 621,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4441,7 +6362,7 @@
    "files_matched": 621,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4451,7 +6372,7 @@
    "files_matched": 621,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4461,7 +6382,7 @@
    "files_matched": 621,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4471,7 +6392,7 @@
    "files_matched": 621,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4481,7 +6402,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4491,7 +6412,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4501,7 +6422,7 @@
    "files_matched": 619,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4511,7 +6432,7 @@
    "files_matched": 619,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4521,7 +6442,7 @@
    "files_matched": 619,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4531,7 +6452,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4541,7 +6462,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4551,7 +6472,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4561,7 +6482,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4571,7 +6492,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4581,7 +6502,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4591,7 +6512,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4601,7 +6522,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4611,7 +6532,7 @@
    "files_matched": 622,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 97,
+   "flags": 157,
    "errors": 0
   },
   {
@@ -4621,7 +6542,7 @@
    "files_matched": 681,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 158,
    "errors": 0
   },
   {
@@ -4631,7 +6552,7 @@
    "files_matched": 681,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 158,
    "errors": 0
   },
   {
@@ -4641,7 +6562,7 @@
    "files_matched": 681,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 98,
+   "flags": 158,
    "errors": 0
   },
   {
@@ -4651,7 +6572,7 @@
    "files_matched": 695,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 141,
    "errors": 0
   },
   {
@@ -4661,7 +6582,7 @@
    "files_matched": 695,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 141,
    "errors": 0
   },
   {
@@ -4671,7 +6592,7 @@
    "files_matched": 695,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 141,
    "errors": 0
   },
   {
@@ -4681,7 +6602,7 @@
    "files_matched": 701,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 142,
    "errors": 0
   },
   {
@@ -4691,7 +6612,7 @@
    "files_matched": 701,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 142,
    "errors": 0
   },
   {
@@ -4701,7 +6622,7 @@
    "files_matched": 703,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 76,
+   "flags": 137,
    "errors": 5
   },
   {
@@ -4711,7 +6632,7 @@
    "files_matched": 704,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 76,
+   "flags": 137,
    "errors": 5
   },
   {
@@ -4721,7 +6642,7 @@
    "files_matched": 747,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 77,
+   "flags": 140,
    "errors": 5
   }
  ],
@@ -4809,6 +6730,6 @@
  "repo": "crowdsecurity/crowdsec",
  "head_sha": "eb5391c224d660e465c977768527a5286fe036f9",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-29T10:01:13.364164+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T23:14:08.213236+00:00"
 }

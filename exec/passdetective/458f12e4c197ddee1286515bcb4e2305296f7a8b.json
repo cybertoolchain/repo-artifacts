@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:3a1b6439f692a7f37821de7eef759845889963709230bd995a3aaafd2c17d3fe",
-  "duration_s": 5.36,
-  "log_tail": "\n#2 [internal] load metadata for docker.io/library/golang:1.26-bookworm\n#2 DONE 0.2s\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 5.14MB 0.1s done\n#9 DONE 0.1s\n\n#10 [build 3/4] COPY . .\n#10 DONE 0.2s\n\n#11 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.245 go: downloading github.com/fatih/color v1.15.0\n#11 0.245 go: downloading github.com/spf13/cobra v1.7.0\n#11 0.504 go: downloading github.com/mattn/go-isatty v0.0.17\n#11 0.504 go: downloading github.com/mattn/go-colorable v0.1.13\n#11 0.539 go: downloading github.com/spf13/pflag v1.0.5\n#11 0.568 go: downloading golang.org/x/sys v0.6.0\n#11 DONE 3.4s\n\n#12 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.1s\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.0s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.152 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.2s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.2s done\n#17 exporting manifest sha256:cc2d126743966c595dc44c379b770eb4f450d51df5237477be71870f952f31af done\n#17 exporting config sha256:907f40e18458314075691aa860ce11249ea215933c1b5c5e7cb93af4f4739705 done\n#17 exporting attestation manifest sha256:2712631643a2434b9e6daf56824305527f6f7e77aa3b97da859e49250b85f42e done\n#17 exporting manifest list sha256:3a1b6439f692a7f37821de7eef759845889963709230bd995a3aaafd2c17d3fe done\n#17 naming to docker.io/ctk-exec/passdetective:458f12e4c197 done\n#17 unpacking to docker.io/ctk-exec/passdetective:458f12e4c197 0.1s done\n#17 DONE 0.3s",
+  "image_digest": "sha256:002b8e1baea52072df27d205e8273aede864079cea14f7edaf63593d714e615e",
+  "duration_s": 6.78,
+  "log_tail": "#7 DONE 0.0s\n\n#8 [internal] load build context\n#8 transferring context: 81.12kB done\n#8 DONE 0.0s\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.2s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.232 go: downloading github.com/fatih/color v1.15.0\n#11 0.233 go: downloading github.com/spf13/cobra v1.7.0\n#11 0.464 go: downloading github.com/mattn/go-isatty v0.0.17\n#11 0.464 go: downloading github.com/mattn/go-colorable v0.1.13\n#11 0.613 go: downloading github.com/spf13/pflag v1.0.5\n#11 0.614 go: downloading golang.org/x/sys v0.6.0\n#11 DONE 3.6s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.212 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:fcfce32e8aeb9010a3e66da8a22a41c65182e98c38ca860b6eb77e63feba32ef 0.0s done\n#18 exporting config sha256:993558c0e70805e7658bec7edaf56d43f2198890153880ec26c2ca90dadd16b0 done\n#18 exporting attestation manifest sha256:29c24cfb2c962d44991c5b1a928a63e18fd8da05a19eee174d8d130a65890068 0.0s done\n#18 exporting manifest list sha256:002b8e1baea52072df27d205e8273aede864079cea14f7edaf63593d714e615e 0.0s done\n#18 naming to docker.io/ctk-exec/passdetective:458f12e4c197 done\n#18 unpacking to docker.io/ctk-exec/passdetective:458f12e4c197 0.1s done\n#18 DONE 0.5s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "The \"extract\" command allows you to automatically extract passwords from shell history change descriptions.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective [flags]\n  PassDetective [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  extract     Extract passwords from shell history\n  help        Help about any command\n\nFlags:\n  -h, --help   Help message for PassDetective\n\nUse \"PassDetective [command] --help\" for more information about a command.\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null
   },
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(PassDetective completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tPassDetective completion bash > /etc/bash_completion.d/PassDetective\n\n#### macOS:\n\n\tPassDetective completion bash > $(brew --prefix)/etc/bash_completion.d/PassDetective\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  PassDetective completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -84,7 +84,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tPassDetective completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  PassDetective completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -124,7 +124,7 @@
    "exit_code": 0,
    "stdout": "Help provides help for any command in the application.\nSimply type PassDetective help [path to command] for full details.\n\nUsage:\n  PassDetective help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -136,7 +136,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for PassDetective\n",
-   "duration_ms": 1,
+   "duration_ms": 8,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -151,7 +151,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'PassDetective' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 7,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -173,72 +173,10 @@
    "title": "Extract secrets from a seeded bash history"
   },
   {
-   "argv": [
-    "PassDetective",
-    "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Error: unknown command \"/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap\" for \"PassDetective\"\nRun 'PassDetective --help' for usage.\n",
-   "duration_ms": 3,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-1",
-   "title": "Built from the tool's own advertised flags \u2014 run against pcap"
-  },
-  {
-   "argv": [
-    "PassDetective",
-    "extract",
-    "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
-   ],
-   "exit_code": 0,
-   "stdout": "The \"extract\" command allows you to automatically extract passwords from shell history.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective extract [flags]\n\nFlags:\n  -a, --all       Check passwords on all shells\n  -b, --bash      Check passwords on BASH\n  -h, --help      help for extract\n  -s, --secrets   Check secrets on shell history\n  -z, --zsh       Check passwords on ZSH\n",
-   "stderr": "__________                     ________           __                  __   __              \n\\______   \\____    ______ ____________ \\   ____ _/  |_  ____   ____ _/  |_|__|__  __ ____  \n |     ___/__  \\  /  ___//  ___/|    |  \\_/ __ \\\\   __\\/ __ \\_/ ___\\\\   __\\  |  \\/ // __ \\ \n |    |    / __ \\_\\___ \\ \\___ \\ |    |   \\  ___/_|  | \\  ___/_  \\___ |  | |  |\\   /\\  ___/_\n |____|   (____  /____  \\____  \\_______  /\\___  /|__|  \\___  /\\___  /|__| |__| \\_/  \\___  /\n               \\/     \\/     \\/        \\/     \\/           \\/     \\/                    \\/ \n\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-2",
-   "title": "Built from the tool's own advertised flags \u2014 run against pcap"
-  },
-  {
-   "argv": [
-    "PassDetective",
-    "/opt/ctk/fixtures/secret-scan"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Error: unknown command \"/opt/ctk/fixtures/secret-scan\" for \"PassDetective\"\nRun 'PassDetective --help' for usage.\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-3",
-   "title": "Built from the tool's own advertised flags \u2014 run against secret-scan"
-  },
-  {
-   "argv": [
-    "PassDetective",
-    "extract",
-    "/opt/ctk/fixtures/secret-scan"
-   ],
-   "exit_code": 0,
-   "stdout": "The \"extract\" command allows you to automatically extract passwords from shell history.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective extract [flags]\n\nFlags:\n  -a, --all       Check passwords on all shells\n  -b, --bash      Check passwords on BASH\n  -h, --help      help for extract\n  -s, --secrets   Check secrets on shell history\n  -z, --zsh       Check passwords on ZSH\n",
-   "stderr": "__________                     ________           __                  __   __              \n\\______   \\____    ______ ____________ \\   ____ _/  |_  ____   ____ _/  |_|__|__  __ ____  \n |     ___/__  \\  /  ___//  ___/|    |  \\_/ __ \\\\   __\\/ __ \\_/ ___\\\\   __\\  |  \\/ // __ \\ \n |    |    / __ \\_\\___ \\ \\___ \\ |    |   \\  ___/_|  | \\  ___/_  \\___ |  | |  |\\   /\\  ___/_\n |____|   (____  /____  \\____  \\_______  /\\___  /|__|  \\___  /\\___  /|__| |__| \\_/  \\___  /\n               \\/     \\/     \\/        \\/     \\/           \\/     \\/                    \\/ \n\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "surface-4",
-   "title": "Built from the tool's own advertised flags \u2014 run against secret-scan"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 16,
+   "commands_run": 12,
    "binary": "PassDetective",
    "exit_code": null,
    "stdout": "",
@@ -271,6 +209,7 @@
    "--help": "Help message for PassDetective",
    "-h": "Help message for PassDetective"
   },
+  "values_seen": {},
   "aliases": {
    "--help": [
     "-h"
@@ -312,26 +251,91 @@
   "text": "The \"extract\" command allows you to automatically extract passwords from shell history change descriptions.\nBy analyzing the history of shell commands, this tool can identify and extract passwords that were used during\nprevious commands and display them for further inspection or use.\n\nUsage:\n  PassDetective [flags]\n  PassDetective [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  extract     Extract passwords from shell history\n  help        Help about any command\n\nFlags:\n  -h, --help   Help message for PassDetective\n\nUse \"PassDetective [command] --help\" for more information about a command.\n"
  },
  "validation": {
-  "confirmed": [],
+  "confirmed": [
+   "--help"
+  ],
   "unconfirmed": [
+   "--all",
+   "--bash",
+   "--secrets",
+   "--zsh",
    "extract",
    "main.go"
   ],
   "help_only": [
-   "--help",
    "-h"
   ],
-  "mining_coverage": 0.0
+  "mining_coverage": 0.5
  },
  "surface": {
   "flags": {
+   "--all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check passwords on all shells",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/extract.go"
+   },
+   "--bash": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check passwords on BASH",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/extract.go"
+   },
    "--help": {
-    "source": "runtime",
+    "source": "both",
     "runtime_confirmed": true,
     "help": "Help message for PassDetective",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
     "aliases": [
      "-h"
     ]
+   },
+   "--secrets": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check secrets on shell history",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/extract.go"
+   },
+   "--zsh": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check passwords on ZSH",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2023-07-26T18:03:15+03:00",
+    "last_tag": "1.0.7",
+    "last_date": "2023-12-13T18:59:20+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/extract.go"
    },
    "extract": {
     "source": "source",
@@ -392,6 +396,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 4,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -476,6 +481,6 @@
  "repo": "aydinnyunus/PassDetective",
  "head_sha": "458f12e4c197ddee1286515bcb4e2305296f7a8b",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-28T06:25:29.458828+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T00:39:32.095143+00:00"
 }

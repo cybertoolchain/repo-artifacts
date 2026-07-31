@@ -1,0 +1,511 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "c",
+  "image_digest": "sha256:ebfc12da1fc59aa1f2ec3d61242351b5e646b7ebb05ff07bab9da82e770e26c1",
+  "duration_s": 2.6,
+  "log_tail": "#11 0.610 /usr/include/openssl/md5.h:50:27: note: declared here\n#11 0.610    50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);\n#11 0.610       |                           ^~~~~~~~~~\n#11 0.610 /src/ssl/ssldecode.c:1040:7: warning: 'MD5_Update' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]\n#11 0.610  1040 |       MD5_Update(&md5, d->client_random->data, d->client_random->len);\n#11 0.610       |       ^~~~~~~~~~\n#11 0.610 /usr/include/openssl/md5.h:50:27: note: declared here\n#11 0.610    50 | OSSL_DEPRECATEDIN_3_0 int MD5_Update(MD5_CTX *c, const void *data, size_t len);\n#11 0.610       |                           ^~~~~~~~~~\n#11 0.610 /src/ssl/ssldecode.c:1041:7: warning: 'MD5_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]\n#11 0.610  1041 |       MD5_Final(_key_s, &md5);\n#11 0.610       |       ^~~~~~~~~\n#11 0.610 /usr/include/openssl/md5.h:51:27: note: declared here\n#11 0.610    51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);\n#11 0.610       |                           ^~~~~~~~~\n#11 0.845 [100%] Linking C executable ssldump\n#11 0.888 [100%] Built target ssldump\n#11 DONE 0.9s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.164 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:50ff65a6c738682d075f7201c31e2f02a1f4c856c10b6f3d21f42e67ce7724ff done\n#19 exporting config sha256:2d9efe99dcc42e83985f657b0eea99fb2afc73dca5ff72e27e712237a544ed1d done\n#19 exporting attestation manifest sha256:3e3f61ee71dae9fc2f70088786ea60002f1664642445beab3c9dfc6acbb1e51e 0.0s done\n#19 exporting manifest list sha256:ebfc12da1fc59aa1f2ec3d61242351b5e646b7ebb05ff07bab9da82e770e26c1 done\n#19 naming to docker.io/ctk-exec/ssldump:5cd12fd26416 done\n#19 unpacking to docker.io/ctk-exec/ssldump:5cd12fd26416 0.1s done\n#19 DONE 0.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "ssldump",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "ssldump: invalid option -- '-'\nUsage: ssldump [-r dumpfile] [-i interface] [-l sslkeylogfile] [-w outpcapfile]\n               [-k keyfile] [-p password] [-vtaTznsAxVNde]\n               [filter]\n",
+   "duration_ms": 14,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "ssldump"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for ssldump\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "ssldump"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'ssldump' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "ssldump",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {},
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "ssldump",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "f6042555e706f5f6c5d8ef2195451ceff63c9ec2b08edbdabc29ee8be862855d",
+  "text": "ssldump: invalid option -- '-'\nUsage: ssldump [-r dumpfile] [-i interface] [-l sslkeylogfile] [-w outpcapfile]\n               [-k keyfile] [-p password] [-vtaTznsAxVNde]\n               [filter]\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "-A",
+   "-F",
+   "-H",
+   "-N",
+   "-P",
+   "-S",
+   "-T",
+   "-X",
+   "-a",
+   "-d",
+   "-e",
+   "-i",
+   "-j",
+   "-k",
+   "-l",
+   "-n",
+   "-p",
+   "-q",
+   "-r",
+   "-t",
+   "-v",
+   "-w",
+   "-x",
+   "-y",
+   "-z"
+  ],
+  "help_only": [],
+  "mining_coverage": null
+ },
+ "surface": {
+  "flags": {
+   "-A": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print all record fields (by default ssldump chooses the most interesting fields).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-F": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the number of packets after which a connection pool cleaning is performed (in packets, default: 100).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-H": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the full SSL packet header.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-N": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Attempt to parse ASN.1 when it appears, such as in certificates and DNs.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-P": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't put the interface into promiscuous mode.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-S": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify SSL flags to ssldump.  These flags include:",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-T": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the TCP headers.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-X": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "When the -d option is used, binary data is automatically printed in two columns with a hex dump on the left and the printable characters on the right. -X suppresses the display of the printable characters, thus making it easier to cut and paste the hex data into some other program.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-a": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print bare TCP ACKs (useful for observing Nagle behavior).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-d": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Display the application data traffic. This usually means decrypting it, but when -d is used ssldump will also decode application data traffic before the SSL session initiates. This allows you to see HTTPS CONNECT behavior as well as SMTP STARTTLS. As a side effect, since ssldump can't tell whether plaintext is traffic before the initiation of an SSL connection or just a regular TCP connection, this allows you to use ssldump to sniff any TCP connection. ssldump will automatically detect ASCII data and display it directly to the screen. non-ASCII data is displayed as hex dumps. See also -X.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-e": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print absolute timestamps instead of relative timestamps.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-i": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use interface as the network interface on which to sniff SSL/TLS traffic.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-j": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Switch output format to JSON. Only stdout is affected by this toggle.",
+    "kind": "option",
+    "first_tag": "v1.3",
+    "first_date": "2021-02-02T15:32:28+01:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-k": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use keyfile as the location of the SSL keyfile (OpenSSL format) Previous versions of ssldump automatically looked in ./server.pem. Now you must specify your keyfile every time.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-l": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use sslkeylogfile as the location of the SSLKEYLOGFILE (https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-n": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't try to resolve host names from IP addresses.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-p": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use password as the SSL keyfile password.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-q": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Don't decode any record fields beyond a single summary line. (quiet mode).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-r": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Read data from file instead of from the network. The old -f option still works but is deprecated and will probably be removed with the next version.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-t": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the TTL for inactive connections referenced in the connection pool (in seconds, default: 100).",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Display version and copyright information.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-w": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use outputpcap as the destination for decrypted packets.",
+    "kind": "option",
+    "first_tag": "v1.3",
+    "first_date": "2021-02-02T15:32:28+01:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-x": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print each record in hex, as well as decoding it.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-y": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Decorate the output for processing with nroff/troff. Not very useful for the average user.",
+    "kind": "option",
+    "first_tag": "v1.0",
+    "first_date": "2019-05-26T08:23:08+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   },
+   "-z": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Add timestamp in front of TCP packet description (-T)",
+    "kind": "option",
+    "first_tag": "v1.8",
+    "first_date": "2023-08-14T16:34:44+02:00",
+    "last_tag": "v1.9",
+    "last_date": "2024-11-03T11:10:50+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ssldump.1"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-cde4d8fd",
+    "argv": [
+     "ssldump",
+     "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 3,
+    "output_bytes": 152
+   },
+   {
+    "id": "t-surface-f2e6ca26",
+    "argv": [
+     "ssldump",
+     "-r",
+     "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "exit_code": 0,
+    "output_bytes": 97576
+   },
+   {
+    "id": "t-surface-1f9bf35c",
+    "argv": [
+     "ssldump",
+     "-i",
+     "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "exit_code": 3,
+    "output_bytes": 225
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "./build/ssldump -v",
+    "source": "readme",
+    "path": "README.md",
+    "line": 112,
+    "reason": "needs-network-or-interactive",
+    "token": "-v"
+   }
+  ]
+ },
+ "tool": "ssldump",
+ "repo": "adulau/ssldump",
+ "head_sha": "5cd12fd26416d4370489a9d6cb61f7d517cca1ea",
+ "analyzer": "exec",
+ "analyzer_version": "7",
+ "generated_at": "2026-07-31T01:30:48.888358+00:00"
+}

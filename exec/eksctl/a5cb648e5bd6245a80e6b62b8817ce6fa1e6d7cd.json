@@ -3,17 +3,18 @@
   "ok": false,
   "tier": "go",
   "image_digest": null,
-  "duration_s": 1.27,
-  "log_tail": "\n#6 [build 1/4] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 resolve docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651 0.0s done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 20.99MB 0.3s done\n#7 DONE 0.3s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/4] COPY . .\n#9 CACHED\n\n#10 [build 4/4] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 CACHED\n\n#11 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#11 CACHED\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#13 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::w8o2yq1ohe59ql200yaucioc7: \"/helptext.py\": not found\n\n#14 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#14 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::w8o2yq1ohe59ql200yaucioc7: \"/fixtures\": not found\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::w8o2yq1ohe59ql200yaucioc7: \"/agent.py\": not found\n------\n > [stage-1 4/7] COPY agent.py /opt/ctk/agent.py:\n------\n------\n > [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py:\n------\n------\n > [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/:\n------\nDockerfile.ctk:36\n--------------------\n  34 |     COPY agent.py /opt/ctk/agent.py\n  35 |     COPY helptext.py /opt/ctk/helptext.py\n  36 | >>> COPY fixtures/ /opt/ctk/fixtures/\n  37 |     RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n  38 |     USER 65532\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::w8o2yq1ohe59ql200yaucioc7: \"/fixtures\": not found",
+  "duration_s": 1.6,
+  "log_tail": "\n#7 [internal] load .dockerignore\n#7 transferring context: 190B done\n#7 DONE 0.0s\n\n#8 [internal] load build context\n#8 transferring context: 20.99MB 0.3s done\n#8 DONE 0.3s\n\n#9 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#9 CACHED\n\n#10 [build 3/5] COPY . .\n#10 CACHED\n\n#11 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#11 CACHED\n\n#12 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#12 CACHED\n\n#13 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#13 CACHED\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::y31m79ew3m2iguo352uj0vcrg: \"/helptext.py\": not found\n\n#15 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#15 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::y31m79ew3m2iguo352uj0vcrg: \"/fixtures\": not found\n\n#16 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#16 ERROR: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::y31m79ew3m2iguo352uj0vcrg: \"/agent.py\": not found\n------\n > [stage-1 4/7] COPY agent.py /opt/ctk/agent.py:\n------\n------\n > [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py:\n------\n------\n > [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/:\n------\nDockerfile.ctk:42\n--------------------\n  40 |     COPY agent.py /opt/ctk/agent.py\n  41 |     COPY helptext.py /opt/ctk/helptext.py\n  42 | >>> COPY fixtures/ /opt/ctk/fixtures/\n  43 |     RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n  44 |     USER 65532\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref v5u6wl0tm5yduwb5o31v4ormx::y31m79ew3m2iguo352uj0vcrg: \"/fixtures\": not found",
   "error": "docker build failed",
   "timed_out": false
  },
  "captures": [],
+ "input_fingerprint": null,
  "skipped_reason": "docker build failed",
  "tool": "eksctl",
  "repo": "weaveworks/eksctl",
  "head_sha": "a5cb648e5bd6245a80e6b62b8817ce6fa1e6d7cd",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:20:58.774393+00:00"
+ "analyzer_version": "8",
+ "generated_at": "2026-07-31T15:11:13.144575+00:00"
 }

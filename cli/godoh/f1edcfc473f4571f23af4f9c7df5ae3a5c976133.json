@@ -3,19 +3,55 @@
  "tags_considered": 7,
  "truncated": false,
  "surface": {
-  "--domain": {
-   "source": "documented",
-   "help": "DNS Domain to use. (ie: example.com)",
+  "--agent-name": {
+   "source": "parsed",
+   "help": "Agent name to use. (default: random)",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-n"
+   ],
    "first_tag": "1.0",
    "first_date": "2018-10-23T23:41:46+02:00",
    "last_tag": "1.6",
    "last_date": "2019-10-23T16:06:10+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "README.md",
-   "doc_path": "README.md"
+   "source_path": "cmd/agent.go"
+  },
+  "--domain": {
+   "source": "parsed",
+   "help": "DNS Domain to use. (ie: example.com)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-d"
+   ],
+   "first_tag": "1.0",
+   "first_date": "2018-10-23T23:41:46+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/root.go",
+   "doc_path": "README.md",
+   "also_documented": true
+  },
+  "--file": {
+   "source": "parsed",
+   "help": "The file to send.",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-f"
+   ],
+   "first_tag": "1.0",
+   "first_date": "2018-10-23T23:41:46+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/send.go"
   },
   "--help": {
    "source": "documented",
@@ -31,19 +67,87 @@
    "source_path": "README.md",
    "doc_path": "README.md"
   },
-  "--provider": {
-   "source": "documented",
-   "help": "Preferred DNS provider to use. [possible: google, cloudflare, raw] (default \"google\")",
+  "--name": {
+   "source": "parsed",
+   "help": "Name to lookup.",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "aliases": [
+    "-n"
+   ],
    "first_tag": "1.0",
    "first_date": "2018-10-23T23:41:46+02:00",
    "last_tag": "1.6",
    "last_date": "2019-10-23T16:06:10+02:00",
    "live": true,
    "attribution": "own",
-   "source_path": "README.md",
-   "doc_path": "README.md"
+   "source_path": "cmd/test.go"
+  },
+  "--poll-time": {
+   "source": "parsed",
+   "help": "Time in seconds between polls.",
+   "kind": "option",
+   "default": "10",
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "1.0",
+   "first_date": "2018-10-23T23:41:46+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/agent.go"
+  },
+  "--provider": {
+   "source": "parsed",
+   "help": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw]",
+   "kind": "option",
+   "default": "google",
+   "aliases": [
+    "-p"
+   ],
+   "first_tag": "1.0",
+   "first_date": "2018-10-23T23:41:46+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/root.go",
+   "doc_path": "README.md",
+   "also_documented": true
+  },
+  "--type": {
+   "source": "parsed",
+   "help": "Record type to lookup.",
+   "kind": "option",
+   "default": "A",
+   "aliases": [
+    "-t"
+   ],
+   "first_tag": "1.0",
+   "first_date": "2018-10-23T23:41:46+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/test.go"
+  },
+  "--validate-certificate": {
+   "source": "parsed",
+   "help": "Validate DoH provider SSL certificates",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-K"
+   ],
+   "first_tag": "1.3",
+   "first_date": "2018-10-26T14:52:51+02:00",
+   "last_tag": "1.6",
+   "last_date": "2019-10-23T16:06:10+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/root.go"
   },
   "agent": {
    "source": "parsed",
@@ -124,7 +228,40 @@
    "source_path": "cmd/test.go"
   }
  },
- "events": [],
+ "events": [
+  {
+   "flag": "--validate-certificate",
+   "event": "added",
+   "tag": "1.3",
+   "date": "2018-10-26T14:52:51+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Validate DoH provider SSL certificates",
+   "attribution": "own"
+  },
+  {
+   "flag": "--provider",
+   "event": "help_changed",
+   "tag": "1.3",
+   "date": "2018-10-26T14:52:51+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Preferred DNS provider to use. [possible: google, cloudflare, quad9, raw]",
+   "previous_help": "Preferred DNS provider to use. [possible: google, cloudflare, raw]",
+   "attribution": "own"
+  },
+  {
+   "flag": "--provider",
+   "event": "help_changed",
+   "tag": "1.4",
+   "date": "2018-11-06T07:22:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw]",
+   "previous_help": "Preferred DNS provider to use. [possible: google, cloudflare, quad9, raw]",
+   "attribution": "own"
+  }
+ ],
  "extraction": [
   {
    "tag": "1.0",
@@ -133,7 +270,7 @@
    "files_matched": 25,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 14,
    "errors": 0
   },
   {
@@ -143,7 +280,7 @@
    "files_matched": 25,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 14,
    "errors": 0
   },
   {
@@ -153,7 +290,7 @@
    "files_matched": 25,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 14,
    "errors": 0
   },
   {
@@ -163,7 +300,7 @@
    "files_matched": 26,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -173,7 +310,7 @@
    "files_matched": 27,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -183,7 +320,7 @@
    "files_matched": 27,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 15,
    "errors": 0
   },
   {
@@ -193,7 +330,7 @@
    "files_matched": 27,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 9,
+   "flags": 15,
    "errors": 0
   }
  ],
@@ -205,6 +342,6 @@
  "repo": "sensepost/goDoH",
  "head_sha": "f1edcfc473f4571f23af4f9c7df5ae3a5c976133",
  "analyzer": "cli",
- "analyzer_version": "2",
- "generated_at": "2026-07-25T08:13:59.103917+00:00"
+ "analyzer_version": "4",
+ "generated_at": "2026-07-30T22:55:23.120983+00:00"
 }
