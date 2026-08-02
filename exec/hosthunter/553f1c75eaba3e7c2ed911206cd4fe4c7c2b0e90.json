@@ -2,46 +2,34 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:e04600c1ea93a9dc43ff7355107c060fd58db5ded3f97aa9a855d8b2a2a6f966",
-  "duration_s": 19.96,
-  "log_tail": "#11 11.05 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)\n#11 11.11 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)\n#11 11.17 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)\n#11 11.20 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)\n#11 11.24 Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (368 kB)\n#11 11.42 Downloading pycparser-3.0-py3-none-any.whl (48 kB)\n#11 11.48 Installing collected packages: urllib3, typing-extensions, rpds-py, pycparser, idna, fake_useragent, charset_normalizer, certifi, attrs, requests, referencing, cffi, jsonschema-specifications, cryptography, pyOpenSSL, jsonschema, validator_collection\n#11 11.91 \n#11 11.91 Successfully installed attrs-26.1.0 certifi-2026.7.22 cffi-2.1.0 charset_normalizer-3.4.9 cryptography-49.0.0 fake_useragent-2.2.0 idna-3.18 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 pyOpenSSL-26.3.0 pycparser-3.0 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 typing-extensions-4.16.0 urllib3-2.7.0 validator_collection-1.5.0\n#11 DONE 12.1s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.4s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.3s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.3s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.1s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.099 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 2.6s done\n#21 exporting manifest sha256:aed5d1bd25a2d797abbd6c5695db8db6b2b85b282823f2e36add34e47b7a2eaa 0.0s done\n#21 exporting config sha256:b62b318e3252a2da716e1dc84f00eb84e7139a83692b9663bfdc4c4f57f086d8 0.0s done\n#21 exporting attestation manifest sha256:6fb1a7363c67116dee8adb6d34954f052d2ecd998cf0a980261e404a10dc74cd 0.0s done\n#21 exporting manifest list sha256:e04600c1ea93a9dc43ff7355107c060fd58db5ded3f97aa9a855d8b2a2a6f966 done\n#21 naming to docker.io/ctk-exec/hosthunter:553f1c75eaba done\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba 1.1s done\n#21 DONE 3.8s",
+  "image_digest": "sha256:abd1cfab4542cf3f7aa1dd947a88104f9186ed0f7e8edf34e3348bb13f8f698e",
+  "duration_s": 9.06,
+  "log_tail": "#10 5.684 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)\n#10 5.717 Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (368 kB)\n#10 5.765 Downloading pycparser-3.0-py3-none-any.whl (48 kB)\n#10 5.830 Installing collected packages: urllib3, typing-extensions, rpds-py, pycparser, idna, fake_useragent, charset_normalizer, certifi, attrs, requests, referencing, cffi, jsonschema-specifications, cryptography, pyOpenSSL, jsonschema, validator_collection\n#10 6.211 \n#10 6.212 Successfully installed attrs-26.1.0 certifi-2026.7.22 cffi-2.1.0 charset_normalizer-3.4.9 cryptography-49.0.0 fake_useragent-2.2.0 idna-3.18 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 pyOpenSSL-26.3.0 pycparser-3.0 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 typing-extensions-4.16.0 urllib3-2.7.0 validator_collection-1.5.0\n#10 DONE 6.3s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.126 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.8s done\n#21 exporting manifest sha256:092b89cac133e467b42d18be606158ceb872eb1604e1da80e1fbd2bba02c3cb9 done\n#21 exporting config sha256:7b45ac873a94e949d697a651f19b7a5613ab59a3f328150641ee3b0603ed52f5 done\n#21 exporting attestation manifest sha256:1b3dc21525426399259d604e11500640b75348deacb6ebf0d880ba1db21a9879 0.0s done\n#21 exporting manifest list sha256:abd1cfab4542cf3f7aa1dd947a88104f9186ed0f7e8edf34e3348bb13f8f698e done\n#21 naming to docker.io/ctk-exec/hosthunter:553f1c75eaba done\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba 0.2s done\n#21 DONE 1.1s",
   "error": null,
   "timed_out": false
  },
  "captures": [
   {
    "argv": [
-    "HostHunter",
-    "--help"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'HostHunter'"
-  },
-  {
-   "argv": [
-    "hosthunter",
+    "2to3",
     "--help"
    ],
    "exit_code": 0,
-   "stdout": "usage: hosthunter.py [-h] [-f FORMAT] [-o OUTPUT] [-t TARGET] [-g GRAB] [-v]\n                     [-V] [-d]\n                     [targets]\n\n[?] HostHunter v2.0 - Help Page\n\npositional arguments:\n  targets               Sets the path of the target IPs file.\n\noptions:\n  -h, --help            show this help message and exit\n  -f FORMAT, --format FORMAT\n                        Choose between .CSV, .TXT, Nessus output file formats.\n  -o OUTPUT, --output OUTPUT\n                        Sets the path of the output file.\n  -t TARGET, --target TARGET\n                        Hunt a Single IP.\n  -g GRAB, --grab GRAB  Choose which SSL ports to actively scan. Default\n                        ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp\n  -v, --verify          Attempts to resolve IP Address\n  -V, --version         Displays the current version.\n  -d, --debug           Displays additional output and debugging information.\n\nAuthor: Andreas Georgiou (@superhedgy)\n",
-   "stderr": "",
-   "duration_ms": 367,
+   "stdout": "Usage: 2to3 [options] file|dir ...\n\nOptions:\n  -h, --help            show this help message and exit\n  -d, --doctests_only   Fix up doctests only\n  -f FIX, --fix=FIX     Each FIX specifies a transformation; default: all\n  -j PROCESSES, --processes=PROCESSES\n                        Run 2to3 concurrently\n  -x NOFIX, --nofix=NOFIX\n                        Prevent a transformation from being run\n  -l, --list-fixes      List available transformations\n  -p, --print-function  Modify the grammar so that print() is a function\n  -e, --exec-function   Modify the grammar so that exec() is a function\n  -v, --verbose         More verbose logging\n  --no-diffs            Don't show diffs of the refactoring\n  -w, --write           Write back modified files\n  -n, --nobackups       Don't write backups for modified files\n  -o OUTPUT_DIR, --output-dir=OUTPUT_DIR\n                        Put output files in this directory instead of\n                        overwriting the input files.  Requires -n.\n  -W, --write-unchanged-files\n                        Also write files even if no changes were required\n                        (useful with --output-dir); implies -w.\n  --add-suffix=ADD_SUFFIX\n                        Append this string to all output filenames. Requires\n                        -n if non-empty.  ex: --add-suffix='3' will generate\n                        .py3 files.\n",
+   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\n",
+   "duration_ms": 148,
    "truncated": false,
    "error": null
   },
   {
    "argv": [
     "man",
-    "hosthunter"
+    "2to3"
    ],
-   "exit_code": 16,
+   "exit_code": 1,
    "stdout": "",
-   "stderr": "No manual entry for hosthunter\n",
-   "duration_ms": 1,
+   "stderr": "No manual entry for 2to3\n(Alternatively, what manual page do you want from section 2to3?)\nFor example, try 'man man'.\n",
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -51,22 +39,39 @@
     "info",
     "--output=-",
     "--subnodes",
-    "hosthunter"
+    "2to3"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "info: No menu item 'hosthunter' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "stderr": "info: No menu item '2to3' in node '(dir)Top'\n",
+   "duration_ms": 3,
    "truncated": false,
    "error": null,
    "source": "info"
+  },
+  {
+   "argv": [
+    "hosthunter",
+    "-f",
+    "csv",
+    "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
+   ],
+   "exit_code": 1,
+   "stdout": "\n | $$  | $$                              | $$  | $$                                     \n | $$  | $$                      | $$    | $$  | $$                      | $$\n | $$  | $$  /$$$$$$   /$$$$$$$ /$$$$$$  | $$  | $$ /$$   /$$ /$$$$$$$  /$$$$$$    /$$$$$$   /$$$$$$\n | $$$$$$$$ /$$__  $$ /$$_____/|_  $$_/  | $$$$$$$$| $$  | $$| $$__  $$|_  $$_/   /$$__  $$ /$$__  $$\n | $$__  $$| $$  \\ $$|  $$$$$$   | $$    | $$__  $$| $$  | $$| $$ \\ $$  | $$    | $$$$$$$$| $$  \\__/\n | $$  | $$| $$__| $$ \\____  $$  | $$ /$$| $$  | $$| $$__| $$| $$  | $$  | $$ /$$| $$_____/| $$\n | $$  | $$|  $$$$$$/ /$$$$$$$/  |  $$$$/| $$  | $$|  $$$$$$/| $$  | $$  |  $$$$/|  $$$$$$$| $$\n |__/  |__/ \\______/ |_______/    \\___/  |__/  |__/ \\______/ |__/  |__/   \\___/   \\_______/|__/  v2.0\n\n\n HostHunter:  v2.0\n Author :  Andreas Georgiou (@superhedgy)\n\n|----------------------------------------------------------------------------------------------------|\n\n[!] IPv6 Hunting is Disabled\n",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/hosthunter.py\", line 510, in <module>\n    targets = read_targets()\n              ^^^^^^^^^^^^^^\n  File \"/src/hosthunter.py\", line 164, in read_targets\n    for target in targets_fp:\n                  ^^^^^^^^^^\n  File \"<frozen codecs>\", line 322, in decode\nUnicodeDecodeError: 'utf-8' codec can't decode byte 0xd4 in position 0: invalid continuation byte\n",
+   "duration_ms": 422,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-1fb30bbb",
+   "title": "Candidate \u2014 run against pcap"
   },
   {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
    "commands_run": 4,
-   "binary": "hosthunter",
+   "binary": "2to3",
    "exit_code": null,
    "stdout": "",
    "stderr": "",
@@ -77,343 +82,11 @@
  ],
  "input_fingerprint": null,
  "examples": [],
- "help": {
-  "flags_seen": {
-   "--help": "show this help message and exit",
-   "-h": "show this help message and exit",
-   "--format": "Choose between .CSV, .TXT, Nessus output file formats.",
-   "-f": "Choose between .CSV, .TXT, Nessus output file formats.",
-   "--output": "Sets the path of the output file.",
-   "-o": "Sets the path of the output file.",
-   "--target": "Hunt a Single IP.",
-   "-t": "Hunt a Single IP.",
-   "--grab": "Choose which SSL ports to actively scan. Default ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp",
-   "-g": "Choose which SSL ports to actively scan. Default ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp",
-   "--verify": "Attempts to resolve IP Address",
-   "-v": "Attempts to resolve IP Address",
-   "--version": "Displays the current version.",
-   "-V": "Displays the current version.",
-   "--debug": "Displays additional output and debugging information.",
-   "-d": "Displays additional output and debugging information."
-  },
-  "values_seen": {
-   "-g": "GRAB",
-   "--grab": "GRAB"
-  },
-  "aliases": {
-   "--help": [
-    "-h"
-   ],
-   "--format": [
-    "-f"
-   ],
-   "--output": [
-    "-o"
-   ],
-   "--target": [
-    "-t"
-   ],
-   "--grab": [
-    "-g"
-   ],
-   "--verify": [
-    "-v"
-   ],
-   "--version": [
-    "-V"
-   ],
-   "--debug": [
-    "-d"
-   ]
-  },
-  "subcommand_flags": {},
-  "subcommands": [],
-  "binary": "hosthunter",
-  "ladder_used": "--help",
-  "depth": 2,
-  "capped": false,
-  "text_sha256": "79ddef216bfcfa8e06a7071c5cd446053bcab4408bf5adfd09f226cd711cd417",
-  "text": "usage: hosthunter.py [-h] [-f FORMAT] [-o OUTPUT] [-t TARGET] [-g GRAB] [-v]\n                     [-V] [-d]\n                     [targets]\n\n[?] HostHunter v2.0 - Help Page\n\npositional arguments:\n  targets               Sets the path of the target IPs file.\n\noptions:\n  -h, --help            show this help message and exit\n  -f FORMAT, --format FORMAT\n                        Choose between .CSV, .TXT, Nessus output file formats.\n  -o OUTPUT, --output OUTPUT\n                        Sets the path of the output file.\n  -t TARGET, --target TARGET\n                        Hunt a Single IP.\n  -g GRAB, --grab GRAB  Choose which SSL ports to actively scan. Default\n                        ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp\n  -v, --verify          Attempts to resolve IP Address\n  -V, --version         Displays the current version.\n  -d, --debug           Displays additional output and debugging information.\n\nAuthor: Andreas Georgiou (@superhedgy)\n"
- },
- "validation": {
-  "confirmed": [
-   "--format",
-   "--output",
-   "--target",
-   "--version"
-  ],
-  "unconfirmed": [
-   "--bing",
-   "--headless",
-   "--ignore-certificate-errors",
-   "--screen-capture",
-   "--test-type",
-   "targets"
-  ],
-  "help_only": [
-   "--debug",
-   "--grab",
-   "--help",
-   "--verify",
-   "-V",
-   "-d",
-   "-f",
-   "-g",
-   "-h",
-   "-o",
-   "-t",
-   "-v"
-  ],
-  "mining_coverage": 0.25
- },
- "surface": {
-  "flags": {
-   "--bing": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Use Bing.com search engine to discover more hostnames associated with the target IP addreses.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.5",
-    "last_date": "2019-05-16T16:51:44+01:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   },
-   "--debug": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Displays additional output and debugging information.",
-    "aliases": [
-     "-d"
-    ]
-   },
-   "--format": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": "Choose between .CSV, .TXT, Nessus output file formats.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py",
-    "aliases": [
-     "-f"
-    ]
-   },
-   "--grab": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Choose which SSL ports to actively scan. Default ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp",
-    "metavar": "GRAB",
-    "aliases": [
-     "-g"
-    ]
-   },
-   "--headless": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   },
-   "--help": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "show this help message and exit",
-    "aliases": [
-     "-h"
-    ]
-   },
-   "--ignore-certificate-errors": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   },
-   "--output": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": "Sets the path of the output file.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py",
-    "aliases": [
-     "-o"
-    ]
-   },
-   "--screen-capture": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Capture a screenshot of any associated Web Applications.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   },
-   "--target": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": "Hunt a Single IP.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py",
-    "aliases": [
-     "-t"
-    ]
-   },
-   "--test-type": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   },
-   "--verify": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Attempts to resolve IP Address",
-    "aliases": [
-     "-v"
-    ]
-   },
-   "--version": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": "Displays the current version.",
-    "kind": "option",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py",
-    "aliases": [
-     "-V"
-    ]
-   },
-   "targets": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Sets the path of the target IPs file.",
-    "kind": "positional",
-    "first_tag": "v1.5",
-    "first_date": "2019-05-16T16:51:44+01:00",
-    "last_tag": "v1.6",
-    "last_date": "2021-09-06T10:31:01+03:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "hosthunter.py"
-   }
-  },
-  "subcommands": []
- },
- "skipped_reason": null,
- "example_trials": {
-  "tried": 3,
-  "tried_this_wave": 0,
-  "promoted": 0,
-  "results": [
-   {
-    "id": "t-net-81fb5d9a",
-    "argv": [
-     "hosthunter",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "no-output",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 0,
-    "output_bytes": 54
-   },
-   {
-    "id": "t-net-15c7f0db",
-    "argv": [
-     "hosthunter",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "no-output",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 0,
-    "output_bytes": 47
-   },
-   {
-    "id": "t-net-21f34bc9",
-    "argv": [
-     "hosthunter",
-     "--target",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 1,
-    "output_bytes": 1542
-   }
-  ],
-  "not_attempted": []
- },
+ "skipped_reason": "uncorroborated_entrypoint",
  "tool": "hosthunter",
  "repo": "SpiderLabs/HostHunter",
  "head_sha": "553f1c75eaba3e7c2ed911206cd4fe4c7c2b0e90",
  "analyzer": "exec",
- "analyzer_version": "7",
- "generated_at": "2026-07-31T01:16:58.807476+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T17:44:08.221518+00:00"
 }

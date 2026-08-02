@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:5388a4c87d6555536b97eb707a8c7cf426f1db631360ba744afdf5ff22b08f7f",
-  "duration_s": 15.07,
-  "log_tail": "\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.2s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.3s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.350 go: downloading github.com/miekg/dns v1.1.72\n#11 0.358 go: downloading github.com/jamesog/iptoasn v0.1.0\n#11 0.358 go: downloading github.com/logrusorgru/aurora v2.0.3+incompatible\n#11 0.361 go: downloading github.com/spf13/pflag v1.0.10\n#11 0.815 go: downloading golang.org/x/sys v0.47.0\n#11 0.816 go: downloading golang.org/x/net v0.52.0\n#11 0.837 go: downloading github.com/pkg/errors v0.9.1\n#11 DONE 10.0s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.180 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.5s done\n#18 exporting manifest sha256:5120ef5f0162f23a26497203594d15840a1ab749367b08a7b7049fc9931bf73c 0.0s done\n#18 exporting config sha256:db6b4f20ccc1f7ada7f3502702925fe3b23ffe0481e38006be9e9ade45f6e6ed 0.0s done\n#18 exporting attestation manifest sha256:3095c497547dc8c16c5cf4a5fb0fb502d72bae030e72ed431337ca5a3467644f 0.0s done\n#18 exporting manifest list sha256:5388a4c87d6555536b97eb707a8c7cf426f1db631360ba744afdf5ff22b08f7f 0.0s done\n#18 naming to docker.io/ctk-exec/mxcheck:08ac69d7a299 done\n#18 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299\n#18 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299 0.2s done\n#18 DONE 0.8s",
+  "image_digest": "sha256:b5027533dfa4d2f8e0a0a9a1860df65cc8a269c666a2e375770007cac2774d6d",
+  "duration_s": 6.75,
+  "log_tail": "#7 DONE 0.1s\n\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.116 go: downloading github.com/spf13/pflag v1.0.10\n#11 0.116 go: downloading github.com/logrusorgru/aurora v2.0.3+incompatible\n#11 0.116 go: downloading github.com/jamesog/iptoasn v0.1.0\n#11 0.116 go: downloading github.com/miekg/dns v1.1.72\n#11 0.427 go: downloading github.com/pkg/errors v0.9.1\n#11 0.465 go: downloading golang.org/x/net v0.52.0\n#11 0.465 go: downloading golang.org/x/sys v0.47.0\n#11 DONE 4.9s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.111 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:5bbd453922f5cdf229d2edfd841ec558bbe8734080bb7c257d54e84c48fa3710 done\n#18 exporting config sha256:657ae3a62b162bef0612dcabe7987f1a55d2d00fd00dd699048ecc83411c3f7a done\n#18 exporting attestation manifest sha256:8399606de772df31596512943e7e7a0ba453c3471d9c613de2d5195a164a020e done\n#18 exporting manifest list sha256:b5027533dfa4d2f8e0a0a9a1860df65cc8a269c666a2e375770007cac2774d6d done\n#18 naming to docker.io/ctk-exec/mxcheck:08ac69d7a299 done\n#18 unpacking to docker.io/ctk-exec/mxcheck:08ac69d7a299 0.0s done\n#18 DONE 0.3s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage of mxcheck:\n  -b, --blacklist              Check if the service is on blacklists\n  -p, --disable-port-scan      Disable SMTP port scan\n  -S, --dkim-selector string   The DKIM selector. If set a DKIM check is performed on the provided service domain\n  -d, --dnsserver string       The dns server to be requested (default \"8.8.8.8\")\n  -f, --mailfrom string        Set the mailFrom address (default \"info@foo.wtf\")\n  -t, --mailto string          Set the mailTo address (default \"info@baz.wtf\")\n  -n, --no-prompt              Answer yes to all questions\n  -s, --service string         The service host to check\n  -g, --smuggle                Test for SMTPSmuggling vulnerability\n  -u, --updatecheck            Check for new version of mxcheck\n  -V, --verbose                Show timestamps in output\n  -v, --version                Version and license\n  -w, --write-tsv              Write tsv formated report to file\n",
-   "duration_ms": 5,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for mxcheck\n",
-   "duration_ms": 12,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -56,16 +56,49 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'mxcheck' in node '(dir)Top'\n",
-   "duration_ms": 5,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
+   "argv": [
+    "mxcheck",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "\u250c\u2500 mxcheck \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Target: /opt/ctk/fixtures/source-corpus         \u2502\n\u2502  Date:   2026-08-02T01:16:36Z                    \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n",
+   "stderr": "\u001b[31mERROR:\u001b[0m dial udp 8.8.8.8:53: connect: network is unreachable\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-8a1b02ad",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "mxcheck",
+    "--verbose",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "\u250c\u2500 mxcheck \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Target: /opt/ctk/fixtures/source-corpus         \u2502\n\u2502  Date:   2026-08-02T01:16:36Z                    \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n",
+   "stderr": "[01:16:36] \u001b[31mERROR:\u001b[0m dial udp 8.8.8.8:53: connect: network is unreachable\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-0f13ef7a",
+   "title": "The --verbose option, advertised by the tool's own help, against source-corpus"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 4,
+   "commands_run": 6,
    "binary": "mxcheck",
    "exit_code": null,
    "stdout": "",
@@ -75,8 +108,40 @@
    "error": null
   }
  ],
- "input_fingerprint": null,
- "examples": [],
+ "input_fingerprint": "9f0407f0c04d990c",
+ "examples": [
+  {
+   "id": "t-model-8a1b02ad",
+   "title": "Candidate \u2014 run against source-corpus",
+   "argv": [
+    "mxcheck",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "\u250c\u2500 mxcheck \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Target: /opt/ctk/fixtures/source-corpus         \u2502\n\u2502  Date:   2026-08-02T01:16:36Z                    \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n",
+   "stderr": "\u001b[31mERROR:\u001b[0m dial udp 8.8.8.8:53: connect: network is unreachable\n",
+   "exit_code": 1,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-0f13ef7a",
+   "title": "The --verbose option, advertised by the tool's own help, against source-corpus",
+   "argv": [
+    "mxcheck",
+    "--verbose",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "\u250c\u2500 mxcheck \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2510\n\u2502  Target: /opt/ctk/fixtures/source-corpus         \u2502\n\u2502  Date:   2026-08-02T01:16:36Z                    \u2502\n\u2514\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2518\n\n",
+   "stderr": "[01:16:36] \u001b[31mERROR:\u001b[0m dial udp 8.8.8.8:53: connect: network is unreachable\n",
+   "exit_code": 1,
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "help": {
   "flags_seen": {
    "--blacklist": "Check if the service is on blacklists",
@@ -220,6 +285,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-b"
     ]
@@ -235,7 +301,9 @@
     "last_date": "2019-02-13T14:37:20+01:00",
     "live": false,
     "attribution": "own",
-    "source_path": "main.go"
+    "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string"
    },
    "--disable-port-scan": {
     "source": "both",
@@ -249,6 +317,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-p"
     ]
@@ -266,6 +335,8 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string",
     "aliases": [
      "-S"
     ]
@@ -283,6 +354,8 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string",
     "aliases": [
      "-d"
     ]
@@ -300,6 +373,8 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string",
     "aliases": [
      "-f"
     ]
@@ -317,6 +392,8 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string",
     "aliases": [
      "-t"
     ]
@@ -333,6 +410,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-n"
     ]
@@ -350,6 +428,8 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string",
     "aliases": [
      "-s"
     ]
@@ -366,6 +446,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-g"
     ]
@@ -381,7 +462,9 @@
     "last_date": "2019-02-13T14:37:20+01:00",
     "live": false,
     "attribution": "own",
-    "source_path": "main.go"
+    "source_path": "main.go",
+    "takes_value": true,
+    "value_type": "string"
    },
    "--updatecheck": {
     "source": "both",
@@ -395,6 +478,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-u"
     ]
@@ -410,7 +494,8 @@
     "last_date": "2019-02-13T14:37:20+01:00",
     "live": false,
     "attribution": "own",
-    "source_path": "main.go"
+    "source_path": "main.go",
+    "takes_value": false
    },
    "--verbose": {
     "source": "both",
@@ -424,6 +509,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-V"
     ]
@@ -440,6 +526,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-v"
     ]
@@ -456,6 +543,7 @@
     "live": true,
     "attribution": "own",
     "source_path": "main.go",
+    "takes_value": false,
     "aliases": [
      "-w"
     ]
@@ -465,8 +553,8 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 3,
-  "tried_this_wave": 0,
+  "tried": 16,
+  "tried_this_wave": 1,
   "promoted": 0,
   "results": [
    {
@@ -523,6 +611,247 @@
     "skipped_reason": null,
     "exit_code": 0,
     "output_bytes": 47
+   },
+   {
+    "id": "t-model-8a1b02ad",
+    "argv": [
+     "mxcheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "stability": 1.0
+   },
+   {
+    "id": "t-model-99275dad",
+    "argv": [
+     "mxcheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "-w",
+     "/opt/ctk/fixtures/source-corpus/report.tsv"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "stability": 1.0
+   },
+   {
+    "id": "t-model-9deb049c",
+    "argv": [
+     "mxcheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "-S",
+     "default"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "stability": 1.0
+   },
+   {
+    "id": "t-model-e3b3648a",
+    "argv": [
+     "mxcheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "-b"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "stability": 1.0
+   },
+   {
+    "id": "t-model-61b553f9",
+    "argv": [
+     "mxcheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "-g"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-5f05b68a",
+    "argv": [
+     "mxcheck",
+     "--blacklist",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "flag": "--blacklist",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-68fe4195",
+    "argv": [
+     "mxcheck",
+     "--disable-port-scan",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "flag": "--disable-port-scan",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-0cbc6872",
+    "argv": [
+     "mxcheck",
+     "--no-prompt",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "flag": "--no-prompt",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-13cba1ee",
+    "argv": [
+     "mxcheck",
+     "--smuggle",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "flag": "--smuggle",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-8c69aaf2",
+    "argv": [
+     "mxcheck",
+     "--updatecheck",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 229,
+    "flag": "--updatecheck"
+   },
+   {
+    "id": "t-opt-0f13ef7a",
+    "argv": [
+     "mxcheck",
+     "--verbose",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 291,
+    "flag": "--verbose",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-9f06d055",
+    "argv": [
+     "mxcheck",
+     "--write-tsv",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "nonzero-exit-with-output:1",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 280,
+    "flag": "--write-tsv",
+    "stability": 1.0
+   },
+   {
+    "id": "t-net-579fad2f",
+    "argv": [
+     "mxcheck",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-579fad2f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
    }
   ],
   "not_attempted": []
@@ -531,6 +860,6 @@
  "repo": "steffenfritz/mxcheck",
  "head_sha": "08ac69d7a299e1af62506b836f1f60fe0a4afc3d",
  "analyzer": "exec",
- "analyzer_version": "7",
- "generated_at": "2026-07-31T01:18:57.719479+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-02T01:16:36.802034+00:00"
 }

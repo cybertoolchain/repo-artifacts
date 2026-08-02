@@ -1,20 +1,176 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "python",
-  "image_digest": null,
-  "duration_s": 14.72,
-  "log_tail": "#11 7.259               Please consider removing the following classifiers in favor of a SPDX license expression:\n#11 7.259       \n#11 7.259               License :: OSI Approved :: MIT License\n#11 7.259       \n#11 7.259               See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.\n#11 7.259               ********************************************************************************\n#11 7.259       \n#11 7.259       !!\n#11 7.259         self._finalize_license_expression()\n#11 7.259       error: Multiple top-level packages discovered in a flat-layout: ['pse', 'art', 'man', 'share', 'fixtures'].\n#11 7.259       \n#11 7.259       To avoid accidental inclusion of unwanted files or directories,\n#11 7.259       setuptools will not proceed with this build.\n#11 7.259       \n#11 7.259       If you are trying to create a single distribution with multiple packages\n#11 7.259       on purpose, you should not rely on automatic discovery.\n#11 7.259       Instead, consider the following options:\n#11 7.259       \n#11 7.259       1. set up custom discovery (`find` directive with `include` or `exclude`)\n#11 7.259       2. use a `src-layout`\n#11 7.259       3. explicitly set `py_modules` or `packages` with a list of names\n#11 7.259       \n#11 7.259       To find more information, look for \"package discovery\" on setuptools docs.\n#11 7.259       [end of output]\n#11 7.259   \n#11 7.259   note: This error originates from a subprocess, and is likely not a problem with pip.\n#11 7.260 ERROR: Failed to build 'file:///src' when getting requirements to build wheel\n#11 ERROR: process \"/bin/sh -c python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && /opt/venv/bin/pip install --no-cache-dir .\" did not complete successfully: exit code: 1\n------\n > [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && /opt/venv/bin/pip install --no-cache-dir .:\n7.259       \n7.259       1. set up custom discovery (`find` directive with `include` or `exclude`)\n7.259       2. use a `src-layout`\n7.259       3. explicitly set `py_modules` or `packages` with a list of names\n7.259       \n7.259       To find more information, look for \"package discovery\" on setuptools docs.\n7.259       [end of output]\n7.259   \n7.259   note: This error originates from a subprocess, and is likely not a problem with pip.\n7.260 ERROR: Failed to build 'file:///src' when getting requirements to build wheel\n------\nDockerfile.ctk:4\n--------------------\n   3 |     COPY . .\n   4 | >>> RUN python -m venv /opt/venv \\\n   5 | >>>  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip \\\n   6 | >>>  && /opt/venv/bin/pip install --no-cache-dir .\n   7 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && /opt/venv/bin/pip install --no-cache-dir .\" did not complete successfully: exit code: 1",
-  "error": "docker build failed",
+  "image_digest": "sha256:4ebc3f00f59b083c28a311e2cf8d11450a038f22106510842007aff136b0a410",
+  "duration_s": 7.91,
+  "log_tail": "#11 5.783         self._finalize_license_expression()\n#11 5.783       error: Multiple top-level packages discovered in a flat-layout: ['art', 'man', 'pse', 'share'].\n#11 5.783       \n#11 5.783       To avoid accidental inclusion of unwanted files or directories,\n#11 5.783       setuptools will not proceed with this build.\n#11 5.783       \n#11 5.783       If you are trying to create a single distribution with multiple packages\n#11 5.783       on purpose, you should not rely on automatic discovery.\n#11 5.783       Instead, consider the following options:\n#11 5.783       \n#11 5.783       1. set up custom discovery (`find` directive with `include` or `exclude`)\n#11 5.783       2. use a `src-layout`\n#11 5.783       3. explicitly set `py_modules` or `packages` with a list of names\n#11 5.783       \n#11 5.783       To find more information, look for \"package discovery\" on setuptools docs.\n#11 5.783       [end of output]\n#11 5.783   \n#11 5.783   note: This error originates from a subprocess, and is likely not a problem with pip.\n#11 5.783 ERROR: Failed to build 'file:///src' when getting requirements to build wheel\n#11 DONE 6.2s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.111 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:e806591f88c356fc20cf77ae114f052be9d7059b180eb936071b3fe60c948ee1 done\n#18 exporting config sha256:8a8bdd9a833527bce611566ed5d443ab7502efc19b89642537da88db885ad39f done\n#18 exporting attestation manifest sha256:187d1881d2e4c74214ccc950c8298df84eafff83d8bea6378647ecd45c09842e done\n#18 exporting manifest list sha256:4ebc3f00f59b083c28a311e2cf8d11450a038f22106510842007aff136b0a410 done\n#18 naming to docker.io/ctk-exec/pwncat:d94b7f89c611 done\n#18 unpacking to docker.io/ctk-exec/pwncat:d94b7f89c611 0.1s done\n#18 DONE 0.4s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "pwncat",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'pwncat'"
+  },
+  {
+   "argv": [
+    "man",
+    "pwncat"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for pwncat\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "pwncat"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'pwncat' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "pwncat",
+    "--list",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'pwncat'",
+   "kind": "scenario",
+   "id": "t-model-806c6e6e",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "docker build failed",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-806c6e6e",
+    "argv": [
+     "pwncat",
+     "--list",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'pwncat'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-c5c6d4f6",
+    "argv": [
+     "pwncat",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 309
+   },
+   {
+    "id": "t-net-50dd69d4",
+    "argv": [
+     "pwncat",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 309
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "pwncat -vvvv -l 4444",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1003,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "pwncat -l 4444",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1020,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "time pwncat -z localhost 1-65535 -u -4",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1370,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "pwncat",
  "repo": "cytopia/pwncat",
  "head_sha": "d94b7f89c61159b1446c30e73708cc30f117188b",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-30T04:07:15.552318+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T18:31:10.806765+00:00"
 }

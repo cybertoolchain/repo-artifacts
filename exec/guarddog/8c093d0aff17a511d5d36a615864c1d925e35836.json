@@ -1,0 +1,20 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "python",
+  "image_digest": null,
+  "duration_s": 0.57,
+  "log_tail": "#5 resolve docker.io/library/python:3.12-bookworm@sha256:9bed8554e926c07c6f908841d5ee88c33e8df9236b191526bbce81a9062ab43a done\n#5 DONE 0.0s\n\n#6 [stage-1 1/7] FROM docker.io/library/python:3.12-slim-bookworm@sha256:d50fb7611f86d04a3b0471b46d7557818d88983fc3136726336b2a4c657aa30b\n#6 resolve docker.io/library/python:3.12-slim-bookworm@sha256:d50fb7611f86d04a3b0471b46d7557818d88983fc3136726336b2a4c657aa30b done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 7.17MB 0.1s done\n#7 DONE 0.1s\n\n#8 [build 2/4] WORKDIR /src\n#8 CACHED\n\n#9 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#9 CACHED\n\n#10 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#10 CACHED\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && (/opt/venv/bin/pip install --no-cache-dir .      || ([ -f requirements.txt ]          && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt))\n#12 CACHED\n\n#13 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#13 CACHED\n\n#14 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#14 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::ij8eo93vweibiwyc4089ytk7i: \"/.ctk-fixtures\": not found\n\n#15 [build 3/4] COPY . .\n#15 CANCELED\n------\n > [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/:\n------\n\n \u001b[33m2 warnings found (use docker --debug to expand):\n\u001b[0m - CopyIgnoredFile: Attempting to Copy file \".\" that is excluded by .dockerignore (line 3)\n - CopyIgnoredFile: Attempting to Copy file \".ctk-fixtures\" that is excluded by .dockerignore (line 24)\nDockerfile.ctk:24\n--------------------\n  22 |     COPY agent.py /opt/ctk/agent.py\n  23 |     COPY helptext.py /opt/ctk/helptext.py\n  24 | >>> COPY .ctk-fixtures/ /opt/ctk/fixtures/\n  25 |     RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n  26 |     USER 65532\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::ij8eo93vweibiwyc4089ytk7i: \"/.ctk-fixtures\": not found",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "skipped_reason": "docker build failed",
+ "tool": "GuardDog",
+ "repo": "DataDog/guarddog",
+ "head_sha": "8c093d0aff17a511d5d36a615864c1d925e35836",
+ "analyzer": "exec",
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T19:20:15.425337+00:00"
+}

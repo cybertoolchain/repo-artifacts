@@ -8,6 +8,8 @@
    "help": "Listen Ip and port (ip:port)",
    "kind": "option",
    "default": "127.0.0.1:8888",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.4",
@@ -16,11 +18,49 @@
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
+  "--allow": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-a"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--api-host": {
+   "source": "parsed",
+   "help": "API host (example: api.example.com)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-api"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/swaggergen/swaggergen.go"
+  },
   "--burp-addr": {
    "source": "parsed",
    "help": "Burp HTTP Address",
    "kind": "option",
    "default": "http://127.0.0.1:8080",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -29,16 +69,33 @@
    "attribution": "own",
    "source_path": "cmd/replay/replay.go"
   },
+  "--c": {
+   "source": "parsed",
+   "help": "Number of requests before switching to the next upstream proxy",
+   "kind": "option",
+   "default": "1",
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
   "--cert-cache-size": {
    "source": "parsed",
    "help": "Number of certificates to cache",
    "kind": "option",
    "default": "256",
+   "takes_value": true,
+   "value_type": "int",
    "first_tag": "v0.0.3",
    "first_date": "2020-12-12T12:31:26+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -47,6 +104,8 @@
    "help": "Relay => Server Cert File",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -60,6 +119,8 @@
    "help": "Relay => Server Key File",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -70,14 +131,66 @@
   },
   "--config": {
    "source": "parsed",
-   "help": "Directory for storing program information",
+   "help": "path to the proxify configuration file",
    "kind": "option",
-   "default": null,
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.3",
    "first_date": "2020-12-12T12:31:26+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--config-directory": {
+   "source": "parsed",
+   "help": "override the default config path ($home/.config/proxify)",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.12",
+   "first_date": "2023-08-13T01:53:29+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--deny": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-d"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--disable-update-check": {
+   "source": "parsed",
+   "help": "disable automatic proxify update check",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-duc"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -86,6 +199,8 @@
    "help": "Listen DNS Ip and port (ip:port)",
    "kind": "option",
    "default": ":5353",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -99,6 +214,8 @@
    "help": "DNS A mapping (eg domain:ip,domain:ip,..)",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -112,6 +229,8 @@
    "help": "Listen DNS Ip and port (ip:port)",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.4",
@@ -122,27 +241,135 @@
   },
   "--dump-req": {
    "source": "parsed",
-   "help": "Dump requests in separate files",
+   "help": "Dump only HTTP requests to output file",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
   "--dump-resp": {
    "source": "parsed",
-   "help": "Dump responses in separate files",
+   "help": "Dump only HTTP responses to output file",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-address": {
+   "source": "parsed",
+   "help": "elasticsearch address (ip:port)",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
    "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-index": {
+   "source": "parsed",
+   "help": "elasticsearch index name",
+   "kind": "option",
+   "default": "proxify",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-password": {
+   "source": "parsed",
+   "help": "elasticsearch password",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-ssl": {
+   "source": "parsed",
+   "help": "enable elasticsearch ssl",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-ssl-verification": {
+   "source": "parsed",
+   "help": "enable elasticsearch ssl verification",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--elastic-username": {
+   "source": "parsed",
+   "help": "elasticsearch username",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--export-config": {
+   "source": "parsed",
+   "help": "proxify export module configuration file",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-ec"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.13",
+   "first_date": "2024-02-08T21:38:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -151,6 +378,8 @@
    "help": "HTTP Server Listen Address",
    "kind": "option",
    "default": "127.0.0.1:49999",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -161,14 +390,96 @@
   },
   "--http-proxy": {
    "source": "parsed",
-   "help": "Upstream HTTP Proxy (eg http://proxyip:proxyport",
+   "help": "",
    "kind": "option",
-   "default": "",
+   "default": null,
+   "aliases": [
+    "-hp"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--jsonl": {
+   "source": "parsed",
+   "help": "write output in JSONL(ines) format",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-j"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.10",
+   "first_date": "2023-07-26T07:34:56+05:30",
+   "last_tag": "v0.0.13",
+   "last_date": "2024-02-08T21:38:19+05:30",
    "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--kafka-address": {
+   "source": "parsed",
+   "help": "address of kafka broker (ip:port)",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--kafka-topic": {
+   "source": "parsed",
+   "help": "kafka topic to publish messages on",
+   "kind": "option",
+   "default": "proxify",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.12",
+   "last_date": "2023-08-13T01:53:29+05:30",
+   "live": false,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--log-dir": {
+   "source": "parsed",
+   "help": "path to proxify's output log directory",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/swaggergen/swaggergen.go"
+  },
+  "--max-size": {
+   "source": "parsed",
+   "help": "Max export data size (request/responses will be truncated)",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -176,12 +487,34 @@
    "source": "parsed",
    "help": "No Color",
    "kind": "option",
-   "default": "true",
+   "default": "false",
+   "aliases": [
+    "-nc"
+   ],
+   "takes_value": false,
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--out-ca": {
+   "source": "parsed",
+   "help": "Generate and Save CA File to filename",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-oca"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.10",
+   "first_date": "2023-07-26T07:34:56+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -190,6 +523,8 @@
    "help": "Output Folder",
    "kind": "option",
    "default": "logs/",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -198,11 +533,67 @@
    "attribution": "own",
    "source_path": "cmd/mitmrelay/mitmrelay.go"
   },
+  "--output-format": {
+   "source": "parsed",
+   "help": "output format (jsonl/yaml)",
+   "kind": "option",
+   "default": "jsonl",
+   "aliases": [
+    "-of"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.15",
+   "first_date": "2024-03-12T21:02:08+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--output-spec": {
+   "source": "parsed",
+   "help": "file to store Swagger/OpenAPI specification (example: OpenAPI.yaml)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-os"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/swaggergen/swaggergen.go"
+  },
+  "--passthrough": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-pt"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
   "--protocol": {
    "source": "parsed",
    "help": "tcp or udp",
    "kind": "option",
    "default": "tcp",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -216,6 +607,8 @@
    "help": "HTTP Proxy Address",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -226,14 +619,19 @@
   },
   "--request-dsl": {
    "source": "parsed",
-   "help": "Request Filter DSL",
+   "help": "",
    "kind": "option",
-   "default": "",
+   "default": null,
+   "aliases": [
+    "-req-fd"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -242,6 +640,8 @@
    "help": "Request Match-Replace DSL",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -250,11 +650,31 @@
    "attribution": "own",
    "source_path": "cmd/mitmrelay/mitmrelay.go"
   },
+  "--resolver": {
+   "source": "parsed",
+   "help": "Custom DNS resolvers to use (ip:port)",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-r"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
   "--resolver-addr": {
    "source": "parsed",
    "help": "Listen DNS Ip and port (ip:port)",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -265,14 +685,19 @@
   },
   "--response-dsl": {
    "source": "parsed",
-   "help": "Response Filter DSL",
+   "help": "",
    "kind": "option",
-   "default": "",
+   "default": null,
+   "aliases": [
+    "-resp-fd"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -281,6 +706,8 @@
    "help": "Request Match-Replace DSL",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.16",
@@ -294,6 +721,8 @@
    "help": "Client => Relay Cert File",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -307,6 +736,8 @@
    "help": "Client => Relay Key File",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -320,24 +751,66 @@
    "help": "Silent",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--socks-addr": {
+   "source": "parsed",
+   "help": "Listening SOCKS IP and Port address (ip:port)",
+   "kind": "option",
+   "default": "127.0.0.1:10080",
+   "aliases": [
+    "-sa"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
   "--socks5-proxy": {
    "source": "parsed",
-   "help": "Upstream SOCKS5 Proxy (eg socks5://proxyip:proxyport)",
+   "help": "",
    "kind": "option",
-   "default": "",
+   "default": null,
+   "aliases": [
+    "-sp"
+   ],
+   "takes_value": true,
+   "value_type": "stringslice",
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--store-response": {
+   "source": "parsed",
+   "help": "store raw http request / response to output directory",
+   "kind": "option",
+   "default": "proxify_logs",
+   "aliases": [
+    "-sr"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.0.16",
+   "first_date": "2025-08-30T04:25:44+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -346,6 +819,8 @@
    "help": "Connection Timeout In Seconds",
    "kind": "option",
    "default": "180",
+   "takes_value": true,
+   "value_type": "int",
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -359,6 +834,7 @@
    "help": "Relay => Server should use tls",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -372,6 +848,7 @@
    "help": "Client => Relay should use tls",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.4",
    "first_date": "2021-05-24T07:32:29+05:30",
    "last_tag": "v0.0.16",
@@ -385,6 +862,7 @@
    "help": "Verbose",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
    "last_tag": "v0.0.4",
@@ -393,16 +871,51 @@
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
+  "--verbose": {
+   "source": "parsed",
+   "help": "Verbose",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-v"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.5",
+   "first_date": "2021-11-19T13:36:18+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
   "--version": {
    "source": "parsed",
    "help": "Version",
    "kind": "option",
    "default": "false",
+   "takes_value": false,
    "first_tag": "v0.0.1",
    "first_date": "2020-12-11T23:13:45+05:30",
-   "last_tag": "v0.0.4",
-   "last_date": "2021-05-24T07:32:29+05:30",
-   "live": false,
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--very-verbose": {
+   "source": "parsed",
+   "help": "Very Verbose",
+   "kind": "option",
+   "default": "false",
+   "aliases": [
+    "-vv"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.8",
+   "first_date": "2022-10-20T02:41:43+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -1430,6 +1943,146 @@
    "attribution": "own"
   },
   {
+   "flag": "--allow",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Allowed list of IP/CIDR's to be proxied",
+   "attribution": "own"
+  },
+  {
+   "flag": "--c",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Number of requests before switching to the next upstream proxy",
+   "attribution": "own"
+  },
+  {
+   "flag": "--deny",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Denied list of IP/CIDR's to be proxied",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-address",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch address (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-index",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch index name",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-password",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch password",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-ssl",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "enable elasticsearch ssl",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-ssl-verification",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "enable elasticsearch ssl verification",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-username",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch username",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kafka-address",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "address of kafka broker (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kafka-topic",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "kafka topic to publish messages on",
+   "attribution": "own"
+  },
+  {
+   "flag": "--resolver",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Custom DNS resolvers to use (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks-addr",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Listening SOCKS IP and Port address (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--verbose",
+   "event": "added",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Verbose",
+   "attribution": "own"
+  },
+  {
    "flag": "-elastic-address",
    "event": "added",
    "tag": "v0.0.5",
@@ -1560,26 +2213,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--cert-cache-size",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Number of certificates to cache",
-   "attribution": "own"
-  },
-  {
-   "flag": "--config",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Directory for storing program information",
-   "attribution": "own"
-  },
-  {
    "flag": "--dns-resolver",
    "event": "removed",
    "tag": "v0.0.5",
@@ -1590,86 +2223,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--dump-req",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Dump requests in separate files",
-   "attribution": "own"
-  },
-  {
-   "flag": "--dump-resp",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Dump responses in separate files",
-   "attribution": "own"
-  },
-  {
-   "flag": "--http-proxy",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Upstream HTTP Proxy (eg http://proxyip:proxyport",
-   "attribution": "own"
-  },
-  {
-   "flag": "--no-color",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "No Color",
-   "attribution": "own"
-  },
-  {
-   "flag": "--request-dsl",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Request Filter DSL",
-   "attribution": "own"
-  },
-  {
-   "flag": "--response-dsl",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Response Filter DSL",
-   "attribution": "own"
-  },
-  {
-   "flag": "--silent",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Silent",
-   "attribution": "own"
-  },
-  {
-   "flag": "--socks5-proxy",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Upstream SOCKS5 Proxy (eg socks5://proxyip:proxyport)",
-   "attribution": "own"
-  },
-  {
    "flag": "--v",
    "event": "removed",
    "tag": "v0.0.5",
@@ -1677,16 +2230,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "Verbose",
-   "attribution": "own"
-  },
-  {
-   "flag": "--version",
-   "event": "removed",
-   "tag": "v0.0.5",
-   "date": "2021-11-19T13:36:18+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Version",
    "attribution": "own"
   },
   {
@@ -1707,6 +2250,50 @@
    "source": "documented",
    "kind": "option",
    "help": "Listen DNS Ip and port (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--dump-req",
+   "event": "help_changed",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Dump only HTTP requests to output file",
+   "previous_help": "Dump requests in separate files",
+   "attribution": "own"
+  },
+  {
+   "flag": "--dump-resp",
+   "event": "help_changed",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Dump only HTTP responses to output file",
+   "previous_help": "Dump responses in separate files",
+   "attribution": "own"
+  },
+  {
+   "flag": "--http-proxy",
+   "event": "help_changed",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port",
+   "previous_help": "Upstream HTTP Proxy (eg http://proxyip:proxyport",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks5-proxy",
+   "event": "help_changed",
+   "tag": "v0.0.5",
+   "date": "2021-11-19T13:36:18+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+   "previous_help": "Upstream SOCKS5 Proxy (eg socks5://proxyip:proxyport)",
    "attribution": "own"
   },
   {
@@ -1831,6 +2418,56 @@
    "attribution": "own"
   },
   {
+   "flag": "--http-proxy",
+   "event": "removed",
+   "tag": "v0.0.6",
+   "date": "2022-02-12T18:19:51+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks5-proxy",
+   "event": "removed",
+   "tag": "v0.0.6",
+   "date": "2022-02-12T18:19:51+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--allow",
+   "event": "removed",
+   "tag": "v0.0.7",
+   "date": "2022-06-13T23:01:15+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Allowed list of IP/CIDR's to be proxied",
+   "attribution": "own"
+  },
+  {
+   "flag": "--deny",
+   "event": "removed",
+   "tag": "v0.0.7",
+   "date": "2022-06-13T23:01:15+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Denied list of IP/CIDR's to be proxied",
+   "attribution": "own"
+  },
+  {
+   "flag": "--very-verbose",
+   "event": "added",
+   "tag": "v0.0.8",
+   "date": "2022-10-20T02:41:43+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Very Verbose",
+   "attribution": "own"
+  },
+  {
    "flag": "-very-verbose",
    "event": "added",
    "tag": "v0.0.8",
@@ -1838,6 +2475,106 @@
    "source": "documented",
    "kind": "option",
    "help": "Very Verbose",
+   "attribution": "own"
+  },
+  {
+   "flag": "--allow",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--api-host",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "API host (example: api.example.com)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--deny",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--disable-update-check",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "disable automatic proxify update check",
+   "attribution": "own"
+  },
+  {
+   "flag": "--http-proxy",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log-dir",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "path to proxify's output log directory",
+   "attribution": "own"
+  },
+  {
+   "flag": "--max-size",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Max export data size (request/responses will be truncated)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--output-spec",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "file to store Swagger/OpenAPI specification (example: OpenAPI.yaml)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--passthrough",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks5-proxy",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
    "attribution": "own"
   },
   {
@@ -1911,6 +2648,28 @@
    "attribution": "own"
   },
   {
+   "flag": "--request-dsl",
+   "event": "help_changed",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "previous_help": "Request Filter DSL",
+   "attribution": "own"
+  },
+  {
+   "flag": "--response-dsl",
+   "event": "help_changed",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "previous_help": "Response Filter DSL",
+   "attribution": "own"
+  },
+  {
    "flag": "-config",
    "event": "help_changed",
    "tag": "v0.0.9",
@@ -1930,6 +2689,26 @@
    "kind": "option",
    "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
    "previous_help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port",
+   "attribution": "own"
+  },
+  {
+   "flag": "--jsonl",
+   "event": "added",
+   "tag": "v0.0.10",
+   "date": "2023-07-26T07:34:56+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "write output in JSONL(ines) format",
+   "attribution": "own"
+  },
+  {
+   "flag": "--out-ca",
+   "event": "added",
+   "tag": "v0.0.10",
+   "date": "2023-07-26T07:34:56+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Generate and Save CA File to filename",
    "attribution": "own"
   },
   {
@@ -1953,6 +2732,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--config-directory",
+   "event": "added",
+   "tag": "v0.0.12",
+   "date": "2023-08-13T01:53:29+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "override the default config path ($home/.config/proxify)",
+   "attribution": "own"
+  },
+  {
    "flag": "-config-directory",
    "event": "added",
    "tag": "v0.0.12",
@@ -1960,6 +2749,17 @@
    "source": "documented",
    "kind": "option",
    "help": "override the default config path ($home/.config/proxify) (default \"$home/.config/proxify\")",
+   "attribution": "own"
+  },
+  {
+   "flag": "--config",
+   "event": "help_changed",
+   "tag": "v0.0.12",
+   "date": "2023-08-13T01:53:29+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "path to the proxify configuration file",
+   "previous_help": "Directory for storing program information",
    "attribution": "own"
   },
   {
@@ -1974,6 +2774,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--export-config",
+   "event": "added",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "proxify export module configuration file",
+   "attribution": "own"
+  },
+  {
    "flag": "-export-config",
    "event": "added",
    "tag": "v0.0.13",
@@ -1981,6 +2791,96 @@
    "source": "documented",
    "kind": "option",
    "help": "proxify export module configuration file ($HOME/.config/proxify/export-config.yaml)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-address",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch address (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-index",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch index name",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-password",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch password",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-ssl",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "enable elasticsearch ssl",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-ssl-verification",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "enable elasticsearch ssl verification",
+   "attribution": "own"
+  },
+  {
+   "flag": "--elastic-username",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "elasticsearch username",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kafka-address",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "address of kafka broker (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kafka-topic",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "kafka topic to publish messages on",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks-addr",
+   "event": "removed",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Listening SOCKS IP and Port address (ip:port)",
    "attribution": "own"
   },
   {
@@ -2075,6 +2975,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--output-format",
+   "event": "added",
+   "tag": "v0.0.15",
+   "date": "2024-03-12T21:02:08+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "output format (jsonl/yaml)",
+   "attribution": "own"
+  },
+  {
    "flag": "-output-format",
    "event": "added",
    "tag": "v0.0.15",
@@ -2092,6 +3002,16 @@
    "source": "documented",
    "kind": "option",
    "help": "store raw http request / response to output directory (default proxify_logs)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--jsonl",
+   "event": "removed",
+   "tag": "v0.0.15",
+   "date": "2024-03-12T21:02:08+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "write output in JSONL(ines) format",
    "attribution": "own"
   },
   {
@@ -2157,6 +3077,26 @@
    "kind": "option",
    "help": "Listening SOCKS IP and Port address (ip:port) (default 127.0.0.1:10080)",
    "previous_help": "Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")",
+   "attribution": "own"
+  },
+  {
+   "flag": "--socks-addr",
+   "event": "added",
+   "tag": "v0.0.16",
+   "date": "2025-08-30T04:25:44+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Listening SOCKS IP and Port address (ip:port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--store-response",
+   "event": "added",
+   "tag": "v0.0.16",
+   "date": "2025-08-30T04:25:44+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "store raw http request / response to output directory",
    "attribution": "own"
   },
   {
@@ -2228,7 +3168,7 @@
    "files_matched": 21,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 47,
+   "flags": 72,
    "errors": 0
   },
   {
@@ -2238,7 +3178,7 @@
    "files_matched": 21,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 47,
+   "flags": 70,
    "errors": 0
   },
   {
@@ -2248,7 +3188,7 @@
    "files_matched": 21,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 47,
+   "flags": 68,
    "errors": 0
   },
   {
@@ -2258,7 +3198,7 @@
    "files_matched": 22,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 48,
+   "flags": 70,
    "errors": 0
   },
   {
@@ -2268,7 +3208,7 @@
    "files_matched": 35,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 55,
+   "flags": 87,
    "errors": 0
   },
   {
@@ -2278,7 +3218,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 57,
+   "flags": 91,
    "errors": 0
   },
   {
@@ -2288,7 +3228,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 57,
+   "flags": 91,
    "errors": 0
   },
   {
@@ -2298,7 +3238,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 58,
+   "flags": 93,
    "errors": 0
   },
   {
@@ -2308,7 +3248,7 @@
    "files_matched": 35,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 51,
+   "flags": 78,
    "errors": 0
   },
   {
@@ -2318,7 +3258,7 @@
    "files_matched": 38,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 52,
+   "flags": 79,
    "errors": 0
   },
   {
@@ -2328,7 +3268,7 @@
    "files_matched": 38,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 52,
+   "flags": 81,
    "errors": 0
   }
  ],
@@ -2340,6 +3280,6 @@
  "repo": "projectdiscovery/proxify",
  "head_sha": "cb351162a2389e4e25c702fc60c98e8e6fa988fa",
  "analyzer": "cli",
- "analyzer_version": "4",
- "generated_at": "2026-07-30T22:58:50.165581+00:00"
+ "analyzer_version": "6",
+ "generated_at": "2026-07-31T17:41:22.672217+00:00"
 }

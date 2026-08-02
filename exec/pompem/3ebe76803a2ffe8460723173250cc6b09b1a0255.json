@@ -2,92 +2,33 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:162ebcb87f4ba7e4402af7004ee9ff2d7c4991e5c7af419858ed44414b819d3f",
-  "duration_s": 8.7,
-  "log_tail": "#11 3.282     Found existing installation: pip 25.0.1\n#11 3.295     Uninstalling pip-25.0.1:\n#11 3.298       Successfully uninstalled pip-25.0.1\n#11 3.747 Successfully installed pip-26.2\n#11 4.393 Collecting requests==2.9.1 (from -r requirements.txt (line 1))\n#11 4.537   Downloading requests-2.9.1-py2.py3-none-any.whl.metadata (36 kB)\n#11 4.620 Downloading requests-2.9.1-py2.py3-none-any.whl (501 kB)\n#11 4.744 Installing collected packages: requests\n#11 4.894 Successfully installed requests-2.9.1\n#11 DONE 5.0s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.3s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.1s\n\n#19 [stage-1 10/11] COPY fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.1s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.144 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.5s done\n#21 exporting manifest sha256:a6fc35134c088216b416e396286947ff3b08b6585b77aa1d4b26f25df6f3c297 done\n#21 exporting config sha256:873ac3fe5cba65fb7b4e602fde23c5cbf2489fedb8e777624354ee0b1b779655 done\n#21 exporting attestation manifest sha256:1ac3c418a394065c89f9d5789410765ddbce6cec7ee71cb8b543e5dce5141ca8 done\n#21 exporting manifest list sha256:162ebcb87f4ba7e4402af7004ee9ff2d7c4991e5c7af419858ed44414b819d3f done\n#21 naming to docker.io/ctk-exec/pompem:3ebe76803a2f done\n#21 unpacking to docker.io/ctk-exec/pompem:3ebe76803a2f\n#21 unpacking to docker.io/ctk-exec/pompem:3ebe76803a2f 0.7s done\n#21 DONE 1.3s",
+  "image_digest": "sha256:883c780480be9fd6cd93c312eaf0acc0c8e323614c831b04d950a91bee1e194f",
+  "duration_s": 6.28,
+  "log_tail": "#11 2.341   Attempting uninstall: pip\n#11 2.342     Found existing installation: pip 25.0.1\n#11 2.355     Uninstalling pip-25.0.1:\n#11 2.357       Successfully uninstalled pip-25.0.1\n#11 2.769 Successfully installed pip-26.2\n#11 3.615 Collecting requests==2.9.1 (from -r requirements.txt (line 1))\n#11 3.942   Downloading requests-2.9.1-py2.py3-none-any.whl.metadata (36 kB)\n#11 4.070 Downloading requests-2.9.1-py2.py3-none-any.whl (501 kB)\n#11 4.271 Installing collected packages: requests\n#11 4.380 Successfully installed requests-2.9.1\n#11 DONE 4.5s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.102 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.4s done\n#21 exporting manifest sha256:232c75b738c2eb1c0c40a746b221b536148de0996bba6898a8a7a417dd240f1a done\n#21 exporting config sha256:47bfcf36c39f14bdc9d7c4694d15a6b9d00fb1ab1f2383f9c2cf8c3695ca99fe done\n#21 exporting attestation manifest sha256:2e48cd6b69c3f13bd30e56db0fe8ea3845385cdf235c226c96797014fa992798 0.0s done\n#21 exporting manifest list sha256:883c780480be9fd6cd93c312eaf0acc0c8e323614c831b04d950a91bee1e194f done\n#21 naming to docker.io/ctk-exec/pompem:3ebe76803a2f done\n#21 unpacking to docker.io/ctk-exec/pompem:3ebe76803a2f 0.1s done\n#21 DONE 0.6s",
   "error": null,
   "timed_out": false
  },
  "captures": [
   {
    "argv": [
-    "Pompem",
+    "2to3",
     "--help"
    ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'Pompem'"
-  },
-  {
-   "argv": [
-    "pompem",
-    "--help"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 27, in <module>\n    from . import urllib3\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/__init__.py\", line 8, in <module>\n    from .connectionpool import (\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/connectionpool.py\", line 42, in <module>\n    from .response import HTTPResponse\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/response.py\", line 8, in <module>\n    from ._collections import HTTPHeaderDict\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/_collections.py\", line 2, in <module>\n    from collections import Mapping, MutableMapping\nImportError: cannot import name 'Mapping' from 'collections' (/usr/local/lib/python3.12/collections/__init__.py)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/src/pompem.py\", line 5, in <module>\n    from core.exploit_finder import ExploitFinder\n  File \"/src/core/exploit_finder.py\", line 5, in <module>\n    from core.scrapers import PacketStorm, CXSecurity, ZeroDay, Vulners, \\\n  File \"/src/core/scrapers.py\", line 7, in <module>\n    from core.request_worker import RequestWorker, RequestWorkerHttpLib\n  File \"/src/core/request_worker.py\", line 4, in <module>\n    import requests\n  File \"/opt/venv/lib/python3.12/site-packages/requests/__init__.py\", line 58, in <module>\n    from . import utils\n  File \"/opt/venv/lib/python3.12/site-packages/requests/utils.py\", line 26, in <module>\n    from .compat import parse_http_list as _parse_list_header\n  File \"/opt/venv/lib/python3.12/site-packages/requests/compat.py\", line 7, in <module>\n    from .packages import chardet\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 29, in <module>\n    import urllib3\nModuleNotFoundError: No module named 'urllib3'\n",
-   "duration_ms": 195,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "pompem",
-    "-h"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 27, in <module>\n    from . import urllib3\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/__init__.py\", line 8, in <module>\n    from .connectionpool import (\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/connectionpool.py\", line 42, in <module>\n    from .response import HTTPResponse\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/response.py\", line 8, in <module>\n    from ._collections import HTTPHeaderDict\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/_collections.py\", line 2, in <module>\n    from collections import Mapping, MutableMapping\nImportError: cannot import name 'Mapping' from 'collections' (/usr/local/lib/python3.12/collections/__init__.py)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/src/pompem.py\", line 5, in <module>\n    from core.exploit_finder import ExploitFinder\n  File \"/src/core/exploit_finder.py\", line 5, in <module>\n    from core.scrapers import PacketStorm, CXSecurity, ZeroDay, Vulners, \\\n  File \"/src/core/scrapers.py\", line 7, in <module>\n    from core.request_worker import RequestWorker, RequestWorkerHttpLib\n  File \"/src/core/request_worker.py\", line 4, in <module>\n    import requests\n  File \"/opt/venv/lib/python3.12/site-packages/requests/__init__.py\", line 58, in <module>\n    from . import utils\n  File \"/opt/venv/lib/python3.12/site-packages/requests/utils.py\", line 26, in <module>\n    from .compat import parse_http_list as _parse_list_header\n  File \"/opt/venv/lib/python3.12/site-packages/requests/compat.py\", line 7, in <module>\n    from .packages import chardet\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 29, in <module>\n    import urllib3\nModuleNotFoundError: No module named 'urllib3'\n",
-   "duration_ms": 206,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "pompem",
-    "help"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 27, in <module>\n    from . import urllib3\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/__init__.py\", line 8, in <module>\n    from .connectionpool import (\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/connectionpool.py\", line 42, in <module>\n    from .response import HTTPResponse\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/response.py\", line 8, in <module>\n    from ._collections import HTTPHeaderDict\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/_collections.py\", line 2, in <module>\n    from collections import Mapping, MutableMapping\nImportError: cannot import name 'Mapping' from 'collections' (/usr/local/lib/python3.12/collections/__init__.py)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/src/pompem.py\", line 5, in <module>\n    from core.exploit_finder import ExploitFinder\n  File \"/src/core/exploit_finder.py\", line 5, in <module>\n    from core.scrapers import PacketStorm, CXSecurity, ZeroDay, Vulners, \\\n  File \"/src/core/scrapers.py\", line 7, in <module>\n    from core.request_worker import RequestWorker, RequestWorkerHttpLib\n  File \"/src/core/request_worker.py\", line 4, in <module>\n    import requests\n  File \"/opt/venv/lib/python3.12/site-packages/requests/__init__.py\", line 58, in <module>\n    from . import utils\n  File \"/opt/venv/lib/python3.12/site-packages/requests/utils.py\", line 26, in <module>\n    from .compat import parse_http_list as _parse_list_header\n  File \"/opt/venv/lib/python3.12/site-packages/requests/compat.py\", line 7, in <module>\n    from .packages import chardet\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 29, in <module>\n    import urllib3\nModuleNotFoundError: No module named 'urllib3'\n",
-   "duration_ms": 166,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "pompem",
-    "--usage"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 27, in <module>\n    from . import urllib3\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/__init__.py\", line 8, in <module>\n    from .connectionpool import (\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/connectionpool.py\", line 42, in <module>\n    from .response import HTTPResponse\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/response.py\", line 8, in <module>\n    from ._collections import HTTPHeaderDict\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/_collections.py\", line 2, in <module>\n    from collections import Mapping, MutableMapping\nImportError: cannot import name 'Mapping' from 'collections' (/usr/local/lib/python3.12/collections/__init__.py)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/src/pompem.py\", line 5, in <module>\n    from core.exploit_finder import ExploitFinder\n  File \"/src/core/exploit_finder.py\", line 5, in <module>\n    from core.scrapers import PacketStorm, CXSecurity, ZeroDay, Vulners, \\\n  File \"/src/core/scrapers.py\", line 7, in <module>\n    from core.request_worker import RequestWorker, RequestWorkerHttpLib\n  File \"/src/core/request_worker.py\", line 4, in <module>\n    import requests\n  File \"/opt/venv/lib/python3.12/site-packages/requests/__init__.py\", line 58, in <module>\n    from . import utils\n  File \"/opt/venv/lib/python3.12/site-packages/requests/utils.py\", line 26, in <module>\n    from .compat import parse_http_list as _parse_list_header\n  File \"/opt/venv/lib/python3.12/site-packages/requests/compat.py\", line 7, in <module>\n    from .packages import chardet\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 29, in <module>\n    import urllib3\nModuleNotFoundError: No module named 'urllib3'\n",
-   "duration_ms": 170,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "pompem"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 27, in <module>\n    from . import urllib3\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/__init__.py\", line 8, in <module>\n    from .connectionpool import (\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/connectionpool.py\", line 42, in <module>\n    from .response import HTTPResponse\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/response.py\", line 8, in <module>\n    from ._collections import HTTPHeaderDict\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/urllib3/_collections.py\", line 2, in <module>\n    from collections import Mapping, MutableMapping\nImportError: cannot import name 'Mapping' from 'collections' (/usr/local/lib/python3.12/collections/__init__.py)\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/src/pompem.py\", line 5, in <module>\n    from core.exploit_finder import ExploitFinder\n  File \"/src/core/exploit_finder.py\", line 5, in <module>\n    from core.scrapers import PacketStorm, CXSecurity, ZeroDay, Vulners, \\\n  File \"/src/core/scrapers.py\", line 7, in <module>\n    from core.request_worker import RequestWorker, RequestWorkerHttpLib\n  File \"/src/core/request_worker.py\", line 4, in <module>\n    import requests\n  File \"/opt/venv/lib/python3.12/site-packages/requests/__init__.py\", line 58, in <module>\n    from . import utils\n  File \"/opt/venv/lib/python3.12/site-packages/requests/utils.py\", line 26, in <module>\n    from .compat import parse_http_list as _parse_list_header\n  File \"/opt/venv/lib/python3.12/site-packages/requests/compat.py\", line 7, in <module>\n    from .packages import chardet\n  File \"/opt/venv/lib/python3.12/site-packages/requests/packages/__init__.py\", line 29, in <module>\n    import urllib3\nModuleNotFoundError: No module named 'urllib3'\n",
-   "duration_ms": 168,
+   "exit_code": 0,
+   "stdout": "Usage: 2to3 [options] file|dir ...\n\nOptions:\n  -h, --help            show this help message and exit\n  -d, --doctests_only   Fix up doctests only\n  -f FIX, --fix=FIX     Each FIX specifies a transformation; default: all\n  -j PROCESSES, --processes=PROCESSES\n                        Run 2to3 concurrently\n  -x NOFIX, --nofix=NOFIX\n                        Prevent a transformation from being run\n  -l, --list-fixes      List available transformations\n  -p, --print-function  Modify the grammar so that print() is a function\n  -e, --exec-function   Modify the grammar so that exec() is a function\n  -v, --verbose         More verbose logging\n  --no-diffs            Don't show diffs of the refactoring\n  -w, --write           Write back modified files\n  -n, --nobackups       Don't write backups for modified files\n  -o OUTPUT_DIR, --output-dir=OUTPUT_DIR\n                        Put output files in this directory instead of\n                        overwriting the input files.  Requires -n.\n  -W, --write-unchanged-files\n                        Also write files even if no changes were required\n                        (useful with --output-dir); implies -w.\n  --add-suffix=ADD_SUFFIX\n                        Append this string to all output filenames. Requires\n                        -n if non-empty.  ex: --add-suffix='3' will generate\n                        .py3 files.\n",
+   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\n",
+   "duration_ms": 126,
    "truncated": false,
    "error": null
   },
   {
    "argv": [
     "man",
-    "pompem"
+    "2to3"
    ],
-   "exit_code": 16,
+   "exit_code": 1,
    "stdout": "",
-   "stderr": "No manual entry for pompem\n",
+   "stderr": "No manual entry for 2to3\n(Alternatively, what manual page do you want from section 2to3?)\nFor example, try 'man man'.\n",
    "duration_ms": 1,
    "truncated": false,
    "error": null,
@@ -98,12 +39,12 @@
     "info",
     "--output=-",
     "--subnodes",
-    "pompem"
+    "2to3"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "info: No menu item 'pompem' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "stderr": "info: No menu item '2to3' in node '(dir)Top'\n",
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -112,8 +53,8 @@
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 8,
-   "binary": "pompem",
+   "commands_run": 3,
+   "binary": "2to3",
    "exit_code": null,
    "stdout": "",
    "stderr": "",
@@ -124,55 +65,11 @@
  ],
  "input_fingerprint": null,
  "examples": [],
- "skipped_reason": "no_entrypoint",
- "example_trials": {
-  "tried": 2,
-  "tried_this_wave": 0,
-  "promoted": 0,
-  "results": [
-   {
-    "id": "t-net-8ab78c86",
-    "argv": [
-     "pompem",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 1,
-    "output_bytes": 1971
-   },
-   {
-    "id": "t-net-474fbb0d",
-    "argv": [
-     "pompem",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 1,
-    "output_bytes": 1971
-   }
-  ],
-  "not_attempted": []
- },
+ "skipped_reason": "uncorroborated_entrypoint",
  "tool": "pompem",
  "repo": "rfunix/Pompem",
  "head_sha": "3ebe76803a2ffe8460723173250cc6b09b1a0255",
  "analyzer": "exec",
- "analyzer_version": "7",
- "generated_at": "2026-07-31T01:23:18.275671+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T18:28:28.577416+00:00"
 }

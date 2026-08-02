@@ -1,20 +1,818 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "rust",
-  "image_digest": null,
-  "duration_s": 1800.06,
-  "log_tail": "",
-  "error": "TimeoutExpired: Command '['docker', 'build', '-f', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-v13_f5tf/findomain/Dockerfile.ctk', '--label', 'ctk.exec=1', '-t', 'ctk-exec/findomain:85ad4a3a60bc', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-v13_f5tf/findomain']' timed out after 1800 seconds",
-  "timed_out": true
+  "image_digest": "sha256:2742a39c388a9b4bd51f02d49f043bcc379fef965c579328e29afc1f5731994b",
+  "duration_s": 244.15,
+  "log_tail": "#12 54.83    Compiling fhc v0.9.1 (https://github.com/Edu4rdSHL/fhc?tag=0.9.1#70ee3429)\n#12 63.00    Compiling findomain v10.0.1 (/src)\n#12 63.34 warning: struct `SubdomainsVirustotal` is never constructed\n#12 63.34   --> src/sources.rs:39:8\n#12 63.34    |\n#12 63.34 39 | struct SubdomainsVirustotal {\n#12 63.34    |        ^^^^^^^^^^^^^^^^^^^^\n#12 63.34    |\n#12 63.34    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default\n#12 63.34 \n#12 63.34 warning: struct `ResponseDataVirusTotal` is never constructed\n#12 63.34   --> src/sources.rs:44:8\n#12 63.34    |\n#12 63.34 44 | struct ResponseDataVirusTotal {\n#12 63.34    |        ^^^^^^^^^^^^^^^^^^^^^^\n#12 63.34 \n#12 72.78 warning: `findomain` (lib) generated 2 warnings\n#12 154.3     Finished `release` profile [optimized] target(s) in 2m 34s\n#12 DONE 154.3s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.4s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.0s\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.110 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.5s done\n#19 exporting manifest sha256:1640e5027cc1e85d798b6dd2d4ba73d3034ee8e3d299e5f7e230e8904cb7c385 done\n#19 exporting config sha256:80195b60773408b0efcf10f3ad312bd9e64a51c00b04e39cfc090eda0289de1f done\n#19 exporting attestation manifest sha256:eeb5d1ab10561be42bdf26f658834d875b037e25577966120ca431b9f4e8dbe3 0.0s done\n#19 exporting manifest list sha256:2742a39c388a9b4bd51f02d49f043bcc379fef965c579328e29afc1f5731994b done\n#19 naming to docker.io/ctk-exec/findomain:85ad4a3a60bc done\n#19 unpacking to docker.io/ctk-exec/findomain:85ad4a3a60bc\n#19 unpacking to docker.io/ctk-exec/findomain:85ad4a3a60bc 0.7s done\n#19 DONE 1.2s",
+  "error": null,
+  "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "findomain",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "The fastest and cross-platform subdomain enumerator, do not waste your time.\n\nUsage: findomain [OPTIONS]\n\nOptions:\n  -t, --target <TARGET>\n          Target host\n  -r, --resolved\n          Show/write only resolved subdomains\n  -i, --ip\n          Show/write the ip address of resolved subdomains\n  -f, --file <FILES>\n          Use a list of subdomains writen in a file as input\n  -o, --output\n          Write to an automatically generated output file. The name of the output file is generated using the format: target.txt. If you want a custom output file name, use the -u/--unique-output option\n  -u, --unique-output <UNIQUE_OUTPUT>\n          Write all the results for a target or a list of targets to a specified filename\n  -m, --monitoring-flag\n          Activate Findomain monitoring mode\n      --postgres-user <POSTGRES_USER>\n          Postgresql username\n      --postgres-password <POSTGRES_PASSWORD>\n          Postgresql password\n      --postgres-host <POSTGRES_HOST>\n          Postgresql host\n      --postgres-port <POSTGRES_PORT>\n          Postgresql port\n      --postgres-database <POSTGRES_DATABASE>\n          Postgresql database\n  -q, --quiet\n          Remove informative messages but show fatal errors or subdomains not found message\n      --query-database\n          Query the findomain database to search subdomains that have already been discovered\n      --import-subdomains <IMPORT_SUBDOMAINS>\n          Import subdomains from one or multiple files. Subdomains need to be one per line in the file to import\n      --enable-dot\n          Enable DNS over TLS for resolving subdomains IPs\n      --ipv6-only\n          Perform a IPv6 lookup only\n      --threads <THREADS>\n          Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Deprecated option, use --lighweight-threads instead. This would be removed in the future\n      --lightweight-threads <LIGHTWEIGHT_THREADS>\n          Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Default is 50\n      --screenshots-threads <SCREENSHOTS_THREADS>\n          Number of threads to use to use for taking screenshots. Default is 10\n      --parallel-ip-ports-scan <PARALLEL_IP_PORTS_SCAN>\n          Number of IPs that will be port-scanned at the same time. Default is 10\n      --tcp-connect-threads <TCP_CONNECT_THREADS>\n          Number of threads to use for TCP connections - It's the equivalent of Nmap's --min-rate. Default is 500\n      --resolvers <CUSTOM_RESOLVERS>\n          Path to a file (or files) containing a list of DNS IP address. If no specified then Google, Cloudflare and Quad9 DNS servers are used\n      --aempty\n          Send alert to webhooks still when no new subdomains have been found\n  -x, --as-resolver\n          Use Findomain as resolver for a list of domains in a file\n  -w, --wordlist <WORDLISTS>\n          Wordlist file to use in the bruteforce process. Using it option automatically enables bruteforce mode\n      --no-wildcards\n          Disable wilcard detection when resolving subdomains\n      --filter <STRING_FILTER>\n          Filter subdomains containing specifics strings\n      --exclude <STRING_EXCLUDE>\n          Exclude subdomains containing specifics strings\n      --exclude-sources <EXCLUDE_SOURCES>\n          Exclude sources from searching subdomains in [possible values: certspotter, crtsh, sublist3r, facebook, spyse, threatcrowd, virustotalapikey, anubis, urlscan, securitytrails, threatminer, c99, bufferover_free, bufferover_paid]\n      --http-status\n          Check the HTTP status of subdomains\n  -c, --config <CONFIG_FILE>\n          Use a configuration file. The default configuration file is findomain and the format can be toml, json, hjson, ini or yml\n      --rate-limit <RATE_LIMIT>\n          Set the rate limit in seconds for each target during enumeration\n      --pscan\n          Enable port scanner\n      --iport <INITIAL_PORT>\n          Initial port to scan. Default 0\n      --lport <LAST_PORT>\n          Last port to scan. Default 1000\n  -v, --verbose\n          Enable verbose mode (useful to debug problems)\n      --mtimeout\n          Allow Findomain to insert data in the database when the webhook returns a timeout error\n      --no-monitor\n          Disable monitoring mode while saving data to database\n  -s, --screenshots <SCREENSHOTS_PATH>\n          Path to save the screenshots of the HTTP(S) website for subdomains with active ones\n      --sandbox\n          Enable Chrome/Chromium sandbox. It is disabled by default because a big number of users run the tool using the root user by default. Make sure you are not running the program as root user before using this option\n  -j, --jobname <JOBNAME>\n          Use an database identifier for jobs. It is useful when you want to relate different targets into a same job name. To extract the data by job name identifier, use the query-jobname option\n      --query-jobname\n          Extract all the subdomains from the database where the job name is the specified using the jobname option\n      --http-timeout <HTTP_TIMEOUT>\n          Value in seconds for the HTTP Status check of subdomains. Default 5\n      --tcp-connect-timeout <TCP_CONNECT_TIMEOUT>\n          Value in milliseconds to wait for the TCP connection (ip:port) in the ports scanning function. Default 2000\n      --stdin\n          Read from stdin instead of files or aguments\n      --ua <USER_AGENTS_FILE>\n          Path to file containing user agents strings\n      --randomize\n          Enable randomization when reading targets from files\n      --no-resolve\n          Disable pre-screenshotting jobs (http check and ip discover) when used as resolver to take screenshots\n      --external-subdomains\n          Get external subdomains with amass and subfinder\n      --validate\n          Validate all the subdomains from the specified file\n      --resolver-timeout <RESOLVER_TIMEOUT>\n          Timeout in seconds for the resolver. Default 1\n      --http-retries <HTTP_RETRIES>\n          Number of retries for the HTTP Status check of subdomains. Default 1\n      --double-dns-check\n          Enable double DNS check. This means that the subdomains that report an IP address are checked again using a list of trustable resolvers to avoid false-positives. Only applies when using custom resolvers\n  -n, --no-discover\n          Prevent findomain from searching subdomains itself. Useful when you are importing subdomains from other tools\n      --max-http-redirects <MAX_HTTP_REDIRECTS>\n          Maximum number of HTTP redirects to follow. Default 0\n      --reset-database\n          Reset the database. It will delete all the data from the database\n  -h, --help\n          Print help\n  -V, --version\n          Print version\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "findomain"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for findomain\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "findomain"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'findomain' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "findomain",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "build_timeout",
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--target": "Target host",
+   "-t": "Target host",
+   "--resolved": "Show/write only resolved subdomains",
+   "-r": "Show/write only resolved subdomains",
+   "--ip": "Show/write the ip address of resolved subdomains",
+   "-i": "Show/write the ip address of resolved subdomains",
+   "--file": "Use a list of subdomains writen in a file as input",
+   "-f": "Use a list of subdomains writen in a file as input",
+   "--output": "Write to an automatically generated output file. The name of the output file is generated using the format: target.txt. If you want a custom output file name, use the -u/--unique-output option",
+   "-o": "Write to an automatically generated output file. The name of the output file is generated using the format: target.txt. If you want a custom output file name, use the -u/--unique-output option",
+   "--unique-output": "Write all the results for a target or a list of targets to a specified filename",
+   "-u": "Write all the results for a target or a list of targets to a specified filename",
+   "--monitoring-flag": "Activate Findomain monitoring mode",
+   "-m": "Activate Findomain monitoring mode",
+   "--postgres-user": "Postgresql username",
+   "--postgres-password": "Postgresql password",
+   "--postgres-host": "Postgresql host",
+   "--postgres-port": "Postgresql port",
+   "--postgres-database": "Postgresql database",
+   "--quiet": "Remove informative messages but show fatal errors or subdomains not found message",
+   "-q": "Remove informative messages but show fatal errors or subdomains not found message",
+   "--query-database": "Query the findomain database to search subdomains that have already been discovered",
+   "--import-subdomains": "Import subdomains from one or multiple files. Subdomains need to be one per line in the file to import",
+   "--enable-dot": "Enable DNS over TLS for resolving subdomains IPs",
+   "--ipv6-only": "Perform a IPv6 lookup only",
+   "--threads": "Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Deprecated option, use --lighweight-threads instead. This would be removed in the future",
+   "--lightweight-threads": "Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Default is 50",
+   "--screenshots-threads": "Number of threads to use to use for taking screenshots. Default is 10",
+   "--parallel-ip-ports-scan": "Number of IPs that will be port-scanned at the same time. Default is 10",
+   "--tcp-connect-threads": "Number of threads to use for TCP connections - It's the equivalent of Nmap's --min-rate. Default is 500",
+   "--resolvers": "Path to a file (or files) containing a list of DNS IP address. If no specified then Google, Cloudflare and Quad9 DNS servers are used",
+   "--aempty": "Send alert to webhooks still when no new subdomains have been found",
+   "--as-resolver": "Use Findomain as resolver for a list of domains in a file",
+   "-x": "Use Findomain as resolver for a list of domains in a file",
+   "--wordlist": "Wordlist file to use in the bruteforce process. Using it option automatically enables bruteforce mode",
+   "-w": "Wordlist file to use in the bruteforce process. Using it option automatically enables bruteforce mode",
+   "--no-wildcards": "Disable wilcard detection when resolving subdomains",
+   "--filter": "Filter subdomains containing specifics strings",
+   "--exclude": "Exclude subdomains containing specifics strings",
+   "--exclude-sources": "Exclude sources from searching subdomains in [possible values: certspotter, crtsh, sublist3r, facebook, spyse, threatcrowd, virustotalapikey, anubis, urlscan, securitytrails, threatminer, c99, bufferover_free, bufferover_paid]",
+   "--http-status": "Check the HTTP status of subdomains",
+   "--config": "Use a configuration file. The default configuration file is findomain and the format can be toml, json, hjson, ini or yml",
+   "-c": "Use a configuration file. The default configuration file is findomain and the format can be toml, json, hjson, ini or yml",
+   "--rate-limit": "Set the rate limit in seconds for each target during enumeration",
+   "--pscan": "Enable port scanner",
+   "--iport": "Initial port to scan. Default 0",
+   "--lport": "Last port to scan. Default 1000",
+   "--verbose": "Enable verbose mode (useful to debug problems)",
+   "-v": "Enable verbose mode (useful to debug problems)",
+   "--mtimeout": "Allow Findomain to insert data in the database when the webhook returns a timeout error",
+   "--no-monitor": "Disable monitoring mode while saving data to database",
+   "--screenshots": "Path to save the screenshots of the HTTP(S) website for subdomains with active ones",
+   "-s": "Path to save the screenshots of the HTTP(S) website for subdomains with active ones",
+   "--sandbox": "Enable Chrome/Chromium sandbox. It is disabled by default because a big number of users run the tool using the root user by default. Make sure you are not running the program as root user before using this option",
+   "--jobname": "Use an database identifier for jobs. It is useful when you want to relate different targets into a same job name. To extract the data by job name identifier, use the query-jobname option",
+   "-j": "Use an database identifier for jobs. It is useful when you want to relate different targets into a same job name. To extract the data by job name identifier, use the query-jobname option",
+   "--query-jobname": "Extract all the subdomains from the database where the job name is the specified using the jobname option",
+   "--http-timeout": "Value in seconds for the HTTP Status check of subdomains. Default 5",
+   "--tcp-connect-timeout": "Value in milliseconds to wait for the TCP connection (ip:port) in the ports scanning function. Default 2000",
+   "--stdin": "Read from stdin instead of files or aguments",
+   "--ua": "Path to file containing user agents strings",
+   "--randomize": "Enable randomization when reading targets from files",
+   "--no-resolve": "Disable pre-screenshotting jobs (http check and ip discover) when used as resolver to take screenshots",
+   "--external-subdomains": "Get external subdomains with amass and subfinder",
+   "--validate": "Validate all the subdomains from the specified file",
+   "--resolver-timeout": "Timeout in seconds for the resolver. Default 1",
+   "--http-retries": "Number of retries for the HTTP Status check of subdomains. Default 1",
+   "--double-dns-check": "Enable double DNS check. This means that the subdomains that report an IP address are checked again using a list of trustable resolvers to avoid false-positives. Only applies when using custom resolvers",
+   "--no-discover": "Prevent findomain from searching subdomains itself. Useful when you are importing subdomains from other tools",
+   "-n": "Prevent findomain from searching subdomains itself. Useful when you are importing subdomains from other tools",
+   "--max-http-redirects": "Maximum number of HTTP redirects to follow. Default 0",
+   "--reset-database": "Reset the database. It will delete all the data from the database",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--target": [
+    "-t"
+   ],
+   "--resolved": [
+    "-r"
+   ],
+   "--ip": [
+    "-i"
+   ],
+   "--file": [
+    "-f"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--unique-output": [
+    "-u"
+   ],
+   "--monitoring-flag": [
+    "-m"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--as-resolver": [
+    "-x"
+   ],
+   "--wordlist": [
+    "-w"
+   ],
+   "--config": [
+    "-c"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--screenshots": [
+    "-s"
+   ],
+   "--jobname": [
+    "-j"
+   ],
+   "--no-discover": [
+    "-n"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "findomain",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5a6443f9fdfb01a8fe8f17312a490397d4d86c9f6f8b495041f3b75f1e658c37",
+  "text": "The fastest and cross-platform subdomain enumerator, do not waste your time.\n\nUsage: findomain [OPTIONS]\n\nOptions:\n  -t, --target <TARGET>\n          Target host\n  -r, --resolved\n          Show/write only resolved subdomains\n  -i, --ip\n          Show/write the ip address of resolved subdomains\n  -f, --file <FILES>\n          Use a list of subdomains writen in a file as input\n  -o, --output\n          Write to an automatically generated output file. The name of the output file is generated using the format: target.txt. If you want a custom output file name, use the -u/--unique-output option\n  -u, --unique-output <UNIQUE_OUTPUT>\n          Write all the results for a target or a list of targets to a specified filename\n  -m, --monitoring-flag\n          Activate Findomain monitoring mode\n      --postgres-user <POSTGRES_USER>\n          Postgresql username\n      --postgres-password <POSTGRES_PASSWORD>\n          Postgresql password\n      --postgres-host <POSTGRES_HOST>\n          Postgresql host\n      --postgres-port <POSTGRES_PORT>\n          Postgresql port\n      --postgres-database <POSTGRES_DATABASE>\n          Postgresql database\n  -q, --quiet\n          Remove informative messages but show fatal errors or subdomains not found message\n      --query-database\n          Query the findomain database to search subdomains that have already been discovered\n      --import-subdomains <IMPORT_SUBDOMAINS>\n          Import subdomains from one or multiple files. Subdomains need to be one per line in the file to import\n      --enable-dot\n          Enable DNS over TLS for resolving subdomains IPs\n      --ipv6-only\n          Perform a IPv6 lookup only\n      --threads <THREADS>\n          Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Deprecated option, use --lighweight-threads instead. This would be removed in the future\n      --lightweight-threads <LIGHTWEIGHT_THREADS>\n          Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Default is 50\n      --screenshots-threads <SCREENSHOTS_THREADS>\n          Number of threads to use to use for taking screenshots. Default is 10\n      --parallel-ip-ports-scan <PARALLEL_IP_PORTS_SCAN>\n          Number of IPs that will be port-scanned at the same time. Default is 10\n      --tcp-connect-threads <TCP_CONNECT_THREADS>\n          Number of threads to use for TCP connections - It's the equivalent of Nmap's --min-rate. Default is 500\n      --resolvers <CUSTOM_RESOLVERS>\n          Path to a file (or files) containing a list of DNS IP address. If no specified then Google, Cloudflare and Quad9 DNS servers are used\n      --aempty\n          Send alert to webhooks still when no new subdomains have been found\n  -x, --as-resolver\n          Use Findomain as resolver for a list of domains in a file\n  -w, --wordlist <WORDLISTS>\n          Wordlist file to use in the bruteforce process. Using it option automatically enables bruteforce mode\n      --no-wildcards\n          Disable wilcard detection when resolving subdomains\n      --filter <STRING_FILTER>\n          Filter subdomains containing specifics strings\n      --exclude <STRING_EXCLUDE>\n          Exclude subdomains containing specifics strings\n      --exclude-sources <EXCLUDE_SOURCES>\n          Exclude sources from searching subdomains in [possible values: certspotter, crtsh, sublist3r, facebook, spyse, threatcrowd, virustotalapikey, anubis, urlscan, securitytrails, threatminer, c99, bufferover_free, bufferover_paid]\n      --http-status\n          Check the HTTP status of subdomains\n  -c, --config <CONFIG_FILE>\n          Use a configuration file. The default configuration file is findomain and the format can be toml, json, hjson, ini or yml\n      --rate-limit <RATE_LIMIT>\n          Set the rate limit in seconds for each target during enumeration\n      --pscan\n          Enable port scanner\n      --iport <INITIAL_PORT>\n          Initial port to scan. Default 0\n      --lport <LAST_PORT>\n          Last port to scan. Default 1000\n  -v, --verbose\n          Enable verbose mode (useful to debug problems)\n      --mtimeout\n          Allow Findomain to insert data in the database when the webhook returns a timeout error\n      --no-monitor\n          Disable monitoring mode while saving data to database\n  -s, --screenshots <SCREENSHOTS_PATH>\n          Path to save the screenshots of the HTTP(S) website for subdomains with active ones\n      --sandbox\n          Enable Chrome/Chromium sandbox. It is disabled by default because a big number of users run the tool using the root user by default. Make sure you are not running the program as root user before using this option\n  -j, --jobname <JOBNAME>\n          Use an database identifier for jobs. It is useful when you want to relate different targets into a same job name. To extract the data by job name identifier, use the query-jobname option\n      --query-jobname\n          Extract all the subdomains from the database where the job name is the specified using the jobname option\n      --http-timeout <HTTP_TIMEOUT>\n          Value in seconds for the HTTP Status check of subdomains. Default 5\n      --tcp-connect-timeout <TCP_CONNECT_TIMEOUT>\n          Value in milliseconds to wait for the TCP connection (ip:port) in the ports scanning function. Default 2000\n      --stdin\n          Read from stdin instead of files or aguments\n      --ua <USER_AGENTS_FILE>\n          Path to file containing user agents strings\n      --randomize\n          Enable randomization when reading targets from files\n      --no-resolve\n          Disable pre-screenshotting jobs (http check and ip discover) when used as resolver to take screenshots\n      --external-subdomains\n          Get external subdomains with amass and subfinder\n      --validate\n          Validate all the subdomains from the specified file\n      --resolver-timeout <RESOLVER_TIMEOUT>\n          Timeout in seconds for the resolver. Default 1\n      --http-retries <HTTP_RETRIES>\n          Number of retries for the HTTP Status check of subdomains. Default 1\n      --double-dns-check\n          Enable double DNS check. This means that the subdomains that report an IP address are checked again using a list of trustable resolvers to avoid false-positives. Only applies when using custom resolvers\n  -n, --no-discover\n          Prevent findomain from searching subdomains itself. Useful when you are importing subdomains from other tools\n      --max-http-redirects <MAX_HTTP_REDIRECTS>\n          Maximum number of HTTP redirects to follow. Default 0\n      --reset-database\n          Reset the database. It will delete all the data from the database\n  -h, --help\n          Print help\n  -V, --version\n          Print version\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--file",
+   "--help",
+   "--target",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--get-ip"
+  ],
+  "help_only": [
+   "--aempty",
+   "--as-resolver",
+   "--config",
+   "--double-dns-check",
+   "--enable-dot",
+   "--exclude",
+   "--exclude-sources",
+   "--external-subdomains",
+   "--filter",
+   "--http-retries",
+   "--http-status",
+   "--http-timeout",
+   "--import-subdomains",
+   "--ip",
+   "--iport",
+   "--ipv6-only",
+   "--jobname",
+   "--lightweight-threads",
+   "--lport",
+   "--max-http-redirects",
+   "--monitoring-flag",
+   "--mtimeout",
+   "--no-discover",
+   "--no-monitor",
+   "--no-resolve",
+   "--no-wildcards",
+   "--output",
+   "--parallel-ip-ports-scan",
+   "--postgres-database",
+   "--postgres-host",
+   "--postgres-password",
+   "--postgres-port",
+   "--postgres-user",
+   "--pscan",
+   "--query-database",
+   "--query-jobname",
+   "--quiet",
+   "--randomize",
+   "--rate-limit",
+   "--reset-database",
+   "--resolved",
+   "--resolver-timeout",
+   "--resolvers",
+   "--sandbox",
+   "--screenshots",
+   "--screenshots-threads",
+   "--stdin",
+   "--tcp-connect-threads",
+   "--tcp-connect-timeout",
+   "--threads",
+   "--ua",
+   "--unique-output",
+   "--validate",
+   "--verbose",
+   "--wordlist",
+   "-V",
+   "-c",
+   "-f",
+   "-h",
+   "-i",
+   "-j",
+   "-m",
+   "-n",
+   "-o",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-w",
+   "-x"
+  ],
+  "mining_coverage": 0.05263157894736842
+ },
+ "surface": {
+  "flags": {
+   "--aempty": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Send alert to webhooks still when no new subdomains have been found"
+   },
+   "--as-resolver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use Findomain as resolver for a list of domains in a file",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a configuration file. The default configuration file is findomain and the format can be toml, json, hjson, ini or yml",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--double-dns-check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable double DNS check. This means that the subdomains that report an IP address are checked again using a list of trustable resolvers to avoid false-positives. Only applies when using custom resolvers"
+   },
+   "--enable-dot": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable DNS over TLS for resolving subdomains IPs"
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude subdomains containing specifics strings"
+   },
+   "--exclude-sources": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude sources from searching subdomains in [possible values: certspotter, crtsh, sublist3r, facebook, spyse, threatcrowd, virustotalapikey, anubis, urlscan, securitytrails, threatminer, c99, bufferover_free, bufferover_paid]"
+   },
+   "--external-subdomains": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Get external subdomains with amass and subfinder"
+   },
+   "--file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use a list of subdomains writen in a file as input",
+    "kind": "option",
+    "first_tag": "0.1.2",
+    "first_date": "2019-04-22T22:46:32-05:00",
+    "last_tag": "0.1.2",
+    "last_date": "2019-04-22T22:46:32-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--filter": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Filter subdomains containing specifics strings"
+   },
+   "--get-ip": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Return the subdomain list with IP address if resolved.",
+    "kind": "option",
+    "first_tag": "0.1.2",
+    "first_date": "2019-04-22T22:46:32-05:00",
+    "last_tag": "0.1.2",
+    "last_date": "2019-04-22T22:46:32-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "kind": "option",
+    "first_tag": "0.1.2",
+    "first_date": "2019-04-22T22:46:32-05:00",
+    "last_tag": "0.1.2",
+    "last_date": "2019-04-22T22:46:32-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--http-retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of retries for the HTTP Status check of subdomains. Default 1"
+   },
+   "--http-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check the HTTP status of subdomains"
+   },
+   "--http-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Value in seconds for the HTTP Status check of subdomains. Default 5"
+   },
+   "--import-subdomains": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Import subdomains from one or multiple files. Subdomains need to be one per line in the file to import"
+   },
+   "--ip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show/write the ip address of resolved subdomains",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--iport": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Initial port to scan. Default 0"
+   },
+   "--ipv6-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Perform a IPv6 lookup only"
+   },
+   "--jobname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an database identifier for jobs. It is useful when you want to relate different targets into a same job name. To extract the data by job name identifier, use the query-jobname option",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--lightweight-threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Default is 50"
+   },
+   "--lport": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Last port to scan. Default 1000"
+   },
+   "--max-http-redirects": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum number of HTTP redirects to follow. Default 0"
+   },
+   "--monitoring-flag": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Activate Findomain monitoring mode",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--mtimeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Allow Findomain to insert data in the database when the webhook returns a timeout error"
+   },
+   "--no-discover": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prevent findomain from searching subdomains itself. Useful when you are importing subdomains from other tools",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--no-monitor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable monitoring mode while saving data to database"
+   },
+   "--no-resolve": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable pre-screenshotting jobs (http check and ip discover) when used as resolver to take screenshots"
+   },
+   "--no-wildcards": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable wilcard detection when resolving subdomains"
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write to an automatically generated output file. The name of the output file is generated using the format: target.txt. If you want a custom output file name, use the -u/--unique-output option",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--parallel-ip-ports-scan": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of IPs that will be port-scanned at the same time. Default is 10"
+   },
+   "--postgres-database": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Postgresql database"
+   },
+   "--postgres-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Postgresql host"
+   },
+   "--postgres-password": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Postgresql password"
+   },
+   "--postgres-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Postgresql port"
+   },
+   "--postgres-user": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Postgresql username"
+   },
+   "--pscan": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable port scanner"
+   },
+   "--query-database": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Query the findomain database to search subdomains that have already been discovered"
+   },
+   "--query-jobname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extract all the subdomains from the database where the job name is the specified using the jobname option"
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Remove informative messages but show fatal errors or subdomains not found message",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--randomize": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable randomization when reading targets from files"
+   },
+   "--rate-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the rate limit in seconds for each target during enumeration"
+   },
+   "--reset-database": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Reset the database. It will delete all the data from the database"
+   },
+   "--resolved": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show/write only resolved subdomains",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--resolver-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Timeout in seconds for the resolver. Default 1"
+   },
+   "--resolvers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to a file (or files) containing a list of DNS IP address. If no specified then Google, Cloudflare and Quad9 DNS servers are used"
+   },
+   "--sandbox": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable Chrome/Chromium sandbox. It is disabled by default because a big number of users run the tool using the root user by default. Make sure you are not running the program as root user before using this option"
+   },
+   "--screenshots": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to save the screenshots of the HTTP(S) website for subdomains with active ones",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--screenshots-threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads to use to use for taking screenshots. Default is 10"
+   },
+   "--stdin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read from stdin instead of files or aguments"
+   },
+   "--target": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Target host",
+    "kind": "option",
+    "first_tag": "0.1.2",
+    "first_date": "2019-04-22T22:46:32-05:00",
+    "last_tag": "0.1.2",
+    "last_date": "2019-04-22T22:46:32-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--tcp-connect-threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads to use for TCP connections - It's the equivalent of Nmap's --min-rate. Default is 500"
+   },
+   "--tcp-connect-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Value in milliseconds to wait for the TCP connection (ip:port) in the ports scanning function. Default 2000"
+   },
+   "--threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads to use for lightweight tasks such as IP discovery and HTTP checks. Deprecated option, use --lighweight-threads instead. This would be removed in the future"
+   },
+   "--ua": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to file containing user agents strings"
+   },
+   "--unique-output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write all the results for a target or a list of targets to a specified filename",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--validate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Validate all the subdomains from the specified file"
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable verbose mode (useful to debug problems)",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "kind": "option",
+    "first_tag": "0.1.2",
+    "first_date": "2019-04-22T22:46:32-05:00",
+    "last_tag": "0.1.2",
+    "last_date": "2019-04-22T22:46:32-05:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--wordlist": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wordlist file to use in the bruteforce process. Using it option automatically enables bruteforce mode",
+    "aliases": [
+     "-w"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-3e97df64",
+    "argv": [
+     "findomain",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-3e97df64' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-c9a2d1fb",
+    "argv": [
+     "findomain",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 112
+   },
+   {
+    "id": "t-net-c7e9c117",
+    "argv": [
+     "findomain",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 105
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "findomain --help",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 36,
+    "reason": "needs-network-or-interactive",
+    "token": "--help"
+   },
+   {
+    "raw": "./findomain",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 57,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "findomain",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 71,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "findomain_fb_token=\"YourAccessToken\" findomain -(options)",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 223,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "findomain_discord_webhook='https://discordapp.com/api/webhooks/XXXXXXXXXXXXXXX' findomain_slack_webhook='https://hooks.slack.com/services/[REDACTED:slack-webhook-url]' findomain -m -t example.com --postgres-database findomain --postgres-user findomain --postgres-host localhost --postgres-port 5432",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 359,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "findomain_discord_webhook='https://discordapp.com/api/webhooks/XXXXXXXXXXXXXXX' findomain_slack_webhook='https://hooks.slack.com/services/[REDACTED:slack-webhook-url]' findomain -m -t example.com --postgres-user postgres --postgres-password psql  --postgres-host 192.168.122.130 --postgres-port 5432",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 365,
+    "reason": "needs-live-target",
+    "token": "192.168.122.130"
+   },
+   {
+    "raw": "findomain_discord_webhook='https://discordapp.com/api/webhooks/XXXXXXXXXXXXXXX' findomain_slack_webhook='https://hooks.slack.com/services/[REDACTED:slack-webhook-url]' findomain -m -t example.com",
+    "source": "readme",
+    "path": "docs/INSTALLATION.md",
+    "line": 377,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "findomain",
  "repo": "Findomain/Findomain",
  "head_sha": "85ad4a3a60bc167ce3c2adc3d94bd2bdecd976d5",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-30T03:35:19.149875+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T21:14:08.609217+00:00"
 }

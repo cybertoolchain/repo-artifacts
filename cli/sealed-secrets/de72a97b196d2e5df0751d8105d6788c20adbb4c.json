@@ -3,28 +3,191 @@
  "tags_considered": 40,
  "truncated": true,
  "surface": {
-  "--cert": {
+  "--accept-deprecated-v1-data": {
    "source": "parsed",
-   "help": "Certificate / public key to use for encryption.",
+   "help": "Accept deprecated V1 data field.",
+   "kind": "option",
+   "default": "true",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--additional-namespaces": {
+   "source": "parsed",
+   "help": "Comma-separated list of additional namespaces to be scanned.",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--all-namespaces": {
+   "source": "parsed",
+   "help": "Scan all namespaces or only the current namespace (default=true).",
+   "kind": "option",
+   "default": "true",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--allow-empty-data": {
+   "source": "parsed",
+   "help": "Allow empty data in the secret object",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--cert": {
+   "source": "parsed",
+   "help": "Certificate / public key file/URL to use for encryption. Overrides --controller-*",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2017-06-06T09:57:43+10:00",
-   "live": false,
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/ksonnet-seal/main.go",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--controller-name": {
+   "source": "parsed",
+   "help": "Name of sealed-secrets controller.",
+   "kind": "option",
+   "default": "sealed-secrets-controller",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--controller-namespace": {
+   "source": "parsed",
+   "help": "Namespace of sealed-secrets controller.",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--fetch-cert": {
+   "source": "parsed",
+   "help": "Write certificate to stdout. Useful for later use with --cert",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--format": {
+   "source": "parsed",
+   "help": "Output format for sealed secret. Either json or yaml",
+   "kind": "option",
+   "default": "json",
+   "aliases": [
+    "-o"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--from-file": {
+   "source": "parsed",
+   "help": "(only with --raw) Secret items can be sourced from files. Pro-tip: you can use /dev/stdin to read pipe input. This flag tries to follow the same syntax as in kubectl",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "stringslice",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--help": {
+   "source": "parsed",
+   "help": "Print this help message",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.4",
+   "first_date": "2023-11-15T12:18:05+01:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--key-cutoff-time": {
+   "source": "parsed",
+   "help": "Create a new key if latest one is older than this cutoff time. RFC1123 format with numeric timezone expected.",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
   },
   "--key-name": {
    "source": "parsed",
    "help": "Name of Secret containing public/private key.",
    "kind": "option",
    "default": "seal-key",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
    "last_tag": "v0.0.1",
@@ -36,46 +199,149 @@
    "low_confidence_reasons": [
     "untracked_releases"
    ]
+  },
+  "--key-order-priority": {
+   "source": "parsed",
+   "help": "Ordering of keys based on NotBefore certificate attribute or secret creation timestamp.",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.29.0",
+   "first_date": "2025-03-27T10:52:30Z",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--key-prefix": {
+   "source": "parsed",
+   "help": "Prefix used to name keys.",
+   "kind": "option",
+   "default": "sealed-secrets-key",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--key-renew-period": {
+   "source": "parsed",
+   "help": "New key generation period (automatic rotation deactivated if 0)",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "duration",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
   },
   "--key-size": {
    "source": "parsed",
    "help": "Size of encryption key.",
    "kind": "option",
    "default": "4096",
+   "takes_value": true,
+   "value_type": "int",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2017-06-06T09:57:43+10:00",
-   "live": false,
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/controller/main.go",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/controller/main.go"
   },
   "--key-ttl": {
    "source": "parsed",
    "help": "Duration that certificate is valid for.",
    "kind": "option",
    "default": null,
+   "takes_value": true,
+   "value_type": "duration",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2017-06-06T09:57:43+10:00",
-   "live": false,
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/controller/main.go",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/controller/main.go"
+  },
+  "--kubeclient-burst": {
+   "source": "parsed",
+   "help": "Kubeclient Burst",
+   "kind": "option",
+   "default": "10",
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.34.0",
+   "first_date": "2025-12-18T13:53:43+01:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--kubeclient-qps": {
+   "source": "parsed",
+   "help": "Kubeclient QPS (negative value disables ratelimiting)",
+   "kind": "option",
+   "default": "5",
+   "takes_value": true,
+   "value_type": "float32",
+   "first_tag": "v0.34.0",
+   "first_date": "2025-12-18T13:53:43+01:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--kubeconfig": {
+   "source": "parsed",
+   "help": "Path to a kube config. Only required if out-of-cluster",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--label-selector": {
+   "source": "parsed",
+   "help": "Label selector which can be used to filter sealed secrets.",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
   },
   "--listen-addr": {
    "source": "parsed",
    "help": "HTTP serving address.",
    "kind": "option",
    "default": ":8080",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.24.0",
    "first_date": "2023-09-15T11:42:16+02:00",
    "last_tag": "v0.38.4",
@@ -89,6 +355,8 @@
    "help": "HTTP metrics serving address.",
    "kind": "option",
    "default": ":8081",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.24.5",
    "first_date": "2023-12-15T11:36:28+01:00",
    "last_tag": "v0.38.4",
@@ -97,28 +365,117 @@
    "attribution": "own",
    "source_path": "pkg/controller/server.go"
   },
-  "--my-cn": {
+  "--log-format": {
    "source": "parsed",
-   "help": "CN to use in generated certificate.",
+   "help": "Log format (text|json).",
+   "kind": "option",
+   "default": "text",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.26.0",
+   "first_date": "2024-02-15T11:41:41Z",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--log-info-stdout": {
+   "source": "parsed",
+   "help": "if true the controller will log info to stdout and error/warn to stderr.",
+   "kind": "option",
+   "default": "true",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--log-level": {
+   "source": "parsed",
+   "help": "Log level (INFO|ERROR).",
+   "kind": "option",
+   "default": "INFO",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.26.0",
+   "first_date": "2024-02-15T11:41:41Z",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--max-unseal-retries": {
+   "source": "parsed",
+   "help": "Max unseal retries.",
+   "kind": "option",
+   "default": "5",
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.27.3",
+   "first_date": "2024-12-05T11:47:49Z",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--merge-into": {
+   "source": "parsed",
+   "help": "Merge items from secret into an existing sealed secret file, updating the file in-place instead of writing to stdout.",
    "kind": "option",
    "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--my-cn": {
+   "source": "parsed",
+   "help": "Common name to be used as issuer/subject DN in generated certificate.",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
-   "last_tag": "v0.0.1",
-   "last_date": "2017-06-06T09:57:43+10:00",
-   "live": false,
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
    "attribution": "own",
-   "source_path": "cmd/controller/main.go",
-   "low_confidence_removal": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ]
+   "source_path": "cmd/controller/main.go"
+  },
+  "--name": {
+   "source": "parsed",
+   "help": "Name of the sealed secret (required with --raw and default (strict) scope)",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
   },
   "--namespace": {
    "source": "parsed",
    "help": "Default namespace to assume for Secret.",
    "kind": "option",
    "default": null,
+   "takes_value": true,
+   "value_type": "string",
    "first_tag": "v0.0.1",
    "first_date": "2017-06-06T09:57:43+10:00",
    "last_tag": "v0.0.1",
@@ -131,11 +488,115 @@
     "untracked_releases"
    ]
   },
+  "--old-gc-behavior": {
+   "source": "parsed",
+   "help": "Revert to old GC behavior where the controller deletes secrets instead of delegating that to k8s itself.",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--privatekey-annotations": {
+   "source": "parsed",
+   "help": "Comma-separated list of additional annotations to be put on renewed sealing keys.",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--privatekey-labels": {
+   "source": "parsed",
+   "help": "Comma-separated list of additional labels to be put on renewed sealing keys.",
+   "kind": "option",
+   "default": "",
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--rate-limit": {
+   "source": "parsed",
+   "help": "Number of allowed sustained request per second for verify endpoint",
+   "kind": "option",
+   "default": "2",
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--rate-limit-burst": {
+   "source": "parsed",
+   "help": "Number of requests allowed to exceed the rate limit per second for verify endpoint",
+   "kind": "option",
+   "default": "2",
+   "takes_value": true,
+   "value_type": "int",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--raw": {
+   "source": "parsed",
+   "help": "Encrypt a raw value passed via the --from-* flags instead of the whole secret object",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--re-encrypt": {
+   "source": "parsed",
+   "help": "Re-encrypt the given sealed secret to use the latest cluster key.",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
   "--read-timeout": {
    "source": "parsed",
    "help": "HTTP request timeout.",
    "kind": "option",
    "default": null,
+   "takes_value": true,
+   "value_type": "duration",
    "first_tag": "v0.24.0",
    "first_date": "2023-09-15T11:42:16+02:00",
    "last_tag": "v0.38.4",
@@ -144,11 +605,177 @@
    "attribution": "own",
    "source_path": "pkg/controller/server.go"
   },
+  "--recovery-private-key": {
+   "source": "parsed",
+   "help": "Private key filename used by the --recovery-unseal command. Multiple files accepted either via comma separated list or by repetition of the flag. Either PEM encoded private keys or a backup of a json/yaml encoded k8s sealed-secret controller secret (and v1.List) are accepted. ",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "stringslice",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--recovery-unseal": {
+   "source": "parsed",
+   "help": "Decrypt a sealed secrets file obtained from stdin, using the private key passed with --recovery-private-key. Intended to be used in disaster recovery mode.",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--rotate": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--rotate-period": {
+   "source": "parsed",
+   "help": "",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "duration",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--sealed-secret-file": {
+   "source": "parsed",
+   "help": "Sealed-secret (output) file",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-w"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--secret-file": {
+   "source": "parsed",
+   "help": "Secret (input) file",
+   "kind": "option",
+   "default": "",
+   "aliases": [
+    "-f"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--skip-recreate": {
+   "source": "parsed",
+   "help": "if true the controller will skip listening for managed secret changes to recreate them. This helps on limited permission environments.",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--update-status": {
+   "source": "parsed",
+   "help": "beta: if true, the controller will update the status sub-resource whenever it processes a sealed secret",
+   "kind": "option",
+   "default": "true",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--validate": {
+   "source": "parsed",
+   "help": "Validate that the sealed secret can be decrypted",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/kubeseal/main.go"
+  },
+  "--version": {
+   "source": "parsed",
+   "help": "Print version information and exit",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.24.0",
+   "first_date": "2023-09-15T11:42:16+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
+  "--watch-for-secrets": {
+   "source": "parsed",
+   "help": "beta: If this is true, the controller will watch for key secrets. This is useful if you create the key secrets externally.",
+   "kind": "option",
+   "default": "false",
+   "takes_value": false,
+   "first_tag": "v0.31.0",
+   "first_date": "2025-08-14T16:26:26+02:00",
+   "last_tag": "v0.38.4",
+   "last_date": "2026-07-03T14:43:09+02:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "cmd/controller/main.go"
+  },
   "--write-timeout": {
    "source": "parsed",
    "help": "HTTP response timeout.",
    "kind": "option",
    "default": null,
+   "takes_value": true,
+   "value_type": "duration",
    "first_tag": "v0.24.0",
    "first_date": "2023-09-15T11:42:16+02:00",
    "last_tag": "v0.38.4",
@@ -160,6 +787,160 @@
  },
  "events": [
   {
+   "flag": "--accept-deprecated-v1-data",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Accept deprecated V1 data field.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--additional-namespaces",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Comma-separated list of additional namespaces to be scanned.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--all-namespaces",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Scan all namespaces or only the current namespace (default=true).",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--allow-empty-data",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Allow empty data in the secret object",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--controller-name",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Name of sealed-secrets controller.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--controller-namespace",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Namespace of sealed-secrets controller.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--fetch-cert",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Write certificate to stdout. Useful for later use with --cert",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--format",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Output format for sealed secret. Either json or yaml",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--from-file",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "(only with --raw) Secret items can be sourced from files. Pro-tip: you can use /dev/stdin to read pipe input. This flag tries to follow the same syntax as in kubectl",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--key-cutoff-time",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Create a new key if latest one is older than this cutoff time. RFC1123 format with numeric timezone expected.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--key-prefix",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Prefix used to name keys.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--key-renew-period",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "New key generation period (automatic rotation deactivated if 0)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--kubeconfig",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to a kube config. Only required if out-of-cluster",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--label-selector",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Label selector which can be used to filter sealed secrets.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--listen-addr",
    "event": "added",
    "tag": "v0.24.0",
@@ -167,6 +948,116 @@
    "source": "parsed",
    "kind": "option",
    "help": "HTTP serving address.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--log-info-stdout",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "if true the controller will log info to stdout.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--merge-into",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Merge items from secret into an existing sealed secret file, updating the file in-place instead of writing to stdout.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--name",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Name of the sealed secret (required with --raw and default (strict) scope)",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--old-gc-behavior",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Revert to old GC behavior where the controller deletes secrets instead of delegating that to k8s itself.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--privatekey-annotations",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Comma-separated list of additional annotations to be put on renewed sealing keys.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--privatekey-labels",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Comma-separated list of additional labels to be put on renewed sealing keys.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--rate-limit",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Number of allowed sustained request per second for verify endpoint",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--rate-limit-burst",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Number of requests allowed to exceed the rate limit per second for verify endpoint",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--raw",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Encrypt a raw value passed via the --from-* flags instead of the whole secret object",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--re-encrypt",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Re-encrypt the given sealed secret to use the latest cluster key.",
    "spans_untracked_releases": true,
    "attribution": "own"
   },
@@ -182,6 +1073,116 @@
    "attribution": "own"
   },
   {
+   "flag": "--recovery-private-key",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Private key filename used by the --recovery-unseal command. Multiple files accepted either via comma separated list or by repetition of the flag. Either PEM encoded private keys or a backup of a json/yaml encoded k8s sealed-secret controller secret (and v1.List) are accepted. ",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--recovery-unseal",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Decrypt a sealed secrets file obtained from stdin, using the private key passed with --recovery-private-key. Intended to be used in disaster recovery mode.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--rotate",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--rotate-period",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--sealed-secret-file",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Sealed-secret (output) file",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--secret-file",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Secret (input) file",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--skip-recreate",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "if true the controller will skip listening for managed secret changes to recreate them. This helps on limited permission environments.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--update-status",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "beta: if true, the controller will update the status sub-resource whenever it processes a sealed secret",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--validate",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Validate that the sealed secret can be decrypted",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--version",
+   "event": "added",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Print version information and exit",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
    "flag": "--write-timeout",
    "event": "added",
    "tag": "v0.24.0",
@@ -193,21 +1194,6 @@
    "attribution": "own"
   },
   {
-   "flag": "--cert",
-   "event": "removed",
-   "tag": "v0.24.0",
-   "date": "2023-09-15T11:42:16+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Certificate / public key to use for encryption.",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
    "flag": "--key-name",
    "event": "removed",
    "tag": "v0.24.0",
@@ -215,51 +1201,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "Name of Secret containing public/private key.",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
-   "flag": "--key-size",
-   "event": "removed",
-   "tag": "v0.24.0",
-   "date": "2023-09-15T11:42:16+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Size of encryption key.",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
-   "flag": "--key-ttl",
-   "event": "removed",
-   "tag": "v0.24.0",
-   "date": "2023-09-15T11:42:16+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Duration that certificate is valid for.",
-   "low_confidence": true,
-   "low_confidence_reasons": [
-    "untracked_releases"
-   ],
-   "spans_untracked_releases": true,
-   "attribution": "own"
-  },
-  {
-   "flag": "--my-cn",
-   "event": "removed",
-   "tag": "v0.24.0",
-   "date": "2023-09-15T11:42:16+02:00",
-   "source": "parsed",
-   "kind": "option",
-   "help": "CN to use in generated certificate.",
    "low_confidence": true,
    "low_confidence_reasons": [
     "untracked_releases"
@@ -283,6 +1224,40 @@
    "attribution": "own"
   },
   {
+   "flag": "--cert",
+   "event": "help_changed",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Certificate / public key file/URL to use for encryption. Overrides --controller-*",
+   "previous_help": "Certificate / public key to use for encryption.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--my-cn",
+   "event": "help_changed",
+   "tag": "v0.24.0",
+   "date": "2023-09-15T11:42:16+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Common name to be used as issuer/subject DN in generated certificate.",
+   "previous_help": "CN to use in generated certificate.",
+   "spans_untracked_releases": true,
+   "attribution": "own"
+  },
+  {
+   "flag": "--help",
+   "event": "added",
+   "tag": "v0.24.4",
+   "date": "2023-11-15T12:18:05+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Print this help message",
+   "attribution": "own"
+  },
+  {
    "flag": "--listen-metrics-addr",
    "event": "added",
    "tag": "v0.24.5",
@@ -290,6 +1265,87 @@
    "source": "parsed",
    "kind": "option",
    "help": "HTTP metrics serving address.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log-format",
+   "event": "added",
+   "tag": "v0.26.0",
+   "date": "2024-02-15T11:41:41Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Log format (text|json).",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log-level",
+   "event": "added",
+   "tag": "v0.26.0",
+   "date": "2024-02-15T11:41:41Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Log level (INFO|ERROR).",
+   "attribution": "own"
+  },
+  {
+   "flag": "--max-unseal-retries",
+   "event": "added",
+   "tag": "v0.27.3",
+   "date": "2024-12-05T11:47:49Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Max unseal retries.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--key-order-priority",
+   "event": "added",
+   "tag": "v0.29.0",
+   "date": "2025-03-27T10:52:30Z",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Ordering of keys based on NotBefore certificate attribute or secret creation timestamp.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--watch-for-secrets",
+   "event": "added",
+   "tag": "v0.31.0",
+   "date": "2025-08-14T16:26:26+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "beta: If this is true, the controller will watch for key secrets. This is useful if you create the key secrets externally.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kubeclient-burst",
+   "event": "added",
+   "tag": "v0.34.0",
+   "date": "2025-12-18T13:53:43+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Kubeclient Burst",
+   "attribution": "own"
+  },
+  {
+   "flag": "--kubeclient-qps",
+   "event": "added",
+   "tag": "v0.34.0",
+   "date": "2025-12-18T13:53:43+01:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Kubeclient QPS (negative value disables ratelimiting)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log-info-stdout",
+   "event": "help_changed",
+   "tag": "v0.36.2",
+   "date": "2026-04-09T10:49:51+02:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "if true the controller will log info to stdout and error/warn to stderr.",
+   "previous_help": "if true the controller will log info to stdout.",
    "attribution": "own"
   }
  ],
@@ -311,7 +1367,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 3,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -321,7 +1377,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 3,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -331,7 +1387,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 3,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -341,7 +1397,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 3,
+   "flags": 41,
    "errors": 0
   },
   {
@@ -351,7 +1407,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 3,
+   "flags": 42,
    "errors": 0
   },
   {
@@ -361,7 +1417,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -371,7 +1427,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 43,
    "errors": 0
   },
   {
@@ -381,7 +1437,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -391,7 +1447,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -401,7 +1457,7 @@
    "files_matched": 99,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -411,7 +1467,7 @@
    "files_matched": 97,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -421,7 +1477,7 @@
    "files_matched": 97,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -431,7 +1487,7 @@
    "files_matched": 97,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -441,7 +1497,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 45,
    "errors": 0
   },
   {
@@ -451,7 +1507,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 46,
    "errors": 0
   },
   {
@@ -461,7 +1517,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 46,
    "errors": 0
   },
   {
@@ -471,7 +1527,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 47,
    "errors": 0
   },
   {
@@ -481,7 +1537,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 47,
    "errors": 0
   },
   {
@@ -491,7 +1547,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -501,7 +1557,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -511,7 +1567,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -521,7 +1577,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -531,7 +1587,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -541,7 +1597,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 48,
    "errors": 0
   },
   {
@@ -551,7 +1607,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -561,7 +1617,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -571,7 +1627,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -581,7 +1637,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -591,7 +1647,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -601,7 +1657,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -611,7 +1667,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -621,7 +1677,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -631,7 +1687,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -641,7 +1697,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -651,7 +1707,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -661,7 +1717,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -671,7 +1727,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -681,7 +1737,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   },
   {
@@ -691,7 +1747,7 @@
    "files_matched": 96,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 4,
+   "flags": 50,
    "errors": 0
   }
  ],
@@ -703,6 +1759,6 @@
  "repo": "bitnami-labs/sealed-secrets",
  "head_sha": "de72a97b196d2e5df0751d8105d6788c20adbb4c",
  "analyzer": "cli",
- "analyzer_version": "4",
- "generated_at": "2026-07-30T23:13:08.507457+00:00"
+ "analyzer_version": "6",
+ "generated_at": "2026-07-31T17:58:36.114177+00:00"
 }

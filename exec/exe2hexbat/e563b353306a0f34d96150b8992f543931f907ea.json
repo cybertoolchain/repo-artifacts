@@ -1,20 +1,282 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "python_script",
-  "image_digest": null,
-  "duration_s": 1800.04,
-  "log_tail": "",
-  "error": "TimeoutExpired: Command '['docker', 'build', '-f', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-4ndmvdpb/exe2hex/Dockerfile.ctk', '--label', 'ctk.exec=1', '-t', 'ctk-exec/exe2hex:e563b353306a', '/var/folders/dc/rg7njlvj2vq7c91q0sn6zhk80000gn/T/ctk-exec-4ndmvdpb/exe2hex']' timed out after 1800 seconds",
-  "timed_out": true
+  "image_digest": "sha256:5b15102b55269de260edcaa4b9454306bd41168d41377b5108af961187e18ead",
+  "duration_s": 7.1,
+  "log_tail": "#10 4.280 Installing collected packages: pip\n#10 4.280   Attempting uninstall: pip\n#10 4.281     Found existing installation: pip 25.0.1\n#10 4.294     Uninstalling pip-25.0.1:\n#10 4.296       Successfully uninstalled pip-25.0.1\n#10 4.717 Successfully installed pip-26.2\n#10 DONE 4.9s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.117 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.3s done\n#21 exporting manifest sha256:fa15f4b1ef1e49d47d7e9b67f67f096ef42a56b29d0402b57bd018e7c50e0062 done\n#21 exporting config sha256:b3a15cc530cef013f9d59b57e79fe2df33e72554b95cac44d373b2d28aa58b5f done\n#21 exporting attestation manifest sha256:2569f8f4433f7015a4bb391ce4c664f8a053b0072aa5b7fcae0181fc8409d2c2 done\n#21 exporting manifest list sha256:5b15102b55269de260edcaa4b9454306bd41168d41377b5108af961187e18ead done\n#21 naming to docker.io/ctk-exec/exe2hex:e563b353306a done\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a 0.6s done\n#21 DONE 0.9s",
+  "error": null,
+  "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "exe2hex",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\u001b[01;34m[*]\u001b[00m exe2hex v1.5.2\nUsage: exe2hex.py [options]\n\nOptions:\n  -h, --help  show this help message and exit\n  -x EXE      The EXE binary file to convert\n  -s          Read from STDIN\n  -m METHOD   METHOD to convert the EXE:\n              1 - DEBUG.exe method (.bat) - x86\n              2 - certutil.exe method (.bat) - x86/x64 (DEFAULT)\n              3 - PowerShell method (.cmd) - x86/x64\n  -o output   Output file\n  -e          URL encode the output\n  -r TEXT     pRefix - text to add before the command on each line\n  -f TEXT     suFfix - text to add after the command on each line\n  -l INT      Maximum HEX values per line\n  -c          Clones and compress the file before converting (-cc for higher\n              compression)\n  -t          Create a Expect file, to automate to a Telnet session.\n  -w          Create a Expect file, to automate to a WinEXE session.\n  -v          Enable verbose mode\n",
+   "stderr": "/src/exe2hex.py:474: SyntaxWarning: invalid escape sequence '\\['\n  send_user \"\\\\n\\\\n\\[i\\] Done\\\\n\"\n",
+   "duration_ms": 101,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "exe2hex"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for exe2hex\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "exe2hex"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'exe2hex' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "exe2hex",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "build_timeout",
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "-x": "The EXE binary file to convert",
+   "-s": "Read from STDIN",
+   "-m": "METHOD to convert the EXE: 1 - DEBUG.exe method (.bat) - x86 2 - certutil.exe method (.bat) - x86/x64 (DEFAULT) 3 - PowerShell method (.cmd) - x86/x64",
+   "-o": "Output file",
+   "-e": "URL encode the output",
+   "-r": "pRefix - text to add before the command on each line",
+   "-f": "suFfix - text to add after the command on each line",
+   "-l": "Maximum HEX values per line",
+   "-c": "Clones and compress the file before converting (-cc for higher compression)",
+   "-t": "Create a Expect file, to automate to a Telnet session.",
+   "-w": "Create a Expect file, to automate to a WinEXE session.",
+   "-v": "Enable verbose mode"
+  },
+  "values_seen": {
+   "-x": "EXE",
+   "-m": "METHOD",
+   "-r": "TEXT",
+   "-f": "TEXT",
+   "-l": "INT"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "exe2hex",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "534924256d7519f6ae5e36d0a24b06484f9c53d8d8b519d1e435b5589fd98256",
+  "text": "\u001b[01;34m[*]\u001b[00m exe2hex v1.5.2\nUsage: exe2hex.py [options]\n\nOptions:\n  -h, --help  show this help message and exit\n  -x EXE      The EXE binary file to convert\n  -s          Read from STDIN\n  -m METHOD   METHOD to convert the EXE:\n              1 - DEBUG.exe method (.bat) - x86\n              2 - certutil.exe method (.bat) - x86/x64 (DEFAULT)\n              3 - PowerShell method (.cmd) - x86/x64\n  -o output   Output file\n  -e          URL encode the output\n  -r TEXT     pRefix - text to add before the command on each line\n  -f TEXT     suFfix - text to add after the command on each line\n  -l INT      Maximum HEX values per line\n  -c          Clones and compress the file before converting (-cc for higher\n              compression)\n  -t          Create a Expect file, to automate to a Telnet session.\n  -w          Create a Expect file, to automate to a WinEXE session.\n  -v          Enable verbose mode\n/src/exe2hex.py:474: SyntaxWarning: invalid escape sequence '\\['\n  send_user \"\\\\n\\\\n\\[i\\] Done\\\\n\"\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--help",
+   "-c",
+   "-e",
+   "-f",
+   "-h",
+   "-l",
+   "-m",
+   "-o",
+   "-r",
+   "-s",
+   "-t",
+   "-v",
+   "-w",
+   "-x"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Clones and compress the file before converting (-cc for higher compression)"
+   },
+   "-e": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "URL encode the output"
+   },
+   "-f": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "suFfix - text to add after the command on each line",
+    "metavar": "TEXT"
+   },
+   "-l": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum HEX values per line",
+    "metavar": "INT"
+   },
+   "-m": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "METHOD to convert the EXE: 1 - DEBUG.exe method (.bat) - x86 2 - certutil.exe method (.bat) - x86/x64 (DEFAULT) 3 - PowerShell method (.cmd) - x86/x64",
+    "metavar": "METHOD"
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output file"
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "pRefix - text to add before the command on each line",
+    "metavar": "TEXT"
+   },
+   "-s": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read from STDIN"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Create a Expect file, to automate to a Telnet session."
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable verbose mode"
+   },
+   "-w": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Create a Expect file, to automate to a WinEXE session."
+   },
+   "-x": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The EXE binary file to convert",
+    "metavar": "EXE"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-c3504fe4",
+    "argv": [
+     "exe2hex",
+     "-x",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 79,
+    "grade": "rejected",
+    "reason": "operand-not-read",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 298,
+    "stability": 1.0
+   },
+   {
+    "id": "t-net-4bb34443",
+    "argv": [
+     "exe2hex",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 352
+   },
+   {
+    "id": "t-net-22411a99",
+    "argv": [
+     "exe2hex",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 339
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "/usr/bin/exe2hex -x /usr/share/windows-binaries/nc.exe -b /var/www/html/nc.txt -cc",
+    "source": "readme",
+    "path": "README.md",
+    "line": 80,
+    "reason": "unmappable-path",
+    "token": "/var/www/html/nc.txt"
+   }
+  ]
+ },
  "tool": "exe2hexbat",
  "repo": "g0tmi1k/exe2hex",
  "head_sha": "e563b353306a0f34d96150b8992f543931f907ea",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-30T03:33:59.539609+00:00"
+ "analyzer_version": "10",
+ "generated_at": "2026-08-01T21:05:17.290768+00:00"
 }

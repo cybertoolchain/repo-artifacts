@@ -1,0 +1,126 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": null,
+  "duration_s": 100.72,
+  "log_tail": "#12 57.93 go: downloading github.com/agext/levenshtein v1.2.3\n#12 57.93 go: downloading github.com/spiffe/go-spiffe/v2 v2.6.0\n#12 58.34 go: downloading github.com/cncf/xds/go v0.0.0-20260202195803-dba9d589def2\n#12 61.24 go: downloading github.com/go-restruct/restruct v1.2.0-alpha\n#12 61.24 go: downloading github.com/cyphar/filepath-securejoin v0.6.1\n#12 61.24 go: downloading github.com/pjbgf/sha1cd v0.6.0\n#12 61.24 go: downloading github.com/jbenet/go-context v0.0.0-20150711004518-d14ea06fba99\n#12 61.24 go: downloading github.com/go-git/gcfg v1.5.1-0.20230307220236-3a3c6141e376\n#12 61.24 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd\n#12 61.24 go: downloading github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee\n#12 61.24 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#12 61.24 go: downloading cel.dev/expr v0.25.1\n#12 61.24 go: downloading github.com/envoyproxy/protoc-gen-validate v1.3.3\n#12 61.24 go: downloading github.com/pquerna/cachecontrol v0.0.0-20180517163645-1555304b9b35\n#12 61.24 go: downloading github.com/golang/groupcache v0.0.0-20241129210726-2c02b8208cf8\n#12 61.24 go: downloading github.com/kevinburke/ssh_config v1.2.0\n#12 61.24 go: downloading github.com/skeema/knownhosts v1.3.1\n#12 61.24 go: downloading github.com/xanzy/ssh-agent v0.3.3\n#12 61.24 go: downloading github.com/cloudflare/circl v1.6.3\n#12 62.31 go: downloading gopkg.in/warnings.v0 v0.1.2\n#12 62.46 go: downloading github.com/klauspost/cpuid/v2 v2.3.0\n#12 DONE 85.1s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.3s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.119 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 9.4s done\n#18 exporting manifest sha256:48bc86b45b97a693aadb181e26a307d8807cde877e84cdc11ec4eab578b189ca done\n#18 exporting config sha256:0f618da954762b3ddf8580e8acc0cf955c7d431f451b8a8f6c75d2e37a7f424e done\n#18 exporting attestation manifest sha256:334f0e5a50a062ce92d2dc8ad799c09c40c861c66e7ad1e260847dd1cabf1eb6 0.0s done\n#18 exporting manifest list sha256:8a66fc2845d134b38dab79aa537afb43663c287cb426c4266928a5108b0476f2 done\n#18 naming to docker.io/ctk-exec/grype:f8e0d226de81 done\n#18 unpacking to docker.io/ctk-exec/grype:f8e0d226de81\n#18 unpacking to docker.io/ctk-exec/grype:f8e0d226de81 2.0s done\n#18 DONE 11.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": "6ba14577a5a43869",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 6,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-ffd0d315",
+    "argv": [
+     "grype",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 524
+   },
+   {
+    "id": "t-surface-5d01e6cc",
+    "argv": [
+     "grype",
+     "/opt/ctk/fixtures/container-image/image.tar"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 2371
+   },
+   {
+    "id": "t-surface-8861bab9",
+    "argv": [
+     "grype",
+     "-f",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 5011
+   },
+   {
+    "id": "t-surface-dbee959a",
+    "argv": [
+     "grype",
+     "--file",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 5011
+   },
+   {
+    "id": "t-surface-50e54c94",
+    "argv": [
+     "grype",
+     "config",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 11507
+   },
+   {
+    "id": "t-surface-23520646",
+    "argv": [
+     "grype",
+     "--fixture",
+     "/opt/ctk/fixtures/container-image/image.tar",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 24
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Grype",
+ "repo": "anchore/grype",
+ "head_sha": "f8e0d226de81de787bd313f5cf38d4861f7729c2",
+ "analyzer": "exec",
+ "analyzer_version": "10",
+ "generated_at": "2026-08-02T03:35:20.695080+00:00"
+}
