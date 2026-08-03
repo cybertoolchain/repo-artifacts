@@ -1,0 +1,218 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:f2b0c3a3494412944747c02594fb1afba62b909a45feec2d4dae4c29cba36fa4",
+  "duration_s": 27.13,
+  "log_tail": "#11 15.49    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 5.0/5.0 MB 1.3 MB/s  0:00:03\n#11 15.54 Downloading iniconfig-2.3.0-py3-none-any.whl (7.5 kB)\n#11 15.60 Downloading packaging-26.2-py3-none-any.whl (100 kB)\n#11 15.73 Downloading pillow-12.3.0-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (6.3 MB)\n#11 19.23    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 6.3/6.3 MB 1.8 MB/s  0:00:03\n#11 19.28 Downloading pygments-2.20.0-py3-none-any.whl (1.2 MB)\n#11 19.98    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.2/1.2 MB 1.8 MB/s  0:00:00\n#11 20.03 Downloading requests_file-3.0.1-py2.py3-none-any.whl (4.5 kB)\n#11 20.08 Downloading defusedxml-0.7.1-py2.py3-none-any.whl (25 kB)\n#11 20.16 Installing collected packages: defusedcsv, xlsxwriter, urllib3, pygments, pluggy, Pillow, packaging, iniconfig, idna, fonttools, filelock, defusedxml, coverage, colorama, charset_normalizer, certifi, requests, pytest, fpdf2, requests-file, pytest-cov, tldextract\n#11 22.02 \n#11 22.02 Successfully installed Pillow-12.3.0 certifi-2026.7.22 charset_normalizer-3.4.9 colorama-0.4.6 coverage-7.15.3 defusedcsv-3.0.0 defusedxml-0.7.1 filelock-3.32.2 fonttools-4.63.0 fpdf2-2.8.7 idna-3.18 iniconfig-2.3.0 packaging-26.2 pluggy-1.6.0 pygments-2.20.0 pytest-9.1.1 pytest-cov-7.1.0 requests-2.34.2 requests-file-3.0.1 tldextract-5.3.1 urllib3-2.7.0 xlsxwriter-3.2.9\n#11 DONE 22.1s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.125 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 1.8s done\n#20 exporting manifest sha256:2583825204d969a35f3e1d169b5ffc5c7e8c623e15dacd901c187f9d742f44e4 done\n#20 exporting config sha256:7b062fd092cf809b288adad1368f9ab49a317c982ad3ccb4b69dc3ca7d64339e done\n#20 exporting attestation manifest sha256:047f2f5e0691a025ae9826cdf1de1227d9be31e88edc0e17c411dce730f3f1c7 0.0s done\n#20 exporting manifest list sha256:f2b0c3a3494412944747c02594fb1afba62b909a45feec2d4dae4c29cba36fa4 done\n#20 naming to docker.io/ctk-exec/humble:a293734ff0d3 done\n#20 unpacking to docker.io/ctk-exec/humble:a293734ff0d3\n#20 unpacking to docker.io/ctk-exec/humble:a293734ff0d3 0.9s done\n#20 DONE 2.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "coverage",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Coverage.py, version 7.15.3 with C extension\nMeasure, collect, and report on code coverage in Python programs.\n\nusage: coverage <command> [options] [args]\n\nCommands:\n    annotate    Annotate source files with execution information.\n    combine     Combine a number of data files.\n    debug       Display information about the internals of coverage.py\n    erase       Erase previously collected coverage data.\n    help        Get help on using coverage.py.\n    html        Create an HTML report.\n    json        Create a JSON report of coverage results.\n    lcov        Create an LCOV report of coverage results.\n    report      Report coverage stats on modules.\n    run         Run a Python program and measure code execution.\n    xml         Create an XML report of coverage results.\n\nUse \"coverage help <command>\" for detailed help on any command.\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 249,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "annotate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage annotate [options] [modules]\n\nMake annotated copies of the given files, marking statements that are executed\nwith > and statements that are missed with !.\n\nOptions:\n  -d DIR, --directory=DIR\n                        Write the output files to DIR.\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 213,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "combine",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage combine [options] <path1> <path2> ... <pathN>\n\nCombine data from multiple coverage files. The combined results are written to\na single file representing the union of the data. The positional arguments are\ndata files or directories containing data files. If no paths are provided,\ndata files in the default data file's directory are combined.\n\nOptions:\n  -a, --append          Append data to the data file. Otherwise it starts\n                        clean each time.\n  --data-file=DATAFILE  Base name of the data files to operate on. Defaults to\n                        '.coverage'. [env: COVERAGE_FILE]\n  --keep                Keep original coverage files, otherwise they are\n                        deleted.\n  -q, --quiet           Don't print messages about what is happening.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 217,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "debug",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage debug <topic>\n\nDisplay information about the internals of coverage.py, for diagnosing\nproblems. Topics are:\n\n'config' to show configuration settings.\n\n'data [filenames]' to summarize data files.\n\n'premain' to show what is calling coverage.\n\n'pybehave' to show internal flags describing Python behavior.\n\n'sqlite' to show SQLite compilation options.\n\n'sys' to show installation information.\n\nOptions:\n  --debug=OPTS     Debug options, separated by commas. [env: COVERAGE_DEBUG]\n  -h, --help       Get help on this command.\n  --rcfile=RCFILE  Specify configuration file. By default '.coveragerc',\n                   'setup.cfg', 'tox.ini', and 'pyproject.toml' are tried.\n                   [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 213,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "erase",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage erase [options]\n\nErase previously collected coverage data.\n\nOptions:\n  --data-file=DATAFILE  Base name of the data files to operate on. Defaults to\n                        '.coverage'. [env: COVERAGE_FILE]\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 211,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage help [command]\n\nDescribe how to use coverage.py\n\nOptions:\n  --debug=OPTS     Debug options, separated by commas. [env: COVERAGE_DEBUG]\n  -h, --help       Get help on this command.\n  --rcfile=RCFILE  Specify configuration file. By default '.coveragerc',\n                   'setup.cfg', 'tox.ini', and 'pyproject.toml' are tried.\n                   [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 214,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "html",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage html [options] [modules]\n\nCreate an HTML report of coverage results. Each file gets its own page, with\nthe source decorated to show executed, excluded, and missed lines.\n\nOptions:\n  --contexts=REGEX1,REGEX2,...\n                        Only display data from lines covered in the given\n                        contexts. Accepts Python regexes, which must be\n                        quoted.\n  -d DIR, --directory=DIR\n                        Write the output files to DIR.\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --fail-under=MIN      Exit with a status of 2 if the total coverage is less\n                        than MIN.\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  --precision=N         Number of digits after the decimal point to display\n                        for reported coverage percentages.\n  -q, --quiet           Don't print messages about what is happening.\n  --show-contexts       Show contexts for covered lines.\n  --skip-covered        Skip files with 100% coverage.\n  --no-skip-covered     Disable --skip-covered.\n  --skip-empty          Skip files with no code.\n  --title=TITLE         A text string to use as the title on the HTML.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 212,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "json",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage json [options] [modules]\n\nGenerate a JSON report of coverage results.\n\nOptions:\n  --contexts=REGEX1,REGEX2,...\n                        Only display data from lines covered in the given\n                        contexts. Accepts Python regexes, which must be\n                        quoted.\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --fail-under=MIN      Exit with a status of 2 if the total coverage is less\n                        than MIN.\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  -o OUTFILE            Write the JSON report to this file. Defaults to\n                        'coverage.json'\n  --pretty-print        Format the JSON for human readers.\n  -q, --quiet           Don't print messages about what is happening.\n  --show-contexts       Show contexts for covered lines.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 208,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "lcov",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage lcov [options] [modules]\n\nGenerate an LCOV report of coverage results.\n\nOptions:\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --fail-under=MIN      Exit with a status of 2 if the total coverage is less\n                        than MIN.\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  -o OUTFILE            Write the LCOV report to this file. Defaults to\n                        'coverage.lcov'\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  -q, --quiet           Don't print messages about what is happening.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 210,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "report",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage report [options] [modules]\n\nReport coverage statistics on modules.\n\nOptions:\n  --contexts=REGEX1,REGEX2,...\n                        Only display data from lines covered in the given\n                        contexts. Accepts Python regexes, which must be\n                        quoted.\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --fail-under=MIN      Exit with a status of 2 if the total coverage is less\n                        than MIN.\n  --format=FORMAT       Output format, either text (default), markdown, or\n                        total.\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  --precision=N         Number of digits after the decimal point to display\n                        for reported coverage percentages.\n  --sort=COLUMN         Sort the report by the named column: name, stmts,\n                        miss, branch, brpart, or cover. Default is name.\n  -m, --show-missing    Show line numbers of statements in each module that\n                        weren't executed.\n  --skip-covered        Skip files with 100% coverage.\n  --no-skip-covered     Disable --skip-covered.\n  --skip-empty          Skip files with no code.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 212,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "run",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage run [options] <pyfile> [program options]\n\nRun a Python program, measuring code execution.\n\nOptions:\n  -a, --append          Append data to the data file. Otherwise it starts\n                        clean each time.\n  --branch              Measure branch coverage in addition to statement\n                        coverage.\n  --concurrency=LIBS    Properly measure code using a concurrency library.\n                        Valid values are: eventlet, gevent, greenlet,\n                        multiprocessing, thread, or a comma-list of them.\n  --context=LABEL       The context label to record for this coverage run.\n  --data-file=OUTFILE   Write the recorded coverage data to this file.\n                        Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  -m, --module          <pyfile> is an importable Python module, not a script\n                        path, to be run as 'python -m' would run it.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  -L, --pylib           Measure coverage even inside the Python installed\n                        library, which isn't done by default.\n  -p, --parallel-mode   Append a unique suffix to the data file name to\n                        collect separate data from multiple processes.\n  --save-signal=SIGNAL  Specify a signal that will trigger coverage to write\n                        its collected data. Supported values are: USR1, USR2.\n                        Not available on Windows.\n  --source=SRC1,SRC2,...\n                        A list of directories or importable names of code to\n                        measure.\n  --timid               Use the slower Python trace function core.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 208,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "coverage",
+    "xml",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: coverage xml [options] [modules]\n\nGenerate an XML report of coverage results.\n\nOptions:\n  --data-file=INFILE    Read coverage data for report generation from this\n                        file. Defaults to '.coverage'. [env: COVERAGE_FILE]\n  --fail-under=MIN      Exit with a status of 2 if the total coverage is less\n                        than MIN.\n  -i, --ignore-errors   Ignore errors while reading source files.\n  --include=PAT1,PAT2,...\n                        Include only files whose paths match one of these\n                        patterns. Accepts shell-style wildcards, which must be\n                        quoted.\n  --keep-combined       Keep original coverage files, otherwise they are\n                        deleted after combining.\n  --omit=PAT1,PAT2,...  Omit files whose paths match one of these patterns.\n                        Accepts shell-style wildcards, which must be quoted.\n  -o OUTFILE            Write the XML report to this file. Defaults to\n                        'coverage.xml'\n  -q, --quiet           Don't print messages about what is happening.\n  --skip-empty          Skip files with no code.\n  --debug=OPTS          Debug options, separated by commas. [env:\n                        COVERAGE_DEBUG]\n  -h, --help            Get help on this command.\n  --rcfile=RCFILE       Specify configuration file. By default '.coveragerc',\n                        'setup.cfg', 'tox.ini', and 'pyproject.toml' are\n                        tried. [env: COVERAGE_RCFILE]\n\nFull documentation is at https://coverage.readthedocs.io/en/7.15.3\n",
+   "stderr": "",
+   "duration_ms": 211,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "coverage"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for coverage\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "coverage"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'coverage' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "coverage",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "humble",
+ "repo": "rfc-st/humble",
+ "head_sha": "a293734ff0d376f63398145843f0a0945a614d14",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T00:43:21.376086+00:00"
+}

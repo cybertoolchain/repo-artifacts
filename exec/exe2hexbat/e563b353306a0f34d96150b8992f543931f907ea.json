@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:bd28f476c8386efc7e95f6f75fed51123a30238675a6039c3edaf5ac8b19d9ad",
-  "duration_s": 5.33,
-  "log_tail": "#11 2.240   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)\n#11 2.270 Downloading pip-26.2-py3-none-any.whl (1.8 MB)\n#11 2.440    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 16.5 MB/s eta 0:00:00\n#11 2.449 Installing collected packages: pip\n#11 2.449   Attempting uninstall: pip\n#11 2.450     Found existing installation: pip 25.0.1\n#11 2.463     Uninstalling pip-25.0.1:\n#11 2.466       Successfully uninstalled pip-25.0.1\n#11 2.912 Successfully installed pip-26.2\n#11 DONE 3.1s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.1s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.3s done\n#21 exporting manifest sha256:4e1dfcc36657ca92511781e11b400b48e66c9e7938d91af5fc658b86acdef12b done\n#21 exporting config sha256:37fc19ee5401ed23ed4eef8df33916fffbd1b49bae34a78553eed5a2e9fe0deb done\n#21 exporting attestation manifest sha256:37af5aceaa04a2d9b73c1b13f92ce6d40fa7d4fdd05a3132a43a3a440df6a91a done\n#21 exporting manifest list sha256:bd28f476c8386efc7e95f6f75fed51123a30238675a6039c3edaf5ac8b19d9ad done\n#21 naming to docker.io/ctk-exec/exe2hex:e563b353306a done\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a 0.6s done\n#21 DONE 1.0s",
+  "image_digest": "sha256:facb82813133de63b12cbd4c4a321cded6cf9cfaee2f09b56217fd00016fbf6d",
+  "duration_s": 5.62,
+  "log_tail": "#10 2.424 Installing collected packages: pip\n#10 2.424   Attempting uninstall: pip\n#10 2.425     Found existing installation: pip 25.0.1\n#10 2.438     Uninstalling pip-25.0.1:\n#10 2.440       Successfully uninstalled pip-25.0.1\n#10 2.881 Successfully installed pip-26.2\n#10 DONE 3.1s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.163 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.4s done\n#21 exporting manifest sha256:ffe9c1bb4b672e6bf9f7fa40c756af87a470470586eccf64cfe25e62f844cc81 done\n#21 exporting config sha256:30ff1dd9e4b536a373127d3800dd0d075cf1899796849c46b215107a22d991f3 done\n#21 exporting attestation manifest sha256:7d32d134a9491961ace787b5ebce7772a24696a7dd4fd9940d9c5dc69e8bdc27 done\n#21 exporting manifest list sha256:facb82813133de63b12cbd4c4a321cded6cf9cfaee2f09b56217fd00016fbf6d done\n#21 naming to docker.io/ctk-exec/exe2hex:e563b353306a done\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a\n#21 unpacking to docker.io/ctk-exec/exe2hex:e563b353306a 0.6s done\n#21 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "\u001b[01;34m[*]\u001b[00m exe2hex v1.5.2\nUsage: exe2hex.py [options]\n\nOptions:\n  -h, --help  show this help message and exit\n  -x EXE      The EXE binary file to convert\n  -s          Read from STDIN\n  -m METHOD   METHOD to convert the EXE:\n              1 - DEBUG.exe method (.bat) - x86\n              2 - certutil.exe method (.bat) - x86/x64 (DEFAULT)\n              3 - PowerShell method (.cmd) - x86/x64\n  -o output   Output file\n  -e          URL encode the output\n  -r TEXT     pRefix - text to add before the command on each line\n  -f TEXT     suFfix - text to add after the command on each line\n  -l INT      Maximum HEX values per line\n  -c          Clones and compress the file before converting (-cc for higher\n              compression)\n  -t          Create a Expect file, to automate to a Telnet session.\n  -w          Create a Expect file, to automate to a WinEXE session.\n  -v          Enable verbose mode\n",
    "stderr": "/src/exe2hex.py:474: SyntaxWarning: invalid escape sequence '\\['\n  send_user \"\\\\n\\\\n\\[i\\] Done\\\\n\"\n",
-   "duration_ms": 110,
+   "duration_ms": 107,
    "truncated": false,
    "error": null
   },
@@ -29,7 +29,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for exe2hex\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'exe2hex' in node '(dir)Top'\n",
-   "duration_ms": 3,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -277,6 +277,6 @@
  "repo": "g0tmi1k/exe2hex",
  "head_sha": "e563b353306a0f34d96150b8992f543931f907ea",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T05:13:46.636369+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T00:04:29.857795+00:00"
 }

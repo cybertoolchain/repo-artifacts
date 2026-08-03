@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:26d4141d4277615030f3e251667bfed34b95e5a25d96828d758371661fc78cf5",
-  "duration_s": 5.88,
-  "log_tail": "#11 2.639    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 8.9 MB/s eta 0:00:00\n#11 2.648 Installing collected packages: pip\n#11 2.648   Attempting uninstall: pip\n#11 2.650     Found existing installation: pip 25.0.1\n#11 2.664     Uninstalling pip-25.0.1:\n#11 2.666       Successfully uninstalled pip-25.0.1\n#11 3.148 Successfully installed pip-26.2\n#11 DONE 3.4s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#13 DONE 0.1s\n\n#14 [stage-1  4/11] COPY --from=build /src /src\n#14 DONE 0.0s\n\n#15 [stage-1  5/11] WORKDIR /src\n#15 DONE 0.0s\n\n#16 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#16 DONE 0.1s\n\n#17 [stage-1  7/11] RUN chmod -R a+rX /src\n#17 DONE 0.2s\n\n#18 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#18 DONE 0.0s\n\n#19 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#19 DONE 0.0s\n\n#20 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#20 DONE 0.0s\n\n#21 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#21 0.124 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#21 DONE 0.1s\n\n#22 exporting to image\n#22 exporting layers\n#22 exporting layers 0.3s done\n#22 exporting manifest sha256:b68fc2be89a34bfe521fd58fee026a11fb8fe7c1fada8d0b1a2b7016ca07e455 done\n#22 exporting config sha256:41428f955cfcac6273eb7a25c8e896f1f3d10e311ac742aef45c1941f4d36823 done\n#22 exporting attestation manifest sha256:55107c425c9d2477f1eee8460cd7a46d634c2c827244309cf4b7def71f5b92f6 done\n#22 exporting manifest list sha256:26d4141d4277615030f3e251667bfed34b95e5a25d96828d758371661fc78cf5 done\n#22 naming to docker.io/ctk-exec/odat:11c5f251c7ee done\n#22 unpacking to docker.io/ctk-exec/odat:11c5f251c7ee 0.1s done\n#22 DONE 0.5s",
+  "image_digest": "sha256:f0231fdceb062a3d38d9397236a42d4002576e9e96c051311c13db93ec75b26d",
+  "duration_s": 5.95,
+  "log_tail": "#10 2.680 Installing collected packages: pip\n#10 2.680   Attempting uninstall: pip\n#10 2.681     Found existing installation: pip 25.0.1\n#10 2.698     Uninstalling pip-25.0.1:\n#10 2.701       Successfully uninstalled pip-25.0.1\n#10 3.095 Successfully installed pip-26.2\n#10 DONE 3.3s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.3s done\n#21 exporting manifest sha256:e08ec5cb1767c65424d4228e0a36089cef80cbcc675042af59baa01ab6fe3c68 done\n#21 exporting config sha256:0a6de2bce438d4ba1821129644f7beb5236a1806203e35a6e82bdbdefdb8e88d done\n#21 exporting attestation manifest sha256:aeb01fb4099ab64fdf51e1addbace928a46a9e273beb44efec86b258fa983999 done\n#21 exporting manifest list sha256:f0231fdceb062a3d38d9397236a42d4002576e9e96c051311c13db93ec75b26d done\n#21 naming to docker.io/ctk-exec/odat:11c5f251c7ee done\n#21 unpacking to docker.io/ctk-exec/odat:11c5f251c7ee\n#21 unpacking to docker.io/ctk-exec/odat:11c5f251c7ee 0.6s done\n#21 DONE 0.9s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/src/CVE_2012_3137.py\", line 5, in <module>\n    from Utils import execSystemCmd, checkOptionsGivenByTheUser, anAccountIsGiven, getSIDorServiceName\n  File \"/src/Utils.py\", line 9, in <module>\n    import os.path, cx_Oracle\nModuleNotFoundError: No module named 'cx_Oracle'\n",
-   "duration_ms": 81,
+   "duration_ms": 80,
    "truncated": false,
    "error": null
   },
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'CVE_2012_3137' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -2141,6 +2141,6 @@
  "repo": "quentinhardy/odat",
  "head_sha": "11c5f251c7eebd74c02c5a4a91cb513fcf14b4fa",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-01T18:18:34.833909+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T01:10:51.065440+00:00"
 }

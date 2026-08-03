@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:ef09b1bd31d898e7b95cd0b4f1e45aaee673ee11cdb44aab454adf494c82b1a0",
-  "duration_s": 10.84,
-  "log_tail": "#11 2.475   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)\n#11 2.499 Downloading pip-26.2-py3-none-any.whl (1.8 MB)\n#11 2.667    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 15.3 MB/s eta 0:00:00\n#11 2.675 Installing collected packages: pip\n#11 2.675   Attempting uninstall: pip\n#11 2.676     Found existing installation: pip 25.0.1\n#11 2.689     Uninstalling pip-25.0.1:\n#11 2.692       Successfully uninstalled pip-25.0.1\n#11 3.219 Successfully installed pip-26.2\n#11 DONE 3.5s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.129 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 3.8s done\n#21 exporting manifest sha256:0936567fe87223765cff4f0fd3bb9bc80ff5bb193fd827eef381aa749e271caf done\n#21 exporting config sha256:974e4dd8c1c496979c3911b77fdc6887d75d8e4357b90aa1cedf5d17b8aaf058 done\n#21 exporting attestation manifest sha256:e7e6efef232e55c3ef2b2fbad8694e57dc7e2098d51d621a2c538b43fda464cc 0.0s done\n#21 exporting manifest list sha256:ef09b1bd31d898e7b95cd0b4f1e45aaee673ee11cdb44aab454adf494c82b1a0 0.0s done\n#21 naming to docker.io/ctk-exec/creddump7:dcfbb6ab7d26 done\n#21 unpacking to docker.io/ctk-exec/creddump7:dcfbb6ab7d26\n#21 unpacking to docker.io/ctk-exec/creddump7:dcfbb6ab7d26 1.1s done\n#21 DONE 5.0s",
+  "image_digest": "sha256:bfc78abb5954813de715749c971553b36b22f1e3f23f5f01b1e5391d71645f1f",
+  "duration_s": 5.22,
+  "log_tail": "#10 2.278 Installing collected packages: pip\n#10 2.278   Attempting uninstall: pip\n#10 2.279     Found existing installation: pip 25.0.1\n#10 2.291     Uninstalling pip-25.0.1:\n#10 2.294       Successfully uninstalled pip-25.0.1\n#10 2.692 Successfully installed pip-26.2\n#10 DONE 2.9s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.124 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.3s done\n#21 exporting manifest sha256:d9dfde7738ca433cc2494b172ea246f1582ed77f76e7ae8756581027dbb7788e done\n#21 exporting config sha256:f34fcb1301fcb66352fda6243b0ecce422bc212d992a9da8120dc7dd196f2c15 done\n#21 exporting attestation manifest sha256:189fb1c4c7d86168d8a5674dc5190a837ee64dd0bf7f3f4640d3b328b6f09fd7 done\n#21 exporting manifest list sha256:bfc78abb5954813de715749c971553b36b22f1e3f23f5f01b1e5391d71645f1f done\n#21 naming to docker.io/ctk-exec/creddump7:dcfbb6ab7d26 done\n#21 unpacking to docker.io/ctk-exec/creddump7:dcfbb6ab7d26\n#21 unpacking to docker.io/ctk-exec/creddump7:dcfbb6ab7d26 0.6s done\n#21 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -44,16 +44,33 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'cachedump' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
+   "argv": [
+    "cachedump",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py",
+    "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml",
+    "true"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "  File \"/src/cachedump.py\", line 28\n    print \"usage: %s <system hive> <security hive> <Vista/7>\" % sys.argv[0]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: Missing parentheses in call to 'print'. Did you mean print(...)?\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-e3665d0c",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 3,
+   "commands_run": 4,
    "binary": "cachedump",
    "exit_code": null,
    "stdout": "",
@@ -69,7 +86,9 @@
   "flags_seen": {},
   "values_seen": {},
   "aliases": {},
-  "subcommand_flags": {},
+  "subcommand_flags": {
+   "/opt/ctk/fixtures/source-corpus/app/settings.py": {}
+  },
   "subcommands": [],
   "binary": "cachedump",
   "ladder_used": "--help",
@@ -86,12 +105,15 @@
  },
  "surface": {
   "flags": {},
-  "subcommands": []
+  "subcommands": [],
+  "subcommand_flags": {
+   "/opt/ctk/fixtures/source-corpus/app/settings.py": {}
+  }
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 2,
-  "tried_this_wave": 2,
+  "tried": 5,
+  "tried_this_wave": 3,
   "promoted": 0,
   "results": [
    {
@@ -129,6 +151,59 @@
     "skipped_reason": null,
     "exit_code": 127,
     "output_bytes": 312
+   },
+   {
+    "id": "t-model-e3665d0c",
+    "argv": [
+     "cachedump",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml",
+     "true"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 266
+   },
+   {
+    "id": "t-net-bdc41de4",
+    "argv": [
+     "cachedump",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 266
+   },
+   {
+    "id": "t-net-fbfdba17",
+    "argv": [
+     "cachedump",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 266
    }
   ],
   "not_attempted": []
@@ -137,6 +212,6 @@
  "repo": "CiscoCXSecurity/creddump7",
  "head_sha": "dcfbb6ab7d2692ad2321058cf4bb02146819d0a4",
  "analyzer": "exec",
- "analyzer_version": "9",
- "generated_at": "2026-07-31T21:06:51.479584+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-02T23:47:52.788208+00:00"
 }

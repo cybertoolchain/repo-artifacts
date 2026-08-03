@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:d6c5ee92516301175a84c7db5932a4bf2360a3c9582121297f0e3a2a14042952",
-  "duration_s": 6.54,
-  "log_tail": "#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.798 go: downloading mvdan.cc/xurls/v2 v2.2.0\n#11 0.799 go: downloading github.com/ipinfo/go-ipinfo v0.0.0-20200706210721-8b290686e53e\n#11 0.801 go: downloading gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776\n#11 0.801 go: downloading github.com/rs/zerolog v1.19.0\n#11 0.802 go: downloading github.com/cheggaaa/pb v1.0.29\n#11 0.805 go: downloading golang.org/x/net v0.0.0-20200904194848-62affa334b73\n#11 0.810 go: downloading github.com/akamensky/argparse v1.2.2\n#11 0.846 go: downloading golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd\n#11 0.846 go: downloading github.com/mattn/go-runewidth v0.0.4\n#11 0.862 go: downloading github.com/patrickmn/go-cache v2.1.0+incompatible\n#11 DONE 4.9s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.111 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:5eb00cd7293afc63988ee4cfd3f444825b4acf7b1464eb590a46840cd74bf5bf done\n#18 exporting config sha256:2a57b5e66f973ffcf594624fd283acbdcb7ba50d1f149cbf900d0a918232d029 done\n#18 exporting attestation manifest sha256:5566a2dcd9e88c939a8b0340dfb09f9a2cf0b38495a1eea290571ddd85d869a8 done\n#18 exporting manifest list sha256:d6c5ee92516301175a84c7db5932a4bf2360a3c9582121297f0e3a2a14042952 done\n#18 naming to docker.io/ctk-exec/cloudbrute:a40b07e3def6 done\n#18 unpacking to docker.io/ctk-exec/cloudbrute:a40b07e3def6 0.1s done\n#18 DONE 0.3s",
+  "image_digest": "sha256:fcf84ec9bacbfed04caa87ec9c118cee2e42db9ba873645977c0eacf2e5b1dbe",
+  "duration_s": 9.8,
+  "log_tail": "\n#9 [build 3/5] COPY . .\n#9 DONE 0.2s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.609 go: downloading github.com/rs/zerolog v1.19.0\n#11 0.609 go: downloading github.com/akamensky/argparse v1.2.2\n#11 0.609 go: downloading mvdan.cc/xurls/v2 v2.2.0\n#11 0.609 go: downloading golang.org/x/net v0.0.0-20200904194848-62affa334b73\n#11 0.609 go: downloading gopkg.in/yaml.v3 v3.0.0-20200615113413-eeeca48fe776\n#11 0.611 go: downloading github.com/cheggaaa/pb v1.0.29\n#11 0.614 go: downloading github.com/ipinfo/go-ipinfo v0.0.0-20200706210721-8b290686e53e\n#11 0.741 go: downloading golang.org/x/sys v0.0.0-20200323222414-85ca7c5b95cd\n#11 0.741 go: downloading github.com/mattn/go-runewidth v0.0.4\n#11 0.785 go: downloading github.com/patrickmn/go-cache v2.1.0+incompatible\n#11 DONE 5.3s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 2.1s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.136 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:c56ab0a25de0dc4f9a6cfd1459265a2729b53b10b604124942cc316594fdfd8a done\n#18 exporting config sha256:1db6fcae19eea5a13253b2bb9138e821f171a748fa47fb1742f7bfa0b90ebfed done\n#18 exporting attestation manifest sha256:6c3b39d8f2cc371167c45ed923cedb85489ba670f9bf2a92ab8f788f6216a401 0.0s done\n#18 exporting manifest list sha256:fcf84ec9bacbfed04caa87ec9c118cee2e42db9ba873645977c0eacf2e5b1dbe done\n#18 naming to docker.io/ctk-exec/cloudbrute:a40b07e3def6 done\n#18 unpacking to docker.io/ctk-exec/cloudbrute:a40b07e3def6\n#18 unpacking to docker.io/ctk-exec/cloudbrute:a40b07e3def6 0.6s done\n#18 DONE 0.9s",
   "error": null,
   "timed_out": false
  },
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'cloudbrute' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -352,6 +352,6 @@
  "repo": "0xsha/cloudbrute",
  "head_sha": "a40b07e3def62255ea5d6ed5116daab800d1ff00",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T04:54:38.095129+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-02T23:47:17.782449+00:00"
 }

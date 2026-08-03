@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:831d048ba9f760d2871edc76e5c3337cc60bcdb2b15a8e78452f2f7781dffc35",
-  "duration_s": 9.14,
-  "log_tail": "#10 3.062     Found existing installation: pip 25.0.1\n#10 3.077     Uninstalling pip-25.0.1:\n#10 3.080       Successfully uninstalled pip-25.0.1\n#10 3.608 Successfully installed pip-26.2\n#10 4.187 Processing ./.\n#10 4.189   Installing build dependencies: started\n#10 5.049   Installing build dependencies: finished with status 'done'\n#10 5.050   Getting requirements to build wheel: started\n#10 5.343   Getting requirements to build wheel: finished with status 'done'\n#10 5.344   Preparing metadata (pyproject.toml): started\n#10 5.451   Preparing metadata (pyproject.toml): finished with status 'done'\n#10 5.454 Building wheels for collected packages: penelope-shell-handler\n#10 5.455   Building wheel for penelope-shell-handler (pyproject.toml): started\n#10 5.578   Building wheel for penelope-shell-handler (pyproject.toml): finished with status 'done'\n#10 5.579   Created wheel for penelope-shell-handler: filename=penelope_shell_handler-0.21.8-py3-none-any.whl size=88281 sha256=320fc481d859e65142a96a39c148b75973615d99b1142fbfc4151c973d0e253b\n#10 5.579   Stored in directory: /tmp/pip-ephem-wheel-cache-1tl9oeb1/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 5.581 Successfully built penelope-shell-handler\n#10 5.588 Installing collected packages: penelope-shell-handler\n#10 5.650 Successfully installed penelope-shell-handler-0.21.8\n#10 DONE 5.9s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#13 DONE 0.0s\n\n#14 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#14 DONE 0.0s\n\n#15 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#15 DONE 0.1s\n\n#16 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#16 0.214 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#16 DONE 0.3s\n\n#17 exporting to image\n#17 exporting layers\n#17 exporting layers 0.4s done\n#17 exporting manifest sha256:c62999ede1b2bbfcb7110408fe10654c3013a9fc8dcbf93e8c7c76ad3d07d7e7 0.0s done\n#17 exporting config sha256:9c70fdf72bae9dc578049f486eac5d516a4f16654db53f6bc84b60eb76f30610 done\n#17 exporting attestation manifest sha256:988d8e1bbaa1cc9915c8517dc98363e5041006e35e678a845d4f43cd54e1c1c7 0.0s done\n#17 exporting manifest list sha256:831d048ba9f760d2871edc76e5c3337cc60bcdb2b15a8e78452f2f7781dffc35 0.0s done\n#17 naming to docker.io/ctk-exec/penelope:c8bc6ef0afc9 done\n#17 unpacking to docker.io/ctk-exec/penelope:c8bc6ef0afc9 0.1s done\n#17 DONE 0.6s",
+  "image_digest": "sha256:ec0751a86073191aec16df2fae5faa87f9dad9a603cc071f833a591e92f8bf10",
+  "duration_s": 6.47,
+  "log_tail": "#10 4.307   Preparing metadata (pyproject.toml): started\n#10 4.390   Preparing metadata (pyproject.toml): finished with status 'done'\n#10 4.392 Building wheels for collected packages: penelope-shell-handler\n#10 4.392   Building wheel for penelope-shell-handler (pyproject.toml): started\n#10 4.489   Building wheel for penelope-shell-handler (pyproject.toml): finished with status 'done'\n#10 4.489   Created wheel for penelope-shell-handler: filename=penelope_shell_handler-0.21.8-py3-none-any.whl size=88281 sha256=321016131e5a1f1cd312a3581be9967934c777fd69f5c61b4e9cde4a454cd608\n#10 4.490   Stored in directory: /tmp/pip-ephem-wheel-cache-o4yksvvg/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 4.491 Successfully built penelope-shell-handler\n#10 4.498 Installing collected packages: penelope-shell-handler\n#10 4.551 Successfully installed penelope-shell-handler-0.21.8\n#10 DONE 4.6s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.1s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.136 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.3s done\n#20 exporting manifest sha256:b5068b4e38bad7cccd3129e869aa62dd91443bdc8fe3a001d9c837197b5bb714 done\n#20 exporting config sha256:e2cbc1b34859024f36927773306bf8928c01ba1775a1f171534761c7016823da done\n#20 exporting attestation manifest sha256:437afe8b9ea5b4e12feffde8c0c4a91bcb377913955bd79739d4d0820d00299b done\n#20 exporting manifest list sha256:ec0751a86073191aec16df2fae5faa87f9dad9a603cc071f833a591e92f8bf10 done\n#20 naming to docker.io/ctk-exec/penelope:c8bc6ef0afc9 done\n#20 unpacking to docker.io/ctk-exec/penelope:c8bc6ef0afc9 0.1s done\n#20 DONE 0.5s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/penelope\", line 3, in <module>\n    from penelope import main\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7344, in <module>\n    options = Options()\n              ^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7020, in __init__\n    self.basedir = globals().get('_ephemeral_root') or (real_home / f'.{__program__}')\n    ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7134, in __setattr__\n    value.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.penelope'\n",
-   "duration_ms": 264,
+   "duration_ms": 232,
    "truncated": false,
    "error": null
   },
@@ -50,58 +50,10 @@
    "source": "info"
   },
   {
-   "argv": [
-    "penelope",
-    "-l",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/penelope\", line 3, in <module>\n    from penelope import main\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7344, in <module>\n    options = Options()\n              ^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7020, in __init__\n    self.basedir = globals().get('_ephemeral_root') or (real_home / f'.{__program__}')\n    ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7134, in __setattr__\n    value.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.penelope'\n",
-   "duration_ms": 255,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-28b10ce8",
-   "title": "Candidate \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "penelope",
-    "-f",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/penelope\", line 3, in <module>\n    from penelope import main\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7344, in <module>\n    options = Options()\n              ^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7020, in __init__\n    self.basedir = globals().get('_ephemeral_root') or (real_home / f'.{__program__}')\n    ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7134, in __setattr__\n    value.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.penelope'\n",
-   "duration_ms": 262,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-812f70ec",
-   "title": "Candidate \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "penelope",
-    "-m",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/penelope\", line 3, in <module>\n    from penelope import main\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7344, in <module>\n    options = Options()\n              ^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7020, in __init__\n    self.basedir = globals().get('_ephemeral_root') or (real_home / f'.{__program__}')\n    ^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/penelope.py\", line 7134, in __setattr__\n    value.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.penelope'\n",
-   "duration_ms": 258,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-6e9382a9",
-   "title": "Candidate \u2014 run against source-corpus"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 6,
+   "commands_run": 3,
    "binary": "penelope",
    "exit_code": null,
    "stdout": "",
@@ -117,11 +69,7 @@
   "flags_seen": {},
   "values_seen": {},
   "aliases": {},
-  "subcommand_flags": {
-   "-l": {},
-   "-f": {},
-   "-m": {}
-  },
+  "subcommand_flags": {},
   "subcommands": [],
   "binary": "penelope",
   "ladder_used": "--help",
@@ -776,17 +724,12 @@
     "source_path": "penelope.py"
    }
   },
-  "subcommands": [],
-  "subcommand_flags": {
-   "-l": {},
-   "-f": {},
-   "-m": {}
-  }
+  "subcommands": []
  },
  "skipped_reason": null,
  "example_trials": {
   "tried": 10,
-  "tried_this_wave": 3,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -1050,6 +993,6 @@
  "repo": "brightio/penelope",
  "head_sha": "c8bc6ef0afc961a820a40936edc9e414f151311f",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-01T18:26:08.959969+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T01:13:32.802113+00:00"
 }
