@@ -1,20 +1,364 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "c",
-  "image_digest": null,
-  "duration_s": 65.73,
-  "log_tail": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile.ctk\n#1 transferring dockerfile: 2.59kB done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/debian:bookworm-slim\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/debian:bookworm\n#3 ...\n\n#4 [auth] library/debian:pull token for registry-1.docker.io\n#4 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/debian:bookworm\n#3 ERROR: failed to authorize: DeadlineExceeded: context deadline exceeded\n------\n > [internal] load metadata for docker.io/library/debian:bookworm:\n------\nDockerfile.ctk:1\n--------------------\n   1 | >>> FROM debian:bookworm AS build\n   2 |     RUN apt-get update && apt-get install -y --no-install-recommends \\\n   3 |         build-essential autoconf automake libtool pkg-config cmake git ca-certificates \\\n--------------------\nERROR: failed to build: failed to solve: DeadlineExceeded: context deadline exceeded",
-  "error": "docker build failed",
+  "image_digest": "sha256:7c8b347accfac2de8cce07f699c261c1008dfc00ecae803946bbf0c67a82e38a",
+  "duration_s": 7.02,
+  "log_tail": "#11 1.245 src/fseccomp/fseccomp secondary 32 seccomp.32\n#11 1.245 src/fsec-optimize/fsec-optimize seccomp.debug\n#11 1.245 src/fseccomp/fseccomp secondary block seccomp.block_secondary\n#11 1.246 src/fseccomp/fseccomp memory-deny-write-execute seccomp.mdwx\n#11 1.246 src/fseccomp/fseccomp memory-deny-write-execute.32 seccomp.mdwx.32\n#11 1.246 src/fsec-optimize/fsec-optimize seccomp.32\n#11 1.247 src/fseccomp/fseccomp restrict-namespaces seccomp.namespaces cgroup,ipc,net,mnt,pid,time,user,uts\n#11 1.247 make[1]: Leaving directory '/src/src/libtrace'\n#11 1.247 src/fseccomp/fseccomp restrict-namespaces seccomp.namespaces.32 cgroup,ipc,net,mnt,pid,time,user,uts\n#11 1.257 gcc -Wl,-z,relro -Wl,-z,now -fPIE -pie   -o ../../src/fnettrace/fnettrace ../../src/fnettrace/event.o ../../src/fnettrace/hostnames.o ../../src/fnettrace/main.o ../../src/fnettrace/radix.o ../../src/fnettrace/runprog.o ../../src/fnettrace/terminal.o  \n#11 1.267 ./../../src/fnettrace/fnettrace --squash-map=static-ip-map.txt 2>&1 >static-ip-map\n#11 1.271 static ip map: input 6276, output 2733\n#11 1.271 make[1]: Leaving directory '/src/src/fnettrace'\n#11 1.709 gcc -Wl,-z,relro -Wl,-z,now -fPIE -pie   -o ../../src/firejail/firejail ../../src/firejail/appimage.o ../../src/firejail/appimage_size.o ../../src/firejail/arp.o ../../src/firejail/caps.o ../../src/firejail/checkcfg.o ../../src/firejail/chroot.o ../../src/firejail/cmdline.o ../../src/firejail/cpu.o ../../src/firejail/dbus.o ../../src/firejail/dhcp.o ../../src/firejail/env.o ../../src/firejail/fs.o ../../src/firejail/fs_bin.o ../../src/firejail/fs_dev.o ../../src/firejail/fs_etc.o ../../src/firejail/fs_home.o ../../src/firejail/fs_hostname.o ../../src/firejail/fs_lib.o ../../src/firejail/fs_lib2.o ../../src/firejail/fs_logger.o ../../src/firejail/fs_mkdir.o ../../src/firejail/fs_trace.o ../../src/firejail/fs_var.o ../../src/firejail/fs_whitelist.o ../../src/firejail/join.o ../../src/firejail/landlock.o ../../src/firejail/ls.o ../../src/firejail/macros.o ../../src/firejail/main.o ../../src/firejail/mountinfo.o ../../src/firejail/netfilter.o ../../src/firejail/netns.o ../../src/firejail/network.o ../../src/firejail/network_main.o ../../src/firejail/no_sandbox.o ../../src/firejail/oom.o ../../src/firejail/output.o ../../src/firejail/paths.o ../../src/firejail/preproc.o ../../src/firejail/process.o ../../src/firejail/profile.o ../../src/firejail/protocol.o ../../src/firejail/pulseaudio.o ../../src/firejail/restrict_users.o ../../src/firejail/restricted_shell.o ../../src/firejail/rlimit.o ../../src/firejail/run_files.o ../../src/firejail/run_symlink.o ../../src/firejail/sandbox.o ../../src/firejail/sbox.o ../../src/firejail/seccomp.o ../../src/firejail/selinux.o ../../src/firejail/shutdown.o ../../src/firejail/usage.o ../../src/firejail/util.o ../../src/firejail/x11.o ../lib/common.o ../lib/ldd_utils.o ../lib/firejail_user.o ../lib/errno.o ../lib/syscall.o \n#11 1.735 make[1]: Leaving directory '/src/src/firejail'\n#11 DONE 1.8s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.116 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.5s done\n#19 exporting manifest sha256:05e982fcb206da3f2badc32166d734aae7837f702718cbaf6cd73ac8fb08cc9f 0.0s done\n#19 exporting config sha256:c00fbbd67e4a80182a5cd2860cdcdf99644d0e769e583de1df995be6de7b5730 done\n#19 exporting attestation manifest sha256:668cae3b9ba81603e5748320b36f317266ff47e445a089ad979f12569a10f5cc done\n#19 exporting manifest list sha256:7c8b347accfac2de8cce07f699c261c1008dfc00ecae803946bbf0c67a82e38a done\n#19 naming to docker.io/ctk-exec/firejail:6afa87a03e9e done\n#19 unpacking to docker.io/ctk-exec/firejail:6afa87a03e9e\n#19 unpacking to docker.io/ctk-exec/firejail:6afa87a03e9e 1.5s done\n#19 DONE 2.0s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "firejail",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'"
+  },
+  {
+   "argv": [
+    "man",
+    "firejail"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for firejail\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "firejail"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'firejail' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "firejail",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-readme-eb6e53ae",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "firejail",
+    "/opt/ctk/fixtures/source-corpus",
+    "start"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-readme-34fa4fa8",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "firejail",
+    "--landlock",
+    "--landlock.read=/opt/ctk/fixtures/source-corpus",
+    "--landlock.proc=ro",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-readme-0d9865f4",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "firejail",
+    "--profile",
+    "/opt/ctk/fixtures/source-corpus/Dockerfile"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-model-a2fed2dd",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "firejail",
+    "--list"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-model-1eb8a8f9",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "firejail",
+    "--debug",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-model-bd67505f",
+   "title": "Candidate \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "firejail",
+    "--seccomp",
+    "/opt/ctk/fixtures/secret-scan"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: 'firejail'",
+   "kind": "scenario",
+   "id": "t-model-ecf72eb6",
+   "title": "Candidate \u2014 run against secret-scan"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 10,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "docker build failed",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 10,
+  "tried_this_wave": 7,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-6cae129f",
+    "argv": [
+     "firejail",
+     "--debug",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-43f341ae",
+    "argv": [
+     "firejail",
+     "--caps.drop=all",
+     "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-d8db4f7c",
+    "argv": [
+     "firejail",
+     "--seccomp",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-readme-eb6e53ae",
+    "argv": [
+     "firejail",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 295,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-readme-34fa4fa8",
+    "argv": [
+     "firejail",
+     "/opt/ctk/fixtures/source-corpus",
+     "start"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 298,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-readme-0d9865f4",
+    "argv": [
+     "firejail",
+     "--landlock",
+     "--landlock.read=/opt/ctk/fixtures/source-corpus",
+     "--landlock.proc=ro",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 423,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-a2fed2dd",
+    "argv": [
+     "firejail",
+     "--profile",
+     "/opt/ctk/fixtures/source-corpus/Dockerfile"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-1eb8a8f9",
+    "argv": [
+     "firejail",
+     "--list"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-bd67505f",
+    "argv": [
+     "firejail",
+     "--debug",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-ecf72eb6",
+    "argv": [
+     "firejail",
+     "--seccomp",
+     "/opt/ctk/fixtures/secret-scan"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:PermissionError: [Errno 13] Permission denied: 'firejail'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "firejail --list",
+    "source": "readme",
+    "path": "README.md",
+    "line": 304,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "Firejail",
  "repo": "netblue30/firejail",
  "head_sha": "6afa87a03e9ef9a26e95faeccc585045d1005657",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T21:01:31.414263+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T19:49:23.236959+00:00"
 }

@@ -1,0 +1,161 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:cb32a5948d60ab1da6e50f6e25f6842882d3528e6b6a4b5d413f78cc0653fafe",
+  "duration_s": 97.52,
+  "log_tail": "#11 45.99    Compiling crossbeam v0.8.4\n#11 46.02    Compiling clap_complete v4.6.7\n#11 46.13    Compiling tokio-util v0.7.17\n#11 46.22    Compiling dunce v1.0.5\n#11 46.28    Compiling wild v2.2.1\n#11 46.40    Compiling toml v0.8.23\n#11 46.98    Compiling yara-x-capi v1.19.0 (/src/capi)\n#11 47.51    Compiling pyo3-macros v0.29.0\n#11 49.92    Compiling async-lsp v0.2.4\n#11 59.38    Compiling cranelift-frontend v0.132.3\n#11 59.38    Compiling cranelift-native v0.132.3\n#11 82.68    Compiling yara-x-ls v1.19.0 (/src/ls)\n#11 82.68    Compiling yara-x-cli v1.19.0 (/src/cli)\n#11 82.68    Compiling yara-x-js v1.19.0 (/src/js-wasm)\n#11 89.98     Finished `release` profile [optimized] target(s) in 1m 29s\n#11 DONE 90.2s\n\n#12 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#12 DONE 0.3s\n\n#13 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2 libsodium23  && rm -rf /var/lib/apt/lists/*\n#13 CACHED\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.1s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.106 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 2.4s done\n#19 exporting manifest sha256:7c27f69f6b3e495e71f5f4cfb2ef9edafab9b59700243220752f545f461e4cf8 done\n#19 exporting config sha256:119c7934f292354ec728eff7cd3c4f5d74d16e9d53051259b05ae54bd3bf4c9c done\n#19 exporting attestation manifest sha256:2a915b6dc37bd9f27aee0eace5522b5995ec756a9cf4de5af8135f98bb32a04b done\n#19 exporting manifest list sha256:cb32a5948d60ab1da6e50f6e25f6842882d3528e6b6a4b5d413f78cc0653fafe done\n#19 naming to docker.io/ctk-exec/yara-x:439d6428dfb3 done\n#19 unpacking to docker.io/ctk-exec/yara-x:439d6428dfb3\n#19 unpacking to docker.io/ctk-exec/yara-x:439d6428dfb3 0.9s done\n#19 DONE 3.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "yara-x",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'"
+  },
+  {
+   "argv": [
+    "man",
+    "yara-x"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for yara-x\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "yara-x"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'yara-x' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "yara-x",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'",
+   "kind": "scenario",
+   "id": "t-surface-7750e84f",
+   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
+  },
+  {
+   "argv": [
+    "yara-x",
+    "scan",
+    "/opt/ctk/fixtures/source-corpus/Dockerfile"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'",
+   "kind": "scenario",
+   "id": "t-model-a159bd95",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-65cab76c",
+    "argv": [
+     "yara-x",
+     "scan",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-surface-7750e84f",
+    "argv": [
+     "yara-x",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-a159bd95",
+    "argv": [
+     "yara-x",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus/Dockerfile"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'yara-x'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "YARA-X",
+ "repo": "VirusTotal/yara-x",
+ "head_sha": "439d6428dfb3f37a5fe53768c4749f1010c751d3",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T16:51:45.618547+00:00"
+}

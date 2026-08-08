@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:f26a8bdf83b923e358a6375a3d28a584ba4c69f7434e988220b51b4cf788f75f",
-  "duration_s": 39.61,
-  "log_tail": "#9 33.66 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#9 33.66 debconf: falling back to frontend: Readline\n#9 33.66 debconf: unable to initialize frontend: Readline\n#9 33.66 debconf: (This frontend requires a controlling tty.)\n#9 33.66 debconf: falling back to frontend: Teletype\n#9 33.68 \n#9 33.68 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#9 33.69 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#9 33.71 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#9 33.74 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#9 33.76 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#9 33.80 debconf: unable to initialize frontend: Dialog\n#9 33.80 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#9 33.80 debconf: falling back to frontend: Readline\n#9 33.81 debconf: unable to initialize frontend: Readline\n#9 33.81 debconf: (This frontend requires a controlling tty.)\n#9 33.81 debconf: falling back to frontend: Teletype\n#9 33.83 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#9 33.84 Setting up texinfo (6.8-6+b1) ...\n#9 33.86 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#9 33.87 Processing triggers for install-info (6.8-6+b1) ...\n#9 DONE 34.1s\n\n#13 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.104 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 2.8s done\n#18 exporting manifest sha256:5d780297b2dec674bb435ecf1383e4633ebaf937a4d763454c16c14e1a689b07 done\n#18 exporting config sha256:6bb1ea128b846fc9e3d687fc1cb8fd7bb3215977af028ae5b3ecbfde4d375f55 done\n#18 exporting attestation manifest sha256:414cf42805def7bcde29b61223ff723063f6a7e5017778a950f8c88fd2d8dcb0 done\n#18 exporting manifest list sha256:f26a8bdf83b923e358a6375a3d28a584ba4c69f7434e988220b51b4cf788f75f done\n#18 naming to docker.io/ctk-exec/volatility3:fffd844b8ed7 done\n#18 unpacking to docker.io/ctk-exec/volatility3:fffd844b8ed7\n#18 unpacking to docker.io/ctk-exec/volatility3:fffd844b8ed7 0.6s done\n#18 DONE 3.5s",
+  "image_digest": "sha256:50ca0e1d75a8f774fb31bfd2884a00014153100ad7605f7b66539e9645ab0de3",
+  "duration_s": 53.64,
+  "log_tail": "#10 44.72 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#10 44.75 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#10 44.79 debconf: unable to initialize frontend: Dialog\n#10 44.79 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#10 44.79 debconf: falling back to frontend: Readline\n#10 44.79 debconf: unable to initialize frontend: Readline\n#10 44.79 debconf: (This frontend requires a controlling tty.)\n#10 44.79 debconf: falling back to frontend: Teletype\n#10 44.81 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#10 44.83 Setting up texinfo (6.8-6+b1) ...\n#10 44.84 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#10 44.84 Processing triggers for install-info (6.8-6+b1) ...\n#10 DONE 45.4s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.3s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.172 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.7s done\n#20 exporting manifest sha256:9905caff2e6c0d13431698859d3e57f644a277ed3d1fc9dbaee060d79526f118 done\n#20 exporting config sha256:fb0e0c82719b72e3971af764d276bb2da6c1e3aeba79d562678af0a6379d83ba done\n#20 exporting attestation manifest sha256:6f26822e7dc8a1a826ff36860b1792c2b0f70eda4100b3c9507b4f94b9fb1365 done\n#20 exporting manifest list sha256:50ca0e1d75a8f774fb31bfd2884a00014153100ad7605f7b66539e9645ab0de3 done\n#20 naming to docker.io/ctk-exec/volatility3:fffd844b8ed7 done\n#20 unpacking to docker.io/ctk-exec/volatility3:fffd844b8ed7\n#20 unpacking to docker.io/ctk-exec/volatility3:fffd844b8ed7 1.0s done\n#20 DONE 4.7s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/vol\", line 3, in <module>\n    from volatility3.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 229,
+   "duration_ms": 256,
    "truncated": false,
    "error": null
   },
@@ -29,7 +29,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/vol\", line 3, in <module>\n    from volatility3.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 226,
+   "duration_ms": 249,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/vol\", line 3, in <module>\n    from volatility3.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 226,
+   "duration_ms": 248,
    "truncated": false,
    "error": null
   },
@@ -53,7 +53,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/vol\", line 3, in <module>\n    from volatility3.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 236,
+   "duration_ms": 234,
    "truncated": false,
    "error": null
   },
@@ -64,7 +64,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/vol\", line 3, in <module>\n    from volatility3.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 232,
+   "duration_ms": 229,
    "truncated": false,
    "error": null
   },
@@ -88,7 +88,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/volshell\", line 3, in <module>\n    from volatility3.cli.volshell import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 234,
+   "duration_ms": 231,
    "truncated": false,
    "error": null
   },
@@ -100,7 +100,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/volshell\", line 3, in <module>\n    from volatility3.cli.volshell import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 226,
+   "duration_ms": 247,
    "truncated": false,
    "error": null
   },
@@ -112,7 +112,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/volshell\", line 3, in <module>\n    from volatility3.cli.volshell import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
-   "duration_ms": 231,
+   "duration_ms": 237,
    "truncated": false,
    "error": null
   },
@@ -123,6 +123,124 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/volshell\", line 3, in <module>\n    from volatility3.cli.volshell import main\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/opt/venv/lib/python3.12/site-packages/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 225,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "vol.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/vol.py\", line 10, in <module>\n    import volatility3.cli\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 235,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "vol.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/vol.py\", line 10, in <module>\n    import volatility3.cli\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 233,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "vol.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/vol.py\", line 10, in <module>\n    import volatility3.cli\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 234,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "vol.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/vol.py\", line 10, in <module>\n    import volatility3.cli\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 232,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "vol.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/vol.py\", line 10, in <module>\n    import volatility3.cli\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 235,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "volshell.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/volshell.py\", line 8, in <module>\n    from volatility3.cli import volshell\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 233,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "volshell.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/volshell.py\", line 8, in <module>\n    from volatility3.cli import volshell\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 243,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "volshell.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/volshell.py\", line 8, in <module>\n    from volatility3.cli import volshell\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 233,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "volshell.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/volshell.py\", line 8, in <module>\n    from volatility3.cli import volshell\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
+   "duration_ms": 226,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "volshell.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/volshell.py\", line 8, in <module>\n    from volatility3.cli import volshell\n  File \"/src/volatility3/cli/__init__.py\", line 33, in <module>\n    import volatility3.plugins\n  File \"/src/volatility3/plugins/__init__.py\", line 16, in <module>\n    from volatility3.framework import constants\n  File \"/src/volatility3/framework/__init__.py\", line 17, in <module>\n    from volatility3.framework import constants, interfaces, versionutils\n  File \"/src/volatility3/framework/constants/__init__.py\", line 38, in <module>\n    os.makedirs(CACHE_PATH, exist_ok=True)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.cache'\n",
    "duration_ms": 233,
    "truncated": false,
    "error": null
@@ -137,7 +255,7 @@
    "stderr": "",
    "duration_ms": 0,
    "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'volatility3'"
+   "error": "PermissionError: [Errno 13] Permission denied: 'volatility3'"
   },
   {
    "argv": [
@@ -162,7 +280,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'vol' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -171,7 +289,7 @@
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 13,
+   "commands_run": 23,
    "binary": "vol",
    "exit_code": null,
    "stdout": "",
@@ -235,6 +353,6 @@
  "repo": "volatilityfoundation/volatility3",
  "head_sha": "fffd844b8ed7df500e74115a0ee6f818e6afa59f",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T04:49:23.799477+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T16:41:33.226464+00:00"
 }

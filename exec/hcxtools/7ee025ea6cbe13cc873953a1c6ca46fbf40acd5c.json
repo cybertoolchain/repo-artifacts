@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "c",
-  "image_digest": "sha256:1e9126f833d5637f23132cc13a7a59ea7b5a9236135923beb18e0573b8bf9c36",
-  "duration_s": 191.74,
-  "log_tail": "#11 0.378 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99    -MMD -MF .deps/hcxpcapngtool.d -o hcxpcapngtool hcxpcapngtool.c -lssl -lcrypto  -lz   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.383 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/hcxhashtool.d -o hcxhashtool hcxhashtool.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.384 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpsktool.d -o hcxpsktool hcxpsktool.c -lssl -lcrypto   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.387 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpmktool.d -o hcxpmktool hcxpmktool.c -lssl -lcrypto   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.392 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpottool.d -o hcxpottool hcxpottool.c -lssl -lcrypto  -lpthread  -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.392 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxeiutool.d -o hcxeiutool hcxeiutool.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.393 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxwltool.d -o hcxwltool hcxwltool.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.394 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxhash2cap.d -o hcxhash2cap hcxhash2cap.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.399 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/wlancap2wpasec.d -o wlancap2wpasec wlancap2wpasec.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.416 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/whoismac.d -o whoismac whoismac.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 ...\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\";     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\");     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\";     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi\n#11 DONE 2.2s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/8] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.1s\n\n#17 [stage-1 7/8] COPY fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.2s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.288 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.5s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.5s done\n#19 exporting manifest sha256:0e5d246e774e85850d0ce72cc1faedd55890e7371acf7c46539ccadb8d17f46d\n#19 exporting manifest sha256:0e5d246e774e85850d0ce72cc1faedd55890e7371acf7c46539ccadb8d17f46d 0.0s done\n#19 exporting config sha256:36a56fe59a25bfb1070e2afbb57a69b7754f4773cde759835131d638fb079cbb 0.0s done\n#19 exporting attestation manifest sha256:079effe221835c931af94d5db449508d43a59fb96171824353ddfa5e73e61400 0.1s done\n#19 exporting manifest list sha256:1e9126f833d5637f23132cc13a7a59ea7b5a9236135923beb18e0573b8bf9c36\n#19 exporting manifest list sha256:1e9126f833d5637f23132cc13a7a59ea7b5a9236135923beb18e0573b8bf9c36 0.0s done\n#19 naming to docker.io/ctk-exec/hcxtools:7ee025ea6cbe 0.0s done\n#19 unpacking to docker.io/ctk-exec/hcxtools:7ee025ea6cbe\n#19 unpacking to docker.io/ctk-exec/hcxtools:7ee025ea6cbe 0.4s done\n#19 DONE 1.2s",
+  "image_digest": "sha256:c7423c94aa52b031bd761e21272ef7de025b699b40b65b7a4213d265491a85b6",
+  "duration_s": 3.73,
+  "log_tail": "#10 DONE 0.0s\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\";     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\");     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\";     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi\n#11 0.111 fatal: not a git repository (or any of the parent directories): .git\n#11 0.113 mkdir -p .deps\n#11 0.119 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99    -MMD -MF .deps/hcxpcapngtool.d -o hcxpcapngtool hcxpcapngtool.c -lssl -lcrypto  -lz   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.121 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/hcxhashtool.d -o hcxhashtool hcxhashtool.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.122 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpsktool.d -o hcxpsktool hcxpsktool.c -lssl -lcrypto   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.124 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpmktool.d -o hcxpmktool hcxpmktool.c -lssl -lcrypto   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.125 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxpottool.d -o hcxpottool hcxpottool.c -lssl -lcrypto  -lpthread  -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.125 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxeiutool.d -o hcxeiutool hcxeiutool.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.126 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxwltool.d -o hcxwltool hcxwltool.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.126 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99   -MMD -MF .deps/hcxhash2cap.d -o hcxhash2cap hcxhash2cap.c   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.129 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/wlancap2wpasec.d -o wlancap2wpasec wlancap2wpasec.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 0.131 cc -O3 -Wall -Wextra -Wpedantic -std=gnu99  -I/usr/include/aarch64-linux-gnu   -MMD -MF .deps/whoismac.d -o whoismac whoismac.c -lssl -lcrypto  -lcurl   -DVERSION_TAG=\\\"7.1.2\\\" -DVERSION_YEAR=\\\"2026\\\" -DWANTZLIB\n#11 DONE 1.7s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.221 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers 0.1s done\n#19 exporting manifest sha256:802f6ec3ec8b17a036c057d86445fdefed3cf0ce5662869ddd7a276768597f20 done\n#19 exporting config sha256:71a222d4726e2b7bdbff65c8bd4da7fadcbbaa53c9d50dd05451de5221ba4db6 done\n#19 exporting attestation manifest sha256:d0d0b30669e3476a5e900ceb99cefc080010f734167cd5bfc6c59be32a437e7c\n#19 exporting attestation manifest sha256:d0d0b30669e3476a5e900ceb99cefc080010f734167cd5bfc6c59be32a437e7c done\n#19 exporting manifest list sha256:c7423c94aa52b031bd761e21272ef7de025b699b40b65b7a4213d265491a85b6 done\n#19 naming to docker.io/ctk-exec/hcxtools:7ee025ea6cbe done\n#19 unpacking to docker.io/ctk-exec/hcxtools:7ee025ea6cbe\n#19 unpacking to docker.io/ctk-exec/hcxtools:7ee025ea6cbe 0.6s done\n#19 DONE 0.7s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": null,
    "stdout": "",
    "stderr": "",
-   "duration_ms": 5,
+   "duration_ms": 1,
    "truncated": false,
    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'hcxtools'"
   },
@@ -29,7 +29,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for hcxtools\n",
-   "duration_ms": 3,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'hcxtools' in node '(dir)Top'\n",
-   "duration_ms": 6,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -58,7 +58,7 @@
    "exit_code": 0,
    "stdout": "man(1)                         hcxtools man page                        man(1)\n\nNAME\n       hcxtools\n\nDESCRIPTION\n       Small  set  of  tools convert packets from WiFi captures to detect weak\n       points within own WiFi networks by analyzing the hashes.\n\nTOOLS\n       | hcxpcapngtool  | Tool to convert raw capture files to Hashcat and JtR readable formats.                                           |\n       | hcxhashtool    | Tool to filter hashes from HC22000 files based on user input.                                                    |\n       | hcxpmktool     | Tool to calculate and verify a PSK and/or a PMK.                                                                 |\n       | hcxpottool     | Tool to to handle ASCII format and several UTF formats of hashcat's pot file.                                    |\n       | hcxpsktool     | Tool to get weak PSK candidates from hash files or user input.                                                   |\n       | hcxeiutool     | Tool to prepare -E -I -U output of hcxpcapngtool for use by Hashcat + rule or JtR + rule.                        |\n       | hcxwltool      | Tool to calculate candidates for Hashcat and JtR based on mixed wordlists.                                       |\n       | hcxhash2cap    | Tool to convert hash files (PMKID&EAPOL, PMKID, EAPOL-hccapx, EAPOL-hccap, WPAPSK-john) to cap.                  |\n       | wlancap2wpasec | Tool to upload multiple (gzip compressed) pcapng, pcap and cap files to https://wpa-sec.stanev.org               |\n       | whoismac       | Tool to show vendor information and/or download oui reference list.                                              |\n\nOPTIONS\n       help menu (-h and --help) of each tool will list all available options\n\nRELATED TOOLS\n       | hcxdumptool    | Tool to run several tests  to  determine  if  ACCESS\n       POINTs  or  CLIENTs  are  vulnerable                                | |\n       hcxnmealog       |    Tool    to    handle    NMEA    0183    sentences\n       |\n\nBUGS\n       no known bugs.\n\nAUTHOR\n       ZeroBeat (https://github.com/ZerBea)\n\n7.0                             02 August 2025                          man(1)\n",
    "stderr": "",
-   "duration_ms": 30,
+   "duration_ms": 10,
    "truncated": false,
    "error": null,
    "source": "man-file"
@@ -158,7 +158,9 @@
     "last_date": "2026-02-08T12:13:09+01:00",
     "live": true,
     "attribution": "own",
-    "source_path": "usefulscripts/hcxgrep.py"
+    "source_path": "usefulscripts/hcxgrep.py",
+    "takes_value": true,
+    "value_type": "string"
    },
    "--invert-match": {
     "source": "source",
@@ -171,7 +173,8 @@
     "last_date": "2026-02-08T12:13:09+01:00",
     "live": true,
     "attribution": "own",
-    "source_path": "usefulscripts/hcxgrep.py"
+    "source_path": "usefulscripts/hcxgrep.py",
+    "takes_value": false
    },
    "--netgear": {
     "source": "source",
@@ -197,7 +200,14 @@
     "last_date": "2026-02-08T12:13:09+01:00",
     "live": true,
     "attribution": "own",
-    "source_path": "usefulscripts/hcxgrep.py"
+    "source_path": "usefulscripts/hcxgrep.py",
+    "choices": [
+     "essid",
+     "mac_ap",
+     "mac_sta"
+    ],
+    "takes_value": true,
+    "value_type": "string"
    },
    "--usdate": {
     "source": "source",
@@ -568,16 +578,36 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 0,
-  "tried_this_wave": 0,
+  "tried": 1,
+  "tried_this_wave": 1,
   "promoted": 0,
-  "results": [],
+  "results": [
+   {
+    "id": "t-net-36fd1909",
+    "argv": [
+     "hcxtools",
+     "-u",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 311
+   }
+  ],
   "not_attempted": []
  },
  "tool": "hcxtools",
  "repo": "ZerBea/hcxtools",
  "head_sha": "7ee025ea6cbe13cc873953a1c6ca46fbf40acd5c",
  "analyzer": "exec",
- "analyzer_version": "6",
- "generated_at": "2026-07-30T04:05:44.062827+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T22:44:54.349586+00:00"
 }

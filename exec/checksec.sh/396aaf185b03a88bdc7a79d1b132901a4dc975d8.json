@@ -1,1 +1,946 @@
-{"analyzer":"exec","analyzer_version":"10","build":{"duration_s":17.34,"error":null,"image_digest":"sha256:9f31f4636c88c7f160292b2d38a80d82773c7abbd7e40711f24c30c0fc811ccf","log_tail":"#11 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#11 DONE 0.2s\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 0.185 go: downloading github.com/fatih/color v1.19.0\n#12 0.187 go: downloading github.com/shirou/gopsutil/v3 v3.24.5\n#12 0.188 go: downloading github.com/spf13/cobra v1.10.2\n#12 0.189 go: downloading github.com/lorenzosaino/go-sysctl v0.3.1\n#12 0.190 go: downloading github.com/opencontainers/selinux v1.15.1\n#12 0.191 go: downloading github.com/u-root/u-root v0.16.0\n#12 0.193 go: downloading sigs.k8s.io/yaml v1.6.0\n#12 0.547 go: downloading github.com/mattn/go-colorable v0.1.14\n#12 0.547 go: downloading github.com/mattn/go-isatty v0.0.20\n#12 0.549 go: downloading go.yaml.in/yaml/v2 v2.4.3\n#12 0.635 go: downloading golang.org/x/sys v0.42.0\n#12 0.635 go: downloading github.com/spf13/pflag v1.0.10\n#12 0.636 go: downloading github.com/tklauser/go-sysconf v0.3.16\n#12 0.672 go: downloading github.com/cyphar/filepath-securejoin v0.6.1\n#12 0.869 go: downloading github.com/tklauser/numcpus v0.11.0\n#12 DONE 14.9s\n\n#13 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#13 CACHED\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.0s\n\n#15 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.116 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.3s done\n#19 exporting manifest sha256:6cc585ba485d5865833186b8735e165f1ba6f92ff610e01921c72cc53c9dea33 done\n#19 exporting config sha256:f236ca50b382abacaf93805aca7a62c7713976bd260f291d39b5c9551b5c8371 done\n#19 exporting attestation manifest sha256:654adc48f37a7da6a8b6e0eb82af3749f52f489f7cbe253d52a423c9e01df785 0.0s done\n#19 exporting manifest list sha256:9f31f4636c88c7f160292b2d38a80d82773c7abbd7e40711f24c30c0fc811ccf 0.0s done\n#19 naming to docker.io/ctk-exec/checksec.sh:396aaf185b03 done\n#19 unpacking to docker.io/ctk-exec/checksec.sh:396aaf185b03 0.1s done\n#19 DONE 0.4s","ok":true,"tier":"go","timed_out":false},"captures":[{"argv":["tool","--help"],"duration_ms":0,"error":"FileNotFoundError: [Errno 2] No such file or directory: 'tool'","exit_code":null,"stderr":"","stdout":"","truncated":false},{"argv":["checksec","--help"],"duration_ms":2,"error":null,"exit_code":0,"stderr":"","stdout":"A tool used to quickly survey mitigation technologies in use by processes on a Linux system.\n\nUsage:\n  checksec [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  dir         check all files in a directory\n  file        Check a single binary file\n  fortifyFile Check Fortify for binary file\n  fortifyProc Check Fortify for running process\n  help        Help about any command\n  kernel      Check kernel security flags\n  listfile    Check every binary listed in a file (or stdin via -)\n  proc        Check a file of a running process\n  procAll     Check all running processes\n  procLibs    Check all libraries mapped into a running process\n\nFlags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -h, --help             help for checksec\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n  -v, --version          version for checksec\n\nUse \"checksec [command] --help\" for more information about a command.\n","truncated":false},{"argv":["checksec","completion","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Generate the autocompletion script for checksec for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  checksec completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n\nUse \"checksec completion [command] --help\" for more information about a command.\n","truncated":false},{"argv":["checksec","completion","bash","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(checksec completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tchecksec completion bash > /etc/bash_completion.d/checksec\n\n#### macOS:\n\n\tchecksec completion bash > $(brew --prefix)/etc/bash_completion.d/checksec\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","completion","fish","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tchecksec completion fish > ~/.config/fish/completions/checksec.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","completion","powershell","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  checksec completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","completion","zsh","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(checksec completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tchecksec completion zsh > \"${fpath[1]}/_checksec\"\n\n#### macOS:\n\n\tchecksec completion zsh > $(brew --prefix)/share/zsh/site-functions/_checksec\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","dir","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"check all files in a directory\n\nUsage:\n  checksec dir <directory> [flags]\n\nExamples:\n\n  checksec dir /usr/bin/\n  checksec dir /usr/bin/ --recursive\n\nFlags:\n  -h, --help        help for dir\n  -r, --recursive   Enable recursive through the directories\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","file","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Check a single binary file\n\nUsage:\n  checksec file <file> [flags]\n\nExamples:\n\n  checksec file /usr/bin/ls\n  checksec file /usr/bin/ls --no-banner\n\nFlags:\n  -h, --help   help for file\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","help","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Help provides help for any command in the application.\nSimply type checksec help [path to command] for full details.\n\nUsage:\n  checksec help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","kernel","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Check kernel security flags\n\nUsage:\n  checksec kernel [flags]\n\nFlags:\n  -h, --help   help for kernel\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","listfile","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Check every binary listed in a file (or stdin via -)\n\nUsage:\n  checksec listfile <path|-> [flags]\n\nExamples:\n\n  checksec listfile targets.txt\n  find /usr/bin -type f | checksec listfile -\n\nFlags:\n  -h, --help   help for listfile\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["checksec","proc","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"","stdout":"Check a file of a running process\n\nUsage:\n  checksec proc [flags]\n\nFlags:\n  -h, --help   help for proc\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n","truncated":false},{"argv":["man","checksec"],"duration_ms":1,"error":null,"exit_code":16,"source":"man","stderr":"No manual entry for checksec\n","stdout":"","truncated":false},{"argv":["info","--output=-","--subnodes","checksec"],"duration_ms":2,"error":null,"exit_code":0,"source":"info","stderr":"info: No menu item 'checksec' in node '(dir)Top'\n","stdout":"","truncated":false},{"argv":["checksec","--version"],"duration_ms":1,"error":null,"exit_code":0,"id":"version","kind":"scenario","stderr":"","stdout":"checksec version dev (Built on unknown from Git SHA none)\n","title":"Version and available checks","truncated":false},{"argv":[],"binary":"checksec","capped":false,"commands_run":16,"duration_ms":0,"error":null,"exit_code":null,"kind":"batch_summary","stderr":"","stdout":"","truncated":false}],"example_trials":{"not_attempted":[{"line":10,"path":"docs/advanced.md","raw":"checksec fortifyProc 1","reason":"no-input-bound","source":"readme","token":""},{"line":8,"path":"docs/checks/kernel.md","raw":"checksec kernel                     # running kernel","reason":"no-input-bound","source":"readme","token":""},{"line":9,"path":"docs/checks/kernel.md","raw":"checksec kernel -o json             # machine-readable","reason":"no-input-bound","source":"readme","token":""}],"promoted":0,"results":[{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus","--libc","/opt/ctk/fixtures/binaries/marked-unstripped"],"exit_code":1,"grade":"rejected","id":"readme-1","line":54,"output_bytes":121,"path":"docs/advanced.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus"],"exit_code":1,"grade":"rejected","id":"readme-2","line":59,"output_bytes":121,"path":"docs/index.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus","-o","csv"],"exit_code":1,"grade":"rejected","id":"readme-3","line":49,"output_bytes":121,"path":"docs/usage.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus","-o","json"],"exit_code":1,"grade":"rejected","id":"readme-4","line":57,"output_bytes":121,"path":"docs/usage.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus","-o","xml"],"exit_code":1,"grade":"rejected","id":"readme-5","line":76,"output_bytes":121,"path":"docs/usage.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus/app/settings.py","/opt/ctk/fixtures/source-corpus","-o","yaml"],"exit_code":1,"grade":"rejected","id":"readme-6","line":94,"output_bytes":121,"path":"docs/usage.md","reason":"printed-usage","source":"readme"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus"],"exit_code":1,"grade":"rejected","id":"surface-7","line":0,"output_bytes":105,"path":"surface","reason":"printed-usage","source":"surface"},{"argv":["checksec","/opt/ctk/fixtures/source-corpus","/opt/ctk/fixtures/source-corpus"],"exit_code":1,"grade":"rejected","id":"surface-8","line":0,"output_bytes":105,"path":"surface","reason":"printed-usage","source":"surface"}],"tried":8,"tried_this_wave":0},"examples":[{"argv":["checksec","--version"],"duration_ms":1,"error":null,"exit_code":0,"id":"version","stderr":"","stdout":"checksec version dev (Built on unknown from Git SHA none)\n","title":"Version and available checks","truncated":false}],"generated_at":"2026-08-02T03:46:50.037514+00:00","head_sha":"396aaf185b03a88bdc7a79d1b132901a4dc975d8","help":{"aliases":{"--help":["-h"],"--libc":["-l"],"--output":["-o"],"--version":["-v"]},"binary":"checksec","capped":false,"depth":2,"flags_seen":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for checksec","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")","--version":"version for checksec","-h":"help for checksec","-l":"Set libc location (useful for FORTIFY check on offline embedded file-system)","-o":"Output format (table, json, yaml, xml, csv) (default \"table\")","-v":"version for checksec"},"ladder_used":"--help","subcommand_flags":{"completion":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for zsh","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-descriptions":"disable completion descriptions","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"dir":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for dir","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")","--recursive":"Enable recursive through the directories"},"file":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for file","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"help":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for help","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"kernel":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for kernel","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"listfile":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for listfile","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"proc":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for proc","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"}},"subcommands":["completion","dir","file","help","kernel","listfile","proc"],"text":"A tool used to quickly survey mitigation technologies in use by processes on a Linux system.\n\nUsage:\n  checksec [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  dir         check all files in a directory\n  file        Check a single binary file\n  fortifyFile Check Fortify for binary file\n  fortifyProc Check Fortify for running process\n  help        Help about any command\n  kernel      Check kernel security flags\n  listfile    Check every binary listed in a file (or stdin via -)\n  proc        Check a file of a running process\n  procAll     Check all running processes\n  procLibs    Check all libraries mapped into a running process\n\nFlags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -h, --help             help for checksec\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n  -v, --version          version for checksec\n\nUse \"checksec [command] --help\" for more information about a command.\n","text_sha256":"37345599845b2f43540e99730542fa497f1f463b9aa204ae2ecb52057a500194","values_seen":{"--color":"string","--fail-if":"string","--libc":"string","--output":"string","-l":"string","-o":"string"}},"input_fingerprint":"acaa98a14cda9816","repo":"slimm609/checksec.sh","skipped_reason":null,"surface":{"flags":{"--color":{"attribution":"own","first_date":"2026-06-17T05:21:26-04:00","first_tag":"3.2.0","help":"Color output mode (auto, always, never) (default \"auto\")","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"metavar":"string","runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":true,"value_type":"string"},"--fail-if":{"attribution":"own","first_date":"2026-06-17T05:21:26-04:00","first_tag":"3.2.0","help":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"metavar":"string","runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":true,"value_type":"string"},"--help":{"aliases":["-h"],"help":"help for checksec","runtime_confirmed":true,"source":"runtime"},"--libc":{"aliases":["-l"],"attribution":"own","first_date":"2025-12-20T20:32:45-05:00","first_tag":"3.1.0","help":"Set libc location (useful for FORTIFY check on offline embedded file-system)","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"metavar":"string","runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":true,"value_type":"string"},"--no-banner":{"attribution":"own","first_date":"2025-12-20T20:32:45-05:00","first_tag":"3.1.0","help":"disable the banner","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":false},"--no-headers":{"attribution":"own","first_date":"2025-12-20T20:32:45-05:00","first_tag":"3.1.0","help":"disable the headers","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":false},"--no-warnings":{"attribution":"own","first_date":"2026-06-17T05:21:26-04:00","first_tag":"3.2.0","help":"disable warnings","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":false},"--output":{"aliases":["-o"],"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Output format (table, json, yaml, xml, csv) (default \"table\")","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"metavar":"string","runtime_confirmed":true,"source":"both","source_path":"cmd/root.go","takes_value":true,"value_type":"string"},"--recursive":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Enable recursive through the directories","kind":"option","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/dir.go","takes_value":false},"--version":{"aliases":["-v"],"help":"version for checksec","runtime_confirmed":true,"source":"runtime"},"checksec":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"A binary scanning security tool","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/root.go"},"dir":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"check all files in a directory","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/dir.go"},"file":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check a single binary file","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/file.go"},"fortifyFile":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check Fortify for binary file","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/fortifyFile.go"},"fortifyProc":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check Fortify for running process","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/fortifyProc.go"},"kernel":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check kernel security flags","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/kernel.go"},"listfile":{"attribution":"own","first_date":"2026-06-17T05:21:26-04:00","first_tag":"3.2.0","help":"Check every binary listed in a file (or stdin via -)","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/listfile.go"},"proc":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check a file of a running process","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/proc.go"},"procAll":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check all running processes","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/procAll.go"},"procLibs":{"attribution":"own","first_date":"2024-09-26T21:26:34-04:00","first_tag":"3.0.0-alpha","help":"Check all libraries mapped into a running process","kind":"subcommand","last_date":"2026-06-17T05:21:26-04:00","last_tag":"3.2.0","live":true,"runtime_confirmed":false,"source":"source","source_path":"cmd/procLibs.go"}},"subcommand_flags":{"completion":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for zsh","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-descriptions":"disable completion descriptions","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"dir":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for dir","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")","--recursive":"Enable recursive through the directories"},"file":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for file","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"help":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for help","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"kernel":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for kernel","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"listfile":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for listfile","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"},"proc":{"--color":"Color output mode (auto, always, never) (default \"auto\")","--fail-if":"Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood","--help":"help for proc","--libc":"Set libc location (useful for FORTIFY check on offline embedded file-system)","--no-banner":"disable the banner","--no-headers":"disable the headers","--no-warnings":"disable warnings","--output":"Output format (table, json, yaml, xml, csv) (default \"table\")"}},"subcommands":["completion","dir","file","help","kernel","listfile","proc"]},"tool":"checksec.sh","validation":{"confirmed":["--color","--fail-if","--libc","--no-banner","--no-headers","--no-warnings","--output"],"help_only":["--help","--version","-h","-l","-o","-v"],"mining_coverage":0.5384615384615384,"unconfirmed":["--recursive","checksec","dir","file","fortifyFile","fortifyProc","kernel","listfile","proc","procAll","procLibs"]}}
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:856cfe59758709910969bb5262db40ecde8efced216d46a14d32e68c1262d2d4",
+  "duration_s": 10.87,
+  "log_tail": "#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.218 go: downloading sigs.k8s.io/yaml v1.6.0\n#11 0.218 go: downloading github.com/fatih/color v1.19.0\n#11 0.218 go: downloading github.com/opencontainers/selinux v1.15.1\n#11 0.222 go: downloading github.com/u-root/u-root v0.16.0\n#11 0.222 go: downloading github.com/spf13/cobra v1.10.2\n#11 0.222 go: downloading github.com/lorenzosaino/go-sysctl v0.3.1\n#11 0.223 go: downloading github.com/shirou/gopsutil/v3 v3.24.5\n#11 0.534 go: downloading github.com/mattn/go-isatty v0.0.20\n#11 0.534 go: downloading github.com/mattn/go-colorable v0.1.14\n#11 0.534 go: downloading go.yaml.in/yaml/v2 v2.4.3\n#11 0.535 go: downloading golang.org/x/sys v0.42.0\n#11 0.535 go: downloading github.com/cyphar/filepath-securejoin v0.6.1\n#11 0.684 go: downloading github.com/spf13/pflag v1.0.10\n#11 0.708 go: downloading github.com/tklauser/go-sysconf v0.3.16\n#11 0.796 go: downloading github.com/tklauser/numcpus v0.11.0\n#11 DONE 8.4s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.113 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:e741a54a12f542e263465f548aa9b4c38b7b4587aaeb40a77440b4cc2cb47aa6 done\n#18 exporting config sha256:959a709e2d88eae51c2df660b97e0fe97edd80e909d3ccd2babdfacb75a1ca39 done\n#18 exporting attestation manifest sha256:c3fe938d3d296e6ab2f679d3e20f58381287f076ca49cd236dc2893e61c50950 0.0s done\n#18 exporting manifest list sha256:856cfe59758709910969bb5262db40ecde8efced216d46a14d32e68c1262d2d4 done\n#18 naming to docker.io/ctk-exec/checksec.sh:396aaf185b03 done\n#18 unpacking to docker.io/ctk-exec/checksec.sh:396aaf185b03 0.1s done\n#18 DONE 0.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "checksec",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "A tool used to quickly survey mitigation technologies in use by processes on a Linux system.\n\nUsage:\n  checksec [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  dir         check all files in a directory\n  file        Check a single binary file\n  fortifyFile Check Fortify for binary file\n  fortifyProc Check Fortify for running process\n  help        Help about any command\n  kernel      Check kernel security flags\n  listfile    Check every binary listed in a file (or stdin via -)\n  proc        Check a file of a running process\n  procAll     Check all running processes\n  procLibs    Check all libraries mapped into a running process\n\nFlags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -h, --help             help for checksec\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n  -v, --version          version for checksec\n\nUse \"checksec [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for checksec for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  checksec completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n\nUse \"checksec completion [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "completion",
+    "bash",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(checksec completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tchecksec completion bash > /etc/bash_completion.d/checksec\n\n#### macOS:\n\n\tchecksec completion bash > $(brew --prefix)/etc/bash_completion.d/checksec\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "completion",
+    "fish",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tchecksec completion fish > ~/.config/fish/completions/checksec.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "completion",
+    "powershell",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  checksec completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "completion",
+    "zsh",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(checksec completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tchecksec completion zsh > \"${fpath[1]}/_checksec\"\n\n#### macOS:\n\n\tchecksec completion zsh > $(brew --prefix)/share/zsh/site-functions/_checksec\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "dir",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "check all files in a directory\n\nUsage:\n  checksec dir <directory> [flags]\n\nExamples:\n\n  checksec dir /usr/bin/\n  checksec dir /usr/bin/ --recursive\n\nFlags:\n  -h, --help        help for dir\n  -r, --recursive   Enable recursive through the directories\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "file",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Check a single binary file\n\nUsage:\n  checksec file <file> [flags]\n\nExamples:\n\n  checksec file /usr/bin/ls\n  checksec file /usr/bin/ls --no-banner\n\nFlags:\n  -h, --help   help for file\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type checksec help [path to command] for full details.\n\nUsage:\n  checksec help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "kernel",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Check kernel security flags\n\nUsage:\n  checksec kernel [flags]\n\nFlags:\n  -h, --help   help for kernel\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "listfile",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Check every binary listed in a file (or stdin via -)\n\nUsage:\n  checksec listfile <path|-> [flags]\n\nExamples:\n\n  checksec listfile targets.txt\n  find /usr/bin -type f | checksec listfile -\n\nFlags:\n  -h, --help   help for listfile\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "checksec",
+    "proc",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Check a file of a running process\n\nUsage:\n  checksec proc [flags]\n\nFlags:\n  -h, --help   help for proc\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "checksec"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for checksec\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "checksec"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'checksec' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "checksec",
+    "--version"
+   ],
+   "exit_code": 0,
+   "stdout": "checksec version dev (Built on unknown from Git SHA none)\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "version",
+   "title": "Version and available checks"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 16,
+   "binary": "checksec",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "acaa98a14cda9816",
+ "examples": [
+  {
+   "id": "version",
+   "title": "Version and available checks",
+   "argv": [
+    "checksec",
+    "--version"
+   ],
+   "stdout": "checksec version dev (Built on unknown from Git SHA none)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--color": "Color output mode (auto, always, never) (default \"auto\")",
+   "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+   "--help": "help for checksec",
+   "-h": "help for checksec",
+   "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+   "-l": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+   "--no-banner": "disable the banner",
+   "--no-headers": "disable the headers",
+   "--no-warnings": "disable warnings",
+   "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")",
+   "-o": "Output format (table, json, yaml, xml, csv) (default \"table\")",
+   "--version": "version for checksec",
+   "-v": "version for checksec"
+  },
+  "values_seen": {
+   "--color": "string",
+   "--fail-if": "string",
+   "-l": "string",
+   "--libc": "string",
+   "-o": "string",
+   "--output": "string"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--libc": [
+    "-l"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--version": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "dir": {
+    "--help": "help for dir",
+    "--recursive": "Enable recursive through the directories",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "file": {
+    "--help": "help for file",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "help": {
+    "--help": "help for help",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "kernel": {
+    "--help": "help for kernel",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "listfile": {
+    "--help": "help for listfile",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "proc": {
+    "--help": "help for proc",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "dir",
+   "file",
+   "help",
+   "kernel",
+   "listfile",
+   "proc"
+  ],
+  "binary": "checksec",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "37345599845b2f43540e99730542fa497f1f463b9aa204ae2ecb52057a500194",
+  "text": "A tool used to quickly survey mitigation technologies in use by processes on a Linux system.\n\nUsage:\n  checksec [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  dir         check all files in a directory\n  file        Check a single binary file\n  fortifyFile Check Fortify for binary file\n  fortifyProc Check Fortify for running process\n  help        Help about any command\n  kernel      Check kernel security flags\n  listfile    Check every binary listed in a file (or stdin via -)\n  proc        Check a file of a running process\n  procAll     Check all running processes\n  procLibs    Check all libraries mapped into a running process\n\nFlags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -h, --help             help for checksec\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n  -v, --version          version for checksec\n\nUse \"checksec [command] --help\" for more information about a command.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--color",
+   "--fail-if",
+   "--libc",
+   "--no-banner",
+   "--no-headers",
+   "--no-warnings",
+   "--output"
+  ],
+  "unconfirmed": [
+   "--recursive",
+   "checksec",
+   "dir",
+   "file",
+   "fortifyFile",
+   "fortifyProc",
+   "kernel",
+   "listfile",
+   "proc",
+   "procAll",
+   "procLibs"
+  ],
+  "help_only": [
+   "--help",
+   "--version",
+   "-h",
+   "-l",
+   "-o",
+   "-v"
+  ],
+  "mining_coverage": 0.5384615384615384
+ },
+ "surface": {
+  "flags": {
+   "--color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Color output mode (auto, always, never) (default \"auto\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "3.2.0",
+    "first_date": "2026-06-17T05:21:26-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--fail-if": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "3.2.0",
+    "first_date": "2026-06-17T05:21:26-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for checksec",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--libc": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "3.1.0",
+    "first_date": "2025-12-20T20:32:45-05:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--no-banner": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable the banner",
+    "kind": "option",
+    "first_tag": "3.1.0",
+    "first_date": "2025-12-20T20:32:45-05:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--no-headers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable the headers",
+    "kind": "option",
+    "first_tag": "3.1.0",
+    "first_date": "2025-12-20T20:32:45-05:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--no-warnings": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable warnings",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2026-06-17T05:21:26-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output format (table, json, yaml, xml, csv) (default \"table\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--recursive": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable recursive through the directories",
+    "kind": "option",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/dir.go",
+    "takes_value": false
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "version for checksec",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "checksec": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "A binary scanning security tool",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/root.go"
+   },
+   "dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "check all files in a directory",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/dir.go"
+   },
+   "file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check a single binary file",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/file.go"
+   },
+   "fortifyFile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check Fortify for binary file",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/fortifyFile.go"
+   },
+   "fortifyProc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check Fortify for running process",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/fortifyProc.go"
+   },
+   "kernel": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check kernel security flags",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/kernel.go"
+   },
+   "listfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check every binary listed in a file (or stdin via -)",
+    "kind": "subcommand",
+    "first_tag": "3.2.0",
+    "first_date": "2026-06-17T05:21:26-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/listfile.go"
+   },
+   "proc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check a file of a running process",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/proc.go"
+   },
+   "procAll": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check all running processes",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/procAll.go"
+   },
+   "procLibs": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check all libraries mapped into a running process",
+    "kind": "subcommand",
+    "first_tag": "3.0.0-alpha",
+    "first_date": "2024-09-26T21:26:34-04:00",
+    "last_tag": "3.2.0",
+    "last_date": "2026-06-17T05:21:26-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/procLibs.go"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "dir",
+   "file",
+   "help",
+   "kernel",
+   "listfile",
+   "proc"
+  ],
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for zsh",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")",
+    "--no-descriptions": "disable completion descriptions"
+   },
+   "dir": {
+    "--help": "help for dir",
+    "--recursive": "Enable recursive through the directories",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "file": {
+    "--help": "help for file",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "help": {
+    "--help": "help for help",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "kernel": {
+    "--help": "help for kernel",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "listfile": {
+    "--help": "help for listfile",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   },
+   "proc": {
+    "--help": "help for proc",
+    "--color": "Color output mode (auto, always, never) (default \"auto\")",
+    "--fail-if": "Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood",
+    "--libc": "Set libc location (useful for FORTIFY check on offline embedded file-system)",
+    "--no-banner": "disable the banner",
+    "--no-headers": "disable the headers",
+    "--no-warnings": "disable warnings",
+    "--output": "Output format (table, json, yaml, xml, csv) (default \"table\")"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 8,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus",
+     "--libc",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-1",
+    "line": 54,
+    "output_bytes": 121,
+    "path": "docs/advanced.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-2",
+    "line": 59,
+    "output_bytes": 121,
+    "path": "docs/index.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus",
+     "-o",
+     "csv"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-3",
+    "line": 49,
+    "output_bytes": 121,
+    "path": "docs/usage.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus",
+     "-o",
+     "json"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-4",
+    "line": 57,
+    "output_bytes": 121,
+    "path": "docs/usage.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus",
+     "-o",
+     "xml"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-5",
+    "line": 76,
+    "output_bytes": 121,
+    "path": "docs/usage.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "/opt/ctk/fixtures/source-corpus",
+     "-o",
+     "yaml"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "readme-6",
+    "line": 94,
+    "output_bytes": 121,
+    "path": "docs/usage.md",
+    "reason": "printed-usage",
+    "source": "readme"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "surface-7",
+    "line": 0,
+    "output_bytes": 105,
+    "path": "surface",
+    "reason": "printed-usage",
+    "source": "surface"
+   },
+   {
+    "argv": [
+     "checksec",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "surface-8",
+    "line": 0,
+    "output_bytes": 105,
+    "path": "surface",
+    "reason": "printed-usage",
+    "source": "surface"
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "checksec fortifyProc 1",
+    "source": "readme",
+    "path": "docs/advanced.md",
+    "line": 10,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "checksec kernel                     # running kernel",
+    "source": "readme",
+    "path": "docs/checks/kernel.md",
+    "line": 8,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "checksec kernel -o json             # machine-readable",
+    "source": "readme",
+    "path": "docs/checks/kernel.md",
+    "line": 9,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "checksec.sh",
+ "repo": "slimm609/checksec.sh",
+ "head_sha": "396aaf185b03a88bdc7a79d1b132901a4dc975d8",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T05:10:04.914042+00:00"
+}

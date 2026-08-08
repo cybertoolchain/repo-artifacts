@@ -1,0 +1,675 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:37f87b67b02a196c95adcf96ea1edac420ecb47054d246a5b967b63f140c9f2e",
+  "duration_s": 34.05,
+  "log_tail": "#10 20.19   Building wheel for sherlock-project (pyproject.toml): started\n#10 20.53   Building wheel for sherlock-project (pyproject.toml): finished with status 'done'\n#10 20.53   Created wheel for sherlock-project: filename=sherlock_project-0.16.1-py3-none-any.whl size=38532 sha256=4fcc80715140c65976561c57428462c3b412a4eacd4797232ab109a991f5dfdd\n#10 20.53   Stored in directory: /tmp/pip-ephem-wheel-cache-0dn8aae3/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 20.53   Building wheel for stem (pyproject.toml): started\n#10 20.75   Building wheel for stem (pyproject.toml): finished with status 'done'\n#10 20.75   Created wheel for stem: filename=stem-1.8.2-py3-none-any.whl size=436281 sha256=8ec107768401466ac9843d1623cc6e69605b8a8606ba14431aa45c86e61efaa4\n#10 20.75   Stored in directory: /tmp/pip-ephem-wheel-cache-0dn8aae3/wheels/91/3d/a8/3f5ed3c98e159d39092654ba746168d5bc58c1eb0d96702f8f\n#10 20.75 Successfully built sherlock-project stem\n#10 20.79 Installing collected packages: stem, pytz, urllib3, tzdata, tomli, six, PySocks, numpy, idna, et-xmlfile, colorama, charset_normalizer, certifi, requests, python-dateutil, openpyxl, requests-futures, pandas, sherlock-project\n#10 26.02 \n#10 26.02 Successfully installed PySocks-1.7.1 certifi-2026.7.22 charset_normalizer-3.4.9 colorama-0.4.6 et-xmlfile-2.0.0 idna-3.18 numpy-2.5.1 openpyxl-3.1.5 pandas-2.3.3 python-dateutil-2.9.0.post0 pytz-2026.3.post1 requests-2.34.2 requests-futures-1.0.2 sherlock-project-0.16.1 six-1.17.0 stem-1.8.2 tomli-2.4.1 tzdata-2026.3 urllib3-2.7.0\n#10 DONE 26.2s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.3s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.154 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.2s done\n#20 exporting manifest sha256:545a318d40b2952f2a2da01f5089468bd41c56a6bfa82d3278cf72de0b332b82 done\n#20 exporting config sha256:d6beb65f9ad9ec65e5a63d7435e38dc305b5773038f776d6b05ba4cc4f3262da done\n#20 exporting attestation manifest sha256:10dcd4dbfc22aa4fc28347492e219c02c8493915d2ba4fea7ab25c31bb84522c 0.0s done\n#20 exporting manifest list sha256:37f87b67b02a196c95adcf96ea1edac420ecb47054d246a5b967b63f140c9f2e done\n#20 naming to docker.io/ctk-exec/sherlock:9100f9d40a32 done\n#20 unpacking to docker.io/ctk-exec/sherlock:9100f9d40a32\n#20 unpacking to docker.io/ctk-exec/sherlock:9100f9d40a32 1.4s done\n#20 DONE 4.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "sherlock",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: sherlock [-h] [--version] [--verbose] [--folderoutput FOLDEROUTPUT]\n                [--output OUTPUT] [--csv] [--xlsx] [--site SITE_NAME]\n                [--proxy PROXY_URL] [--dump-response] [--json JSON_FILE]\n                [--timeout TIMEOUT] [--print-all] [--print-found] [--no-color]\n                [--browse] [--local] [--nsfw] [--txt] [--ignore-exclusions]\n                USERNAMES [USERNAMES ...]\n\nSherlock: Find Usernames Across Social Networks (Version 0.16.1)\n\npositional arguments:\n  USERNAMES             One or more usernames to check with social networks.\n                        Check similar usernames using {?} (replace to '_',\n                        '-', '.').\n\noptions:\n  -h, --help            show this help message and exit\n  --version             Display version information and dependencies.\n  --verbose, -v, -d, --debug\n                        Display extra debugging information and metrics.\n  --folderoutput FOLDEROUTPUT, -fo FOLDEROUTPUT\n                        If using multiple usernames, the output of the results\n                        will be saved to this folder.\n  --output OUTPUT, -o OUTPUT\n                        If using single username, the output of the result\n                        will be saved to this file.\n  --csv                 Create Comma-Separated Values (CSV) File.\n  --xlsx                Create the standard file for the modern Microsoft\n                        Excel spreadsheet (xlsx).\n  --site SITE_NAME      Limit analysis to just the listed sites. Add multiple\n                        options to specify more than one site.\n  --proxy PROXY_URL, -p PROXY_URL\n                        Make requests over a proxy. e.g.\n                        socks5://127.0.0.1:1080\n  --dump-response       Dump the HTTP response to stdout for targeted\n                        debugging.\n  --json JSON_FILE, -j JSON_FILE\n                        Load data from a JSON file or an online, valid, JSON\n                        file. Upstream PR numbers also accepted.\n  --timeout TIMEOUT     Time (in seconds) to wait for response to requests\n                        (Default: 60)\n  --print-all           Output sites where the username was not found.\n  --print-found         Output sites where the username was found (also if\n                        exported as file).\n  --no-color            Don't color terminal output\n  --browse, -b          Browse to all results on default browser.\n  --local, -l           Force the use of the local data.json file.\n  --nsfw                Include checking of NSFW sites from default list.\n  --txt                 Enable creation of a txt file\n  --ignore-exclusions   Ignore upstream exclusions (may return more false\n                        positives)\n",
+   "stderr": "",
+   "duration_ms": 629,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "sherlock"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for sherlock\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "sherlock"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'sherlock' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "sherlock",
+    "--local",
+    "/opt/ctk/fixtures/source-corpus/Dockerfile"
+   ],
+   "exit_code": 0,
+   "stdout": "A problem occurred while checking for an update: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/sherlock-project/sherlock/releases/latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to resolve 'api.github.com' ([Errno -3] Temporary failure in name resolution)\"))\n[*] Checking username /opt/ctk/fixtures/source-corpus/Dockerfile on:\n\r\n\n[*] Search completed with 0 results\n",
+   "stderr": "",
+   "duration_ms": 815,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-2a5a7dde",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "sherlock",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "c62d79248fddd94f",
+ "examples": [
+  {
+   "id": "t-model-2a5a7dde",
+   "title": "Candidate \u2014 run against source-corpus",
+   "argv": [
+    "sherlock",
+    "--local",
+    "/opt/ctk/fixtures/source-corpus/Dockerfile"
+   ],
+   "stdout": "A problem occurred while checking for an update: HTTPSConnectionPool(host='api.github.com', port=443): Max retries exceeded with url: /repos/sherlock-project/sherlock/releases/latest (Caused by NameResolutionError(\"HTTPSConnection(host='api.github.com', port=443): Failed to resolve 'api.github.com' ([Errno -3] Temporary failure in name resolution)\"))\n[*] Checking username /opt/ctk/fixtures/source-corpus/Dockerfile on:\n\r\n\n[*] Search completed with 0 results\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 815,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--version": "Display version information and dependencies.",
+   "--verbose": "Display extra debugging information and metrics.",
+   "-v": "Display extra debugging information and metrics.",
+   "-d": "Display extra debugging information and metrics.",
+   "--debug": "Display extra debugging information and metrics.",
+   "--folderoutput": "If using multiple usernames, the output of the results will be saved to this folder.",
+   "-fo": "If using multiple usernames, the output of the results will be saved to this folder.",
+   "--output": "If using single username, the output of the result will be saved to this file.",
+   "-o": "If using single username, the output of the result will be saved to this file.",
+   "--csv": "Create Comma-Separated Values (CSV) File.",
+   "--xlsx": "Create the standard file for the modern Microsoft Excel spreadsheet (xlsx).",
+   "--site": "Limit analysis to just the listed sites. Add multiple options to specify more than one site.",
+   "--proxy": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080",
+   "-p": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080",
+   "--dump-response": "Dump the HTTP response to stdout for targeted debugging.",
+   "--json": "Load data from a JSON file or an online, valid, JSON file. Upstream PR numbers also accepted.",
+   "-j": "Load data from a JSON file or an online, valid, JSON file. Upstream PR numbers also accepted.",
+   "--timeout": "Time (in seconds) to wait for response to requests (Default: 60)",
+   "--print-all": "Output sites where the username was not found.",
+   "--print-found": "Output sites where the username was found (also if exported as file).",
+   "--no-color": "Don't color terminal output",
+   "--browse": "Browse to all results on default browser.",
+   "-b": "Browse to all results on default browser.",
+   "--local": "Force the use of the local data.json file.",
+   "-l": "Force the use of the local data.json file.",
+   "--nsfw": "Include checking of NSFW sites from default list.",
+   "--txt": "Enable creation of a txt file",
+   "--ignore-exclusions": "Ignore upstream exclusions (may return more false positives)"
+  },
+  "values_seen": {
+   "--site": "SITE_NAME",
+   "--timeout": "TIMEOUT"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--verbose": [
+    "-v",
+    "-d",
+    "--debug"
+   ],
+   "--folderoutput": [
+    "-fo"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--json": [
+    "-j"
+   ],
+   "--browse": [
+    "-b"
+   ],
+   "--local": [
+    "-l"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "sherlock",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "8efde6d9c89283270bf418f1e4203fed5ad4f947ac1c9b0265f14040e1123e62",
+  "text": "usage: sherlock [-h] [--version] [--verbose] [--folderoutput FOLDEROUTPUT]\n                [--output OUTPUT] [--csv] [--xlsx] [--site SITE_NAME]\n                [--proxy PROXY_URL] [--dump-response] [--json JSON_FILE]\n                [--timeout TIMEOUT] [--print-all] [--print-found] [--no-color]\n                [--browse] [--local] [--nsfw] [--txt] [--ignore-exclusions]\n                USERNAMES [USERNAMES ...]\n\nSherlock: Find Usernames Across Social Networks (Version 0.16.1)\n\npositional arguments:\n  USERNAMES             One or more usernames to check with social networks.\n                        Check similar usernames using {?} (replace to '_',\n                        '-', '.').\n\noptions:\n  -h, --help            show this help message and exit\n  --version             Display version information and dependencies.\n  --verbose, -v, -d, --debug\n                        Display extra debugging information and metrics.\n  --folderoutput FOLDEROUTPUT, -fo FOLDEROUTPUT\n                        If using multiple usernames, the output of the results\n                        will be saved to this folder.\n  --output OUTPUT, -o OUTPUT\n                        If using single username, the output of the result\n                        will be saved to this file.\n  --csv                 Create Comma-Separated Values (CSV) File.\n  --xlsx                Create the standard file for the modern Microsoft\n                        Excel spreadsheet (xlsx).\n  --site SITE_NAME      Limit analysis to just the listed sites. Add multiple\n                        options to specify more than one site.\n  --proxy PROXY_URL, -p PROXY_URL\n                        Make requests over a proxy. e.g.\n                        socks5://127.0.0.1:1080\n  --dump-response       Dump the HTTP response to stdout for targeted\n                        debugging.\n  --json JSON_FILE, -j JSON_FILE\n                        Load data from a JSON file or an online, valid, JSON\n                        file. Upstream PR numbers also accepted.\n  --timeout TIMEOUT     Time (in seconds) to wait for response to requests\n                        (Default: 60)\n  --print-all           Output sites where the username was not found.\n  --print-found         Output sites where the username was found (also if\n                        exported as file).\n  --no-color            Don't color terminal output\n  --browse, -b          Browse to all results on default browser.\n  --local, -l           Force the use of the local data.json file.\n  --nsfw                Include checking of NSFW sites from default list.\n  --txt                 Enable creation of a txt file\n  --ignore-exclusions   Ignore upstream exclusions (may return more false\n                        positives)\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--browse",
+   "--csv",
+   "--dump-response",
+   "--folderoutput",
+   "--help",
+   "--ignore-exclusions",
+   "--json",
+   "--local",
+   "--no-color",
+   "--nsfw",
+   "--output",
+   "--print-all",
+   "--print-found",
+   "--proxy",
+   "--site",
+   "--timeout",
+   "--verbose",
+   "--version",
+   "--xlsx"
+  ],
+  "unconfirmed": [
+   "--no-txt",
+   "--tor",
+   "--unique-tor",
+   "username"
+  ],
+  "help_only": [
+   "--debug",
+   "--txt",
+   "-b",
+   "-d",
+   "-fo",
+   "-h",
+   "-j",
+   "-l",
+   "-o",
+   "-p",
+   "-v"
+  ],
+  "mining_coverage": 0.6333333333333333
+ },
+ "surface": {
+  "flags": {
+   "--browse": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Browse to all results on default browser.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false,
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--csv": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Create Comma-Separated Values (CSV) File.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--dump-response": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Dump the HTTP response to stdout for targeted debugging.",
+    "kind": "option",
+    "first_tag": "v0.15.0",
+    "first_date": "2024-07-08T05:55:05-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--folderoutput": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If using multiple usernames, the output of the results will be saved to this folder.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-fo"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--ignore-exclusions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Ignore upstream exclusions (may return more false positives)",
+    "kind": "option",
+    "first_tag": "v0.16.0",
+    "first_date": "2025-09-15T22:15:07-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Load data from a JSON file or an online, valid, JSON file. Upstream PR numbers also accepted.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--local": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Force the use of the local data.json file.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false,
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--no-color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't color terminal output",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--no-txt": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Disable creation of a txt file",
+    "kind": "option",
+    "first_tag": "v0.16.0",
+    "first_date": "2025-09-15T22:15:07-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--nsfw": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Include checking of NSFW sites from default list.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "If using single username, the output of the result will be saved to this file.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--print-all": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output sites where the username was not found.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--print-found": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output sites where the username was found (also if exported as file).",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--site": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Limit analysis to just the listed sites. Add multiple options to specify more than one site.",
+    "kind": "option",
+    "metavar": "SITE_NAME",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Time (in seconds) to wait for response to requests (Default: 60)",
+    "kind": "option",
+    "metavar": "TIMEOUT",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--tor": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Make requests over Tor; increases runtime; requires Tor to be installed and in system path.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--txt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable creation of a txt file"
+   },
+   "--unique-tor": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Make requests over Tor with new Tor circuit after each request; increases runtime; requires Tor to be installed and in system path.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display extra debugging information and metrics.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false,
+    "aliases": [
+     "-v",
+     "-d",
+     "--debug"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display version information and dependencies.",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "--xlsx": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Create the standard file for the modern Microsoft Excel spreadsheet (xlsx).",
+    "kind": "option",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py",
+    "takes_value": false
+   },
+   "username": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "One or more usernames to check with social networks. Check similar usernames using {?} (replace to '_', '-', '.').",
+    "kind": "positional",
+    "first_tag": "v0.14.4",
+    "first_date": "2024-07-03T00:58:18-04:00",
+    "last_tag": "v0.16.0",
+    "last_date": "2025-09-15T22:15:07-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "sherlock_project/sherlock.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-3e63aa58",
+    "argv": [
+     "sherlock",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-3e63aa58' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-767eec89",
+    "argv": [
+     "sherlock",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 734
+   },
+   {
+    "id": "t-net-04b9ae7e",
+    "argv": [
+     "sherlock",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 734
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "sherlock user123",
+    "source": "readme",
+    "path": "docs/README.md",
+    "line": 49,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sherlock user1 user2 user3",
+    "source": "readme",
+    "path": "docs/README.md",
+    "line": 54,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sherlock --help",
+    "source": "readme",
+    "path": "docs/README.md",
+    "line": 60,
+    "reason": "needs-network-or-interactive",
+    "token": "--help"
+   }
+  ]
+ },
+ "tool": "sherlock",
+ "repo": "sherlock-project/sherlock",
+ "head_sha": "9100f9d40a3274bd46f4ce903c5c6fee6f3745bc",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T02:00:04.646350+00:00"
+}

@@ -1,0 +1,542 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:fbf1976e0d6110983c79295b5f9cfc5ef17145d5708601c34910372b2dea2261",
+  "duration_s": 12.23,
+  "log_tail": "#10 7.204 Downloading cffi-2.1.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.whl (222 kB)\n#10 7.306 Downloading pycparser-3.0-py3-none-any.whl (48 kB)\n#10 7.361 Downloading wcwidth-0.8.2-py3-none-any.whl (323 kB)\n#10 7.575 Building wheels for collected packages: evil-winrm-py\n#10 7.576   Building wheel for evil-winrm-py (pyproject.toml): started\n#10 7.688   Building wheel for evil-winrm-py (pyproject.toml): finished with status 'done'\n#10 7.689   Created wheel for evil-winrm-py: filename=evil_winrm_py-1.6.0-py3-none-any.whl size=33970 sha256=3357663c08d7520ee2e1c37dc5ba62429f38daf32ed9157e7566f79d9c5a4cc2\n#10 7.689   Stored in directory: /tmp/pip-ephem-wheel-cache-moczct4g/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 7.690 Successfully built evil-winrm-py\n#10 7.707 Installing collected packages: wcwidth, urllib3, tqdm, pycparser, idna, charset_normalizer, certifi, requests, prompt_toolkit, cffi, cryptography, pyspnego, pypsrp, evil-winrm-py\n#10 8.381 \n#10 8.382 Successfully installed certifi-2026.7.22 cffi-2.1.0 charset_normalizer-3.4.9 cryptography-50.0.0 evil-winrm-py-1.6.0 idna-3.18 prompt_toolkit-3.0.52 pycparser-3.0 pypsrp-0.8.1 pyspnego-0.12.1 requests-2.34.2 tqdm-4.67.3 urllib3-2.7.0 wcwidth-0.8.2\n#10 DONE 8.5s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.102 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.9s done\n#20 exporting manifest sha256:fb93fe9bea0638ddb29c57adbb9659767975afdf0839373f94ff4acc4b1a18c8 done\n#20 exporting config sha256:1c14f8c1a087f95cffdf655e347be01a8d6ccf4d6c1fca50f50f76dc99d3a4ca done\n#20 exporting attestation manifest sha256:bea98c646bf557b025091e42e77caab38618a107784c00c2252e130d3372035d done\n#20 exporting manifest list sha256:fbf1976e0d6110983c79295b5f9cfc5ef17145d5708601c34910372b2dea2261 done\n#20 naming to docker.io/ctk-exec/evil-winrm-py:f1a543459066 done\n#20 unpacking to docker.io/ctk-exec/evil-winrm-py:f1a543459066\n#20 unpacking to docker.io/ctk-exec/evil-winrm-py:f1a543459066 0.7s done\n#20 DONE 1.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "evil-winrm-py",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "          _ _            _                             \n  _____ _(_| |_____ __ _(_)_ _  _ _ _ __ ___ _ __ _  _ \n / -_\\ V | | |___\\ V  V | | ' \\| '_| '  |___| '_ | || |\n \\___|\\_/|_|_|    \\_/\\_/|_|_||_|_| |_|_|_|  | .__/\\_, |\n                                            |_|   |__/  v1.6.0\n\nusage: evil-winrm-py [-h] -i IP [-u USER] [-p PASSWORD] [-H HASH]\n                     [--priv-key-pem PRIV_KEY_PEM] [--cert-pem CERT_PEM]\n                     [--uri URI] [--ua UA] [--port PORT] [--no-pass] [--ssl]\n                     [--log] [--debug] [--no-colors] [--version]\n\noptions:\n  -h, --help            show this help message and exit\n  -i IP, --ip IP        remote host IP or hostname\n  -u USER, --user USER  username\n  -p PASSWORD, --password PASSWORD\n                        password\n  -H HASH, --hash HASH  nthash\n  --priv-key-pem PRIV_KEY_PEM\n                        local path to private key PEM file\n  --cert-pem CERT_PEM   local path to certificate PEM file\n  --uri URI             wsman URI (default: /wsman)\n  --ua UA               user agent for the WinRM client (default: \"Microsoft WinRM Client\")\n  --port PORT           remote host port (default 5985)\n  --no-pass             do not prompt for password\n  --ssl                 use ssl\n  --log                 log session to file\n  --debug               enable debug logging\n  --no-colors           disable colors\n  --version             show version\n\nFor more information about this project, visit https://github.com/adityatelange/evil-winrm-py\nFor user guide, visit https://github.com/adityatelange/evil-winrm-py/blob/main/docs/usage.md\n",
+   "stderr": "",
+   "duration_ms": 453,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "evil-winrm-py"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for evil-winrm-py\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "evil-winrm-py"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'evil-winrm-py' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "evil-winrm-py",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--ip": "remote host IP or hostname",
+   "-i": "remote host IP or hostname",
+   "--user": "username",
+   "-u": "username",
+   "--password": "password",
+   "-p": "password",
+   "--hash": "nthash",
+   "-H": "nthash",
+   "--priv-key-pem": "local path to private key PEM file",
+   "--cert-pem": "local path to certificate PEM file",
+   "--uri": "wsman URI (default: /wsman)",
+   "--ua": "user agent for the WinRM client (default: \"Microsoft WinRM Client\")",
+   "--port": "remote host port (default 5985)",
+   "--no-pass": "do not prompt for password",
+   "--ssl": "use ssl",
+   "--log": "log session to file",
+   "--debug": "enable debug logging",
+   "--no-colors": "disable colors",
+   "--version": "show version"
+  },
+  "values_seen": {
+   "-i": "IP",
+   "--ip": "IP",
+   "-u": "USER",
+   "--user": "USER",
+   "-H": "HASH",
+   "--hash": "HASH",
+   "--cert-pem": "CERT_PEM",
+   "--uri": "URI",
+   "--ua": "UA",
+   "--port": "PORT"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--ip": [
+    "-i"
+   ],
+   "--user": [
+    "-u"
+   ],
+   "--password": [
+    "-p"
+   ],
+   "--hash": [
+    "-H"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "evil-winrm-py",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "aaa62c6748d9f74e8e868592cd2f077ccb2ab182f255b390e527c3a0559bd62c",
+  "text": "          _ _            _                             \n  _____ _(_| |_____ __ _(_)_ _  _ _ _ __ ___ _ __ _  _ \n / -_\\ V | | |___\\ V  V | | ' \\| '_| '  |___| '_ | || |\n \\___|\\_/|_|_|    \\_/\\_/|_|_||_|_| |_|_|_|  | .__/\\_, |\n                                            |_|   |__/  v1.6.0\n\nusage: evil-winrm-py [-h] -i IP [-u USER] [-p PASSWORD] [-H HASH]\n                     [--priv-key-pem PRIV_KEY_PEM] [--cert-pem CERT_PEM]\n                     [--uri URI] [--ua UA] [--port PORT] [--no-pass] [--ssl]\n                     [--log] [--debug] [--no-colors] [--version]\n\noptions:\n  -h, --help            show this help message and exit\n  -i IP, --ip IP        remote host IP or hostname\n  -u USER, --user USER  username\n  -p PASSWORD, --password PASSWORD\n                        password\n  -H HASH, --hash HASH  nthash\n  --priv-key-pem PRIV_KEY_PEM\n                        local path to private key PEM file\n  --cert-pem CERT_PEM   local path to certificate PEM file\n  --uri URI             wsman URI (default: /wsman)\n  --ua UA               user agent for the WinRM client (default: \"Microsoft WinRM Client\")\n  --port PORT           remote host port (default 5985)\n  --no-pass             do not prompt for password\n  --ssl                 use ssl\n  --log                 log session to file\n  --debug               enable debug logging\n  --no-colors           disable colors\n  --version             show version\n\nFor more information about this project, visit https://github.com/adityatelange/evil-winrm-py\nFor user guide, visit https://github.com/adityatelange/evil-winrm-py/blob/main/docs/usage.md\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--cert-pem",
+   "--debug",
+   "--hash",
+   "--help",
+   "--ip",
+   "--log",
+   "--no-colors",
+   "--no-pass",
+   "--password",
+   "--port",
+   "--priv-key-pem",
+   "--ssl",
+   "--ua",
+   "--uri",
+   "--user",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--kerberos",
+   "--spn-hostname",
+   "--spn-prefix"
+  ],
+  "help_only": [
+   "-H",
+   "-h",
+   "-i",
+   "-p",
+   "-u"
+  ],
+  "mining_coverage": 0.7619047619047619
+ },
+ "surface": {
+  "flags": {
+   "--cert-pem": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "local path to certificate PEM file",
+    "kind": "option",
+    "metavar": "CERT_PEM",
+    "first_tag": "v0.0.8",
+    "first_date": "2025-05-19T21:41:14+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable debug logging",
+    "kind": "option",
+    "first_tag": "v1.1.0",
+    "first_date": "2025-06-13T22:21:22+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--hash": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "nthash",
+    "kind": "option",
+    "metavar": "HASH",
+    "first_tag": "v0.0.3",
+    "first_date": "2025-04-20T23:08:19+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--ip": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "remote host IP or hostname",
+    "kind": "option",
+    "metavar": "IP",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--kerberos": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "use kerberos authentication",
+    "kind": "option",
+    "first_tag": "v0.0.6",
+    "first_date": "2025-05-17T21:42:20+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--log": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "log session to file",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2025-04-26T20:01:50+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--no-colors": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "disable colors",
+    "kind": "option",
+    "first_tag": "v0.0.9",
+    "first_date": "2025-05-25T12:41:33+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--no-pass": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "do not prompt for password",
+    "kind": "option",
+    "first_tag": "v0.0.6",
+    "first_date": "2025-05-17T21:42:20+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--password": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "password",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--port": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "remote host port (default 5985)",
+    "kind": "option",
+    "metavar": "PORT",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--priv-key-pem": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "local path to private key PEM file",
+    "kind": "option",
+    "first_tag": "v0.0.8",
+    "first_date": "2025-05-19T21:41:14+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--spn-hostname": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "specify spn hostname",
+    "kind": "option",
+    "first_tag": "v0.0.6",
+    "first_date": "2025-05-17T21:42:20+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--spn-prefix": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "specify spn prefix",
+    "kind": "option",
+    "first_tag": "v0.0.6",
+    "first_date": "2025-05-17T21:42:20+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--ssl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "use ssl",
+    "kind": "option",
+    "first_tag": "v0.0.5",
+    "first_date": "2025-04-26T20:01:50+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   },
+   "--ua": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "user agent for the WinRM client (default: \"Microsoft WinRM Client\")",
+    "kind": "option",
+    "metavar": "UA",
+    "first_tag": "v1.2.0",
+    "first_date": "2025-07-25T20:43:29+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--uri": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "wsman URI (default: /wsman)",
+    "kind": "option",
+    "metavar": "URI",
+    "first_tag": "v0.0.6",
+    "first_date": "2025-05-17T21:42:20+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--user": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "username",
+    "kind": "option",
+    "metavar": "USER",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2025-04-14T01:40:17+05:30",
+    "last_tag": "v1.6.0",
+    "last_date": "2026-03-21T18:10:52+05:30",
+    "live": true,
+    "attribution": "own",
+    "source_path": "evil_winrm_py/evil_winrm_py.py",
+    "takes_value": false
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-a12e879b",
+    "argv": [
+     "evil-winrm-py",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 637
+   },
+   {
+    "id": "t-net-1afa9cec",
+    "argv": [
+     "evil-winrm-py",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 637
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "evil-winrm-py -i 192.168.1.100 -u Administrator -p P@ssw0rd --ssl",
+    "source": "readme",
+    "path": "README.md",
+    "line": 158,
+    "reason": "needs-live-target",
+    "token": "192.168.1.100"
+   },
+   {
+    "raw": "evil-winrm-py --mcp",
+    "source": "readme",
+    "path": "docs/usage.md",
+    "line": 268,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "evil-winrm-py --mcp --mcp-host 0.0.0.0 --mcp-port 8000",
+    "source": "readme",
+    "path": "docs/usage.md",
+    "line": 274,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "evil-winrm-py",
+ "repo": "adityatelange/evil-winrm-py",
+ "head_sha": "f1a54345906638fe93909732cf48f020e3bb4d39",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T17:26:22.456145+00:00"
+}

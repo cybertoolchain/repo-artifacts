@@ -1,1 +1,1233 @@
-{"analyzer":"exec","analyzer_version":"10","build":{"duration_s":5.87,"error":null,"image_digest":"sha256:df78a33036eba7869003c9e0339addd1081da32beb4f6fef91abe4c752038af1","log_tail":"#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 86.31kB 0.0s done\n#7 DONE 0.0s\n\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.468 go: downloading github.com/projectdiscovery/gologger v1.0.1\n#11 0.468 go: downloading github.com/logrusorgru/aurora v0.0.0-20200102142835-e9ef32dff381\n#11 DONE 3.9s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.105 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:4ce71e35d9b83db208a6335ecc393495630cee86f5c1bde0073f3c82f5b5170c done\n#18 exporting config sha256:79adcd4e1135c91b37526870c8218d835712f56ccab6956f73bc751389854869 done\n#18 exporting attestation manifest sha256:7267dd1bc321573ac0052fbdd2cdd0f0513c204162b558d38d1ce42cdf77453d done\n#18 exporting manifest list sha256:df78a33036eba7869003c9e0339addd1081da32beb4f6fef91abe4c752038af1 done\n#18 naming to docker.io/ctk-exec/crlfuzz:7a442bb03f3c done\n#18 unpacking to docker.io/ctk-exec/crlfuzz:7a442bb03f3c\n#18 unpacking to docker.io/ctk-exec/crlfuzz:7a442bb03f3c 0.5s done\n#18 DONE 0.8s","ok":true,"tier":"go","timed_out":false},"captures":[{"argv":["tool","--help"],"duration_ms":0,"error":"FileNotFoundError: [Errno 2] No such file or directory: 'tool'","exit_code":null,"stderr":"","stdout":"","truncated":false},{"argv":["crlfuzz","--help"],"duration_ms":1,"error":null,"exit_code":0,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n\nUsage:\n  [buffers] | crlfuzz [options]\n  crlfuzz [options]\n\nOptions:\n  -u, --url <URL>           Define single URL to fuzz\n  -l, --list <FILE>         Fuzz URLs within file\n  -X, --method <METHOD>     Specify request method to use (default: GET)\n  -o, --output <FILE>       File to save results\n  -d, --data <DATA>         Define request data\n  -H, --header <HEADER>     Pass custom header to target\n  -x, --proxy <URL>         Use proxy to fuzz\n  -c, --concurrent <i>      Set the concurrency level (default: 20)\n  -s, --silent              Silent mode\n  -v, --verbose             Verbose mode\n  -V, --version             Show current CRLFuzz version\n  -h, --help                Display its help\n\n","stdout":"","truncated":false},{"argv":["man","crlfuzz"],"duration_ms":1,"error":null,"exit_code":16,"source":"man","stderr":"No manual entry for crlfuzz\n","stdout":"","truncated":false},{"argv":["info","--output=-","--subnodes","crlfuzz"],"duration_ms":1,"error":null,"exit_code":0,"source":"info","stderr":"info: No menu item 'crlfuzz' in node '(dir)Top'\n","stdout":"","truncated":false},{"argv":[],"binary":"crlfuzz","capped":false,"commands_run":4,"duration_ms":0,"error":null,"exit_code":null,"kind":"batch_summary","stderr":"","stdout":"","truncated":false}],"example_trials":{"not_attempted":[],"promoted":0,"results":[{"argv":["crlfuzz","-u","http://dvwa"],"exit_code":0,"grade":"verified","id":"net-1","line":0,"output_bytes":2471,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["crlfuzz","--url","http://dvwa"],"exit_code":0,"grade":"verified","id":"net-2","line":0,"output_bytes":2471,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["crlfuzz","http://dvwa"],"exit_code":1,"grade":"rejected","id":"net-3","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","dvwa"],"exit_code":1,"grade":"rejected","id":"net-4","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--concurrent","-u","http://dvwa"],"exit_code":2,"grade":"rejected","id":"t-opt-124b473d","line":0,"output_bytes":1109,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--data","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-d471e501","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--header","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-7abc31c6","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--list","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-5f3ea885","line":0,"output_bytes":472,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--method","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-3b48d024","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--silent","-u","http://dvwa"],"exit_code":0,"grade":"rejected","id":"t-opt-28b3300a","line":0,"output_bytes":0,"path":"surface","reason":"no-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--X","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-7404664c","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--c","-u","http://dvwa"],"exit_code":2,"grade":"rejected","id":"t-opt-305cfd60","line":0,"output_bytes":1100,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--d","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-f87720ae","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--l","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-bc43a362","line":0,"output_bytes":472,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--s","-u","http://dvwa"],"exit_code":0,"grade":"rejected","id":"t-opt-3877d426","line":0,"output_bytes":0,"path":"surface","reason":"no-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--u","-u","http://dvwa"],"exit_code":0,"grade":"rejected","id":"t-opt-4629b54c","line":0,"output_bytes":357,"path":"surface","reason":"output-does-not-reference-its-target","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--x","-u","http://dvwa"],"exit_code":1,"grade":"rejected","id":"t-opt-23acd049","line":0,"output_bytes":463,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--header","X-CTK-Example: 1","-u","http://dvwa"],"exit_code":0,"flag":"--header","grade":"verified","id":"t-opt-c990c5f1","line":0,"output_bytes":2471,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["crlfuzz","--concurrent","1","-u","http://dvwa"],"exit_code":0,"flag":"--concurrent","grade":"verified","id":"t-opt-325ac2d2","line":0,"output_bytes":2471,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["crlfuzz","--c","1","-u","http://dvwa"],"exit_code":0,"flag":"--c","grade":"verified","id":"t-opt-912afa30","line":0,"output_bytes":2471,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["crlfuzz","--output","/tmp/ctk-capture/output.out","-u","http://dvwa"],"exit_code":1,"flag":"--output","grade":"rejected","id":"t-opt-b4cf43ef","line":0,"output_bytes":497,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["crlfuzz","--o","/tmp/ctk-capture/o.out","-u","http://dvwa"],"exit_code":1,"flag":"--o","grade":"rejected","id":"t-opt-1d1d7d78","line":0,"output_bytes":492,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]}],"tried":22,"tried_this_wave":0},"examples":[{"argv":["crlfuzz","-u","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"net-1","skipped_reason":null,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n","stdout":"","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"Built from the tool's own advertised flags \u2014 run against the live dvwa target","truncated":false},{"argv":["crlfuzz","--url","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"net-2","skipped_reason":null,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n","stdout":"","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"Built from the tool's own advertised flags \u2014 run against the live dvwa target","truncated":false},{"argv":["crlfuzz","--verbose","-u","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-930ff16e","skipped_reason":null,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n","stdout":"","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --verbose option, advertised by the tool's own help, against no fixture","truncated":false},{"argv":["crlfuzz","--header","X-CTK-Example: 1","-u","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-c990c5f1","skipped_reason":null,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n","stdout":"","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --header option, advertised by the tool's own help, against no fixture","truncated":false},{"argv":["crlfuzz","--concurrent","1","-u","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-325ac2d2","skipped_reason":null,"stderr":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n","stdout":"","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --concurrent option, advertised by the tool's own help, against no fixture","truncated":false}],"generated_at":"2026-08-02T03:00:35.462156+00:00","head_sha":"7a442bb03f3c337f34b1ed7664bae50bde3eb455","help":{"aliases":{"--concurrent":["-c"],"--data":["-d"],"--header":["-H"],"--help":["-h"],"--list":["-l"],"--method":["-X"],"--output":["-o"],"--proxy":["-x"],"--silent":["-s"],"--url":["-u"],"--verbose":["-v"],"--version":["-V"]},"binary":"crlfuzz","capped":false,"depth":2,"flags_seen":{"--concurrent":"Set the concurrency level (default: 20)","--data":"Define request data","--header":"Pass custom header to target","--help":"Display its help","--list":"Fuzz URLs within file","--method":"Specify request method to use (default: GET)","--output":"File to save results","--proxy":"Use proxy to fuzz","--silent":"Silent mode","--url":"Define single URL to fuzz","--verbose":"Verbose mode","--version":"Show current CRLFuzz version","-H":"Pass custom header to target","-V":"Show current CRLFuzz version","-X":"Specify request method to use (default: GET)","-c":"Set the concurrency level (default: 20)","-d":"Define request data","-h":"Display its help","-l":"Fuzz URLs within file","-o":"File to save results","-s":"Silent mode","-u":"Define single URL to fuzz","-v":"Verbose mode","-x":"Use proxy to fuzz"},"ladder_used":"--help","subcommand_flags":{},"subcommands":[],"text":"\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n\nUsage:\n  [buffers] | crlfuzz [options]\n  crlfuzz [options]\n\nOptions:\n  -u, --url <URL>           Define single URL to fuzz\n  -l, --list <FILE>         Fuzz URLs within file\n  -X, --method <METHOD>     Specify request method to use (default: GET)\n  -o, --output <FILE>       File to save results\n  -d, --data <DATA>         Define request data\n  -H, --header <HEADER>     Pass custom header to target\n  -x, --proxy <URL>         Use proxy to fuzz\n  -c, --concurrent <i>      Set the concurrency level (default: 20)\n  -s, --silent              Silent mode\n  -v, --verbose             Verbose mode\n  -V, --version             Show current CRLFuzz version\n  -h, --help                Display its help\n\n","text_sha256":"97844db7f22383de4bf54b99228895482e003b7762c2fa22d5183bb544c1441c","values_seen":{"--concurrent":"<i>","--data":"<DATA>","--header":"<HEADER>","--list":"<FILE>","--method":"<METHOD>","--output":"<FILE>","--proxy":"<URL>","--url":"<URL>","-H":"<HEADER>","-X":"<METHOD>","-c":"<i>","-d":"<DATA>","-l":"<FILE>","-o":"<FILE>","-u":"<URL>","-x":"<URL>"}},"input_fingerprint":"f3446998a7d95dcc","repo":"dwisiswant0/crlfuzz","skipped_reason":null,"surface":{"flags":{"--V":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":false},"--X":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--c":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"int"},"--concurrent":{"aliases":["-c"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Set the concurrency level (default: 20)","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<i>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"int"},"--d":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--data":{"aliases":["-d"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Define request data","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<DATA>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--header":{"aliases":["-H"],"help":"Pass custom header to target","metavar":"<HEADER>","runtime_confirmed":true,"source":"runtime"},"--help":{"aliases":["-h"],"help":"Display its help","runtime_confirmed":true,"source":"runtime"},"--l":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--list":{"aliases":["-l"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Fuzz URLs within file","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<FILE>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--method":{"aliases":["-X"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Specify request method to use (default: GET)","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<METHOD>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--o":{"attribution":"own","first_date":"2020-09-19T21:37:35+07:00","first_tag":"v1.3.0","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--output":{"aliases":["-o"],"attribution":"own","first_date":"2020-09-19T21:37:35+07:00","first_tag":"v1.3.0","help":"File to save results","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<FILE>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--proxy":{"aliases":["-x"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Use proxy to fuzz","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<URL>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--s":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":false},"--silent":{"aliases":["-s"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Silent mode","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":false},"--u":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--url":{"aliases":["-u"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Define single URL to fuzz","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"metavar":"<URL>","runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"},"--v":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":false},"--verbose":{"aliases":["-v"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Verbose mode","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":false},"--version":{"aliases":["-V"],"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"Show current CRLFuzz version","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":true,"source":"both","source_path":"internal/runner/options.go","takes_value":false},"--x":{"attribution":"own","first_date":"2020-08-13T18:28:49+07:00","first_tag":"v0.0.1","help":"","kind":"option","last_date":"2020-12-03T20:22:00+07:00","last_tag":"v1.4.1","live":true,"runtime_confirmed":false,"source":"source","source_path":"internal/runner/options.go","takes_value":true,"value_type":"string"}},"subcommands":[]},"tool":"crlfuzz","validation":{"confirmed":["--concurrent","--data","--list","--method","--output","--proxy","--silent","--url","--verbose","--version"],"help_only":["--header","--help","-H","-V","-X","-c","-d","-h","-l","-o","-s","-u","-v","-x"],"mining_coverage":0.4166666666666667,"unconfirmed":["--V","--X","--c","--d","--l","--o","--s","--u","--v","--x"]}}
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:93252f25b7f1538724043793bd86ad2acfa4438cf177fbdd73f8b27ecb271398",
+  "duration_s": 19.84,
+  "log_tail": "#8 14.95 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 14.95 debconf: falling back to frontend: Readline\n#8 14.96 debconf: unable to initialize frontend: Readline\n#8 14.96 debconf: (This frontend requires a controlling tty.)\n#8 14.96 debconf: falling back to frontend: Teletype\n#8 14.97 \n#8 14.97 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 14.98 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#8 15.00 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#8 15.03 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#8 15.05 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#8 15.09 debconf: unable to initialize frontend: Dialog\n#8 15.09 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 15.09 debconf: falling back to frontend: Readline\n#8 15.09 debconf: unable to initialize frontend: Readline\n#8 15.09 debconf: (This frontend requires a controlling tty.)\n#8 15.09 debconf: falling back to frontend: Teletype\n#8 15.11 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 15.12 Setting up texinfo (6.8-6+b1) ...\n#8 15.13 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 15.13 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 15.2s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.099 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.0s done\n#18 exporting manifest sha256:bd2fd991b2d0bd410984a38d106e98a86b6239c6454ed923fd6141ccd6960e80 done\n#18 exporting config sha256:f56cf2614c074af7f10a72a8112ea3e1a780ef1cb6b650e4951f2bf5c5d0dd4d done\n#18 exporting attestation manifest sha256:ce00db1016c3a416f5acbfa15f3c663caf79266f101c2a196c24d7c7fd56b054 done\n#18 exporting manifest list sha256:93252f25b7f1538724043793bd86ad2acfa4438cf177fbdd73f8b27ecb271398 done\n#18 naming to docker.io/ctk-exec/crlfuzz:7a442bb03f3c done\n#18 unpacking to docker.io/ctk-exec/crlfuzz:7a442bb03f3c\n#18 unpacking to docker.io/ctk-exec/crlfuzz:7a442bb03f3c 0.6s done\n#18 DONE 3.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "crlfuzz",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n\nUsage:\n  [buffers] | crlfuzz [options]\n  crlfuzz [options]\n\nOptions:\n  -u, --url <URL>           Define single URL to fuzz\n  -l, --list <FILE>         Fuzz URLs within file\n  -X, --method <METHOD>     Specify request method to use (default: GET)\n  -o, --output <FILE>       File to save results\n  -d, --data <DATA>         Define request data\n  -H, --header <HEADER>     Pass custom header to target\n  -x, --proxy <URL>         Use proxy to fuzz\n  -c, --concurrent <i>      Set the concurrency level (default: 20)\n  -s, --silent              Silent mode\n  -v, --verbose             Verbose mode\n  -V, --version             Show current CRLFuzz version\n  -h, --help                Display its help\n\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "crlfuzz"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for crlfuzz\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "crlfuzz"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'crlfuzz' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "crlfuzz",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "f3446998a7d95dcc",
+ "examples": [
+  {
+   "id": "net-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "crlfuzz",
+    "-u",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "net-2",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "crlfuzz",
+    "--url",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-930ff16e",
+   "title": "Verbose mode (--verbose)",
+   "argv": [
+    "crlfuzz",
+    "--verbose",
+    "-u",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\": net/url: invalid control character in URL\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%oa\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n[\u001b[31mERR\u001b[0m] parse \"http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\": invalid URL escape \"%u0\"\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-c990c5f1",
+   "title": "Pass custom header to target (--header)",
+   "argv": [
+    "crlfuzz",
+    "--header",
+    "X-CTK-Example: 1",
+    "-u",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-325ac2d2",
+   "title": "Set the concurrency level (--concurrent)",
+   "argv": [
+    "crlfuzz",
+    "--concurrent",
+    "1",
+    "-u",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n[\u001b[31mERR\u001b[0m] http://dvwa/%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz%u000dX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/crlfuzz\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\rX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\nX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n%20X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\n\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/?crlfuzz=\\r\\tX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%23%oaX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u0000X-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000aX-Injected-Header-By%3a%20CRLFuzz\n[\u001b[31mERR\u001b[0m] http://dvwa/#%u000dX-Injected-Header-By%3a%20CRLFuzz\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--url": "Define single URL to fuzz",
+   "-u": "Define single URL to fuzz",
+   "--list": "Fuzz URLs within file",
+   "-l": "Fuzz URLs within file",
+   "--method": "Specify request method to use (default: GET)",
+   "-X": "Specify request method to use (default: GET)",
+   "--output": "File to save results",
+   "-o": "File to save results",
+   "--data": "Define request data",
+   "-d": "Define request data",
+   "--header": "Pass custom header to target",
+   "-H": "Pass custom header to target",
+   "--proxy": "Use proxy to fuzz",
+   "-x": "Use proxy to fuzz",
+   "--concurrent": "Set the concurrency level (default: 20)",
+   "-c": "Set the concurrency level (default: 20)",
+   "--silent": "Silent mode",
+   "-s": "Silent mode",
+   "--verbose": "Verbose mode",
+   "-v": "Verbose mode",
+   "--version": "Show current CRLFuzz version",
+   "-V": "Show current CRLFuzz version",
+   "--help": "Display its help",
+   "-h": "Display its help"
+  },
+  "values_seen": {
+   "-u": "<URL>",
+   "--url": "<URL>",
+   "-l": "<FILE>",
+   "--list": "<FILE>",
+   "-X": "<METHOD>",
+   "--method": "<METHOD>",
+   "-o": "<FILE>",
+   "--output": "<FILE>",
+   "-d": "<DATA>",
+   "--data": "<DATA>",
+   "-H": "<HEADER>",
+   "--header": "<HEADER>",
+   "-x": "<URL>",
+   "--proxy": "<URL>",
+   "-c": "<i>",
+   "--concurrent": "<i>"
+  },
+  "aliases": {
+   "--url": [
+    "-u"
+   ],
+   "--list": [
+    "-l"
+   ],
+   "--method": [
+    "-X"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--data": [
+    "-d"
+   ],
+   "--header": [
+    "-H"
+   ],
+   "--proxy": [
+    "-x"
+   ],
+   "--concurrent": [
+    "-c"
+   ],
+   "--silent": [
+    "-s"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--version": [
+    "-V"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "crlfuzz",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "97844db7f22383de4bf54b99228895482e003b7762c2fa22d5183bb544c1441c",
+  "text": "\n   _____ _____ __    _____             \n  |     | __  |  |  |   __|_ _ ___ ___ \n  |   --|    -|  |__|   __| | |- _|- _|\n  |_____|__|__|_____|__|  |___|___|___|\n\n      v1.4.0 - @dwisiswant0\n\n[\u001b[33mWRN\u001b[0m] Use with caution. You are responsible for your actions\n[\u001b[33mWRN\u001b[0m] Developers assume no liability and are not responsible for any misuse or damage.\n\nUsage:\n  [buffers] | crlfuzz [options]\n  crlfuzz [options]\n\nOptions:\n  -u, --url <URL>           Define single URL to fuzz\n  -l, --list <FILE>         Fuzz URLs within file\n  -X, --method <METHOD>     Specify request method to use (default: GET)\n  -o, --output <FILE>       File to save results\n  -d, --data <DATA>         Define request data\n  -H, --header <HEADER>     Pass custom header to target\n  -x, --proxy <URL>         Use proxy to fuzz\n  -c, --concurrent <i>      Set the concurrency level (default: 20)\n  -s, --silent              Silent mode\n  -v, --verbose             Verbose mode\n  -V, --version             Show current CRLFuzz version\n  -h, --help                Display its help\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--concurrent",
+   "--data",
+   "--list",
+   "--method",
+   "--output",
+   "--proxy",
+   "--silent",
+   "--url",
+   "--verbose",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--V",
+   "--X",
+   "--c",
+   "--d",
+   "--l",
+   "--o",
+   "--s",
+   "--u",
+   "--v",
+   "--x"
+  ],
+  "help_only": [
+   "--header",
+   "--help",
+   "-H",
+   "-V",
+   "-X",
+   "-c",
+   "-d",
+   "-h",
+   "-l",
+   "-o",
+   "-s",
+   "-u",
+   "-v",
+   "-x"
+  ],
+  "mining_coverage": 0.4166666666666667
+ },
+ "surface": {
+  "flags": {
+   "--V": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false
+   },
+   "--X": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--c": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--concurrent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set the concurrency level (default: 20)",
+    "kind": "option",
+    "metavar": "<i>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--d": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--data": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Define request data",
+    "kind": "option",
+    "metavar": "<DATA>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Pass custom header to target",
+    "metavar": "<HEADER>",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display its help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--l": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--list": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Fuzz URLs within file",
+    "kind": "option",
+    "metavar": "<FILE>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--method": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify request method to use (default: GET)",
+    "kind": "option",
+    "metavar": "<METHOD>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-X"
+    ]
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.3.0",
+    "first_date": "2020-09-19T21:37:35+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "File to save results",
+    "kind": "option",
+    "metavar": "<FILE>",
+    "first_tag": "v1.3.0",
+    "first_date": "2020-09-19T21:37:35+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--proxy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use proxy to fuzz",
+    "kind": "option",
+    "metavar": "<URL>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--s": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false
+   },
+   "--silent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Silent mode",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false,
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--u": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--url": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Define single URL to fuzz",
+    "kind": "option",
+    "metavar": "<URL>",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--v": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Verbose mode",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false,
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show current CRLFuzz version",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": false,
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--x": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.0.1",
+    "first_date": "2020-08-13T18:28:49+07:00",
+    "last_tag": "v1.4.1",
+    "last_date": "2020-12-03T20:22:00+07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/runner/options.go",
+    "takes_value": true,
+    "value_type": "string"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 22,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "argv": [
+     "crlfuzz",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "verified",
+    "id": "net-1",
+    "line": 0,
+    "output_bytes": 2471,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--url",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "verified",
+    "id": "net-2",
+    "line": 0,
+    "output_bytes": 2471,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "net-3",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "net-4",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--concurrent",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 2,
+    "grade": "rejected",
+    "id": "t-opt-124b473d",
+    "line": 0,
+    "output_bytes": 1109,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--data",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-d471e501",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--header",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-7abc31c6",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--list",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-5f3ea885",
+    "line": 0,
+    "output_bytes": 472,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--method",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-3b48d024",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--silent",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "rejected",
+    "id": "t-opt-28b3300a",
+    "line": 0,
+    "output_bytes": 0,
+    "path": "surface",
+    "reason": "no-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--X",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-7404664c",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--c",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 2,
+    "grade": "rejected",
+    "id": "t-opt-305cfd60",
+    "line": 0,
+    "output_bytes": 1100,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--d",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-f87720ae",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--l",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-bc43a362",
+    "line": 0,
+    "output_bytes": 472,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--s",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "rejected",
+    "id": "t-opt-3877d426",
+    "line": 0,
+    "output_bytes": 0,
+    "path": "surface",
+    "reason": "no-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--u",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "rejected",
+    "id": "t-opt-4629b54c",
+    "line": 0,
+    "output_bytes": 357,
+    "path": "surface",
+    "reason": "output-does-not-reference-its-target",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--x",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "grade": "rejected",
+    "id": "t-opt-23acd049",
+    "line": 0,
+    "output_bytes": 463,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--header",
+     "X-CTK-Example: 1",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--header",
+    "grade": "verified",
+    "id": "t-opt-c990c5f1",
+    "line": 0,
+    "output_bytes": 2471,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--concurrent",
+     "1",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--concurrent",
+    "grade": "verified",
+    "id": "t-opt-325ac2d2",
+    "line": 0,
+    "output_bytes": 2471,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--c",
+     "1",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--c",
+    "grade": "verified",
+    "id": "t-opt-912afa30",
+    "line": 0,
+    "output_bytes": 2471,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--output",
+     "/tmp/ctk-capture/output.out",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "flag": "--output",
+    "grade": "rejected",
+    "id": "t-opt-b4cf43ef",
+    "line": 0,
+    "output_bytes": 497,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "crlfuzz",
+     "--o",
+     "/tmp/ctk-capture/o.out",
+     "-u",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "flag": "--o",
+    "grade": "rejected",
+    "id": "t-opt-1d1d7d78",
+    "line": 0,
+    "output_bytes": 492,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "crlfuzz",
+ "repo": "dwisiswant0/crlfuzz",
+ "head_sha": "7a442bb03f3c337f34b1ed7664bae50bde3eb455",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T04:03:00.649648+00:00"
+}

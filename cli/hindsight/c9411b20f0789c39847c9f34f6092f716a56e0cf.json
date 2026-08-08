@@ -1,0 +1,596 @@
+{
+ "tags_total": 16,
+ "tags_considered": 16,
+ "truncated": false,
+ "surface": {
+  "--browser_type": {
+   "source": "parsed",
+   "help": "Type of input files",
+   "kind": "option",
+   "default": "Chrome",
+   "aliases": [
+    "-b"
+   ],
+   "choices": [
+    "Chrome",
+    "Brave"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--cache": {
+   "source": "parsed",
+   "help": "Path to the cache directory; only needed if the directory is outside the given \"input\" directory. Mac systems are setup this way by default.",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-c"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--decrypt": {
+   "source": "parsed",
+   "help": "Try to decrypt Chrome data from a Linux or Mac system; support for both is currently buggy and enabling this may cause problems. Only use \"--decrypt linux\" on data from a Linux system, and only use \"--decrypt mac\" when running Hindsight on the same Mac the Chrome data is from.",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-d"
+   ],
+   "choices": [
+    "mac",
+    "linux"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--format": {
+   "source": "parsed",
+   "help": "Output format",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-f"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--input": {
+   "source": "parsed",
+   "help": "Path to the Chrome(ium) profile directory (typically \"Default\")",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-i"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--log": {
+   "source": "parsed",
+   "help": "Location Hindsight should log to (will append if exists)",
+   "kind": "option",
+   "default": "hindsight.log",
+   "aliases": [
+    "-l"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--no_copy": {
+   "source": "parsed",
+   "help": "Don't copy files before opening them; this might run faster, but some locked files may be inaccessible",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "--nocopy"
+   ],
+   "takes_value": false,
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "v2026.06",
+   "last_date": "2026-07-08T16:11:57-07:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--output": {
+   "source": "parsed",
+   "help": "Name of the output file (without extension)",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-o"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--temp_dir": {
+   "source": "parsed",
+   "help": "If files are copied before being opened, use this directory as the copy destination",
+   "kind": "option",
+   "default": null,
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "v2026.06",
+   "last_date": "2026-07-08T16:11:57-07:00",
+   "live": false,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  },
+  "--timezone": {
+   "source": "parsed",
+   "help": "Display timezone for the timestamps in XLSX output",
+   "kind": "option",
+   "default": "UTC",
+   "aliases": [
+    "-t"
+   ],
+   "takes_value": true,
+   "value_type": "string",
+   "first_tag": "2021.01.16",
+   "first_date": "2021-01-16T21:43:37-08:00",
+   "last_tag": "20200607",
+   "last_date": "2020-06-08T21:49:44-07:00",
+   "live": true,
+   "attribution": "own",
+   "source_path": "hindsight.py"
+  }
+ },
+ "events": [
+  {
+   "flag": "--browser_type",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Type of input files",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cache",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to the cache directory; only needed if the directory is outside the given \"input\" directory. Mac systems are set up this way by default. On a Mac, the default cache directory location for Chrome is <userdir>/Library/Caches/Google/Chrome/Default/Cache/",
+   "attribution": "own"
+  },
+  {
+   "flag": "--decrypt",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Try to decrypt Chrome data from a Linux or Mac system; support for both is currently buggy and enabling this may cause problems. Only use \"--decrypt linux\" on data from a Linux system, and only use \"--decrypt mac\" when running Hindsight on the same Mac the Chrome data is from.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--format",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Output format",
+   "attribution": "own"
+  },
+  {
+   "flag": "--input",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to the Chrome(ium) profile directory (typically \"Default\")",
+   "attribution": "own"
+  },
+  {
+   "flag": "--log",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Location Hindsight should log to (will append if exists)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--no_copy",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Don't copy files before opening them; this might run faster, but some locked files may be inaccessible",
+   "attribution": "own"
+  },
+  {
+   "flag": "--output",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Name of the output file (without extension)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--temp_dir",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "If files are copied before being opened, use this directory as the copy destination",
+   "attribution": "own"
+  },
+  {
+   "flag": "--timezone",
+   "event": "added",
+   "tag": "2021.01.16",
+   "date": "2021-01-16T21:43:37-08:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Display timezone for the timestamps in XLSX output",
+   "attribution": "own"
+  },
+  {
+   "flag": "--input",
+   "event": "help_changed",
+   "tag": "v2021.04.26",
+   "date": "2021-04-27T15:50:10-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to the Chrome(ium) profile directory (typically \"Default\"). If a higher-level directory is specified instead, Hindsight will recursively search for profiles.",
+   "previous_help": "Path to the Chrome(ium) profile directory (typically \"Default\")",
+   "attribution": "own"
+  },
+  {
+   "flag": "--browser_type",
+   "event": "help_changed",
+   "tag": "v2026.06",
+   "date": "2026-07-08T16:11:57-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Force a browser for every profile, overriding auto-detection (case-insensitive: Chrome, Edge, Brave, Vivaldi, Firefox, Tor; Chromium maps to Chrome). Omit to auto-detect each profile from its files.",
+   "previous_help": "Type of input files",
+   "attribution": "own"
+  },
+  {
+   "flag": "--no_copy",
+   "event": "removed",
+   "tag": "20200607",
+   "date": "2020-06-08T21:49:44-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Don't copy files before opening them; this might run faster, but some locked files may be inaccessible",
+   "attribution": "own"
+  },
+  {
+   "flag": "--temp_dir",
+   "event": "removed",
+   "tag": "20200607",
+   "date": "2020-06-08T21:49:44-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "If files are copied before being opened, use this directory as the copy destination",
+   "attribution": "own"
+  },
+  {
+   "flag": "--browser_type",
+   "event": "help_changed",
+   "tag": "20200607",
+   "date": "2020-06-08T21:49:44-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Type of input files",
+   "previous_help": "Force a browser for every profile, overriding auto-detection (case-insensitive: Chrome, Edge, Brave, Vivaldi, Firefox, Tor; Chromium maps to Chrome). Omit to auto-detect each profile from its files.",
+   "attribution": "own"
+  },
+  {
+   "flag": "--cache",
+   "event": "help_changed",
+   "tag": "20200607",
+   "date": "2020-06-08T21:49:44-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to the cache directory; only needed if the directory is outside the given \"input\" directory. Mac systems are setup this way by default.",
+   "previous_help": "Path to the cache directory; only needed if the directory is outside the given \"input\" directory. Mac systems are set up this way by default. On a Mac, the default cache directory location for Chrome is <userdir>/Library/Caches/Google/Chrome/Default/Cache/",
+   "attribution": "own"
+  },
+  {
+   "flag": "--input",
+   "event": "help_changed",
+   "tag": "20200607",
+   "date": "2020-06-08T21:49:44-07:00",
+   "source": "parsed",
+   "kind": "option",
+   "help": "Path to the Chrome(ium) profile directory (typically \"Default\")",
+   "previous_help": "Path to the Chrome(ium) profile directory (typically \"Default\"). If a higher-level directory is specified instead, Hindsight will recursively search for profiles.",
+   "attribution": "own"
+  }
+ ],
+ "extraction": [
+  {
+   "tag": "v1.5.0",
+   "ok": true,
+   "files_read": 14,
+   "files_matched": 14,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 1
+  },
+  {
+   "tag": "v2.0.0",
+   "ok": true,
+   "files_read": 18,
+   "files_matched": 18,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 2
+  },
+  {
+   "tag": "v2.1.1",
+   "ok": true,
+   "files_read": 22,
+   "files_matched": 22,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 2
+  },
+  {
+   "tag": "v2.2.0",
+   "ok": true,
+   "files_read": 22,
+   "files_matched": 22,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 2
+  },
+  {
+   "tag": "v2.3.0",
+   "ok": true,
+   "files_read": 22,
+   "files_matched": 22,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 2
+  },
+  {
+   "tag": "v2.4.0",
+   "ok": true,
+   "files_read": 22,
+   "files_matched": 22,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 0,
+   "errors": 2
+  },
+  {
+   "tag": "2021.01.16",
+   "ok": true,
+   "files_read": 30,
+   "files_matched": 30,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2021.04.26",
+   "ok": true,
+   "files_read": 31,
+   "files_matched": 31,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2021.12",
+   "ok": true,
+   "files_read": 32,
+   "files_matched": 32,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2023.03",
+   "ok": true,
+   "files_read": 31,
+   "files_matched": 31,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2024.10",
+   "ok": true,
+   "files_read": 23,
+   "files_matched": 23,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2025.03",
+   "ok": true,
+   "files_read": 23,
+   "files_matched": 23,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2026.01",
+   "ok": true,
+   "files_read": 28,
+   "files_matched": 28,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2026.04",
+   "ok": true,
+   "files_read": 29,
+   "files_matched": 29,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "v2026.06",
+   "ok": true,
+   "files_read": 38,
+   "files_matched": 38,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 10,
+   "errors": 0
+  },
+  {
+   "tag": "20200607",
+   "ok": true,
+   "files_read": 22,
+   "files_matched": 22,
+   "capped": false,
+   "docs_excluded": 0,
+   "flags": 8,
+   "errors": 0
+  }
+ ],
+ "errors": [
+  {
+   "tag": "v1.5.0",
+   "path": "hindsight.py",
+   "error": "Missing parentheses in call to 'print'. Did you mean print(...)? (hindsight.py, line 24)"
+  },
+  {
+   "tag": "v2.0.0",
+   "path": "hindsight.py",
+   "error": "Missing parentheses in call to 'print'. Did you mean print(...)? (hindsight.py, line 27)"
+  },
+  {
+   "tag": "v2.0.0",
+   "path": "pyhindsight/browsers/chrome.py",
+   "error": "'u' and 'r' prefixes are incompatible (chrome.py, line 663)"
+  },
+  {
+   "tag": "v2.1.1",
+   "path": "hindsight.py",
+   "error": "Missing parentheses in call to 'print'. Did you mean print(...)? (hindsight.py, line 27)"
+  },
+  {
+   "tag": "v2.1.1",
+   "path": "pyhindsight/browsers/chrome.py",
+   "error": "'u' and 'r' prefixes are incompatible (chrome.py, line 674)"
+  },
+  {
+   "tag": "v2.2.0",
+   "path": "hindsight.py",
+   "error": "(unicode error) 'unicodeescape' codec can't decode bytes in position 34-35: truncated \\UXXXXXXXX escape (hindsight.py, line 38)"
+  },
+  {
+   "tag": "v2.2.0",
+   "path": "pyhindsight/browsers/chrome.py",
+   "error": "'u' and 'r' prefixes are incompatible (chrome.py, line 695)"
+  },
+  {
+   "tag": "v2.3.0",
+   "path": "hindsight.py",
+   "error": "(unicode error) 'unicodeescape' codec can't decode bytes in position 34-35: truncated \\UXXXXXXXX escape (hindsight.py, line 38)"
+  },
+  {
+   "tag": "v2.3.0",
+   "path": "pyhindsight/browsers/chrome.py",
+   "error": "'u' and 'r' prefixes are incompatible (chrome.py, line 707)"
+  },
+  {
+   "tag": "v2.4.0",
+   "path": "hindsight.py",
+   "error": "(unicode error) 'unicodeescape' codec can't decode bytes in position 34-35: truncated \\UXXXXXXXX escape (hindsight.py, line 38)"
+  },
+  {
+   "tag": "v2.4.0",
+   "path": "pyhindsight/browsers/chrome.py",
+   "error": "'u' and 'r' prefixes are incompatible (chrome.py, line 726)"
+  }
+ ],
+ "errors_truncated": false,
+ "unorderable_tags": [],
+ "skipped_pairs": [],
+ "tool": "Hindsight",
+ "repo": "obsidianforensics/hindsight",
+ "head_sha": "c9411b20f0789c39847c9f34f6092f716a56e0cf",
+ "analyzer": "cli",
+ "analyzer_version": "7",
+ "generated_at": "2026-08-07T11:37:41.005646+00:00"
+}

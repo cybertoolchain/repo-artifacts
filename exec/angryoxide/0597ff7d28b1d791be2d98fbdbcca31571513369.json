@@ -1,0 +1,20 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 0.92,
+  "log_tail": "#5 resolve docker.io/library/rust:1.95-bookworm@sha256:6258907abe69656e41cd992e0b705cdcfabcbbe3db374f92ed2d47121282d4a1 done\n#5 DONE 0.0s\n\n#6 [build 2/6] RUN apt-get update && apt-get install -y --no-install-recommends     clang libclang-dev pkg-config cmake     libssl-dev libpcap-dev libsodium-dev  && rm -rf /var/lib/apt/lists/*\n#6 CACHED\n\n#7 [build 3/6] WORKDIR /src\n#7 CACHED\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 11.39MB 0.1s done\n#9 DONE 0.1s\n\n#10 [build 4/6] COPY . .\n#10 DONE 0.1s\n\n#11 [build 5/6] RUN cargo build --release\n#11 0.153 error: failed to load manifest for workspace member `/src/libs/libwifi`\n#11 0.153 referenced by workspace at `/src/Cargo.toml`\n#11 0.153 \n#11 0.153 Caused by:\n#11 0.153   failed to read `/src/libs/libwifi/Cargo.toml`\n#11 0.153 \n#11 0.153 Caused by:\n#11 0.153   No such file or directory (os error 2)\n#11 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 5/6] RUN cargo build --release:\n0.153 error: failed to load manifest for workspace member `/src/libs/libwifi`\n0.153 referenced by workspace at `/src/Cargo.toml`\n0.153 \n0.153 Caused by:\n0.153   failed to read `/src/libs/libwifi/Cargo.toml`\n0.153 \n0.153 Caused by:\n0.153   No such file or directory (os error 2)\n------\nDockerfile.ctk:8\n--------------------\n   6 |     WORKDIR /src\n   7 |     COPY . .\n   8 | >>> RUN cargo build --release\n   9 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n  10 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "skipped_reason": "docker build failed",
+ "tool": "AngryOxide",
+ "repo": "Ragnt/AngryOxide",
+ "head_sha": "0597ff7d28b1d791be2d98fbdbcca31571513369",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T05:28:12.335446+00:00"
+}

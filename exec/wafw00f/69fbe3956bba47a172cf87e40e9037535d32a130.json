@@ -1,1 +1,788 @@
-{"analyzer":"exec","analyzer_version":"10","build":{"duration_s":11.13,"error":null,"image_digest":"sha256:0a780138e563462e3f50286d8da04550f92c70f90f54b89f20f71b343a8772da","log_tail":"#11 7.748   Downloading certifi-2026.7.22-py3-none-any.whl.metadata (2.5 kB)\n#11 7.777 Collecting PySocks!=1.5.7,>=1.5.6 (from requests[socks]->wafw00f==2.4.2)\n#11 7.819   Downloading PySocks-1.7.1-py3-none-any.whl.metadata (13 kB)\n#11 7.859 Downloading requests-2.34.2-py3-none-any.whl (73 kB)\n#11 7.910 Downloading charset_normalizer-3.4.9-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (215 kB)\n#11 8.018 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#11 8.068 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#11 8.111 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#11 8.167 Downloading PySocks-1.7.1-py3-none-any.whl (16 kB)\n#11 8.176 Building wheels for collected packages: wafw00f\n#11 8.177   Building wheel for wafw00f (pyproject.toml): started\n#11 8.316   Building wheel for wafw00f (pyproject.toml): finished with status 'done'\n#11 8.317   Created wheel for wafw00f: filename=wafw00f-2.4.2-py3-none-any.whl size=96066 sha256=b55c43b04ba0827bfd99667ff75bd045511512942562c86f8dcde13cbcce851f\n#11 8.317   Stored in directory: /tmp/pip-ephem-wheel-cache-emxfjkmt/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 8.319 Successfully built wafw00f\n#11 8.330 Installing collected packages: urllib3, PySocks, idna, charset_normalizer, certifi, requests, wafw00f\n#11 8.492 \n#11 8.493 Successfully installed PySocks-1.7.1 certifi-2026.7.22 charset_normalizer-3.4.9 idna-3.18 requests-2.34.2 urllib3-2.7.0 wafw00f-2.4.2\n#11 DONE 8.6s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /opt/venv /opt/venv\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.150 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.4s done\n#18 exporting manifest sha256:668283200ed8da7c2eae23b2e9087b8a4eabf420d48517705ba8b0ab71494e4f done\n#18 exporting config sha256:7c1c3f303b5a947f736f9853e16b936fcc5d3238e50f432a2e3c6a8fd81fede9 done\n#18 exporting attestation manifest sha256:8246d1b1d3d7f64de51c10182ff7512f7a1c795b6c9c3479fe6ced850909da01 done\n#18 exporting manifest list sha256:0a780138e563462e3f50286d8da04550f92c70f90f54b89f20f71b343a8772da done\n#18 naming to docker.io/ctk-exec/wafw00f:69fbe3956bba done\n#18 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba\n#18 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba 0.6s done\n#18 DONE 1.1s","ok":true,"tier":"python","timed_out":false},"captures":[{"argv":["wafw00f","--help"],"duration_ms":280,"error":null,"exit_code":0,"stderr":"","stdout":"Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n","truncated":false},{"argv":["man","wafw00f"],"duration_ms":1,"error":null,"exit_code":16,"source":"man","stderr":"No manual entry for wafw00f\n","stdout":"","truncated":false},{"argv":["info","--output=-","--subnodes","wafw00f"],"duration_ms":2,"error":null,"exit_code":0,"source":"info","stderr":"info: No menu item 'wafw00f' in node '(dir)Top'\n","stdout":"","truncated":false},{"argv":[],"binary":"wafw00f","capped":false,"commands_run":3,"duration_ms":0,"error":null,"exit_code":null,"kind":"batch_summary","stderr":"","stdout":"","truncated":false}],"example_trials":{"not_attempted":[{"line":44,"path":"README.md","raw":"wafw00f -l","reason":"no-input-bound","source":"readme","token":""},{"line":242,"path":"README.md","raw":"wafw00f https://example.org","reason":"no-input-bound","source":"readme","token":""}],"promoted":0,"results":[{"argv":["wafw00f","dvwa"],"exit_code":0,"grade":"rejected","id":"net-2","line":0,"output_bytes":1288,"path":"surface","reason":"target-unreachable","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","-l"],"exit_code":0,"grade":"unstable","grader":2,"id":"t-model-27cbdc65","line":0,"output_bytes":16562,"path":"model","reason":"output-differs-between-runs:0.868","source":"model","stability":0.868},{"argv":["wafw00f","http://dvwa"],"exit_code":0,"grade":"verified","id":"t-net-5d4bf673","line":0,"output_bytes":1309,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["wafw00f","--format","http://dvwa"],"exit_code":2,"flag":"--format","grade":"rejected","id":"t-opt-0ba713d0","line":0,"output_bytes":1086,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--headers","X-CTK-Example: 1","http://dvwa"],"exit_code":2,"flag":"--headers","grade":"rejected","id":"t-opt-93c7df6d","line":0,"output_bytes":1200,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--input-file","http://dvwa","http://dvwa"],"exit_code":1,"flag":"--input-file","grade":"rejected","id":"t-opt-c297d4ef","line":0,"output_bytes":558,"path":"surface","reason":"failed-with-error-output","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--list","http://dvwa"],"exit_code":0,"flag":"--list","grade":"rejected","id":"t-opt-4d7931a2","line":0,"output_bytes":16748,"path":"surface","reason":"output-does-not-reference-its-target","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--no-colors","http://dvwa"],"exit_code":0,"flag":"--no-colors","grade":"verified","id":"t-opt-f78e0816","line":0,"output_bytes":834,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["wafw00f","--output","/tmp/ctk-capture/output.out","http://dvwa"],"exit_code":1,"flag":"--output","grade":"rejected","id":"t-opt-00163a33","line":0,"output_bytes":1213,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--timeout","http://dvwa"],"exit_code":2,"flag":"--timeout","grade":"rejected","id":"t-opt-1ab26452","line":0,"output_bytes":151,"path":"surface","reason":"printed-usage","skipped_reason":null,"source":"surface","targets":["dvwa"]},{"argv":["wafw00f","--noredirect","http://dvwa"],"exit_code":0,"flag":"--noredirect","grade":"verified","id":"t-opt-523f3bd1","line":0,"output_bytes":1122,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["wafw00f","--verbose","http://dvwa"],"exit_code":0,"flag":"--verbose","grade":"verified","id":"t-opt-ea9a8b98","line":0,"output_bytes":1309,"path":"surface","reason":"ran-with-output","skipped_reason":null,"source":"surface","stability":1.0,"targets":["dvwa"]},{"argv":["wafw00f","--findall","http://dvwa"],"exit_code":0,"flag":"--findall","grade":"unstable","id":"t-opt-6dcec635","line":0,"output_bytes":834,"path":"surface","reason":"output-differs-between-runs:0.259","skipped_reason":null,"source":"surface","stability":0.259,"targets":["dvwa"]}],"tried":13,"tried_this_wave":1},"examples":[{"argv":["wafw00f","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-net-5d4bf673","skipped_reason":null,"stderr":"","stdout":"\n                \u001b[1;97m______\n               \u001b[1;97m/      \\\n              \u001b[1;97m(  W00f! )\n               \u001b[1;97m\\  ____/\n               \u001b[1;97m,,    \u001b[1;92m__            \u001b[1;93m404 Hack Not Found\n           \u001b[1;96m|`-.__   \u001b[1;92m/ /                     \u001b[1;91m __     __\n           \u001b[1;96m/\"  _/  \u001b[1;92m/_/                       \u001b[1;91m\\ \\   / /\n          \u001b[1;94m*===*    \u001b[1;92m/                          \u001b[1;91m\\ \\_/ /  \u001b[1;93m405 Not Allowed\n         \u001b[1;96m/     )__//                           \u001b[1;91m\\   /\n    \u001b[1;96m/|  /     /---`                        \u001b[1;93m403 Forbidden\n    \u001b[1;96m\\\\/`   \\ |                                 \u001b[1;91m/ _ \\\n    \u001b[1;96m`\\    /_\\\\_              \u001b[1;93m502 Bad Gateway  \u001b[1;91m/ / \\ \\  \u001b[1;93m500 Internal Error\n      \u001b[1;96m`_____``-`                             \u001b[1;91m/_/   \\_\\\\\n\n                        \u001b[1;96m~ WAFW00F : \u001b[1;94mv2.4.2 ~\u001b[1;97m\n        The Web Application Firewall Fingerprinting Toolkit\n    \u001b[0m\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"Built from the tool's own advertised flags \u2014 run against the live dvwa target","truncated":false},{"argv":["wafw00f","--no-colors","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-f78e0816","skipped_reason":null,"stderr":"","stdout":"\n                   ______\n                  /      \\\n                 (  Woof! )\n                  \\  ____/                      )\n                  ,,                           ) (_\n             .-. -    _______                 ( |__|\n            ()``; |==|_______)                .)|__|\n            / ('        /|\\                  (  |__|\n        (  /  )        / | \\                  . |__|\n         \\(_)_))      /  |  \\                   |__|\n\n                    ~ WAFW00F : v2.4.2 ~\n    The Web Application Firewall Fingerprinting Toolkit\n    \n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --no-colors option, advertised by the tool's own help, against no fixture","truncated":false},{"argv":["wafw00f","--noredirect","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-523f3bd1","skipped_reason":null,"stderr":"","stdout":"\n                 ?              ,.   (   .      )        .      \"\n         __        ??          (\"     )  )'     ,'        )  . (`     '`\n    (___()'`;   ???          .; )  ' (( (\" )    ;(,     ((  (  ;)  \"  )\")\n    /,___ /`                 _\"., ,._'_.,)_(..,( . )_  _' )_') (. _..( ' )\n    \\\\   \\\\                 |____|____|____|____|____|____|____|____|____|\n\n                                ~ WAFW00F : v2.4.2 ~\n                    ~ Sniffing Web Application Firewalls since 2009 ~\n\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"302\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --noredirect option, advertised by the tool's own help, against no fixture","truncated":false},{"argv":["wafw00f","--verbose","http://dvwa"],"caps_granted":[],"duration_ms":null,"error":null,"exit_code":0,"id":"t-opt-ea9a8b98","skipped_reason":null,"stderr":"","stdout":"\n                 ?              ,.   (   .      )        .      \"\n         __        ??          (\"     )  )'     ,'        )  . (`     '`\n    (___()'`;   ???          .; )  ' (( (\" )    ;(,     ((  (  ;)  \"  )\")\n    /,___ /`                 _\"., ,._'_.,)_(..,( . )_  _' )_') (. _..( ' )\n    \\\\   \\\\                 |____|____|____|____|____|____|____|____|____|\n\n                                ~ WAFW00F : v2.4.2 ~\n                    ~ Sniffing Web Application Firewalls since 2009 ~\n\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n","target_seed":{"authenticated":true,"security_level":"low"},"target_stack":[{"digest":"sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350","image":"docker.io/library/mariadb","name":"dvwa-db","role":"supporting service","source":"upstream","version":null},{"digest":"sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67","image":"ghcr.io/digininja/dvwa","name":"dvwa","role":"web application under test","source":"upstream","version":null}],"title":"The --verbose option, advertised by the tool's own help, against no fixture","truncated":false}],"generated_at":"2026-08-02T03:46:16.927422+00:00","head_sha":"69fbe3956bba47a172cf87e40e9037535d32a130","help":{"aliases":{"--findall":["-a"],"--format":["-f"],"--headers":["-H"],"--help":["-h"],"--input-file":["-i"],"--list":["-l"],"--noredirect":["-r"],"--output":["-o"],"--proxy":["-p"],"--test":["-t"],"--timeout":["-T"],"--verbose":["-v"],"--version":["-V"]},"binary":"wafw00f","capped":false,"depth":2,"flags_seen":{"--findall":"Find all WAFs which match the signatures, do not stop testing on the first one","--format":"Force output format to csv, json or text.","--headers":"Pass custom headers via a text file to overwrite the default header set.","--help":"show this help message and exit","--input-file":"Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.","--list":"List all WAFs that WAFW00F is able to detect","--no-colors":"Disable ANSI colors in output.","--noredirect":"Do not follow redirections given by 3xx responses","--output":"Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.","--proxy":"Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080","--test":"Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")","--timeout":"Set the timeout for the requests.","--verbose":"Enable verbosity, multiple -v options increase verbosity","--version":"Print out the current version of WafW00f and exit.","-H":"Pass custom headers via a text file to overwrite the default header set.","-T":"Set the timeout for the requests.","-V":"Print out the current version of WafW00f and exit.","-a":"Find all WAFs which match the signatures, do not stop testing on the first one","-f":"Force output format to csv, json or text.","-h":"show this help message and exit","-i":"Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.","-l":"List all WAFs that WAFW00F is able to detect","-o":"Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.","-p":"Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080","-r":"Do not follow redirections given by 3xx responses","-t":"Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")","-v":"Enable verbosity, multiple -v options increase verbosity"},"ladder_used":"--help","subcommand_flags":{},"subcommands":[],"text":"Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n","text_sha256":"8578e930ee2389273f5aae2a564cb73b1be29e687e12a091604961d1dcb45954","values_seen":{"--test":"TEST","-t":"TEST"}},"input_fingerprint":"1451548b4610bdcb","repo":"EnableSecurity/wafw00f","skipped_reason":null,"surface":{"flags":{"--findall":{"aliases":["-a"],"help":"Find all WAFs which match the signatures, do not stop testing on the first one","runtime_confirmed":true,"source":"runtime"},"--format":{"aliases":["-f"],"help":"Force output format to csv, json or text.","runtime_confirmed":true,"source":"runtime"},"--headers":{"aliases":["-H"],"help":"Pass custom headers via a text file to overwrite the default header set.","runtime_confirmed":true,"source":"runtime"},"--help":{"aliases":["-h"],"help":"show this help message and exit","runtime_confirmed":true,"source":"runtime"},"--input-file":{"aliases":["-i"],"help":"Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.","runtime_confirmed":true,"source":"runtime"},"--list":{"aliases":["-l"],"help":"List all WAFs that WAFW00F is able to detect","runtime_confirmed":true,"source":"runtime"},"--no-colors":{"help":"Disable ANSI colors in output.","runtime_confirmed":true,"source":"runtime"},"--noredirect":{"aliases":["-r"],"help":"Do not follow redirections given by 3xx responses","runtime_confirmed":true,"source":"runtime"},"--output":{"aliases":["-o"],"help":"Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.","runtime_confirmed":true,"source":"runtime"},"--proxy":{"aliases":["-p"],"help":"Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080","runtime_confirmed":true,"source":"runtime"},"--test":{"aliases":["-t"],"help":"Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")","metavar":"TEST","runtime_confirmed":true,"source":"runtime"},"--timeout":{"aliases":["-T"],"help":"Set the timeout for the requests.","runtime_confirmed":true,"source":"runtime"},"--verbose":{"aliases":["-v"],"help":"Enable verbosity, multiple -v options increase verbosity","runtime_confirmed":true,"source":"runtime"},"--version":{"aliases":["-V"],"help":"Print out the current version of WafW00f and exit.","runtime_confirmed":true,"source":"runtime"}},"subcommands":[]},"tool":"wafw00f","validation":{"confirmed":[],"help_only":["--findall","--format","--headers","--help","--input-file","--list","--no-colors","--noredirect","--output","--proxy","--test","--timeout","--verbose","--version","-H","-T","-V","-a","-f","-h","-i","-l","-o","-p","-r","-t","-v"],"mining_coverage":0.0,"unconfirmed":[]}}
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:a79185d5e7301a1dbf851a3f946547690ed58448666903608cf00fd48a357c3f",
+  "duration_s": 65.52,
+  "log_tail": "#11 51.81 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 51.83 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 51.87 debconf: unable to initialize frontend: Dialog\n#11 51.87 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 51.87 debconf: falling back to frontend: Readline\n#11 51.87 debconf: unable to initialize frontend: Readline\n#11 51.87 debconf: (This frontend requires a controlling tty.)\n#11 51.87 debconf: falling back to frontend: Teletype\n#11 51.89 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 51.90 Setting up texinfo (6.8-6+b1) ...\n#11 51.91 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 51.92 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 52.1s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.2s done\n#20 exporting manifest sha256:f1400126f802216b14d7e4a06643b3f94d38ee726658bd2066ad85c7576fd429 done\n#20 exporting config sha256:d6c377124d37bb08cea7474f7bd94568046905117cc3cb28721a5e46dc634d47 done\n#20 exporting attestation manifest sha256:b015325bf1270e64b0264c2c0e47883282b5501c55e5e240d3d2c2d85d8730f3 done\n#20 exporting manifest list sha256:a79185d5e7301a1dbf851a3f946547690ed58448666903608cf00fd48a357c3f done\n#20 naming to docker.io/ctk-exec/wafw00f:69fbe3956bba done\n#20 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba\n#20 unpacking to docker.io/ctk-exec/wafw00f:69fbe3956bba 0.7s done\n#20 DONE 4.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "wafw00f",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n",
+   "stderr": "",
+   "duration_ms": 276,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "wafw00f"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for wafw00f\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "wafw00f"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'wafw00f' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "wafw00f",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "f3f514e8eb846168",
+ "examples": [
+  {
+   "id": "t-net-5d4bf673",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "wafw00f",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n                \u001b[1;97m______\n               \u001b[1;97m/      \\\n              \u001b[1;97m(  W00f! )\n               \u001b[1;97m\\  ____/\n               \u001b[1;97m,,    \u001b[1;92m__            \u001b[1;93m404 Hack Not Found\n           \u001b[1;96m|`-.__   \u001b[1;92m/ /                     \u001b[1;91m __     __\n           \u001b[1;96m/\"  _/  \u001b[1;92m/_/                       \u001b[1;91m\\ \\   / /\n          \u001b[1;94m*===*    \u001b[1;92m/                          \u001b[1;91m\\ \\_/ /  \u001b[1;93m405 Not Allowed\n         \u001b[1;96m/     )__//                           \u001b[1;91m\\   /\n    \u001b[1;96m/|  /     /---`                        \u001b[1;93m403 Forbidden\n    \u001b[1;96m\\\\/`   \\ |                                 \u001b[1;91m/ _ \\\n    \u001b[1;96m`\\    /_\\\\_              \u001b[1;93m502 Bad Gateway  \u001b[1;91m/ / \\ \\  \u001b[1;93m500 Internal Error\n      \u001b[1;96m`_____``-`                             \u001b[1;91m/_/   \\_\\\\\n\n                        \u001b[1;96m~ WAFW00F : \u001b[1;94mv2.4.2 ~\u001b[1;97m\n        The Web Application Firewall Fingerprinting Toolkit\n    \u001b[0m\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-f78e0816",
+   "title": "Disable ANSI colors in output (--no-colors)",
+   "argv": [
+    "wafw00f",
+    "--no-colors",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n                   ______\n                  /      \\\n                 (  Woof! )\n                  \\  ____/                      )\n                  ,,                           ) (_\n             .-. -    _______                 ( |__|\n            ()``; |==|_______)                .)|__|\n            / ('        /|\\                  (  |__|\n        (  /  )        / | \\                  . |__|\n         \\(_)_))      /  |  \\                   |__|\n\n                    ~ WAFW00F : v2.4.2 ~\n    The Web Application Firewall Fingerprinting Toolkit\n    \n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-523f3bd1",
+   "title": "Do not follow redirections given by 3xx responses (--noredirect)",
+   "argv": [
+    "wafw00f",
+    "--noredirect",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n                   \u001b[1;97m______\n                  \u001b[1;97m/      \\\n                 \u001b[1;97m(  Woof! )\n                  \u001b[1;97m\\  ____/                      \u001b[1;91m)\n                  \u001b[1;97m,,                           \u001b[1;91m) (\u001b[1;93m_\n             \u001b[1;93m.-. \u001b[1;97m-    \u001b[1;92m_______                 \u001b[1;91m( \u001b[1;93m|__|\n            \u001b[1;93m()``; \u001b[1;92m|==|_______)                \u001b[1;91m.)\u001b[1;93m|__|\n            \u001b[1;93m/ ('        \u001b[1;92m/|\\                  \u001b[1;91m(  \u001b[1;93m|__|\n        \u001b[1;93m(  /  )       \u001b[1;92m / | \\                  \u001b[1;91m. \u001b[1;93m|__|\n         \u001b[1;93m\\(_)_))      \u001b[1;92m/  |  \\                   \u001b[1;93m|__|\u001b[0m\n\n                    \u001b[1;96m~ WAFW00F : \u001b[1;94mv2.4.2 ~\u001b[1;97m\n    The Web Application Firewall Fingerprinting Toolkit\n    \u001b[0m\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"302\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-ea9a8b98",
+   "title": "Enable verbosity, multiple -v options increase verbosity (--verbose)",
+   "argv": [
+    "wafw00f",
+    "--verbose",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n                \u001b[1;97m______\n               \u001b[1;97m/      \\\n              \u001b[1;97m(  W00f! )\n               \u001b[1;97m\\  ____/\n               \u001b[1;97m,,    \u001b[1;92m__            \u001b[1;93m404 Hack Not Found\n           \u001b[1;96m|`-.__   \u001b[1;92m/ /                     \u001b[1;91m __     __\n           \u001b[1;96m/\"  _/  \u001b[1;92m/_/                       \u001b[1;91m\\ \\   / /\n          \u001b[1;94m*===*    \u001b[1;92m/                          \u001b[1;91m\\ \\_/ /  \u001b[1;93m405 Not Allowed\n         \u001b[1;96m/     )__//                           \u001b[1;91m\\   /\n    \u001b[1;96m/|  /     /---`                        \u001b[1;93m403 Forbidden\n    \u001b[1;96m\\\\/`   \\ |                                 \u001b[1;91m/ _ \\\n    \u001b[1;96m`\\    /_\\\\_              \u001b[1;93m502 Bad Gateway  \u001b[1;91m/ / \\ \\  \u001b[1;93m500 Internal Error\n      \u001b[1;96m`_____``-`                             \u001b[1;91m/_/   \\_\\\\\n\n                        \u001b[1;96m~ WAFW00F : \u001b[1;94mv2.4.2 ~\u001b[1;97m\n        The Web Application Firewall Fingerprinting Toolkit\n    \u001b[0m\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-6dcec635",
+   "title": "Find all WAFs which match the signatures, do not stop testing on the\u2026 (--findall)",
+   "argv": [
+    "wafw00f",
+    "--findall",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n                 ?              ,.   (   .      )        .      \"\n         __        ??          (\"     )  )'     ,'        )  . (`     '`\n    (___()'`;   ???          .; )  ' (( (\" )    ;(,     ((  (  ;)  \"  )\")\n    /,___ /`                 _\"., ,._'_.,)_(..,( . )_  _' )_') (. _..( ' )\n    \\\\   \\\\                 |____|____|____|____|____|____|____|____|____|\n\n                                ~ WAFW00F : v2.4.2 ~\n                    ~ Sniffing Web Application Firewalls since 2009 ~\n\n[*] Checking http://dvwa\n[+] Generic Detection results:\n[*] The site http://dvwa seems to be behind a WAF or some sort of security solution\n[~] Reason: The server returns a different response code when an attack string is used.\nNormal response code is \"200\", while the response code to a file inclusion attack is \"400\"\n[~] Number of requests: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--verbose": "Enable verbosity, multiple -v options increase verbosity",
+   "-v": "Enable verbosity, multiple -v options increase verbosity",
+   "--findall": "Find all WAFs which match the signatures, do not stop testing on the first one",
+   "-a": "Find all WAFs which match the signatures, do not stop testing on the first one",
+   "--noredirect": "Do not follow redirections given by 3xx responses",
+   "-r": "Do not follow redirections given by 3xx responses",
+   "--test": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+   "-t": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+   "--output": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+   "-o": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+   "--format": "Force output format to csv, json or text.",
+   "-f": "Force output format to csv, json or text.",
+   "--input-file": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+   "-i": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+   "--list": "List all WAFs that WAFW00F is able to detect",
+   "-l": "List all WAFs that WAFW00F is able to detect",
+   "--proxy": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+   "-p": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+   "--version": "Print out the current version of WafW00f and exit.",
+   "-V": "Print out the current version of WafW00f and exit.",
+   "--headers": "Pass custom headers via a text file to overwrite the default header set.",
+   "-H": "Pass custom headers via a text file to overwrite the default header set.",
+   "--timeout": "Set the timeout for the requests.",
+   "-T": "Set the timeout for the requests.",
+   "--no-colors": "Disable ANSI colors in output."
+  },
+  "values_seen": {
+   "-t": "TEST",
+   "--test": "TEST"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--findall": [
+    "-a"
+   ],
+   "--noredirect": [
+    "-r"
+   ],
+   "--test": [
+    "-t"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--format": [
+    "-f"
+   ],
+   "--input-file": [
+    "-i"
+   ],
+   "--list": [
+    "-l"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--version": [
+    "-V"
+   ],
+   "--headers": [
+    "-H"
+   ],
+   "--timeout": [
+    "-T"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "wafw00f",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "8578e930ee2389273f5aae2a564cb73b1be29e687e12a091604961d1dcb45954",
+  "text": "Usage: wafw00f url1 [url2 [url3 ... ]]\r\nexample: wafw00f http://www.victim.org/\n\nOptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable verbosity, multiple -v options increase\n                        verbosity\n  -a, --findall         Find all WAFs which match the signatures, do not stop\n                        testing on the first one\n  -r, --noredirect      Do not follow redirections given by 3xx responses\n  -t TEST, --test=TEST  Test for one specific WAF (use --list to get names,\n                        quote names with spaces e.g. \"AireeCDN (Airee)\")\n  -o OUTPUT, --output=OUTPUT\n                        Write output to csv, json or text file depending on\n                        file extension. For stdout, specify - as filename.\n  -f FORMAT, --format=FORMAT\n                        Force output format to csv, json or text.\n  -i INPUT, --input-file=INPUT\n                        Read targets from a file. Input format can be csv,\n                        json or text. For csv and json, a `url` column name or\n                        element is required.\n  -l, --list            List all WAFs that WAFW00F is able to detect\n  -p PROXY, --proxy=PROXY\n                        Use an HTTP proxy to perform requests, examples:\n                        http://hostname:8080, socks5://hostname:1080,\n                        http://user:pass@hostname:8080\n  -V, --version         Print out the current version of WafW00f and exit.\n  -H HEADERS, --headers=HEADERS\n                        Pass custom headers via a text file to overwrite the\n                        default header set.\n  -T TIMEOUT, --timeout=TIMEOUT\n                        Set the timeout for the requests.\n  --no-colors           Disable ANSI colors in output.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--findall",
+   "--format",
+   "--headers",
+   "--help",
+   "--input-file",
+   "--list",
+   "--no-colors",
+   "--noredirect",
+   "--output",
+   "--proxy",
+   "--test",
+   "--timeout",
+   "--verbose",
+   "--version",
+   "-H",
+   "-T",
+   "-V",
+   "-a",
+   "-f",
+   "-h",
+   "-i",
+   "-l",
+   "-o",
+   "-p",
+   "-r",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--findall": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Find all WAFs which match the signatures, do not stop testing on the first one",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force output format to csv, json or text.",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Pass custom headers via a text file to overwrite the default header set.",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--input-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read targets from a file. Input format can be csv, json or text. For csv and json, a `url` column name or element is required.",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List all WAFs that WAFW00F is able to detect",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--no-colors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable ANSI colors in output."
+   },
+   "--noredirect": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not follow redirections given by 3xx responses",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write output to csv, json or text file depending on file extension. For stdout, specify - as filename.",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use an HTTP proxy to perform requests, examples: http://hostname:8080, socks5://hostname:1080, http://user:pass@hostname:8080",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--test": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Test for one specific WAF (use --list to get names, quote names with spaces e.g. \"AireeCDN (Airee)\")",
+    "metavar": "TEST",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the timeout for the requests.",
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable verbosity, multiple -v options increase verbosity",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print out the current version of WafW00f and exit.",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 13,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "argv": [
+     "wafw00f",
+     "dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "rejected",
+    "id": "net-2",
+    "line": 0,
+    "output_bytes": 1288,
+    "path": "surface",
+    "reason": "target-unreachable",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "-l"
+    ],
+    "exit_code": 0,
+    "grade": "unstable",
+    "grader": 2,
+    "id": "t-model-27cbdc65",
+    "line": 0,
+    "output_bytes": 16562,
+    "path": "model",
+    "reason": "output-differs-between-runs:0.868",
+    "source": "model",
+    "stability": 0.868
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "grade": "verified",
+    "id": "t-net-5d4bf673",
+    "line": 0,
+    "output_bytes": 1309,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--format",
+     "http://dvwa"
+    ],
+    "exit_code": 2,
+    "flag": "--format",
+    "grade": "rejected",
+    "id": "t-opt-0ba713d0",
+    "line": 0,
+    "output_bytes": 1086,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--headers",
+     "X-CTK-Example: 1",
+     "http://dvwa"
+    ],
+    "exit_code": 2,
+    "flag": "--headers",
+    "grade": "rejected",
+    "id": "t-opt-93c7df6d",
+    "line": 0,
+    "output_bytes": 1200,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--input-file",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "flag": "--input-file",
+    "grade": "rejected",
+    "id": "t-opt-c297d4ef",
+    "line": 0,
+    "output_bytes": 558,
+    "path": "surface",
+    "reason": "failed-with-error-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--list",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--list",
+    "grade": "rejected",
+    "id": "t-opt-4d7931a2",
+    "line": 0,
+    "output_bytes": 16748,
+    "path": "surface",
+    "reason": "output-does-not-reference-its-target",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--no-colors",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--no-colors",
+    "grade": "verified",
+    "id": "t-opt-f78e0816",
+    "line": 0,
+    "output_bytes": 834,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--output",
+     "/tmp/ctk-capture/output.out",
+     "http://dvwa"
+    ],
+    "exit_code": 1,
+    "flag": "--output",
+    "grade": "rejected",
+    "id": "t-opt-00163a33",
+    "line": 0,
+    "output_bytes": 1213,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--timeout",
+     "http://dvwa"
+    ],
+    "exit_code": 2,
+    "flag": "--timeout",
+    "grade": "rejected",
+    "id": "t-opt-1ab26452",
+    "line": 0,
+    "output_bytes": 151,
+    "path": "surface",
+    "reason": "printed-usage",
+    "skipped_reason": null,
+    "source": "surface",
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--noredirect",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--noredirect",
+    "grade": "verified",
+    "id": "t-opt-523f3bd1",
+    "line": 0,
+    "output_bytes": 1122,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "argv": [
+     "wafw00f",
+     "--verbose",
+     "http://dvwa"
+    ],
+    "exit_code": 0,
+    "flag": "--verbose",
+    "grade": "verified",
+    "id": "t-opt-ea9a8b98",
+    "line": 0,
+    "output_bytes": 1309,
+    "path": "surface",
+    "reason": "ran-with-output",
+    "skipped_reason": null,
+    "source": "surface",
+    "stability": 1.0,
+    "targets": [
+     "dvwa"
+    ]
+   },
+   {
+    "id": "t-opt-6dcec635",
+    "argv": [
+     "wafw00f",
+     "--findall",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 834,
+    "flag": "--findall",
+    "stability": 1.0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "wafw00f -l",
+    "source": "readme",
+    "path": "README.md",
+    "line": 44,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "wafw00f https://example.org",
+    "source": "readme",
+    "path": "README.md",
+    "line": 242,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "wafw00f",
+ "repo": "EnableSecurity/wafw00f",
+ "head_sha": "69fbe3956bba47a172cf87e40e9037535d32a130",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T05:29:43.375271+00:00"
+}

@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:7e576bb63e918becabaf3abb2e3ed90aa337f9b1ffc9adeb8868a20932d11394",
-  "duration_s": 20.81,
-  "log_tail": "#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.178 go: downloading github.com/valyala/fasthttp v1.69.0\n#11 0.178 go: downloading github.com/miekg/dns v1.1.72\n#11 0.182 go: downloading github.com/haccer/available v0.0.0-20240515180643-5940a1670ee3\n#11 0.511 go: downloading golang.org/x/net v0.48.0\n#11 0.511 go: downloading golang.org/x/sys v0.39.0\n#11 0.511 go: downloading github.com/domainr/whois v0.1.0\n#11 0.620 go: downloading github.com/klauspost/compress v1.18.2\n#11 0.620 go: downloading github.com/andybalholm/brotli v1.2.0\n#11 0.620 go: downloading github.com/valyala/bytebufferpool v1.0.0\n#11 0.891 go: downloading github.com/zonedb/zonedb v1.0.3544\n#11 0.891 go: downloading golang.org/x/text v0.32.0\n#11 0.891 go: downloading github.com/andybalholm/cascadia v1.3.1\n#11 0.891 go: downloading github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca\n#11 0.891 go: downloading github.com/PuerkitoBio/goquery v1.8.0\n#11 ...\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 17.9s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.184 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.5s done\n#18 exporting manifest sha256:18c68ac5082b765912569e0fd2f97de576ae4349579f825bf2cb8a0765a0d4f0 0.0s done\n#18 exporting config sha256:efeda8df5feccf12a2cf25cc9e3bb31c78f381db9879af179e5273a813d71e4e 0.1s done\n#18 exporting attestation manifest sha256:4d465394776ff03ec9fa5a3c1f57116f5588dd58898534956791918d61aafefe 0.0s done\n#18 exporting manifest list sha256:7e576bb63e918becabaf3abb2e3ed90aa337f9b1ffc9adeb8868a20932d11394\n#18 exporting manifest list sha256:7e576bb63e918becabaf3abb2e3ed90aa337f9b1ffc9adeb8868a20932d11394 0.0s done\n#18 naming to docker.io/ctk-exec/subjack:b53899ce6230 done\n#18 unpacking to docker.io/ctk-exec/subjack:b53899ce6230 0.1s done\n#18 DONE 0.8s",
+  "image_digest": "sha256:187344842d755ceb53236bd44e2d9b7b11e516c27439892e4734b8fe64af8142",
+  "duration_s": 10.61,
+  "log_tail": "#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.155 go: downloading github.com/valyala/fasthttp v1.69.0\n#11 0.155 go: downloading github.com/haccer/available v0.0.0-20240515180643-5940a1670ee3\n#11 0.156 go: downloading github.com/miekg/dns v1.1.72\n#11 0.748 go: downloading golang.org/x/sys v0.39.0\n#11 0.748 go: downloading golang.org/x/net v0.48.0\n#11 0.766 go: downloading github.com/domainr/whois v0.1.0\n#11 1.011 go: downloading github.com/klauspost/compress v1.18.2\n#11 1.011 go: downloading github.com/andybalholm/brotli v1.2.0\n#11 1.011 go: downloading github.com/valyala/bytebufferpool v1.0.0\n#11 1.147 go: downloading golang.org/x/text v0.32.0\n#11 1.147 go: downloading github.com/PuerkitoBio/goquery v1.8.0\n#11 1.148 go: downloading github.com/andybalholm/cascadia v1.3.1\n#11 1.148 go: downloading github.com/zonedb/zonedb v1.0.3544\n#11 1.148 go: downloading github.com/saintfish/chardet v0.0.0-20120816061221-3af4cd4741ca\n#11 DONE 8.1s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.200 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:9230ff95da139455fd7754b07663d0174f92cd87815b238a5f3a1fefccfe4520 done\n#18 exporting config sha256:6ebeabc8a779cac8848e68c99ec6540eec0f0ea81df409bed68747fb00819031 0.0s done\n#18 exporting attestation manifest sha256:96a2d97363d9f7712e7d7c08662f3358fd67a7a86b6e00c5148399b3267e5a9a 0.0s done\n#18 exporting manifest list sha256:187344842d755ceb53236bd44e2d9b7b11e516c27439892e4734b8fe64af8142 0.0s done\n#18 naming to docker.io/ctk-exec/subjack:b53899ce6230 done\n#18 unpacking to docker.io/ctk-exec/subjack:b53899ce6230\n#18 unpacking to docker.io/ctk-exec/subjack:b53899ce6230 0.2s done\n#18 DONE 0.6s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage: subjack [options]\n\nOptions:\n  -a\tSend requests to every URL, not just those with identified CNAMEs.\n  -ar\n    \tCheck for stale A records pointing to dead IPs (may require root for ICMP).\n  -axfr\n    \tCheck for zone transfers (AXFR) including NS bruteforce.\n  -d string\n    \tSingle domain to check.\n  -m\tFlag dead CNAME records even if the domain is not available for registration.\n  -mail\n    \tCheck for SPF include and MX record takeovers.\n  -ns\n    \tCheck if nameservers are available for purchase (NS takeover).\n  -o string\n    \tOutput results to file (use .json extension for JSON output).\n  -r string\n    \tPath to a list of DNS resolvers.\n  -ssl\n    \tForce HTTPS connections (may increase accuracy).\n  -t int\n    \tNumber of concurrent threads. (default 10)\n  -timeout int\n    \tSeconds to wait before connection timeout. (default 10)\n  -v\tDisplay more information per request.\n  -w string\n    \tPath to wordlist.\n",
-   "duration_ms": 5,
+   "duration_ms": 4,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for subjack\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'subjack' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -488,7 +488,7 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 4,
+  "tried": 8,
   "tried_this_wave": 2,
   "promoted": 0,
   "results": [
@@ -527,6 +527,73 @@
     "skipped_reason": null,
     "exit_code": 1,
     "output_bytes": 923
+   },
+   {
+    "id": "t-model-6502e091",
+    "argv": [
+     "subjack",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-50d5e8c6",
+    "argv": [
+     "subjack",
+     "-axfr",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-f31ee951",
+    "argv": [
+     "subjack",
+     "-mail",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-bf243071",
+    "argv": [
+     "subjack",
+     "-ns",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
    },
    {
     "id": "t-net-8c446f8b",
@@ -621,6 +688,6 @@
  "repo": "haccer/subjack",
  "head_sha": "b53899ce6230767beb1c4a9f879c6ebba23a98fa",
  "analyzer": "exec",
- "analyzer_version": "9",
- "generated_at": "2026-07-31T21:01:50.563641+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T19:10:18.995515+00:00"
 }

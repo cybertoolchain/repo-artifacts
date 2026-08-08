@@ -2,33 +2,33 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:78db74a2ac9b733bfae8403bf57f9c3ef04857af1cd722b6220a238cefc59212",
-  "duration_s": 31.99,
-  "log_tail": "#7 34.35 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#7 34.35 debconf: falling back to frontend: Readline\n#7 34.35 debconf: unable to initialize frontend: Readline\n#7 34.35 debconf: (This frontend requires a controlling tty.)\n#7 34.35 debconf: falling back to frontend: Teletype\n#7 34.38 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#7 34.40 Setting up texinfo (6.8-6+b1) ...\n#7 34.41 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#7 34.42 Processing triggers for install-info (6.8-6+b1) ...\n#7 DONE 34.6s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.3s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.120 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 3.6s done\n#21 exporting manifest sha256:89a5b854cd4e5e9616c6ad60692dde82a116b87e11dbb31f85e32c6e732d7d15 0.0s done\n#21 exporting config sha256:b0a8836da340a5154239b25755a76f8123fe7783d7151d6f30d6ea46aee29aa3 0.0s done\n#21 exporting attestation manifest sha256:c6d422ddb64f7b5ddf80aa0491801805e178179535c2a0612151476b4027ed59 0.0s done\n#21 exporting manifest list sha256:78db74a2ac9b733bfae8403bf57f9c3ef04857af1cd722b6220a238cefc59212 done\n#21 naming to docker.io/ctk-exec/tookie-osint:9716a5b6740c done\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c 0.9s done\n#21 DONE 4.6s",
+  "image_digest": "sha256:de9b098b08aaedb1b58cd95849fb651cc508f02e13eb5e048302e39653940186",
+  "duration_s": 11.97,
+  "log_tail": "#11 6.349 Downloading sniffio-1.3.1-py3-none-any.whl (10 kB)\n#11 6.391 Downloading wsproto-1.3.2-py3-none-any.whl (24 kB)\n#11 6.418 Downloading h11-0.16.0-py3-none-any.whl (37 kB)\n#11 6.450 Downloading packaging-26.2-py3-none-any.whl (100 kB)\n#11 6.484 Downloading python_dotenv-1.2.2-py3-none-any.whl (22 kB)\n#11 6.514 Downloading sortedcontainers-2.4.0-py2.py3-none-any.whl (29 kB)\n#11 6.574 Installing collected packages: sortedcontainers, argparse, websocket-client, urllib3, typing_extensions, sniffio, python-dotenv, pysocks, packaging, idna, h11, colorama, charset_normalizer, certifi, attrs, wsproto, requests, outcome, webdriver-manager, trio, trio-websocket, selenium\n#11 7.847 \n#11 7.849 Successfully installed argparse-1.4.0 attrs-26.1.0 certifi-2026.7.22 charset_normalizer-3.4.9 colorama-0.4.6 h11-0.16.0 idna-3.18 outcome-1.3.0.post0 packaging-26.2 pysocks-1.7.1 python-dotenv-1.2.2 requests-2.34.2 selenium-4.46.0 sniffio-1.3.1 sortedcontainers-2.4.0 trio-0.33.0 trio-websocket-0.12.2 typing_extensions-4.16.0 urllib3-2.7.0 webdriver-manager-4.1.2 websocket-client-1.9.0 wsproto-1.3.2\n#11 DONE 7.9s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.4s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.181 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 1.2s done\n#21 exporting manifest sha256:2d389ecf6e0b09c69bbeea2c14541e707ea8c8e600319e673d678fcd35bc88a8 done\n#21 exporting config sha256:2887dc96ef78b2d1159f87ebfe485a80504a7af3448e468e0311ccf646d7cf5b done\n#21 exporting attestation manifest sha256:7d4ab718e1e89973121402535fe719e82de7b29f2d90d73dbdaad6ddc6d9f4fe 0.0s done\n#21 exporting manifest list sha256:de9b098b08aaedb1b58cd95849fb651cc508f02e13eb5e048302e39653940186 done\n#21 naming to docker.io/ctk-exec/tookie-osint:9716a5b6740c done\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c\n#21 unpacking to docker.io/ctk-exec/tookie-osint:9716a5b6740c 0.4s done\n#21 DONE 1.6s",
   "error": null,
   "timed_out": false
  },
  "captures": [
   {
    "argv": [
-    "2to3",
+    "tookie-osint",
     "--help"
    ],
-   "exit_code": 0,
-   "stdout": "Usage: 2to3 [options] file|dir ...\n\nOptions:\n  -h, --help            show this help message and exit\n  -d, --doctests_only   Fix up doctests only\n  -f FIX, --fix=FIX     Each FIX specifies a transformation; default: all\n  -j PROCESSES, --processes=PROCESSES\n                        Run 2to3 concurrently\n  -x NOFIX, --nofix=NOFIX\n                        Prevent a transformation from being run\n  -l, --list-fixes      List available transformations\n  -p, --print-function  Modify the grammar so that print() is a function\n  -e, --exec-function   Modify the grammar so that exec() is a function\n  -v, --verbose         More verbose logging\n  --no-diffs            Don't show diffs of the refactoring\n  -w, --write           Write back modified files\n  -n, --nobackups       Don't write backups for modified files\n  -o OUTPUT_DIR, --output-dir=OUTPUT_DIR\n                        Put output files in this directory instead of\n                        overwriting the input files.  Requires -n.\n  -W, --write-unchanged-files\n                        Also write files even if no changes were required\n                        (useful with --output-dir); implies -w.\n  --add-suffix=ADD_SUFFIX\n                        Append this string to all output filenames. Requires\n                        -n if non-empty.  ex: --add-suffix='3' will generate\n                        .py3 files.\n",
-   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\n",
-   "duration_ms": 138,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
    "truncated": false,
-   "error": null
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'"
   },
   {
    "argv": [
     "man",
-    "2to3"
+    "tookie-osint"
    ],
-   "exit_code": 1,
+   "exit_code": 16,
    "stdout": "",
-   "stderr": "No manual entry for 2to3\n(Alternatively, what manual page do you want from section 2to3?)\nFor example, try 'man man'.\n",
+   "stderr": "No manual entry for tookie-osint\n",
    "duration_ms": 1,
    "truncated": false,
    "error": null,
@@ -39,11 +39,11 @@
     "info",
     "--output=-",
     "--subnodes",
-    "2to3"
+    "tookie-osint"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "info: No menu item '2to3' in node '(dir)Top'\n",
+   "stderr": "info: No menu item 'tookie-osint' in node '(dir)Top'\n",
    "duration_ms": 2,
    "truncated": false,
    "error": null,
@@ -52,22 +52,7 @@
   {
    "argv": [
     "tookie-osint",
-    "--list"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
-   "kind": "scenario",
-   "id": "t-model-35958e7d",
-   "title": "Candidate \u2014 run against no fixture"
-  },
-  {
-   "argv": [
-    "tookie-osint",
-    "--scan",
+    "scan",
     "/opt/ctk/fixtures/source-corpus"
    ],
    "exit_code": null,
@@ -77,63 +62,15 @@
    "truncated": false,
    "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
    "kind": "scenario",
-   "id": "t-model-690f08fc",
+   "id": "t-model-39b90708",
    "title": "Candidate \u2014 run against source-corpus"
-  },
-  {
-   "argv": [
-    "tookie-osint",
-    "--pcap",
-    "/opt/ctk/fixtures/pcap/slices/2015-03-08-snort.log.1425772833.pcap"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
-   "kind": "scenario",
-   "id": "t-model-05a3d02b",
-   "title": "Candidate \u2014 run against pcap"
-  },
-  {
-   "argv": [
-    "tookie-osint",
-    "--hash",
-    "/opt/ctk/fixtures/hashes/md5.txt"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
-   "kind": "scenario",
-   "id": "t-model-714e2cf4",
-   "title": "Candidate \u2014 run against hashes"
-  },
-  {
-   "argv": [
-    "tookie-osint",
-    "--wordlist",
-    "/opt/ctk/fixtures/hashes/wordlist.txt"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
-   "kind": "scenario",
-   "id": "t-model-d9ffb18d",
-   "title": "Candidate \u2014 run against hashes"
   },
   {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 8,
-   "binary": "2to3",
+   "commands_run": 4,
+   "binary": null,
    "exit_code": null,
    "stdout": "",
    "stderr": "",
@@ -144,11 +81,143 @@
  ],
  "input_fingerprint": null,
  "examples": [],
- "skipped_reason": "uncorroborated_entrypoint",
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 7,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-f54f1b19",
+    "argv": [
+     "2to3",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-f54f1b19' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-ed7f07a8",
+    "argv": [
+     "2to3",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 617
+   },
+   {
+    "id": "t-net-239c6433",
+    "argv": [
+     "2to3",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 589
+   },
+   {
+    "id": "t-model-39b90708",
+    "argv": [
+     "tookie-osint",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'tookie-osint'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-9e353950",
+    "argv": [
+     "tookie-osint",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-9e353950' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-fcfbd392",
+    "argv": [
+     "tookie-osint",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   },
+   {
+    "id": "t-net-e20ae12c",
+    "argv": [
+     "tookie-osint",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "tookie-osint",
  "repo": "Alfredredbird/tookie-osint",
  "head_sha": "9716a5b6740c7a239f90f4ec5d64d8fc605c4571",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-01T17:50:40.780730+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T19:11:24.468253+00:00"
 }

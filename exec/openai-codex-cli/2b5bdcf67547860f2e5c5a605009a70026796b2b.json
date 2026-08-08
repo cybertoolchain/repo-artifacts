@@ -1,20 +1,154 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "node",
-  "image_digest": null,
-  "duration_s": 8.74,
-  "log_tail": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile.ctk\n#1 transferring dockerfile: 1.15kB done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/node:24-bookworm-slim\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/node:24-bookworm\n#3 ERROR: failed to do request: Head \"https://registry-1.docker.io/v2/library/node/manifests/24-bookworm\": net/http: TLS handshake timeout\n------\n > [internal] load metadata for docker.io/library/node:24-bookworm:\n------\nDockerfile.ctk:1\n--------------------\n   1 | >>> FROM node:24-bookworm AS build\n   2 |     WORKDIR /src\n   3 |     COPY . .\n--------------------\nERROR: failed to build: failed to solve: node:24-bookworm: failed to resolve source metadata for docker.io/library/node:24-bookworm: failed to do request: Head \"https://registry-1.docker.io/v2/library/node/manifests/24-bookworm\": net/http: TLS handshake timeout",
-  "error": "docker build failed",
+  "image_digest": "sha256:a4eeae00c81def04444252d536f991a99710da8ad2c90ce665110f4c16d3fee2",
+  "duration_s": 11.59,
+  "log_tail": "#10 1.231 \n#10 1.231 up to date, audited 1 package in 702ms\n#10 1.231 \n#10 1.231 found 0 vulnerabilities\n#10 DONE 1.3s\n\n#11 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1 3/9] COPY --from=build /src /src\n#12 DONE 0.4s\n\n#13 [stage-1 4/9] WORKDIR /src\n#13 DONE 0.1s\n\n#14 [stage-1 5/9] RUN npm link || npm install -g . || true\n#14 0.395 npm warn Unknown project config \"shamefully-hoist\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n#14 0.396 npm warn Unknown project config \"strict-peer-dependencies\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n#14 0.396 npm warn Unknown project config \"node-linker\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n#14 0.396 npm warn Unknown project config \"prefer-workspace-packages\". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.\n#14 0.444 \n#14 0.444 added 1 package, and audited 3 packages in 232ms\n#14 0.445 \n#14 0.445 found 0 vulnerabilities\n#14 DONE 0.5s\n\n#15 [stage-1 6/9] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.1s\n\n#16 [stage-1 7/9] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 8/9] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 9/9] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.146 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 1.6s done\n#19 exporting manifest sha256:9e5573119bd1377216f9fa19d58c6349f765d8703091558309360c407d73597f 0.0s done\n#19 exporting config sha256:1f96b3c37af352c1f21fdf2bf60a0f202fc23388b0164796592d69090bc11056 0.0s done\n#19 exporting attestation manifest sha256:790199d21381e29d4be98878f3ea7c90993ab181d299e4477c515cf11ede7b86 0.0s done\n#19 exporting manifest list sha256:a4eeae00c81def04444252d536f991a99710da8ad2c90ce665110f4c16d3fee2 0.0s done\n#19 naming to docker.io/ctk-exec/codex:2b5bdcf67547 done\n#19 unpacking to docker.io/ctk-exec/codex:2b5bdcf67547\n#19 unpacking to docker.io/ctk-exec/codex:2b5bdcf67547 1.5s done\n#19 DONE 3.2s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "codex",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'codex'"
+  },
+  {
+   "argv": [
+    "man",
+    "codex"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for codex\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "codex"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'codex' in node '(dir)Top'\n",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "codex",
+    "app"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'codex'",
+   "kind": "scenario",
+   "id": "t-model-3dba9e76",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "codex",
+    "init",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'codex'",
+   "kind": "scenario",
+   "id": "t-model-d36356c5",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "docker build failed",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-3dba9e76",
+    "argv": [
+     "codex",
+     "app"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'codex'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-d36356c5",
+    "argv": [
+     "codex",
+     "init",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'codex'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "codex -c log_dir=./.codex-log",
+    "source": "readme",
+    "path": "docs/install.md",
+    "line": 59,
+    "reason": "unmappable-path",
+    "token": "log_dir=./.codex-log"
+   }
+  ]
+ },
  "tool": "OpenAI Codex CLI",
  "repo": "openai/codex",
  "head_sha": "2b5bdcf67547860f2e5c5a605009a70026796b2b",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T20:57:22.252719+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T03:05:14.611049+00:00"
 }

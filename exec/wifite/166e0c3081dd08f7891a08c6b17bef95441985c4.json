@@ -1,0 +1,716 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:406da351a15c4d153aeea970bc2aa8e1e9b516cd092efd087d4d4c0901070f5e",
+  "duration_s": 13.3,
+  "log_tail": "#10 6.547 Building wheels for collected packages: wifite2\n#10 6.548   Building wheel for wifite2 (pyproject.toml): started\n#10 6.715   Building wheel for wifite2 (pyproject.toml): finished with status 'done'\n#10 6.716   Created wheel for wifite2: filename=wifite2-2.9.9b0-py3-none-any.whl size=472615 sha256=ad3f96524d94c76a3047cd8efd6f89a6c598b43b6d0a1000efe06ef5ab678dfb\n#10 6.716   Stored in directory: /tmp/pip-ephem-wheel-cache-tc_pgcw1/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 6.719 Successfully built wifite2\n#10 6.737 Installing collected packages: urllib3, setuptools, scapy, pygments, mdurl, idna, charset_normalizer, chardet, certifi, requests, markdown-it-py, rich, wifite2\n#10 8.741 \n#10 8.742 Successfully installed certifi-2026.7.22 chardet-7.4.3 charset_normalizer-3.4.9 idna-3.18 markdown-it-py-4.2.0 mdurl-0.1.2 pygments-2.20.0 requests-2.34.2 rich-15.0.0 scapy-2.7.1rc1 setuptools-83.0.0 urllib3-2.7.0 wifite2-2.9.9b0\n#10 DONE 8.8s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.3s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.197 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 1.3s done\n#20 exporting manifest sha256:6f14e835281ce558a82e22e20beea61e8ea47b79feaf57bdb73fa294ba4f9723 done\n#20 exporting config sha256:7b3eb190fc260a24a712e9be61e118955f469dd8fb3c60f37b4a9e63d381c109 done\n#20 exporting attestation manifest sha256:8de7a8efe00b1f2d9723405103d1e462977f2497f5c19589b0d767e948b85400 done\n#20 exporting manifest list sha256:406da351a15c4d153aeea970bc2aa8e1e9b516cd092efd087d4d4c0901070f5e done\n#20 naming to docker.io/ctk-exec/wifite2:166e0c3081dd done\n#20 unpacking to docker.io/ctk-exec/wifite2:166e0c3081dd\n#20 unpacking to docker.io/ctk-exec/wifite2:166e0c3081dd 1.0s done\n#20 DONE 2.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "wifite",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\noptions:\n  -h, --help                                 show this help message and exit\n\n\u001b[36mSETTINGS\u001b[0m:\n  -v, --verbose                              Shows more options (\u001b[36m-h -v\u001b[0m). Prints commands and outputs. (default:\n                                             \u001b[32mquiet\u001b[0m)\n  -i [interface]                             Wireless interface to use, e.g. \u001b[36mwlan0mon\u001b[0m (default: \u001b[32mask\u001b[0m)\n  -c [channel]                               Wireless channel to scan e.g. \u001b[36m1,3-6\u001b[0m (default: \u001b[32mall 2Ghz channels\u001b[0m)\n  -inf, --infinite                           Enable infinite attack mode. Modify scanning time with \u001b[36m-p\u001b[0m (default:\n                                             \u001b[32moff\u001b[0m)\n  -mac, --random-mac                         Randomize wireless card MAC address completely (better privacy) (default:\n                                             \u001b[32moff\u001b[0m)\n  --random-mac-vendor                        Randomize wireless card MAC address but keep vendor bytes (better compatibility)\n                                             (default: \u001b[32moff\u001b[0m)\n  -p [scan_time]                             \u001b[32mPillage\u001b[0m: Attack all targets after \u001b[36mscan_time\u001b[0m (seconds)\n  --kill                                     Kill processes that conflict with Airmon/Airodump (default: \u001b[32moff\u001b[0m)\n  -pow [min_power], --power [min_power]      Attacks any targets with at least \u001b[36mmin_power\u001b[0m signal strength\n  --skip-crack                               Skip cracking captured handshakes/pmkid (default: \u001b[32moff\u001b[0m)\n  -first [attack_max], --first [attack_max]  Attacks the first \u001b[36mattack_max\u001b[0m targets\n  -ic, --ignore-cracked                      Hides previously-cracked targets. (default: \u001b[32moff\u001b[0m)\n  --ignore-captured                          Hides targets with existing captured handshakes/pmkid. (default: \u001b[32moff\u001b[0m)\n  --clients-only                             Only show targets that have associated clients (default: \u001b[32moff\u001b[0m)\n  --detect-honeypots                         Detect potential honeypot/rogue APs via beacon anomalies (default: \u001b[32moff\u001b[0m)\n  --nodeauths                                Passive mode: Never deauthenticates clients (default: \u001b[32mdeauth targets\u001b[0m)\n  --daemon                                   Puts device back in managed mode after quitting (default: \u001b[32moff\u001b[0m)\n  --tui                                      Use interactive TUI mode (default: \u001b[32mauto-detect\u001b[0m)\n  --no-tui                                   Use classic text mode, disable TUI (default: \u001b[32mauto-detect\u001b[0m)\n  --dual-interface                           Enable dual interface mode for simultaneous AP and deauth operations. Automatically\n                                             assigns two interfaces when available for improved attack performance. Eliminates\n                                             mode switching in Evil Twin attacks. (default: \u001b[32mauto\u001b[0m)\n  --no-dual-interface                        Disable dual interface mode, force single interface operation. Uses traditional mode-\n                                             switching approach even when multiple interfaces are available. (default:\n                                             \u001b[32moff\u001b[0m)\n  --hcxdump                                  Use \u001b[36mhcxdumptool\u001b[0m for WPA handshake capture (single or dual interface).\n                                             Creates .pcapng files with better compatibility for Hashcat. Provides PMF-aware\n                                             capture and built-in deauth capabilities. Falls back to airodump-ng if hcxdumptool is\n                                             unavailable. Requires hcxdumptool v6.2.0+ (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWEP\u001b[0m:\n  --wep                                      Show only \u001b[36mWEP-encrypted networks\u001b[0m\n  --require-fakeauth                         Fails attacks if \u001b[36mfake-auth\u001b[0m fails (default: \u001b[32moff\u001b[0m)\n  --keep-ivs                                 Retain .IVS files and reuse when cracking (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWPA\u001b[0m:\n  --wpa                                      Show only \u001b[36mWPA/WPA2-encrypted networks\u001b[0m (may include \u001b[36mWPS\u001b[0m)\n  --wpa3                                     Show only \u001b[36mWPA3-encrypted networks\u001b[0m (SAE/OWE). Displays WPA3-only and\n                                             transition mode networks.\n  --wpa3-only                                Attack only \u001b[36mWPA3-SAE networks\u001b[0m, skip WPA2-only targets. Useful for focusing\n                                             on WPA3 security testing. (default: \u001b[32moff\u001b[0m)\n  --no-downgrade                             Disable \u001b[36mWPA3 transition mode downgrade\u001b[0m attacks. Forces SAE handshake capture\n                                             instead of attempting to downgrade to WPA2. Use when testing pure WPA3 security.\n                                             (default: \u001b[32moff\u001b[0m)\n  --force-sae                                Skip WPA2 attacks on \u001b[36mtransition mode\u001b[0m networks, attack SAE directly. Captures\n                                             WPA3-SAE handshakes even when WPA2 is available. (default: \u001b[32moff\u001b[0m)\n  --check-dragonblood                        Scan for \u001b[36mDragonblood vulnerabilities\u001b[0m (CVE-2019-13377) only. Identifies\n                                             vulnerable WPA3 implementations without performing attacks. Checks for weak SAE\n                                             groups and timing attack susceptibility. (default: \u001b[32moff\u001b[0m)\n  --dragonblood-timing                       Enable \u001b[36mDragonblood timing attack\u001b[0m (CVE-2019-13377) for APs with vulnerable\n                                             MODP groups (22, 23, 24). Probes the AP to measure SAE response latency and\n                                             partitions the password search space. (default: \u001b[32moff\u001b[0m)\n  --owe                                      Show only \u001b[36mOWE-encrypted networks\u001b[0m (Enhanced Open)\n  --new-hs                                   Captures new handshakes, ignores existing handshakes in \u001b[36mhs\u001b[0m (default:\n                                             \u001b[32moff\u001b[0m)\n  --dict [file/directory]                    File or directory containing wordlists for cracking (default: \u001b[32mNone\u001b[0m)\n\n\u001b[36mWPS\u001b[0m:\n  --wps                                      Show only \u001b[36mWPS-enabled networks\u001b[0m\n  --wps-only                                 \u001b[33mOnly\u001b[0m use \u001b[36mWPS PIN\u001b[0m & \u001b[36mPixie-Dust\u001b[0m attacks (default:\n                                             \u001b[32moff\u001b[0m)\n  --bully                                    Use \u001b[32mbully\u001b[0m program for WPS PIN & Pixie-Dust attacks (default:\n                                             \u001b[32mreaver\u001b[0m)\n  --reaver                                   Use \u001b[32mreaver\u001b[0m program for WPS PIN & Pixie-Dust attacks (default:\n                                             \u001b[32mreaver\u001b[0m)\n  --ignore-locks                             Do \u001b[33mnot\u001b[0m stop WPS PIN attack if AP becomes \u001b[33mlocked\u001b[0m (default:\n                                             \u001b[32mstop\u001b[0m)\n\n\u001b[36mPMKID\u001b[0m:\n  --pmkid                                    \u001b[33mOnly\u001b[0m use \u001b[36mPMKID capture\u001b[0m, avoids other WPS & WPA attacks (default:\n                                             \u001b[32moff\u001b[0m)\n  --no-pmkid                                 \u001b[33mDon't\u001b[0m use \u001b[36mPMKID capture\u001b[0m (default: \u001b[32moff\u001b[0m)\n  --pmkid-timeout [sec]                      Time to wait for PMKID capture (default: \u001b[32m300\u001b[0m seconds)\n  --pmkid-passive                            Passive PMKID capture mode: Sniff all networks without deauth. (default:\n                                             \u001b[32moff\u001b[0m)\n\n\u001b[36mEVIL TWIN\u001b[0m:\n  --eviltwin                                 Use the \u001b[36mEvil Twin\u001b[0m attack against all targets. Creates rogue AP to capture\n                                             credentials. (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mATTACK MONITORING\u001b[0m:\n  --monitor-attacks                          Monitor for wireless attacks (deauth/disassoc frames). Passively detects attack\n                                             frames without interfering. Displays real-time statistics, network lists, and\n                                             attacker profiles. \u001b[33mRequires tshark.\u001b[0m (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWPA-SEC UPLOAD\u001b[0m:\n  --wpasec                                   Enable \u001b[36mwpa-sec.stanev.org\u001b[0m upload functionality. Uploads captured handshakes\n                                             to online cracking service. Requires API key from wpa-sec.stanev.org (default:\n                                             \u001b[32moff\u001b[0m)\n  --wpasec-key [key]                         API key for \u001b[36mwpa-sec.stanev.org\u001b[0m. Register at wpa-sec.stanev.org to obtain\n                                             your key. Required for uploading captures.\n  --wpasec-auto                              Automatically upload all captured handshakes without prompting. When disabled, you\n                                             will be asked before each upload. (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mCOMMANDS\u001b[0m:\n  --cracked                                  Print previously-cracked access points\n  --ignored                                  Print ignored access points\n  --check [file]                             Check a \u001b[36m.cap file\u001b[0m (or all \u001b[36mhs/*.cap\u001b[0m files) for WPA handshakes\n  --crack                                    Show commands to crack a captured handshake\n  --syscheck                                 Comprehensive system readiness check: tools, interfaces, driver compatibility, attack\n                                             readiness matrix. Use with \u001b[36m-v\u001b[0m to include monitor mode smoke test.\n  --update-db                                Update the local MAC address prefix database from IEEE registries\n  --resume                                   Resume a previously interrupted attack session. If multiple sessions exist, displays\n                                             a list to choose from. Sessions are automatically saved during attacks and can be\n                                             resumed after interruption (Ctrl+C, crash, power loss).\n  --resume-latest                            Automatically resume the most recent session without prompting. Useful for quickly\n                                             continuing the last interrupted attack.\n  --resume-id session_id                     Resume a specific session by ID (e.g., session_20250126_120000). Use --resume to see\n                                             available session IDs.\n  --clean-sessions                           Remove old session files (older than 7 days). Sessions are stored in\n                                             ~/.wifite/sessions/ and cleaned up automatically on startup. Use this to manually\n                                             clean up old sessions.\n",
+   "stderr": "",
+   "duration_ms": 237,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "wifite"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for wifite\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "wifite"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'wifite' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "wifite",
+    "-c",
+    "1"
+   ],
+   "exit_code": 0,
+   "stdout": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m scanning for targets on channel \u001b[32m1\u001b[0m\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m targeting \u001b[32mall known encryption types\u001b[0m by default\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31merror: \u001b[33mwifite\u001b[31m must be run as \u001b[33mroot\u001b[0m\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31mre-run with \u001b[33msudo\u001b[0m\n",
+   "stderr": "",
+   "duration_ms": 233,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-63424299",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "wifite",
+    "-p",
+    "10"
+   ],
+   "exit_code": 0,
+   "stdout": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m (\u001b[32mpillage\u001b[0m) attack all targets after \u001b[32m10\u001b[0ms\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m targeting \u001b[32mall known encryption types\u001b[0m by default\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31merror: \u001b[33mwifite\u001b[31m must be run as \u001b[33mroot\u001b[0m\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31mre-run with \u001b[33msudo\u001b[0m\n",
+   "stderr": "",
+   "duration_ms": 220,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-c5ec70da",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "wifite",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "53fd20ef8e73e1b5",
+ "examples": [
+  {
+   "id": "t-model-63424299",
+   "title": "Candidate \u2014 run against no fixture",
+   "argv": [
+    "wifite",
+    "-c",
+    "1"
+   ],
+   "stdout": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m scanning for targets on channel \u001b[32m1\u001b[0m\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m targeting \u001b[32mall known encryption types\u001b[0m by default\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31merror: \u001b[33mwifite\u001b[31m must be run as \u001b[33mroot\u001b[0m\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31mre-run with \u001b[33msudo\u001b[0m\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 233,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-model-c5ec70da",
+   "title": "Candidate \u2014 run against no fixture",
+   "argv": [
+    "wifite",
+    "-p",
+    "10"
+   ],
+   "stdout": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m (\u001b[32mpillage\u001b[0m) attack all targets after \u001b[32m10\u001b[0ms\n \u001b[0m\u001b[2m[\u001b[0m\u001b[32m+\u001b[0m\u001b[2m]\u001b[0m \u001b[36moption:\u001b[0m targeting \u001b[32mall known encryption types\u001b[0m by default\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31merror: \u001b[33mwifite\u001b[31m must be run as \u001b[33mroot\u001b[0m\n \u001b[33m[\u001b[31m!\u001b[33m]\u001b[0m \u001b[31mre-run with \u001b[33msudo\u001b[0m\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 220,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--verbose": "Shows more options (\u001b[36m-h -v\u001b[0m). Prints commands and outputs. (default: \u001b[32mquiet\u001b[0m)",
+   "-v": "Shows more options (\u001b[36m-h -v\u001b[0m). Prints commands and outputs. (default: \u001b[32mquiet\u001b[0m)",
+   "-i": "Wireless interface to use, e.g. \u001b[36mwlan0mon\u001b[0m (default: \u001b[32mask\u001b[0m)",
+   "-c": "Wireless channel to scan e.g. \u001b[36m1,3-6\u001b[0m (default: \u001b[32mall 2Ghz channels\u001b[0m)",
+   "--infinite": "Enable infinite attack mode. Modify scanning time with \u001b[36m-p\u001b[0m (default: \u001b[32moff\u001b[0m)",
+   "-inf": "Enable infinite attack mode. Modify scanning time with \u001b[36m-p\u001b[0m (default: \u001b[32moff\u001b[0m)",
+   "--random-mac": "Randomize wireless card MAC address completely (better privacy) (default: \u001b[32moff\u001b[0m)",
+   "-mac": "Randomize wireless card MAC address completely (better privacy) (default: \u001b[32moff\u001b[0m)",
+   "--random-mac-vendor": "Randomize wireless card MAC address but keep vendor bytes (better compatibility) (default: \u001b[32moff\u001b[0m)",
+   "-p": "\u001b[32mPillage\u001b[0m: Attack all targets after \u001b[36mscan_time\u001b[0m (seconds)",
+   "--kill": "Kill processes that conflict with Airmon/Airodump (default: \u001b[32moff\u001b[0m)",
+   "--power": "Attacks any targets with at least \u001b[36mmin_power\u001b[0m signal strength",
+   "-pow": "Attacks any targets with at least \u001b[36mmin_power\u001b[0m signal strength",
+   "--skip-crack": "Skip cracking captured handshakes/pmkid (default: \u001b[32moff\u001b[0m)",
+   "--first": "Attacks the first \u001b[36mattack_max\u001b[0m targets",
+   "-first": "Attacks the first \u001b[36mattack_max\u001b[0m targets",
+   "--ignore-cracked": "Hides previously-cracked targets. (default: \u001b[32moff\u001b[0m)",
+   "-ic": "Hides previously-cracked targets. (default: \u001b[32moff\u001b[0m)",
+   "--ignore-captured": "Hides targets with existing captured handshakes/pmkid. (default: \u001b[32moff\u001b[0m)",
+   "--clients-only": "Only show targets that have associated clients (default: \u001b[32moff\u001b[0m)",
+   "--detect-honeypots": "Detect potential honeypot/rogue APs via beacon anomalies (default: \u001b[32moff\u001b[0m)",
+   "--nodeauths": "Passive mode: Never deauthenticates clients (default: \u001b[32mdeauth targets\u001b[0m)",
+   "--daemon": "Puts device back in managed mode after quitting (default: \u001b[32moff\u001b[0m)",
+   "--tui": "Use interactive TUI mode (default: \u001b[32mauto-detect\u001b[0m)",
+   "--no-tui": "Use classic text mode, disable TUI (default: \u001b[32mauto-detect\u001b[0m)",
+   "--dual-interface": "Enable dual interface mode for simultaneous AP and deauth operations. Automatically assigns two interfaces when available for improved attack performance. Eliminates mode switching in Evil Twin attacks. (default: \u001b[32mauto\u001b[0m)",
+   "--no-dual-interface": "Disable dual interface mode, force single interface operation. Uses traditional mode- switching approach even when multiple interfaces are available. (default: \u001b[32moff\u001b[0m)",
+   "--hcxdump": "Use \u001b[36mhcxdumptool\u001b[0m for WPA handshake capture (single or dual interface). Creates .pcapng files with better compatibility for Hashcat. Provides PMF-aware capture and built-in deauth capabilities. Falls back to airodump-ng if hcxdumptool is unavailable. Requires hcxdumptool v6.2.0+ (default: \u001b[32moff\u001b[0m)",
+   "--wep": "Show only \u001b[36mWEP-encrypted networks\u001b[0m",
+   "--require-fakeauth": "Fails attacks if \u001b[36mfake-auth\u001b[0m fails (default: \u001b[32moff\u001b[0m)",
+   "--keep-ivs": "Retain .IVS files and reuse when cracking (default: \u001b[32moff\u001b[0m)",
+   "--wpa": "Show only \u001b[36mWPA/WPA2-encrypted networks\u001b[0m (may include \u001b[36mWPS\u001b[0m)",
+   "--wpa3": "Show only \u001b[36mWPA3-encrypted networks\u001b[0m (SAE/OWE). Displays WPA3-only and transition mode networks.",
+   "--wpa3-only": "Attack only \u001b[36mWPA3-SAE networks\u001b[0m, skip WPA2-only targets. Useful for focusing on WPA3 security testing. (default: \u001b[32moff\u001b[0m)",
+   "--no-downgrade": "Disable \u001b[36mWPA3 transition mode downgrade\u001b[0m attacks. Forces SAE handshake capture instead of attempting to downgrade to WPA2. Use when testing pure WPA3 security. (default: \u001b[32moff\u001b[0m)",
+   "--force-sae": "Skip WPA2 attacks on \u001b[36mtransition mode\u001b[0m networks, attack SAE directly. Captures WPA3-SAE handshakes even when WPA2 is available. (default: \u001b[32moff\u001b[0m)",
+   "--check-dragonblood": "Scan for \u001b[36mDragonblood vulnerabilities\u001b[0m (CVE-2019-13377) only. Identifies vulnerable WPA3 implementations without performing attacks. Checks for weak SAE groups and timing attack susceptibility. (default: \u001b[32moff\u001b[0m)",
+   "--dragonblood-timing": "Enable \u001b[36mDragonblood timing attack\u001b[0m (CVE-2019-13377) for APs with vulnerable MODP groups (22, 23, 24). Probes the AP to measure SAE response latency and partitions the password search space. (default: \u001b[32moff\u001b[0m)",
+   "--owe": "Show only \u001b[36mOWE-encrypted networks\u001b[0m (Enhanced Open)",
+   "--new-hs": "Captures new handshakes, ignores existing handshakes in \u001b[36mhs\u001b[0m (default: \u001b[32moff\u001b[0m)",
+   "--dict": "File or directory containing wordlists for cracking (default: \u001b[32mNone\u001b[0m)",
+   "--wps": "Show only \u001b[36mWPS-enabled networks\u001b[0m",
+   "--wps-only": "\u001b[33mOnly\u001b[0m use \u001b[36mWPS PIN\u001b[0m & \u001b[36mPixie-Dust\u001b[0m attacks (default: \u001b[32moff\u001b[0m)",
+   "--bully": "Use \u001b[32mbully\u001b[0m program for WPS PIN & Pixie-Dust attacks (default: \u001b[32mreaver\u001b[0m)",
+   "--reaver": "Use \u001b[32mreaver\u001b[0m program for WPS PIN & Pixie-Dust attacks (default: \u001b[32mreaver\u001b[0m)",
+   "--ignore-locks": "Do \u001b[33mnot\u001b[0m stop WPS PIN attack if AP becomes \u001b[33mlocked\u001b[0m (default: \u001b[32mstop\u001b[0m)",
+   "--pmkid": "\u001b[33mOnly\u001b[0m use \u001b[36mPMKID capture\u001b[0m, avoids other WPS & WPA attacks (default: \u001b[32moff\u001b[0m)",
+   "--no-pmkid": "\u001b[33mDon't\u001b[0m use \u001b[36mPMKID capture\u001b[0m (default: \u001b[32moff\u001b[0m)",
+   "--pmkid-timeout": "Time to wait for PMKID capture (default: \u001b[32m300\u001b[0m seconds)",
+   "--pmkid-passive": "Passive PMKID capture mode: Sniff all networks without deauth. (default: \u001b[32moff\u001b[0m)",
+   "--eviltwin": "Use the \u001b[36mEvil Twin\u001b[0m attack against all targets. Creates rogue AP to capture credentials. (default: \u001b[32moff\u001b[0m)",
+   "--monitor-attacks": "Monitor for wireless attacks (deauth/disassoc frames). Passively detects attack frames without interfering. Displays real-time statistics, network lists, and attacker profiles. \u001b[33mRequires tshark.\u001b[0m (default: \u001b[32moff\u001b[0m)",
+   "--wpasec": "Enable \u001b[36mwpa-sec.stanev.org\u001b[0m upload functionality. Uploads captured handshakes to online cracking service. Requires API key from wpa-sec.stanev.org (default: \u001b[32moff\u001b[0m)",
+   "--wpasec-key": "API key for \u001b[36mwpa-sec.stanev.org\u001b[0m. Register at wpa-sec.stanev.org to obtain your key. Required for uploading captures.",
+   "--wpasec-auto": "Automatically upload all captured handshakes without prompting. When disabled, you will be asked before each upload. (default: \u001b[32moff\u001b[0m)",
+   "--cracked": "Print previously-cracked access points",
+   "--ignored": "Print ignored access points",
+   "--check": "Check a \u001b[36m.cap file\u001b[0m (or all \u001b[36mhs/*.cap\u001b[0m files) for WPA handshakes",
+   "--crack": "Show commands to crack a captured handshake",
+   "--syscheck": "Comprehensive system readiness check: tools, interfaces, driver compatibility, attack readiness matrix. Use with \u001b[36m-v\u001b[0m to include monitor mode smoke test.",
+   "--update-db": "Update the local MAC address prefix database from IEEE registries",
+   "--resume": "Resume a previously interrupted attack session. If multiple sessions exist, displays a list to choose from. Sessions are automatically saved during attacks and can be resumed after interruption (Ctrl+C, crash, power loss).",
+   "--resume-latest": "Automatically resume the most recent session without prompting. Useful for quickly continuing the last interrupted attack.",
+   "--resume-id": "Resume a specific session by ID (e.g., session_20250126_120000). Use --resume to see available session IDs.",
+   "--clean-sessions": "Remove old session files (older than 7 days). Sessions are stored in ~/.wifite/sessions/ and cleaned up automatically on startup. Use this to manually clean up old sessions."
+  },
+  "values_seen": {
+   "-i": "[interface]",
+   "-c": "[channel]",
+   "-p": "[scan_time]",
+   "-pow": "[min_power]",
+   "--power": "[min_power]",
+   "-first": "[attack_max]",
+   "--first": "[attack_max]",
+   "--dict": "[file/directory]",
+   "--pmkid-timeout": "[sec]",
+   "--wpasec-key": "[key]",
+   "--check": "[file]"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--infinite": [
+    "-inf"
+   ],
+   "--random-mac": [
+    "-mac"
+   ],
+   "--power": [
+    "-pow"
+   ],
+   "--first": [
+    "-first"
+   ],
+   "--ignore-cracked": [
+    "-ic"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "wifite",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5dd30c773ccb1aded7f9f28abe3dc2a1dfbec1e019e4d5dd57c98f740d67ff96",
+  "text": " \u001b[32m  .     \u001b[36m\u001b[2m  \u00b7  \u001b[0m\u001b[32m     .    \u001b[0m\n \u001b[32m.\u00b4  \u00b7  .\u001b[36m\u001b[2m \u00b7 \u00b7 \u001b[0m\u001b[32m.  \u00b7  `.  \u001b[32mwifite2 \u001b[2m2.9.9b0\u001b[0m\n \u001b[32m:  :  : \u001b[36m\u001b[2m((\u00b7))\u001b[0m\u001b[32m :  :  :  \u001b[0m\u001b[2ma wireless auditor by \u001b[36mderv82\u001b[0m\n \u001b[32m`.  \u00b7  `\u001b[37m\u001b[2m /\u2502\\ \u001b[0m\u001b[32m\u00b4  \u00b7  .\u00b4  \u001b[0m\u001b[2mmaintained by \u001b[36mkimocoder\u001b[0m\n \u001b[32m  `     \u001b[37m\u001b[2m/\u2500\u2534\u2500\\\u001b[0m\u001b[32m     \u00b4    \u001b[36m\u001b[2mhttps://github.com/kimocoder/wifite2\u001b[0m\n\noptions:\n  -h, --help                                 show this help message and exit\n\n\u001b[36mSETTINGS\u001b[0m:\n  -v, --verbose                              Shows more options (\u001b[36m-h -v\u001b[0m). Prints commands and outputs. (default:\n                                             \u001b[32mquiet\u001b[0m)\n  -i [interface]                             Wireless interface to use, e.g. \u001b[36mwlan0mon\u001b[0m (default: \u001b[32mask\u001b[0m)\n  -c [channel]                               Wireless channel to scan e.g. \u001b[36m1,3-6\u001b[0m (default: \u001b[32mall 2Ghz channels\u001b[0m)\n  -inf, --infinite                           Enable infinite attack mode. Modify scanning time with \u001b[36m-p\u001b[0m (default:\n                                             \u001b[32moff\u001b[0m)\n  -mac, --random-mac                         Randomize wireless card MAC address completely (better privacy) (default:\n                                             \u001b[32moff\u001b[0m)\n  --random-mac-vendor                        Randomize wireless card MAC address but keep vendor bytes (better compatibility)\n                                             (default: \u001b[32moff\u001b[0m)\n  -p [scan_time]                             \u001b[32mPillage\u001b[0m: Attack all targets after \u001b[36mscan_time\u001b[0m (seconds)\n  --kill                                     Kill processes that conflict with Airmon/Airodump (default: \u001b[32moff\u001b[0m)\n  -pow [min_power], --power [min_power]      Attacks any targets with at least \u001b[36mmin_power\u001b[0m signal strength\n  --skip-crack                               Skip cracking captured handshakes/pmkid (default: \u001b[32moff\u001b[0m)\n  -first [attack_max], --first [attack_max]  Attacks the first \u001b[36mattack_max\u001b[0m targets\n  -ic, --ignore-cracked                      Hides previously-cracked targets. (default: \u001b[32moff\u001b[0m)\n  --ignore-captured                          Hides targets with existing captured handshakes/pmkid. (default: \u001b[32moff\u001b[0m)\n  --clients-only                             Only show targets that have associated clients (default: \u001b[32moff\u001b[0m)\n  --detect-honeypots                         Detect potential honeypot/rogue APs via beacon anomalies (default: \u001b[32moff\u001b[0m)\n  --nodeauths                                Passive mode: Never deauthenticates clients (default: \u001b[32mdeauth targets\u001b[0m)\n  --daemon                                   Puts device back in managed mode after quitting (default: \u001b[32moff\u001b[0m)\n  --tui                                      Use interactive TUI mode (default: \u001b[32mauto-detect\u001b[0m)\n  --no-tui                                   Use classic text mode, disable TUI (default: \u001b[32mauto-detect\u001b[0m)\n  --dual-interface                           Enable dual interface mode for simultaneous AP and deauth operations. Automatically\n                                             assigns two interfaces when available for improved attack performance. Eliminates\n                                             mode switching in Evil Twin attacks. (default: \u001b[32mauto\u001b[0m)\n  --no-dual-interface                        Disable dual interface mode, force single interface operation. Uses traditional mode-\n                                             switching approach even when multiple interfaces are available. (default:\n                                             \u001b[32moff\u001b[0m)\n  --hcxdump                                  Use \u001b[36mhcxdumptool\u001b[0m for WPA handshake capture (single or dual interface).\n                                             Creates .pcapng files with better compatibility for Hashcat. Provides PMF-aware\n                                             capture and built-in deauth capabilities. Falls back to airodump-ng if hcxdumptool is\n                                             unavailable. Requires hcxdumptool v6.2.0+ (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWEP\u001b[0m:\n  --wep                                      Show only \u001b[36mWEP-encrypted networks\u001b[0m\n  --require-fakeauth                         Fails attacks if \u001b[36mfake-auth\u001b[0m fails (default: \u001b[32moff\u001b[0m)\n  --keep-ivs                                 Retain .IVS files and reuse when cracking (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWPA\u001b[0m:\n  --wpa                                      Show only \u001b[36mWPA/WPA2-encrypted networks\u001b[0m (may include \u001b[36mWPS\u001b[0m)\n  --wpa3                                     Show only \u001b[36mWPA3-encrypted networks\u001b[0m (SAE/OWE). Displays WPA3-only and\n                                             transition mode networks.\n  --wpa3-only                                Attack only \u001b[36mWPA3-SAE networks\u001b[0m, skip WPA2-only targets. Useful for focusing\n                                             on WPA3 security testing. (default: \u001b[32moff\u001b[0m)\n  --no-downgrade                             Disable \u001b[36mWPA3 transition mode downgrade\u001b[0m attacks. Forces SAE handshake capture\n                                             instead of attempting to downgrade to WPA2. Use when testing pure WPA3 security.\n                                             (default: \u001b[32moff\u001b[0m)\n  --force-sae                                Skip WPA2 attacks on \u001b[36mtransition mode\u001b[0m networks, attack SAE directly. Captures\n                                             WPA3-SAE handshakes even when WPA2 is available. (default: \u001b[32moff\u001b[0m)\n  --check-dragonblood                        Scan for \u001b[36mDragonblood vulnerabilities\u001b[0m (CVE-2019-13377) only. Identifies\n                                             vulnerable WPA3 implementations without performing attacks. Checks for weak SAE\n                                             groups and timing attack susceptibility. (default: \u001b[32moff\u001b[0m)\n  --dragonblood-timing                       Enable \u001b[36mDragonblood timing attack\u001b[0m (CVE-2019-13377) for APs with vulnerable\n                                             MODP groups (22, 23, 24). Probes the AP to measure SAE response latency and\n                                             partitions the password search space. (default: \u001b[32moff\u001b[0m)\n  --owe                                      Show only \u001b[36mOWE-encrypted networks\u001b[0m (Enhanced Open)\n  --new-hs                                   Captures new handshakes, ignores existing handshakes in \u001b[36mhs\u001b[0m (default:\n                                             \u001b[32moff\u001b[0m)\n  --dict [file/directory]                    File or directory containing wordlists for cracking (default: \u001b[32mNone\u001b[0m)\n\n\u001b[36mWPS\u001b[0m:\n  --wps                                      Show only \u001b[36mWPS-enabled networks\u001b[0m\n  --wps-only                                 \u001b[33mOnly\u001b[0m use \u001b[36mWPS PIN\u001b[0m & \u001b[36mPixie-Dust\u001b[0m attacks (default:\n                                             \u001b[32moff\u001b[0m)\n  --bully                                    Use \u001b[32mbully\u001b[0m program for WPS PIN & Pixie-Dust attacks (default:\n                                             \u001b[32mreaver\u001b[0m)\n  --reaver                                   Use \u001b[32mreaver\u001b[0m program for WPS PIN & Pixie-Dust attacks (default:\n                                             \u001b[32mreaver\u001b[0m)\n  --ignore-locks                             Do \u001b[33mnot\u001b[0m stop WPS PIN attack if AP becomes \u001b[33mlocked\u001b[0m (default:\n                                             \u001b[32mstop\u001b[0m)\n\n\u001b[36mPMKID\u001b[0m:\n  --pmkid                                    \u001b[33mOnly\u001b[0m use \u001b[36mPMKID capture\u001b[0m, avoids other WPS & WPA attacks (default:\n                                             \u001b[32moff\u001b[0m)\n  --no-pmkid                                 \u001b[33mDon't\u001b[0m use \u001b[36mPMKID capture\u001b[0m (default: \u001b[32moff\u001b[0m)\n  --pmkid-timeout [sec]                      Time to wait for PMKID capture (default: \u001b[32m300\u001b[0m seconds)\n  --pmkid-passive                            Passive PMKID capture mode: Sniff all networks without deauth. (default:\n                                             \u001b[32moff\u001b[0m)\n\n\u001b[36mEVIL TWIN\u001b[0m:\n  --eviltwin                                 Use the \u001b[36mEvil Twin\u001b[0m attack against all targets. Creates rogue AP to capture\n                                             credentials. (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mATTACK MONITORING\u001b[0m:\n  --monitor-attacks                          Monitor for wireless attacks (deauth/disassoc frames). Passively detects attack\n                                             frames without interfering. Displays real-time statistics, network lists, and\n                                             attacker profiles. \u001b[33mRequires tshark.\u001b[0m (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mWPA-SEC UPLOAD\u001b[0m:\n  --wpasec                                   Enable \u001b[36mwpa-sec.stanev.org\u001b[0m upload functionality. Uploads captured handshakes\n                                             to online cracking service. Requires API key from wpa-sec.stanev.org (default:\n                                             \u001b[32moff\u001b[0m)\n  --wpasec-key [key]                         API key for \u001b[36mwpa-sec.stanev.org\u001b[0m. Register at wpa-sec.stanev.org to obtain\n                                             your key. Required for uploading captures.\n  --wpasec-auto                              Automatically upload all captured handshakes without prompting. When disabled, you\n                                             will be asked before each upload. (default: \u001b[32moff\u001b[0m)\n\n\u001b[36mCOMMANDS\u001b[0m:\n  --cracked                                  Print previously-cracked access points\n  --ignored                                  Print ignored access points\n  --check [file]                             Check a \u001b[36m.cap file\u001b[0m (or all \u001b[36mhs/*.cap\u001b[0m files) for WPA handshakes\n  --crack                                    Show commands to crack a captured handshake\n  --syscheck                                 Comprehensive system readiness check: tools, interfaces, driver compatibility, attack\n                                             readiness matrix. Use with \u001b[36m-v\u001b[0m to include monitor mode smoke test.\n  --update-db                                Update the local MAC address prefix database from IEEE registries\n  --resume                                   Resume a previously interrupted attack session. If multiple sessions exist, displays\n                                             a list to choose from. Sessions are automatically saved during attacks and can be\n                                             resumed after interruption (Ctrl+C, crash, power loss).\n  --resume-latest                            Automatically resume the most recent session without prompting. Useful for quickly\n                                             continuing the last interrupted attack.\n  --resume-id session_id                     Resume a specific session by ID (e.g., session_20250126_120000). Use --resume to see\n                                             available session IDs.\n  --clean-sessions                           Remove old session files (older than 7 days). Sessions are stored in\n                                             ~/.wifite/sessions/ and cleaned up automatically on startup. Use this to manually\n                                             clean up old sessions.\n"
+ },
+ "surface": {
+  "flags": {
+   "--bully": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use \u001b[32mbully\u001b[0m program for WPS PIN & Pixie-Dust attacks (default: \u001b[32mreaver\u001b[0m)"
+   },
+   "--check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check a \u001b[36m.cap file\u001b[0m (or all \u001b[36mhs/*.cap\u001b[0m files) for WPA handshakes",
+    "metavar": "[file]"
+   },
+   "--check-dragonblood": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan for \u001b[36mDragonblood vulnerabilities\u001b[0m (CVE-2019-13377) only. Identifies vulnerable WPA3 implementations without performing attacks. Checks for weak SAE groups and timing attack susceptibility. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--clean-sessions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Remove old session files (older than 7 days). Sessions are stored in ~/.wifite/sessions/ and cleaned up automatically on startup. Use this to manually clean up old sessions."
+   },
+   "--clients-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only show targets that have associated clients (default: \u001b[32moff\u001b[0m)"
+   },
+   "--crack": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show commands to crack a captured handshake"
+   },
+   "--cracked": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print previously-cracked access points"
+   },
+   "--daemon": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Puts device back in managed mode after quitting (default: \u001b[32moff\u001b[0m)"
+   },
+   "--detect-honeypots": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Detect potential honeypot/rogue APs via beacon anomalies (default: \u001b[32moff\u001b[0m)"
+   },
+   "--dict": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File or directory containing wordlists for cracking (default: \u001b[32mNone\u001b[0m)",
+    "metavar": "[file/directory]"
+   },
+   "--dragonblood-timing": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable \u001b[36mDragonblood timing attack\u001b[0m (CVE-2019-13377) for APs with vulnerable MODP groups (22, 23, 24). Probes the AP to measure SAE response latency and partitions the password search space. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--dual-interface": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable dual interface mode for simultaneous AP and deauth operations. Automatically assigns two interfaces when available for improved attack performance. Eliminates mode switching in Evil Twin attacks. (default: \u001b[32mauto\u001b[0m)"
+   },
+   "--eviltwin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the \u001b[36mEvil Twin\u001b[0m attack against all targets. Creates rogue AP to capture credentials. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--first": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Attacks the first \u001b[36mattack_max\u001b[0m targets",
+    "metavar": "[attack_max]",
+    "aliases": [
+     "-first"
+    ]
+   },
+   "--force-sae": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip WPA2 attacks on \u001b[36mtransition mode\u001b[0m networks, attack SAE directly. Captures WPA3-SAE handshakes even when WPA2 is available. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--hcxdump": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use \u001b[36mhcxdumptool\u001b[0m for WPA handshake capture (single or dual interface). Creates .pcapng files with better compatibility for Hashcat. Provides PMF-aware capture and built-in deauth capabilities. Falls back to airodump-ng if hcxdumptool is unavailable. Requires hcxdumptool v6.2.0+ (default: \u001b[32moff\u001b[0m)"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--ignore-captured": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hides targets with existing captured handshakes/pmkid. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--ignore-cracked": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hides previously-cracked targets. (default: \u001b[32moff\u001b[0m)",
+    "aliases": [
+     "-ic"
+    ]
+   },
+   "--ignore-locks": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do \u001b[33mnot\u001b[0m stop WPS PIN attack if AP becomes \u001b[33mlocked\u001b[0m (default: \u001b[32mstop\u001b[0m)"
+   },
+   "--ignored": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print ignored access points"
+   },
+   "--infinite": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable infinite attack mode. Modify scanning time with \u001b[36m-p\u001b[0m (default: \u001b[32moff\u001b[0m)",
+    "aliases": [
+     "-inf"
+    ]
+   },
+   "--keep-ivs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retain .IVS files and reuse when cracking (default: \u001b[32moff\u001b[0m)"
+   },
+   "--kill": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Kill processes that conflict with Airmon/Airodump (default: \u001b[32moff\u001b[0m)"
+   },
+   "--monitor-attacks": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Monitor for wireless attacks (deauth/disassoc frames). Passively detects attack frames without interfering. Displays real-time statistics, network lists, and attacker profiles. \u001b[33mRequires tshark.\u001b[0m (default: \u001b[32moff\u001b[0m)"
+   },
+   "--new-hs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Captures new handshakes, ignores existing handshakes in \u001b[36mhs\u001b[0m (default: \u001b[32moff\u001b[0m)"
+   },
+   "--no-downgrade": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable \u001b[36mWPA3 transition mode downgrade\u001b[0m attacks. Forces SAE handshake capture instead of attempting to downgrade to WPA2. Use when testing pure WPA3 security. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--no-dual-interface": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable dual interface mode, force single interface operation. Uses traditional mode- switching approach even when multiple interfaces are available. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--no-pmkid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "\u001b[33mDon't\u001b[0m use \u001b[36mPMKID capture\u001b[0m (default: \u001b[32moff\u001b[0m)"
+   },
+   "--no-tui": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use classic text mode, disable TUI (default: \u001b[32mauto-detect\u001b[0m)"
+   },
+   "--nodeauths": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Passive mode: Never deauthenticates clients (default: \u001b[32mdeauth targets\u001b[0m)"
+   },
+   "--owe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show only \u001b[36mOWE-encrypted networks\u001b[0m (Enhanced Open)"
+   },
+   "--pmkid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "\u001b[33mOnly\u001b[0m use \u001b[36mPMKID capture\u001b[0m, avoids other WPS & WPA attacks (default: \u001b[32moff\u001b[0m)"
+   },
+   "--pmkid-passive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Passive PMKID capture mode: Sniff all networks without deauth. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--pmkid-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Time to wait for PMKID capture (default: \u001b[32m300\u001b[0m seconds)",
+    "metavar": "[sec]"
+   },
+   "--power": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Attacks any targets with at least \u001b[36mmin_power\u001b[0m signal strength",
+    "metavar": "[min_power]",
+    "aliases": [
+     "-pow"
+    ]
+   },
+   "--random-mac": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Randomize wireless card MAC address completely (better privacy) (default: \u001b[32moff\u001b[0m)",
+    "aliases": [
+     "-mac"
+    ]
+   },
+   "--random-mac-vendor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Randomize wireless card MAC address but keep vendor bytes (better compatibility) (default: \u001b[32moff\u001b[0m)"
+   },
+   "--reaver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use \u001b[32mreaver\u001b[0m program for WPS PIN & Pixie-Dust attacks (default: \u001b[32mreaver\u001b[0m)"
+   },
+   "--require-fakeauth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Fails attacks if \u001b[36mfake-auth\u001b[0m fails (default: \u001b[32moff\u001b[0m)"
+   },
+   "--resume": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Resume a previously interrupted attack session. If multiple sessions exist, displays a list to choose from. Sessions are automatically saved during attacks and can be resumed after interruption (Ctrl+C, crash, power loss)."
+   },
+   "--resume-id": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Resume a specific session by ID (e.g., session_20250126_120000). Use --resume to see available session IDs."
+   },
+   "--resume-latest": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically resume the most recent session without prompting. Useful for quickly continuing the last interrupted attack."
+   },
+   "--skip-crack": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip cracking captured handshakes/pmkid (default: \u001b[32moff\u001b[0m)"
+   },
+   "--syscheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comprehensive system readiness check: tools, interfaces, driver compatibility, attack readiness matrix. Use with \u001b[36m-v\u001b[0m to include monitor mode smoke test."
+   },
+   "--tui": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use interactive TUI mode (default: \u001b[32mauto-detect\u001b[0m)"
+   },
+   "--update-db": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Update the local MAC address prefix database from IEEE registries"
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Shows more options (\u001b[36m-h -v\u001b[0m). Prints commands and outputs. (default: \u001b[32mquiet\u001b[0m)",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--wep": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show only \u001b[36mWEP-encrypted networks\u001b[0m"
+   },
+   "--wpa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show only \u001b[36mWPA/WPA2-encrypted networks\u001b[0m (may include \u001b[36mWPS\u001b[0m)"
+   },
+   "--wpa3": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show only \u001b[36mWPA3-encrypted networks\u001b[0m (SAE/OWE). Displays WPA3-only and transition mode networks."
+   },
+   "--wpa3-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Attack only \u001b[36mWPA3-SAE networks\u001b[0m, skip WPA2-only targets. Useful for focusing on WPA3 security testing. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--wpasec": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable \u001b[36mwpa-sec.stanev.org\u001b[0m upload functionality. Uploads captured handshakes to online cracking service. Requires API key from wpa-sec.stanev.org (default: \u001b[32moff\u001b[0m)"
+   },
+   "--wpasec-auto": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically upload all captured handshakes without prompting. When disabled, you will be asked before each upload. (default: \u001b[32moff\u001b[0m)"
+   },
+   "--wpasec-key": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "API key for \u001b[36mwpa-sec.stanev.org\u001b[0m. Register at wpa-sec.stanev.org to obtain your key. Required for uploading captures.",
+    "metavar": "[key]"
+   },
+   "--wps": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show only \u001b[36mWPS-enabled networks\u001b[0m"
+   },
+   "--wps-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "\u001b[33mOnly\u001b[0m use \u001b[36mWPS PIN\u001b[0m & \u001b[36mPixie-Dust\u001b[0m attacks (default: \u001b[32moff\u001b[0m)"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wireless channel to scan e.g. \u001b[36m1,3-6\u001b[0m (default: \u001b[32mall 2Ghz channels\u001b[0m)",
+    "metavar": "[channel]"
+   },
+   "-i": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wireless interface to use, e.g. \u001b[36mwlan0mon\u001b[0m (default: \u001b[32mask\u001b[0m)",
+    "metavar": "[interface]"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "\u001b[32mPillage\u001b[0m: Attack all targets after \u001b[36mscan_time\u001b[0m (seconds)",
+    "metavar": "[scan_time]"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 0,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [],
+  "not_attempted": [
+   {
+    "raw": "sudo wifite --syscheck",
+    "source": "readme",
+    "path": "README.md",
+    "line": 199,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --wpasec --wpasec-key YOUR_API_KEY",
+    "source": "readme",
+    "path": "README.md",
+    "line": 659,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --wpasec --wpasec-key YOUR_API_KEY --wpasec-auto",
+    "source": "readme",
+    "path": "README.md",
+    "line": 667,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --wpa --wpasec --wpasec-key YOUR_API_KEY",
+    "source": "readme",
+    "path": "README.md",
+    "line": 700,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --pmkid --wpasec --wpasec-key YOUR_API_KEY --wpasec-auto",
+    "source": "readme",
+    "path": "README.md",
+    "line": 705,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --wpa3-only --wpasec --wpasec-key YOUR_API_KEY --wpasec-email you@example.com",
+    "source": "readme",
+    "path": "README.md",
+    "line": 710,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite -b AA:BB:CC:DD:EE:FF --wpasec --wpasec-key YOUR_API_KEY",
+    "source": "readme",
+    "path": "README.md",
+    "line": 715,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --dual-interface --wpasec --wpasec-key YOUR_API_KEY --wpasec-auto",
+    "source": "readme",
+    "path": "README.md",
+    "line": 720,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite -h -v    # Show all options with examples",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1003,
+    "reason": "needs-network-or-interactive",
+    "token": "-h"
+   },
+   {
+    "raw": "sudo wifite --eviltwin --eviltwin-template generic",
+    "source": "readme",
+    "path": "docs/EVILTWIN_GUIDE.md",
+    "line": 401,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --eviltwin --eviltwin-template tplink",
+    "source": "readme",
+    "path": "docs/EVILTWIN_GUIDE.md",
+    "line": 409,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --eviltwin --eviltwin-template netgear",
+    "source": "readme",
+    "path": "docs/EVILTWIN_GUIDE.md",
+    "line": 417,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --eviltwin --eviltwin-template linksys",
+    "source": "readme",
+    "path": "docs/EVILTWIN_GUIDE.md",
+    "line": 425,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --kill",
+    "source": "readme",
+    "path": "docs/EVILTWIN_TROUBLESHOOTING.md",
+    "line": 110,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "sudo wifite --eviltwin --eviltwin-port 8080",
+    "source": "readme",
+    "path": "docs/EVILTWIN_TROUBLESHOOTING.md",
+    "line": 169,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "wifite",
+ "repo": "kimocoder/wifite2",
+ "head_sha": "166e0c3081dd08f7891a08c6b17bef95441985c4",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T01:09:11.618485+00:00"
+}

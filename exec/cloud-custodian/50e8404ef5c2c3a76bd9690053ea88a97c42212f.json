@@ -1,0 +1,340 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:deb455368586ba6d99ceb789c985806d147c51f0eb4af8699ec89cd5fd067b56",
+  "duration_s": 42.39,
+  "log_tail": "#10 31.96 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#10 31.99 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#10 32.04 debconf: unable to initialize frontend: Dialog\n#10 32.04 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#10 32.04 debconf: falling back to frontend: Readline\n#10 32.04 debconf: unable to initialize frontend: Readline\n#10 32.04 debconf: (This frontend requires a controlling tty.)\n#10 32.04 debconf: falling back to frontend: Teletype\n#10 32.07 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#10 32.08 Setting up texinfo (6.8-6+b1) ...\n#10 32.09 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#10 32.13 Processing triggers for install-info (6.8-6+b1) ...\n#10 DONE 32.2s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.4s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.7s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.122 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 2.3s done\n#20 exporting manifest sha256:5b05c25ee15d7e4893d139f2087b5e2a6cac547e4d420f9478c60809faef2997 done\n#20 exporting config sha256:858f502eb9af6ecd9d4b2106fb44828d0294e0f0055e86882f2cec014fe55562 0.0s done\n#20 exporting attestation manifest sha256:b519cf8e2085e6394888497a5f083e23cc996ccbe5a5e4612bd6c53380394928 0.0s done\n#20 exporting manifest list sha256:deb455368586ba6d99ceb789c985806d147c51f0eb4af8699ec89cd5fd067b56 0.0s done\n#20 naming to docker.io/ctk-exec/cloud-custodian:50e8404ef5c2 done\n#20 unpacking to docker.io/ctk-exec/cloud-custodian:50e8404ef5c2\n#20 unpacking to docker.io/ctk-exec/cloud-custodian:50e8404ef5c2 1.2s done\n#20 DONE 3.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "custodian",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian [-h] {run,schema,report,logs,metrics,version,validate} ...\n\nCloud Custodian - Cloud fleet management\n\noptions:\n  -h, --help            show this help message and exit\n\ncommands:\n  {run,schema,report,logs,metrics,version,validate}\n    run                 Execute the policies in a config file\n    schema              Interactive cli docs for policy authors\n    report              Tabular report on policy matched resources\n    version             Display installed version of custodian\n    validate            Validate config files against the json schema\n",
+   "stderr": "",
+   "duration_ms": 521,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "custodian",
+    "run",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian run [-h] [-r REGION] [--profile PROFILE]\n                     [--assume ASSUME_ROLE] [--external-id EXTERNAL_ID]\n                     [-p POLICY_FILTERS] [-t RESOURCE_TYPES] [-v] [-q]\n                     [-l LOG_GROUP] -s OUTPUT_DIR [-f CACHE]\n                     [--cache-period CACHE_PERIOD]\n                     [--session-policy SESSION_POLICY] [-d]\n                     [--skip-validation] [-m [PROVIDER]] [--trace [TRACER]]\n                     [configs ...]\n\nExecute the policies in a config file.\n\nMultiple regions can be passed in, as can the symbolic region 'all'. \n\nWhen running across multiple regions, policies targeting resources in \nregions where they do not exist will not be run. The output directory \nwhen passing multiple regions is suffixed with the region. Resources \nwith global endpoints are run just once and are suffixed with the first \nregion passed in or us-east-1 if running against 'all' regions.\n\noptions:\n  -h, --help            show this help message and exit\n  -l LOG_GROUP, --log-group LOG_GROUP\n                        Location to send policy logs (Ex: AWS CloudWatch Log\n                        Group)\n  -s OUTPUT_DIR, --output-dir OUTPUT_DIR\n                        [REQUIRED] Directory or S3 URL For policy output\n  -f CACHE, --cache CACHE\n                        Cache file (default ~/.cache/cloud-custodian.cache)\n  --cache-period CACHE_PERIOD\n                        Cache validity in minutes (default 15)\n  --session-policy SESSION_POLICY\n                        [OPTIONAL] AWS IAM Policy Document to be used as a\n                        session policy\n  -d, --dryrun, --dry-run\n                        Don't execute actions but filter resources\n  --skip-validation     Skips validation of policies (assumes you've run the\n                        validate command separately).\n  -m [PROVIDER], --metrics-enabled [PROVIDER]\n                        Emit metrics to provider metrics. Specify 'aws',\n                        'gcp', or 'azure'. For more details on aws metrics\n                        options, see:\n                        https://cloudcustodian.io/docs/aws/usage.html#metrics\n  --trace [TRACER]      Tracing integration\n\nprovider:\n  AWS account information, defaults per the aws cli\n\n  -r REGION, --region REGION\n                        AWS Region to target. Can be used multiple times\n  --profile PROFILE     Account Config File Profile to utilize\n                        (AWS/TencentCloud)\n  --assume ASSUME_ROLE  Role or Service Account to assume\n  --external-id EXTERNAL_ID\n                        External Id to provide when assuming a role\n\nconfig:\n  Policy config file(s) and policy selectors\n\n  configs               Policy configuration file(s) or directory\n  -p POLICY_FILTERS, --policies POLICY_FILTERS\n                        Only use named/matched policies\n  -t RESOURCE_TYPES, --resource RESOURCE_TYPES\n                        Only use policies with the given resource type\n\noutput:\n  Output control\n\n  -v, --verbose         Verbose logging\n  -q, --quiet           Less logging (repeatable, -qqq for no output)\n",
+   "stderr": "",
+   "duration_ms": 497,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "custodian",
+    "schema",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian schema [-h] [--summary] [--json] [--outline] [-v] [selector]\n\nBrowse the available vocabularies (resources, filters, modes, and actions) for\npolicy construction. The selector is specified with RESOURCE[.CATEGORY[.ITEM]]\nexamples: s3, ebs.actions, or ec2.filters.instance-age\n\npositional arguments:\n  selector\n\noptions:\n  -h, --help     show this help message and exit\n  --summary      Summarize counts of available resources, actions and filters\n  --json         Export custodian's jsonschema\n  --outline      Print outline of all resources and their actions and filters\n  -v, --verbose  Verbose logging\n",
+   "stderr": "",
+   "duration_ms": 484,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "custodian",
+    "report",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian report [-h] [-r REGION] [--profile PROFILE]\n                        [--assume ASSUME_ROLE] [--external-id EXTERNAL_ID]\n                        [-p POLICY_FILTERS] [-t RESOURCE_TYPES] [-v] -s\n                        OUTPUT_DIR [--session-policy SESSION_POLICY]\n                        [--days DAYS] [--raw RAW] [--field HEADER=FIELD]\n                        [--no-default-fields]\n                        [--format {csv,grid,simple,json}] [--all-findings]\n                        [configs ...]\n\nReport of resources that a policy matched/ran on. The default output format is\ncsv, but other formats are available.\n\noptions:\n  -h, --help            show this help message and exit\n  -s OUTPUT_DIR, --output-dir OUTPUT_DIR\n                        [REQUIRED] Directory or S3 URL For policy output\n  --session-policy SESSION_POLICY\n                        [OPTIONAL] AWS IAM Policy Document to be used as a\n                        session policy\n  --days DAYS           Number of days of history to consider\n  --raw RAW             Store raw json of collected records to given file path\n  --field HEADER=FIELD  Repeatable. JMESPath of field to include in the output\n                        OR for a tag use prefix `tag:`. Special case fields\n                        `region` and`policy` are available\n  --no-default-fields   Exclude default fields for report.\n  --format {csv,grid,simple,json}\n                        Format to output data in (default: csv). Options\n                        include simple, grid, csv, json\n  --all-findings        Outputs all findings per resource. Defaults to a\n                        single finding per resource.\n\nprovider:\n  AWS account information, defaults per the aws cli\n\n  -r REGION, --region REGION\n                        AWS Region to target. Can be used multiple times\n  --profile PROFILE     Account Config File Profile to utilize\n                        (AWS/TencentCloud)\n  --assume ASSUME_ROLE  Role or Service Account to assume\n  --external-id EXTERNAL_ID\n                        External Id to provide when assuming a role\n\nconfig:\n  Policy config file(s) and policy selectors\n\n  configs               Policy configuration file(s) or directory\n  -p POLICY_FILTERS, --policies POLICY_FILTERS\n                        Only use named/matched policies\n  -t RESOURCE_TYPES, --resource RESOURCE_TYPES\n                        Only use policies with the given resource type\n\noutput:\n  Output control\n\n  -v, --verbose         Verbose logging\n",
+   "stderr": "",
+   "duration_ms": 480,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "custodian",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian version [-h] [-v] [--debug]\n\noptions:\n  -h, --help     show this help message and exit\n  -v, --verbose  Verbose logging\n  --debug        Print info for bug reports\n",
+   "stderr": "",
+   "duration_ms": 469,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "custodian",
+    "validate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: custodian validate [-h] [-v] [-q] [--no-deps | --strict] [configs ...]\n\nValidate config files against the json schema\n\npositional arguments:\n  configs        Policy Configuration File(s)\n\noptions:\n  -h, --help     show this help message and exit\n  -v, --verbose  Verbose Logging\n  -q, --quiet    Less logging (repeatable)\n  --no-deps      Do not check for deprecations\n  --strict       Any deprecations will cause a non-zero exit code\n",
+   "stderr": "",
+   "duration_ms": 470,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "custodian"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for custodian\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "custodian"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'custodian' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "cloud custodian",
+    "version"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'cloud custodian'",
+   "kind": "scenario",
+   "id": "t-model-3ca3719c",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 9,
+   "binary": "custodian",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {
+   "run": {
+    "--help": "show this help message and exit",
+    "--log-group": "Location to send policy logs (Ex: AWS CloudWatch Log Group)",
+    "--output-dir": "[REQUIRED] Directory or S3 URL For policy output",
+    "--cache": "Cache file (default ~/.cache/cloud-custodian.cache)",
+    "--cache-period": "Cache validity in minutes (default 15)",
+    "--session-policy": "[OPTIONAL] AWS IAM Policy Document to be used as a session policy",
+    "--dryrun": "Don't execute actions but filter resources",
+    "--skip-validation": "Skips validation of policies (assumes you've run the validate command separately).",
+    "--metrics-enabled": "Emit metrics to provider metrics. Specify 'aws', 'gcp', or 'azure'. For more details on aws metrics options, see: https://cloudcustodian.io/docs/aws/usage.html#metrics",
+    "--trace": "Tracing integration",
+    "--region": "AWS Region to target. Can be used multiple times",
+    "--profile": "Account Config File Profile to utilize (AWS/TencentCloud)",
+    "--assume": "Role or Service Account to assume",
+    "--external-id": "External Id to provide when assuming a role",
+    "--policies": "Only use named/matched policies",
+    "--resource": "Only use policies with the given resource type",
+    "--verbose": "Verbose logging",
+    "--quiet": "Less logging (repeatable, -qqq for no output)"
+   },
+   "schema": {
+    "--help": "show this help message and exit",
+    "--summary": "Summarize counts of available resources, actions and filters",
+    "--json": "Export custodian's jsonschema",
+    "--outline": "Print outline of all resources and their actions and filters",
+    "--verbose": "Verbose logging"
+   },
+   "report": {
+    "--help": "show this help message and exit",
+    "--output-dir": "[REQUIRED] Directory or S3 URL For policy output",
+    "--session-policy": "[OPTIONAL] AWS IAM Policy Document to be used as a session policy",
+    "--days": "Number of days of history to consider",
+    "--raw": "Store raw json of collected records to given file path",
+    "--field": "Repeatable. JMESPath of field to include in the output OR for a tag use prefix `tag:`. Special case fields `region` and`policy` are available",
+    "--no-default-fields": "Exclude default fields for report.",
+    "--format": "Format to output data in (default: csv). Options include simple, grid, csv, json",
+    "--all-findings": "Outputs all findings per resource. Defaults to a single finding per resource.",
+    "--region": "AWS Region to target. Can be used multiple times",
+    "--profile": "Account Config File Profile to utilize (AWS/TencentCloud)",
+    "--assume": "Role or Service Account to assume",
+    "--external-id": "External Id to provide when assuming a role",
+    "--policies": "Only use named/matched policies",
+    "--resource": "Only use policies with the given resource type",
+    "--verbose": "Verbose logging"
+   },
+   "version": {
+    "--help": "show this help message and exit",
+    "--verbose": "Verbose logging",
+    "--debug": "Print info for bug reports"
+   },
+   "validate": {
+    "--help": "show this help message and exit",
+    "--verbose": "Verbose Logging",
+    "--quiet": "Less logging (repeatable)",
+    "--no-deps": "Do not check for deprecations",
+    "--strict": "Any deprecations will cause a non-zero exit code"
+   }
+  },
+  "subcommands": [
+   "run",
+   "schema",
+   "report",
+   "version",
+   "validate"
+  ],
+  "binary": "custodian",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "66e6aa5ae7cab504e8c6c31a62eaf2da0f88465607004b61d0d42bd5f9568c79",
+  "text": "usage: custodian [-h] {run,schema,report,logs,metrics,version,validate} ...\n\nCloud Custodian - Cloud fleet management\n\noptions:\n  -h, --help            show this help message and exit\n\ncommands:\n  {run,schema,report,logs,metrics,version,validate}\n    run                 Execute the policies in a config file\n    schema              Interactive cli docs for policy authors\n    report              Tabular report on policy matched resources\n    version             Display installed version of custodian\n    validate            Validate config files against the json schema\n"
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   }
+  },
+  "subcommands": [
+   "report",
+   "run",
+   "schema",
+   "validate",
+   "version"
+  ],
+  "subcommand_flags": {
+   "run": {
+    "--help": "show this help message and exit",
+    "--log-group": "Location to send policy logs (Ex: AWS CloudWatch Log Group)",
+    "--output-dir": "[REQUIRED] Directory or S3 URL For policy output",
+    "--cache": "Cache file (default ~/.cache/cloud-custodian.cache)",
+    "--cache-period": "Cache validity in minutes (default 15)",
+    "--session-policy": "[OPTIONAL] AWS IAM Policy Document to be used as a session policy",
+    "--dryrun": "Don't execute actions but filter resources",
+    "--skip-validation": "Skips validation of policies (assumes you've run the validate command separately).",
+    "--metrics-enabled": "Emit metrics to provider metrics. Specify 'aws', 'gcp', or 'azure'. For more details on aws metrics options, see: https://cloudcustodian.io/docs/aws/usage.html#metrics",
+    "--trace": "Tracing integration",
+    "--region": "AWS Region to target. Can be used multiple times",
+    "--profile": "Account Config File Profile to utilize (AWS/TencentCloud)",
+    "--assume": "Role or Service Account to assume",
+    "--external-id": "External Id to provide when assuming a role",
+    "--policies": "Only use named/matched policies",
+    "--resource": "Only use policies with the given resource type",
+    "--verbose": "Verbose logging",
+    "--quiet": "Less logging (repeatable, -qqq for no output)"
+   },
+   "schema": {
+    "--help": "show this help message and exit",
+    "--summary": "Summarize counts of available resources, actions and filters",
+    "--json": "Export custodian's jsonschema",
+    "--outline": "Print outline of all resources and their actions and filters",
+    "--verbose": "Verbose logging"
+   },
+   "report": {
+    "--help": "show this help message and exit",
+    "--output-dir": "[REQUIRED] Directory or S3 URL For policy output",
+    "--session-policy": "[OPTIONAL] AWS IAM Policy Document to be used as a session policy",
+    "--days": "Number of days of history to consider",
+    "--raw": "Store raw json of collected records to given file path",
+    "--field": "Repeatable. JMESPath of field to include in the output OR for a tag use prefix `tag:`. Special case fields `region` and`policy` are available",
+    "--no-default-fields": "Exclude default fields for report.",
+    "--format": "Format to output data in (default: csv). Options include simple, grid, csv, json",
+    "--all-findings": "Outputs all findings per resource. Defaults to a single finding per resource.",
+    "--region": "AWS Region to target. Can be used multiple times",
+    "--profile": "Account Config File Profile to utilize (AWS/TencentCloud)",
+    "--assume": "Role or Service Account to assume",
+    "--external-id": "External Id to provide when assuming a role",
+    "--policies": "Only use named/matched policies",
+    "--resource": "Only use policies with the given resource type",
+    "--verbose": "Verbose logging"
+   },
+   "version": {
+    "--help": "show this help message and exit",
+    "--verbose": "Verbose logging",
+    "--debug": "Print info for bug reports"
+   },
+   "validate": {
+    "--help": "show this help message and exit",
+    "--verbose": "Verbose Logging",
+    "--quiet": "Less logging (repeatable)",
+    "--no-deps": "Do not check for deprecations",
+    "--strict": "Any deprecations will cause a non-zero exit code"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 1,
+  "tried_this_wave": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-3ca3719c",
+    "argv": [
+     "cloud custodian",
+     "version"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'cloud custodian'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Cloud Custodian",
+ "repo": "cloud-custodian/cloud-custodian",
+ "head_sha": "50e8404ef5c2c3a76bd9690053ea88a97c42212f",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T00:30:28.004405+00:00"
+}

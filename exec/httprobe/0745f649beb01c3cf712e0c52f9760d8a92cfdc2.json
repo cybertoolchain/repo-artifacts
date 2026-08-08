@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:d6ca030298f76882743575111c6b928c21c0c447e434343309e1363e21882a2e",
-  "duration_s": 62.36,
-  "log_tail": "#8 55.64 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 55.64 debconf: falling back to frontend: Readline\n#8 55.64 debconf: unable to initialize frontend: Readline\n#8 55.64 debconf: (This frontend requires a controlling tty.)\n#8 55.64 debconf: falling back to frontend: Teletype\n#8 55.67 \n#8 55.67 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 55.69 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#8 55.71 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#8 55.74 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#8 55.78 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#8 55.85 debconf: unable to initialize frontend: Dialog\n#8 55.85 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 55.85 debconf: falling back to frontend: Readline\n#8 55.86 debconf: unable to initialize frontend: Readline\n#8 55.86 debconf: (This frontend requires a controlling tty.)\n#8 55.86 debconf: falling back to frontend: Teletype\n#8 55.93 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 55.96 Setting up texinfo (6.8-6+b1) ...\n#8 55.98 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 56.00 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 56.4s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.166 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.4s done\n#18 exporting manifest sha256:367b05ef77150e89ab559f045dbe6b7ab0b7498048e7893aa1a429b49637e85b done\n#18 exporting config sha256:55327b8750d4283648ed14374e4323d3df600a506e88f1cc7c048c5db52352e4 done\n#18 exporting attestation manifest sha256:1c2aa4df46f59f5b2fb06b4d5775148aab5bab4c50c38083c6530ca4c0fe853f done\n#18 exporting manifest list sha256:d6ca030298f76882743575111c6b928c21c0c447e434343309e1363e21882a2e done\n#18 naming to docker.io/ctk-exec/httprobe:0745f649beb0 done\n#18 unpacking to docker.io/ctk-exec/httprobe:0745f649beb0\n#18 unpacking to docker.io/ctk-exec/httprobe:0745f649beb0 0.6s done\n#18 DONE 4.1s",
+  "image_digest": "sha256:8368898bb6a4d3b210086ebcb2dd8f45ac8744f691a760e7551d7568c54bdda2",
+  "duration_s": 8.33,
+  "log_tail": "#6 [build 1/5] FROM docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651\n#6 resolve docker.io/library/golang:1.26-bookworm@sha256:1ecb7edf62a0408027bd5729dfd6b1b8766e578e8df93995b225dfd0944eb651 done\n#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 61.10kB done\n#7 DONE 0.0s\n\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.1s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 3.8s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.5s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.3s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.6s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.7s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.197 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:b5620672e0703484b94b2e67d6535cb341ea2f363e21382508561831d9e23538 done\n#18 exporting config sha256:ea5b8f6c149fd1074bbf6cdb474e0bf0df8b47268b03061b8bdcdba368ff969a done\n#18 exporting attestation manifest sha256:fe3fc168f442539b5ac44d9b49bfc72099ade4b5c6984791aa24738c444d1ee9 done\n#18 exporting manifest list sha256:8368898bb6a4d3b210086ebcb2dd8f45ac8744f691a760e7551d7568c54bdda2 done\n#18 naming to docker.io/ctk-exec/httprobe:0745f649beb0 done\n#18 unpacking to docker.io/ctk-exec/httprobe:0745f649beb0\n#18 unpacking to docker.io/ctk-exec/httprobe:0745f649beb0 0.6s done\n#18 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "Usage of httprobe:\n  -c int\n    \tset the concurrency level (split equally between HTTPS and HTTP requests) (default 20)\n  -method string\n    \tHTTP method to use (default \"GET\")\n  -p value\n    \tadd additional probe (proto:port)\n  -prefer-https\n    \tonly try plain HTTP if HTTPS fails\n  -s\tskip the default probes (http:80 and https:443)\n  -t int\n    \ttimeout (milliseconds) (default 10000)\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'httprobe' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -64,40 +64,8 @@
   {
    "argv": [
     "httprobe",
-    "-prefer-https"
-   ],
-   "exit_code": 0,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-f145d684",
-   "title": "Candidate \u2014 run against no fixture"
-  },
-  {
-   "argv": [
-    "httprobe",
-    "-s",
-    "-p",
-    "http:8080"
-   ],
-   "exit_code": 0,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-97a9be0f",
-   "title": "Candidate \u2014 run against no fixture"
-  },
-  {
-   "argv": [
-    "httprobe",
     "-c",
-    "10"
+    "50"
    ],
    "exit_code": 0,
    "stdout": "",
@@ -106,14 +74,14 @@
    "truncated": false,
    "error": null,
    "kind": "scenario",
-   "id": "t-model-094a7ef8",
+   "id": "t-model-fb7817c7",
    "title": "Candidate \u2014 run against no fixture"
   },
   {
    "argv": [
     "httprobe",
     "-t",
-    "5000"
+    "20000"
    ],
    "exit_code": 0,
    "stdout": "",
@@ -122,30 +90,14 @@
    "truncated": false,
    "error": null,
    "kind": "scenario",
-   "id": "t-model-342b3a07",
-   "title": "Candidate \u2014 run against no fixture"
-  },
-  {
-   "argv": [
-    "httprobe",
-    "-method",
-    "HEAD"
-   ],
-   "exit_code": 0,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-model-897e6323",
+   "id": "t-model-e6101924",
    "title": "Candidate \u2014 run against no fixture"
   },
   {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 9,
+   "commands_run": 6,
    "binary": "httprobe",
    "exit_code": null,
    "stdout": "",
@@ -306,8 +258,8 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 8,
-  "tried_this_wave": 6,
+  "tried": 10,
+  "tried_this_wave": 3,
   "promoted": 0,
   "results": [
    {
@@ -427,6 +379,38 @@
     "output_bytes": 0
    },
    {
+    "id": "t-model-fb7817c7",
+    "argv": [
+     "httprobe",
+     "-c",
+     "50"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-e6101924",
+    "argv": [
+     "httprobe",
+     "-t",
+     "20000"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
     "id": "t-net-76951f4c",
     "argv": [
      "httprobe",
@@ -451,6 +435,6 @@
  "repo": "tomnomnom/httprobe",
  "head_sha": "0745f649beb01c3cf712e0c52f9760d8a92cfdc2",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T05:28:56.039451+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T22:47:02.061959+00:00"
 }

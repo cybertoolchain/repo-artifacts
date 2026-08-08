@@ -1,20 +1,179 @@
 {
  "build": {
-  "ok": false,
+  "ok": true,
   "tier": "rust",
-  "image_digest": null,
-  "duration_s": 13.19,
-  "log_tail": "#0 building with \"desktop-linux\" instance using docker driver\n\n#1 [internal] load build definition from Dockerfile.ctk\n#1 transferring dockerfile: 1.36kB done\n#1 DONE 0.0s\n\n#2 [internal] load metadata for docker.io/library/debian:bookworm-slim\n#2 DONE 0.0s\n\n#3 [internal] load metadata for docker.io/library/rust:1.95-bookworm\n#3 ERROR: failed to do request: Head \"https://registry-1.docker.io/v2/library/rust/manifests/1.95-bookworm\": net/http: TLS handshake timeout\n------\n > [internal] load metadata for docker.io/library/rust:1.95-bookworm:\n------\nDockerfile.ctk:1\n--------------------\n   1 | >>> FROM rust:1.95-bookworm AS build\n   2 |     RUN apt-get update && apt-get install -y --no-install-recommends \\\n   3 |         clang libclang-dev pkg-config cmake \\\n--------------------\nERROR: failed to build: failed to solve: rust:1.95-bookworm: failed to resolve source metadata for docker.io/library/rust:1.95-bookworm: failed to do request: Head \"https://registry-1.docker.io/v2/library/rust/manifests/1.95-bookworm\": net/http: TLS handshake timeout",
-  "error": "docker build failed",
+  "image_digest": "sha256:6b981d9a3516684bb52598fcc705a03a90973060445401f62e9ce4daeaaebe4e",
+  "duration_s": 57.23,
+  "log_tail": "#12 43.29    |\n#12 43.29 26 | use log::{debug, error, warn};\n#12 43.29    |                  ^^^^^\n#12 43.29 \n#12 43.29 warning: unused import: `error`\n#12 43.29   --> libclamav_rust/src/fmap.rs:25:18\n#12 43.29    |\n#12 43.29 25 | use log::{debug, error};\n#12 43.29    |                  ^^^^^\n#12 43.29 \n#12 43.29 warning: unused import: `error`\n#12 43.29   --> libclamav_rust/src/onenote.rs:30:18\n#12 43.29    |\n#12 43.29 30 | use log::{debug, error};\n#12 43.29    |                  ^^^^^\n#12 43.29 \n#12 50.09 warning: `clamav_rust` (lib) generated 4 warnings (run `cargo fix --lib -p clamav_rust` to apply 4 suggestions)\n#12 50.09     Finished `release` profile [optimized] target(s) in 49.92s\n#12 DONE 50.2s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.2s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.0s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.094 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.2s done\n#19 exporting manifest sha256:8135b792a46aad18b01303e5e6acfed915a7e02f6d9678cfa757eaad7abff9c2 done\n#19 exporting config sha256:cbd7f2ccd0983228602e6c8dd105bd93eb5eb65b623d1115eddebb0c36a40e69 done\n#19 exporting attestation manifest sha256:7f7af2d0a1002bf950baefe9987bd59fc5dec0d527670efddb28a772aa99b957 done\n#19 exporting manifest list sha256:6b981d9a3516684bb52598fcc705a03a90973060445401f62e9ce4daeaaebe4e done\n#19 naming to docker.io/ctk-exec/clamav:0097a6f99d9f done\n#19 unpacking to docker.io/ctk-exec/clamav:0097a6f99d9f\n#19 unpacking to docker.io/ctk-exec/clamav:0097a6f99d9f 0.6s done\n#19 DONE 3.9s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "clamav",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'clamav'"
+  },
+  {
+   "argv": [
+    "man",
+    "clamav"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for clamav\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "clamav"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'clamav' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "clamav",
+    "--infected",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+   "kind": "scenario",
+   "id": "t-model-0e54054e",
+   "title": "Candidate \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "clamav",
+    "--no-summary",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+   "kind": "scenario",
+   "id": "t-model-c2dbd9b2",
+   "title": "Candidate \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "clamav",
+    "--stdout",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+   "kind": "scenario",
+   "id": "t-model-bffeccaf",
+   "title": "Candidate \u2014 run against binaries"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 6,
+   "binary": null,
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "docker build failed",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-0e54054e",
+    "argv": [
+     "clamav",
+     "--infected",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-c2dbd9b2",
+    "argv": [
+     "clamav",
+     "--no-summary",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-model-bffeccaf",
+    "argv": [
+     "clamav",
+     "--stdout",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'clamav'",
+    "grader": 2,
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "ClamAV",
  "repo": "Cisco-Talos/clamav",
  "head_sha": "0097a6f99d9f6b78381e12b677a38fb62242c41a",
  "analyzer": "exec",
- "analyzer_version": "10",
- "generated_at": "2026-08-02T20:56:53.906078+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T19:37:16.320729+00:00"
 }

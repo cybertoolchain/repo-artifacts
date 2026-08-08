@@ -1,0 +1,3549 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:c5de1b3658b116bd6f5789cd77ee9cd4dbb1901cfd1a4825d094f853f2655ec2",
+  "duration_s": 20.32,
+  "log_tail": "#11 22.74 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 22.74 debconf: falling back to frontend: Readline\n#11 22.74 debconf: unable to initialize frontend: Readline\n#11 22.74 debconf: (This frontend requires a controlling tty.)\n#11 22.74 debconf: falling back to frontend: Teletype\n#11 22.76 \n#11 22.76 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 22.77 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#11 22.79 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#11 22.81 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 22.84 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 22.87 debconf: unable to initialize frontend: Dialog\n#11 22.87 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 22.87 debconf: falling back to frontend: Readline\n#11 22.88 debconf: unable to initialize frontend: Readline\n#11 22.88 debconf: (This frontend requires a controlling tty.)\n#11 22.88 debconf: falling back to frontend: Teletype\n#11 22.89 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 22.92 Setting up texinfo (6.8-6+b1) ...\n#11 22.93 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 22.95 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 23.0s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.119 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.1s done\n#18 exporting manifest sha256:04321fb812a32a4bc5decbfb39664454b121b8e4ea0d918bd0df93592e60cd51 done\n#18 exporting config sha256:a2454418086b18d4553e0098e43a14e3526d2de315e11a0d279d23e493589577 done\n#18 exporting attestation manifest sha256:c473d7571c41dd064f9e7ca8ecdf2017c50cedfea2724cd79e362655f8600290 0.0s done\n#18 exporting manifest list sha256:c5de1b3658b116bd6f5789cd77ee9cd4dbb1901cfd1a4825d094f853f2655ec2 done\n#18 naming to docker.io/ctk-exec/naabu:f520a1411bbd done\n#18 unpacking to docker.io/ctk-exec/naabu:f520a1411bbd\n#18 unpacking to docker.io/ctk-exec/naabu:f520a1411bbd 1.0s done\n#18 DONE 4.1s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "naabu",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Naabu is a port scanning tool written in Go that allows you to enumerate open ports for hosts in a fast and reliable manner.\n\nUsage:\n  naabu [flags]\n\nFlags:\nINPUT:\n   -host string[]              hosts to scan ports for (comma-separated)\n   -list, -l string            list of hosts to scan ports (file)\n   -exclude-hosts, -eh string  hosts to exclude from the scan (comma-separated)\n   -exclude-file, -ef string   list of hosts to exclude from scan (file)\n\nPORT:\n   -port, -p string              ports to scan (80,443, 100-200)\n   -top-ports, -tp string        top ports to scan (default 100) [full,100,1000]\n   -exclude-ports, -ep string[]  ports to exclude from scan (file or comma-separated)\n   -ports-file, -pf string[]     list of ports to scan (file or comma-separated)\n   -port-threshold, -pts int     port threshold to skip port scan for the host\n   -exclude-cdn, -ec             skip full port scans for CDN/WAF (only scan for port 80,443)\n   -display-cdn, -cdn            display cdn in use\n\nRATE-LIMIT:\n   -c int                general internal worker threads (default 25)\n   -rate int             packets to send per second (default 1000)\n   -tw, -tx-workers int  parallel transmit workers for the fast SYN sender (default 1)\n\nUPDATE:\n   -up, -update                 update naabu to latest version\n   -duc, -disable-update-check  disable automatic naabu update check\n\nOUTPUT:\n   -o, -output string                     file to write output to (optional)\n   -lof, -list-output-fields              list of fields to output (comma separated)\n   -eof, -exclude-output-fields string[]  exclude output fields output based on a condition\n   -j, -json                              write output in JSON lines format\n   -csv                                   write output in csv format\n   -oX, -xml-output string                write nmap-compatible XML output to file (- for stdout)\n   -oG, -grep-output string               write nmap-compatible greppable output to file (- for stdout)\n   -oA, -output-all string                write json, xml and greppable output to <basename>.{json,xml,gnmap}\n\nCONFIGURATION:\n   -config string                   path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)\n   -scan-all-ips, -sa               scan all the IP's associated with DNS record\n   -ip-version, -iv string[]        ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])\n   -scan-type, -s string            type of port scan (SYN/CONNECT) (default \"c\")\n   -source-ip string                source ip and port (x.x.x.x:yyy - might not work on OSX) \n   -connect-payload, -cp string     payload to send in CONNECT scans (optional)\n   -interface-list, -il             list available interfaces and public ip\n   -interface, -i string            network Interface to use for port scan\n   -nmap                            invoke nmap scan on targets (nmap must be installed) - Deprecated\n   -nmap-cli string                 nmap command to run on found results (example: -nmap-cli 'nmap -sV')\n   -r string                        list of custom resolver dns resolution (comma separated or from file)\n   -proxy string                    socks5 proxy (ip[:port] / fqdn[:port]\n   -proxy-auth string               socks5 proxy authentication (username:password)\n   -dns-order string                dns resolution order (p/l/lp/pl) (default \"l\")\n   -sr, -system-resolver            use system DNS as fallback resolver\n   -resume                          resume scan using resume.cfg\n   -stream                          stream mode (disables resume, nmap, verify, retries, shuffling, etc)\n   -passive                         display passive open ports using shodan internetdb api (automatically enables stream mode)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -no-stdin                        Disable Stdin processing\n\nHOST-DISCOVERY:\n   -sn, -host-discovery           Perform Only Host Discovery\n   -show-dead                     show hosts that did not respond to host discovery (requires host discovery)\n   -Pn, -skip-host-discovery      Skip Host discovery\n   -wn, -with-host-discovery      Enable Host discovery\n   -ps, -probe-tcp-syn string[]   TCP SYN Ping (host discovery needs to be enabled)\n   -pa, -probe-tcp-ack string[]   TCP ACK Ping (host discovery needs to be enabled)\n   -pe, -probe-icmp-echo          ICMP echo request Ping (host discovery needs to be enabled)\n   -pp, -probe-icmp-timestamp     ICMP timestamp request Ping (host discovery needs to be enabled)\n   -pm, -probe-icmp-address-mask  ICMP address mask request Ping (host discovery needs to be enabled)\n   -arp, -arp-ping                ARP ping (host discovery needs to be enabled)\n   -nd, -nd-ping                  IPv6 Neighbor Discovery (host discovery needs to be enabled)\n   -rev-ptr                       Reverse PTR lookup for input ips\n\nSERVICES-DISCOVERY:\n   -sD, -service-discovery  Service Discovery\n   -sV, -service-version    Service Version\n   -sV-fast                 only probe port-hinted services (faster)\n   -sV-timeout value        timeout for service version probes (default 5s)\n   -sV-workers int          number of concurrent service version workers (default 25)\n   -sV-probes string        custom nmap-service-probes file path (auto-detected from local nmap install if empty)\n   -uP, -udp-probes         send protocol-specific payloads on UDP scans using nmap-service-probes\n\nOPTIMIZATION:\n   -retries int                    number of retries for the port scan (default 3)\n   -timeout value                  millisecond to wait before timing out (default 1s)\n   -warm-up-time int               time in seconds between scan phases (default 2)\n   -T, -timing int                 timing template, higher is faster (0-5) (default 3)\n   -ping                           ping probes for verification of host\n   -verify                         validate the ports again with TCP verification\n   -ss, -smart-scan                predictive port scanning using port correlation model (not compatible with stream mode)\n   -pt, -prediction-threshold int  minimum confidence for port predictions (0-100%) (default 20)\n   -npp, -no-port-priority         disable tiered port ordering (scan the whole range in one uniform random order)\n   -shard string                   distributed scan slice as index/total, 1-based (e.g. 1/4)\n   -seed int                       seed for scan randomization, must match across shards (default random)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -debug                    display debugging information\n   -verbose, -v              display verbose output\n   -no-color, -nc            disable colors in CLI output\n   -silent                   display only results in output\n   -version                  display version of naabu\n   -stats                    display stats of the running scan (deprecated)\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (deprecated) (default 5)\n   -mp, -metrics-port int    port to expose naabu metrics on (default 63636)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -ac, -auth-config string        configure projectdiscovery cloud (pdcp) api key credential file\n   -pd, -dashboard                 upload / view output in projectdiscovery cloud (pdcp) UI dashboard\n   -tid, -team-id string           upload asset results to given team id (optional)\n   -aid, -asset-id string          upload new assets to existing asset id (optional)\n   -aname, -asset-name string      assets group name to set (optional)\n   -pdu, -dashboard-upload string  upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\n",
+   "stderr": "",
+   "duration_ms": 46,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "naabu"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for naabu\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "naabu"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'naabu' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "naabu",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "82cf6527e1719021",
+ "examples": [
+  {
+   "id": "net-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "naabu",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8331883a",
+   "title": "Skip Host discovery (-Pn)",
+   "argv": [
+    "naabu",
+    "-Pn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-aa755159",
+   "title": "Write output in csv format (-csv)",
+   "argv": [
+    "naabu",
+    "-csv",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "host,ip,port,protocol,tls,cdn,cdn-name,timestamp,mac_address,mac_vendor,is_dead_host,,banner,cpes\n,dvwa,80,tcp,false,false,,2026-08-04 03:33:53.872652846 +0000 UTC,,,false,,,,,,,,,,,,,,,,0,\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e9183ccb",
+   "title": "Display cdn in use (-display-cdn)",
+   "argv": [
+    "naabu",
+    "-display-cdn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-4bc6c215",
+   "title": "Skip full port scans for CDN/WAF (only scan for port 80,443) (-exclude-cdn)",
+   "argv": [
+    "naabu",
+    "-exclude-cdn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-1573f145",
+   "title": "Write output in JSON lines format (-j)",
+   "argv": [
+    "naabu",
+    "-j",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "{\"ip\":\"dvwa\",\"timestamp\":\"2026-08-04T03:34:15.4403293Z\",\"port\":80,\"protocol\":\"tcp\",\"tls\":false}\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-4eebd3a4",
+   "title": "Display passive open ports using shodan internetdb api\u2026 (-passive)",
+   "argv": [
+    "naabu",
+    "-passive",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running PASSIVE scan\n[WRN] Couldn't retrieve http response for dvwa: Get \"https://internetdb.shodan.io/dvwa\": cause=\"no address found for host\"\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-d92ed0e4",
+   "title": "Port threshold to skip port scan for the host (-port-threshold)",
+   "argv": [
+    "naabu",
+    "-port-threshold",
+    "1",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Skipping dvwa [ip], Threshold reached \n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-1385a26b",
+   "title": "Display debugging information (-debug)",
+   "argv": [
+    "naabu",
+    "-debug",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-7e1855b2",
+   "title": "General internal worker threads (-c)",
+   "argv": [
+    "naabu",
+    "-c",
+    "1",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-5f9d5aa2",
+   "title": "Service Version (-sV)",
+   "argv": [
+    "naabu",
+    "-sV",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[WRN] could not find nmap-service-probes, skipping -sV. Install nmap or specify the path with --sV-probes\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8625ec79",
+   "title": "Predictive port scanning using port correlation model\u2026 (-ss)",
+   "argv": [
+    "naabu",
+    "-ss",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Smart scan: model loaded (814 source ports, 3315 correlations, threshold 20%)\n[INF] Smart scan: scanning 100 ports across 1 hosts (priority queue)\n[INF] Smart scan: retry 1/2 (100 ports remaining, 1 already open)\n[INF] Smart scan: retry 2/2 (100 ports remaining, 1 already open)\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-056b8c37",
+   "title": "Stream mode (disables resume, nmap, verify, retries, shuffling, etc) (-stream)",
+   "argv": [
+    "naabu",
+    "-stream",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-073a3e32",
+   "title": "Send protocol-specific payloads on UDP scans using nmap-service-probes (-uP)",
+   "argv": [
+    "naabu",
+    "-uP",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] -uP (UDP probes) is enabled but no UDP ports were specified. Add UDP ports with -p u:53,u:123 or similar. Without UDP ports -uP has no effect.\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[WRN] could not find nmap-service-probes, -uP has nothing to send. Install nmap or specify the path with --sV-probes\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-be2c8f07",
+   "title": "Display verbose output (-verbose)",
+   "argv": [
+    "naabu",
+    "-verbose",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[VER] naabu version check failed: cause=\"lookup api.pdtm.sh on 127.0.0.11:53: server misbehaving\" chain=\"http Get https://api.pdtm.sh/api/v1/tools/naabu?arch=arm64&go_version=go1.26.5&machine_id=error&os=debian&utm_source=docker&v=2.6.1 failed\"\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-67cbd159",
+   "title": "Validate the ports again with TCP verification (-verify)",
+   "argv": [
+    "naabu",
+    "-verify",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-2115822a",
+   "title": "Time in seconds between scan phases (-warm-up-time)",
+   "argv": [
+    "naabu",
+    "-warm-up-time",
+    "1",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-2d6117c4",
+   "title": "Enable Host discovery (-wn)",
+   "argv": [
+    "naabu",
+    "-wn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] host discovery requires syn scan, automatically switching to syn scan\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-bafa5857",
+   "title": "Use ping probes for verification of host (--Pn)",
+   "argv": [
+    "naabu",
+    "--Pn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8b634c02",
+   "title": "Timing template, higher is faster (0-5) (-T)",
+   "argv": [
+    "naabu",
+    "-T",
+    "1",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-ea6f29d9",
+   "title": "Parallel transmit workers for the fast SYN sender (-tw)",
+   "argv": [
+    "naabu",
+    "-tw",
+    "1",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-72064be3",
+   "title": "Display debugging information (--debug)",
+   "argv": [
+    "naabu",
+    "--debug",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-61cbb97e",
+   "title": "Write output in JSON lines format (--json)",
+   "argv": [
+    "naabu",
+    "--json",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "{\"ip\":\"dvwa\",\"timestamp\":\"2026-08-04T03:36:11.737472382Z\",\"port\":80,\"protocol\":\"tcp\",\"tls\":false}\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-3d7ff404",
+   "title": "Ip version to scan of hostname (4,6) (-ip-version)",
+   "argv": [
+    "naabu",
+    "-ip-version",
+    "4",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-12ef25ea",
+   "title": "Ports to scan (80,443, 100-200) (-port)",
+   "argv": [
+    "naabu",
+    "-port",
+    "80",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Host discovery disabled: less than two ports were specified\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e65a4f1d",
+   "title": "Display cdn in use (--cdn)",
+   "argv": [
+    "naabu",
+    "--cdn",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-2d8cf5e3",
+   "title": "Write output in csv format (--csv)",
+   "argv": [
+    "naabu",
+    "--csv",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "host,ip,port,protocol,tls,cdn,cdn-name,timestamp,mac_address,mac_vendor,is_dead_host,,banner,cpes\n,dvwa,80,tcp,false,false,,2026-08-04 03:36:42.163194049 +0000 UTC,,,false,,,,,,,,,,,,,,,,0,\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-ceae2061",
+   "title": "Display passive open ports using shodan internetdb api (--passive)",
+   "argv": [
+    "naabu",
+    "--passive",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running PASSIVE scan\n[WRN] Couldn't retrieve http response for dvwa: Get \"https://internetdb.shodan.io/dvwa\": cause=\"no address found for host\"\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-4fa1b9cf",
+   "title": "Service Version (--service-version)",
+   "argv": [
+    "naabu",
+    "--service-version",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[WRN] could not find nmap-service-probes, skipping -sV. Install nmap or specify the path with --sV-probes\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-3631d839",
+   "title": "Predictive port scanning using port correlation model (--smart-scan)",
+   "argv": [
+    "naabu",
+    "--smart-scan",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Smart scan: model loaded (814 source ports, 3315 correlations, threshold 20%)\n[INF] Smart scan: scanning 100 ports across 1 hosts (priority queue)\n[INF] Smart scan: retry 1/2 (100 ports remaining, 1 already open)\n[INF] Smart scan: retry 2/2 (100 ports remaining, 1 already open)\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-b9bf0542",
+   "title": "Enable Host discovery (--with-host-discovery)",
+   "argv": [
+    "naabu",
+    "--with-host-discovery",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] host discovery requires syn scan, automatically switching to syn scan\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-f37fd256",
+   "title": "File to write output to (optional) (-o)",
+   "argv": [
+    "naabu",
+    "-o",
+    "/tmp/ctk-capture/o.out",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-b21c3878",
+   "title": "Disable automatic naabu update check (-duc)",
+   "argv": [
+    "naabu",
+    "-duc",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "dvwa:80\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[INF] Found 1 ports on host dvwa (dvwa)\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-ea989066",
+   "title": "Write json, xml and greppable output to <basename>.{json,xml,gnmap} (-oA)",
+   "argv": [
+    "naabu",
+    "-oA=json",
+    "--host",
+    "dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "{\"ip\":\"dvwa\",\"timestamp\":\"2026-08-04T03:37:33.261963211Z\",\"port\":80,\"protocol\":\"tcp\",\"tls\":false}\n",
+   "stderr": "\n                  __\n  ___  ___  ___ _/ /  __ __\n / _ \\/ _ \\/ _ \\/ _ \\/ // /\n/_//_/\\_,_/\\_,_/_.__/\\_,_/\n\n\t\tprojectdiscovery.io\n\n[WRN] UI Dashboard is disabled, Use -dashboard option to enable\n[INF] Running CONNECT scan with non root privileges\n[ERR] Could not create file json.json: open json.json: read-only file system\n[INF] Found 1 ports on host dvwa (dvwa)\n[ERR] could not create output file json.xml: open json.xml: read-only file system\n[ERR] could not create output file json.gnmap: open json.gnmap: read-only file system\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "-host": "hosts to scan ports for (comma-separated)",
+   "-list": "list of hosts to scan ports (file)",
+   "-l": "list of hosts to scan ports (file)",
+   "-exclude-hosts": "hosts to exclude from the scan (comma-separated)",
+   "-eh": "hosts to exclude from the scan (comma-separated)",
+   "-exclude-file": "list of hosts to exclude from scan (file)",
+   "-ef": "list of hosts to exclude from scan (file)",
+   "-port": "ports to scan (80,443, 100-200)",
+   "-p": "ports to scan (80,443, 100-200)",
+   "-top-ports": "top ports to scan (default 100) [full,100,1000]",
+   "-tp": "top ports to scan (default 100) [full,100,1000]",
+   "-exclude-ports": "ports to exclude from scan (file or comma-separated)",
+   "-ep": "ports to exclude from scan (file or comma-separated)",
+   "-ports-file": "list of ports to scan (file or comma-separated)",
+   "-pf": "list of ports to scan (file or comma-separated)",
+   "-port-threshold": "port threshold to skip port scan for the host",
+   "-pts": "port threshold to skip port scan for the host",
+   "-exclude-cdn": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+   "-ec": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+   "-display-cdn": "display cdn in use",
+   "-cdn": "display cdn in use",
+   "-c": "general internal worker threads (default 25)",
+   "-rate": "packets to send per second (default 1000)",
+   "-tw": "parallel transmit workers for the fast SYN sender (default 1)",
+   "-tx-workers": "parallel transmit workers for the fast SYN sender (default 1)",
+   "-up": "update naabu to latest version",
+   "-update": "update naabu to latest version",
+   "-duc": "disable automatic naabu update check",
+   "-disable-update-check": "disable automatic naabu update check",
+   "-o": "file to write output to (optional)",
+   "-output": "file to write output to (optional)",
+   "-lof": "list of fields to output (comma separated)",
+   "-list-output-fields": "list of fields to output (comma separated)",
+   "-eof": "exclude output fields output based on a condition",
+   "-exclude-output-fields": "exclude output fields output based on a condition",
+   "-j": "write output in JSON lines format",
+   "-json": "write output in JSON lines format",
+   "-csv": "write output in csv format",
+   "-oX": "write nmap-compatible XML output to file (- for stdout)",
+   "-xml-output": "write nmap-compatible XML output to file (- for stdout)",
+   "-oG": "write nmap-compatible greppable output to file (- for stdout)",
+   "-grep-output": "write nmap-compatible greppable output to file (- for stdout)",
+   "-oA": "write json, xml and greppable output to <basename>.{json,xml,gnmap}",
+   "-output-all": "write json, xml and greppable output to <basename>.{json,xml,gnmap}",
+   "-config": "path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)",
+   "-scan-all-ips": "scan all the IP's associated with DNS record",
+   "-sa": "scan all the IP's associated with DNS record",
+   "-ip-version": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+   "-iv": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+   "-scan-type": "type of port scan (SYN/CONNECT) (default \"c\")",
+   "-s": "type of port scan (SYN/CONNECT) (default \"c\")",
+   "-source-ip": "source ip and port (x.x.x.x:yyy - might not work on OSX)",
+   "-connect-payload": "payload to send in CONNECT scans (optional)",
+   "-cp": "payload to send in CONNECT scans (optional)",
+   "-interface-list": "list available interfaces and public ip",
+   "-il": "list available interfaces and public ip",
+   "-interface": "network Interface to use for port scan",
+   "-i": "network Interface to use for port scan",
+   "-nmap": "invoke nmap scan on targets (nmap must be installed) - Deprecated",
+   "-nmap-cli": "nmap command to run on found results (example: -nmap-cli 'nmap -sV')",
+   "-r": "list of custom resolver dns resolution (comma separated or from file)",
+   "-proxy": "socks5 proxy (ip[:port] / fqdn[:port]",
+   "-proxy-auth": "socks5 proxy authentication (username:password)",
+   "-dns-order": "dns resolution order (p/l/lp/pl) (default \"l\")",
+   "-sr": "use system DNS as fallback resolver",
+   "-system-resolver": "use system DNS as fallback resolver",
+   "-resume": "resume scan using resume.cfg",
+   "-stream": "stream mode (disables resume, nmap, verify, retries, shuffling, etc)",
+   "-passive": "display passive open ports using shodan internetdb api (automatically enables stream mode)",
+   "-irt": "timeout on input read (default 3m0s)",
+   "-input-read-timeout": "timeout on input read (default 3m0s)",
+   "-no-stdin": "Disable Stdin processing",
+   "-sn": "Perform Only Host Discovery",
+   "-host-discovery": "Perform Only Host Discovery",
+   "-show-dead": "show hosts that did not respond to host discovery (requires host discovery)",
+   "-Pn": "Skip Host discovery",
+   "-skip-host-discovery": "Skip Host discovery",
+   "-wn": "Enable Host discovery",
+   "-with-host-discovery": "Enable Host discovery",
+   "-ps": "TCP SYN Ping (host discovery needs to be enabled)",
+   "-probe-tcp-syn": "TCP SYN Ping (host discovery needs to be enabled)",
+   "-pa": "TCP ACK Ping (host discovery needs to be enabled)",
+   "-probe-tcp-ack": "TCP ACK Ping (host discovery needs to be enabled)",
+   "-pe": "ICMP echo request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-echo": "ICMP echo request Ping (host discovery needs to be enabled)",
+   "-pp": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-timestamp": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+   "-pm": "ICMP address mask request Ping (host discovery needs to be enabled)",
+   "-probe-icmp-address-mask": "ICMP address mask request Ping (host discovery needs to be enabled)",
+   "-arp": "ARP ping (host discovery needs to be enabled)",
+   "-arp-ping": "ARP ping (host discovery needs to be enabled)",
+   "-nd": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+   "-nd-ping": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+   "-rev-ptr": "Reverse PTR lookup for input ips",
+   "-sD": "Service Discovery",
+   "-service-discovery": "Service Discovery",
+   "-sV": "Service Version",
+   "-service-version": "Service Version",
+   "-sV-fast": "only probe port-hinted services (faster)",
+   "-sV-timeout": "timeout for service version probes (default 5s)",
+   "-sV-workers": "number of concurrent service version workers (default 25)",
+   "-sV-probes": "custom nmap-service-probes file path (auto-detected from local nmap install if empty)",
+   "-uP": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+   "-udp-probes": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+   "-retries": "number of retries for the port scan (default 3)",
+   "-timeout": "millisecond to wait before timing out (default 1s)",
+   "-warm-up-time": "time in seconds between scan phases (default 2)",
+   "-T": "timing template, higher is faster (0-5) (default 3)",
+   "-timing": "timing template, higher is faster (0-5) (default 3)",
+   "-ping": "ping probes for verification of host",
+   "-verify": "validate the ports again with TCP verification",
+   "-ss": "predictive port scanning using port correlation model (not compatible with stream mode)",
+   "-smart-scan": "predictive port scanning using port correlation model (not compatible with stream mode)",
+   "-pt": "minimum confidence for port predictions (0-100%) (default 20)",
+   "-prediction-threshold": "minimum confidence for port predictions (0-100%) (default 20)",
+   "-npp": "disable tiered port ordering (scan the whole range in one uniform random order)",
+   "-no-port-priority": "disable tiered port ordering (scan the whole range in one uniform random order)",
+   "-shard": "distributed scan slice as index/total, 1-based (e.g. 1/4)",
+   "-seed": "seed for scan randomization, must match across shards (default random)",
+   "-health-check": "run diagnostic check up",
+   "-hc": "run diagnostic check up",
+   "-debug": "display debugging information",
+   "-verbose": "display verbose output",
+   "-v": "display verbose output",
+   "-no-color": "disable colors in CLI output",
+   "-nc": "disable colors in CLI output",
+   "-silent": "display only results in output",
+   "-version": "display version of naabu",
+   "-stats": "display stats of the running scan (deprecated)",
+   "-si": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+   "-stats-interval": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+   "-mp": "port to expose naabu metrics on (default 63636)",
+   "-metrics-port": "port to expose naabu metrics on (default 63636)",
+   "-auth": "configure projectdiscovery cloud (pdcp) api key (default true)",
+   "-ac": "configure projectdiscovery cloud (pdcp) api key credential file",
+   "-auth-config": "configure projectdiscovery cloud (pdcp) api key credential file",
+   "-pd": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+   "-tid": "upload asset results to given team id (optional)",
+   "-team-id": "upload asset results to given team id (optional)",
+   "-aid": "upload new assets to existing asset id (optional)",
+   "-asset-id": "upload new assets to existing asset id (optional)",
+   "-aname": "assets group name to set (optional)",
+   "-asset-name": "assets group name to set (optional)",
+   "-pdu": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+   "-dashboard-upload": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard"
+  },
+  "values_seen": {
+   "-list": "string",
+   "-l": "string",
+   "-exclude-hosts": "string",
+   "-eh": "string",
+   "-exclude-file": "string",
+   "-ef": "string",
+   "-port": "string",
+   "-p": "string",
+   "-top-ports": "string",
+   "-tp": "string",
+   "-port-threshold": "int",
+   "-pts": "int",
+   "-c": "int",
+   "-rate": "int",
+   "-tw": "int",
+   "-tx-workers": "int",
+   "-o": "string",
+   "-output": "string",
+   "-oX": "string",
+   "-xml-output": "string",
+   "-oG": "string",
+   "-grep-output": "string",
+   "-oA": "string",
+   "-output-all": "string",
+   "-config": "string",
+   "-scan-type": "string",
+   "-s": "string",
+   "-source-ip": "string",
+   "-connect-payload": "string",
+   "-cp": "string",
+   "-interface": "string",
+   "-i": "string",
+   "-nmap-cli": "string",
+   "-r": "string",
+   "-proxy": "string",
+   "-proxy-auth": "string",
+   "-dns-order": "string",
+   "-irt": "value",
+   "-input-read-timeout": "value",
+   "-sV-timeout": "value",
+   "-sV-workers": "int",
+   "-sV-probes": "string",
+   "-retries": "int",
+   "-timeout": "value",
+   "-warm-up-time": "int",
+   "-T": "int",
+   "-timing": "int",
+   "-pt": "int",
+   "-prediction-threshold": "int",
+   "-shard": "string",
+   "-seed": "int",
+   "-si": "int",
+   "-stats-interval": "int",
+   "-mp": "int",
+   "-metrics-port": "int",
+   "-ac": "string",
+   "-auth-config": "string",
+   "-tid": "string",
+   "-team-id": "string",
+   "-aid": "string",
+   "-asset-id": "string",
+   "-aname": "string",
+   "-asset-name": "string",
+   "-pdu": "string",
+   "-dashboard-upload": "string"
+  },
+  "aliases": {
+   "-list": [
+    "-l"
+   ],
+   "-exclude-hosts": [
+    "-eh"
+   ],
+   "-exclude-file": [
+    "-ef"
+   ],
+   "-port": [
+    "-p"
+   ],
+   "-top-ports": [
+    "-tp"
+   ],
+   "-exclude-ports": [
+    "-ep"
+   ],
+   "-ports-file": [
+    "-pf"
+   ],
+   "-port-threshold": [
+    "-pts"
+   ],
+   "-exclude-cdn": [
+    "-ec"
+   ],
+   "-display-cdn": [
+    "-cdn"
+   ],
+   "-tw": [
+    "-tx-workers"
+   ],
+   "-up": [
+    "-update"
+   ],
+   "-duc": [
+    "-disable-update-check"
+   ],
+   "-o": [
+    "-output"
+   ],
+   "-lof": [
+    "-list-output-fields"
+   ],
+   "-eof": [
+    "-exclude-output-fields"
+   ],
+   "-j": [
+    "-json"
+   ],
+   "-oX": [
+    "-xml-output"
+   ],
+   "-oG": [
+    "-grep-output"
+   ],
+   "-oA": [
+    "-output-all"
+   ],
+   "-scan-all-ips": [
+    "-sa"
+   ],
+   "-ip-version": [
+    "-iv"
+   ],
+   "-scan-type": [
+    "-s"
+   ],
+   "-connect-payload": [
+    "-cp"
+   ],
+   "-interface-list": [
+    "-il"
+   ],
+   "-interface": [
+    "-i"
+   ],
+   "-sr": [
+    "-system-resolver"
+   ],
+   "-irt": [
+    "-input-read-timeout"
+   ],
+   "-sn": [
+    "-host-discovery"
+   ],
+   "-Pn": [
+    "-skip-host-discovery"
+   ],
+   "-wn": [
+    "-with-host-discovery"
+   ],
+   "-ps": [
+    "-probe-tcp-syn"
+   ],
+   "-pa": [
+    "-probe-tcp-ack"
+   ],
+   "-pe": [
+    "-probe-icmp-echo"
+   ],
+   "-pp": [
+    "-probe-icmp-timestamp"
+   ],
+   "-pm": [
+    "-probe-icmp-address-mask"
+   ],
+   "-arp": [
+    "-arp-ping"
+   ],
+   "-nd": [
+    "-nd-ping"
+   ],
+   "-sD": [
+    "-service-discovery"
+   ],
+   "-sV": [
+    "-service-version"
+   ],
+   "-uP": [
+    "-udp-probes"
+   ],
+   "-T": [
+    "-timing"
+   ],
+   "-ss": [
+    "-smart-scan"
+   ],
+   "-pt": [
+    "-prediction-threshold"
+   ],
+   "-npp": [
+    "-no-port-priority"
+   ],
+   "-health-check": [
+    "-hc"
+   ],
+   "-verbose": [
+    "-v"
+   ],
+   "-no-color": [
+    "-nc"
+   ],
+   "-si": [
+    "-stats-interval"
+   ],
+   "-mp": [
+    "-metrics-port"
+   ],
+   "-ac": [
+    "-auth-config"
+   ],
+   "-pd": [
+    "-dashboard"
+   ],
+   "-tid": [
+    "-team-id"
+   ],
+   "-aid": [
+    "-asset-id"
+   ],
+   "-aname": [
+    "-asset-name"
+   ],
+   "-pdu": [
+    "-dashboard-upload"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "naabu",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "73f23fdd7091d259ff0fe60dac9faf7b32e908d3621c49ca6355773ab0fe3edb",
+  "text": "Naabu is a port scanning tool written in Go that allows you to enumerate open ports for hosts in a fast and reliable manner.\n\nUsage:\n  naabu [flags]\n\nFlags:\nINPUT:\n   -host string[]              hosts to scan ports for (comma-separated)\n   -list, -l string            list of hosts to scan ports (file)\n   -exclude-hosts, -eh string  hosts to exclude from the scan (comma-separated)\n   -exclude-file, -ef string   list of hosts to exclude from scan (file)\n\nPORT:\n   -port, -p string              ports to scan (80,443, 100-200)\n   -top-ports, -tp string        top ports to scan (default 100) [full,100,1000]\n   -exclude-ports, -ep string[]  ports to exclude from scan (file or comma-separated)\n   -ports-file, -pf string[]     list of ports to scan (file or comma-separated)\n   -port-threshold, -pts int     port threshold to skip port scan for the host\n   -exclude-cdn, -ec             skip full port scans for CDN/WAF (only scan for port 80,443)\n   -display-cdn, -cdn            display cdn in use\n\nRATE-LIMIT:\n   -c int                general internal worker threads (default 25)\n   -rate int             packets to send per second (default 1000)\n   -tw, -tx-workers int  parallel transmit workers for the fast SYN sender (default 1)\n\nUPDATE:\n   -up, -update                 update naabu to latest version\n   -duc, -disable-update-check  disable automatic naabu update check\n\nOUTPUT:\n   -o, -output string                     file to write output to (optional)\n   -lof, -list-output-fields              list of fields to output (comma separated)\n   -eof, -exclude-output-fields string[]  exclude output fields output based on a condition\n   -j, -json                              write output in JSON lines format\n   -csv                                   write output in csv format\n   -oX, -xml-output string                write nmap-compatible XML output to file (- for stdout)\n   -oG, -grep-output string               write nmap-compatible greppable output to file (- for stdout)\n   -oA, -output-all string                write json, xml and greppable output to <basename>.{json,xml,gnmap}\n\nCONFIGURATION:\n   -config string                   path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)\n   -scan-all-ips, -sa               scan all the IP's associated with DNS record\n   -ip-version, -iv string[]        ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])\n   -scan-type, -s string            type of port scan (SYN/CONNECT) (default \"c\")\n   -source-ip string                source ip and port (x.x.x.x:yyy - might not work on OSX) \n   -connect-payload, -cp string     payload to send in CONNECT scans (optional)\n   -interface-list, -il             list available interfaces and public ip\n   -interface, -i string            network Interface to use for port scan\n   -nmap                            invoke nmap scan on targets (nmap must be installed) - Deprecated\n   -nmap-cli string                 nmap command to run on found results (example: -nmap-cli 'nmap -sV')\n   -r string                        list of custom resolver dns resolution (comma separated or from file)\n   -proxy string                    socks5 proxy (ip[:port] / fqdn[:port]\n   -proxy-auth string               socks5 proxy authentication (username:password)\n   -dns-order string                dns resolution order (p/l/lp/pl) (default \"l\")\n   -sr, -system-resolver            use system DNS as fallback resolver\n   -resume                          resume scan using resume.cfg\n   -stream                          stream mode (disables resume, nmap, verify, retries, shuffling, etc)\n   -passive                         display passive open ports using shodan internetdb api (automatically enables stream mode)\n   -irt, -input-read-timeout value  timeout on input read (default 3m0s)\n   -no-stdin                        Disable Stdin processing\n\nHOST-DISCOVERY:\n   -sn, -host-discovery           Perform Only Host Discovery\n   -show-dead                     show hosts that did not respond to host discovery (requires host discovery)\n   -Pn, -skip-host-discovery      Skip Host discovery\n   -wn, -with-host-discovery      Enable Host discovery\n   -ps, -probe-tcp-syn string[]   TCP SYN Ping (host discovery needs to be enabled)\n   -pa, -probe-tcp-ack string[]   TCP ACK Ping (host discovery needs to be enabled)\n   -pe, -probe-icmp-echo          ICMP echo request Ping (host discovery needs to be enabled)\n   -pp, -probe-icmp-timestamp     ICMP timestamp request Ping (host discovery needs to be enabled)\n   -pm, -probe-icmp-address-mask  ICMP address mask request Ping (host discovery needs to be enabled)\n   -arp, -arp-ping                ARP ping (host discovery needs to be enabled)\n   -nd, -nd-ping                  IPv6 Neighbor Discovery (host discovery needs to be enabled)\n   -rev-ptr                       Reverse PTR lookup for input ips\n\nSERVICES-DISCOVERY:\n   -sD, -service-discovery  Service Discovery\n   -sV, -service-version    Service Version\n   -sV-fast                 only probe port-hinted services (faster)\n   -sV-timeout value        timeout for service version probes (default 5s)\n   -sV-workers int          number of concurrent service version workers (default 25)\n   -sV-probes string        custom nmap-service-probes file path (auto-detected from local nmap install if empty)\n   -uP, -udp-probes         send protocol-specific payloads on UDP scans using nmap-service-probes\n\nOPTIMIZATION:\n   -retries int                    number of retries for the port scan (default 3)\n   -timeout value                  millisecond to wait before timing out (default 1s)\n   -warm-up-time int               time in seconds between scan phases (default 2)\n   -T, -timing int                 timing template, higher is faster (0-5) (default 3)\n   -ping                           ping probes for verification of host\n   -verify                         validate the ports again with TCP verification\n   -ss, -smart-scan                predictive port scanning using port correlation model (not compatible with stream mode)\n   -pt, -prediction-threshold int  minimum confidence for port predictions (0-100%) (default 20)\n   -npp, -no-port-priority         disable tiered port ordering (scan the whole range in one uniform random order)\n   -shard string                   distributed scan slice as index/total, 1-based (e.g. 1/4)\n   -seed int                       seed for scan randomization, must match across shards (default random)\n\nDEBUG:\n   -health-check, -hc        run diagnostic check up\n   -debug                    display debugging information\n   -verbose, -v              display verbose output\n   -no-color, -nc            disable colors in CLI output\n   -silent                   display only results in output\n   -version                  display version of naabu\n   -stats                    display stats of the running scan (deprecated)\n   -si, -stats-interval int  number of seconds to wait between showing a statistics update (deprecated) (default 5)\n   -mp, -metrics-port int    port to expose naabu metrics on (default 63636)\n\nCLOUD:\n   -auth                           configure projectdiscovery cloud (pdcp) api key (default true)\n   -ac, -auth-config string        configure projectdiscovery cloud (pdcp) api key credential file\n   -pd, -dashboard                 upload / view output in projectdiscovery cloud (pdcp) UI dashboard\n   -tid, -team-id string           upload asset results to given team id (optional)\n   -aid, -asset-id string          upload new assets to existing asset id (optional)\n   -aname, -asset-name string      assets group name to set (optional)\n   -pdu, -dashboard-upload string  upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard\n\n"
+ },
+ "surface": {
+  "flags": {
+   "-Pn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip Host discovery",
+    "aliases": [
+     "-skip-host-discovery"
+    ]
+   },
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timing template, higher is faster (0-5) (default 3)",
+    "metavar": "int",
+    "aliases": [
+     "-timing"
+    ]
+   },
+   "-ac": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "configure projectdiscovery cloud (pdcp) api key credential file",
+    "metavar": "string",
+    "aliases": [
+     "-auth-config"
+    ]
+   },
+   "-aid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload new assets to existing asset id (optional)",
+    "metavar": "string",
+    "aliases": [
+     "-asset-id"
+    ]
+   },
+   "-aname": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "assets group name to set (optional)",
+    "metavar": "string",
+    "aliases": [
+     "-asset-name"
+    ]
+   },
+   "-arp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ARP ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-arp-ping"
+    ]
+   },
+   "-auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "configure projectdiscovery cloud (pdcp) api key (default true)"
+   },
+   "-c": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "general internal worker threads (default 25)",
+    "metavar": "int"
+   },
+   "-config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to the naabu configuration file (default $HOME/.config/naabu/config.yaml)",
+    "metavar": "string"
+   },
+   "-connect-payload": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "payload to send in CONNECT scans (optional)",
+    "metavar": "string",
+    "aliases": [
+     "-cp"
+    ]
+   },
+   "-csv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in csv format"
+   },
+   "-debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display debugging information"
+   },
+   "-display-cdn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display cdn in use",
+    "aliases": [
+     "-cdn"
+    ]
+   },
+   "-dns-order": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "dns resolution order (p/l/lp/pl) (default \"l\")",
+    "metavar": "string"
+   },
+   "-duc": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable automatic naabu update check",
+    "aliases": [
+     "-disable-update-check"
+    ]
+   },
+   "-eof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "exclude output fields output based on a condition",
+    "aliases": [
+     "-exclude-output-fields"
+    ]
+   },
+   "-exclude-cdn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "skip full port scans for CDN/WAF (only scan for port 80,443)",
+    "aliases": [
+     "-ec"
+    ]
+   },
+   "-exclude-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of hosts to exclude from scan (file)",
+    "metavar": "string",
+    "aliases": [
+     "-ef"
+    ]
+   },
+   "-exclude-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "hosts to exclude from the scan (comma-separated)",
+    "metavar": "string",
+    "aliases": [
+     "-eh"
+    ]
+   },
+   "-exclude-ports": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ports to exclude from scan (file or comma-separated)",
+    "aliases": [
+     "-ep"
+    ]
+   },
+   "-health-check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "run diagnostic check up",
+    "aliases": [
+     "-hc"
+    ]
+   },
+   "-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "hosts to scan ports for (comma-separated)"
+   },
+   "-interface": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "network Interface to use for port scan",
+    "metavar": "string",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "-interface-list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list available interfaces and public ip",
+    "aliases": [
+     "-il"
+    ]
+   },
+   "-ip-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ip version to scan of hostname (4,6) - (default 4,6) (default [\"4\", \"6\"])",
+    "aliases": [
+     "-iv"
+    ]
+   },
+   "-irt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout on input read (default 3m0s)",
+    "metavar": "value",
+    "aliases": [
+     "-input-read-timeout"
+    ]
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write output in JSON lines format",
+    "aliases": [
+     "-json"
+    ]
+   },
+   "-list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of hosts to scan ports (file)",
+    "metavar": "string",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "-lof": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of fields to output (comma separated)",
+    "aliases": [
+     "-list-output-fields"
+    ]
+   },
+   "-mp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "port to expose naabu metrics on (default 63636)",
+    "metavar": "int",
+    "aliases": [
+     "-metrics-port"
+    ]
+   },
+   "-nd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv6 Neighbor Discovery (host discovery needs to be enabled)",
+    "aliases": [
+     "-nd-ping"
+    ]
+   },
+   "-nmap": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "invoke nmap scan on targets (nmap must be installed) - Deprecated"
+   },
+   "-nmap-cli": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "nmap command to run on found results (example: -nmap-cli 'nmap -sV')",
+    "metavar": "string"
+   },
+   "-no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable colors in CLI output",
+    "aliases": [
+     "-nc"
+    ]
+   },
+   "-no-stdin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable Stdin processing"
+   },
+   "-npp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable tiered port ordering (scan the whole range in one uniform random order)",
+    "aliases": [
+     "-no-port-priority"
+    ]
+   },
+   "-o": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "file to write output to (optional)",
+    "metavar": "string",
+    "aliases": [
+     "-output"
+    ]
+   },
+   "-oA": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write json, xml and greppable output to <basename>.{json,xml,gnmap}",
+    "metavar": "string",
+    "aliases": [
+     "-output-all"
+    ]
+   },
+   "-oG": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write nmap-compatible greppable output to file (- for stdout)",
+    "metavar": "string",
+    "aliases": [
+     "-grep-output"
+    ]
+   },
+   "-oX": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "write nmap-compatible XML output to file (- for stdout)",
+    "metavar": "string",
+    "aliases": [
+     "-xml-output"
+    ]
+   },
+   "-pa": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP ACK Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-tcp-ack"
+    ]
+   },
+   "-passive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display passive open ports using shodan internetdb api (automatically enables stream mode)"
+   },
+   "-pd": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload / view output in projectdiscovery cloud (pdcp) UI dashboard",
+    "aliases": [
+     "-dashboard"
+    ]
+   },
+   "-pdu": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload naabu output file (jsonl) in projectdiscovery cloud (pdcp) UI dashboard",
+    "metavar": "string",
+    "aliases": [
+     "-dashboard-upload"
+    ]
+   },
+   "-pe": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP echo request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-echo"
+    ]
+   },
+   "-ping": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ping probes for verification of host"
+   },
+   "-pm": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP address mask request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-address-mask"
+    ]
+   },
+   "-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ports to scan (80,443, 100-200)",
+    "metavar": "string",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "-port-threshold": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "port threshold to skip port scan for the host",
+    "metavar": "int",
+    "aliases": [
+     "-pts"
+    ]
+   },
+   "-ports-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of ports to scan (file or comma-separated)",
+    "aliases": [
+     "-pf"
+    ]
+   },
+   "-pp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "ICMP timestamp request Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-icmp-timestamp"
+    ]
+   },
+   "-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "socks5 proxy (ip[:port] / fqdn[:port]",
+    "metavar": "string"
+   },
+   "-proxy-auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "socks5 proxy authentication (username:password)",
+    "metavar": "string"
+   },
+   "-ps": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "TCP SYN Ping (host discovery needs to be enabled)",
+    "aliases": [
+     "-probe-tcp-syn"
+    ]
+   },
+   "-pt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "minimum confidence for port predictions (0-100%) (default 20)",
+    "metavar": "int",
+    "aliases": [
+     "-prediction-threshold"
+    ]
+   },
+   "-r": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "list of custom resolver dns resolution (comma separated or from file)",
+    "metavar": "string"
+   },
+   "-rate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "packets to send per second (default 1000)",
+    "metavar": "int"
+   },
+   "-resume": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "resume scan using resume.cfg"
+   },
+   "-retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of retries for the port scan (default 3)",
+    "metavar": "int"
+   },
+   "-rev-ptr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Reverse PTR lookup for input ips"
+   },
+   "-sD": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Service Discovery",
+    "aliases": [
+     "-service-discovery"
+    ]
+   },
+   "-sV": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Service Version",
+    "aliases": [
+     "-service-version"
+    ]
+   },
+   "-sV-fast": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "only probe port-hinted services (faster)"
+   },
+   "-sV-probes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "custom nmap-service-probes file path (auto-detected from local nmap install if empty)",
+    "metavar": "string"
+   },
+   "-sV-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "timeout for service version probes (default 5s)",
+    "metavar": "value"
+   },
+   "-sV-workers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of concurrent service version workers (default 25)",
+    "metavar": "int"
+   },
+   "-scan-all-ips": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "scan all the IP's associated with DNS record",
+    "aliases": [
+     "-sa"
+    ]
+   },
+   "-scan-type": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "type of port scan (SYN/CONNECT) (default \"c\")",
+    "metavar": "string",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "-seed": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "seed for scan randomization, must match across shards (default random)",
+    "metavar": "int"
+   },
+   "-shard": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "distributed scan slice as index/total, 1-based (e.g. 1/4)",
+    "metavar": "string"
+   },
+   "-show-dead": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show hosts that did not respond to host discovery (requires host discovery)"
+   },
+   "-si": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "number of seconds to wait between showing a statistics update (deprecated) (default 5)",
+    "metavar": "int",
+    "aliases": [
+     "-stats-interval"
+    ]
+   },
+   "-silent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display only results in output"
+   },
+   "-sn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Perform Only Host Discovery",
+    "aliases": [
+     "-host-discovery"
+    ]
+   },
+   "-source-ip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "source ip and port (x.x.x.x:yyy - might not work on OSX)",
+    "metavar": "string"
+   },
+   "-sr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "use system DNS as fallback resolver",
+    "aliases": [
+     "-system-resolver"
+    ]
+   },
+   "-ss": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "predictive port scanning using port correlation model (not compatible with stream mode)",
+    "aliases": [
+     "-smart-scan"
+    ]
+   },
+   "-stats": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display stats of the running scan (deprecated)"
+   },
+   "-stream": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "stream mode (disables resume, nmap, verify, retries, shuffling, etc)"
+   },
+   "-tid": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "upload asset results to given team id (optional)",
+    "metavar": "string",
+    "aliases": [
+     "-team-id"
+    ]
+   },
+   "-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "millisecond to wait before timing out (default 1s)",
+    "metavar": "value"
+   },
+   "-top-ports": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "top ports to scan (default 100) [full,100,1000]",
+    "metavar": "string",
+    "aliases": [
+     "-tp"
+    ]
+   },
+   "-tw": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "parallel transmit workers for the fast SYN sender (default 1)",
+    "metavar": "int",
+    "aliases": [
+     "-tx-workers"
+    ]
+   },
+   "-uP": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "send protocol-specific payloads on UDP scans using nmap-service-probes",
+    "aliases": [
+     "-udp-probes"
+    ]
+   },
+   "-up": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "update naabu to latest version",
+    "aliases": [
+     "-update"
+    ]
+   },
+   "-verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display verbose output",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "-verify": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "validate the ports again with TCP verification"
+   },
+   "-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "display version of naabu"
+   },
+   "-warm-up-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "time in seconds between scan phases (default 2)",
+    "metavar": "int"
+   },
+   "-wn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable Host discovery",
+    "aliases": [
+     "-with-host-discovery"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 41,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-444d5739",
+    "argv": [
+     "naabu",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 186
+   },
+   {
+    "id": "t-net-d064ee75",
+    "argv": [
+     "naabu",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 186
+   },
+   {
+    "id": "t-opt-3a312350",
+    "argv": [
+     "naabu",
+     "-arp=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 51,
+    "flag": "-arp"
+   },
+   {
+    "id": "t-opt-6c6a37a5",
+    "argv": [
+     "naabu",
+     "-auth",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 351,
+    "flag": "-auth"
+   },
+   {
+    "id": "t-opt-b21c3878",
+    "argv": [
+     "naabu",
+     "-duc",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-duc",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-cec63b52",
+    "argv": [
+     "naabu",
+     "-eof",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 186,
+    "flag": "-eof"
+   },
+   {
+    "id": "t-opt-1c2dbcf3",
+    "argv": [
+     "naabu",
+     "-exclude-ports",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 186,
+    "flag": "-exclude-ports"
+   },
+   {
+    "id": "t-opt-fe3f974b",
+    "argv": [
+     "naabu",
+     "-health-check",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 824,
+    "flag": "-health-check"
+   },
+   {
+    "id": "t-opt-40020919",
+    "argv": [
+     "naabu",
+     "-interface-list",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1092,
+    "flag": "-interface-list"
+   },
+   {
+    "id": "t-opt-20e347db",
+    "argv": [
+     "naabu",
+     "-lof",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 225,
+    "flag": "-lof"
+   },
+   {
+    "id": "t-opt-9ccc4aec",
+    "argv": [
+     "naabu",
+     "-mp",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-mp",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-d9cf92b0",
+    "argv": [
+     "naabu",
+     "-nd=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 50,
+    "flag": "-nd"
+   },
+   {
+    "id": "t-opt-f96fa69b",
+    "argv": [
+     "naabu",
+     "-nmap",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-nmap",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-856bd114",
+    "argv": [
+     "naabu",
+     "-no-stdin",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-no-stdin",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-d14e1e09",
+    "argv": [
+     "naabu",
+     "-npp",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-npp",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-ea989066",
+    "argv": [
+     "naabu",
+     "-oA=json",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 628,
+    "flag": "-oA",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-22e60c82",
+    "argv": [
+     "naabu",
+     "-pa=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 214,
+    "flag": "-pa"
+   },
+   {
+    "id": "t-opt-8f46e6f8",
+    "argv": [
+     "naabu",
+     "-pd",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 434,
+    "flag": "-pd"
+   },
+   {
+    "id": "t-opt-960d6bc4",
+    "argv": [
+     "naabu",
+     "-pe=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 50,
+    "flag": "-pe"
+   },
+   {
+    "id": "t-opt-b6866315",
+    "argv": [
+     "naabu",
+     "-ping=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 52,
+    "flag": "-ping"
+   },
+   {
+    "id": "t-opt-d686619c",
+    "argv": [
+     "naabu",
+     "-pm=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 50,
+    "flag": "-pm"
+   },
+   {
+    "id": "t-opt-650bc506",
+    "argv": [
+     "naabu",
+     "-ports-file",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 186,
+    "flag": "-ports-file"
+   },
+   {
+    "id": "t-opt-34a54eac",
+    "argv": [
+     "naabu",
+     "-pp=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 50,
+    "flag": "-pp"
+   },
+   {
+    "id": "t-opt-196c2b7f",
+    "argv": [
+     "naabu",
+     "-ps=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 214,
+    "flag": "-ps"
+   },
+   {
+    "id": "t-opt-2c156726",
+    "argv": [
+     "naabu",
+     "-pt",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-pt",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-6168ea61",
+    "argv": [
+     "naabu",
+     "-rate",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-rate",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-def31f47",
+    "argv": [
+     "naabu",
+     "-retries",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-retries",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-eebacabd",
+    "argv": [
+     "naabu",
+     "-rev-ptr",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-rev-ptr",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-1131189c",
+    "argv": [
+     "naabu",
+     "-sD",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-sD",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-a39675f7",
+    "argv": [
+     "naabu",
+     "-sV-fast",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-sV-fast",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-72c0f997",
+    "argv": [
+     "naabu",
+     "-sV-workers",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-sV-workers",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-7a2d2b83",
+    "argv": [
+     "naabu",
+     "-scan-all-ips",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-scan-all-ips",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-614f83d2",
+    "argv": [
+     "naabu",
+     "-seed",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-seed",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-d89d5060",
+    "argv": [
+     "naabu",
+     "-show-dead=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 57,
+    "flag": "-show-dead"
+   },
+   {
+    "id": "t-opt-6db721af",
+    "argv": [
+     "naabu",
+     "-si",
+     "1",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-si",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-caaae1f9",
+    "argv": [
+     "naabu",
+     "-silent",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 8,
+    "flag": "-silent"
+   },
+   {
+    "id": "t-opt-efcb8023",
+    "argv": [
+     "naabu",
+     "-sn=dvwa",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 50,
+    "flag": "-sn"
+   },
+   {
+    "id": "t-opt-0a6a41e7",
+    "argv": [
+     "naabu",
+     "-sr",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-sr",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-6f575e5c",
+    "argv": [
+     "naabu",
+     "-stats",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-stats",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-0e9850d4",
+    "argv": [
+     "naabu",
+     "-top-ports=full",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 293,
+    "flag": "-top-ports",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-2a1410d0",
+    "argv": [
+     "naabu",
+     "-up",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 332,
+    "flag": "-up"
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "naabu -h",
+    "source": "readme",
+    "path": "README.md",
+    "line": 52,
+    "reason": "needs-network-or-interactive",
+    "token": "-h"
+   },
+   {
+    "raw": "naabu -host hackerone.com",
+    "source": "readme",
+    "path": "README.md",
+    "line": 186,
+    "reason": "needs-live-target",
+    "token": "hackerone.com"
+   },
+   {
+    "raw": "naabu -p 80,443,21-23,u:53 -host hackerone.com",
+    "source": "readme",
+    "path": "README.md",
+    "line": 215,
+    "reason": "needs-live-target",
+    "token": "hackerone.com"
+   },
+   {
+    "raw": "naabu -p u:53 -host example.com -cp \"DNS query payload\"",
+    "source": "readme",
+    "path": "README.md",
+    "line": 221,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "naabu -p - -exclude-ports 80,443",
+    "source": "readme",
+    "path": "README.md",
+    "line": 235,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "naabu -list hosts.txt",
+    "source": "readme",
+    "path": "README.md",
+    "line": 241,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "naabu -host 104.16.99.52 -json",
+    "source": "readme",
+    "path": "README.md",
+    "line": 260,
+    "reason": "needs-live-target",
+    "token": "104.16.99.52"
+   },
+   {
+    "raw": "naabu -host scanme.sh -sV",
+    "source": "readme",
+    "path": "README.md",
+    "line": 387,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "naabu -host scanme.sh -p u:53,u:123,u:161 -uP",
+    "source": "readme",
+    "path": "README.md",
+    "line": 416,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "naabu",
+ "repo": "projectdiscovery/naabu",
+ "head_sha": "f520a1411bbd9451e32f416da007d1470d25faf3",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T03:37:35.952947+00:00"
+}

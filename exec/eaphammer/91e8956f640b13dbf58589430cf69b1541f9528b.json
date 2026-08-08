@@ -2,19 +2,248 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:a7acb08c6f97ac0d9f9bb3599e7f1d3bab7f1e8d8e7bfae2f63cf59a816b7c11",
-  "duration_s": 10.13,
-  "log_tail": "#11 2.222   Downloading pip-26.2-py3-none-any.whl.metadata (4.6 kB)\n#11 2.256 Downloading pip-26.2-py3-none-any.whl (1.8 MB)\n#11 2.733    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 3.9 MB/s eta 0:00:00\n#11 2.741 Installing collected packages: pip\n#11 2.741   Attempting uninstall: pip\n#11 2.742     Found existing installation: pip 25.0.1\n#11 2.755     Uninstalling pip-25.0.1:\n#11 2.758       Successfully uninstalled pip-25.0.1\n#11 3.207 Successfully installed pip-26.2\n#11 DONE 3.6s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 1.9s\n\n#17 [stage-1  8/11] COPY agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.132 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.5s done\n#21 exporting manifest sha256:5393687d476c0b65d40b0829c77f8637f7967a3b32a2bc63669910fefad26453 done\n#21 exporting config sha256:ec00ea18776a0d818ca591e5c7f0c1b8b4f018fd169717bae880023b9130fa1f done\n#21 exporting attestation manifest sha256:52ebf884617c4b5cbea376f41f64dcdb8de482c2efe6515775bc26dfe7564246 0.0s done\n#21 exporting manifest list sha256:a7acb08c6f97ac0d9f9bb3599e7f1d3bab7f1e8d8e7bfae2f63cf59a816b7c11 done\n#21 naming to docker.io/ctk-exec/eaphammer:91e8956f640b done\n#21 unpacking to docker.io/ctk-exec/eaphammer:91e8956f640b\n#21 unpacking to docker.io/ctk-exec/eaphammer:91e8956f640b 1.3s done\n#21 DONE 1.9s",
+  "image_digest": "sha256:c88dab61aa8d5262a3b465ebd8e9f456f30adc2ef4545cd3976c0a32fcaa4b92",
+  "duration_s": 10.94,
+  "log_tail": "#8 9.742 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 9.742 debconf: falling back to frontend: Readline\n#8 9.745 debconf: unable to initialize frontend: Readline\n#8 9.745 debconf: (This frontend requires a controlling tty.)\n#8 9.745 debconf: falling back to frontend: Teletype\n#8 9.765 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 9.778 Setting up texinfo (6.8-6+b1) ...\n#8 9.788 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 9.797 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 9.9s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 1.6s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 1.7s done\n#21 exporting manifest sha256:333bf33ca13fc90ad4e91f16dfe3ffe1752e855cdd370b17cf577d1ab0b54049 0.0s done\n#21 exporting config sha256:8511a83d462603190dbe35df52c98cd15def51a2309856a6699040793f371471 0.0s done\n#21 exporting attestation manifest sha256:4d487c26f99907cc7950444f00044184ce69f549152cfd5518408636697da1dd 0.0s done\n#21 exporting manifest list sha256:c88dab61aa8d5262a3b465ebd8e9f456f30adc2ef4545cd3976c0a32fcaa4b92 done\n#21 naming to docker.io/ctk-exec/eaphammer:91e8956f640b done\n#21 unpacking to docker.io/ctk-exec/eaphammer:91e8956f640b\n#21 unpacking to docker.io/ctk-exec/eaphammer:91e8956f640b 0.8s done\n#21 DONE 2.7s",
   "error": null,
   "timed_out": false
  },
- "captures": [],
+ "captures": [
+  {
+   "argv": [
+    "__version__",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "__version__",
+    "-h"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "__version__",
+    "help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "__version__",
+    "--usage"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "__version__"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "__version__.py",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "PermissionError: [Errno 13] Permission denied: '__version__.py'"
+  },
+  {
+   "argv": [
+    "eaphammer",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/eaphammer\", line 4, in <module>\n    import cert_wizard\n  File \"/src/cert_wizard/__init__.py\", line 1, in <module>\n    from cert_wizard.core import import_cert\n  File \"/src/cert_wizard/core.py\", line 1, in <module>\n    import cert_wizard.cert_utils as cert_utils\n  File \"/src/cert_wizard/cert_utils.py\", line 3, in <module>\n    import pem\nModuleNotFoundError: No module named 'pem'\n",
+   "duration_ms": 60,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "eaphammer",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/eaphammer\", line 4, in <module>\n    import cert_wizard\n  File \"/src/cert_wizard/__init__.py\", line 1, in <module>\n    from cert_wizard.core import import_cert\n  File \"/src/cert_wizard/core.py\", line 1, in <module>\n    import cert_wizard.cert_utils as cert_utils\n  File \"/src/cert_wizard/cert_utils.py\", line 3, in <module>\n    import pem\nModuleNotFoundError: No module named 'pem'\n",
+   "duration_ms": 66,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "eaphammer",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/eaphammer\", line 4, in <module>\n    import cert_wizard\n  File \"/src/cert_wizard/__init__.py\", line 1, in <module>\n    from cert_wizard.core import import_cert\n  File \"/src/cert_wizard/core.py\", line 1, in <module>\n    import cert_wizard.cert_utils as cert_utils\n  File \"/src/cert_wizard/cert_utils.py\", line 3, in <module>\n    import pem\nModuleNotFoundError: No module named 'pem'\n",
+   "duration_ms": 62,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "eaphammer",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/eaphammer\", line 4, in <module>\n    import cert_wizard\n  File \"/src/cert_wizard/__init__.py\", line 1, in <module>\n    from cert_wizard.core import import_cert\n  File \"/src/cert_wizard/core.py\", line 1, in <module>\n    import cert_wizard.cert_utils as cert_utils\n  File \"/src/cert_wizard/cert_utils.py\", line 3, in <module>\n    import pem\nModuleNotFoundError: No module named 'pem'\n",
+   "duration_ms": 59,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "eaphammer"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/eaphammer\", line 4, in <module>\n    import cert_wizard\n  File \"/src/cert_wizard/__init__.py\", line 1, in <module>\n    from cert_wizard.core import import_cert\n  File \"/src/cert_wizard/core.py\", line 1, in <module>\n    import cert_wizard.cert_utils as cert_utils\n  File \"/src/cert_wizard/cert_utils.py\", line 3, in <module>\n    import pem\nModuleNotFoundError: No module named 'pem'\n",
+   "duration_ms": 58,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "__version__"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for __version__\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "__version__"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item '__version__' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "__version__",
+    "--list",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-aaff645b",
+   "title": "Candidate \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "__version__",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "input_fingerprint": null,
- "skipped_reason": "uncorroborated_entrypoint",
+ "examples": [],
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-model-1cd70415",
+    "argv": [
+     "eaphammer",
+     "--list",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 429
+   },
+   {
+    "id": "t-model-aaff645b",
+    "argv": [
+     "__version__",
+     "--list",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "model",
+    "path": "model",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": []
+ },
  "tool": "eaphammer",
  "repo": "s0lst1c3/eaphammer",
  "head_sha": "91e8956f640b13dbf58589430cf69b1541f9528b",
  "analyzer": "exec",
- "analyzer_version": "9",
- "generated_at": "2026-07-31T21:06:42.942167+00:00"
+ "analyzer_version": "11",
+ "generated_at": "2026-08-04T04:04:23.224530+00:00"
 }

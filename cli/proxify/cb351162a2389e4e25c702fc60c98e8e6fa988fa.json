@@ -20,7 +20,7 @@
   },
   "--allow": {
    "source": "parsed",
-   "help": "",
+   "help": "Allowed list of IP/CIDR's to be proxied",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -161,7 +161,7 @@
   },
   "--deny": {
    "source": "parsed",
-   "help": "",
+   "help": "Denied list of IP/CIDR's to be proxied",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -390,7 +390,7 @@
   },
   "--http-proxy": {
    "source": "parsed",
-   "help": "",
+   "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -571,7 +571,7 @@
   },
   "--passthrough": {
    "source": "parsed",
-   "help": "",
+   "help": "List of passthrough domains",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -619,7 +619,7 @@
   },
   "--request-dsl": {
    "source": "parsed",
-   "help": "",
+   "help": "Request Filter DSL",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -685,7 +685,7 @@
   },
   "--response-dsl": {
    "source": "parsed",
-   "help": "",
+   "help": "Response Filter DSL",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -780,7 +780,7 @@
   },
   "--socks5-proxy": {
    "source": "parsed",
-   "help": "",
+   "help": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
    "kind": "option",
    "default": null,
    "aliases": [
@@ -806,11 +806,28 @@
    ],
    "takes_value": true,
    "value_type": "string",
-   "first_tag": "v0.0.16",
-   "first_date": "2025-08-30T04:25:44+05:30",
+   "first_tag": "v0.0.15",
+   "first_date": "2024-03-12T21:02:08+05:30",
    "last_tag": "v0.0.16",
    "last_date": "2025-08-30T04:25:44+05:30",
    "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
+  },
+  "--store-resposne": {
+   "source": "parsed",
+   "help": "store raw http request / response to output directory",
+   "kind": "option",
+   "default": "proxify_logs",
+   "aliases": [
+    "-sr"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.13",
+   "first_date": "2024-02-08T21:38:19+05:30",
+   "last_tag": "v0.0.13",
+   "last_date": "2024-02-08T21:38:19+05:30",
+   "live": false,
    "attribution": "own",
    "source_path": "internal/runner/options.go"
   },
@@ -856,6 +873,23 @@
    "live": true,
    "attribution": "own",
    "source_path": "cmd/mitmrelay/mitmrelay.go"
+  },
+  "--update": {
+   "source": "parsed",
+   "help": "update proxify to latest version",
+   "kind": "option",
+   "default": null,
+   "aliases": [
+    "-up"
+   ],
+   "takes_value": false,
+   "first_tag": "v0.0.9",
+   "first_date": "2023-03-21T17:28:19+05:30",
+   "last_tag": "v0.0.16",
+   "last_date": "2025-08-30T04:25:44+05:30",
+   "live": true,
+   "attribution": "own",
+   "source_path": "internal/runner/options.go"
   },
   "--v": {
    "source": "parsed",
@@ -2484,7 +2518,7 @@
    "date": "2023-03-21T17:28:19+05:30",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "Allowed list of IP/CIDR's to be proxied",
    "attribution": "own"
   },
   {
@@ -2504,7 +2538,7 @@
    "date": "2023-03-21T17:28:19+05:30",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "Denied list of IP/CIDR's to be proxied",
    "attribution": "own"
   },
   {
@@ -2524,7 +2558,7 @@
    "date": "2023-03-21T17:28:19+05:30",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "Upstream HTTP Proxies (eg http://proxy-ip:proxy-port)",
    "attribution": "own"
   },
   {
@@ -2564,7 +2598,7 @@
    "date": "2023-03-21T17:28:19+05:30",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "List of passthrough domains",
    "attribution": "own"
   },
   {
@@ -2574,7 +2608,17 @@
    "date": "2023-03-21T17:28:19+05:30",
    "source": "parsed",
    "kind": "option",
-   "help": "",
+   "help": "Upstream SOCKS5 Proxies (eg socks5://proxy-ip:proxy-port)",
+   "attribution": "own"
+  },
+  {
+   "flag": "--update",
+   "event": "added",
+   "tag": "v0.0.9",
+   "date": "2023-03-21T17:28:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "update proxify to latest version",
    "attribution": "own"
   },
   {
@@ -2645,28 +2689,6 @@
    "source": "documented",
    "kind": "option",
    "help": "update proxify to latest version",
-   "attribution": "own"
-  },
-  {
-   "flag": "--request-dsl",
-   "event": "help_changed",
-   "tag": "v0.0.9",
-   "date": "2023-03-21T17:28:19+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "",
-   "previous_help": "Request Filter DSL",
-   "attribution": "own"
-  },
-  {
-   "flag": "--response-dsl",
-   "event": "help_changed",
-   "tag": "v0.0.9",
-   "date": "2023-03-21T17:28:19+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "",
-   "previous_help": "Response Filter DSL",
    "attribution": "own"
   },
   {
@@ -2784,6 +2806,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--store-resposne",
+   "event": "added",
+   "tag": "v0.0.13",
+   "date": "2024-02-08T21:38:19+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "store raw http request / response to output directory",
+   "attribution": "own"
+  },
+  {
    "flag": "-export-config",
    "event": "added",
    "tag": "v0.0.13",
@@ -2871,16 +2903,6 @@
    "source": "parsed",
    "kind": "option",
    "help": "kafka topic to publish messages on",
-   "attribution": "own"
-  },
-  {
-   "flag": "--socks-addr",
-   "event": "removed",
-   "tag": "v0.0.13",
-   "date": "2024-02-08T21:38:19+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Listening SOCKS IP and Port address (ip:port)",
    "attribution": "own"
   },
   {
@@ -2985,6 +3007,16 @@
    "attribution": "own"
   },
   {
+   "flag": "--store-response",
+   "event": "added",
+   "tag": "v0.0.15",
+   "date": "2024-03-12T21:02:08+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "store raw http request / response to output directory",
+   "attribution": "own"
+  },
+  {
    "flag": "-output-format",
    "event": "added",
    "tag": "v0.0.15",
@@ -3012,6 +3044,16 @@
    "source": "parsed",
    "kind": "option",
    "help": "write output in JSONL(ines) format",
+   "attribution": "own"
+  },
+  {
+   "flag": "--store-resposne",
+   "event": "removed",
+   "tag": "v0.0.15",
+   "date": "2024-03-12T21:02:08+05:30",
+   "source": "parsed",
+   "kind": "option",
+   "help": "store raw http request / response to output directory",
    "attribution": "own"
   },
   {
@@ -3077,26 +3119,6 @@
    "kind": "option",
    "help": "Listening SOCKS IP and Port address (ip:port) (default 127.0.0.1:10080)",
    "previous_help": "Listening SOCKS IP and Port address (ip:port) (default \"127.0.0.1:10080\")",
-   "attribution": "own"
-  },
-  {
-   "flag": "--socks-addr",
-   "event": "added",
-   "tag": "v0.0.16",
-   "date": "2025-08-30T04:25:44+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "Listening SOCKS IP and Port address (ip:port)",
-   "attribution": "own"
-  },
-  {
-   "flag": "--store-response",
-   "event": "added",
-   "tag": "v0.0.16",
-   "date": "2025-08-30T04:25:44+05:30",
-   "source": "parsed",
-   "kind": "option",
-   "help": "store raw http request / response to output directory",
    "attribution": "own"
   },
   {
@@ -3208,7 +3230,7 @@
    "files_matched": 35,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 87,
+   "flags": 88,
    "errors": 0
   },
   {
@@ -3218,7 +3240,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 91,
+   "flags": 92,
    "errors": 0
   },
   {
@@ -3228,7 +3250,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 91,
+   "flags": 92,
    "errors": 0
   },
   {
@@ -3238,7 +3260,7 @@
    "files_matched": 34,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 93,
+   "flags": 94,
    "errors": 0
   },
   {
@@ -3248,7 +3270,7 @@
    "files_matched": 35,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 78,
+   "flags": 81,
    "errors": 0
   },
   {
@@ -3258,7 +3280,7 @@
    "files_matched": 38,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 79,
+   "flags": 82,
    "errors": 0
   },
   {
@@ -3268,7 +3290,7 @@
    "files_matched": 38,
    "capped": false,
    "docs_excluded": 0,
-   "flags": 81,
+   "flags": 82,
    "errors": 0
   }
  ],
@@ -3280,6 +3302,6 @@
  "repo": "projectdiscovery/proxify",
  "head_sha": "cb351162a2389e4e25c702fc60c98e8e6fa988fa",
  "analyzer": "cli",
- "analyzer_version": "6",
- "generated_at": "2026-07-31T17:41:22.672217+00:00"
+ "analyzer_version": "7",
+ "generated_at": "2026-08-07T09:48:39.136771+00:00"
 }

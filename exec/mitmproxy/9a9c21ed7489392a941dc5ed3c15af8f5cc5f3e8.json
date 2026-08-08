@@ -1,0 +1,1082 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:1502891f1651b4ab5f0144fa2e96db7c5aa940e19c4729f0065f9b10dc9d8a8a",
+  "duration_s": 45.49,
+  "log_tail": "#10 35.95 Building wheels for collected packages: mitmproxy\n#10 35.95   Building wheel for mitmproxy (pyproject.toml): started\n#10 36.21   Building wheel for mitmproxy (pyproject.toml): finished with status 'done'\n#10 36.21   Created wheel for mitmproxy: filename=mitmproxy-13.0.0.dev0-py3-none-any.whl size=1652870 sha256=1910b176f9bde48bd2d80793deb73cf3cd2aff75652db877567a2f5525cb6bda\n#10 36.21   Stored in directory: /tmp/pip-ephem-wheel-cache-ndd842hl/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 36.22 Successfully built mitmproxy\n#10 36.25 Installing collected packages: sortedcontainers, pyperclip, publicsuffix2, Brotli, zstandard, wcwidth, typing-extensions, tornado, ruamel.yaml, pyparsing, pylsqpack, pycparser, pyasn1, mitmproxy-linux, markupsafe, kaitaistruct, itsdangerous, hyperframe, hpack, h11, click, certifi, blinker, bcrypt, attrs, asgiref, wsproto, werkzeug, urwid, mitmproxy_rs, ldap3, jinja2, h2, cffi, flask, cryptography, argon2-cffi-bindings, service-identity, pyOpenSSL, argon2-cffi, aioquic, mitmproxy\n#10 37.81 \n#10 37.81 Successfully installed Brotli-1.2.0 aioquic-1.2.0 argon2-cffi-25.1.0 argon2-cffi-bindings-25.1.0 asgiref-3.11.1 attrs-26.1.0 bcrypt-5.0.0 blinker-1.9.0 certifi-2026.7.22 cffi-2.1.0 click-8.4.2 cryptography-49.0.0 flask-3.1.3 h11-0.16.0 h2-4.3.0 hpack-4.2.0 hyperframe-6.1.0 itsdangerous-2.2.0 jinja2-3.1.6 kaitaistruct-0.11 ldap3-2.9.1 markupsafe-3.0.3 mitmproxy-13.0.0.dev0 mitmproxy-linux-0.12.11 mitmproxy_rs-0.12.11 publicsuffix2-2.20191221 pyOpenSSL-26.4.0 pyasn1-0.6.4 pycparser-3.0 pylsqpack-0.3.24 pyparsing-3.3.2 pyperclip-1.11.0 ruamel.yaml-0.19.1 service-identity-26.1.0 sortedcontainers-2.4.0 tornado-6.5.5 typing-extensions-4.14.0 urwid-4.0.0 wcwidth-0.8.2 werkzeug-3.1.8 wsproto-1.3.2 zstandard-0.25.0\n#10 DONE 38.0s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.104 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 2.3s done\n#20 exporting manifest sha256:b0edba6be0ed79f5f8c602bc7914901cf10edb8a44f3b387b9d7ae6fd03b2be8 done\n#20 exporting config sha256:9aaaa989ab595a6aa9e6d43eb92c1d2a9b1b1d69a474abda362fbeb23c6224e5 done\n#20 exporting attestation manifest sha256:e5829d6cb37b530eba2d8bbe5872746f5151ac93d53861085c42eadbfe3fb0f4 done\n#20 exporting manifest list sha256:1502891f1651b4ab5f0144fa2e96db7c5aa940e19c4729f0065f9b10dc9d8a8a done\n#20 naming to docker.io/ctk-exec/mitmproxy:9a9c21ed7489 done\n#20 unpacking to docker.io/ctk-exec/mitmproxy:9a9c21ed7489\n#20 unpacking to docker.io/ctk-exec/mitmproxy:9a9c21ed7489 1.1s done\n#20 DONE 3.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "mitmproxy",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "usage: mitmproxy [options]\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show version number and exit\n  --options             Show all options and their default values\n  --commands            Show all commands and their signatures\n  --set option[=value]  Set an option. When the value is omitted, booleans are\n                        set to true, strings and integers are set to None (if\n                        permitted), and sequences are emptied. Boolean values\n                        can be true, false or toggle. Sequences are set using\n                        multiple invocations to set for the same option.\n  -q, --quiet           Quiet.\n  -v, --verbose         Increase log verbosity.\n  --mode MODE, -m MODE  The proxy server type(s) to spawn. Can be passed\n                        multiple times. Mitmproxy supports \"regular\" (HTTP),\n                        \"local\", \"transparent\", \"socks5\", \"reverse:SPEC\",\n                        \"upstream:SPEC\", and \"wireguard[:PATH]\" proxy servers.\n                        For reverse and upstream proxy modes, SPEC is host\n                        specification in the form of \"http[s]://host[:port]\".\n                        For WireGuard mode, PATH may point to a file\n                        containing key material. If no such file exists, it\n                        will be created on startup. You may append\n                        `@listen_port` or `@listen_host:listen_port` to\n                        override `listen_host` or `listen_port` for a specific\n                        proxy mode. Features such as client playback will use\n                        the first mode to determine which upstream server to\n                        use. May be passed multiple times.\n  --no-anticache\n  --anticache           Strip out request headers that might cause the server\n                        to return 304-not-modified.\n  --no-showhost\n  --showhost            Use the Host header to construct URLs for display.\n                        This option is disabled by default because malicious\n                        apps may send misleading host headers to evade your\n                        analysis. If this is not a concern, enable this\n                        options for better flow display.\n  --no-show-ignored-hosts\n  --show-ignored-hosts  Record ignored flows in the UI even if we do not\n                        perform TLS interception. This option will keep\n                        ignored flows' contents in memory, which can greatly\n                        increase memory usage. A future release will fix this\n                        issue, record ignored flows by default, and remove\n                        this option.\n  --rfile PATH, -r PATH\n                        Read flows from file.\n  --scripts SCRIPT, -s SCRIPT\n                        Execute a script. May be passed multiple times.\n  --stickycookie FILTER\n                        Set sticky cookie filter. Matched against requests.\n  --stickyauth FILTER   Set sticky auth filter. Matched against requests.\n  --save-stream-file PATH, -w PATH\n                        Stream flows to file as they arrive. Prefix path with\n                        + to append. The full path can use python strftime()\n                        formating, missing directories are created as needed.\n                        A new file is opened every time the formatted string\n                        changes.\n  --no-anticomp\n  --anticomp            Try to convince servers to send us un-compressed data.\n  --console-layout {horizontal,single,vertical}\n                        Console layout.\n  --no-console-layout-headers\n  --console-layout-headers\n                        Show layout component headers\n\nProxy Options:\n  --listen-host HOST    Address to bind proxy server(s) to (may be overridden\n                        for individual modes, see `mode`).\n  --listen-port PORT, -p PORT\n                        Port to bind proxy server(s) to (may be overridden for\n                        individual modes, see `mode`). By default, the port is\n                        mode-specific. The default regular HTTP proxy spawns\n                        on port 8080.\n  --no-server, -n\n  --server              Start a proxy server. Enabled by default.\n  --ignore-hosts HOST   Ignore host and forward all traffic without processing\n                        it. In transparent mode, it is recommended to use an\n                        IP address (range), not the hostname. In regular mode,\n                        only SSL traffic is ignored and the hostname should be\n                        used. The supplied value is interpreted as a regular\n                        expression and matched on the ip or the hostname. May\n                        be passed multiple times.\n  --allow-hosts HOST    Opposite of --ignore-hosts. May be passed multiple\n                        times.\n  --tcp-hosts HOST      Generic TCP SSL proxy mode for all hosts that match\n                        the pattern. Similar to --ignore-hosts, but SSL\n                        connections are intercepted. The communication\n                        contents are printed to the log in verbose mode. May\n                        be passed multiple times.\n  --upstream-auth USER:PASS\n                        Add HTTP Basic authentication to upstream proxy and\n                        reverse proxy requests. Format: username:password.\n  --proxyauth SPEC      Require proxy authentication. Format: \"username:pass\",\n                        \"any\" to accept any user/pass combination, \"@path\" to\n                        use an Apache htpasswd file, or \"ldap[s]:url_server_ld\n                        ap[:port]:dn_auth:password:dn_subtree[?search_filter_k\n                        ey=...]\" for LDAP authentication.\n  --no-store-streamed-bodies\n  --store-streamed-bodies\n                        Store HTTP request and response bodies when streamed\n                        (see `stream_large_bodies`). This increases memory\n                        consumption, but makes it possible to inspect streamed\n                        bodies.\n  --no-rawtcp\n  --rawtcp              Enable/disable raw TCP connections. TCP connections\n                        are enabled by default.\n  --no-http2\n  --http2               Enable/disable HTTP/2 support. HTTP/2 support is\n                        enabled by default.\n\nSSL:\n  --certs SPEC          SSL certificates of the form \"[domain=]path\". The\n                        domain may include a wildcard, and is equal to \"*\" if\n                        not specified. The file at path is a certificate in\n                        PEM format. If a private key is included in the PEM,\n                        it is used, else the default key in the conf dir is\n                        used. The PEM file should contain the full certificate\n                        chain, with the leaf certificate as the first entry.\n                        May be passed multiple times.\n  --cert-passphrase PASS\n                        Passphrase for decrypting the private key provided in\n                        the --cert option. Note that passing cert_passphrase\n                        on the command line makes your passphrase visible in\n                        your system's process list. Specify it in config.yaml\n                        to avoid this.\n  --no-ssl-insecure\n  --ssl-insecure, -k    Do not verify upstream server SSL/TLS certificates. If\n                        this option is enabled, certificate validation is\n                        skipped and mitmproxy itself will be vulnerable to TLS\n                        interception.\n\nClient Replay:\n  --client-replay PATH, -C PATH\n                        Replay client requests from a saved file. May be\n                        passed multiple times.\n\nServer Replay:\n  --server-replay PATH, -S PATH\n                        Replay server responses from a saved file. May be\n                        passed multiple times.\n  --no-server-replay-kill-extra\n  --server-replay-kill-extra\n                        Kill extra requests during replay (for which no\n                        replayable response was found).[Deprecated, prefer to\n                        use server_replay_extra='kill']\n  --server-replay-extra {forward,kill,204,400,404,500}\n                        Behaviour for extra requests during replay for which\n                        no replayable response was found. Setting a numeric\n                        string value will return an empty HTTP response with\n                        the respective status code.\n  --no-server-replay-reuse\n  --server-replay-reuse\n                        Don't remove flows from server replay state after use.\n                        This makes it possible to replay same response\n                        multiple times.\n  --no-server-replay-refresh\n  --server-replay-refresh\n                        Refresh server replay responses by adjusting date,\n                        expires and last-modified headers, as well as\n                        adjusting cookie expiration.\n\nMap Remote:\n  --map-remote PATTERN, -M PATTERN\n                        Map remote resources to another remote URL using a\n                        pattern of the form \"[/flow-filter]/url-\n                        regex/replacement\", where the separator can be any\n                        character. May be passed multiple times.\n\nMap Local:\n  --map-local PATTERN   Map remote resources to a local file using a pattern\n                        of the form \"[/flow-filter]/url-regex/file-or-\n                        directory-path\", where the separator can be any\n                        character. May be passed multiple times.\n\nModify Body:\n  --modify-body PATTERN, -B PATTERN\n                        Replacement pattern of the form \"[/flow-\n                        filter]/regex/[@]replacement\", where the separator can\n                        be any character. The @ allows to provide a file path\n                        that is used to read the replacement string. May be\n                        passed multiple times.\n\nModify Headers:\n  --modify-headers PATTERN, -H PATTERN\n                        Header modify pattern of the form \"[/flow-\n                        filter]/header-name/[@]header-value\", where the\n                        separator can be any character. The @ allows to\n                        provide a file path that is used to read the header\n                        value string. An empty header-value removes existing\n                        header-name headers. May be passed multiple times.\n\nFilters:\n  See help in mitmproxy for filter expression syntax.\n\n  --intercept FILTER    Intercept filter expression.\n  --view-filter FILTER  Limit the view to matching flows.\n\n",
+   "stderr": "",
+   "duration_ms": 674,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "mitmproxy"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for mitmproxy\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "mitmproxy"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'mitmproxy' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "mitmproxy",
+    "--commands"
+   ],
+   "exit_code": 0,
+   "stdout": "browser.start browser\n\ncommands.history.add command\n\ncommands.history.clear \n\ncommands.history.filter prefix\n\n# Get the entire command history.\ncommands.history.get  -> str[]\n\ncommands.history.next  -> str\n\ncommands.history.prev  -> str\n\n# Spawn an external viewer for a flow request or response body based\n# on the detected MIME type. We use the mailcap system to find the\n# correct viewer, and fall back to the programs in $PAGER or $EDITOR\n# if necessary.\nconsole.bodyview flow part\n\n# Possible parts for console.bodyview.\nconsole.bodyview.options  -> str[]\n\n# Prompt the user to choose from a specified list of strings, then\n# invoke another command with all occurrences of {choice} replaced by\n# the choice the user made.\nconsole.choose prompt choices cmd *args\n\n# Prompt the user to choose from a list of strings returned by a\n# command, then invoke another command with all occurrences of {choice}\n# replaced by the choice the user made.\nconsole.choose.cmd prompt choicecmd subcmd *args\n\n# Prompt the user to edit a command with a (possibly empty) starting\n# value.\nconsole.command *command_str\n\n# Prompt the user before running the specified command.\nconsole.command.confirm prompt cmd *args\n\n# Prompt the user to set an option.\nconsole.command.set option_name\n\n# Edit a component of the currently focused flow.\nconsole.edit.focus flow_part\n\n# Possible components for console.edit.focus.\nconsole.edit.focus.options  -> str[]\n\n# Exit mitmproxy.\nconsole.exit \n\n# Get the display mode for the current flow view.\nconsole.flowview.mode  -> str\n\n# Returns the valid options for the flowview mode.\nconsole.flowview.mode.options  -> str[]\n\n# Set the display mode for the current flow view.\nconsole.flowview.mode.set mode\n\n# Add a row after the cursor.\nconsole.grideditor.add \n\n# Delete row\nconsole.grideditor.delete \n\n# Spawn an external editor on the current cell.\nconsole.grideditor.editor \n\n# Insert a row before the cursor.\nconsole.grideditor.insert \n\n# Read a file into the current cell.\nconsole.grideditor.load path\n\n# Read a file containing a Python-style escaped string into the\n# current cell.\nconsole.grideditor.load_escaped path\n\n# Save data to file as a CSV.\nconsole.grideditor.save path\n\n# Bind a shortcut key.\nconsole.key.bind contexts key cmd *args\n\n# The available contexts for key binding.\nconsole.key.contexts  -> str[]\n\n# Execute the currently focused key binding.\nconsole.key.edit.focus \n\n# Execute the currently focused key binding.\nconsole.key.execute.focus \n\n# Un-bind a shortcut key.\nconsole.key.unbind contexts key\n\n# Un-bind the shortcut key currently focused in the key binding viewer.\nconsole.key.unbind.focus \n\nconsole.keymap.load path\n\n# Cycle through the console layout options.\nconsole.layout.cycle \n\n# Returns the available options for the console_layout option.\nconsole.layout.options  -> str[]\n\n# Go down.\nconsole.nav.down \n\n# Go to the end of a list or scrollable.\nconsole.nav.end \n\n# Go left.\nconsole.nav.left \n\n# Go to the next navigatable item.\nconsole.nav.next \n\n# Go down.\nconsole.nav.pagedown \n\n# Go up.\nconsole.nav.pageup \n\n# Go right.\nconsole.nav.right \n\n# Select a navigable item for viewing or editing.\nconsole.nav.select \n\n# Go to the start of a list or scrollable.\nconsole.nav.start \n\n# Go up.\nconsole.nav.up \n\n# Reset the current option in the options editor.\nconsole.options.reset.focus \n\n# Go to the next layout pane.\nconsole.panes.next \n\n# Go to the previous layout pane.\nconsole.panes.prev \n\n# View the commands list.\nconsole.view.commands \n\n# View the event log.\nconsole.view.eventlog \n\n# View a flow.\nconsole.view.flow flow\n\n# View help.\nconsole.view.help \n\n# View the commands list.\nconsole.view.keybindings \n\n# View the options editor.\nconsole.view.options \n\n# Pop a view off the console stack. At the top level, this prompts the\n# user to exit mitmproxy.\nconsole.view.pop \n\n# Cut data from a set of flows. Cut specifications are attribute paths\n# from the base of the flow object, with a few conveniences - \"port\"\n# and \"host\" retrieve parts of an address tuple, \".header[key]\"\n# retrieves a header value. Return values converted to strings or\n# bytes: SSL certificates are converted to PEM format, bools are \"true\"\n# or \"false\", \"bytes\" are preserved, and all other values are\n# converted to strings.\ncut flows cuts -> data[][]\n\n# Send cuts to the clipboard. If there are multiple flows or cuts, the\n# format is UTF-8 encoded CSV. If there is exactly one row and one\n# column, the data is written to file as-is, with raw bytes preserved.\ncut.clip flows cuts\n\n# Save cuts to file. If there are multiple flows or cuts, the format\n# is UTF-8 encoded CSV. If there is exactly one row and one column,\n# the data is written to file as-is, with raw bytes preserved. If the\n# path is prefixed with a \"+\", values are appended if there is an\n# existing file.\ncut.save flows cuts path\n\n# Clear the event log.\neventstore.clear \n\n# Export a flow and return the result.\nexport format f -> str\n\n# Export a flow to the system clipboard.\nexport.clip format f\n\n# Export a flow to path.\nexport.file format flow path\n\n# Return a list of the supported export formats.\nexport.formats  -> str[]\n\n# Add a comment to a flow\nflow.comment flow comment\n\n# Decode flows.\nflow.decode flows part\n\n# Encode flows with a specified encoding.\nflow.encode flows part encoding\n\n# The possible values for an encoding specification.\nflow.encode.options  -> str[]\n\n# Toggle flow encoding on and off, using deflate for encoding.\nflow.encode.toggle flows part\n\n# Kill running flows.\nflow.kill flows\n\n# Mark flows.\nflow.mark flows marker\n\n# Toggle mark for flows.\nflow.mark.toggle flows\n\n# Resume flows if they are intercepted.\nflow.resume flows\n\n# Revert flow changes.\nflow.revert flows\n\n# Quickly set a number of common values on flows.\nflow.set flows attr value\n\nflow.set.options  -> str[]\n\ninject.tcp flow to_client message\n\ninject.udp flow to_client message\n\ninject.websocket flow to_client message is_text\n\n# Load options from a file.\noptions.load path\n\n# Reset all options to defaults.\noptions.reset \n\n# Reset one option to its default value.\noptions.reset.one name\n\n# Save options to a file.\noptions.save path\n\nproxyserver.active_connections  -> int\n\nreadfile.reading  -> bool\n\n# Add flows to the replay queue, skipping flows that can't be replayed.\nreplay.client flows\n\n# Approximate number of flows queued for replay.\nreplay.client.count  -> int\n\n# Load flows from file, and add them to the replay queue.\nreplay.client.file path\n\n# Clear the replay queue.\nreplay.client.stop \n\n# Replay server responses from flows.\nreplay.server flows\n\n# Add responses from flows to server replay list.\nreplay.server.add flows\n\nreplay.server.count  -> int\n\nreplay.server.file path\n\n# Stop server replay.\nreplay.server.stop \n\n# Save flows to a file. If the path starts with a +, flows are\n# appended to the file, otherwise it is over-written.\nsave.file flows path\n\n# Export flows to an HAR (HTTP Archive) file.\nsave.har flows path\n\n# Run a script on the specified flows. The script is configured with\n# the current options and all lifecycle events for each flow are\n# simulated. Note that the load event is not invoked.\nscript.run flows path\n\n# Set an option. When the value is omitted, booleans are set to true,\n# strings and integers are set to None (if permitted), and sequences\n# are emptied. Boolean values can be true, false or toggle.\n# Multiple values are concatenated with a single space.\nset option *value\n\n# Clears both the store and view.\nview.clear \n\n# Clears only the unmarked flows.\nview.clear_unmarked \n\n# Sets the current view filter.\nview.filter.set filter_expr\n\nview.flows.create method url\n\n# Duplicates the specified flows, and sets the focus to the first\n# duplicate.\nview.flows.duplicate flows\n\n# Load flows into the view, without processing them with addons.\nview.flows.load path\n\n# Removes the flow from the underlying store and the view.\nview.flows.remove flows\n\n# Resolve a flow list specification to an actual list of flows.\nview.flows.resolve flow_spec -> flow[]\n\n# Go to a specified offset. Positive offests are from the beginning of\n# the view, negative from the end of the view, so that 0 is the first\n# flow, -1 is the last flow.\nview.focus.go offset\n\n# Set focus to the next flow.\nview.focus.next \n\n# Set focus to the previous flow.\nview.focus.prev \n\n# Returns the current view order.\nview.order  -> str\n\n# Choices supported by the view_order option.\nview.order.options  -> str[]\n\nview.order.reverse boolean\n\n# Sets the current view order.\nview.order.set order_key\n\n# Is this 0 <= index < len(self)?\nview.properties.inbounds index -> bool\n\n# Returns view length.\nview.properties.length  -> int\n\n# Returns true if view is in marked mode.\nview.properties.marked  -> bool\n\n# Toggle whether to show marked views only.\nview.properties.marked.toggle \n\n# Get a value from the settings store for the specified flow.\nview.settings.getval flow key default -> str\n\n# Set a value in the settings store for the specified flows.\nview.settings.setval flows key value\n\n# Toggle a boolean value in the settings store, setting the value to\n# the string \"true\" or \"false\".\nview.settings.setval.toggle flows key\n\n",
+   "stderr": "",
+   "duration_ms": 648,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-model-0a312008",
+   "title": "Candidate \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mitmproxy",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error: mitmproxy's console interface requires a tty. Please run mitmproxy in an interactive shell environment.\nTraceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/master.py\", line 84, in run\n    await self.running()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/console/master.py\", line 210, in running\n    sys.exit(1)\nSystemExit: 1\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/mitmproxy\", line 6, in <module>\n    sys.exit(mitmproxy())\n             ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 149, in mitmproxy\n    run(console.master.ConsoleMaster, cmdline.mitmproxy, args)\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 143, in run\n    return asyncio.run(main())\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/runners.py\", line 195, in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/base_events.py\", line 691, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 140, in main\n    await master.run()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/master.py\", line 94, in run\n    await self.done()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/console/master.py\", line 250, in done\n    self.loop.stop()\n    ^^^^^^^^^\nAttributeError: 'ConsoleMaster' object has no attribute 'loop'\n",
+   "duration_ms": 647,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-74158ab0",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "mitmproxy",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py",
+    "--set",
+    "addheader=true"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error: mitmproxy's console interface requires a tty. Please run mitmproxy in an interactive shell environment.\nTraceback (most recent call last):\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/master.py\", line 84, in run\n    await self.running()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/console/master.py\", line 210, in running\n    sys.exit(1)\nSystemExit: 1\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/mitmproxy\", line 6, in <module>\n    sys.exit(mitmproxy())\n             ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 149, in mitmproxy\n    run(console.master.ConsoleMaster, cmdline.mitmproxy, args)\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 143, in run\n    return asyncio.run(main())\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/runners.py\", line 195, in run\n    return runner.run(main)\n           ^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/runners.py\", line 118, in run\n    return self._loop.run_until_complete(task)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/usr/local/lib/python3.12/asyncio/base_events.py\", line 691, in run_until_complete\n    return future.result()\n           ^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/main.py\", line 140, in main\n    await master.run()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/master.py\", line 94, in run\n    await self.done()\n  File \"/opt/venv/lib/python3.12/site-packages/mitmproxy/tools/console/master.py\", line 250, in done\n    self.loop.stop()\n    ^^^^^^^^^\nAttributeError: 'ConsoleMaster' object has no attribute 'loop'\n",
+   "duration_ms": 644,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-6bab69b1",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 6,
+   "binary": "mitmproxy",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "6d593506a4ae1905",
+ "examples": [
+  {
+   "id": "t-model-0a312008",
+   "title": "Candidate \u2014 run against no fixture",
+   "argv": [
+    "mitmproxy",
+    "--commands"
+   ],
+   "stdout": "browser.start browser\n\ncommands.history.add command\n\ncommands.history.clear \n\ncommands.history.filter prefix\n\n# Get the entire command history.\ncommands.history.get  -> str[]\n\ncommands.history.next  -> str\n\ncommands.history.prev  -> str\n\n# Spawn an external viewer for a flow request or response body based\n# on the detected MIME type. We use the mailcap system to find the\n# correct viewer, and fall back to the programs in $PAGER or $EDITOR\n# if necessary.\nconsole.bodyview flow part\n\n# Possible parts for console.bodyview.\nconsole.bodyview.options  -> str[]\n\n# Prompt the user to choose from a specified list of strings, then\n# invoke another command with all occurrences of {choice} replaced by\n# the choice the user made.\nconsole.choose prompt choices cmd *args\n\n# Prompt the user to choose from a list of strings returned by a\n# command, then invoke another command with all occurrences of {choice}\n# replaced by the choice the user made.\nconsole.choose.cmd prompt choicecmd subcmd *args\n\n# Prompt the user to edit a command with a (possibly empty) starting\n# value.\nconsole.command *command_str\n\n# Prompt the user before running the specified command.\nconsole.command.confirm prompt cmd *args\n\n# Prompt the user to set an option.\nconsole.command.set option_name\n\n# Edit a component of the currently focused flow.\nconsole.edit.focus flow_part\n\n# Possible components for console.edit.focus.\nconsole.edit.focus.options  -> str[]\n\n# Exit mitmproxy.\nconsole.exit \n\n# Get the display mode for the current flow view.\nconsole.flowview.mode  -> str\n\n# Returns the valid options for the flowview mode.\nconsole.flowview.mode.options  -> str[]\n\n# Set the display mode for the current flow view.\nconsole.flowview.mode.set mode\n\n# Add a row after the cursor.\nconsole.grideditor.add \n\n# Delete row\nconsole.grideditor.delete \n\n# Spawn an external editor on the current cell.\nconsole.grideditor.editor \n\n# Insert a row before the cursor.\nconsole.grideditor.insert \n\n# Read a file into the current cell.\nconsole.grideditor.load path\n\n# Read a file containing a Python-style escaped string into the\n# current cell.\nconsole.grideditor.load_escaped path\n\n# Save data to file as a CSV.\nconsole.grideditor.save path\n\n# Bind a shortcut key.\nconsole.key.bind contexts key cmd *args\n\n# The available contexts for key binding.\nconsole.key.contexts  -> str[]\n\n# Execute the currently focused key binding.\nconsole.key.edit.focus \n\n# Execute the currently focused key binding.\nconsole.key.execute.focus \n\n# Un-bind a shortcut key.\nconsole.key.unbind contexts key\n\n# Un-bind the shortcut key currently focused in the key binding viewer.\nconsole.key.unbind.focus \n\nconsole.keymap.load path\n\n# Cycle through the console layout options.\nconsole.layout.cycle \n\n# Returns the available options for the console_layout option.\nconsole.layout.options  -> str[]\n\n# Go down.\nconsole.nav.down \n\n# Go to the end of a list or scrollable.\nconsole.nav.end \n\n# Go left.\nconsole.nav.left \n\n# Go to the next navigatable item.\nconsole.nav.next \n\n# Go down.\nconsole.nav.pagedown \n\n# Go up.\nconsole.nav.pageup \n\n# Go right.\nconsole.nav.right \n\n# Select a navigable item for viewing or editing.\nconsole.nav.select \n\n# Go to the start of a list or scrollable.\nconsole.nav.start \n\n# Go up.\nconsole.nav.up \n\n# Reset the current option in the options editor.\nconsole.options.reset.focus \n\n# Go to the next layout pane.\nconsole.panes.next \n\n# Go to the previous layout pane.\nconsole.panes.prev \n\n# View the commands list.\nconsole.view.commands \n\n# View the event log.\nconsole.view.eventlog \n\n# View a flow.\nconsole.view.flow flow\n\n# View help.\nconsole.view.help \n\n# View the commands list.\nconsole.view.keybindings \n\n# View the options editor.\nconsole.view.options \n\n# Pop a view off the console stack. At the top level, this prompts the\n# user to exit mitmproxy.\nconsole.view.pop \n\n# Cut data from a set of flows. Cut specifications are attribute paths\n# from the base of the flow object, with a few conveniences - \"port\"\n# and \"host\" retrieve parts of an address tuple, \".header[key]\"\n# retrieves a header value. Return values converted to strings or\n# bytes: SSL certificates are converted to PEM format, bools are \"true\"\n# or \"false\", \"bytes\" are preserved, and all other values are\n# converted to strings.\ncut flows cuts -> data[][]\n\n# Send cuts to the clipboard. If there are multiple flows or cuts, the\n# format is UTF-8 encoded CSV. If there is exactly one row and one\n# column, the data is written to file as-is, with raw bytes preserved.\ncut.clip flows cuts\n\n# Save cuts to file. If there are multiple flows or cuts, the format\n# is UTF-8 encoded CSV. If there is exactly one row and one column,\n# the data is written to file as-is, with raw bytes preserved. If the\n# path is prefixed with a \"+\", values are appended if there is an\n# existing file.\ncut.save flows cuts path\n\n# Clear the event log.\neventstore.clear \n\n# Export a flow and return the result.\nexport format f -> str\n\n# Export a flow to the system clipboard.\nexport.clip format f\n\n# Export a flow to path.\nexport.file format flow path\n\n# Return a list of the supported export formats.\nexport.formats  -> str[]\n\n# Add a comment to a flow\nflow.comment flow comment\n\n# Decode flows.\nflow.decode flows part\n\n# Encode flows with a specified encoding.\nflow.encode flows part encoding\n\n# The possible values for an encoding specification.\nflow.encode.options  -> str[]\n\n# Toggle flow encoding on and off, using deflate for encoding.\nflow.encode.toggle flows part\n\n# Kill running flows.\nflow.kill flows\n\n# Mark flows.\nflow.mark flows marker\n\n# Toggle mark for flows.\nflow.mark.toggle flows\n\n# Resume flows if they are intercepted.\nflow.resume flows\n\n# Revert flow changes.\nflow.revert flows\n\n# Quickly set a number of common values on flows.\nflow.set flows attr value\n\nflow.set.options  -> str[]\n\ninject.tcp flow to_client message\n\ninject.udp flow to_client message\n\ninject.websocket flow to_client message is_text\n\n# Load options from a file.\noptions.load path\n\n# Reset all options to defaults.\noptions.reset \n\n# Reset one option to its default value.\noptions.reset.one name\n\n# Save options to a file.\noptions.save path\n\nproxyserver.active_connections  -> int\n\nreadfile.reading  -> bool\n\n# Add flows to the replay queue, skipping flows that can't be replayed.\nreplay.client flows\n\n# Approximate number of flows queued for replay.\nreplay.client.count  -> int\n\n# Load flows from file, and add them to the replay queue.\nreplay.client.file path\n\n# Clear the replay queue.\nreplay.client.stop \n\n# Replay server responses from flows.\nreplay.server flows\n\n# Add responses from flows to server replay list.\nreplay.server.add flows\n\nreplay.server.count  -> int\n\nreplay.server.file path\n\n# Stop server replay.\nreplay.server.stop \n\n# Save flows to a file. If the path starts with a +, flows are\n# appended to the file, otherwise it is over-written.\nsave.file flows path\n\n# Export flows to an HAR (HTTP Archive) file.\nsave.har flows path\n\n# Run a script on the specified flows. The script is configured with\n# the current options and all lifecycle events for each flow are\n# simulated. Note that the load event is not invoked.\nscript.run flows path\n\n# Set an option. When the value is omitted, booleans are set to true,\n# strings and integers are set to None (if permitted), and sequences\n# are emptied. Boolean values can be true, false or toggle.\n# Multiple values are concatenated with a single space.\nset option *value\n\n# Clears both the store and view.\nview.clear \n\n# Clears only the unmarked flows.\nview.clear_unmarked \n\n# Sets the current view filter.\nview.filter.set filter_expr\n\nview.flows.create method url\n\n# Duplicates the specified flows, and sets the focus to the first\n# duplicate.\nview.flows.duplicate flows\n\n# Load flows into the view, without processing them with addons.\nview.flows.load path\n\n# Removes the flow from the underlying store and the view.\nview.flows.remove flows\n\n# Resolve a flow list specification to an actual list of flows.\nview.flows.resolve flow_spec -> flow[]\n\n# Go to a specified offset. Positive offests are from the beginning of\n# the view, negative from the end of the view, so that 0 is the first\n# flow, -1 is the last flow.\nview.focus.go offset\n\n# Set focus to the next flow.\nview.focus.next \n\n# Set focus to the previous flow.\nview.focus.prev \n\n# Returns the current view order.\nview.order  -> str\n\n# Choices supported by the view_order option.\nview.order.options  -> str[]\n\nview.order.reverse boolean\n\n# Sets the current view order.\nview.order.set order_key\n\n# Is this 0 <= index < len(self)?\nview.properties.inbounds index -> bool\n\n# Returns view length.\nview.properties.length  -> int\n\n# Returns true if view is in marked mode.\nview.properties.marked  -> bool\n\n# Toggle whether to show marked views only.\nview.properties.marked.toggle \n\n# Get a value from the settings store for the specified flow.\nview.settings.getval flow key default -> str\n\n# Set a value in the settings store for the specified flows.\nview.settings.setval flows key value\n\n# Toggle a boolean value in the settings store, setting the value to\n# the string \"true\" or \"false\".\nview.settings.setval.toggle flows key\n\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 648,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--version": "show version number and exit",
+   "--options": "Show all options and their default values",
+   "--commands": "Show all commands and their signatures",
+   "--set": "Set an option. When the value is omitted, booleans are set to true, strings and integers are set to None (if permitted), and sequences are emptied. Boolean values can be true, false or toggle. Sequences are set using multiple invocations to set for the same option.",
+   "--quiet": "Quiet.",
+   "-q": "Quiet.",
+   "--verbose": "Increase log verbosity.",
+   "-v": "Increase log verbosity.",
+   "--mode": "The proxy server type(s) to spawn. Can be passed multiple times. Mitmproxy supports \"regular\" (HTTP), \"local\", \"transparent\", \"socks5\", \"reverse:SPEC\", \"upstream:SPEC\", and \"wireguard[:PATH]\" proxy servers. For reverse and upstream proxy modes, SPEC is host specification in the form of \"http[s]://host[:port]\". For WireGuard mode, PATH may point to a file containing key material. If no such file exists, it will be created on startup. You may append `@listen_port` or `@listen_host:listen_port` to override `listen_host` or `listen_port` for a specific proxy mode. Features such as client playback will use the first mode to determine which upstream server to use. May be passed multiple times.",
+   "-m": "The proxy server type(s) to spawn. Can be passed multiple times. Mitmproxy supports \"regular\" (HTTP), \"local\", \"transparent\", \"socks5\", \"reverse:SPEC\", \"upstream:SPEC\", and \"wireguard[:PATH]\" proxy servers. For reverse and upstream proxy modes, SPEC is host specification in the form of \"http[s]://host[:port]\". For WireGuard mode, PATH may point to a file containing key material. If no such file exists, it will be created on startup. You may append `@listen_port` or `@listen_host:listen_port` to override `listen_host` or `listen_port` for a specific proxy mode. Features such as client playback will use the first mode to determine which upstream server to use. May be passed multiple times.",
+   "--no-anticache": "",
+   "--anticache": "Strip out request headers that might cause the server to return 304-not-modified.",
+   "--no-showhost": "",
+   "--showhost": "Use the Host header to construct URLs for display. This option is disabled by default because malicious apps may send misleading host headers to evade your analysis. If this is not a concern, enable this options for better flow display.",
+   "--no-show-ignored-hosts": "",
+   "--show-ignored-hosts": "Record ignored flows in the UI even if we do not perform TLS interception. This option will keep ignored flows' contents in memory, which can greatly increase memory usage. A future release will fix this issue, record ignored flows by default, and remove this option.",
+   "--rfile": "Read flows from file.",
+   "-r": "Read flows from file.",
+   "--scripts": "Execute a script. May be passed multiple times.",
+   "-s": "Execute a script. May be passed multiple times.",
+   "--stickycookie": "Set sticky cookie filter. Matched against requests.",
+   "--stickyauth": "Set sticky auth filter. Matched against requests.",
+   "--save-stream-file": "Stream flows to file as they arrive. Prefix path with + to append. The full path can use python strftime() formating, missing directories are created as needed. A new file is opened every time the formatted string changes.",
+   "-w": "Stream flows to file as they arrive. Prefix path with + to append. The full path can use python strftime() formating, missing directories are created as needed. A new file is opened every time the formatted string changes.",
+   "--no-anticomp": "",
+   "--anticomp": "Try to convince servers to send us un-compressed data.",
+   "--console-layout": "Console layout.",
+   "--no-console-layout-headers": "",
+   "--console-layout-headers": "Show layout component headers",
+   "--listen-host": "Address to bind proxy server(s) to (may be overridden for individual modes, see `mode`).",
+   "--listen-port": "Port to bind proxy server(s) to (may be overridden for individual modes, see `mode`). By default, the port is mode-specific. The default regular HTTP proxy spawns on port 8080.",
+   "-p": "Port to bind proxy server(s) to (may be overridden for individual modes, see `mode`). By default, the port is mode-specific. The default regular HTTP proxy spawns on port 8080.",
+   "--no-server": "",
+   "-n": "",
+   "--server": "Start a proxy server. Enabled by default.",
+   "--ignore-hosts": "Ignore host and forward all traffic without processing it. In transparent mode, it is recommended to use an IP address (range), not the hostname. In regular mode, only SSL traffic is ignored and the hostname should be used. The supplied value is interpreted as a regular expression and matched on the ip or the hostname. May be passed multiple times.",
+   "--allow-hosts": "Opposite of --ignore-hosts. May be passed multiple times.",
+   "--tcp-hosts": "Generic TCP SSL proxy mode for all hosts that match the pattern. Similar to --ignore-hosts, but SSL connections are intercepted. The communication contents are printed to the log in verbose mode. May be passed multiple times.",
+   "--upstream-auth": "Add HTTP Basic authentication to upstream proxy and reverse proxy requests. Format: username:password.",
+   "--proxyauth": "Require proxy authentication. Format: \"username:pass\", \"any\" to accept any user/pass combination, \"@path\" to use an Apache htpasswd file, or \"ldap[s]:url_server_ld ap[:port]:dn_auth:password:dn_subtree[?search_filter_k ey=...]\" for LDAP authentication.",
+   "--no-store-streamed-bodies": "",
+   "--store-streamed-bodies": "Store HTTP request and response bodies when streamed (see `stream_large_bodies`). This increases memory consumption, but makes it possible to inspect streamed bodies.",
+   "--no-rawtcp": "",
+   "--rawtcp": "Enable/disable raw TCP connections. TCP connections are enabled by default.",
+   "--no-http2": "",
+   "--http2": "Enable/disable HTTP/2 support. HTTP/2 support is enabled by default.",
+   "--certs": "SSL certificates of the form \"[domain=]path\". The domain may include a wildcard, and is equal to \"*\" if not specified. The file at path is a certificate in PEM format. If a private key is included in the PEM, it is used, else the default key in the conf dir is used. The PEM file should contain the full certificate chain, with the leaf certificate as the first entry. May be passed multiple times.",
+   "--cert-passphrase": "Passphrase for decrypting the private key provided in the --cert option. Note that passing cert_passphrase on the command line makes your passphrase visible in your system's process list. Specify it in config.yaml to avoid this.",
+   "--no-ssl-insecure": "",
+   "--ssl-insecure": "Do not verify upstream server SSL/TLS certificates. If this option is enabled, certificate validation is skipped and mitmproxy itself will be vulnerable to TLS interception.",
+   "-k": "Do not verify upstream server SSL/TLS certificates. If this option is enabled, certificate validation is skipped and mitmproxy itself will be vulnerable to TLS interception.",
+   "--client-replay": "Replay client requests from a saved file. May be passed multiple times.",
+   "-C": "Replay client requests from a saved file. May be passed multiple times.",
+   "--server-replay": "Replay server responses from a saved file. May be passed multiple times.",
+   "-S": "Replay server responses from a saved file. May be passed multiple times.",
+   "--no-server-replay-kill-extra": "",
+   "--server-replay-kill-extra": "Kill extra requests during replay (for which no replayable response was found).[Deprecated, prefer to use server_replay_extra='kill']",
+   "--server-replay-extra": "Behaviour for extra requests during replay for which no replayable response was found. Setting a numeric string value will return an empty HTTP response with the respective status code.",
+   "--no-server-replay-reuse": "",
+   "--server-replay-reuse": "Don't remove flows from server replay state after use. This makes it possible to replay same response multiple times.",
+   "--no-server-replay-refresh": "",
+   "--server-replay-refresh": "Refresh server replay responses by adjusting date, expires and last-modified headers, as well as adjusting cookie expiration.",
+   "--map-remote": "Map remote resources to another remote URL using a pattern of the form \"[/flow-filter]/url- regex/replacement\", where the separator can be any character. May be passed multiple times.",
+   "-M": "Map remote resources to another remote URL using a pattern of the form \"[/flow-filter]/url- regex/replacement\", where the separator can be any character. May be passed multiple times.",
+   "--map-local": "Map remote resources to a local file using a pattern of the form \"[/flow-filter]/url-regex/file-or- directory-path\", where the separator can be any character. May be passed multiple times.",
+   "--modify-body": "Replacement pattern of the form \"[/flow- filter]/regex/[@]replacement\", where the separator can be any character. The @ allows to provide a file path that is used to read the replacement string. May be passed multiple times.",
+   "-B": "Replacement pattern of the form \"[/flow- filter]/regex/[@]replacement\", where the separator can be any character. The @ allows to provide a file path that is used to read the replacement string. May be passed multiple times.",
+   "--modify-headers": "Header modify pattern of the form \"[/flow- filter]/header-name/[@]header-value\", where the separator can be any character. The @ allows to provide a file path that is used to read the header value string. An empty header-value removes existing header-name headers. May be passed multiple times.",
+   "-H": "Header modify pattern of the form \"[/flow- filter]/header-name/[@]header-value\", where the separator can be any character. The @ allows to provide a file path that is used to read the header value string. An empty header-value removes existing header-name headers. May be passed multiple times.",
+   "--intercept": "Intercept filter expression.",
+   "--view-filter": "Limit the view to matching flows."
+  },
+  "values_seen": {
+   "--mode": "MODE",
+   "-m": "MODE",
+   "--stickyauth": "FILTER",
+   "--listen-host": "HOST",
+   "--ignore-hosts": "HOST",
+   "--allow-hosts": "HOST",
+   "--tcp-hosts": "HOST",
+   "--proxyauth": "SPEC",
+   "--certs": "SPEC",
+   "--map-local": "PATTERN",
+   "--intercept": "FILTER",
+   "--view-filter": "FILTER"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--mode": [
+    "-m"
+   ],
+   "--rfile": [
+    "-r"
+   ],
+   "--scripts": [
+    "-s"
+   ],
+   "--save-stream-file": [
+    "-w"
+   ],
+   "--listen-port": [
+    "-p"
+   ],
+   "--no-server": [
+    "-n"
+   ],
+   "--ssl-insecure": [
+    "-k"
+   ],
+   "--client-replay": [
+    "-C"
+   ],
+   "--server-replay": [
+    "-S"
+   ],
+   "--map-remote": [
+    "-M"
+   ],
+   "--modify-body": [
+    "-B"
+   ],
+   "--modify-headers": [
+    "-H"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "mitmproxy",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "bcbf33255e5a14222545fc53c2f9c69b7737ba987d9ce092ddcbaad07602aee1",
+  "text": "usage: mitmproxy [options]\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show version number and exit\n  --options             Show all options and their default values\n  --commands            Show all commands and their signatures\n  --set option[=value]  Set an option. When the value is omitted, booleans are\n                        set to true, strings and integers are set to None (if\n                        permitted), and sequences are emptied. Boolean values\n                        can be true, false or toggle. Sequences are set using\n                        multiple invocations to set for the same option.\n  -q, --quiet           Quiet.\n  -v, --verbose         Increase log verbosity.\n  --mode MODE, -m MODE  The proxy server type(s) to spawn. Can be passed\n                        multiple times. Mitmproxy supports \"regular\" (HTTP),\n                        \"local\", \"transparent\", \"socks5\", \"reverse:SPEC\",\n                        \"upstream:SPEC\", and \"wireguard[:PATH]\" proxy servers.\n                        For reverse and upstream proxy modes, SPEC is host\n                        specification in the form of \"http[s]://host[:port]\".\n                        For WireGuard mode, PATH may point to a file\n                        containing key material. If no such file exists, it\n                        will be created on startup. You may append\n                        `@listen_port` or `@listen_host:listen_port` to\n                        override `listen_host` or `listen_port` for a specific\n                        proxy mode. Features such as client playback will use\n                        the first mode to determine which upstream server to\n                        use. May be passed multiple times.\n  --no-anticache\n  --anticache           Strip out request headers that might cause the server\n                        to return 304-not-modified.\n  --no-showhost\n  --showhost            Use the Host header to construct URLs for display.\n                        This option is disabled by default because malicious\n                        apps may send misleading host headers to evade your\n                        analysis. If this is not a concern, enable this\n                        options for better flow display.\n  --no-show-ignored-hosts\n  --show-ignored-hosts  Record ignored flows in the UI even if we do not\n                        perform TLS interception. This option will keep\n                        ignored flows' contents in memory, which can greatly\n                        increase memory usage. A future release will fix this\n                        issue, record ignored flows by default, and remove\n                        this option.\n  --rfile PATH, -r PATH\n                        Read flows from file.\n  --scripts SCRIPT, -s SCRIPT\n                        Execute a script. May be passed multiple times.\n  --stickycookie FILTER\n                        Set sticky cookie filter. Matched against requests.\n  --stickyauth FILTER   Set sticky auth filter. Matched against requests.\n  --save-stream-file PATH, -w PATH\n                        Stream flows to file as they arrive. Prefix path with\n                        + to append. The full path can use python strftime()\n                        formating, missing directories are created as needed.\n                        A new file is opened every time the formatted string\n                        changes.\n  --no-anticomp\n  --anticomp            Try to convince servers to send us un-compressed data.\n  --console-layout {horizontal,single,vertical}\n                        Console layout.\n  --no-console-layout-headers\n  --console-layout-headers\n                        Show layout component headers\n\nProxy Options:\n  --listen-host HOST    Address to bind proxy server(s) to (may be overridden\n                        for individual modes, see `mode`).\n  --listen-port PORT, -p PORT\n                        Port to bind proxy server(s) to (may be overridden for\n                        individual modes, see `mode`). By default, the port is\n                        mode-specific. The default regular HTTP proxy spawns\n                        on port 8080.\n  --no-server, -n\n  --server              Start a proxy server. Enabled by default.\n  --ignore-hosts HOST   Ignore host and forward all traffic without processing\n                        it. In transparent mode, it is recommended to use an\n                        IP address (range), not the hostname. In regular mode,\n                        only SSL traffic is ignored and the hostname should be\n                        used. The supplied value is interpreted as a regular\n                        expression and matched on the ip or the hostname. May\n                        be passed multiple times.\n  --allow-hosts HOST    Opposite of --ignore-hosts. May be passed multiple\n                        times.\n  --tcp-hosts HOST      Generic TCP SSL proxy mode for all hosts that match\n                        the pattern. Similar to --ignore-hosts, but SSL\n                        connections are intercepted. The communication\n                        contents are printed to the log in verbose mode. May\n                        be passed multiple times.\n  --upstream-auth USER:PASS\n                        Add HTTP Basic authentication to upstream proxy and\n                        reverse proxy requests. Format: username:password.\n  --proxyauth SPEC      Require proxy authentication. Format: \"username:pass\",\n                        \"any\" to accept any user/pass combination, \"@path\" to\n                        use an Apache htpasswd file, or \"ldap[s]:url_server_ld\n                        ap[:port]:dn_auth:password:dn_subtree[?search_filter_k\n                        ey=...]\" for LDAP authentication.\n  --no-store-streamed-bodies\n  --store-streamed-bodies\n                        Store HTTP request and response bodies when streamed\n                        (see `stream_large_bodies`). This increases memory\n                        consumption, but makes it possible to inspect streamed\n                        bodies.\n  --no-rawtcp\n  --rawtcp              Enable/disable raw TCP connections. TCP connections\n                        are enabled by default.\n  --no-http2\n  --http2               Enable/disable HTTP/2 support. HTTP/2 support is\n                        enabled by default.\n\nSSL:\n  --certs SPEC          SSL certificates of the form \"[domain=]path\". The\n                        domain may include a wildcard, and is equal to \"*\" if\n                        not specified. The file at path is a certificate in\n                        PEM format. If a private key is included in the PEM,\n                        it is used, else the default key in the conf dir is\n                        used. The PEM file should contain the full certificate\n                        chain, with the leaf certificate as the first entry.\n                        May be passed multiple times.\n  --cert-passphrase PASS\n                        Passphrase for decrypting the private key provided in\n                        the --cert option. Note that passing cert_passphrase\n                        on the command line makes your passphrase visible in\n                        your system's process list. Specify it in config.yaml\n                        to avoid this.\n  --no-ssl-insecure\n  --ssl-insecure, -k    Do not verify upstream server SSL/TLS certificates. If\n                        this option is enabled, certificate validation is\n                        skipped and mitmproxy itself will be vulnerable to TLS\n                        interception.\n\nClient Replay:\n  --client-replay PATH, -C PATH\n                        Replay client requests from a saved file. May be\n                        passed multiple times.\n\nServer Replay:\n  --server-replay PATH, -S PATH\n                        Replay server responses from a saved file. May be\n                        passed multiple times.\n  --no-server-replay-kill-extra\n  --server-replay-kill-extra\n                        Kill extra requests during replay (for which no\n                        replayable response was found).[Deprecated, prefer to\n                        use server_replay_extra='kill']\n  --server-replay-extra {forward,kill,204,400,404,500}\n                        Behaviour for extra requests during replay for which\n                        no replayable response was found. Setting a numeric\n                        string value will return an empty HTTP response with\n                        the respective status code.\n  --no-server-replay-reuse\n  --server-replay-reuse\n                        Don't remove flows from server replay state after use.\n                        This makes it possible to replay same response\n                        multiple times.\n  --no-server-replay-refresh\n  --server-replay-refresh\n                        Refresh server replay responses by adjusting date,\n                        expires and last-modified headers, as well as\n                        adjusting cookie expiration.\n\nMap Remote:\n  --map-remote PATTERN, -M PATTERN\n                        Map remote resources to another remote URL using a\n                        pattern of the form \"[/flow-filter]/url-\n                        regex/replacement\", where the separator can be any\n                        character. May be passed multiple times.\n\nMap Local:\n  --map-local PATTERN   Map remote resources to a local file using a pattern\n                        of the form \"[/flow-filter]/url-regex/file-or-\n                        directory-path\", where the separator can be any\n                        character. May be passed multiple times.\n\nModify Body:\n  --modify-body PATTERN, -B PATTERN\n                        Replacement pattern of the form \"[/flow-\n                        filter]/regex/[@]replacement\", where the separator can\n                        be any character. The @ allows to provide a file path\n                        that is used to read the replacement string. May be\n                        passed multiple times.\n\nModify Headers:\n  --modify-headers PATTERN, -H PATTERN\n                        Header modify pattern of the form \"[/flow-\n                        filter]/header-name/[@]header-value\", where the\n                        separator can be any character. The @ allows to\n                        provide a file path that is used to read the header\n                        value string. An empty header-value removes existing\n                        header-name headers. May be passed multiple times.\n\nFilters:\n  See help in mitmproxy for filter expression syntax.\n\n  --intercept FILTER    Intercept filter expression.\n  --view-filter FILTER  Limit the view to matching flows.\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--commands",
+   "--options",
+   "--quiet",
+   "--set",
+   "--verbose",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--apple-id",
+   "--dirty",
+   "--filter",
+   "--forward/--no-forward",
+   "--keychain",
+   "--local/--no-local",
+   "--password",
+   "--proxy-port",
+   "--team-id",
+   "filter_args"
+  ],
+  "help_only": [
+   "--allow-hosts",
+   "--anticache",
+   "--anticomp",
+   "--cert-passphrase",
+   "--certs",
+   "--client-replay",
+   "--console-layout",
+   "--console-layout-headers",
+   "--help",
+   "--http2",
+   "--ignore-hosts",
+   "--intercept",
+   "--listen-host",
+   "--listen-port",
+   "--map-local",
+   "--map-remote",
+   "--mode",
+   "--modify-body",
+   "--modify-headers",
+   "--no-anticache",
+   "--no-anticomp",
+   "--no-console-layout-headers",
+   "--no-http2",
+   "--no-rawtcp",
+   "--no-server",
+   "--no-server-replay-kill-extra",
+   "--no-server-replay-refresh",
+   "--no-server-replay-reuse",
+   "--no-show-ignored-hosts",
+   "--no-showhost",
+   "--no-ssl-insecure",
+   "--no-store-streamed-bodies",
+   "--proxyauth",
+   "--rawtcp",
+   "--rfile",
+   "--save-stream-file",
+   "--scripts",
+   "--server",
+   "--server-replay",
+   "--server-replay-extra",
+   "--server-replay-kill-extra",
+   "--server-replay-refresh",
+   "--server-replay-reuse",
+   "--show-ignored-hosts",
+   "--showhost",
+   "--ssl-insecure",
+   "--stickyauth",
+   "--stickycookie",
+   "--store-streamed-bodies",
+   "--tcp-hosts",
+   "--upstream-auth",
+   "--view-filter",
+   "-B",
+   "-C",
+   "-H",
+   "-M",
+   "-S",
+   "-h",
+   "-k",
+   "-m",
+   "-n",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-v",
+   "-w"
+  ],
+  "mining_coverage": 0.0821917808219178
+ },
+ "surface": {
+  "flags": {
+   "--allow-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Opposite of --ignore-hosts. May be passed multiple times.",
+    "metavar": "HOST"
+   },
+   "--anticache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Strip out request headers that might cause the server to return 304-not-modified."
+   },
+   "--anticomp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Try to convince servers to send us un-compressed data."
+   },
+   "--apple-id": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "release/build.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--cert-passphrase": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Passphrase for decrypting the private key provided in the --cert option. Note that passing cert_passphrase on the command line makes your passphrase visible in your system's process list. Specify it in config.yaml to avoid this."
+   },
+   "--certs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "SSL certificates of the form \"[domain=]path\". The domain may include a wildcard, and is equal to \"*\" if not specified. The file at path is a certificate in PEM format. If a private key is included in the PEM, it is used, else the default key in the conf dir is used. The PEM file should contain the full certificate chain, with the leaf certificate as the first entry. May be passed multiple times.",
+    "metavar": "SPEC"
+   },
+   "--client-replay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Replay client requests from a saved file. May be passed multiple times.",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--commands": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show all commands and their signatures",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": false
+   },
+   "--console-layout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Console layout."
+   },
+   "--console-layout-headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show layout component headers"
+   },
+   "--dirty": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "release/build.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--filter": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Custom WinDivert interception rule.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "mitmproxy/platform/windows.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--forward/--no-forward": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Redirect traffic that's forwarded by the host.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "mitmproxy/platform/windows.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--http2": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable/disable HTTP/2 support. HTTP/2 support is enabled by default."
+   },
+   "--ignore-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore host and forward all traffic without processing it. In transparent mode, it is recommended to use an IP address (range), not the hostname. In regular mode, only SSL traffic is ignored and the hostname should be used. The supplied value is interpreted as a regular expression and matched on the ip or the hostname. May be passed multiple times.",
+    "metavar": "HOST"
+   },
+   "--intercept": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Intercept filter expression.",
+    "metavar": "FILTER"
+   },
+   "--keychain": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "release/build.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--listen-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Address to bind proxy server(s) to (may be overridden for individual modes, see `mode`).",
+    "metavar": "HOST"
+   },
+   "--listen-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Port to bind proxy server(s) to (may be overridden for individual modes, see `mode`). By default, the port is mode-specific. The default regular HTTP proxy spawns on port 8080.",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--local/--no-local": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Redirect the host's own traffic.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "mitmproxy/platform/windows.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--map-local": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Map remote resources to a local file using a pattern of the form \"[/flow-filter]/url-regex/file-or- directory-path\", where the separator can be any character. May be passed multiple times.",
+    "metavar": "PATTERN"
+   },
+   "--map-remote": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Map remote resources to another remote URL using a pattern of the form \"[/flow-filter]/url- regex/replacement\", where the separator can be any character. May be passed multiple times.",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The proxy server type(s) to spawn. Can be passed multiple times. Mitmproxy supports \"regular\" (HTTP), \"local\", \"transparent\", \"socks5\", \"reverse:SPEC\", \"upstream:SPEC\", and \"wireguard[:PATH]\" proxy servers. For reverse and upstream proxy modes, SPEC is host specification in the form of \"http[s]://host[:port]\". For WireGuard mode, PATH may point to a file containing key material. If no such file exists, it will be created on startup. You may append `@listen_port` or `@listen_host:listen_port` to override `listen_host` or `listen_port` for a specific proxy mode. Features such as client playback will use the first mode to determine which upstream server to use. May be passed multiple times.",
+    "metavar": "MODE",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--modify-body": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Replacement pattern of the form \"[/flow- filter]/regex/[@]replacement\", where the separator can be any character. The @ allows to provide a file path that is used to read the replacement string. May be passed multiple times.",
+    "aliases": [
+     "-B"
+    ]
+   },
+   "--modify-headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Header modify pattern of the form \"[/flow- filter]/header-name/[@]header-value\", where the separator can be any character. The @ allows to provide a file path that is used to read the header value string. An empty header-value removes existing header-name headers. May be passed multiple times.",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--no-anticache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-anticomp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-console-layout-headers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-http2": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-rawtcp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-server": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--no-server-replay-kill-extra": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-server-replay-refresh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-server-replay-reuse": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-show-ignored-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-showhost": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-ssl-insecure": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--no-store-streamed-bodies": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--options": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show all options and their default values",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": false
+   },
+   "--password": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "release/build.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--proxy-port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The port mitmproxy is listening on.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "mitmproxy/platform/windows.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--proxyauth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Require proxy authentication. Format: \"username:pass\", \"any\" to accept any user/pass combination, \"@path\" to use an Apache htpasswd file, or \"ldap[s]:url_server_ld ap[:port]:dn_auth:password:dn_subtree[?search_filter_k ey=...]\" for LDAP authentication.",
+    "metavar": "SPEC"
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Quiet.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": false,
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--rawtcp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable/disable raw TCP connections. TCP connections are enabled by default."
+   },
+   "--rfile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read flows from file.",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--save-stream-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Stream flows to file as they arrive. Prefix path with + to append. The full path can use python strftime() formating, missing directories are created as needed. A new file is opened every time the formatted string changes.",
+    "aliases": [
+     "-w"
+    ]
+   },
+   "--scripts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Execute a script. May be passed multiple times.",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--server": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Start a proxy server. Enabled by default."
+   },
+   "--server-replay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Replay server responses from a saved file. May be passed multiple times.",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--server-replay-extra": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Behaviour for extra requests during replay for which no replayable response was found. Setting a numeric string value will return an empty HTTP response with the respective status code."
+   },
+   "--server-replay-kill-extra": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Kill extra requests during replay (for which no replayable response was found).[Deprecated, prefer to use server_replay_extra='kill']"
+   },
+   "--server-replay-refresh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Refresh server replay responses by adjusting date, expires and last-modified headers, as well as adjusting cookie expiration."
+   },
+   "--server-replay-reuse": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't remove flows from server replay state after use. This makes it possible to replay same response multiple times."
+   },
+   "--set": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Set an option. When the value is omitted, booleans are set to true, strings and integers are set to None (if permitted), and sequences are emptied. Boolean values can be true, false or toggle. Sequences are set using multiple invocations to set for the same option.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--show-ignored-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Record ignored flows in the UI even if we do not perform TLS interception. This option will keep ignored flows' contents in memory, which can greatly increase memory usage. A future release will fix this issue, record ignored flows by default, and remove this option."
+   },
+   "--showhost": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the Host header to construct URLs for display. This option is disabled by default because malicious apps may send misleading host headers to evade your analysis. If this is not a concern, enable this options for better flow display."
+   },
+   "--ssl-insecure": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not verify upstream server SSL/TLS certificates. If this option is enabled, certificate validation is skipped and mitmproxy itself will be vulnerable to TLS interception.",
+    "aliases": [
+     "-k"
+    ]
+   },
+   "--stickyauth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set sticky auth filter. Matched against requests.",
+    "metavar": "FILTER"
+   },
+   "--stickycookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set sticky cookie filter. Matched against requests."
+   },
+   "--store-streamed-bodies": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Store HTTP request and response bodies when streamed (see `stream_large_bodies`). This increases memory consumption, but makes it possible to inspect streamed bodies."
+   },
+   "--tcp-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generic TCP SSL proxy mode for all hosts that match the pattern. Similar to --ignore-hosts, but SSL connections are intercepted. The communication contents are printed to the log in verbose mode. May be passed multiple times.",
+    "metavar": "HOST"
+   },
+   "--team-id": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "release/build.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--upstream-auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Add HTTP Basic authentication to upstream proxy and reverse proxy requests. Format: username:password."
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Increase log verbosity.",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": false,
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show version number and exit",
+    "kind": "option",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py",
+    "takes_value": false
+   },
+   "--view-filter": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Limit the view to matching flows.",
+    "metavar": "FILTER"
+   },
+   "filter_args": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "\n            Filter expression, equivalent to setting both the view_filter\n            and save_stream_filter options.\n        ",
+    "kind": "positional",
+    "first_tag": "10.1.3",
+    "first_date": "2023-11-04T11:02:01Z",
+    "last_tag": "v12.2.3",
+    "last_date": "2026-05-12T13:02:14Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "mitmproxy/tools/cmdline.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-74158ab0",
+    "argv": [
+     "mitmproxy",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py"
+    ],
+    "source": "readme",
+    "path": "docs/src/content/addons/commands.md",
+    "line": 26,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 1770
+   },
+   {
+    "id": "t-readme-6bab69b1",
+    "argv": [
+     "mitmproxy",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "--set",
+     "addheader=true"
+    ],
+    "source": "readme",
+    "path": "docs/src/content/addons/options.md",
+    "line": 61,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 1770
+   },
+   {
+    "id": "t-net-be718cd2",
+    "argv": [
+     "mitmproxy",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 82
+   },
+   {
+    "id": "t-net-5b26edda",
+    "argv": [
+     "mitmproxy",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 75
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "mitmproxy --mode local       # Intercept everything on this machine.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 73,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode local:curl  # Intercept cURL only.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 74,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode local:42    # Intercept PID 42 only.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 75,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode local:!curl  # Intercept everything on this machine but cURL.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 89,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode local:curl,wget    # Intercept cURL and wget only.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 95,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode local:!curl,!wget  # Intercept everything but cURL and wget.",
+    "source": "readme",
+    "path": "docs/src/content/concepts/modes.md",
+    "line": 96,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --set anticomp=true",
+    "source": "readme",
+    "path": "docs/src/content/concepts/options.md",
+    "line": 39,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode transparent --showhost",
+    "source": "readme",
+    "path": "docs/src/content/howto/transparent.md",
+    "line": 85,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "mitmproxy --mode transparent --listen-host 127.0.0.1 --showhost",
+    "source": "readme",
+    "path": "docs/src/content/howto/transparent.md",
+    "line": 158,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "mitmproxy",
+ "repo": "mitmproxy/mitmproxy",
+ "head_sha": "9a9c21ed7489392a941dc5ed3c15af8f5cc5f3e8",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-03T02:17:43.589024+00:00"
+}
