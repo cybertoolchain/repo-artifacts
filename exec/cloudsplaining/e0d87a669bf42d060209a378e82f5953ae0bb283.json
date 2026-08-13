@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:20a8d723e6f96005b46f0e8b819330bcd372def101a9b5b648b6773e9f597de5",
-  "duration_s": 23.08,
-  "log_tail": "#11 11.40 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)\n#11 11.43 Downloading soupsieve-2.9.2-py3-none-any.whl (37 kB)\n#11 11.47 Downloading typing_extensions-4.16.0-py3-none-any.whl (45 kB)\n#11 11.52 Building wheels for collected packages: cloudsplaining\n#11 11.52   Building wheel for cloudsplaining (pyproject.toml): started\n#11 11.85   Building wheel for cloudsplaining (pyproject.toml): finished with status 'done'\n#11 11.85   Created wheel for cloudsplaining: filename=cloudsplaining-0.9.1-py3-none-any.whl size=3725930 sha256=63502bf565fa127c95f815d9ac2835f3ab9476ae879627abe5afd5d8eee16af0\n#11 11.85   Stored in directory: /tmp/pip-ephem-wheel-cache-m1g5ye9z/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 11.85 Successfully built cloudsplaining\n#11 11.90 Installing collected packages: schema, urllib3, typing-extensions, soupsieve, six, pyyaml, orjson, MarkupSafe, jmespath, idna, click, charset_normalizer, certifi, requests, python-dateutil, jinja2, click-option-group, beautifulsoup4, policy-sentry, botocore, s3transfer, boto3, cloudsplaining\n#11 13.05 \n#11 13.05 Successfully installed MarkupSafe-3.0.3 beautifulsoup4-4.15.0 boto3-1.43.70 botocore-1.43.70 certifi-2026.7.22 charset_normalizer-3.5.0 click-8.4.2 click-option-group-0.5.9 cloudsplaining-0.9.1 idna-3.18 jinja2-3.1.6 jmespath-1.1.0 orjson-3.11.9 policy-sentry-0.15.2 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.34.2 s3transfer-0.19.2 schema-0.7.8 six-1.17.0 soupsieve-2.9.2 typing-extensions-4.16.0 urllib3-2.7.0\n#11 DONE 14.0s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.5s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.6s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.111 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.0s done\n#20 exporting manifest sha256:25bfa8f1bdad66b3c1651b64a674fe6936776663b52705835567d8a0fc0fc03f done\n#20 exporting config sha256:9730eaf87cb1b25ac9d1e349124f21b3545bef7329706f28569d1dba35b4c8bc done\n#20 exporting attestation manifest sha256:a88ec12db59d2e7a3a047ade4be8fb33c60b20dd61c9b8ab566a6c4ed2898336 done\n#20 exporting manifest list sha256:20a8d723e6f96005b46f0e8b819330bcd372def101a9b5b648b6773e9f597de5 done\n#20 naming to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4 done\n#20 unpacking to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4\n#20 unpacking to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4 1.0s done\n#20 DONE 4.1s",
+  "image_digest": "sha256:a19e43ebdb62582a1ac92016f4e5aa20a308b8aaf7544c0e25e9f737416b390f",
+  "duration_s": 28.28,
+  "log_tail": "#11 12.82 debconf: unable to initialize frontend: Readline\n#11 12.82 debconf: (This frontend requires a controlling tty.)\n#11 12.82 debconf: falling back to frontend: Teletype\n#11 12.86 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 12.88 Setting up texinfo (6.8-6+b1) ...\n#11 12.91 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 12.99 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 13.1s\n\n#10 [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && (/opt/venv/bin/pip install --no-cache-dir .      || ([ -f requirements.txt ]          && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt))\n#10 13.21 \n#10 13.22 Successfully installed MarkupSafe-3.0.3 beautifulsoup4-4.15.0 boto3-1.43.70 botocore-1.43.70 certifi-2026.7.22 charset_normalizer-3.5.0 click-8.4.2 click-option-group-0.5.9 cloudsplaining-0.9.1 idna-3.18 jinja2-3.1.6 jmespath-1.1.0 orjson-3.11.9 policy-sentry-0.15.2 python-dateutil-2.9.0.post0 pyyaml-6.0.3 requests-2.34.2 s3transfer-0.19.2 schema-0.7.8 six-1.17.0 soupsieve-2.9.2 typing-extensions-4.16.0 urllib3-2.7.0\n#10 DONE 13.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.4s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.6s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.166 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.6s done\n#20 exporting manifest sha256:6db7711365f667d5d48f166c28c7e6a159b1c3d5fbbec562971db9307575f314 done\n#20 exporting config sha256:b4c2dff918809aa0d6766b44f3117093676977055ea3c1df1805630cdeaad96f 0.0s done\n#20 exporting attestation manifest sha256:4d6223a0c716a7e5035c0d1f87b0e9dc036b5f3cb60de614f9e0bb23605dda8f 0.0s done\n#20 exporting manifest list sha256:a19e43ebdb62582a1ac92016f4e5aa20a308b8aaf7544c0e25e9f737416b390f 0.0s done\n#20 naming to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4 done\n#20 unpacking to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4\n#20 unpacking to docker.io/ctk-exec/cloudsplaining:e0d87a669bf4 2.1s done\n#20 DONE 5.8s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\n\n  Cloudsplaining is an AWS IAM Assessment tool that identifies violations of\n  least privilege and generates a risk-prioritized HTML report.\n\nOptions:\n  --version  Show the version and exit.\n  --help     Show this message and exit.\n\nCommands:\n  create-exclusions-file          Creates a YML file to be used as a custom\n                                  exclusions template\n  create-multi-account-config-file\n                                  Creates a YML file to be used for multi-\n                                  account scanning\n  download                        Runs aws iam get-authorization-details on\n                                  all accounts specified in the aws\n                                  credentials file, and stores them in\n                                  account-alias.json\n  expand-policy                   Expand the * Actions in IAM policy files to\n                                  improve readability\n  scan                            Scan a single file containing AWS IAM\n                                  account authorization details and generate\n                                  report on IAM security posture.\n  scan-multi-account              Scan multiple AWS Accounts using a config\n                                  file\n  scan-policy-file                Scan a single policy file to identify\n                                  identify missing resource constraints.\n",
    "stderr": "",
-   "duration_ms": 729,
+   "duration_ms": 849,
    "truncated": false,
    "error": null
   },
@@ -30,7 +30,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining create-exclusions-file [OPTIONS]\n\n  Creates a YML file to be used as a custom exclusions template, so users can\n  fill out the fields without needing to look up the required format.\n\nOptions:\n  -o, --output-file PATH  Relative path to output file where we want to store\n                          the exclusions template.  [required]\n  -v, --verbose\n  --help                  Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 700,
+   "duration_ms": 761,
    "truncated": false,
    "error": null
   },
@@ -43,7 +43,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'exclusions'. Did you mean 'create-exclusions-file'?\n",
-   "duration_ms": 712,
+   "duration_ms": 829,
    "truncated": false,
    "error": null
   },
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining create-multi-account-config-file [OPTIONS]\n\n  Creates a YML file to be used as a multi-account config template, so users\n  can scan many different accounts.\n\nOptions:\n  -o, --output-file PATH  Relative path to output file where we want to store\n                          the multi account config template.  [required]\n  -v, --verbose           Log verbosity level.\n  --help                  Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 722,
+   "duration_ms": 765,
    "truncated": false,
    "error": null
   },
@@ -69,7 +69,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'account'.\n",
-   "duration_ms": 707,
+   "duration_ms": 785,
    "truncated": false,
    "error": null
   },
@@ -82,7 +82,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining download [OPTIONS]\n\n  Runs aws iam get-authorization-details on all accounts specified in the aws\n  credentials file, and stores them in account-alias.json\n\nOptions:\n  -p, --profile TEXT              Specify 'all' to authenticate to AWS and\n                                  scan from *all* AWS credentials profiles.\n                                  Specify a non-default profile here. Defaults\n                                  to the 'default' profile.\n  -o, --output PATH               Path to store the output. Defaults to\n                                  current directory.\n  --include-non-default-policy-versions\n                                  When downloading AWS managed policy\n                                  documents, also include the non-default\n                                  policy versions. Note that this will\n                                  dramatically increase the size of the\n                                  downloaded file.\n  -v, --verbose                   Log verbosity level.\n  --help                          Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 713,
+   "duration_ms": 746,
    "truncated": false,
    "error": null
   },
@@ -95,7 +95,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'all'.\n",
-   "duration_ms": 697,
+   "duration_ms": 729,
    "truncated": false,
    "error": null
   },
@@ -108,7 +108,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'credentials'.\n",
-   "duration_ms": 711,
+   "duration_ms": 750,
    "truncated": false,
    "error": null
   },
@@ -121,7 +121,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining expand-policy [OPTIONS]\n\n  Expand the * Actions in IAM policy files to improve readability\n\nOptions:\n  -i, --input-file PATH  Path to the JSON policy file.  [required]\n  -v, --verbose          Log verbosity level.\n  --help                 Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 689,
+   "duration_ms": 732,
    "truncated": false,
    "error": null
   },
@@ -134,7 +134,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'improve'.\n",
-   "duration_ms": 710,
+   "duration_ms": 760,
    "truncated": false,
    "error": null
   },
@@ -147,7 +147,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining scan [OPTIONS]\n\n  Given the path to account authorization details files and the exclusions\n  config file, scan all inline and managed policies in the account to identify\n  actions that do not leverage resource constraints.\n\nOptions:\n  -i, --input-file PATH           Path of IAM account authorization details\n                                  file  [required]\n  -e, --exclusions-file PATH      A yaml file containing a list of policy\n                                  names to exclude from the scan.\n  -o, --output PATH               Output directory.\n  -s, --skip-open-report          Don't open the HTML report in the web\n                                  browser after creating. This helps when\n                                  running the report in automation.\n  -m, --minimize                  Reduce the size of the HTML Report by\n                                  pulling the Cloudsplaining Javascript code\n                                  over the internet.\n  -aR, --flag-all-risky-actions   Flag all risky actions, regardless of\n                                  whether resource ARN constraints or\n                                  conditions are used.\n  -v, --verbose                   Log verbosity level.\n  -f, --filter-severity [critical|high|medium|low|none]\n                                  Filter the severity of findings to be\n                                  reported.\n  -t, --flag-trust-policies       Flag risky trust policies in roles.\n  --help                          Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 731,
+   "duration_ms": 721,
    "truncated": false,
    "error": null
   },
@@ -160,7 +160,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'report'.\n",
-   "duration_ms": 722,
+   "duration_ms": 735,
    "truncated": false,
    "error": null
   },
@@ -173,7 +173,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining scan-multi-account [OPTIONS]\n\n  Scan multiple accounts via AssumeRole\n\nOptions:\n  -c, --config PATH               Path of the multi-account config file\n                                  [required]\n  -p, --profile TEXT              Specify the AWS IAM profile\n  -r, --role-name TEXT            The name of the IAM role to assume in target\n                                  accounts. Must be the same name in all\n                                  target accounts.  [required]\n  -e, --exclusions-file PATH      A yaml file containing a list of policy\n                                  names to exclude from the scan.\n  Output Target Options: \n    -o, --output-directory PATH   Output directory. Supply this and/or\n                                  --bucket.\n    -b, --output-bucket TEXT      The S3 bucket to save the results. Supply\n                                  this and/or --output-directory.\n  Other Options: \n    -w, --write-data-file         Save the cloudsplaining JSON-formatted data\n                                  results.\n  -aR, --flag-all-risky-actions   Flag all risky actions, regardless of\n                                  whether resource ARN constraints or\n                                  conditions are used.\n  -v, --verbose                   Log verbosity level.\n  -f, --filter-severity [critical|high|medium|low|none]\n                                  Filter the severity of findings to be\n                                  reported.\n  -t, --flag-trust-policies       Flag risky trust policies in roles.\n  --help                          Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 656,
+   "duration_ms": 745,
    "truncated": false,
    "error": null
   },
@@ -186,7 +186,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'file'.\n",
-   "duration_ms": 756,
+   "duration_ms": 773,
    "truncated": false,
    "error": null
   },
@@ -199,7 +199,7 @@
    "exit_code": 0,
    "stdout": "Usage: cloudsplaining scan-policy-file [OPTIONS]\n\n  Scan a single policy file to identify missing resource constraints.\n\nOptions:\n  -i, --input-file TEXT           Path of the IAM policy file to evaluate.\n  -e, --exclusions-file PATH      A yaml file containing a list of actions to\n                                  ignore when scanning.\n  --high-priority-only            If issues are found, only print the high\n                                  priority risks (Resource Exposure, Privilege\n                                  Escalation, Data Exfiltration). This can\n                                  help with prioritization.\n  -aR, --flag-all-risky-actions   Flag all risky actions, regardless of\n                                  whether resource ARN constraints or\n                                  conditions are used.\n  -v, --verbose\n  -f, --filter-severity [critical|high|medium|low|none]\n                                  Filter the severity of findings to be\n                                  reported.\n  --help                          Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 740,
+   "duration_ms": 741,
    "truncated": false,
    "error": null
   },
@@ -212,7 +212,7 @@
    "exit_code": 2,
    "stdout": "",
    "stderr": "Usage: cloudsplaining [OPTIONS] COMMAND [ARGS]...\nTry 'cloudsplaining --help' for help.\n\nError: No such command 'identify'.\n",
-   "duration_ms": 769,
+   "duration_ms": 764,
    "truncated": false,
    "error": null
   },
@@ -224,7 +224,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for cloudsplaining\n",
-   "duration_ms": 5,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -239,7 +239,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'cloudsplaining' in node '(dir)Top'\n",
-   "duration_ms": 3,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -259,6 +259,12 @@
   }
  ],
  "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "cloudsplaining",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
  "examples": [],
  "help": {
   "flags_seen": {
@@ -982,6 +988,6 @@
  "repo": "salesforce/cloudsplaining",
  "head_sha": "e0d87a669bf42d060209a378e82f5953ae0bb283",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-13T06:52:16.464790+00:00"
+ "analyzer_version": "12",
+ "generated_at": "2026-08-13T18:51:32.135413+00:00"
 }

@@ -1,0 +1,90 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:38694dd831a6199efa38a7748467f495879c8f4d4dabe778d83d4672289c9813",
+  "duration_s": 37.53,
+  "log_tail": "#10 30.32 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#10 30.32 debconf: falling back to frontend: Readline\n#10 30.32 debconf: unable to initialize frontend: Readline\n#10 30.32 debconf: (This frontend requires a controlling tty.)\n#10 30.32 debconf: falling back to frontend: Teletype\n#10 30.34 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#10 30.36 Setting up texinfo (6.8-6+b1) ...\n#10 30.36 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#10 30.37 Processing triggers for install-info (6.8-6+b1) ...\n#10 DONE 30.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.8s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.265 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.2s done\n#20 exporting manifest sha256:bad9882bb0e02f3da1d6a2d5f0d742337125fbdc9c11bfe1a98aeff255a6317b\n#20 exporting manifest sha256:bad9882bb0e02f3da1d6a2d5f0d742337125fbdc9c11bfe1a98aeff255a6317b 0.0s done\n#20 exporting config sha256:a8195ccefa68506017a0c977f0cadba76fab8fac06eeea17031979b9db12c903 0.0s done\n#20 exporting attestation manifest sha256:751a0837960f730b396196229785ca39607c4adca4c64c77959831a31b994ad7\n#20 exporting attestation manifest sha256:751a0837960f730b396196229785ca39607c4adca4c64c77959831a31b994ad7 0.1s done\n#20 exporting manifest list sha256:38694dd831a6199efa38a7748467f495879c8f4d4dabe778d83d4672289c9813 0.0s done\n#20 naming to docker.io/ctk-exec/pipx:442568f431ce\n#20 naming to docker.io/ctk-exec/pipx:442568f431ce done\n#20 unpacking to docker.io/ctk-exec/pipx:442568f431ce\n#20 unpacking to docker.io/ctk-exec/pipx:442568f431ce 1.7s done\n#20 DONE 5.1s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "activate-global-python-argcomplete",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: activate-global-python-argcomplete [-h] [-y] [--dest DEST] [--user]\n\nActivate the generic bash-completion script or zsh completion autoload function for the argcomplete module.\n\noptions:\n  -h, --help   show this help message and exit\n  -y, --yes    automatically answer yes for all questions\n  --dest DEST  Specify the shell completion modules directory to install into,\n               or \"-\" for stdout\n  --user       Install into user directory\n",
+   "stderr": "",
+   "duration_ms": 107,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "activate-global-python-argcomplete"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for activate-global-python-argcomplete\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "activate-global-python-argcomplete"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'activate-global-python-argcomplete' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "activate-global-python-argcomplete",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "usage: activate-global-python-argcomplete [-h] [-y] [--dest DEST] [--user]\nactivate-global-python-argcomplete: error: unrecognized arguments: /opt/ctk/fixtures/source-corpus\n",
+   "duration_ms": 103,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-2b0f56ac",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "activate-global-python-argcomplete",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "python-pipx",
+ "repo": "pypa/pipx",
+ "head_sha": "442568f431ce39f9f4cc09787ddbe4a558ac4659",
+ "analyzer": "exec",
+ "analyzer_version": "12",
+ "generated_at": "2026-08-13T18:26:36.406978+00:00"
+}

@@ -1,0 +1,354 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:3b8a376748c6a13783052082eb458555c9557e845ed76517c0ca9adb06d35859",
+  "duration_s": 172.09,
+  "log_tail": "#11 12.98 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 13.05 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 13.2s\n\n#10 [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && (/opt/venv/bin/pip install --no-cache-dir .      || ([ -f requirements.txt ]          && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt))\n#10 126.2   Building wheel for openshell (pyproject.toml): finished with status 'done'\n#10 126.2   Created wheel for openshell: filename=openshell-0.0.0-py3-none-linux_aarch64.whl size=8608410 sha256=e1dc156dcc06df6a7fa7da33c0b1bca347fbd059d87dfea1b31764d5542e78f9\n#10 126.2   Stored in directory: /tmp/pip-ephem-wheel-cache-ta40mqjr/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 126.2 Successfully built openshell\n#10 126.2 Installing collected packages: typing-extensions, protobuf, idna, h11, cloudpickle, certifi, httpcore, grpcio, anyio, httpx, openshell\n#10 126.7 \n#10 126.7 Successfully installed anyio-4.14.2 certifi-2026.7.22 cloudpickle-3.1.2 grpcio-1.83.0 h11-0.16.0 httpcore-1.0.9 httpx-0.28.1 idna-3.18 openshell-0.0.0 protobuf-7.35.1 typing-extensions-4.16.0\n#10 DONE 126.8s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.8s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 11.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.193 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 17.3s done\n#20 exporting manifest sha256:c24d04e1b3949649eee4c8949fc7f3e02550b2d8370867cf185e98b566a8e8de 0.0s done\n#20 exporting config sha256:0c45f2fdee300028a07e7a09239d8055c42fb9dba0f4183e73c793478f5f8cd0 0.0s done\n#20 exporting attestation manifest sha256:5ae02482113a11ea97d478499973cf492bf19d1a53b98f970a45b75d2e510195 0.0s done\n#20 exporting manifest list sha256:3b8a376748c6a13783052082eb458555c9557e845ed76517c0ca9adb06d35859 0.0s done\n#20 naming to docker.io/ctk-exec/openshell:0f8fad23c471 done\n#20 unpacking to docker.io/ctk-exec/openshell:0f8fad23c471\n#20 unpacking to docker.io/ctk-exec/openshell:0f8fad23c471 4.5s done\n#20 DONE 21.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "httpx",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "The httpx command line client could not run because the required dependencies were not installed.\nMake sure you've installed everything with: pip install 'httpx[cli]'\n",
+   "stderr": "",
+   "duration_ms": 337,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "httpx",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "The httpx command line client could not run because the required dependencies were not installed.\nMake sure you've installed everything with: pip install 'httpx[cli]'\n",
+   "stderr": "",
+   "duration_ms": 227,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "httpx",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "The httpx command line client could not run because the required dependencies were not installed.\nMake sure you've installed everything with: pip install 'httpx[cli]'\n",
+   "stderr": "",
+   "duration_ms": 221,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "httpx",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "The httpx command line client could not run because the required dependencies were not installed.\nMake sure you've installed everything with: pip install 'httpx[cli]'\n",
+   "stderr": "",
+   "duration_ms": 218,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "httpx"
+   ],
+   "exit_code": 1,
+   "stdout": "The httpx command line client could not run because the required dependencies were not installed.\nMake sure you've installed everything with: pip install 'httpx[cli]'\n",
+   "stderr": "",
+   "duration_ms": 220,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "idna",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: python -m idna [-h] [-e | -d] [--strict] [--version] [domain ...]\n\nConvert a domain name between its Unicode (U-label) and ASCII-compatible\n(A-label) forms. With no mode flag, the direction is chosen from the first\ninput \u2014 if it contains an xn-- label the stream is decoded, otherwise it is\nencoded \u2014 and the same mode is applied to every remaining input. UTS #46\nmapping is applied by default; pass --strict to disable it. When no domains\nare given on the command line and stdin is piped, one domain per line is read\nfrom stdin.\n\npositional arguments:\n  domain        One or more domain names to convert. Omit to read from stdin.\n\noptions:\n  -h, --help    show this help message and exit\n  -e, --encode  Encode the input to its ASCII A-label form.\n  -d, --decode  Decode the input from its ASCII A-label form.\n  --strict      Disable the default UTS #46 mapping and apply IDNA 2008 rules\n                verbatim.\n  --version     show program's version number and exit\n",
+   "stderr": "",
+   "duration_ms": 81,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "idna"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for idna\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "idna"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'idna' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "create",
+    "--from",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-72886f93",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "create",
+    "--from",
+    "/opt/ctk/fixtures/source-corpus/Dockerfile",
+    "--forward",
+    "8080",
+    "--",
+    "python",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-cb07322b",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "gateway",
+    "info"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No gateway configured.\n  \u2502 Register a gateway with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-6f51ce63",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "openshell",
+    "provider",
+    "list"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-76e4486e",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "openshell",
+    "rule",
+    "get",
+    "advisor-ctf"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-6b2e40a9",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "openshell",
+    "rule",
+    "approve",
+    "advisor-ctf",
+    "--chunk-id",
+    "ID"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-b8f6612e",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "openshell",
+    "rule",
+    "approve-all",
+    "advisor-ctf"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-c27a1270",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "create",
+    "--",
+    "bash",
+    "-c",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-f4a36544",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "upload",
+    "my-sandbox",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-0e97da1f",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "upload",
+    "my-sandbox",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-bfb7202e",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "download",
+    "my-sandbox",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-9241aec1",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "openshell",
+    "sandbox",
+    "download",
+    "my-sandbox",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Error:   \u00d7 No active gateway.\n  \u2502 Set one with: openshell gateway select <name>\n  \u2502 Or register one with: openshell gateway add <endpoint>\n\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-3b9a4d17",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 20,
+   "binary": "idna",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "OpenShell",
+ "repo": "NVIDIA/OpenShell",
+ "head_sha": "0f8fad23c4712afc1d4a7b07a06d635b030e9521",
+ "analyzer": "exec",
+ "analyzer_version": "12",
+ "generated_at": "2026-08-13T18:56:38.112337+00:00"
+}

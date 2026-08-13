@@ -1,0 +1,121 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:17afa1b09bd6928f35aaac05c44dbb9b4ed7b72e0430b9cf00e9301c7db2216f",
+  "duration_s": 68.4,
+  "log_tail": "#11 8.967 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 8.967 debconf: falling back to frontend: Readline\n#11 8.970 debconf: unable to initialize frontend: Readline\n#11 8.970 debconf: (This frontend requires a controlling tty.)\n#11 8.970 debconf: falling back to frontend: Teletype\n#11 8.997 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 9.013 Setting up texinfo (6.8-6+b1) ...\n#11 9.025 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 9.033 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 9.3s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.5s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 2.3s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.164 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 8.8s done\n#21 exporting manifest sha256:63686d3bc93a70ef3df71a8069fde0504b772096553557b03078d53ef11ba7f1 done\n#21 exporting config sha256:64fcdb516c49964051077a4c2a622e0cf1dcba9780d79f0b8a136e8d4ae809e9 done\n#21 exporting attestation manifest sha256:2f98b92ca8930f2cc6f1d3e97ae590ba3960a4025d5b248dbcb1700356e4c488 done\n#21 exporting manifest list sha256:17afa1b09bd6928f35aaac05c44dbb9b4ed7b72e0430b9cf00e9301c7db2216f done\n#21 naming to docker.io/ctk-exec/ileapp:e9c662c01dd4 done\n#21 unpacking to docker.io/ctk-exec/ileapp:e9c662c01dd4\n#21 unpacking to docker.io/ctk-exec/ileapp:e9c662c01dd4 3.2s done\n#21 DONE 12.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "2to3",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: 2to3 [options] file|dir ...\n\nOptions:\n  -h, --help            show this help message and exit\n  -d, --doctests_only   Fix up doctests only\n  -f FIX, --fix=FIX     Each FIX specifies a transformation; default: all\n  -j PROCESSES, --processes=PROCESSES\n                        Run 2to3 concurrently\n  -x NOFIX, --nofix=NOFIX\n                        Prevent a transformation from being run\n  -l, --list-fixes      List available transformations\n  -p, --print-function  Modify the grammar so that print() is a function\n  -e, --exec-function   Modify the grammar so that exec() is a function\n  -v, --verbose         More verbose logging\n  --no-diffs            Don't show diffs of the refactoring\n  -w, --write           Write back modified files\n  -n, --nobackups       Don't write backups for modified files\n  -o OUTPUT_DIR, --output-dir=OUTPUT_DIR\n                        Put output files in this directory instead of\n                        overwriting the input files.  Requires -n.\n  -W, --write-unchanged-files\n                        Also write files even if no changes were required\n                        (useful with --output-dir); implies -w.\n  --add-suffix=ADD_SUFFIX\n                        Append this string to all output filenames. Requires\n                        -n if non-empty.  ex: --add-suffix='3' will generate\n                        .py3 files.\n",
+   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\n",
+   "duration_ms": 159,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "2to3"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "No manual entry for 2to3\n(Alternatively, what manual page do you want from section 2to3?)\nFor example, try 'man man'.\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "2to3"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item '2to3' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "ileapp",
+    "-c",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "-------------------------------------------------------\nWelcome to iLEAPP Profile or Case Data file creation\n\nYou can type:\n   - '1' to create an iLEAPP Profile file (.ilprofile)\n   - '2' to create a LEAPP Case Data file (.lcasedata)\n   - 'q' to quit\n\nPlease enter your choice: ",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/ileapp.py\", line 607, in <module>\n    main()\n  File \"/src/ileapp.py\", line 270, in main\n    create_choice = input('Please enter your choice: ').lower()\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nEOFError: EOF when reading a line\n",
+   "duration_ms": 1295,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-03d4b541",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "2to3",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\nRefactoringTool: Skipping optional fixer: buffer\nRefactoringTool: Skipping optional fixer: idioms\nRefactoringTool: Skipping optional fixer: set_literal\nRefactoringTool: Skipping optional fixer: ws_comma\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/settings.py\nRefactoringTool: Files that need to be modified:\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/settings.py\n",
+   "duration_ms": 244,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-a4bc95a0",
+   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "2to3",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [
+  {
+   "id": "t-surface-a4bc95a0",
+   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus",
+   "argv": [
+    "2to3",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "",
+   "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\nRefactoringTool: Skipping optional fixer: buffer\nRefactoringTool: Skipping optional fixer: idioms\nRefactoringTool: Skipping optional fixer: set_literal\nRefactoringTool: Skipping optional fixer: ws_comma\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/settings.py\nRefactoringTool: Files that need to be modified:\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/settings.py\n",
+   "exit_code": 0,
+   "duration_ms": 244,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "iLEAPP",
+ "repo": "abrignoni/iLEAPP",
+ "head_sha": "e9c662c01dd47ed3f9a278bc09bc441956569b73",
+ "analyzer": "exec",
+ "analyzer_version": "12",
+ "generated_at": "2026-08-13T18:30:39.057712+00:00"
+}

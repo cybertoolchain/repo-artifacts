@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:6575ca889807e46a68c226c751208788790620c09b048952a782bc6dfd60702b",
-  "duration_s": 100.94,
-  "log_tail": "#11 68.79 Downloading charset_normalizer-3.5.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (237 kB)\n#11 68.91 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#11 68.98 Downloading uc_micro_py-2.0.0-py3-none-any.whl (6.4 kB)\n#11 69.20 Building wheels for collected packages: cisco-ai-skill-scanner\n#11 69.20   Building wheel for cisco-ai-skill-scanner (pyproject.toml): started\n#11 69.23   Building wheel for cisco-ai-skill-scanner (pyproject.toml): finished with status 'done'\n#11 69.23   Created wheel for cisco-ai-skill-scanner: filename=cisco_ai_skill_scanner-0+unknown.ctk-py3-none-any.whl size=875430 sha256=9b746d6c608ecae88c900e5279afb0ada4c545a926c1c7d2f0c3555358651c8c\n#11 69.23   Stored in directory: /tmp/pip-ephem-wheel-cache-s4hv_8th/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 69.23 Successfully built cisco-ai-skill-scanner\n#11 69.40 Installing collected packages: flatbuffers, easygui, confusable-homoglyphs, zipp, yara-x, websockets, uvloop, urllib3, uc-micro-py, typing-extensions, tqdm, tabulate, sniffio, rpds-py, regex, pyyaml, python-multipart, python-dotenv, pyparsing, pygments, pycparser, protobuf, propcache, platformdirs, pdfid, packaging, olefile, numpy, multidict, mdurl, MarkupSafe, jiter, idna, httptools, hf-xet, h11, fsspec, frozenlist, filelock, fastuuid, docstring-parser, distro, colorclass, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, aiohappyeyeballs, yarl, uvicorn, typing-inspection, requests, referencing, python-frontmatter, pydantic-core, onnxruntime, markdown-it-py, linkify-it-py, jinja2, importlib-metadata, httpcore, cffi, anyio, aiosignal, watchfiles, tiktoken, starlette, rich, pydantic, mdit-py-plugins, magika, jsonschema-specifications, httpx, cryptography, aiohttp, textual, pydantic-settings, openai, msoffcrypto-tool, jsonschema, huggingface-hub, fastapi, anthropic, tokenizers, litellm, pcodedmp, oletools, cisco-ai-skill-scanner\n#11 79.16 \n#11 79.16 Successfully installed MarkupSafe-3.0.3 aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 annotated-doc-0.0.5 annotated-types-0.8.0 anthropic-0.121.0 anyio-4.14.2 attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 cisco-ai-skill-scanner-0+unknown.ctk click-8.4.2 colorclass-2.2.2 confusable-homoglyphs-3.3.1 cryptography-50.0.0 distro-1.9.0 docstring-parser-0.18.0 easygui-0.98.3 fastapi-0.141.1 fastuuid-0.14.0 filelock-3.32.2 flatbuffers-25.12.19 frozenlist-1.8.0 fsspec-2026.7.0 h11-0.16.0 hf-xet-1.6.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 huggingface-hub-1.27.0 idna-3.18 importlib-metadata-8.9.0 jinja2-3.1.6 jiter-0.16.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 linkify-it-py-2.1.0 litellm-1.96.2 magika-1.0.3 markdown-it-py-4.2.0 mdit-py-plugins-0.6.1 mdurl-0.1.2 msoffcrypto-tool-6.0.0 multidict-6.7.1 numpy-2.5.2 olefile-0.47 oletools-0.60.2 onnxruntime-1.28.0 openai-2.54.0 packaging-26.3 pcodedmp-1.2.6 pdfid-1.1.3 platformdirs-4.11.2 propcache-0.5.2 protobuf-7.35.1 pycparser-3.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.15.0 pygments-2.20.0 pyparsing-3.3.2 python-dotenv-1.2.2 python-frontmatter-1.3.0 python-multipart-0.0.32 pyyaml-6.0.3 referencing-0.37.0 regex-2026.7.19 requests-2.34.2 rich-14.3.4 rpds-py-2026.6.3 sniffio-1.3.1 starlette-1.6.0 tabulate-0.10.0 textual-7.5.0 tiktoken-0.13.0 tokenizers-0.23.1 tqdm-4.70.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uc-micro-py-2.0.0 urllib3-2.7.0 uvicorn-0.52.1 uvloop-0.22.1 watchfiles-1.2.0 websockets-17.0.1 yara-x-1.19.0 yarl-1.24.5 zipp-4.1.0\n#11 DONE 79.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 5.0s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.138 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 9.2s done\n#20 exporting manifest sha256:7be314224ce265731a9ec9f4fbf09a68c9aba9b78d72560b4d002ff45326aa6e done\n#20 exporting config sha256:0d12fdf35e620a193af99f0e34327e7597de2d4bc2c187133928c9b4bc27564a done\n#20 exporting attestation manifest sha256:416568ae135b79b1da57dfad12c29bbdcf76cbeba0dc38d2528827fea4a24646 0.0s done\n#20 exporting manifest list sha256:6575ca889807e46a68c226c751208788790620c09b048952a782bc6dfd60702b done\n#20 naming to docker.io/ctk-exec/skill-scanner:48f59347a54b done\n#20 unpacking to docker.io/ctk-exec/skill-scanner:48f59347a54b\n#20 unpacking to docker.io/ctk-exec/skill-scanner:48f59347a54b 2.8s done\n#20 DONE 12.1s",
+  "image_digest": "sha256:566fb67da6824cd63d8fc780276b9c59dfbd9fd57df759bdd593eafe587adb16",
+  "duration_s": 62.46,
+  "log_tail": "#10 35.03 Downloading charset_normalizer-3.5.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (237 kB)\n#10 35.10 Downloading urllib3-2.7.0-py3-none-any.whl (131 kB)\n#10 35.15 Downloading uc_micro_py-2.0.0-py3-none-any.whl (6.4 kB)\n#10 35.35 Building wheels for collected packages: cisco-ai-skill-scanner\n#10 35.35   Building wheel for cisco-ai-skill-scanner (pyproject.toml): started\n#10 35.37   Building wheel for cisco-ai-skill-scanner (pyproject.toml): finished with status 'done'\n#10 35.37   Created wheel for cisco-ai-skill-scanner: filename=cisco_ai_skill_scanner-0+unknown.ctk-py3-none-any.whl size=875430 sha256=9b746d6c608ecae88c900e5279afb0ada4c545a926c1c7d2f0c3555358651c8c\n#10 35.37   Stored in directory: /tmp/pip-ephem-wheel-cache-_hj_1zrv/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 35.37 Successfully built cisco-ai-skill-scanner\n#10 35.53 Installing collected packages: flatbuffers, easygui, confusable-homoglyphs, zipp, yara-x, websockets, uvloop, urllib3, uc-micro-py, typing-extensions, tqdm, tabulate, sniffio, rpds-py, regex, pyyaml, python-multipart, python-dotenv, pyparsing, pygments, pycparser, protobuf, propcache, platformdirs, pdfid, packaging, olefile, numpy, multidict, mdurl, MarkupSafe, jiter, idna, httptools, hf-xet, h11, fsspec, frozenlist, filelock, fastuuid, docstring-parser, distro, colorclass, click, charset_normalizer, certifi, attrs, annotated-types, annotated-doc, aiohappyeyeballs, yarl, uvicorn, typing-inspection, requests, referencing, python-frontmatter, pydantic-core, onnxruntime, markdown-it-py, linkify-it-py, jinja2, importlib-metadata, httpcore, cffi, anyio, aiosignal, watchfiles, tiktoken, starlette, rich, pydantic, mdit-py-plugins, magika, jsonschema-specifications, httpx, cryptography, aiohttp, textual, pydantic-settings, openai, msoffcrypto-tool, jsonschema, huggingface-hub, fastapi, anthropic, tokenizers, litellm, pcodedmp, oletools, cisco-ai-skill-scanner\n#10 45.38 \n#10 45.38 Successfully installed MarkupSafe-3.0.3 aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 annotated-doc-0.0.5 annotated-types-0.8.0 anthropic-0.121.0 anyio-4.14.2 attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 cisco-ai-skill-scanner-0+unknown.ctk click-8.4.2 colorclass-2.2.2 confusable-homoglyphs-3.3.1 cryptography-50.0.0 distro-1.9.0 docstring-parser-0.18.0 easygui-0.98.3 fastapi-0.141.1 fastuuid-0.14.0 filelock-3.32.3 flatbuffers-25.12.19 frozenlist-1.8.0 fsspec-2026.7.0 h11-0.16.0 hf-xet-1.6.0 httpcore-1.0.9 httptools-0.8.0 httpx-0.28.1 huggingface-hub-1.27.0 idna-3.18 importlib-metadata-8.9.0 jinja2-3.1.6 jiter-0.16.0 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 linkify-it-py-2.1.0 litellm-1.96.2 magika-1.0.3 markdown-it-py-4.2.0 mdit-py-plugins-0.6.1 mdurl-0.1.2 msoffcrypto-tool-6.0.0 multidict-6.7.1 numpy-2.5.2 olefile-0.47 oletools-0.60.2 onnxruntime-1.28.0 openai-2.54.0 packaging-26.3 pcodedmp-1.2.6 pdfid-1.1.3 platformdirs-4.11.2 propcache-0.5.2 protobuf-7.35.1 pycparser-3.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.15.0 pygments-2.20.0 pyparsing-3.3.2 python-dotenv-1.2.2 python-frontmatter-1.3.0 python-multipart-0.0.32 pyyaml-6.0.3 referencing-0.37.0 regex-2026.7.19 requests-2.34.2 rich-14.3.4 rpds-py-2026.6.3 sniffio-1.3.1 starlette-1.6.0 tabulate-0.10.0 textual-7.5.0 tiktoken-0.13.0 tokenizers-0.23.1 tqdm-4.70.0 typing-extensions-4.16.0 typing-inspection-0.4.4 uc-micro-py-2.0.0 urllib3-2.7.0 uvicorn-0.52.3 uvloop-0.22.1 watchfiles-1.2.0 websockets-17.0.1 yara-x-1.19.0 yarl-1.24.5 zipp-4.1.0\n#10 DONE 45.8s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.0s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.0s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.168 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 8.8s done\n#20 exporting manifest sha256:66207b53ec472551b621c2b19689be0ad766470cbc2c482cc5a94ab9a9572af8 done\n#20 exporting config sha256:b31714599036f1f826b3d6600a33a81ed4bab071603259a1c92c726ff2bde8da done\n#20 exporting attestation manifest sha256:3a41ee814f47a94588a6eb6b57405c7e2b51066976aeb6909c7f6f5b4f651a4e 0.0s done\n#20 exporting manifest list sha256:566fb67da6824cd63d8fc780276b9c59dfbd9fd57df759bdd593eafe587adb16 done\n#20 naming to docker.io/ctk-exec/skill-scanner:48f59347a54b done\n#20 unpacking to docker.io/ctk-exec/skill-scanner:48f59347a54b\n#20 unpacking to docker.io/ctk-exec/skill-scanner:48f59347a54b 2.4s done\n#20 DONE 11.2s",
   "error": null,
   "timed_out": false
  },
@@ -16,8 +16,8 @@
    ],
    "exit_code": 0,
    "stdout": "usage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\n\nSkill Scanner - Security scanner for agent skills packages\n\npositional arguments:\n  {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                        Command to execute\n    scan                Scan a single skill package\n    scan-all            Scan multiple skill packages\n    scan-repo           Clone and scan a GitHub repository for skills\n    list-analyzers      List available analyzers\n    validate-rules      Validate rule signatures\n    generate-policy     Generate a default scan policy YAML\n    configure-policy    Interactive TUI to build a custom scan policy\n    interactive         Launch the interactive scan wizard\n\noptions:\n  -h, --help            show this help message and exit\n  --version, -V         show program's version number and exit\n\nExamples:\n  skill-scanner scan /path/to/skill\n  skill-scanner scan /path/to/skill --use-behavioral --use-llm\n  skill-scanner scan /path/to/skill --use-llm --enable-meta --format json\n  skill-scanner scan /path/to/skill --format json --verbose\n  skill-scanner scan /path/to/skill --policy strict\n  skill-scanner scan /path/to/skill --format markdown --format sarif --output-sarif report.sarif\n  skill-scanner scan-all /path/to/skills --recursive\n  skill-scanner generate-policy -o my_policy.yaml\n  skill-scanner configure-policy\n  skill-scanner list-analyzers\n        \n",
-   "stderr": "\u001b[92m06:22:19 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\n",
-   "duration_ms": 2609,
+   "stderr": "\u001b[92m18:30:39 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\n",
+   "duration_ms": 2509,
    "truncated": false,
    "error": null
   },
@@ -50,10 +50,111 @@
    "source": "info"
   },
   {
+   "argv": [
+    "skill-scanner",
+    "scan-all",
+    "/opt/ctk/fixtures/source-corpus",
+    "--recursive",
+    "--fail-on-findings"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:41 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nNo skills found to scan.\n",
+   "duration_ms": 2500,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-1d11c0a7",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "skill-scanner",
+    "scan",
+    "/opt/ctk/fixtures/source-corpus",
+    "--policy",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:43 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nError loading policy file: [Errno 21] Is a directory: '/opt/ctk/fixtures/source-corpus'\n",
+   "duration_ms": 2327,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-fc209809",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "skill-scanner",
+    "scan",
+    "/opt/ctk/fixtures/source-corpus",
+    "--policy",
+    "balanced"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:46 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nError loading skill: SKILL.md not found in /opt/ctk/fixtures/source-corpus\n",
+   "duration_ms": 2466,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-cb97a078",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "skill-scanner",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:48 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nusage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\nskill-scanner: error: argument command: invalid choice: '/opt/ctk/fixtures/source-corpus' (choose from scan, scan-all, scan-repo, list-analyzers, validate-rules, generate-policy, configure-policy, interactive)\n",
+   "duration_ms": 2267,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-e68eedd0",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "skill-scanner",
+    "--input",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:50 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nusage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\nskill-scanner: error: argument command: invalid choice: '/opt/ctk/fixtures/source-corpus' (choose from scan, scan-all, scan-repo, list-analyzers, validate-rules, generate-policy, configure-policy, interactive)\n",
+   "duration_ms": 2150,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-6704dbf9",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "skill-scanner",
+    "--custom-rules",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "\u001b[92m18:30:53 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\nusage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\nskill-scanner: error: argument command: invalid choice: '/opt/ctk/fixtures/source-corpus' (choose from scan, scan-all, scan-repo, list-analyzers, validate-rules, generate-policy, configure-policy, interactive)\n",
+   "duration_ms": 2246,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-b62e7902",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 3,
+   "commands_run": 9,
    "binary": "skill-scanner",
    "exit_code": null,
    "stdout": "",
@@ -64,6 +165,20 @@
   }
  ],
  "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "skill-scanner",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "skill-scanner-api",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "skill-scanner-pre-commit",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
  "examples": [],
  "help": {
   "flags_seen": {
@@ -81,14 +196,17 @@
     "-V"
    ]
   },
-  "subcommand_flags": {},
+  "subcommand_flags": {
+   "--input": {},
+   "--custom-rules": {}
+  },
   "subcommands": [],
   "binary": "skill-scanner",
   "ladder_used": "--help",
   "depth": 2,
   "capped": false,
-  "text_sha256": "822ee298b3c518736b31db1ee27b6875cac59ce01d4a16fa77f5fff3b9010544",
-  "text": "usage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\n\nSkill Scanner - Security scanner for agent skills packages\n\npositional arguments:\n  {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                        Command to execute\n    scan                Scan a single skill package\n    scan-all            Scan multiple skill packages\n    scan-repo           Clone and scan a GitHub repository for skills\n    list-analyzers      List available analyzers\n    validate-rules      Validate rule signatures\n    generate-policy     Generate a default scan policy YAML\n    configure-policy    Interactive TUI to build a custom scan policy\n    interactive         Launch the interactive scan wizard\n\noptions:\n  -h, --help            show this help message and exit\n  --version, -V         show program's version number and exit\n\nExamples:\n  skill-scanner scan /path/to/skill\n  skill-scanner scan /path/to/skill --use-behavioral --use-llm\n  skill-scanner scan /path/to/skill --use-llm --enable-meta --format json\n  skill-scanner scan /path/to/skill --format json --verbose\n  skill-scanner scan /path/to/skill --policy strict\n  skill-scanner scan /path/to/skill --format markdown --format sarif --output-sarif report.sarif\n  skill-scanner scan-all /path/to/skills --recursive\n  skill-scanner generate-policy -o my_policy.yaml\n  skill-scanner configure-policy\n  skill-scanner list-analyzers\n        \n\u001b[92m06:22:19 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\n"
+  "text_sha256": "47d26d9f31cb3bb2a172f1dc2ec418bdb1b0f9a616d744f6cdebf6c65f2c37b8",
+  "text": "usage: skill-scanner [-h] [--version]\n                     {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                     ...\n\nSkill Scanner - Security scanner for agent skills packages\n\npositional arguments:\n  {scan,scan-all,scan-repo,list-analyzers,validate-rules,generate-policy,configure-policy,interactive}\n                        Command to execute\n    scan                Scan a single skill package\n    scan-all            Scan multiple skill packages\n    scan-repo           Clone and scan a GitHub repository for skills\n    list-analyzers      List available analyzers\n    validate-rules      Validate rule signatures\n    generate-policy     Generate a default scan policy YAML\n    configure-policy    Interactive TUI to build a custom scan policy\n    interactive         Launch the interactive scan wizard\n\noptions:\n  -h, --help            show this help message and exit\n  --version, -V         show program's version number and exit\n\nExamples:\n  skill-scanner scan /path/to/skill\n  skill-scanner scan /path/to/skill --use-behavioral --use-llm\n  skill-scanner scan /path/to/skill --use-llm --enable-meta --format json\n  skill-scanner scan /path/to/skill --format json --verbose\n  skill-scanner scan /path/to/skill --policy strict\n  skill-scanner scan /path/to/skill --format markdown --format sarif --output-sarif report.sarif\n  skill-scanner scan-all /path/to/skills --recursive\n  skill-scanner generate-policy -o my_policy.yaml\n  skill-scanner configure-policy\n  skill-scanner list-analyzers\n        \n\u001b[92m18:30:39 - LiteLLM:WARNING\u001b[0m: get_model_cost_map.py:289 - LiteLLM: Failed to fetch remote model cost map from https://raw.githubusercontent.com/BerriAI/litellm/main/model_prices_and_context_window.json: [Errno -3] Temporary failure in name resolution. Falling back to local backup.\n"
  },
  "validation": {
   "confirmed": [
@@ -1390,12 +1508,16 @@
     "source_path": "skill_scanner/cli/cli.py"
    }
   },
-  "subcommands": []
+  "subcommands": [],
+  "subcommand_flags": {
+   "--input": {},
+   "--custom-rules": {}
+  }
  },
  "skipped_reason": null,
  "example_trials": {
   "tried": 31,
-  "tried_this_wave": 0,
+  "tried_this_wave": 7,
   "promoted": 0,
   "results": [
    {
@@ -1411,7 +1533,7 @@
     "line": 294,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1431,7 +1553,7 @@
     "line": 124,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 388
    },
@@ -1448,7 +1570,7 @@
     "line": 144,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1468,7 +1590,7 @@
     "line": 169,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1488,7 +1610,7 @@
     "line": 170,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1506,7 +1628,7 @@
     "line": 159,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 331
    },
@@ -1523,7 +1645,7 @@
     "line": 184,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 381
    },
@@ -1541,7 +1663,7 @@
     "line": 185,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 449
    },
@@ -1560,7 +1682,7 @@
     "line": 241,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 611
    },
@@ -1579,7 +1701,7 @@
     "line": 341,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 314
    },
@@ -1600,7 +1722,7 @@
     "line": 153,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1618,7 +1740,7 @@
     "line": 158,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 314
    },
@@ -1639,7 +1761,7 @@
     "line": 185,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 614
    },
@@ -1656,7 +1778,7 @@
     "line": 198,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 314
    },
@@ -1672,7 +1794,7 @@
     "line": 249,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1690,7 +1812,7 @@
     "line": 77,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 447
    },
@@ -1710,7 +1832,7 @@
     "line": 78,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 611
    },
@@ -1729,7 +1851,7 @@
     "line": 79,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1747,7 +1869,7 @@
     "line": 80,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1764,7 +1886,7 @@
     "line": 82,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 314
    },
@@ -1782,7 +1904,7 @@
     "line": 66,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1800,7 +1922,7 @@
     "line": 18,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1818,7 +1940,7 @@
     "line": 19,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 364
    },
@@ -1836,9 +1958,110 @@
     "line": 20,
     "grade": "rejected",
     "reason": "failed-with-error-output",
-    "grader": 2,
+    "grader": 3,
     "exit_code": 1,
     "output_bytes": 377
+   },
+   {
+    "id": "t-readme-1d11c0a7",
+    "argv": [
+     "skill-scanner",
+     "scan-all",
+     "/opt/ctk/fixtures/source-corpus",
+     "--recursive",
+     "--fail-on-findings"
+    ],
+    "source": "readme",
+    "path": "docs/user-guide/cli-usage.md",
+    "line": 33,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 314
+   },
+   {
+    "id": "t-readme-fc209809",
+    "argv": [
+     "skill-scanner",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--policy",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/user-guide/cli-usage.md",
+    "line": 59,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 377
+   },
+   {
+    "id": "t-readme-cb97a078",
+    "argv": [
+     "skill-scanner",
+     "scan",
+     "/opt/ctk/fixtures/source-corpus",
+     "--policy",
+     "balanced"
+    ],
+    "source": "readme",
+    "path": "docs/user-guide/scan-policies-overview.md",
+    "line": 30,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 364
+   },
+   {
+    "id": "t-surface-e68eedd0",
+    "argv": [
+     "skill-scanner",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 684
+   },
+   {
+    "id": "t-surface-6704dbf9",
+    "argv": [
+     "skill-scanner",
+     "--input",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 684
+   },
+   {
+    "id": "t-surface-b62e7902",
+    "argv": [
+     "skill-scanner",
+     "--custom-rules",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 684
    },
    {
     "id": "t-net-2630eb7f",
@@ -1858,107 +2081,6 @@
     "skipped_reason": null,
     "exit_code": 2,
     "output_bytes": 657
-   },
-   {
-    "id": "t-readme-1d11c0a7",
-    "argv": [
-     "skill-scanner",
-     "scan-all",
-     "/opt/ctk/fixtures/source-corpus",
-     "--recursive",
-     "--fail-on-findings"
-    ],
-    "source": "readme",
-    "path": "docs/user-guide/cli-usage.md",
-    "line": 33,
-    "grade": "rejected",
-    "reason": "failed-with-error-output",
-    "grader": 2,
-    "exit_code": 1,
-    "output_bytes": 314
-   },
-   {
-    "id": "t-readme-fc209809",
-    "argv": [
-     "skill-scanner",
-     "scan",
-     "/opt/ctk/fixtures/source-corpus",
-     "--policy",
-     "/opt/ctk/fixtures/source-corpus"
-    ],
-    "source": "readme",
-    "path": "docs/user-guide/cli-usage.md",
-    "line": 59,
-    "grade": "rejected",
-    "reason": "failed-with-error-output",
-    "grader": 2,
-    "exit_code": 1,
-    "output_bytes": 377
-   },
-   {
-    "id": "t-readme-cb97a078",
-    "argv": [
-     "skill-scanner",
-     "scan",
-     "/opt/ctk/fixtures/source-corpus",
-     "--policy",
-     "balanced"
-    ],
-    "source": "readme",
-    "path": "docs/user-guide/scan-policies-overview.md",
-    "line": 30,
-    "grade": "rejected",
-    "reason": "failed-with-error-output",
-    "grader": 2,
-    "exit_code": 1,
-    "output_bytes": 364
-   },
-   {
-    "id": "t-surface-e68eedd0",
-    "argv": [
-     "skill-scanner",
-     "/opt/ctk/fixtures/source-corpus"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "grader": 2,
-    "exit_code": 2,
-    "output_bytes": 684
-   },
-   {
-    "id": "t-surface-6704dbf9",
-    "argv": [
-     "skill-scanner",
-     "--input",
-     "/opt/ctk/fixtures/source-corpus"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "grader": 2,
-    "exit_code": 2,
-    "output_bytes": 684
-   },
-   {
-    "id": "t-surface-b62e7902",
-    "argv": [
-     "skill-scanner",
-     "--custom-rules",
-     "/opt/ctk/fixtures/source-corpus"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "grader": 2,
-    "exit_code": 2,
-    "output_bytes": 684
    }
   ],
   "not_attempted": [
@@ -2104,6 +2226,6 @@
  "repo": "cisco-ai-defense/skill-scanner",
  "head_sha": "48f59347a54b93606dd1e31c41989ebfd0fcc84d",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-13T06:22:21.426212+00:00"
+ "analyzer_version": "12",
+ "generated_at": "2026-08-13T18:31:08.704759+00:00"
 }
