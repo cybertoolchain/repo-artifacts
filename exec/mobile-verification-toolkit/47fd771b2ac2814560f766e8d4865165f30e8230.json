@@ -1,0 +1,398 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:2990dc2b41de9006b16ac6bdd1c4f44235c6d9c7c515fca458ae7ec14a4bdd11",
+  "duration_s": 24.85,
+  "log_tail": "#11 15.14   Building wheel for mvt (pyproject.toml): finished with status 'done'\n#11 15.14   Created wheel for mvt: filename=mvt-2026.7.29-py3-none-any.whl size=227845 sha256=b250fa004d710bd2a5fce146929357ef6485bc4ce16dc948a6dc40acf5bd0683\n#11 15.14   Stored in directory: /tmp/pip-ephem-wheel-cache-g9nsgrtr/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 15.14   Building wheel for adb-shell (pyproject.toml): started\n#11 15.26   Building wheel for adb-shell (pyproject.toml): finished with status 'done'\n#11 15.26   Created wheel for adb-shell: filename=adb_shell-0.4.4-py3-none-any.whl size=54614 sha256=2e8a5f8840024b2898031108eccafcb3d0372f367159d59a9ef0e677ba44cc57\n#11 15.26   Stored in directory: /tmp/pip-ephem-wheel-cache-g9nsgrtr/wheels/b8/58/ca/fe652a6ed39f15ab8dc4440db7521e85f23e9456550ebbb814\n#11 15.26 Successfully built mvt adb-shell\n#11 15.30 Installing collected packages: libusb1, appdirs, urllib3, tzdata, typing-extensions, tld, six, simplejson, PyYAML, python-dotenv, pygments, pycryptodome, pycparser, pyasn1, pyahocorasick, packaging, NSKeyedUnArchiver, mdurl, idna, click, charset_normalizer, certifi, annotated-types, typing-inspection, rsa, requests, python-dateutil, pydantic-core, markdown-it-py, iOSbackup, cffi, rich, pydantic, cryptography, betterproto2, pydantic-settings, adb-shell, mvt\n#11 17.16 \n#11 17.16 Successfully installed NSKeyedUnArchiver-1.5.2 PyYAML-6.0.3 adb-shell-0.4.4 annotated-types-0.8.0 appdirs-1.4.4 betterproto2-0.10.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 click-8.4.2 cryptography-50.0.0 iOSbackup-0.9.925 idna-3.18 libusb1-3.4.0 markdown-it-py-4.2.0 mdurl-0.1.2 mvt-2026.7.29 packaging-26.3 pyahocorasick-2.3.1 pyasn1-0.6.4 pycparser-3.0 pycryptodome-3.23.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-settings-2.15.0 pygments-2.20.0 python-dateutil-2.9.0.post0 python-dotenv-1.2.2 requests-2.34.2 rich-15.0.0 rsa-4.9.1 simplejson-4.1.1 six-1.17.0 tld-0.13.2 typing-extensions-4.16.0 typing-inspection-0.4.4 tzdata-2026.3 urllib3-2.7.0\n#11 DONE 17.3s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.8s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.117 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 2.0s done\n#20 exporting manifest sha256:c190f4f95d88c8252a3119055eca51bdea61688ebf19d45546f488bb66f51cd3 0.0s done\n#20 exporting config sha256:0507bec3a308c1a553227efeaef6ce1436a040b1be15c0dfd09e9f3adb02d662 0.0s done\n#20 exporting attestation manifest sha256:8bd3eee1119445b184486b1117fe5a6a50ec49970ce20ff4e1981d34411c6519 0.0s done\n#20 exporting manifest list sha256:2990dc2b41de9006b16ac6bdd1c4f44235c6d9c7c515fca458ae7ec14a4bdd11\n#20 exporting manifest list sha256:2990dc2b41de9006b16ac6bdd1c4f44235c6d9c7c515fca458ae7ec14a4bdd11 0.0s done\n#20 naming to docker.io/ctk-exec/mvt:47fd771b2ac2 done\n#20 unpacking to docker.io/ctk-exec/mvt:47fd771b2ac2\n#20 unpacking to docker.io/ctk-exec/mvt:47fd771b2ac2 1.5s done\n#20 DONE 3.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "mvt-ios",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 534,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 443,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 389,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 373,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 385,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 389,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 371,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 388,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 388,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-android"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 426,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "cffi-gen-src",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: cffi-gen-src [-h] {exec-python,read-sources} ...\n\nGenerate CFFI C source for extension modules.\n\npositional arguments:\n  {exec-python,read-sources}\n    exec-python         Execute a Python script that defines an FFI object\n    read-sources        Read cdef and C source prelude files that define an\n                        FFI object\n\noptions:\n  -h, --help            show this help message and exit\n",
+   "stderr": "",
+   "duration_ms": 87,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cffi-gen-src"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cffi-gen-src\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cffi-gen-src"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cffi-gen-src' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "completion"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 435,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-cd1bde29",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "completion"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 389,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-78b3c912",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "completion",
+    "bash"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-ios\", line 3, in <module>\n    from mvt.ios import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/ios/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 413,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-26a58fcf",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "completion",
+    "zsh"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 414,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-e27ffdf3",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-androidqf",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 411,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-2a8cc3a9",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-bugreport",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 414,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-9e955779",
+   "title": "From the project's documentation \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-backup",
+    "--output",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 408,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-d3b55e52",
+   "title": "From the project's documentation \u2014 run against binaries, source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-backup",
+    "--backup-password",
+    "password123",
+    "--output",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 411,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-8e49ff17",
+   "title": "From the project's documentation \u2014 run against binaries, source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-androidqf",
+    "--output",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 423,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-2fb526ee",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-intrusion-logs",
+    "--output",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 385,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-8afea5e6",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-intrusion-logs",
+    "--output",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 397,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-a270a5ff",
+   "title": "From the project's documentation \u2014 run against binaries, source-corpus"
+  },
+  {
+   "argv": [
+    "mvt-android",
+    "check-androidqf",
+    "--virustotal",
+    "--delay",
+    "30",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/mvt-android\", line 3, in <module>\n    from mvt.android import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/__init__.py\", line 6, in <module>\n    from .cli import cli\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/android/cli.py\", line 17, in <module>\n    from mvt.common.cmd_check_iocs import CmdCheckIOCS\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/cmd_check_iocs.py\", line 10, in <module>\n    from mvt.common.command import Command\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/command.py\", line 19, in <module>\n    from .config import settings\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 104, in <module>\n    settings = MVTSettings.initialise()\n               ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 97, in initialise\n    settings.save_settings()\n  File \"/opt/venv/lib/python3.12/site-packages/mvt/common/config.py\", line 78, in save_settings\n    os.makedirs(MVT_CONFIG_FOLDER)\n  File \"<frozen os>\", line 215, in makedirs\n  File \"<frozen os>\", line 225, in makedirs\nOSError: [Errno 30] Read-only file system: '/home/ctk/.config'\n",
+   "duration_ms": 397,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-2bd189fa",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 25,
+   "binary": "cffi-gen-src",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "Mobile Verification Toolkit",
+ "repo": "mvt-project/mvt",
+ "head_sha": "47fd771b2ac2814560f766e8d4865165f30e8230",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:47:46.611633+00:00"
+}

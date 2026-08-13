@@ -1,0 +1,193 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:564492b4d5a4b3cf511279ea97e5dd38910fd7aee0f45321c17ef545c6b44da3",
+  "duration_s": 94.03,
+  "log_tail": "#11 60.94   Building wheel for odfpy (pyproject.toml): started\n#11 61.11   Building wheel for odfpy (pyproject.toml): finished with status 'done'\n#11 61.11   Created wheel for odfpy: filename=odfpy-1.4.1-py2.py3-none-any.whl size=160717 sha256=731282313a5710b96aed6243babe4fc9c74500ec1cb13aa50a999262b679c3bc\n#11 61.11   Stored in directory: /tmp/pip-ephem-wheel-cache-tdx803i7/wheels/36/5d/63/8243a7ee78fff0f944d638fd0e66d7278888f5e2285d7346b6\n#11 61.11   Building wheel for twofish (pyproject.toml): started\n#11 61.58   Building wheel for twofish (pyproject.toml): finished with status 'done'\n#11 61.58   Created wheel for twofish: filename=twofish-0.3.0-cp312-cp312-linux_aarch64.whl size=27113 sha256=fca1d25d72ffb4e4ea5f3496c5fe962c14dfef3f6296991a82efc4c397b55355\n#11 61.58   Stored in directory: /tmp/pip-ephem-wheel-cache-tdx803i7/wheels/fa/81/02/abf836d4acb19a3de48f6bfd738cb9bcb762978b835bca2faa\n#11 61.58 Successfully built adscan odfpy twofish\n#11 61.64 Installing collected packages: twofish, pybase62, flatbuffers, XlsxWriter, xlrd, whatthepatch, urllib3, typing-extensions, striprtf, soupsieve, smmap, six, rpmfile, pyyaml, pygments, pycryptodomex, pycparser, pyasn1, protobuf, Pillow, packaging, numpy, mdurl, lxml, javaobj-py3, idna, humanfriendly, et-xmlfile, defusedxml, colorama, charset_normalizer, certifi, base58, sentry-sdk, requests, python-pptx, python-docx, python-dateutil, pyasn1-modules, openpyxl, onnxruntime, odfpy, markdown-it-py, gitdb, cffi, beautifulsoup4, rich, pyjks, pandas, gitpython, cryptography, pdfminer-six, credsweeper, adscan\n#11 69.26 \n#11 69.27 Successfully installed Pillow-12.3.0 XlsxWriter-3.2.9 adscan-11.1.0 base58-2.1.1 beautifulsoup4-4.15.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 colorama-0.4.6 credsweeper-1.15.1 cryptography-50.0.0 defusedxml-0.7.1 et-xmlfile-2.0.0 flatbuffers-25.12.19 gitdb-4.0.12 gitpython-3.1.59 humanfriendly-10.0 idna-3.18 javaobj-py3-0.6.1 lxml-6.1.1 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.5.2 odfpy-1.4.1 onnxruntime-1.28.0 openpyxl-3.1.5 packaging-26.3 pandas-3.0.5 pdfminer-six-20260107 protobuf-7.35.1 pyasn1-0.6.4 pyasn1-modules-0.4.2 pybase62-1.0.0 pycparser-3.0 pycryptodomex-3.23.0 pygments-2.20.0 pyjks-20.0.0 python-dateutil-2.9.0.post0 python-docx-1.2.0 python-pptx-1.0.2 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 rpmfile-2.2.1 sentry-sdk-2.67.1 six-1.17.0 smmap-5.0.3 soupsieve-2.9.2 striprtf-0.0.32 twofish-0.3.0 typing-extensions-4.16.0 urllib3-2.7.0 whatthepatch-1.0.7 xlrd-2.0.2\n#11 DONE 69.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.8s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.7s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.122 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 7.3s done\n#20 exporting manifest sha256:5bc3e94571bf2e23f7a281c4cda448ae91fe8c708322de77feb95f0f5ecb328b 0.0s done\n#20 exporting config sha256:00393cf4003ffdaaf99d13d0fe3858785f50c450b9450177f5cecbbea6d876bd done\n#20 exporting attestation manifest sha256:2746650019586cd3c27a7fef05f4e7e0223ad1015542563e051883f1fce50b7e 0.0s done\n#20 exporting manifest list sha256:564492b4d5a4b3cf511279ea97e5dd38910fd7aee0f45321c17ef545c6b44da3 done\n#20 naming to docker.io/ctk-exec/adscan:090a65db5208 done\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208 2.5s done\n#20 DONE 10.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "adscan",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/adscan\", line 3, in <module>\n    from adscan_launcher.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/cli.py\", line 42, in <module>\n    from adscan_launcher.docker_commands import (\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/docker_commands.py\", line 28, in <module>\n    from adscan_launcher import telemetry\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/telemetry.py\", line 10, in <module>\n    from adscan_core.telemetry import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_core/telemetry.py\", line 1405, in <module>\n    id_dir.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.adscan'\n",
+   "duration_ms": 439,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/adscan\", line 3, in <module>\n    from adscan_launcher.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/cli.py\", line 42, in <module>\n    from adscan_launcher.docker_commands import (\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/docker_commands.py\", line 28, in <module>\n    from adscan_launcher import telemetry\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/telemetry.py\", line 10, in <module>\n    from adscan_core.telemetry import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_core/telemetry.py\", line 1405, in <module>\n    id_dir.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.adscan'\n",
+   "duration_ms": 416,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/adscan\", line 3, in <module>\n    from adscan_launcher.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/cli.py\", line 42, in <module>\n    from adscan_launcher.docker_commands import (\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/docker_commands.py\", line 28, in <module>\n    from adscan_launcher import telemetry\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/telemetry.py\", line 10, in <module>\n    from adscan_core.telemetry import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_core/telemetry.py\", line 1405, in <module>\n    id_dir.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.adscan'\n",
+   "duration_ms": 410,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/adscan\", line 3, in <module>\n    from adscan_launcher.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/cli.py\", line 42, in <module>\n    from adscan_launcher.docker_commands import (\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/docker_commands.py\", line 28, in <module>\n    from adscan_launcher import telemetry\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/telemetry.py\", line 10, in <module>\n    from adscan_core.telemetry import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_core/telemetry.py\", line 1405, in <module>\n    id_dir.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.adscan'\n",
+   "duration_ms": 399,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/adscan\", line 3, in <module>\n    from adscan_launcher.cli import main\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/cli.py\", line 42, in <module>\n    from adscan_launcher.docker_commands import (\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/docker_commands.py\", line 28, in <module>\n    from adscan_launcher import telemetry\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_launcher/telemetry.py\", line 10, in <module>\n    from adscan_core.telemetry import *  # noqa: F403\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/adscan_core/telemetry.py\", line 1405, in <module>\n    id_dir.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.adscan'\n",
+   "duration_ms": 401,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/adscan.py\", line 46, in <module>\n    import netifaces\nModuleNotFoundError: No module named 'netifaces'\n",
+   "duration_ms": 420,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/adscan.py\", line 46, in <module>\n    import netifaces\nModuleNotFoundError: No module named 'netifaces'\n",
+   "duration_ms": 431,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/adscan.py\", line 46, in <module>\n    import netifaces\nModuleNotFoundError: No module named 'netifaces'\n",
+   "duration_ms": 410,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/adscan.py\", line 46, in <module>\n    import netifaces\nModuleNotFoundError: No module named 'netifaces'\n",
+   "duration_ms": 432,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "adscan.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/src/adscan.py\", line 46, in <module>\n    import netifaces\nModuleNotFoundError: No module named 'netifaces'\n",
+   "duration_ms": 430,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "base58",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: base58 [-h] [-d] [-c] [FILE]\n\nBase58 encode or decode FILE, or standard input, to standard output.\n\npositional arguments:\n  FILE\n\noptions:\n  -h, --help    show this help message and exit\n  -d, --decode  decode data\n  -c, --check   append a checksum before encoding\n",
+   "stderr": "",
+   "duration_ms": 90,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "base58"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for base58\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "base58"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'base58' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 13,
+   "binary": "base58",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "adscan",
+ "repo": "ADScanPro/adscan",
+ "head_sha": "090a65db52083081bf527e43a92682cf47658f72",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:05:18.385752+00:00"
+}

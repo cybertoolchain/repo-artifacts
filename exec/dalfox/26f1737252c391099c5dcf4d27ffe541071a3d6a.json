@@ -1,0 +1,4391 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:4f8a2f0c9dd2b618c865bbc97345bf31d88b50b07318c80b6f4e241a1e490e38",
+  "duration_s": 196.46,
+  "log_tail": "#11 56.72 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 56.78 debconf: unable to initialize frontend: Dialog\n#11 56.78 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 56.78 debconf: falling back to frontend: Readline\n#11 56.78 debconf: unable to initialize frontend: Readline\n#11 56.78 debconf: (This frontend requires a controlling tty.)\n#11 56.78 debconf: falling back to frontend: Teletype\n#11 56.82 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 56.85 Setting up texinfo (6.8-6+b1) ...\n#11 56.86 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#11 56.87 Setting up dmsetup (2:1.02.185-2) ...\n#11 56.88 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#11 56.89 Processing triggers for install-info (6.8-6+b1) ...\n#11 56.89 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 DONE 57.0s\n\n#12 [build 5/6] RUN cargo build --release\n#12 190.9     Finished `release` profile [optimized] target(s) in 3m 10s\n#12 DONE 191.0s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.3s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.0s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.168 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.4s done\n#19 exporting manifest sha256:25fd0f2833b732ed0aff738329960a02e942b227f9a75cae752961692123780f done\n#19 exporting config sha256:1d7e791d5dd26ac2dfe4bbe17f8dd56f2a7a3f464586d3f8b3738332f3fce2d6 done\n#19 exporting attestation manifest sha256:2654334fe0c271cb17055c2f29ea9fccf7750edfc485c8592f7168dacb593d1b 0.0s done\n#19 exporting manifest list sha256:4f8a2f0c9dd2b618c865bbc97345bf31d88b50b07318c80b6f4e241a1e490e38 done\n#19 naming to docker.io/ctk-exec/dalfox:26f1737252c3 done\n#19 unpacking to docker.io/ctk-exec/dalfox:26f1737252c3\n#19 unpacking to docker.io/ctk-exec/dalfox:26f1737252c3 0.7s done\n#19 DONE 1.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "dalfox",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nPowerful open-source XSS scanner\n\nUsage: dalfox [COMMAND] [TARGET] <FLAGS>\ne.g., dalfox scan https://dalfox.hahwul.com\n\nCommands:\n  scan     Scan targets for XSS\n  server   Run API/server mode\n  payload  Manage or enumerate payloads\n  mcp      Run MCP stdio server (Model Context Protocol) exposing Dalfox tools\n  help     Print this message or the help of the given subcommand(s)\n\nArguments:\n  [TARGET]...  Targets (when no subcommand is provided, defaults to scan)\n\nOptions:\n      --config <FILE>  Path to a config file (TOML or JSON). Overrides default search path\n      --debug          Enable debug logging (show DBG lines)\n      --no-color       Disable colored output (also respects NO_COLOR env var)\n  -S, --silence        Silence all logs except POC output to STDOUT\n  -h, --help           Print help\n  -V, --version        Print version\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dalfox",
+    "scan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nScan targets for XSS\n\nUsage: dalfox scan [OPTIONS] [TARGET]...\n\nOptions:\n      --config <FILE>\n          Path to a config file (TOML or JSON). Overrides default search path\n\n      --debug\n          Enable debug logging (show DBG lines)\n\n  -h, --help\n          Print help (see a summary with '-h')\n\nINPUT:\n  -i, --input-type <INPUT_TYPE>\n          Input type: auto, url, file, pipe, raw-http, har\n          \n          [default: auto]\n\n      --dedup-urls <MODE>\n          Target deduplication [default: exact]: exact (drop byte-identical URL+method), signature (also collapse URLs that differ only in parameter values \u2014 keys on method+host+path+parameter names), off (scan every input line)\n          \n          [possible values: exact, signature, off]\n\n      --state-file <PATH>\n          Record which targets finished to PATH and skip them when the same scan is re-run, so an interrupted mass scan resumes instead of restarting. Only fully completed targets are skipped; ones cut short by Ctrl-C or --scan-timeout are retried. Example: --state-file scan.state\n\nOUTPUT:\n  -f, --format <FORMAT>\n          Output format: json, jsonl, plain, markdown, sarif, toml\n          \n          [default: plain]\n          [possible values: plain, json, jsonl, markdown, sarif, toml]\n\n  -o, --output <OUTPUT>\n          Write output to a file. Example: -o 'output.txt'\n\n      --include-request\n          Include HTTP request information in output\n\n      --include-response\n          Include HTTP response information in output\n\n      --include-all\n          Include both HTTP request and response information in output (equivalent to --include-request --include-response)\n\n      --no-color\n          Disable colored output (also respects NO_COLOR env var)\n\n  -S, --silence\n          Silence all logs except POC output to STDOUT\n\n      --dry-run\n          Dry-run mode: parse targets, run parameter discovery, and report what would be scanned without sending attack payloads. Outputs target count, discovered parameters, and estimated request count\n\n      --stream-findings\n          Emit each finding (POC + Issue / Payload / Line) the moment it is verified, instead of waiting for end-of-scan. Useful for long scans where you want immediate feedback; off by default so the default flow shows findings after `WRN XSS found N XSS`\n\n      --poc-type <POC_TYPE>\n          POC output type: plain, curl, httpie, http-request\n          \n          [default: plain]\n          [possible values: plain, curl, httpie, http-request]\n\n      --limit <LIMIT>\n          Limit the number of results to display (must be >=1). Example: --limit 10\n\n      --limit-result-type <LIMIT_RESULT_TYPE>\n          Filter which finding types count toward --limit: all (default), v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --limit-result-type v\n          \n          [default: all]\n          [possible values: all, v, r, a, i, V, R, A, I]\n\n      --only-poc <ONLY_POC>\n          Filter output to show only specific finding types (comma-separated). Options: v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --only-poc \"v,r\"\n          \n          [possible values: v, r, a, i, V, R, A, I]\n\n      --baseline <BASELINE>\n          Diff against a previous dalfox JSON/JSONL report and report only findings new since it. The baseline is an ordinary `--format json --output` report. Example: --baseline baseline.json\n\n      --baseline-mode <MODE>\n          What --baseline does with already-known findings [default: filter]: filter (drop them, so the exit code gates on new findings only) or annotate (keep them and mark each `new`). Example: --baseline-mode annotate\n          \n          [possible values: filter, annotate]\n\nTARGETS:\n  -p, --param <PARAM>\n          Specify parameter names to analyze (e.g., -p sort -p id:query). Types: query, body, json, cookie, header\n\n  -d, --data <DATA>\n          HTTP request body data\n\n  -H, --headers <HEADERS>\n          HTTP headers (can be specified multiple times)\n\n      --cookies <COOKIES>\n          Cookies (can be specified multiple times)\n\n  -X, --method <METHOD>\n          Override the HTTP method. Example: -X 'PUT' (default \"GET\")\n          \n          [default: GET]\n\n      --user-agent <USER_AGENT>\n          Set a custom User-Agent header. Example: --user-agent 'Mozilla/5.0'\n\n      --cookie-from-raw <COOKIE_FROM_RAW>\n          Load cookies from a raw HTTP request file. Example: --cookie-from-raw 'request.txt'\n\n  [TARGET]...\n          Targets (URLs or file paths)\n\nSESSION:\n      --session-check <REGEX>\n          Regex that must keep matching the response body for the session to be considered alive (e.g. --session-check 'Sign out'). Authoritative: when set, the built-in heuristics (401/403, login redirect, appearing login form) are not consulted. Without it, session monitoring still runs automatically whenever credentials are supplied via --cookies, --cookie-from-raw, or a Cookie/Authorization header\n\n      --session-check-url <URL>\n          Probe this URL instead of the scan target when re-validating the session. Useful when the target itself is public but the app exposes a cheap authenticated endpoint. Example: --session-check-url 'https://app/me'\n\n      --on-session-loss <POLICY>\n          What to do when the session is detected as lost [default: abort]: abort stops the affected target and skips the rest of that host; continue keeps scanning. Either way the target is reported as `incomplete` / SESSION_LOST instead of a misleading \"clean\"\n          \n          [possible values: abort, continue]\n\nSCOPE:\n      --include-url <INCLUDE_URL>\n          Include only URLs matching these patterns (regex, can be specified multiple times)\n\n      --exclude-url <EXCLUDE_URL>\n          Exclude URLs matching these patterns (regex, can be specified multiple times)\n\n      --ignore-param <IGNORE_PARAM>\n          Ignore specific parameters during scanning (can be specified multiple times)\n\n      --out-of-scope <OUT_OF_SCOPE>\n          Exclude targets whose domain matches these patterns (supports wildcards, e.g. *.dev.example.com)\n\n      --out-of-scope-file <OUT_OF_SCOPE_FILE>\n          Load out-of-scope domains from a file (one per line, supports wildcards)\n\nPARAMETER DISCOVERY:\n      --only-discovery\n          Only perform parameter discovery (skip XSS scanning)\n\n      --skip-discovery\n          Skip all discovery checks\n\n      --skip-reflection-header\n          Skip header-based reflection checks\n\n      --skip-reflection-cookie\n          Skip cookie-based reflection checks\n\n      --skip-reflection-path\n          Skip path-based reflection checks\n\nPARAMETER MINING:\n  -W, --mining-dict-word <MINING_DICT_WORD>\n          Dictionary analysis with wordlist file path\n\n      --remote-wordlists <REMOTE_WORDLISTS>\n          Fetch remote parameter wordlists from providers (comma-separated). Options: burp, assetnote\n\n      --skip-mining\n          Skip all mining\n\n      --skip-mining-dict\n          Skip dictionary-based mining\n\n      --skip-mining-dom\n          Skip mining parameter names from HTML input id/name attributes. Does NOT disable DOM-XSS static analysis of inline scripts (the `[A]` findings) \u2014 use --skip-ast-analysis for that\n\nNETWORK:\n      --timeout <TIMEOUT>\n          Per-request timeout in seconds (network only; does not bound total scan time)\n          \n          [default: 10]\n\n      --scan-timeout <SCAN_TIMEOUT>\n          Hard wall-clock cap per target for the payload-injection (scan) stage in seconds. When set, dalfox stops a target's payload-injection stage once this budget is exceeded \u2014 useful when many sequential phases each pay the per-request `--timeout` cost against a partially-hung endpoint. Scope note: this caps ONLY the injection stage. The earlier preflight and parameter-analysis (discovery + mining) phases are bounded separately by `--timeout` \u00d7 request-count, NOT by this wall-clock cap, so a slow target can overshoot this budget during analysis. 0 disables (default)\n          \n          [default: 0]\n\n      --delay <DELAY>\n          Delay in milliseconds\n          \n          [default: 0]\n\n  -r, --rate-limit <RATE_LIMIT>\n          Cap the global outbound request rate in requests/second, shared across all workers and targets (0 = unlimited). Unlike --delay (which only spaces a single worker's requests), this bounds the total in-flight burst from workers \u00d7 concurrent targets \u2014 friendlier to shared-IP / edge WAF thresholds. Example: --rate-limit 20\n          \n          [default: 0]\n          [alias: --rl]\n\n      --retries <RETRIES>\n          Retry failed requests on HTTP 5xx and transient transport errors (timeouts, connection resets) up to this many times (0 = off). HTTP 429 is always retried regardless of this value. Example: --retries 2\n          \n          [default: 0]\n\n      --retry-delay <RETRY_DELAY>\n          Base delay (ms) for the exponential backoff between retries (--retries). Doubles each attempt and is capped internally; a server Retry-After header takes precedence on 429. Example: --retry-delay 500\n          \n          [default: 1000]\n\n      --proxy <PROXY>\n          Proxy URL (e.g., http://localhost:8080, socks5://localhost:9050)\n\n      --insecure[=<INSECURE>]\n          Skip TLS/SSL certificate verification, accepting self-signed, expired, or hostname-mismatched certs. Enabled by default for scanner use; pass `--insecure=false` to enforce certificate validation. Example: --insecure=false\n          \n          Stored as Option so presence is distinguishable from the default: `None` means the user didn't pass the flag (config may set it; the effective value is `unwrap_or(true)`), while `Some(_)` is an explicit CLI choice that always wins over config \u2014 in either direction.\n          \n          [possible values: true, false]\n\n  -F, --follow-redirects\n          Follow HTTP redirects. Example: -F\n\n      --ignore-return <IGNORE_RETURN>\n          Ignore specific HTTP status codes during scanning (comma-separated). Example: --ignore-return 302,403,404\n\nENGINE:\n      --workers <WORKERS>\n          Number of concurrent workers\n          \n          [default: 50]\n\n      --max-concurrent-targets <MAX_CONCURRENT_TARGETS>\n          Maximum number of concurrent targets to scan\n          \n          [default: 50]\n\n      --max-targets-per-host <MAX_TARGETS_PER_HOST>\n          Maximum number of targets per host\n          \n          [default: 100]\n\nXSS SCANNING:\n  -e, --encoders <ENCODERS>\n          Specify payload encoders to use (comma-separated). Options: none, url, 2url, 3url, 4url, html, htmlpad, base64, unicode, zwsp. Default: url,html\n          \n          [default: url html]\n          [possible values: none, url, 2url, 3url, 4url, html, htmlpad, base64, unicode, zwsp]\n\n      --remote-payloads <REMOTE_PAYLOADS>\n          Fetch remote XSS payloads from providers (comma-separated). Options: portswigger, payloadbox\n\n      --custom-blind-xss-payload <CUSTOM_BLIND_XSS_PAYLOAD>\n          Load custom blind XSS payloads from a file. Example: --custom-blind-xss-payload 'payloads.txt'\n\n  -b, --blind <BLIND_CALLBACK_URL>\n          Blind XSS callback URL. Example: -b 'https://example.com/callback'\n\n      --blind-oob[=<BLIND_OOB>...]\n          Enable OOB blind XSS via interactsh. Optional comma-separated server domains (default: public servers). Example: --blind-oob=oast.fun,oast.me\n\n      --blind-oob-secret <BLIND_OOB_SECRET>\n          Auth token (secret) for a self-hosted interactsh server; sent as the Authorization header on register/poll/deregister\n\n      --blind-oob-wait <BLIND_OOB_WAIT>\n          Seconds to keep polling for OOB callbacks after all payloads are sent (default 30; 0 = no extra end-of-scan wait)\n\n      --custom-payload <CUSTOM_PAYLOAD>\n          Load custom payloads from a file. Example: --custom-payload 'payloads.txt'\n\n      --only-custom-payload\n          Only test custom payloads. Example: --only-custom-payload --custom-payload=p.txt\n\n      --custom-alert-value <CUSTOM_ALERT_VALUE>\n          Custom value for alert/prompt/confirm in payloads. Default: \"1\". Example: --custom-alert-value 'document.domain'\n          \n          [default: 1]\n\n      --custom-alert-type <CUSTOM_ALERT_TYPE>\n          Custom alert function type. Options: none (keep original), str (wrap value in quotes). Default: \"none\"\n          \n          [default: none]\n          [possible values: none, str]\n\n      --inject-marker <INJECT_MARKER>\n          Custom injection point marker. Replace this string with payloads in URL/headers/body. Example: --inject-marker 'FUZZ' with URL 'http://example.com/?q=FUZZ'\n\n      --skip-xss-scanning\n          Skip XSS scanning entirely\n\n      --max-payloads-per-param <MAX_PAYLOADS_PER_PARAM>\n          Cap the number of base payloads tested per parameter (reflection set and DOM-verification set are each capped independently). 0 (default) applies a built-in safety cap of 3000 per set unless --deep-scan is set; pass an explicit value to override, or --deep-scan for a truly unlimited run. Bounds the request fan-out on large attack surfaces and on endpoints that reflect every payload (self-/canonical-link echoes) without verifying. Note: the cap applies to the base catalog; WAF-bypass mutation/encoder expansion and a small set of shared CSP-bypass / tech-specific payloads are added afterwards (and never trimmed), so the actual per-parameter total can exceed this value \u2014 substantially so when a WAF bypass strategy is active. Use --deep-scan only to lift the built-in default cap\n          \n          [default: 0]\n\n      --deep-scan\n          Perform deep scanning - test all payloads even after finding XSS\n\n      --sxss\n          Enable Stored XSS mode\n\n      --sxss-url <SXSS_URL>\n          URL to check for Stored XSS reflection. When omitted with --sxss, auto-detects from form discovery context\n\n      --sxss-method <SXSS_METHOD>\n          HTTP method for checking Stored XSS (default \"GET\")\n          \n          [default: GET]\n\n      --sxss-retries <SXSS_RETRIES>\n          Number of times to re-check the Stored XSS URL to handle slow session/content propagation. Each retry waits 500ms * attempt_index\n          \n          [default: 3]\n\n      --skip-ast-analysis\n          Skip AST-based DOM XSS detection \u2014 the source\u2192sink analysis of JavaScript in responses that emits [A] findings. This is the flag that silences them; --skip-mining-dom does not\n\n      --analyze-external-js\n          Fetch and AST-analyze same-origin external <script src> bundles for DOM-XSS (off by default to preserve request budget)\n\n      --hpp\n          Enable HTTP Parameter Pollution (HPP) \u2014 duplicate query params to bypass WAF\n\n      --detect-outdated-libs\n          Also report outdated / known-vulnerable JS libraries (informational, CWE-1104). Off by default: dalfox focuses on verified XSS; this is an opt-in retire.js-style add-on that inspects <script> tags (0 extra requests)\n\nWAF:\n      --waf-bypass <WAF_BYPASS>\n          WAF bypass mode: auto (detect+bypass), force (use --force-waf), off (detect-only; no payload mutations). Default: auto\n          \n          [default: auto]\n          [possible values: auto, force, off]\n\n      --skip-waf-probe\n          Skip WAF fingerprinting probes (header-only detection, no provocation request)\n\n      --force-waf <FORCE_WAF>\n          Force a specific WAF type for bypass strategies (e.g., cloudflare, akamai, modsecurity)\n\n      --waf-evasion\n          Adaptive WAF evasion: when a WAF is detected, randomize inter-request timing (jitter) and escalate a cooldown pause on clusters of blocked responses, instead of the old blunt workers=1/delay=3000 preset. Pairs well with --rate-limit. The per-WAF pacing hint is applied automatically on detection even without this flag\n\n      --waf-min-confidence <WAF_MIN_CONFIDENCE>\n          Discard WAF fingerprints below this confidence (0.0\u20131.0). Default (0.3) filters weak signals like `Server: Google Frontend` (0.15 \u2014 emitted by every Google-hosted property regardless of Cloud Armor) and generic \"Request blocked\" body markers. Real WAF signatures (Cloudflare 0.9+, AWS WAF 0.95) are kept. Pass `--waf-min-confidence 0.0` to keep every match\n          \n          [default: 0.3]\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dalfox",
+    "server",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nRun API/server mode\n\nUsage: dalfox server [OPTIONS]\n\nOptions:\n      --config <FILE>\n          Path to a config file (TOML or JSON). Overrides default search path\n\n      --debug\n          Enable debug logging (show DBG lines)\n\n      --no-color\n          Disable colored output (also respects NO_COLOR env var)\n\n  -S, --silence\n          Silence all logs except POC output to STDOUT\n\n  -h, --help\n          Print help (see a summary with '-h')\n\nSERVER:\n  -p, --port <PORT>\n          Port to run the server on\n          \n          [default: 6664]\n\n  -H, --host <HOST>\n          Host to bind the server to\n          \n          [default: 127.0.0.1]\n\n      --api-key <API_KEY>\n          API key required in X-API-KEY header (or set via DALFOX_API_KEY). Leave empty to disable auth\n\n      --log-file <LOG_FILE>\n          Path to a log file to also write logs (plain text, no ANSI colors)\n\n      --rate-limit <RATE_LIMIT>\n          Server-wide cap on each scan's outbound request rate (requests/second; 0 or unset = unlimited). Applied to every submitted scan: a request's own `rate_limit` may be lower but cannot exceed or disable this cap\n\n      --scan-timeout <SCAN_TIMEOUT>\n          Server-wide cap on each scan's total wall-clock runtime, in seconds (0 or unset = unbounded). Applied to every submitted scan: a request's own scan_timeout may be shorter but cannot exceed or disable this cap. Bounds long/deep scans so a single target can't pin a worker indefinitely\n\n      --max-concurrent-scans <MAX_CONCURRENT_SCANS>\n          Maximum number of concurrently active (queued + running) scans. Once the cap is hit, new submissions get HTTP 503 until a slot frees. 0 disables the cap (unbounded). Bounds memory + the blocking-pool against a flood of submissions\n          \n          [default: 100]\n\n      --max-body-bytes <MAX_BODY_BYTES>\n          Maximum accepted request-body size (bytes) for POST /scan and /preflight. Replaces axum's implicit 2 MiB default with an explicit, documented bound\n          \n          [default: 1048576]\n\nCORS:\n      --allowed-origins <ALLOWED_ORIGINS>\n          Comma-separated list of allowed origins for CORS.\n          Supports:\n            - \"*\" wildcard (match all)\n            - exact origins (http://localhost:3000)\n            - \"regex:<pattern>\" for regex\n\n      --cors-allow-methods <CORS_ALLOW_METHODS>\n          CORS allow methods (comma-separated). Default: GET,POST,OPTIONS,PUT,PATCH,DELETE\n\n      --cors-allow-headers <CORS_ALLOW_HEADERS>\n          CORS allow headers (comma-separated). Default: Content-Type,X-API-KEY,Authorization\n\nJSONP:\n      --jsonp\n          Allow JSONP responses (wrap JSON in callback())\n\n      --callback-param-name <CALLBACK_PARAM_NAME>\n          JSONP callback parameter name (default: callback)\n          \n          [default: callback]\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dalfox",
+    "payload",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nManage or enumerate payloads\n\nUsage: dalfox payload [OPTIONS] [SELECTOR]\n\nArguments:\n  [SELECTOR]\n          Selector to enumerate payload resources.\n          Supported selectors:\n            - event-handlers: print all DOM event handler attribute names (e.g., onclick, onmouseover)\n            - useful-tags: print useful HTML tag names used for XSS payloads (e.g., script, img, svg)\n            - payloadbox: fetch and print remote XSS payloads from PayloadBox\n            - portswigger: fetch and print remote XSS payloads from PortSwigger\n            - uri-scheme: print scheme-based XSS payloads (javascript:, data:, etc.)\n            - special-chars: print special characters (and encoded variants) for context probing / breakout\n            - functions: print visibly-confirmable sinks with filter-surviving variants (alert, prompt, ...)\n            - awesome-alert: print polished alert PoCs for clean screenshots/demos (alert(document.domain), ...)\n            - dom-clobbering: print DOM clobbering payloads\n            - mxss: print mutation-XSS / sanitizer-bypass payloads\n            - blind: print blind-XSS skeletons ({} = your OOB callback URL)\n            - all: print every local selector above in one pass, each under a '# name' header (no network fetch)\n\nOptions:\n      --config <FILE>\n          Path to a config file (TOML or JSON). Overrides default search path\n\n      --debug\n          Enable debug logging (show DBG lines)\n\n      --no-color\n          Disable colored output (also respects NO_COLOR env var)\n\n  -S, --silence\n          Silence all logs except POC output to STDOUT\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dalfox",
+    "mcp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nRun MCP stdio server (Model Context Protocol) exposing Dalfox tools\n\nUsage: dalfox mcp [OPTIONS]\n\nOptions:\n      --config <FILE>  Path to a config file (TOML or JSON). Overrides default search path\n      --debug          Enable debug logging (show DBG lines)\n      --no-color       Disable colored output (also respects NO_COLOR env var)\n  -S, --silence        Silence all logs except POC output to STDOUT\n  -h, --help           Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "dalfox",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\n",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: dalfox [COMMAND] [TARGET] <FLAGS>\ne.g., dalfox scan https://dalfox.hahwul.com\n\nFor more information, try '--help'.\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "dalfox"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for dalfox\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "dalfox"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'dalfox' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 8,
+   "binary": "dalfox",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "a23eabe67d698058",
+ "examples": [
+  {
+   "id": "t-net-86c77865",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "dalfox",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\n7:20PM INF start scan to http://dvwa/\n7:20PM INF tech: PHP\n7:20PM INF found reflected 0 params\n7:20PM WRN XSS found 0 XSS\n\n7:20PM INF scan completed in 5.935 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-ddb0d6dc",
+   "title": "Enable debug logging (show DBG lines) (--debug)",
+   "argv": [
+    "dalfox",
+    "--debug",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\n7:20PM INF start scan to http://dvwa/\n7:20PM INF tech: PHP\n7:20PM INF found reflected 0 params\n7:20PM WRN XSS found 0 XSS\n\n7:20PM INF scan completed in 5.078 seconds\n",
+   "stderr": "7:20PM DBG 0 test cases (reqs) estimated\n7:20PM DBG 164 test cases (reqs) sent\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-fe43b667",
+   "title": "Disable colored output (also respects NO_COLOR env var) (--no-color)",
+   "argv": [
+    "dalfox",
+    "--no-color",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\n7:21PM INF start scan to http://dvwa/\n7:21PM INF tech: PHP\n7:21PM INF found reflected 0 params\n7:21PM WRN XSS found 0 XSS\n\n7:21PM INF scan completed in 5.577 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-net-f8c7b359",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "dalfox",
+    "dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\n7:21PM INF start scan to http://dvwa/\n7:21PM INF tech: PHP\n7:21PM INF found reflected 0 params\n7:21PM WRN XSS found 0 XSS\n\n7:21PM INF scan completed in 5.301 seconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+   "--debug": "Enable debug logging (show DBG lines)",
+   "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+   "--silence": "Silence all logs except POC output to STDOUT",
+   "-S": "Silence all logs except POC output to STDOUT",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "--config": "<FILE>"
+  },
+  "aliases": {
+   "--silence": [
+    "-S"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {
+   "scan": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--help": "Print help (see a summary with '-h')",
+    "--input-type": "Input type: auto, url, file, pipe, raw-http, har",
+    "--dedup-urls": "Target deduplication [default: exact]: exact (drop byte-identical URL+method), signature (also collapse URLs that differ only in parameter values \u2014 keys on method+host+path+parameter names), off (scan every input line)",
+    "--state-file": "Record which targets finished to PATH and skip them when the same scan is re-run, so an interrupted mass scan resumes instead of restarting. Only fully completed targets are skipped; ones cut short by Ctrl-C or --scan-timeout are retried. Example: --state-file scan.state",
+    "--format": "Output format: json, jsonl, plain, markdown, sarif, toml",
+    "--output": "Write output to a file. Example: -o 'output.txt'",
+    "--include-request": "Include HTTP request information in output",
+    "--include-response": "Include HTTP response information in output",
+    "--include-all": "Include both HTTP request and response information in output (equivalent to --include-request --include-response)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--dry-run": "Dry-run mode: parse targets, run parameter discovery, and report what would be scanned without sending attack payloads. Outputs target count, discovered parameters, and estimated request count",
+    "--stream-findings": "Emit each finding (POC + Issue / Payload / Line) the moment it is verified, instead of waiting for end-of-scan. Useful for long scans where you want immediate feedback; off by default so the default flow shows findings after `WRN XSS found N XSS`",
+    "--poc-type": "POC output type: plain, curl, httpie, http-request",
+    "--limit": "Limit the number of results to display (must be >=1). Example: --limit 10",
+    "--limit-result-type": "Filter which finding types count toward --limit: all (default), v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --limit-result-type v",
+    "--only-poc": "Filter output to show only specific finding types (comma-separated). Options: v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --only-poc \"v,r\"",
+    "--baseline": "Diff against a previous dalfox JSON/JSONL report and report only findings new since it. The baseline is an ordinary `--format json --output` report. Example: --baseline baseline.json",
+    "--baseline-mode": "What --baseline does with already-known findings [default: filter]: filter (drop them, so the exit code gates on new findings only) or annotate (keep them and mark each `new`). Example: --baseline-mode annotate",
+    "--param": "Specify parameter names to analyze (e.g., -p sort -p id:query). Types: query, body, json, cookie, header",
+    "--data": "HTTP request body data",
+    "--headers": "HTTP headers (can be specified multiple times)",
+    "--cookies": "Cookies (can be specified multiple times)",
+    "--method": "Override the HTTP method. Example: -X 'PUT' (default \"GET\")",
+    "--user-agent": "Set a custom User-Agent header. Example: --user-agent 'Mozilla/5.0'",
+    "--cookie-from-raw": "Load cookies from a raw HTTP request file. Example: --cookie-from-raw 'request.txt'",
+    "--session-check": "Regex that must keep matching the response body for the session to be considered alive (e.g. --session-check 'Sign out'). Authoritative: when set, the built-in heuristics (401/403, login redirect, appearing login form) are not consulted. Without it, session monitoring still runs automatically whenever credentials are supplied via --cookies, --cookie-from-raw, or a Cookie/Authorization header",
+    "--session-check-url": "Probe this URL instead of the scan target when re-validating the session. Useful when the target itself is public but the app exposes a cheap authenticated endpoint. Example: --session-check-url 'https://app/me'",
+    "--on-session-loss": "What to do when the session is detected as lost [default: abort]: abort stops the affected target and skips the rest of that host; continue keeps scanning. Either way the target is reported as `incomplete` / SESSION_LOST instead of a misleading \"clean\"",
+    "--include-url": "Include only URLs matching these patterns (regex, can be specified multiple times)",
+    "--exclude-url": "Exclude URLs matching these patterns (regex, can be specified multiple times)",
+    "--ignore-param": "Ignore specific parameters during scanning (can be specified multiple times)",
+    "--out-of-scope": "Exclude targets whose domain matches these patterns (supports wildcards, e.g. *.dev.example.com)",
+    "--out-of-scope-file": "Load out-of-scope domains from a file (one per line, supports wildcards)",
+    "--only-discovery": "Only perform parameter discovery (skip XSS scanning)",
+    "--skip-discovery": "Skip all discovery checks",
+    "--skip-reflection-header": "Skip header-based reflection checks",
+    "--skip-reflection-cookie": "Skip cookie-based reflection checks",
+    "--skip-reflection-path": "Skip path-based reflection checks",
+    "--mining-dict-word": "Dictionary analysis with wordlist file path",
+    "--remote-wordlists": "Fetch remote parameter wordlists from providers (comma-separated). Options: burp, assetnote",
+    "--skip-mining": "Skip all mining",
+    "--skip-mining-dict": "Skip dictionary-based mining",
+    "--skip-mining-dom": "Skip mining parameter names from HTML input id/name attributes. Does NOT disable DOM-XSS static analysis of inline scripts (the `[A]` findings) \u2014 use --skip-ast-analysis for that",
+    "--timeout": "Per-request timeout in seconds (network only; does not bound total scan time)",
+    "--scan-timeout": "Hard wall-clock cap per target for the payload-injection (scan) stage in seconds. When set, dalfox stops a target's payload-injection stage once this budget is exceeded \u2014 useful when many sequential phases each pay the per-request `--timeout` cost against a partially-hung endpoint. Scope note: this caps ONLY the injection stage. The earlier preflight and parameter-analysis (discovery + mining) phases are bounded separately by `--timeout` \u00d7 request-count, NOT by this wall-clock cap, so a slow target can overshoot this budget during analysis. 0 disables (default)",
+    "--delay": "Delay in milliseconds",
+    "--rate-limit": "Cap the global outbound request rate in requests/second, shared across all workers and targets (0 = unlimited). Unlike --delay (which only spaces a single worker's requests), this bounds the total in-flight burst from workers \u00d7 concurrent targets \u2014 friendlier to shared-IP / edge WAF thresholds. Example: --rate-limit 20",
+    "--retries": "Retry failed requests on HTTP 5xx and transient transport errors (timeouts, connection resets) up to this many times (0 = off). HTTP 429 is always retried regardless of this value. Example: --retries 2",
+    "--retry-delay": "Base delay (ms) for the exponential backoff between retries (--retries). Doubles each attempt and is capped internally; a server Retry-After header takes precedence on 429. Example: --retry-delay 500",
+    "--proxy": "Proxy URL (e.g., http://localhost:8080, socks5://localhost:9050)",
+    "--insecure": "Skip TLS/SSL certificate verification, accepting self-signed, expired, or hostname-mismatched certs. Enabled by default for scanner use; pass `--insecure=false` to enforce certificate validation. Example: --insecure=false",
+    "--follow-redirects": "Follow HTTP redirects. Example: -F",
+    "--ignore-return": "Ignore specific HTTP status codes during scanning (comma-separated). Example: --ignore-return 302,403,404",
+    "--workers": "Number of concurrent workers",
+    "--max-concurrent-targets": "Maximum number of concurrent targets to scan",
+    "--max-targets-per-host": "Maximum number of targets per host",
+    "--encoders": "Specify payload encoders to use (comma-separated). Options: none, url, 2url, 3url, 4url, html, htmlpad, base64, unicode, zwsp. Default: url,html",
+    "--remote-payloads": "Fetch remote XSS payloads from providers (comma-separated). Options: portswigger, payloadbox",
+    "--custom-blind-xss-payload": "Load custom blind XSS payloads from a file. Example: --custom-blind-xss-payload 'payloads.txt'",
+    "--blind": "Blind XSS callback URL. Example: -b 'https://example.com/callback'",
+    "--blind-oob": "Enable OOB blind XSS via interactsh. Optional comma-separated server domains (default: public servers). Example: --blind-oob=oast.fun,oast.me",
+    "--blind-oob-secret": "Auth token (secret) for a self-hosted interactsh server; sent as the Authorization header on register/poll/deregister",
+    "--blind-oob-wait": "Seconds to keep polling for OOB callbacks after all payloads are sent (default 30; 0 = no extra end-of-scan wait)",
+    "--custom-payload": "Load custom payloads from a file. Example: --custom-payload 'payloads.txt'",
+    "--only-custom-payload": "Only test custom payloads. Example: --only-custom-payload --custom-payload=p.txt",
+    "--custom-alert-value": "Custom value for alert/prompt/confirm in payloads. Default: \"1\". Example: --custom-alert-value 'document.domain'",
+    "--custom-alert-type": "Custom alert function type. Options: none (keep original), str (wrap value in quotes). Default: \"none\"",
+    "--inject-marker": "Custom injection point marker. Replace this string with payloads in URL/headers/body. Example: --inject-marker 'FUZZ' with URL 'http://example.com/?q=FUZZ'",
+    "--skip-xss-scanning": "Skip XSS scanning entirely",
+    "--max-payloads-per-param": "Cap the number of base payloads tested per parameter (reflection set and DOM-verification set are each capped independently). 0 (default) applies a built-in safety cap of 3000 per set unless --deep-scan is set; pass an explicit value to override, or --deep-scan for a truly unlimited run. Bounds the request fan-out on large attack surfaces and on endpoints that reflect every payload (self-/canonical-link echoes) without verifying. Note: the cap applies to the base catalog; WAF-bypass mutation/encoder expansion and a small set of shared CSP-bypass / tech-specific payloads are added afterwards (and never trimmed), so the actual per-parameter total can exceed this value \u2014 substantially so when a WAF bypass strategy is active. Use --deep-scan only to lift the built-in default cap",
+    "--deep-scan": "Perform deep scanning - test all payloads even after finding XSS",
+    "--sxss": "Enable Stored XSS mode",
+    "--sxss-url": "URL to check for Stored XSS reflection. When omitted with --sxss, auto-detects from form discovery context",
+    "--sxss-method": "HTTP method for checking Stored XSS (default \"GET\")",
+    "--sxss-retries": "Number of times to re-check the Stored XSS URL to handle slow session/content propagation. Each retry waits 500ms * attempt_index",
+    "--skip-ast-analysis": "Skip AST-based DOM XSS detection \u2014 the source\u2192sink analysis of JavaScript in responses that emits [A] findings. This is the flag that silences them; --skip-mining-dom does not",
+    "--analyze-external-js": "Fetch and AST-analyze same-origin external <script src> bundles for DOM-XSS (off by default to preserve request budget)",
+    "--hpp": "Enable HTTP Parameter Pollution (HPP) \u2014 duplicate query params to bypass WAF",
+    "--detect-outdated-libs": "Also report outdated / known-vulnerable JS libraries (informational, CWE-1104). Off by default: dalfox focuses on verified XSS; this is an opt-in retire.js-style add-on that inspects <script> tags (0 extra requests)",
+    "--waf-bypass": "WAF bypass mode: auto (detect+bypass), force (use --force-waf), off (detect-only; no payload mutations). Default: auto",
+    "--skip-waf-probe": "Skip WAF fingerprinting probes (header-only detection, no provocation request)",
+    "--force-waf": "Force a specific WAF type for bypass strategies (e.g., cloudflare, akamai, modsecurity)",
+    "--waf-evasion": "Adaptive WAF evasion: when a WAF is detected, randomize inter-request timing (jitter) and escalate a cooldown pause on clusters of blocked responses, instead of the old blunt workers=1/delay=3000 preset. Pairs well with --rate-limit. The per-WAF pacing hint is applied automatically on detection even without this flag",
+    "--waf-min-confidence": "Discard WAF fingerprints below this confidence (0.0\u20131.0). Default (0.3) filters weak signals like `Server: Google Frontend` (0.15 \u2014 emitted by every Google-hosted property regardless of Cloud Armor) and generic \"Request blocked\" body markers. Real WAF signatures (Cloudflare 0.9+, AWS WAF 0.95) are kept. Pass `--waf-min-confidence 0.0` to keep every match"
+   },
+   "server": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help (see a summary with '-h')",
+    "--port": "Port to run the server on",
+    "--host": "Host to bind the server to",
+    "--api-key": "API key required in X-API-KEY header (or set via DALFOX_API_KEY). Leave empty to disable auth",
+    "--log-file": "Path to a log file to also write logs (plain text, no ANSI colors)",
+    "--rate-limit": "Server-wide cap on each scan's outbound request rate (requests/second; 0 or unset = unlimited). Applied to every submitted scan: a request's own `rate_limit` may be lower but cannot exceed or disable this cap",
+    "--scan-timeout": "Server-wide cap on each scan's total wall-clock runtime, in seconds (0 or unset = unbounded). Applied to every submitted scan: a request's own scan_timeout may be shorter but cannot exceed or disable this cap. Bounds long/deep scans so a single target can't pin a worker indefinitely",
+    "--max-concurrent-scans": "Maximum number of concurrently active (queued + running) scans. Once the cap is hit, new submissions get HTTP 503 until a slot frees. 0 disables the cap (unbounded). Bounds memory + the blocking-pool against a flood of submissions",
+    "--max-body-bytes": "Maximum accepted request-body size (bytes) for POST /scan and /preflight. Replaces axum's implicit 2 MiB default with an explicit, documented bound",
+    "--allowed-origins": "Comma-separated list of allowed origins for CORS. Supports: - \"*\" wildcard (match all) - exact origins (http://localhost:3000) - \"regex:<pattern>\" for regex",
+    "--cors-allow-methods": "CORS allow methods (comma-separated). Default: GET,POST,OPTIONS,PUT,PATCH,DELETE",
+    "--cors-allow-headers": "CORS allow headers (comma-separated). Default: Content-Type,X-API-KEY,Authorization",
+    "--jsonp": "Allow JSONP responses (wrap JSON in callback())",
+    "--callback-param-name": "JSONP callback parameter name (default: callback)"
+   },
+   "payload": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help (see a summary with '-h')"
+   },
+   "mcp": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help"
+   },
+   "help": {}
+  },
+  "subcommands": [
+   "scan",
+   "server",
+   "payload",
+   "mcp",
+   "help"
+  ],
+  "binary": "dalfox",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2939992435a26c539ad9d02b3fd623410c180d719d54005461900ae24e1d124d",
+  "text": "\n               \u2591\u2588\u2592\n             \u2588\u2588\u2588\u2588     \u2593\n           \u2593\u2588\u2588\u2588\u2588\u2588  \u2593\u2588\u2588\u2593\n          \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588         \u2591\n        \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593          \u2593\u2591\n     \u2591\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588        \u2592\u2588\u2588\u2591\n    \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\u2588\u2588\u2588\u2588\u2588\u2588\u2588     \u2591\u2588\u2588\u2588\u2588\u2588\u2593\u2591\n   \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2591 \u2588\u2588\u2588\u2588        \u2588\u2593\n \u2591\u2588\u2588\u2588\u2588\u2588\u2593          \u2591\u2588\u2588\u2588\u2588\u2592       \u2591         Dalfox v3.2.0\n \u2588\u2588\u2588\u2588\u2588               \u2593\u2588\u2588\u2591\n \u2588\u2588\u2588\u2588                  \u2593\u2588\u2588      Powerful open-source XSS scanner\n \u2588\u2588\u2588\u2593        \u2593\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2593\u2592\u2593\u2588\u2591     and utility focused on automation.\n \u2588\u2588\u2588\u2592      \u2588\u2588\u2588\u2588\u2588\n \u2593\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\n \u2588\u2588\u2588\u2588     \u2588\u2588\u2588\u2588\u2588\u2588\u2592\n \u2591\u2588\u2588\u2588\u2588    \u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2588\u2592\n\nPowerful open-source XSS scanner\n\nUsage: dalfox [COMMAND] [TARGET] <FLAGS>\ne.g., dalfox scan https://dalfox.hahwul.com\n\nCommands:\n  scan     Scan targets for XSS\n  server   Run API/server mode\n  payload  Manage or enumerate payloads\n  mcp      Run MCP stdio server (Model Context Protocol) exposing Dalfox tools\n  help     Print this message or the help of the given subcommand(s)\n\nArguments:\n  [TARGET]...  Targets (when no subcommand is provided, defaults to scan)\n\nOptions:\n      --config <FILE>  Path to a config file (TOML or JSON). Overrides default search path\n      --debug          Enable debug logging (show DBG lines)\n      --no-color       Disable colored output (also respects NO_COLOR env var)\n  -S, --silence        Silence all logs except POC output to STDOUT\n  -h, --help           Print help\n  -V, --version        Print version\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--config",
+   "--debug",
+   "--help",
+   "--no-color",
+   "--silence"
+  ],
+  "unconfirmed": [
+   "--allowed-origins",
+   "--api-key",
+   "--blind",
+   "--context-aware",
+   "--cookie",
+   "--cookie-from-raw",
+   "--custom-alert-type",
+   "--custom-alert-value",
+   "--custom-blind-xss-payload",
+   "--custom-payload",
+   "--data",
+   "--deep-domxss",
+   "--delay",
+   "--detailed-analysis",
+   "--encoder-url",
+   "--entity-event-handler",
+   "--entity-gf",
+   "--entity-special-chars",
+   "--entity-useful-tags",
+   "--enum-attr",
+   "--enum-common",
+   "--enum-html",
+   "--enum-injs",
+   "--fast-scan",
+   "--follow-redirects",
+   "--force-headless-verification",
+   "--format",
+   "--found-action",
+   "--found-action-shell",
+   "--grep",
+   "--har",
+   "--har-file-path",
+   "--header",
+   "--host",
+   "--http",
+   "--ignore-param",
+   "--ignore-return",
+   "--include-request",
+   "--jsonp",
+   "--limit",
+   "--limit-result",
+   "--limit-result-type",
+   "--magic-char-test",
+   "--make-bulk",
+   "--mass",
+   "--mass-worker",
+   "--max-body-bytes",
+   "--max-concurrent-scans",
+   "--max-cpu",
+   "--method",
+   "--mining-dict",
+   "--mining-dict-word",
+   "--mining-dom",
+   "--multicast",
+   "--no-spinner",
+   "--only-custom-payload",
+   "--only-discovery",
+   "--only-poc",
+   "--out-of-scope",
+   "--out-of-scope-file",
+   "--output",
+   "--output-all",
+   "--output-format",
+   "--output-request",
+   "--output-response",
+   "--param",
+   "--poc-type",
+   "--port",
+   "--proxy",
+   "--rate-limit",
+   "--rawdata",
+   "--remote-payloadbox",
+   "--remote-payloads",
+   "--remote-portswigger",
+   "--remote-wordlists",
+   "--report",
+   "--report-format",
+   "--request-method",
+   "--scan-timeout",
+   "--sequence",
+   "--silence-force",
+   "--skip-bav",
+   "--skip-discovery",
+   "--skip-grepping",
+   "--skip-headless",
+   "--skip-mining-all",
+   "--skip-mining-dict",
+   "--skip-mining-dom",
+   "--skip-xss-scanning",
+   "--sxss-retries",
+   "--timeout",
+   "--trigger",
+   "--type",
+   "--use-bav",
+   "--user-agent",
+   "--waf-bypass",
+   "--waf-evasion",
+   "--worker",
+   "--workers",
+   "dalfox",
+   "file",
+   "payload",
+   "pipe",
+   "server",
+   "sxss",
+   "url",
+   "version"
+  ],
+  "help_only": [
+   "--version",
+   "-S",
+   "-V",
+   "-h"
+  ],
+  "mining_coverage": 0.5555555555555556
+ },
+ "surface": {
+  "flags": {
+   "--allowed-origins": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Allowed origins for CORS. Example: --allowed-origins \"http://example.com,http://localhost:3000\"",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--api-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the API key for server authentication. Example: --api-key 'your-secret-key'",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--blind": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify a blind XSS callback URL. Example: -b 'https://your-callback-url.com'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to a config file (TOML or JSON). Overrides default search path",
+    "kind": "option",
+    "metavar": "<FILE>",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--context-aware": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable context-aware payload selection for better XSS detection. Example: --context-aware",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--cookie": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Add custom cookies to the request. Example: -C 'sessionid=abc123'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--cookie-from-raw": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "lift cookies from a captured request file",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--custom-alert-type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set a custom alert type. Example: --custom-alert-type 'str,none'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--custom-alert-value": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set a custom alert value. Example: --custom-alert-value 'document.cookie'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--custom-blind-xss-payload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Load custom blind XSS payloads from a file. Example: --custom-blind-xss-payload 'payloads.txt'",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--custom-payload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Load custom payloads from a file. Example: --custom-payload 'payloads.txt'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--data": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Send body data with the request (supports all HTTP methods). Body can be form (key=value&...) or JSON. Example: -d 'username=admin&password=admin' or -d '{\"username\":\"admin\",\"password\":\"admin\"}'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable debug logging (show DBG lines)",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--deep-domxss": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable deep DOM XSS testing with more payloads (slow). Example: --deep-domxss",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--delay": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the delay between requests to the same host in milliseconds. Example: --delay 1000",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--detailed-analysis": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable detailed parameter analysis for better XSS detection. Example: --detailed-analysis",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--encoder-url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Encode output as URL. Example: --encoder-url",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--entity-event-handler": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate event handlers for XSS. Example: --entity-event-handler",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--entity-gf": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate parameters from GF-Patterns for XSS. Example: --entity-gf",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--entity-special-chars": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate special characters for XSS. Example: --entity-special-chars",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--entity-useful-tags": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate useful tags for XSS. Example: --entity-useful-tags",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--enum-attr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate in-attribute XSS payloads. Example: --enum-attr",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--enum-common": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate common XSS payloads. Example: --enum-common",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--enum-html": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate in-HTML XSS payloads. Example: --enum-html",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--enum-injs": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate in-JavaScript XSS payloads. Example: --enum-injs",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--fast-scan": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable fast scanning mode for URL lists. Example: --fast-scan",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--follow-redirects": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Follow HTTP redirects. Example: -F",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--force-headless-verification": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Force headless browser-based verification, useful when automatic detection fails or to override default behavior. Example: --force-headless-verification",
+    "kind": "option",
+    "first_tag": "v2.10.0",
+    "first_date": "2025-03-24T19:22:18+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--format": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the output format. Supported: plain, json, jsonl. Example: --format 'json'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--found-action": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Execute a command when a vulnerability is found. Example: --found-action './notify.sh'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--found-action-shell": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the shell to use for the found action. Example: --found-action-shell 'bash'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--grep": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use a custom grepping file. Example: --grep './samples/sample_grep.json'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--har": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "[FORMAT] Use HAR format. Example: --har",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2022-09-16T13:27:53+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--har-file-path": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the path to save HAR files of scan requests. Example: --har-file-path 'scan.har'",
+    "kind": "option",
+    "first_tag": "v2.9.0",
+    "first_date": "2023-03-28T11:16:34+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--header": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Add custom headers to the request. Example: -H 'Authorization: Bearer <token>'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/_advanced/resources/flags.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the address to bind the server to. Example: --host '0.0.0.0'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--http": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Force HTTP on raw data mode. Example: --http",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--ignore-param": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore specific parameters during scanning. Example: --ignore-param 'api_token' --ignore-param 'csrf_token'",
+    "kind": "option",
+    "first_tag": "v2.7.1",
+    "first_date": "2022-02-12T22:18:21+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--ignore-return": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "drop responses with these status codes before reflection analysis (comma-separated)",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--include-request": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "/ `--include-response` \u2014 embed raw HTTP in JSON output (large); `--include-all` is the shortcut for both",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-05-25T22:42:18+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--jsonp": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable JSONP responses. Example: --jsonp",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": false
+   },
+   "--limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "caps total findings; pair with `--limit-result-type v` to only count verified findings",
+    "kind": "option",
+    "first_tag": "v2.10.0",
+    "first_date": "2025-03-24T19:22:18+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--limit-result": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Stop scanning after N findings (0 = unlimited). Example: --limit-result 1",
+    "kind": "option",
+    "first_tag": "v2.13.0",
+    "first_date": "2026-05-07T21:36:26+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--limit-result-type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set finding type filter for --limit-result. Supported: all, v, r. Example: --limit-result-type 'v'",
+    "kind": "option",
+    "first_tag": "v2.13.0",
+    "first_date": "2026-05-07T21:36:26+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--magic-char-test": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable magic character testing for manual XSS analysis. Example: --magic-char-test",
+    "kind": "option",
+    "first_tag": "v2.12.0",
+    "first_date": "2025-07-06T10:02:44+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--make-bulk": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate bulk payloads for stored XSS. Example: --make-bulk",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--mass": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable parallel scanning in N*Host mode (only shows PoC code). Example: --mass",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--mass-worker": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the number of parallel workers for --mass and --multicast options. Example: --mass-worker 10",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--max-body-bytes": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "explicit request-body cap for `POST /scan` and",
+    "kind": "option",
+    "first_tag": "v3.1.0",
+    "first_date": "2026-06-14T23:30:29+09:00",
+    "last_tag": "v3.2.0",
+    "last_date": "2026-08-02T19:04:24+09:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/server.md"
+   },
+   "--max-concurrent-scans": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "reject new submissions with `503` once `n`",
+    "kind": "option",
+    "first_tag": "v3.1.0",
+    "first_date": "2026-06-14T23:30:29+09:00",
+    "last_tag": "v3.2.0",
+    "last_date": "2026-08-02T19:04:24+09:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/server.md"
+   },
+   "--max-cpu": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the maximum number of CPUs to use. Example: --max-cpu 1",
+    "kind": "option",
+    "first_tag": "v2.10.0",
+    "first_date": "2025-03-24T19:22:18+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--method": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Override the HTTP method. Example: -X 'PUT'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--mining-dict": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable dictionary-based parameter mining. Example: --mining-dict",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--mining-dict-word": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify a custom wordlist file for parameter mining. Example: -W 'wordlist.txt'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--mining-dom": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable DOM-based parameter mining. Example: --mining-dom",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--multicast": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable parallel scanning in N*Host mode (only shows PoC code). Example: --multicast",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--no-color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable colored output (also respects NO_COLOR env var)",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v3.1.2",
+    "last_date": "2026-06-27T19:23:43+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/caido.md"
+   },
+   "--no-spinner": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Disable spinner animation. Example: --no-spinner",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--only-custom-payload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only test custom payloads. Example: --only-custom-payload",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--only-discovery": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only perform parameter analysis, skip XSS scanning. Example: --only-discovery",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--only-poc": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show only the PoC code for the specified pattern. Supported: g (grep), r (reflected), v (verified). Example: --only-poc 'g,v'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--out-of-scope": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Exclude domains from scanning. Supports wildcards. Example: --out-of-scope 'stg.example.com' --out-of-scope '*.dev.example.com'",
+    "kind": "option",
+    "first_tag": "v2.13.0",
+    "first_date": "2026-05-07T21:36:26+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--out-of-scope-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Load out-of-scope domains from a file (one per line). Example: --out-of-scope-file 'exclusions.txt'",
+    "kind": "option",
+    "first_tag": "v2.13.0",
+    "first_date": "2026-05-07T21:36:26+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Write output to a file. Example: -o 'output.txt'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output-all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable all log write mode (output to file or stdout). Example: --output-all",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--output-format": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "-o/--output 's format (txt/json/xml)",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v1.0.0",
+    "last_date": "2020-05-03T17:59:00+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output-request": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Include raw HTTP requests in the results. Example: --output-request",
+    "kind": "option",
+    "first_tag": "v2.9.0",
+    "first_date": "2023-03-28T11:16:34+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--output-response": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Include raw HTTP responses in the results. Example: --output-response",
+    "kind": "option",
+    "first_tag": "v2.9.0",
+    "first_date": "2023-03-28T11:16:34+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--param": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify parameters to test. Example: -p 'username' -p 'password'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--poc-type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v2.6.0",
+    "first_date": "2021-11-21T02:22:44+09:00",
+    "last_tag": "v3.1.2",
+    "last_date": "2026-06-27T19:23:43+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/caido.md"
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the port to bind the server to. Example: --port 6664",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--proxy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Send all requests through a proxy server. Example: --proxy 'http://127.0.0.1:8080'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--rate-limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "cap every scan's outbound request rate (protects targets).",
+    "kind": "option",
+    "first_tag": "v3.1.0",
+    "first_date": "2026-06-14T23:30:29+09:00",
+    "last_tag": "v3.2.0",
+    "last_date": "2026-08-02T19:04:24+09:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/server.md"
+   },
+   "--rawdata": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "[FORMAT] Use raw data from Burp/ZAP. Example: --rawdata",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--remote-payloadbox": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate payloads from Payloadbox's XSS payloads. Example: --remote-payloadbox",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--remote-payloads": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use remote payloads for XSS testing. Supported: portswigger, payloadbox. Example: --remote-payloads 'portswigger,payloadbox'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--remote-portswigger": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enumerate payloads from PortSwigger's XSS cheatsheet. Example: --remote-portswigger",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go",
+    "takes_value": false
+   },
+   "--remote-wordlists": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use remote wordlists for parameter mining. Supported: burp, assetnote. Example: --remote-wordlists 'burp'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--report": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show detailed report. Example: --report",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2022-09-16T13:27:53+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--report-format": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the format of the report. Supported: plain, json, markdown, md. Example: --report-format 'json'",
+    "kind": "option",
+    "first_tag": "v2.8.0",
+    "first_date": "2022-09-16T13:27:53+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--request-method": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the HTTP request method to send to the server. Example: --request-method 'POST'",
+    "kind": "option",
+    "first_tag": "v2.5.5",
+    "first_date": "2021-11-15T23:49:31+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/sxss.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--scan-timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "hard wall-clock budget per scan; bounds long or",
+    "kind": "option",
+    "first_tag": "v3.1.0",
+    "first_date": "2026-06-14T23:30:29+09:00",
+    "last_tag": "v3.2.0",
+    "last_date": "2026-08-02T19:04:24+09:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/server.md"
+   },
+   "--sequence": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the initial sequence number for the trigger URL. Example: --trigger 'https://example.com/view?no=SEQNC' --sequence 3",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/sxss.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--silence": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Silence all logs except POC output to STDOUT",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--silence-force": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only print PoC code, suppress progress output. Example: --silence-force",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2021-09-28T01:06:08+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go",
+    "takes_value": false
+   },
+   "--skip-bav": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip Basic Another Vulnerability (BAV) analysis. Example: --skip-bav",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-discovery": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip the entire discovery phase, proceeding directly to XSS scanning. Requires -p flag to specify parameters. Example: --skip-discovery -p 'username'",
+    "kind": "option",
+    "first_tag": "v2.10.0",
+    "first_date": "2025-03-24T19:22:18+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-grepping": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip built-in grepping. Example: --skip-grepping",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-headless": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip headless browser-based scanning (DOM XSS and inJS verification). Example: --skip-headless",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-mining-all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip all parameter mining. Example: --skip-mining-all",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-mining-dict": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip dictionary-based parameter mining. Example: --skip-mining-dict",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-mining-dom": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip DOM-based parameter mining. Example: --skip-mining-dom",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--skip-xss-scanning": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Skip XSS scanning. Example: --skip-xss-scanning",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--sxss-retries": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "how many times to poll the sxss-url (default 3); raise for slow-propagating apps",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-05-25T22:42:18+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v3.1.2",
+    "last_date": "2026-06-27T19:23:43+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "docs/content/integrations/caido.md"
+   },
+   "--trigger": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the URL to check after injecting SXSS code. Example: --trigger 'https://example.com/profile'",
+    "kind": "option",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/sxss.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the server type. Example: --type 'rest' or --type 'mcp'",
+    "kind": "option",
+    "first_tag": "v2.11.0",
+    "first_date": "2025-04-20T08:49:33+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--use-bav": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable Basic Another Vulnerability (BAV) analysis. Example: --use-bav",
+    "kind": "option",
+    "first_tag": "v2.10.0",
+    "first_date": "2025-03-24T19:22:18+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--user-agent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set a custom User-Agent header. Example: --user-agent 'Mozilla/5.0'",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--waf-bypass": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "`auto` probes first then bypasses, `force` applies bypass without probing (pair with `--force-waf cloudflare` etc. to pin a WAF), `off` disables the feature",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-05-25T22:42:18+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "--waf-evasion": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable WAF evasion by adjusting speed when detecting WAF (worker=1, delay=3s). Example: --waf-evasion",
+    "kind": "option",
+    "first_tag": "v2.5.0",
+    "first_date": "2021-09-28T01:06:08+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": false
+   },
+   "--worker": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set the number of concurrent workers. Example: -w 100",
+    "kind": "option",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--workers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "(default) \u2014 lower for politeness, higher for speed; no short alias",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-05-25T22:42:18+09:00",
+    "last_tag": "v3.0.0",
+    "last_date": "2026-05-25T22:42:18+09:00",
+    "live": false,
+    "attribution": "unattributed",
+    "source_path": "skills/dalfox/SKILL.md"
+   },
+   "dalfox": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Dalfox is a powerful open-source XSS scanner and utility focused on automation.",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/root.go"
+   },
+   "file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use file mode (targets list or raw HTTP request data)",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/file.go"
+   },
+   "payload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Payload mode, make and enum payloads",
+    "kind": "subcommand",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/payload.go"
+   },
+   "pipe": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use pipeline mode",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/pipe.go"
+   },
+   "server": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Start API Server",
+    "kind": "subcommand",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/server.go"
+   },
+   "sxss": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use Stored XSS mode",
+    "kind": "subcommand",
+    "first_tag": "v2.4.5",
+    "first_date": "2021-07-11T00:31:28+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/sxss.go"
+   },
+   "url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use single target mode",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/url.go"
+   },
+   "version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show version",
+    "kind": "subcommand",
+    "first_tag": "v1.0.0",
+    "first_date": "2020-05-03T17:59:00+09:00",
+    "last_tag": "v2.13.0",
+    "last_date": "2026-05-07T21:36:26+09:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/version.go"
+   }
+  },
+  "subcommands": [
+   "help",
+   "mcp",
+   "payload",
+   "scan",
+   "server"
+  ],
+  "subcommand_flags": {
+   "scan": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--help": "Print help (see a summary with '-h')",
+    "--input-type": "Input type: auto, url, file, pipe, raw-http, har",
+    "--dedup-urls": "Target deduplication [default: exact]: exact (drop byte-identical URL+method), signature (also collapse URLs that differ only in parameter values \u2014 keys on method+host+path+parameter names), off (scan every input line)",
+    "--state-file": "Record which targets finished to PATH and skip them when the same scan is re-run, so an interrupted mass scan resumes instead of restarting. Only fully completed targets are skipped; ones cut short by Ctrl-C or --scan-timeout are retried. Example: --state-file scan.state",
+    "--format": "Output format: json, jsonl, plain, markdown, sarif, toml",
+    "--output": "Write output to a file. Example: -o 'output.txt'",
+    "--include-request": "Include HTTP request information in output",
+    "--include-response": "Include HTTP response information in output",
+    "--include-all": "Include both HTTP request and response information in output (equivalent to --include-request --include-response)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--dry-run": "Dry-run mode: parse targets, run parameter discovery, and report what would be scanned without sending attack payloads. Outputs target count, discovered parameters, and estimated request count",
+    "--stream-findings": "Emit each finding (POC + Issue / Payload / Line) the moment it is verified, instead of waiting for end-of-scan. Useful for long scans where you want immediate feedback; off by default so the default flow shows findings after `WRN XSS found N XSS`",
+    "--poc-type": "POC output type: plain, curl, httpie, http-request",
+    "--limit": "Limit the number of results to display (must be >=1). Example: --limit 10",
+    "--limit-result-type": "Filter which finding types count toward --limit: all (default), v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --limit-result-type v",
+    "--only-poc": "Filter output to show only specific finding types (comma-separated). Options: v (vulnerable), r (reflected), a (AST DOM XSS), i (informational). Example: --only-poc \"v,r\"",
+    "--baseline": "Diff against a previous dalfox JSON/JSONL report and report only findings new since it. The baseline is an ordinary `--format json --output` report. Example: --baseline baseline.json",
+    "--baseline-mode": "What --baseline does with already-known findings [default: filter]: filter (drop them, so the exit code gates on new findings only) or annotate (keep them and mark each `new`). Example: --baseline-mode annotate",
+    "--param": "Specify parameter names to analyze (e.g., -p sort -p id:query). Types: query, body, json, cookie, header",
+    "--data": "HTTP request body data",
+    "--headers": "HTTP headers (can be specified multiple times)",
+    "--cookies": "Cookies (can be specified multiple times)",
+    "--method": "Override the HTTP method. Example: -X 'PUT' (default \"GET\")",
+    "--user-agent": "Set a custom User-Agent header. Example: --user-agent 'Mozilla/5.0'",
+    "--cookie-from-raw": "Load cookies from a raw HTTP request file. Example: --cookie-from-raw 'request.txt'",
+    "--session-check": "Regex that must keep matching the response body for the session to be considered alive (e.g. --session-check 'Sign out'). Authoritative: when set, the built-in heuristics (401/403, login redirect, appearing login form) are not consulted. Without it, session monitoring still runs automatically whenever credentials are supplied via --cookies, --cookie-from-raw, or a Cookie/Authorization header",
+    "--session-check-url": "Probe this URL instead of the scan target when re-validating the session. Useful when the target itself is public but the app exposes a cheap authenticated endpoint. Example: --session-check-url 'https://app/me'",
+    "--on-session-loss": "What to do when the session is detected as lost [default: abort]: abort stops the affected target and skips the rest of that host; continue keeps scanning. Either way the target is reported as `incomplete` / SESSION_LOST instead of a misleading \"clean\"",
+    "--include-url": "Include only URLs matching these patterns (regex, can be specified multiple times)",
+    "--exclude-url": "Exclude URLs matching these patterns (regex, can be specified multiple times)",
+    "--ignore-param": "Ignore specific parameters during scanning (can be specified multiple times)",
+    "--out-of-scope": "Exclude targets whose domain matches these patterns (supports wildcards, e.g. *.dev.example.com)",
+    "--out-of-scope-file": "Load out-of-scope domains from a file (one per line, supports wildcards)",
+    "--only-discovery": "Only perform parameter discovery (skip XSS scanning)",
+    "--skip-discovery": "Skip all discovery checks",
+    "--skip-reflection-header": "Skip header-based reflection checks",
+    "--skip-reflection-cookie": "Skip cookie-based reflection checks",
+    "--skip-reflection-path": "Skip path-based reflection checks",
+    "--mining-dict-word": "Dictionary analysis with wordlist file path",
+    "--remote-wordlists": "Fetch remote parameter wordlists from providers (comma-separated). Options: burp, assetnote",
+    "--skip-mining": "Skip all mining",
+    "--skip-mining-dict": "Skip dictionary-based mining",
+    "--skip-mining-dom": "Skip mining parameter names from HTML input id/name attributes. Does NOT disable DOM-XSS static analysis of inline scripts (the `[A]` findings) \u2014 use --skip-ast-analysis for that",
+    "--timeout": "Per-request timeout in seconds (network only; does not bound total scan time)",
+    "--scan-timeout": "Hard wall-clock cap per target for the payload-injection (scan) stage in seconds. When set, dalfox stops a target's payload-injection stage once this budget is exceeded \u2014 useful when many sequential phases each pay the per-request `--timeout` cost against a partially-hung endpoint. Scope note: this caps ONLY the injection stage. The earlier preflight and parameter-analysis (discovery + mining) phases are bounded separately by `--timeout` \u00d7 request-count, NOT by this wall-clock cap, so a slow target can overshoot this budget during analysis. 0 disables (default)",
+    "--delay": "Delay in milliseconds",
+    "--rate-limit": "Cap the global outbound request rate in requests/second, shared across all workers and targets (0 = unlimited). Unlike --delay (which only spaces a single worker's requests), this bounds the total in-flight burst from workers \u00d7 concurrent targets \u2014 friendlier to shared-IP / edge WAF thresholds. Example: --rate-limit 20",
+    "--retries": "Retry failed requests on HTTP 5xx and transient transport errors (timeouts, connection resets) up to this many times (0 = off). HTTP 429 is always retried regardless of this value. Example: --retries 2",
+    "--retry-delay": "Base delay (ms) for the exponential backoff between retries (--retries). Doubles each attempt and is capped internally; a server Retry-After header takes precedence on 429. Example: --retry-delay 500",
+    "--proxy": "Proxy URL (e.g., http://localhost:8080, socks5://localhost:9050)",
+    "--insecure": "Skip TLS/SSL certificate verification, accepting self-signed, expired, or hostname-mismatched certs. Enabled by default for scanner use; pass `--insecure=false` to enforce certificate validation. Example: --insecure=false",
+    "--follow-redirects": "Follow HTTP redirects. Example: -F",
+    "--ignore-return": "Ignore specific HTTP status codes during scanning (comma-separated). Example: --ignore-return 302,403,404",
+    "--workers": "Number of concurrent workers",
+    "--max-concurrent-targets": "Maximum number of concurrent targets to scan",
+    "--max-targets-per-host": "Maximum number of targets per host",
+    "--encoders": "Specify payload encoders to use (comma-separated). Options: none, url, 2url, 3url, 4url, html, htmlpad, base64, unicode, zwsp. Default: url,html",
+    "--remote-payloads": "Fetch remote XSS payloads from providers (comma-separated). Options: portswigger, payloadbox",
+    "--custom-blind-xss-payload": "Load custom blind XSS payloads from a file. Example: --custom-blind-xss-payload 'payloads.txt'",
+    "--blind": "Blind XSS callback URL. Example: -b 'https://example.com/callback'",
+    "--blind-oob": "Enable OOB blind XSS via interactsh. Optional comma-separated server domains (default: public servers). Example: --blind-oob=oast.fun,oast.me",
+    "--blind-oob-secret": "Auth token (secret) for a self-hosted interactsh server; sent as the Authorization header on register/poll/deregister",
+    "--blind-oob-wait": "Seconds to keep polling for OOB callbacks after all payloads are sent (default 30; 0 = no extra end-of-scan wait)",
+    "--custom-payload": "Load custom payloads from a file. Example: --custom-payload 'payloads.txt'",
+    "--only-custom-payload": "Only test custom payloads. Example: --only-custom-payload --custom-payload=p.txt",
+    "--custom-alert-value": "Custom value for alert/prompt/confirm in payloads. Default: \"1\". Example: --custom-alert-value 'document.domain'",
+    "--custom-alert-type": "Custom alert function type. Options: none (keep original), str (wrap value in quotes). Default: \"none\"",
+    "--inject-marker": "Custom injection point marker. Replace this string with payloads in URL/headers/body. Example: --inject-marker 'FUZZ' with URL 'http://example.com/?q=FUZZ'",
+    "--skip-xss-scanning": "Skip XSS scanning entirely",
+    "--max-payloads-per-param": "Cap the number of base payloads tested per parameter (reflection set and DOM-verification set are each capped independently). 0 (default) applies a built-in safety cap of 3000 per set unless --deep-scan is set; pass an explicit value to override, or --deep-scan for a truly unlimited run. Bounds the request fan-out on large attack surfaces and on endpoints that reflect every payload (self-/canonical-link echoes) without verifying. Note: the cap applies to the base catalog; WAF-bypass mutation/encoder expansion and a small set of shared CSP-bypass / tech-specific payloads are added afterwards (and never trimmed), so the actual per-parameter total can exceed this value \u2014 substantially so when a WAF bypass strategy is active. Use --deep-scan only to lift the built-in default cap",
+    "--deep-scan": "Perform deep scanning - test all payloads even after finding XSS",
+    "--sxss": "Enable Stored XSS mode",
+    "--sxss-url": "URL to check for Stored XSS reflection. When omitted with --sxss, auto-detects from form discovery context",
+    "--sxss-method": "HTTP method for checking Stored XSS (default \"GET\")",
+    "--sxss-retries": "Number of times to re-check the Stored XSS URL to handle slow session/content propagation. Each retry waits 500ms * attempt_index",
+    "--skip-ast-analysis": "Skip AST-based DOM XSS detection \u2014 the source\u2192sink analysis of JavaScript in responses that emits [A] findings. This is the flag that silences them; --skip-mining-dom does not",
+    "--analyze-external-js": "Fetch and AST-analyze same-origin external <script src> bundles for DOM-XSS (off by default to preserve request budget)",
+    "--hpp": "Enable HTTP Parameter Pollution (HPP) \u2014 duplicate query params to bypass WAF",
+    "--detect-outdated-libs": "Also report outdated / known-vulnerable JS libraries (informational, CWE-1104). Off by default: dalfox focuses on verified XSS; this is an opt-in retire.js-style add-on that inspects <script> tags (0 extra requests)",
+    "--waf-bypass": "WAF bypass mode: auto (detect+bypass), force (use --force-waf), off (detect-only; no payload mutations). Default: auto",
+    "--skip-waf-probe": "Skip WAF fingerprinting probes (header-only detection, no provocation request)",
+    "--force-waf": "Force a specific WAF type for bypass strategies (e.g., cloudflare, akamai, modsecurity)",
+    "--waf-evasion": "Adaptive WAF evasion: when a WAF is detected, randomize inter-request timing (jitter) and escalate a cooldown pause on clusters of blocked responses, instead of the old blunt workers=1/delay=3000 preset. Pairs well with --rate-limit. The per-WAF pacing hint is applied automatically on detection even without this flag",
+    "--waf-min-confidence": "Discard WAF fingerprints below this confidence (0.0\u20131.0). Default (0.3) filters weak signals like `Server: Google Frontend` (0.15 \u2014 emitted by every Google-hosted property regardless of Cloud Armor) and generic \"Request blocked\" body markers. Real WAF signatures (Cloudflare 0.9+, AWS WAF 0.95) are kept. Pass `--waf-min-confidence 0.0` to keep every match"
+   },
+   "server": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help (see a summary with '-h')",
+    "--port": "Port to run the server on",
+    "--host": "Host to bind the server to",
+    "--api-key": "API key required in X-API-KEY header (or set via DALFOX_API_KEY). Leave empty to disable auth",
+    "--log-file": "Path to a log file to also write logs (plain text, no ANSI colors)",
+    "--rate-limit": "Server-wide cap on each scan's outbound request rate (requests/second; 0 or unset = unlimited). Applied to every submitted scan: a request's own `rate_limit` may be lower but cannot exceed or disable this cap",
+    "--scan-timeout": "Server-wide cap on each scan's total wall-clock runtime, in seconds (0 or unset = unbounded). Applied to every submitted scan: a request's own scan_timeout may be shorter but cannot exceed or disable this cap. Bounds long/deep scans so a single target can't pin a worker indefinitely",
+    "--max-concurrent-scans": "Maximum number of concurrently active (queued + running) scans. Once the cap is hit, new submissions get HTTP 503 until a slot frees. 0 disables the cap (unbounded). Bounds memory + the blocking-pool against a flood of submissions",
+    "--max-body-bytes": "Maximum accepted request-body size (bytes) for POST /scan and /preflight. Replaces axum's implicit 2 MiB default with an explicit, documented bound",
+    "--allowed-origins": "Comma-separated list of allowed origins for CORS. Supports: - \"*\" wildcard (match all) - exact origins (http://localhost:3000) - \"regex:<pattern>\" for regex",
+    "--cors-allow-methods": "CORS allow methods (comma-separated). Default: GET,POST,OPTIONS,PUT,PATCH,DELETE",
+    "--cors-allow-headers": "CORS allow headers (comma-separated). Default: Content-Type,X-API-KEY,Authorization",
+    "--jsonp": "Allow JSONP responses (wrap JSON in callback())",
+    "--callback-param-name": "JSONP callback parameter name (default: callback)"
+   },
+   "payload": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help (see a summary with '-h')"
+   },
+   "mcp": {
+    "--config": "Path to a config file (TOML or JSON). Overrides default search path",
+    "--debug": "Enable debug logging (show DBG lines)",
+    "--no-color": "Disable colored output (also respects NO_COLOR env var)",
+    "--silence": "Silence all logs except POC output to STDOUT",
+    "--help": "Print help"
+   },
+   "help": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 77,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-94b61d0a",
+    "argv": [
+     "dalfox",
+     "--host",
+     "dvwa",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 218
+   },
+   {
+    "id": "t-opt-e50d60a2",
+    "argv": [
+     "dalfox",
+     "--silence",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1,
+    "flag": "--silence"
+   },
+   {
+    "id": "t-opt-18c947a7",
+    "argv": [
+     "dalfox",
+     "--allowed-origins",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--allowed-origins"
+   },
+   {
+    "id": "t-opt-78e941c6",
+    "argv": [
+     "dalfox",
+     "--blind",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 221,
+    "flag": "--blind"
+   },
+   {
+    "id": "t-opt-c99a8f65",
+    "argv": [
+     "dalfox",
+     "--context-aware",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 245,
+    "flag": "--context-aware"
+   },
+   {
+    "id": "t-opt-c8c3e8b6",
+    "argv": [
+     "dalfox",
+     "--cookie",
+     "X-CTK-Example: 1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 224,
+    "flag": "--cookie"
+   },
+   {
+    "id": "t-opt-a3265fa8",
+    "argv": [
+     "dalfox",
+     "--cookie-from-raw",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--cookie-from-raw"
+   },
+   {
+    "id": "t-opt-6579d6c2",
+    "argv": [
+     "dalfox",
+     "--custom-alert-value",
+     "X-CTK-Example: 1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 260,
+    "flag": "--custom-alert-value"
+   },
+   {
+    "id": "t-opt-5330b504",
+    "argv": [
+     "dalfox",
+     "--deep-domxss",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 239,
+    "flag": "--deep-domxss"
+   },
+   {
+    "id": "t-opt-055890df",
+    "argv": [
+     "dalfox",
+     "--delay=dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 221,
+    "flag": "--delay"
+   },
+   {
+    "id": "t-opt-9b808963",
+    "argv": [
+     "dalfox",
+     "--detailed-analysis",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 257,
+    "flag": "--detailed-analysis"
+   },
+   {
+    "id": "t-opt-9ede7585",
+    "argv": [
+     "dalfox",
+     "--encoder-url",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 239,
+    "flag": "--encoder-url"
+   },
+   {
+    "id": "t-opt-1188a768",
+    "argv": [
+     "dalfox",
+     "--entity-event-handler",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 266,
+    "flag": "--entity-event-handler"
+   },
+   {
+    "id": "t-opt-882317da",
+    "argv": [
+     "dalfox",
+     "--entity-gf",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--entity-gf"
+   },
+   {
+    "id": "t-opt-93df2aac",
+    "argv": [
+     "dalfox",
+     "--entity-special-chars",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 266,
+    "flag": "--entity-special-chars"
+   },
+   {
+    "id": "t-opt-94c59b59",
+    "argv": [
+     "dalfox",
+     "--entity-useful-tags",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 260,
+    "flag": "--entity-useful-tags"
+   },
+   {
+    "id": "t-opt-9274b8b2",
+    "argv": [
+     "dalfox",
+     "--enum-attr",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--enum-attr"
+   },
+   {
+    "id": "t-opt-0449a51d",
+    "argv": [
+     "dalfox",
+     "--enum-common",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 239,
+    "flag": "--enum-common"
+   },
+   {
+    "id": "t-opt-c1dbdd51",
+    "argv": [
+     "dalfox",
+     "--enum-html",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--enum-html"
+   },
+   {
+    "id": "t-opt-eb863b55",
+    "argv": [
+     "dalfox",
+     "--enum-injs",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--enum-injs"
+   },
+   {
+    "id": "t-opt-73fcb5ba",
+    "argv": [
+     "dalfox",
+     "--fast-scan",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--fast-scan"
+   },
+   {
+    "id": "t-opt-e8747001",
+    "argv": [
+     "dalfox",
+     "--follow-redirects",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 254,
+    "flag": "--follow-redirects"
+   },
+   {
+    "id": "t-opt-e79d9ecb",
+    "argv": [
+     "dalfox",
+     "--force-headless-verification",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 287,
+    "flag": "--force-headless-verification"
+   },
+   {
+    "id": "t-opt-48b421b3",
+    "argv": [
+     "dalfox",
+     "--har",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 215,
+    "flag": "--har"
+   },
+   {
+    "id": "t-opt-a74513b3",
+    "argv": [
+     "dalfox",
+     "--host=dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 218,
+    "flag": "--host"
+   },
+   {
+    "id": "t-opt-bb66379c",
+    "argv": [
+     "dalfox",
+     "--http",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 218,
+    "flag": "--http"
+   },
+   {
+    "id": "t-opt-c38f93f9",
+    "argv": [
+     "dalfox",
+     "--ignore-return",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 245,
+    "flag": "--ignore-return"
+   },
+   {
+    "id": "t-opt-32abc605",
+    "argv": [
+     "dalfox",
+     "--include-request",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--include-request"
+   },
+   {
+    "id": "t-opt-e8f254b8",
+    "argv": [
+     "dalfox",
+     "--jsonp",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 221,
+    "flag": "--jsonp"
+   },
+   {
+    "id": "t-opt-9039ac64",
+    "argv": [
+     "dalfox",
+     "--limit",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 221,
+    "flag": "--limit"
+   },
+   {
+    "id": "t-opt-674904b5",
+    "argv": [
+     "dalfox",
+     "--limit-result",
+     "1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 242,
+    "flag": "--limit-result"
+   },
+   {
+    "id": "t-opt-efbffec7",
+    "argv": [
+     "dalfox",
+     "--magic-char-test",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--magic-char-test"
+   },
+   {
+    "id": "t-opt-3020727f",
+    "argv": [
+     "dalfox",
+     "--make-bulk",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--make-bulk"
+   },
+   {
+    "id": "t-opt-3c596d3d",
+    "argv": [
+     "dalfox",
+     "--mass",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 218,
+    "flag": "--mass"
+   },
+   {
+    "id": "t-opt-09d64bd8",
+    "argv": [
+     "dalfox",
+     "--mass-worker",
+     "1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 239,
+    "flag": "--mass-worker"
+   },
+   {
+    "id": "t-opt-6a9c51b2",
+    "argv": [
+     "dalfox",
+     "--max-body-bytes",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 248,
+    "flag": "--max-body-bytes"
+   },
+   {
+    "id": "t-opt-6366d60d",
+    "argv": [
+     "dalfox",
+     "--max-concurrent-scans",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 266,
+    "flag": "--max-concurrent-scans"
+   },
+   {
+    "id": "t-opt-a9ac95a6",
+    "argv": [
+     "dalfox",
+     "--max-cpu",
+     "1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--max-cpu"
+   },
+   {
+    "id": "t-opt-1ce51eac",
+    "argv": [
+     "dalfox",
+     "--mining-dict",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 239,
+    "flag": "--mining-dict"
+   },
+   {
+    "id": "t-opt-ae7d002f",
+    "argv": [
+     "dalfox",
+     "--mining-dict-word",
+     "/opt/ctk/fixtures/hashes/wordlist.txt",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 254,
+    "flag": "--mining-dict-word"
+   },
+   {
+    "id": "t-opt-1c440b40",
+    "argv": [
+     "dalfox",
+     "--mining-dom",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--mining-dom"
+   },
+   {
+    "id": "t-opt-d18ee527",
+    "argv": [
+     "dalfox",
+     "--multicast",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 233,
+    "flag": "--multicast"
+   },
+   {
+    "id": "t-opt-474c7686",
+    "argv": [
+     "dalfox",
+     "--no-spinner",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--no-spinner"
+   },
+   {
+    "id": "t-opt-f273314f",
+    "argv": [
+     "dalfox",
+     "--only-custom-payload",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 263,
+    "flag": "--only-custom-payload"
+   },
+   {
+    "id": "t-opt-10a0875a",
+    "argv": [
+     "dalfox",
+     "--only-discovery",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 248,
+    "flag": "--only-discovery"
+   },
+   {
+    "id": "t-opt-bc1fbcce",
+    "argv": [
+     "dalfox",
+     "--only-poc=ctk",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 230,
+    "flag": "--only-poc"
+   },
+   {
+    "id": "t-opt-be2a08c1",
+    "argv": [
+     "dalfox",
+     "--output",
+     "/tmp/ctk-capture/output.out",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 224,
+    "flag": "--output"
+   },
+   {
+    "id": "t-opt-f190b2c6",
+    "argv": [
+     "dalfox",
+     "--output-all",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--output-all"
+   },
+   {
+    "id": "t-opt-85487150",
+    "argv": [
+     "dalfox",
+     "--output-request",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 248,
+    "flag": "--output-request"
+   },
+   {
+    "id": "t-opt-2af5dd8e",
+    "argv": [
+     "dalfox",
+     "--output-response",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--output-response"
+   },
+   {
+    "id": "t-opt-6f259c6e",
+    "argv": [
+     "dalfox",
+     "--poc-type",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 230,
+    "flag": "--poc-type"
+   },
+   {
+    "id": "t-opt-9f3272c1",
+    "argv": [
+     "dalfox",
+     "--port",
+     "1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 218,
+    "flag": "--port"
+   },
+   {
+    "id": "t-opt-42f42a42",
+    "argv": [
+     "dalfox",
+     "--rate-limit",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--rate-limit"
+   },
+   {
+    "id": "t-opt-164faa88",
+    "argv": [
+     "dalfox",
+     "--rawdata",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--rawdata"
+   },
+   {
+    "id": "t-opt-fe534f62",
+    "argv": [
+     "dalfox",
+     "--remote-payloadbox",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 257,
+    "flag": "--remote-payloadbox"
+   },
+   {
+    "id": "t-opt-c0f24982",
+    "argv": [
+     "dalfox",
+     "--remote-portswigger",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 260,
+    "flag": "--remote-portswigger"
+   },
+   {
+    "id": "t-opt-8089544e",
+    "argv": [
+     "dalfox",
+     "--report",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 224,
+    "flag": "--report"
+   },
+   {
+    "id": "t-opt-443b0a70",
+    "argv": [
+     "dalfox",
+     "--scan-timeout",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 242,
+    "flag": "--scan-timeout"
+   },
+   {
+    "id": "t-opt-a09174eb",
+    "argv": [
+     "dalfox",
+     "--sequence",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 216,
+    "flag": "--sequence"
+   },
+   {
+    "id": "t-opt-c1bb3b23",
+    "argv": [
+     "dalfox",
+     "--silence-force",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 221,
+    "flag": "--silence-force"
+   },
+   {
+    "id": "t-opt-0d7bffb5",
+    "argv": [
+     "dalfox",
+     "--skip-bav",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 230,
+    "flag": "--skip-bav"
+   },
+   {
+    "id": "t-opt-2dee2342",
+    "argv": [
+     "dalfox",
+     "--skip-discovery",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 248,
+    "flag": "--skip-discovery"
+   },
+   {
+    "id": "t-opt-917667e6",
+    "argv": [
+     "dalfox",
+     "--skip-grepping",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 245,
+    "flag": "--skip-grepping"
+   },
+   {
+    "id": "t-opt-eb5db81a",
+    "argv": [
+     "dalfox",
+     "--skip-headless",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 245,
+    "flag": "--skip-headless"
+   },
+   {
+    "id": "t-opt-7fa2a953",
+    "argv": [
+     "dalfox",
+     "--skip-mining-all",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--skip-mining-all"
+   },
+   {
+    "id": "t-opt-d79560c3",
+    "argv": [
+     "dalfox",
+     "--skip-mining-dict",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 254,
+    "flag": "--skip-mining-dict"
+   },
+   {
+    "id": "t-opt-ea76bb22",
+    "argv": [
+     "dalfox",
+     "--skip-mining-dom",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 251,
+    "flag": "--skip-mining-dom"
+   },
+   {
+    "id": "t-opt-28474a4a",
+    "argv": [
+     "dalfox",
+     "--skip-xss-scanning",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 257,
+    "flag": "--skip-xss-scanning"
+   },
+   {
+    "id": "t-opt-5a2d8957",
+    "argv": [
+     "dalfox",
+     "--sxss-retries",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 242,
+    "flag": "--sxss-retries"
+   },
+   {
+    "id": "t-opt-3a58839c",
+    "argv": [
+     "dalfox",
+     "--timeout",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--timeout"
+   },
+   {
+    "id": "t-opt-8db41048",
+    "argv": [
+     "dalfox",
+     "--trigger",
+     "http://dvwa",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--trigger"
+   },
+   {
+    "id": "t-opt-424e7c2e",
+    "argv": [
+     "dalfox",
+     "--use-bav",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--use-bav"
+   },
+   {
+    "id": "t-opt-a8121a03",
+    "argv": [
+     "dalfox",
+     "--user-agent=ctk-example",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--user-agent"
+   },
+   {
+    "id": "t-opt-554e1320",
+    "argv": [
+     "dalfox",
+     "--waf-bypass",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 236,
+    "flag": "--waf-bypass"
+   },
+   {
+    "id": "t-opt-243bb14a",
+    "argv": [
+     "dalfox",
+     "--waf-evasion",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 219,
+    "flag": "--waf-evasion"
+   },
+   {
+    "id": "t-opt-1597431c",
+    "argv": [
+     "dalfox",
+     "--worker",
+     "1",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 224,
+    "flag": "--worker"
+   },
+   {
+    "id": "t-opt-174348c1",
+    "argv": [
+     "dalfox",
+     "--workers",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 227,
+    "flag": "--workers"
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "./target/release/dalfox --version",
+    "source": "ci",
+    "path": ".github/workflows/ci-packaging.yml",
+    "line": 53,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "./target/x86_64-unknown-linux-musl/release/dalfox --version",
+    "source": "ci",
+    "path": ".github/workflows/ci-packaging.yml",
+    "line": 71,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "https://formulae.brew.sh/formula/dalfox",
+    "source": "readme",
+    "path": "README.md",
+    "line": 32,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "dalfox [mode] [target] [flags]",
+    "source": "readme",
+    "path": "README.md",
+    "line": 80,
+    "reason": "syntax-template",
+    "token": "[mode]"
+   },
+   {
+    "raw": "dalfox https://target.app -f json -o report.json",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 13,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app -f jsonl -o findings.jsonl",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 28,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --stream-findings",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 120,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --poc-type curl      # curl command",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 132,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --poc-type httpie    # HTTPie",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 133,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --poc-type http-request  # raw HTTP",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 134,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --only-poc v     # only verified",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 144,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --only-poc v,a   # verified + AST",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 145,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --limit 50",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 151,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --limit 10 --limit-result-type v",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 152,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox scan scope.txt -f json -o baseline.json      # once, to record the backlog",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 162,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox scan scope.txt --baseline baseline.json      # every run after",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 163,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox https://target.app -f toml -o report.toml",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 261,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox scan urls.txt -f sarif -o dalfox.sarif",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 267,
+    "reason": "needs-live-target",
+    "token": "dalfox.sarif"
+   },
+   {
+    "raw": "dalfox scan scope.txt --only-poc v -f json -o .dalfox/baseline.json",
+    "source": "readme",
+    "path": "docs/content/guide/output.md",
+    "line": 308,
+    "reason": "unmappable-path",
+    "token": ".dalfox/baseline.json"
+   },
+   {
+    "raw": "dalfox https://target.app/api -p q -p id:query -p auth:header -p token:cookie",
+    "source": "readme",
+    "path": "docs/content/guide/parameters.md",
+    "line": 25,
+    "reason": "needs-live-target",
+    "token": "https://target.app/api"
+   },
+   {
+    "raw": "dalfox https://target.app --ignore-param csrf --ignore-param __RequestVerificationToken",
+    "source": "readme",
+    "path": "docs/content/guide/parameters.md",
+    "line": 67,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --dry-run",
+    "source": "readme",
+    "path": "docs/content/guide/parameters.md",
+    "line": 91,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --only-discovery",
+    "source": "readme",
+    "path": "docs/content/guide/parameters.md",
+    "line": 97,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app/api --inject-marker FUZZ -d '{\"filter\":\"FUZZ\"}'",
+    "source": "readme",
+    "path": "docs/content/guide/parameters.md",
+    "line": 123,
+    "reason": "needs-live-target",
+    "token": "https://target.app/api"
+   },
+   {
+    "raw": "dalfox https://target.app -e url,html,base64",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 98,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --custom-payload mypayloads.txt",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 123,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --custom-payload mypayloads.txt --only-custom-payload",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 129,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --remote-payloads portswigger,payloadbox",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 137,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox payload event-handlers  # onerror, onmouseover, ...",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 162,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload useful-tags     # svg, img, script, ...",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 163,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload uri-scheme      # javascript:, data:",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 164,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload special-chars   # < > \" ' ` ( ) ... and encoded variants",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 165,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload functions       # confirmable sinks: alert(1), window['alert'](1), ...",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 166,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload awesome-alert   # PoC alerts: alert(document.domain), alert(document.cookie)",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 167,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload dom-clobbering  # DOM clobbering vectors",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 168,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload mxss            # mutation-XSS / sanitizer-bypass payloads",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 169,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload blind           # blind-XSS skeletons ({} = your callback URL)",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 170,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload portswigger     # fetch + print remote list",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 171,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox payload all             # every local selector, grouped under \"# name\" headers",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 172,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox https://target.app --custom-alert-value \"document.domain\" --custom-alert-type str",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 192,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app -b https://your-callback.interact.sh",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 205,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --hpp",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 222,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --deep-scan",
+    "source": "readme",
+    "path": "docs/content/guide/payloads.md",
+    "line": 230,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox scan --input-type url https://target.app",
+    "source": "readme",
+    "path": "docs/content/guide/scanning-modes.md",
+    "line": 29,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox scan --input-type raw-http request.txt",
+    "source": "readme",
+    "path": "docs/content/guide/scanning-modes.md",
+    "line": 144,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox scan https://target.app/post-comment --sxss --sxss-url https://target.app/comments",
+    "source": "readme",
+    "path": "docs/content/guide/scanning-modes.md",
+    "line": 173,
+    "reason": "needs-live-target",
+    "token": "https://target.app/post-comment"
+   },
+   {
+    "raw": "dalfox payload payloadbox        # fetch PayloadBox XSS list",
+    "source": "readme",
+    "path": "docs/content/guide/scanning-modes.md",
+    "line": 305,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox https://target.app/post-comment --sxss --sxss-url https://target.app/comments",
+    "source": "readme",
+    "path": "docs/content/guide/stored-xss.md",
+    "line": 13,
+    "reason": "needs-live-target",
+    "token": "https://target.app/post-comment"
+   },
+   {
+    "raw": "dalfox https://target.app/form --sxss --sxss-url https://target.app/list --sxss-method GET",
+    "source": "readme",
+    "path": "docs/content/guide/stored-xss.md",
+    "line": 41,
+    "reason": "needs-live-target",
+    "token": "https://target.app/form"
+   },
+   {
+    "raw": "dalfox https://target.app/support/ticket -b https://callback.interact.sh",
+    "source": "readme",
+    "path": "docs/content/guide/stored-xss.md",
+    "line": 63,
+    "reason": "needs-live-target",
+    "token": "https://target.app/support/ticket"
+   },
+   {
+    "raw": "dalfox https://target.app --waf-bypass force --force-waf cloudflare",
+    "source": "readme",
+    "path": "docs/content/guide/waf-bypass.md",
+    "line": 54,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --waf-bypass off",
+    "source": "readme",
+    "path": "docs/content/guide/waf-bypass.md",
+    "line": 64,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --skip-waf-probe",
+    "source": "readme",
+    "path": "docs/content/guide/waf-bypass.md",
+    "line": 72,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --waf-evasion",
+    "source": "readme",
+    "path": "docs/content/guide/waf-bypass.md",
+    "line": 82,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox https://target.app --delay 500 --workers 10",
+    "source": "readme",
+    "path": "docs/content/guide/waf-bypass.md",
+    "line": 154,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   },
+   {
+    "raw": "dalfox server --port 6664 --host 0.0.0.0 --api-key \"change-me\" --log-file /var/log/dalfox.log",
+    "source": "readme",
+    "path": "docs/content/integrations/server.md",
+    "line": 20,
+    "reason": "unmappable-path",
+    "token": "/var/log/dalfox.log"
+   },
+   {
+    "raw": "dalfox server --allowed-origins \"https://app.example.com,https://admin.example.com\" --cors-allow-methods \"GET,POST,OPTIONS,DELETE\" --cors-allow-headers \"Content-Type,X-API-KEY,Authorization\"",
+    "source": "readme",
+    "path": "docs/content/integrations/server.md",
+    "line": 40,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox [SUBCOMMAND] [TARGET] [FLAGS]",
+    "source": "readme",
+    "path": "docs/content/reference/cli.md",
+    "line": 11,
+    "reason": "syntax-template",
+    "token": "[SUBCOMMAND]"
+   },
+   {
+    "raw": "dalfox scan [TARGETS]... [FLAGS]",
+    "source": "readme",
+    "path": "docs/content/reference/cli.md",
+    "line": 46,
+    "reason": "syntax-template",
+    "token": "[FLAGS]"
+   },
+   {
+    "raw": "dalfox server [FLAGS]",
+    "source": "readme",
+    "path": "docs/content/reference/cli.md",
+    "line": 207,
+    "reason": "syntax-template",
+    "token": "[FLAGS]"
+   },
+   {
+    "raw": "dalfox mcp",
+    "source": "readme",
+    "path": "docs/content/reference/cli.md",
+    "line": 262,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox server --port 6664",
+    "source": "readme",
+    "path": "docs/content/reference/environment.md",
+    "line": 25,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dalfox scan https://target.app --no-color",
+    "source": "readme",
+    "path": "docs/content/reference/environment.md",
+    "line": 37,
+    "reason": "needs-live-target",
+    "token": "https://target.app"
+   }
+  ]
+ },
+ "tool": "Dalfox",
+ "repo": "hahwul/dalfox",
+ "head_sha": "26f1737252c391099c5dcf4d27ffe541071a3d6a",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:21:19.569794+00:00"
+}

@@ -1,0 +1,1723 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:59c63465fc6a705536d9ae290f9185d39244cba641f8723c06c819078bf7e534",
+  "duration_s": 61.97,
+  "log_tail": "#8 46.89 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#8 46.93 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#8 47.04 debconf: unable to initialize frontend: Dialog\n#8 47.04 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 47.04 debconf: falling back to frontend: Readline\n#8 47.05 debconf: unable to initialize frontend: Readline\n#8 47.05 debconf: (This frontend requires a controlling tty.)\n#8 47.05 debconf: falling back to frontend: Teletype\n#8 47.13 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 47.17 Setting up texinfo (6.8-6+b1) ...\n#8 47.21 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 47.28 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 47.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.238 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.0s done\n#20 exporting manifest sha256:4d2a26d13be989b26887ff94d51451fe03524f717e8298152dadf2fac3baac2d done\n#20 exporting config sha256:68ac1c36fb3e3e47d43ef1ca6bfbd7155821eb9e7f8978bc28691c98e50be289 done\n#20 exporting attestation manifest sha256:e7ecf9c9722b2bcd06751af56e1923d61dd3ce11b5281462c0a2cf39e4717686 0.0s done\n#20 exporting manifest list sha256:59c63465fc6a705536d9ae290f9185d39244cba641f8723c06c819078bf7e534 0.0s done\n#20 naming to docker.io/ctk-exec/dnsrecon:0cbe45aee8cc done\n#20 unpacking to docker.io/ctk-exec/dnsrecon:0cbe45aee8cc\n#20 unpacking to docker.io/ctk-exec/dnsrecon:0cbe45aee8cc 1.4s done\n#20 DONE 7.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "dnsrecon",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: dnsrecon [-h] [-d DOMAIN] [-iL INPUT_LIST] [-n NS_SERVER] [-r RANGE]\n                [-D DICTIONARY] [-f] [-a] [-s] [-b] [-y] [-k] [-w] [--shodan]\n                [--shodan-active] [--shodan-key SHODAN_KEY] [-z]\n                [--threads THREADS] [--lifetime LIFETIME]\n                [--loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--tcp]\n                [--db DB] [-x XML] [-c CSV] [-j JSON] [--iw]\n                [--disable_check_nxdomain] [--disable_check_recursion]\n                [--disable_recurs] [--disable_check_bindversion] [-V] [-v]\n                [-t TYPE]\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Target domain.\n  -iL INPUT_LIST, --input-list INPUT_LIST\n                        File containing a list of domains to perform DNS enumeration on, one per line.\n  -n NS_SERVER, --name_server NS_SERVER\n                        Domain server to use. If none is given, the SOA of the target will be used. Multiple servers can be specified using a comma separated list.\n  -r RANGE, --range RANGE\n                        IP range for reverse lookup brute force in formats (first-last) or in (range/bitmask).\n  -D DICTIONARY, --dictionary DICTIONARY\n                        Dictionary file of subdomain and hostnames to use for brute force.\n  -f                    Filter out of brute force domain lookup, records that resolve to the wildcard defined IP address when saving records.\n  -a                    Perform AXFR with standard enumeration.\n  -s                    Perform a reverse lookup of IPv4 ranges in the SPF record with standard enumeration.\n  -b                    Perform Bing enumeration with standard enumeration.\n  -y                    Perform Yandex enumeration with standard enumeration.\n  -k                    Perform crt.sh enumeration with standard enumeration.\n  -w                    Perform deep whois record analysis and reverse lookup of IP ranges found through Whois when doing a standard enumeration.\n  --shodan              Use Shodan to query netblocks discovered via SPF (-s) and/or Whois (-w) during standard enumeration.\n  --shodan-active       Actively validate Shodan-discovered names by resolving them and confirming they still match the queried netblock.\n  --shodan-key SHODAN_KEY\n                        Shodan API key. If omitted, SHODAN_API_KEY environment variable is used.\n  -z                    Performs a DNSSEC zone walk with standard enumeration.\n  --threads THREADS     Number of threads to use in reverse lookups, forward lookups, brute force and SRV record enumeration.\n  --lifetime LIFETIME   Time to wait for a server to respond to a query. default is 3.0\n  --loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}\n                        Log level to use. default is INFO\n  --tcp                 Use TCP protocol to make queries.\n  --db DB               SQLite 3 file to save found records.\n  -x XML, --xml XML     XML file to save found records.\n  -c CSV, --csv CSV     Save output to a comma separated value file.\n  -j JSON, --json JSON  save output to a JSON file.\n  --iw                  Continue brute forcing a domain even if a wildcard record is discovered.\n  --disable_check_nxdomain\n                        Disables check for NXDOMAIN hijacking on name servers.\n  --disable_check_recursion\n                        Disables check for recursion on name servers\n  --disable_recurs      Disable recursion desired flag in queries.\n  --disable_check_bindversion\n                        Disables check for BIND version on name servers\n  -V, --version         DNSrecon version\n  -v, --verbose         Enable verbosity\n  -t TYPE, --type TYPE  Type of enumeration to perform.\n                        Possible types:\n                            std:      SOA, NS, A, AAAA, MX and SRV.\n                            rvl:      Reverse lookup of a given CIDR or IP range.\n                            brt:      Brute force domains and hosts using a given dictionary.\n                            srv:      SRV records.\n                            axfr:     Test all NS servers for a zone transfer.\n                            bing:     Perform Bing search for subdomains and hosts.\n                            yand:     Perform Yandex search for subdomains and hosts.\n                            crt:      Perform crt.sh search for subdomains and hosts.\n                            caa:      CAA records.\n                            snoop:    Perform cache snooping against all NS servers for a given domain, testing\n                                      all with file containing the domains, file given with -D option.\n                        \n                            tld:      Remove the TLD of given domain and test against all TLDs registered in IANA.\n                            zonewalk: Perform a DNSSEC zone walk using NSEC records.\n",
+   "stderr": "",
+   "duration_ms": 512,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "dnsrecon"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for dnsrecon\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "dnsrecon"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'dnsrecon' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "dnsrecon",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "c76b2803252dd1bf",
+ "examples": [
+  {
+   "id": "enumerate-zone",
+   "title": "Enumerate a live DNS zone's records",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:13:22.545556+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:13:22.545768+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:13:22.547451+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:13:22.548840+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:22.550057+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:22.551482+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:13:22.553761+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:13:22.554538+0000 INFO Enumerating SRV Records\n2026-08-12T19:13:22.586502+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:13:22.586716+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-a4b4ddd0",
+   "title": "Disables check for BIND version on name servers (--disable_check_bindversion)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --disable_check_bindversion -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --disable_check_bindversion -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:13:30.230399+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:13:30.230629+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:13:30.232216+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:13:30.233480+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:30.234954+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:30.236524+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:13:30.238579+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:13:30.239563+0000 INFO Enumerating SRV Records\n2026-08-12T19:13:30.287366+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:13:30.287609+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-099f4d76",
+   "title": "Continue brute forcing a domain even if a wildcard record is discovered (--iw)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --iw -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --iw -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:13:37.805506+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:13:37.805755+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:13:37.807122+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:13:37.808627+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:37.809807+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:37.811056+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:13:37.813064+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:13:37.813763+0000 INFO Enumerating SRV Records\n2026-08-12T19:13:37.853007+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:13:37.853266+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-6e360a68",
+   "title": "Disables check for NXDOMAIN hijacking on name servers (--disable_check_nxdomain)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --disable_check_nxdomain -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --disable_check_nxdomain -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:13:45.035406+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:13:45.035632+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:13:45.037669+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:13:45.039520+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:45.040746+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:45.042075+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:13:45.044196+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:13:45.044954+0000 INFO Enumerating SRV Records\n2026-08-12T19:13:45.088439+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:13:45.088653+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-96492d2d",
+   "title": "Use Shodan to query netblocks discovered via SPF (-s) and/or Whois (-w)\u2026 (--shodan)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --shodan -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --shodan -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:13:53.725806+0000 INFO --shodan was provided but neither -s nor -w is enabled; no netblocks may be available for Shodan expansion.\n2026-08-12T19:13:53.725946+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:13:53.726048+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:13:53.727851+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:13:53.729783+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:53.731852+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:13:53.734186+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:13:53.738389+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:13:53.739558+0000 INFO Enumerating SRV Records\n2026-08-12T19:13:53.792282+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:13:53.792499+0000 ERROR Shodan expansion requested but no API key was provided. Use --shodan-key or SHODAN_API_KEY.\n2026-08-12T19:13:53.792562+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-f6d2c488",
+   "title": "Actively validate Shodan-discovered names by resolving them and\u2026 (--shodan-active)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --shodan-active -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --shodan-active -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:01.420695+0000 INFO --shodan-active was provided without --shodan; active validation will not run.\n2026-08-12T19:14:01.420908+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:01.421048+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:01.423049+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:01.424681+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:01.426038+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:01.427655+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:01.430079+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:01.431060+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:01.467998+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:01.468219+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-044a773d",
+   "title": "Perform AXFR with standard enumeration (-a)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon -a -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon -a -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:20.892635+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:20.892813+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:20.894389+0000 INFO Checking for Zone Transfer for ctk.test name servers\n2026-08-12T19:14:20.894472+0000 INFO Resolving SOA Record\n2026-08-12T19:14:20.896334+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:20.896450+0000 INFO Resolving NS Records\n2026-08-12T19:14:20.898031+0000 INFO NS Servers found:\n2026-08-12T19:14:20.898109+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:20.898153+0000 INFO Removing any duplicate NS server IP Addresses...\n2026-08-12T19:14:20.898258+0000 INFO  \n2026-08-12T19:14:20.898311+0000 INFO Trying NS server 192.0.2.53\n2026-08-12T19:14:20.898409+0000 ERROR Zone Transfer Failed for 192.0.2.53!\n2026-08-12T19:14:20.898444+0000 ERROR Port 53 TCP is being filtered\n2026-08-12T19:14:20.898924+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:20.900438+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:20.901954+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:20.904609+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:20.907831+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:20.908864+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:20.942046+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:20.942256+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-21fc79e9",
+   "title": "Perform a reverse lookup of IPv4 ranges in the SPF record with standard\u2026 (-s)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon -s -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon -s -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:28.501447+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:28.501629+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:28.503180+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:28.504355+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:28.505443+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:28.506600+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:28.508595+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:28.509498+0000 INFO Expanding IP ranges found in DNS and TXT records for Reverse Look-up\n2026-08-12T19:14:28.509613+0000 INFO No IP Ranges were found in SPF and TXT Records\n2026-08-12T19:14:28.509707+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:28.542395+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:28.542621+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-46b4d63b",
+   "title": "Perform deep whois record analysis and reverse lookup of IP ranges\u2026 (-w)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon -w -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon -w -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:35.974910+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:35.975095+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:35.976580+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:35.978069+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:35.979879+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:35.981630+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:35.983949+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:35.984915+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:36.029941+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:36.030146+0000 INFO Performing Whois lookup against records found.\n2026-08-12T19:14:36.030236+0000 ERROR No IP Ranges were found in the Whois query results\n2026-08-12T19:14:36.030281+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-29f19eae",
+   "title": "Performs a DNSSEC zone walk with standard enumeration (-z)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon -z -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon -z -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:43.485139+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:43.485387+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:43.487235+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:43.489106+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:43.490448+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:43.492476+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:43.495489+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:43.496796+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:43.535162+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:43.535366+0000 INFO Performing NSEC Zone Walk for ctk.test\n2026-08-12T19:14:43.535418+0000 INFO Getting SOA record for ctk.test\n2026-08-12T19:14:43.536717+0000 INFO Name Server 192.0.2.53 will be used\n2026-08-12T19:14:43.538222+0000 INFO \t A ctk.test no_ip\n2026-08-12T19:14:43.538849+0000 ERROR SoA nameserver 192.0.2.53 failed to answer the DNSSEC query for ctk.test\n2026-08-12T19:14:43.538915+0000 INFO 1 records found\n2026-08-12T19:14:43.539034+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  },
+  {
+   "id": "t-opt-4157e0d2",
+   "title": "Number of threads to use in reverse lookups, forward lookups, brute\u2026 (--threads)",
+   "argv": [
+    "sh",
+    "-c",
+    "export HOME=/tmp; exec dnsrecon --threads 1 -n \"$1\" -d ctk.test -t std",
+    "--",
+    "dns"
+   ],
+   "target_stack": [
+    {
+     "name": "dns",
+     "image": null,
+     "digest": null,
+     "version": null,
+     "source": "built",
+     "role": "supporting service"
+    }
+   ],
+   "caps_granted": [],
+   "command_display": "dnsrecon --threads 1 -n dns -d ctk.test -t std",
+   "stdout": "",
+   "stderr": "2026-08-12T19:14:52.808223+0000 INFO Starting enumeration for domain: ctk.test\n2026-08-12T19:14:52.808440+0000 INFO std: Performing General Enumeration against: ctk.test...\n2026-08-12T19:14:52.810123+0000 ERROR No answer for DNSSEC query for ctk.test\n2026-08-12T19:14:52.811725+0000 INFO \t SOA ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:52.813339+0000 INFO \t NS ns1.ctk.test 192.0.2.53\n2026-08-12T19:14:52.814938+0000 INFO \t MX mail.ctk.test 192.0.2.20\n2026-08-12T19:14:52.817266+0000 INFO \t TXT ctk.test ctk-fixture-marker-alpha\n2026-08-12T19:14:52.818191+0000 INFO Enumerating SRV Records\n2026-08-12T19:14:52.851264+0000 ERROR No SRV Records Found for ctk.test\n2026-08-12T19:14:52.851439+0000 INFO Completed enumeration for domain: ctk.test\n\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--domain": "Target domain.",
+   "-d": "Target domain.",
+   "--input-list": "File containing a list of domains to perform DNS enumeration on, one per line.",
+   "-iL": "File containing a list of domains to perform DNS enumeration on, one per line.",
+   "--name_server": "Domain server to use. If none is given, the SOA of the target will be used. Multiple servers can be specified using a comma separated list.",
+   "-n": "Domain server to use. If none is given, the SOA of the target will be used. Multiple servers can be specified using a comma separated list.",
+   "--range": "IP range for reverse lookup brute force in formats (first-last) or in (range/bitmask).",
+   "-r": "IP range for reverse lookup brute force in formats (first-last) or in (range/bitmask).",
+   "--dictionary": "Dictionary file of subdomain and hostnames to use for brute force.",
+   "-D": "Dictionary file of subdomain and hostnames to use for brute force.",
+   "-f": "Filter out of brute force domain lookup, records that resolve to the wildcard defined IP address when saving records.",
+   "-a": "Perform AXFR with standard enumeration.",
+   "-s": "Perform a reverse lookup of IPv4 ranges in the SPF record with standard enumeration.",
+   "-b": "Perform Bing enumeration with standard enumeration.",
+   "-y": "Perform Yandex enumeration with standard enumeration.",
+   "-k": "Perform crt.sh enumeration with standard enumeration.",
+   "-w": "Perform deep whois record analysis and reverse lookup of IP ranges found through Whois when doing a standard enumeration.",
+   "--shodan": "Use Shodan to query netblocks discovered via SPF (-s) and/or Whois (-w) during standard enumeration.",
+   "--shodan-active": "Actively validate Shodan-discovered names by resolving them and confirming they still match the queried netblock.",
+   "--shodan-key": "Shodan API key. If omitted, SHODAN_API_KEY environment variable is used.",
+   "-z": "Performs a DNSSEC zone walk with standard enumeration.",
+   "--threads": "Number of threads to use in reverse lookups, forward lookups, brute force and SRV record enumeration.",
+   "--lifetime": "Time to wait for a server to respond to a query. default is 3.0",
+   "--loglevel": "Log level to use. default is INFO",
+   "--tcp": "Use TCP protocol to make queries.",
+   "--db": "SQLite 3 file to save found records.",
+   "--xml": "XML file to save found records.",
+   "-x": "XML file to save found records.",
+   "--csv": "Save output to a comma separated value file.",
+   "-c": "Save output to a comma separated value file.",
+   "--json": "save output to a JSON file.",
+   "-j": "save output to a JSON file.",
+   "--iw": "Continue brute forcing a domain even if a wildcard record is discovered.",
+   "--disable_check_nxdomain": "Disables check for NXDOMAIN hijacking on name servers.",
+   "--disable_check_recursion": "Disables check for recursion on name servers",
+   "--disable_recurs": "Disable recursion desired flag in queries.",
+   "--disable_check_bindversion": "Disables check for BIND version on name servers",
+   "--version": "DNSrecon version",
+   "-V": "DNSrecon version",
+   "--verbose": "Enable verbosity",
+   "-v": "Enable verbosity",
+   "--type": "Type of enumeration to perform. Possible types: std: SOA, NS, A, AAAA, MX and SRV. rvl: Reverse lookup of a given CIDR or IP range. brt: Brute force domains and hosts using a given dictionary. srv: SRV records. axfr: Test all NS servers for a zone transfer. bing: Perform Bing search for subdomains and hosts. yand: Perform Yandex search for subdomains and hosts. crt: Perform crt.sh search for subdomains and hosts. caa: CAA records. snoop: Perform cache snooping against all NS servers for a given domain, testing all with file containing the domains, file given with -D option.",
+   "-t": "Type of enumeration to perform. Possible types: std: SOA, NS, A, AAAA, MX and SRV. rvl: Reverse lookup of a given CIDR or IP range. brt: Brute force domains and hosts using a given dictionary. srv: SRV records. axfr: Test all NS servers for a zone transfer. bing: Perform Bing search for subdomains and hosts. yand: Perform Yandex search for subdomains and hosts. crt: Perform crt.sh search for subdomains and hosts. caa: CAA records. snoop: Perform cache snooping against all NS servers for a given domain, testing all with file containing the domains, file given with -D option."
+  },
+  "values_seen": {
+   "--threads": "THREADS",
+   "--lifetime": "LIFETIME",
+   "--db": "DB",
+   "-x": "XML",
+   "--xml": "XML",
+   "-c": "CSV",
+   "--csv": "CSV",
+   "-j": "JSON",
+   "--json": "JSON",
+   "-t": "TYPE",
+   "--type": "TYPE"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--domain": [
+    "-d"
+   ],
+   "--input-list": [
+    "-iL"
+   ],
+   "--name_server": [
+    "-n"
+   ],
+   "--range": [
+    "-r"
+   ],
+   "--dictionary": [
+    "-D"
+   ],
+   "--xml": [
+    "-x"
+   ],
+   "--csv": [
+    "-c"
+   ],
+   "--json": [
+    "-j"
+   ],
+   "--version": [
+    "-V"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--type": [
+    "-t"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "dnsrecon",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "40834546788a1b92e25c05e1d1eec7bd61385837d9ca85482f1cdc9e03683edc",
+  "text": "usage: dnsrecon [-h] [-d DOMAIN] [-iL INPUT_LIST] [-n NS_SERVER] [-r RANGE]\n                [-D DICTIONARY] [-f] [-a] [-s] [-b] [-y] [-k] [-w] [--shodan]\n                [--shodan-active] [--shodan-key SHODAN_KEY] [-z]\n                [--threads THREADS] [--lifetime LIFETIME]\n                [--loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}] [--tcp]\n                [--db DB] [-x XML] [-c CSV] [-j JSON] [--iw]\n                [--disable_check_nxdomain] [--disable_check_recursion]\n                [--disable_recurs] [--disable_check_bindversion] [-V] [-v]\n                [-t TYPE]\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Target domain.\n  -iL INPUT_LIST, --input-list INPUT_LIST\n                        File containing a list of domains to perform DNS enumeration on, one per line.\n  -n NS_SERVER, --name_server NS_SERVER\n                        Domain server to use. If none is given, the SOA of the target will be used. Multiple servers can be specified using a comma separated list.\n  -r RANGE, --range RANGE\n                        IP range for reverse lookup brute force in formats (first-last) or in (range/bitmask).\n  -D DICTIONARY, --dictionary DICTIONARY\n                        Dictionary file of subdomain and hostnames to use for brute force.\n  -f                    Filter out of brute force domain lookup, records that resolve to the wildcard defined IP address when saving records.\n  -a                    Perform AXFR with standard enumeration.\n  -s                    Perform a reverse lookup of IPv4 ranges in the SPF record with standard enumeration.\n  -b                    Perform Bing enumeration with standard enumeration.\n  -y                    Perform Yandex enumeration with standard enumeration.\n  -k                    Perform crt.sh enumeration with standard enumeration.\n  -w                    Perform deep whois record analysis and reverse lookup of IP ranges found through Whois when doing a standard enumeration.\n  --shodan              Use Shodan to query netblocks discovered via SPF (-s) and/or Whois (-w) during standard enumeration.\n  --shodan-active       Actively validate Shodan-discovered names by resolving them and confirming they still match the queried netblock.\n  --shodan-key SHODAN_KEY\n                        Shodan API key. If omitted, SHODAN_API_KEY environment variable is used.\n  -z                    Performs a DNSSEC zone walk with standard enumeration.\n  --threads THREADS     Number of threads to use in reverse lookups, forward lookups, brute force and SRV record enumeration.\n  --lifetime LIFETIME   Time to wait for a server to respond to a query. default is 3.0\n  --loglevel {DEBUG,INFO,WARNING,ERROR,CRITICAL}\n                        Log level to use. default is INFO\n  --tcp                 Use TCP protocol to make queries.\n  --db DB               SQLite 3 file to save found records.\n  -x XML, --xml XML     XML file to save found records.\n  -c CSV, --csv CSV     Save output to a comma separated value file.\n  -j JSON, --json JSON  save output to a JSON file.\n  --iw                  Continue brute forcing a domain even if a wildcard record is discovered.\n  --disable_check_nxdomain\n                        Disables check for NXDOMAIN hijacking on name servers.\n  --disable_check_recursion\n                        Disables check for recursion on name servers\n  --disable_recurs      Disable recursion desired flag in queries.\n  --disable_check_bindversion\n                        Disables check for BIND version on name servers\n  -V, --version         DNSrecon version\n  -v, --verbose         Enable verbosity\n  -t TYPE, --type TYPE  Type of enumeration to perform.\n                        Possible types:\n                            std:      SOA, NS, A, AAAA, MX and SRV.\n                            rvl:      Reverse lookup of a given CIDR or IP range.\n                            brt:      Brute force domains and hosts using a given dictionary.\n                            srv:      SRV records.\n                            axfr:     Test all NS servers for a zone transfer.\n                            bing:     Perform Bing search for subdomains and hosts.\n                            yand:     Perform Yandex search for subdomains and hosts.\n                            crt:      Perform crt.sh search for subdomains and hosts.\n                            caa:      CAA records.\n                            snoop:    Perform cache snooping against all NS servers for a given domain, testing\n                                      all with file containing the domains, file given with -D option.\n                        \n                            tld:      Remove the TLD of given domain and test against all TLDs registered in IANA.\n                            zonewalk: Perform a DNSSEC zone walk using NSEC records.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--csv",
+   "--db",
+   "--dictionary",
+   "--disable_check_bindversion",
+   "--disable_check_nxdomain",
+   "--disable_check_recursion",
+   "--disable_recurs",
+   "--domain",
+   "--input-list",
+   "--iw",
+   "--json",
+   "--lifetime",
+   "--loglevel",
+   "--name_server",
+   "--range",
+   "--shodan",
+   "--shodan-active",
+   "--shodan-key",
+   "--tcp",
+   "--threads",
+   "--type",
+   "--verbose",
+   "--version",
+   "--xml",
+   "-a",
+   "-b",
+   "-f",
+   "-k",
+   "-s",
+   "-v",
+   "-w",
+   "-y",
+   "-z"
+  ],
+  "unconfirmed": [
+   "--file",
+   "--host",
+   "--log-level",
+   "--output",
+   "--port",
+   "--rate-limit",
+   "--reload",
+   "-g"
+  ],
+  "help_only": [
+   "--help",
+   "-D",
+   "-V",
+   "-c",
+   "-d",
+   "-h",
+   "-iL",
+   "-j",
+   "-n",
+   "-r",
+   "-t",
+   "-x"
+  ],
+  "mining_coverage": 0.7333333333333333
+ },
+ "surface": {
+  "flags": {
+   "--csv": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Save output to a comma separated value file.",
+    "kind": "option",
+    "metavar": "CSV",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--db": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "SQLite 3 file to save found records.",
+    "kind": "option",
+    "metavar": "DB",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--dictionary": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Dictionary file of subdomain and hostnames to use for brute force.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-D"
+    ]
+   },
+   "--disable_check_bindversion": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disables check for BIND version on name servers",
+    "kind": "option",
+    "first_tag": "0.9.0",
+    "first_date": "2019-04-02T11:30:18-04:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--disable_check_nxdomain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disables check for NXDOMAIN hijacking on name servers.",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2024-10-20T11:58:24+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--disable_check_recursion": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disables check for recursion on name servers",
+    "kind": "option",
+    "first_tag": "0.9.0",
+    "first_date": "2019-04-02T11:30:18-04:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--disable_recurs": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable recursion desired flag in queries.",
+    "kind": "option",
+    "first_tag": "1.5.3",
+    "first_date": "2025-12-30T22:47:37Z",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Target domain.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Input file containing TLD data",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2024-10-20T11:58:24+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "tools/tld_downloader.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "IP address to listen on default is 127.0.0.1",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2025-07-27T05:02:35+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/api_cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--input-list": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "File containing a list of domains to perform DNS enumeration on, one per line.",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2024-10-20T11:58:24+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-iL"
+    ]
+   },
+   "--iw": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Continue brute forcing a domain even if a wildcard record is discovered.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "save output to a JSON file.",
+    "kind": "option",
+    "metavar": "JSON",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--lifetime": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Time to wait for a server to respond to a query. default is 3.0",
+    "kind": "option",
+    "metavar": "LIFETIME",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "float"
+   },
+   "--log-level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set logging level, default is info but [critical|error|warning|info|debug|trace] can be set",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2025-07-27T05:02:35+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/api_cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--loglevel": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Log level to use. default is INFO",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2024-10-20T11:58:24+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "choices": [
+     "DEBUG",
+     "INFO",
+     "WARNING",
+     "ERROR",
+     "CRITICAL"
+    ],
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--name_server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Domain server to use. If none is given, the SOA of the target will be used. Multiple servers can be specified using a comma separated list.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Base name for output files",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2024-10-20T11:58:24+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "tools/tld_downloader.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port to bind the web server to, default is 5000",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2025-07-27T05:02:35+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/api_cli.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--range": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "IP range for reverse lookup brute force in formats (first-last) or in (range/bitmask).",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--rate-limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set API rate limit (e.g., \"10/minute\", \"100/hour\"), default is 5/minute",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2025-07-27T05:02:35+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/api_cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--reload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable automatic reload used during development of the api",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2025-07-27T05:02:35+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/api_cli.py",
+    "takes_value": false
+   },
+   "--shodan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use Shodan to query netblocks discovered via SPF (-s) and/or Whois (-w) during standard enumeration.",
+    "kind": "option",
+    "first_tag": "1.6.0",
+    "first_date": "2026-02-28T20:45:49Z",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--shodan-active": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Actively validate Shodan-discovered names by resolving them and confirming they still match the queried netblock.",
+    "kind": "option",
+    "first_tag": "1.6.0",
+    "first_date": "2026-02-28T20:45:49Z",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--shodan-key": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Shodan API key. If omitted, SHODAN_API_KEY environment variable is used.",
+    "kind": "option",
+    "first_tag": "1.6.0",
+    "first_date": "2026-02-28T20:45:49Z",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--tcp": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use TCP protocol to make queries.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "--threads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of threads to use in reverse lookups, forward lookups, brute force and SRV record enumeration.",
+    "kind": "option",
+    "metavar": "THREADS",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--type": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Type of enumeration to perform. Possible types: std: SOA, NS, A, AAAA, MX and SRV. rvl: Reverse lookup of a given CIDR or IP range. brt: Brute force domains and hosts using a given dictionary. srv: SRV records. axfr: Test all NS servers for a zone transfer. bing: Perform Bing search for subdomains and hosts. yand: Perform Yandex search for subdomains and hosts. crt: Perform crt.sh search for subdomains and hosts. caa: CAA records. snoop: Perform cache snooping against all NS servers for a given domain, testing all with file containing the domains, file given with -D option.",
+    "kind": "option",
+    "metavar": "TYPE",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable verbosity",
+    "kind": "option",
+    "first_tag": "0.10.1",
+    "first_date": "2021-04-05T19:40:41+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false,
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNSrecon version",
+    "kind": "option",
+    "first_tag": "0.10.1",
+    "first_date": "2021-04-05T19:40:41+01:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false,
+    "aliases": [
+     "-V"
+    ]
+   },
+   "--xml": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "XML file to save found records.",
+    "kind": "option",
+    "metavar": "XML",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "-a": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform AXFR with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-b": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform Bing enumeration with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-f": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Filter out of brute force domain lookup, records that resolve to the wildcard defined IP address when saving records.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-g": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Perform Google enumeration with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "0.9.1",
+    "last_date": "2019-04-25T06:00:41-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "dnsrecon.py",
+    "takes_value": false
+   },
+   "-k": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform crt.sh enumeration with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-s": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform a reverse lookup of IPv4 ranges in the SPF record with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-w": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform deep whois record analysis and reverse lookup of IP ranges found through Whois when doing a standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-y": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform Yandex enumeration with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.10.0",
+    "first_date": "2021-02-07T20:24:09Z",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   },
+   "-z": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Performs a DNSSEC zone walk with standard enumeration.",
+    "kind": "option",
+    "first_tag": "0.8.2",
+    "first_date": "2019-03-26T20:43:35-03:00",
+    "last_tag": "1.6.3",
+    "last_date": "2026-06-29T00:42:15+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "dnsrecon/cli.py",
+    "takes_value": false
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 23,
+  "tried_this_wave": 20,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-c951042b",
+    "argv": [
+     "dnsrecon",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 636
+   },
+   {
+    "id": "t-net-9a6ade22",
+    "argv": [
+     "dnsrecon",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 629
+   },
+   {
+    "id": "t-net-608df69a",
+    "argv": [
+     "dnsrecon",
+     "--host",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 636
+   },
+   {
+    "id": "t-net-7a45da5f",
+    "argv": [
+     "dnsrecon",
+     "--domain",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-3b62f3fe",
+    "argv": [
+     "dnsrecon",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-0aa3239b",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --dictionary /opt/ctk/fixtures/hashes/wordlist.txt -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--dictionary"
+   },
+   {
+    "id": "t-opt-d615b4c8",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --disable_check_recursion -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--disable_check_recursion"
+   },
+   {
+    "id": "t-opt-8d2bfd10",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --disable_recurs -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--disable_recurs"
+   },
+   {
+    "id": "t-opt-45556e88",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --lifetime 1 -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--lifetime"
+   },
+   {
+    "id": "t-opt-ad49158d",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --loglevel=DEBUG -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--loglevel"
+   },
+   {
+    "id": "t-opt-1f35f9b8",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --tcp -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--tcp"
+   },
+   {
+    "id": "t-opt-df7e0774",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --verbose -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--verbose"
+   },
+   {
+    "id": "t-opt-dbd13f9b",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon -b -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "-b"
+   },
+   {
+    "id": "t-opt-63935aa2",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon -f -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "-f"
+   },
+   {
+    "id": "t-opt-55e87f6d",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon -k -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "-k"
+   },
+   {
+    "id": "t-opt-52d9514b",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon -y -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "-y"
+   },
+   {
+    "id": "t-opt-7503604d",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --host=dns -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--host"
+   },
+   {
+    "id": "t-opt-ef3c5767",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --log-level=critical -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--log-level"
+   },
+   {
+    "id": "t-opt-6c536148",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --output /tmp/ctk-capture/output.out -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--output"
+   },
+   {
+    "id": "t-opt-c1667adf",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --port 1 -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--port"
+   },
+   {
+    "id": "t-opt-fd0bd8cf",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --rate-limit 10 -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--rate-limit"
+   },
+   {
+    "id": "t-opt-b3a950a0",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon --reload -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "--reload"
+   },
+   {
+    "id": "t-opt-eab02dc2",
+    "argv": [
+     "sh",
+     "-c",
+     "export HOME=/tmp; exec dnsrecon -g -n \"$1\" -d ctk.test -t std",
+     "--",
+     "dns"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-7a45da5f' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0,
+    "flag": "-g"
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "dnsrecon",
+ "repo": "darkoperator/dnsrecon",
+ "head_sha": "0cbe45aee8cc472c18a44c9c169508b6fee2009f",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:14:54.166723+00:00"
+}

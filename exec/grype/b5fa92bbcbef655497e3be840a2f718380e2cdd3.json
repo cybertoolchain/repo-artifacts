@@ -1,0 +1,1705 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:10e00be84061dbd5cd23c599c37310b28828b607f6a16a8e5dd09e3a776dd748",
+  "duration_s": 85.06,
+  "log_tail": "#8 66.37 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 66.37 debconf: falling back to frontend: Readline\n#8 66.37 debconf: unable to initialize frontend: Readline\n#8 66.37 debconf: (This frontend requires a controlling tty.)\n#8 66.37 debconf: falling back to frontend: Teletype\n#8 66.39 \n#8 66.39 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 66.42 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#8 66.45 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#8 66.49 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#8 66.52 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#8 66.56 debconf: unable to initialize frontend: Dialog\n#8 66.56 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#8 66.56 debconf: falling back to frontend: Readline\n#8 66.57 debconf: unable to initialize frontend: Readline\n#8 66.57 debconf: (This frontend requires a controlling tty.)\n#8 66.57 debconf: falling back to frontend: Teletype\n#8 66.59 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#8 66.61 Setting up texinfo (6.8-6+b1) ...\n#8 66.63 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#8 66.67 Processing triggers for install-info (6.8-6+b1) ...\n#8 DONE 66.8s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.3s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.245 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 10.0s done\n#18 exporting manifest sha256:da3841b645bfc2ceae826f7ea2d69f78674e940830c718ec183c31e9e927c48f done\n#18 exporting config sha256:88f9ff5ecc818c2956fe87f8567111673c92f21c15f817ba9e7be5fbc51a71f7 0.0s done\n#18 exporting attestation manifest sha256:c946551576e384f58c5c96749a39c03889648202c0f0e67715f82a4bba759830 0.0s done\n#18 exporting manifest list sha256:10e00be84061dbd5cd23c599c37310b28828b607f6a16a8e5dd09e3a776dd748 done\n#18 naming to docker.io/ctk-exec/grype:b5fa92bbcbef done\n#18 unpacking to docker.io/ctk-exec/grype:b5fa92bbcbef\n#18 unpacking to docker.io/ctk-exec/grype:b5fa92bbcbef 2.1s done\n#18 DONE 12.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "grype",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "A vulnerability scanner for container images, filesystems, and SBOMs.\n\nSupports the following image sources:\n    grype yourrepo/yourimage:tag             defaults to using images from a Docker daemon\n    grype path/to/yourproject                a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\nYou can also explicitly specify the scheme to use:\n    grype podman:yourrepo/yourimage:tag          explicitly use the Podman daemon\n    grype docker:yourrepo/yourimage:tag          explicitly use the Docker daemon\n    grype docker-archive:path/to/yourimage.tar   use a tarball from disk for archives created from \"docker save\"\n    grype oci-archive:path/to/yourimage.tar      use a tarball from disk for OCI archives (from Podman or otherwise)\n    grype oci-dir:path/to/yourimage              read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    grype singularity:path/to/yourimage.sif      read directly from a Singularity Image Format (SIF) container on disk\n    grype dir:path/to/yourproject                read directly from a path on disk (any directory)\n    grype file:path/to/yourfile                  read directly from a file on disk\n    grype sbom:path/to/syft.json                 read Syft JSON from path on disk\n    grype registry:yourrepo/yourimage:tag        pull image directly from a registry (no container runtime required)\n    grype purl:path/to/purl/file                 read a newline separated file of package URLs from a path on disk\n    grype PURL                                   read a single package PURL directly (e.g. pkg:apk/openssl@3.2.1?distro=alpine-3.20.3)\n    grype cpes:path/to/cpes/file                 read a newline separated file of package CPEs from a path on disk\n    grype CPE                                    read a single CPE directly (e.g. cpe:2.3:a:openssl:openssl:3.0.14:*:*:*:*:*)\n    grype zarf:path/to/package.tar.zst           scan all SBOMs within a Zarf package archive\n\nYou can also pipe in Syft JSON directly:\n\tsyft yourimage:tag -o json | grype\n\nUsage:\n  grype [IMAGE] [flags]\n  grype [command]\n\nAvailable Commands:\n  completion  Generate a shell completion for Grype (listing local docker images)\n  config      show the grype configuration\n  db          vulnerability database operations\n  explain     Ask grype to explain a set of findings\n  help        Help about any command\n  version     show version information\n\nFlags:\n      --add-cpes-if-none       generate CPEs for packages with no CPE data\n      --by-cve                 orient results by CVE instead of the original vulnerability ID when possible\n  -c, --config stringArray     grype configuration file(s) to use\n      --distro string          distro to match against in the format: <distro>[-:@]<version>\n      --exclude stringArray    exclude paths from being scanned using a glob expression\n  -f, --fail-on string         set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]\n      --file string            file to write the default report output to (default is STDOUT)\n      --from stringArray       specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)\n  -h, --help                   help for grype\n      --ignore-states string   ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]\n      --name string            set the name of the target being analyzed\n      --only-fixed             ignore matches for vulnerabilities that are not fixed\n      --only-notfixed          ignore matches for vulnerabilities that are fixed\n  -o, --output stringArray     report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]\n      --platform string        an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray    configuration profiles to use\n  -q, --quiet                  suppress all logging output\n  -s, --scope string           selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --show-suppressed        show suppressed/ignored vulnerabilities in the output (only supported with table output format)\n      --sort-by string         sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")\n  -t, --template string        specify the path to a Go template file (requires 'template' output to be selected)\n  -v, --verbose count          increase verbosity (-v = info, -vv = debug)\n      --version                version for grype\n      --vex stringArray        a list of VEX documents to consider when producing scanning results\n\nUse \"grype [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 42,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "To load completions (docker image list):\n\nBash:\n\n$ source <(grype completion bash)\n\n# To load completions for each session, execute once:\nLinux:\n  $ grype completion bash > /etc/bash_completion.d/grype\nMacOS:\n  $ grype completion bash > /usr/local/etc/bash_completion.d/grype\n\nZsh:\n\n# If shell completion is not already enabled in your environment you will need\n# to enable it.  You can execute the following once:\n\n$ echo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\n# To load completions for each session, execute once:\n$ grype completion zsh > \"${fpath[1]}/_grype\"\n\n# You will need to start a new shell for this setup to take effect.\n\nFish:\n\n$ grype completion fish | source\n\n# To load completions for each session, execute once:\n$ grype completion fish > ~/.config/fish/completions/grype.fish\n\nUsage:\n  grype completion [bash|zsh|fish]\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 21,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "config",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "show the grype configuration\n\nUsage:\n  grype config [flags]\n  grype config [command]\n\nAvailable Commands:\n  locations   shows all locations and the order in which grype will look for a configuration file\n\nFlags:\n  -h, --help   help for config\n      --load   load and validate the grype configuration\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"grype config [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "config",
+    "locations",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "shows all locations and the order in which grype will look for a configuration file\n\nUsage:\n  grype config locations [flags]\n\nFlags:\n      --all    include every file extension supported\n  -h, --help   help for locations\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "vulnerability database operations\n\nUsage:\n  grype db [command]\n\nAvailable Commands:\n  check       Check to see if there is a database update available\n  delete      Delete the vulnerability database\n  diff        Diff two databases, showing packages with added, removed, and modified vulnerability matches\n  import      Import a vulnerability database or archive from a local file or URL\n  list        List all DBs available according to the listing URL\n  providers   List vulnerability providers that are in the database\n  search      Search the DB for vulnerabilities or affected packages\n  status      Display database status and metadata\n  update      Download and install the latest vulnerability database\n\nFlags:\n  -h, --help   help for db\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"grype db [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "check",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Check to see if there is a database update available\n\nUsage:\n  grype db check [flags]\n\nFlags:\n  -h, --help            help for check\n  -o, --output string   format to display results (available=[text, json]) (default \"text\")\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "delete",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Delete the vulnerability database\n\nUsage:\n  grype db delete [flags]\n\nFlags:\n  -h, --help   help for delete\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "diff",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Diff two databases, showing packages with added, removed, and modified vulnerability matches\n\nUsage:\n  grype db diff [flags] old_db_url_or_path [new_db_url_or_path]\n\nFlags:\n  -h, --help            help for diff\n  -o, --output string   format to display results (available=[text, json]) (default \"text\")\n      --packages        only include packages\n      --vulns           only include vulnerabilities\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "import",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "import a vulnerability database archive from a local FILE or URL.\nDB archives can be obtained from \"https://grype.anchore.io/databases\" (or running `db list`). If the URL has a `checksum` query parameter with a fully qualified digest (e.g. 'sha256:abc728...') then the archive/DB will be verified against this value.\n\nUsage:\n  grype db import FILE | URL [flags]\n\nFlags:\n  -h, --help   help for import\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 21,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "list",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List all DBs available according to the listing URL\n\nUsage:\n  grype db list [flags]\n\nFlags:\n  -h, --help            help for list\n  -o, --output string   format to display results (available=[text, raw, json]) (default \"text\")\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "providers",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List vulnerability providers that are in the database\n\nUsage:\n  grype db providers [flags]\n\nFlags:\n  -h, --help            help for providers\n  -o, --output string   format to display results (available=[table, json]) (default \"table\")\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "search",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Search the DB for vulnerabilities or affected packages\n\nUsage:\n  grype db search [flags]\n  grype db search [command]\n\nExamples:\n\n  Search for affected packages by vulnerability ID:\n\n    $ grype db search --vuln ELSA-2023-12205\n\n  Search for affected packages by package name:\n\n    $ grype db search --pkg log4j\n\n  Search for affected packages by package name, filtering down to a specific vulnerability:\n\n    $ grype db search --pkg log4j --vuln CVE-2021-44228\n\n  Search for affected packages by PURL (note: version is not considered):\n\n    $ grype db search --pkg 'pkg:rpm/redhat/openssl' # or: '--ecosystem rpm --pkg openssl\n\n  Search for affected packages by CPE (note: version/update is not considered):\n\n    $ grype db search --pkg 'cpe:2.3:a:jetty:jetty_http_server:*:*:*:*:*:*:*:*'\n    $ grype db search --pkg 'cpe:/a:jetty:jetty_http_server'\n\nAvailable Commands:\n  vuln        Search for vulnerabilities within the DB (supports DB schema v6+ only)\n\nFlags:\n      --broad-cpe-matching        allow for specific package CPE attributes to match with '*' values on the vulnerability\n      --distro stringArray        refine to results with the given operating system (format: 'name', 'name[-:@]version', 'name[-:@]maj.min', 'name[-:@]codename')\n      --ecosystem string          ecosystem of the package to search within\n      --fixed-state stringArray   only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)\n  -h, --help                      help for search\n      --limit int                 limit the number of results returned, use 0 for no limit (default 5000)\n      --modified-after string     only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)\n  -o, --output string             format to display results (available=[table, json]) (default \"table\")\n      --pkg stringArray           package name/CPE/PURL to search for\n      --provider stringArray      only show vulnerabilities from the given provider\n      --published-after string    only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)\n      --vuln stringArray          only show results for the given vulnerability ID\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n\nUse \"grype db search [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "status",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Display database status and metadata\n\nUsage:\n  grype db status [flags]\n\nFlags:\n  -h, --help            help for status\n  -o, --output string   format to display results (available=[text, json]) (default \"text\")\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "db",
+    "update",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Download and install the latest vulnerability database\n\nUsage:\n  grype db update [flags]\n\nFlags:\n  -h, --help   help for update\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "explain",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Ask grype to explain a set of findings\n\nUsage:\n  grype explain --id [VULNERABILITY ID] [flags]\n\nFlags:\n  -h, --help             help for explain\n      --id stringArray   CVE IDs to explain\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type grype help [path to command] for full details.\n\nUsage:\n  grype help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "grype",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "show version information\n\nUsage:\n  grype version [flags]\n\nFlags:\n  -h, --help            help for version\n  -o, --output string   the format to show the results (allowable: [text json]) (default \"text\")\n\nGlobal Flags:\n  -c, --config stringArray    grype configuration file(s) to use\n      --profile stringArray   configuration profiles to use\n  -q, --quiet                 suppress all logging output\n  -v, --verbose count         increase verbosity (-v = info, -vv = debug)\n",
+   "stderr": "",
+   "duration_ms": 17,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "grype"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for grype\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "grype"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'grype' in node '(dir)Top'\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "grype",
+    "version"
+   ],
+   "exit_code": 0,
+   "stdout": "Application:         grype\nVersion:             [not provided]\nBuildDate:           [not provided]\nGitCommit:           [not provided]\nGitDescription:      [not provided]\nPlatform:            linux/arm64\nGoVersion:           go1.26.5\nCompiler:            gc\nSyft Version:        v1.51.0\nSupported DB Schema: 6\n",
+   "stderr": "",
+   "duration_ms": 16,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "version",
+   "title": "Version and database schema"
+  },
+  {
+   "argv": [
+    "grype",
+    "-f",
+    "/opt/ctk/fixtures/source-corpus/requirements.txt",
+    "--quiet"
+   ],
+   "exit_code": 1,
+   "stdout": "A vulnerability scanner for container images, filesystems, and SBOMs.\n\nSupports the following image sources:\n    grype yourrepo/yourimage:tag             defaults to using images from a Docker daemon\n    grype path/to/yourproject                a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\nYou can also explicitly specify the scheme to use:\n    grype podman:yourrepo/yourimage:tag          explicitly use the Podman daemon\n    grype docker:yourrepo/yourimage:tag          explicitly use the Docker daemon\n    grype docker-archive:path/to/yourimage.tar   use a tarball from disk for archives created from \"docker save\"\n    grype oci-archive:path/to/yourimage.tar      use a tarball from disk for OCI archives (from Podman or otherwise)\n    grype oci-dir:path/to/yourimage              read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    grype singularity:path/to/yourimage.sif      read directly from a Singularity Image Format (SIF) container on disk\n    grype dir:path/to/yourproject                read directly from a path on disk (any directory)\n    grype file:path/to/yourfile                  read directly from a file on disk\n    grype sbom:path/to/syft.json                 read Syft JSON from path on disk\n    grype registry:yourrepo/yourimage:tag        pull image directly from a registry (no container runtime required)\n    grype purl:path/to/purl/file                 read a newline separated file of package URLs from a path on disk\n    grype PURL                                   read a single package PURL directly (e.g. pkg:apk/openssl@3.2.1?distro=alpine-3.20.3)\n    grype cpes:path/to/cpes/file                 read a newline separated file of package CPEs from a path on disk\n    grype CPE                                    read a single CPE directly (e.g. cpe:2.3:a:openssl:openssl:3.0.14:*:*:*:*:*)\n    grype zarf:path/to/package.tar.zst           scan all SBOMs within a Zarf package archive\n\nYou can also pipe in Syft JSON directly:\n\tsyft yourimage:tag -o json | grype\n\nUsage:\n  grype [IMAGE] [flags]\n  grype [command]\n\nAvailable Commands:\n  completion  Generate a shell completion for Grype (listing local docker images)\n  config      show the grype configuration\n  db          vulnerability database operations\n  explain     Ask grype to explain a set of findings\n  help        Help about any command\n  version     show version information\n\nFlags:\n      --add-cpes-if-none       generate CPEs for packages with no CPE data\n      --by-cve                 orient results by CVE instead of the original vulnerability ID when possible\n  -c, --config stringArray     grype configuration file(s) to use\n      --distro string          distro to match against in the format: <distro>[-:@]<version>\n      --exclude stringArray    exclude paths from being scanned using a glob expression\n  -f, --fail-on string         set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]\n      --file string            file to write the default report output to (default is STDOUT)\n      --from stringArray       specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)\n  -h, --help                   help for grype\n      --ignore-states string   ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]\n      --name string            set the name of the target being analyzed\n      --only-fixed             ignore matches for vulnerabilities that are not fixed\n      --only-notfixed          ignore matches for vulnerabilities that are fixed\n  -o, --output stringArray     report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]\n      --platform string        an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray    configuration profiles to use\n  -q, --quiet                  suppress all logging output\n  -s, --scope string           selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --show-suppressed        show suppressed/ignored vulnerabilities in the output (only supported with table output format)\n      --sort-by string         sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")\n  -t, --template string        specify the path to a Go template file (requires 'template' output to be selected)\n  -v, --verbose count          increase verbosity (-v = info, -vv = debug)\n      --version                version for grype\n      --vex stringArray        a list of VEX documents to consider when producing scanning results\n\nUse \"grype [command] --help\" for more information about a command.\n",
+   "stderr": "an image/directory argument is required\n",
+   "duration_ms": 16,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-8861bab9",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "grype",
+    "--file",
+    "/opt/ctk/fixtures/source-corpus/requirements.txt",
+    "--quiet"
+   ],
+   "exit_code": 1,
+   "stdout": "A vulnerability scanner for container images, filesystems, and SBOMs.\n\nSupports the following image sources:\n    grype yourrepo/yourimage:tag             defaults to using images from a Docker daemon\n    grype path/to/yourproject                a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\nYou can also explicitly specify the scheme to use:\n    grype podman:yourrepo/yourimage:tag          explicitly use the Podman daemon\n    grype docker:yourrepo/yourimage:tag          explicitly use the Docker daemon\n    grype docker-archive:path/to/yourimage.tar   use a tarball from disk for archives created from \"docker save\"\n    grype oci-archive:path/to/yourimage.tar      use a tarball from disk for OCI archives (from Podman or otherwise)\n    grype oci-dir:path/to/yourimage              read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    grype singularity:path/to/yourimage.sif      read directly from a Singularity Image Format (SIF) container on disk\n    grype dir:path/to/yourproject                read directly from a path on disk (any directory)\n    grype file:path/to/yourfile                  read directly from a file on disk\n    grype sbom:path/to/syft.json                 read Syft JSON from path on disk\n    grype registry:yourrepo/yourimage:tag        pull image directly from a registry (no container runtime required)\n    grype purl:path/to/purl/file                 read a newline separated file of package URLs from a path on disk\n    grype PURL                                   read a single package PURL directly (e.g. pkg:apk/openssl@3.2.1?distro=alpine-3.20.3)\n    grype cpes:path/to/cpes/file                 read a newline separated file of package CPEs from a path on disk\n    grype CPE                                    read a single CPE directly (e.g. cpe:2.3:a:openssl:openssl:3.0.14:*:*:*:*:*)\n    grype zarf:path/to/package.tar.zst           scan all SBOMs within a Zarf package archive\n\nYou can also pipe in Syft JSON directly:\n\tsyft yourimage:tag -o json | grype\n\nUsage:\n  grype [IMAGE] [flags]\n  grype [command]\n\nAvailable Commands:\n  completion  Generate a shell completion for Grype (listing local docker images)\n  config      show the grype configuration\n  db          vulnerability database operations\n  explain     Ask grype to explain a set of findings\n  help        Help about any command\n  version     show version information\n\nFlags:\n      --add-cpes-if-none       generate CPEs for packages with no CPE data\n      --by-cve                 orient results by CVE instead of the original vulnerability ID when possible\n  -c, --config stringArray     grype configuration file(s) to use\n      --distro string          distro to match against in the format: <distro>[-:@]<version>\n      --exclude stringArray    exclude paths from being scanned using a glob expression\n  -f, --fail-on string         set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]\n      --file string            file to write the default report output to (default is STDOUT)\n      --from stringArray       specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)\n  -h, --help                   help for grype\n      --ignore-states string   ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]\n      --name string            set the name of the target being analyzed\n      --only-fixed             ignore matches for vulnerabilities that are not fixed\n      --only-notfixed          ignore matches for vulnerabilities that are fixed\n  -o, --output stringArray     report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]\n      --platform string        an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray    configuration profiles to use\n  -q, --quiet                  suppress all logging output\n  -s, --scope string           selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --show-suppressed        show suppressed/ignored vulnerabilities in the output (only supported with table output format)\n      --sort-by string         sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")\n  -t, --template string        specify the path to a Go template file (requires 'template' output to be selected)\n  -v, --verbose count          increase verbosity (-v = info, -vv = debug)\n      --version                version for grype\n      --vex stringArray        a list of VEX documents to consider when producing scanning results\n\nUse \"grype [command] --help\" for more information about a command.\n",
+   "stderr": "an image/directory argument is required\n",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-dbee959a",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "grype",
+    "config",
+    "/opt/ctk/fixtures/source-corpus/requirements.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "log:\n  # suppress all logging output (env: GRYPE_LOG_QUIET)\n  quiet: false\n\n  # explicitly set the logging level (available: [error warn info debug trace]) (env: GRYPE_LOG_LEVEL)\n  level: 'warn'\n\n  # file path to write logs to (env: GRYPE_LOG_FILE)\n  file: ''\n\ndev:\n  # capture resource profiling data (available: [cpu, mem, ...]) (env: GRYPE_DEV_PROFILE)\n  profile: ''\n\n  db:\n    # (env: GRYPE_DEV_DB_DEBUG)\n    debug: false\n\n# the output format of the vulnerability report (options: table, template, json, cyclonedx)\n# when using template as the output type, you must also provide a value for 'output-template-file' (env: GRYPE_OUTPUT)\noutput: []\n\n# if using template output, you must provide a path to a Go template file\n# see https://github.com/anchore/grype#using-templates for more information on template output\n# the default path to the template file is the current working directory\n# output-template-file: .grype/html.tmpl\n#\n# write output report to a file (default is to write to stdout) (env: GRYPE_FILE)\nfile: ''\n\n# pretty-print output (env: GRYPE_PRETTY)\npretty: false\n\n# distro to match against in the format: <distro>[-:@]<version> (env: GRYPE_DISTRO)\ndistro: ''\n\n# generate CPEs for packages with no CPE data (env: GRYPE_ADD_CPES_IF_NONE)\nadd-cpes-if-none: false\n\n# specify the path to a Go template file (requires 'template' output to be selected) (env: GRYPE_OUTPUT_TEMPLATE_FILE)\noutput-template-file: ''\n\n# enable/disable checking for application updates on startup (env: GRYPE_CHECK_FOR_APP_UPDATE)\ncheck-for-app-update: true\n\n# ignore matches for vulnerabilities that are not fixed (env: GRYPE_ONLY_FIXED)\nonly-fixed: false\n\n# ignore matches for vulnerabilities that are fixed (env: GRYPE_ONLY_NOTFIXED)\nonly-notfixed: false\n\n# ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix] (env: GRYPE_IGNORE_WONTFIX)\nignore-wontfix: ''\n\n# an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux') (env: GRYPE_PLATFORM)\nplatform: ''\n\nsearch:\n  # selection of layers to analyze, options=[squashed all-layers deep-squashed] (env: GRYPE_SEARCH_SCOPE)\n  scope: 'squashed'\n\n  # search within archives that do not contain a file index to search against (tar, tar.gz, tar.bz2, etc)\n  # note: enabling this may result in a performance impact since all discovered compressed tars will be decompressed\n  # note: for now this only applies to the java package cataloger (env: GRYPE_SEARCH_UNINDEXED_ARCHIVES)\n  unindexed-archives: false\n\n  # search within archives that do contain a file index to search against (zip)\n  # note: for now this only applies to the java package cataloger (env: GRYPE_SEARCH_INDEXED_ARCHIVES)\n  indexed-archives: true\n\n# A list of vulnerability ignore rules, one or more property may be specified and all matching vulnerabilities will be ignored.\n# This is the full set of supported rule fields:\n#   - vulnerability: CVE-2008-4318\n#     fix-state: unknown\n#     package:\n#       name: libcurl\n#       version: 1.5.1\n#       type: npm\n#       location: \"/usr/local/lib/node_modules/**\"\n#\n# VEX fields apply when Grype reads vex data:\n#   - vex-status: not_affected\n#     vex-justification: vulnerable_code_not_present\nignore: []\n\n# a list of globs to exclude from scanning, for example:\n#   - '/etc/**'\n#   - './out/**/*.json'\n# same as --exclude (env: GRYPE_EXCLUDE)\nexclude: []\n\nexternal-sources:\n  # enable Grype searching network source for additional information (env: GRYPE_EXTERNAL_SOURCES_ENABLE)\n  enable: false\n\n  maven:\n    # search for Maven artifacts by SHA1 (env: GRYPE_EXTERNAL_SOURCES_MAVEN_SEARCH_MAVEN_UPSTREAM)\n    search-maven-upstream: true\n\n    # base URL of the Maven repository to search (env: GRYPE_EXTERNAL_SOURCES_MAVEN_BASE_URL)\n    base-url: 'https://search.maven.org/solrsearch/select'\n\n    # (env: GRYPE_EXTERNAL_SOURCES_MAVEN_RATE_LIMIT)\n    rate-limit: 300ms\n\nmatch:\n  java:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_JAVA_USING_CPES)\n    using-cpes: false\n\n  jvm:\n    # (env: GRYPE_MATCH_JVM_USING_CPES)\n    using-cpes: true\n\n  dotnet:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_DOTNET_USING_CPES)\n    using-cpes: false\n\n  golang:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_GOLANG_USING_CPES)\n    using-cpes: false\n\n    # use CPE matching to find vulnerabilities for the Go standard library (env: GRYPE_MATCH_GOLANG_ALWAYS_USE_CPE_FOR_STDLIB)\n    always-use-cpe-for-stdlib: false\n\n    # allow comparison between main module pseudo-versions (e.g. v0.0.0-20240413-2b432cf643...) (env: GRYPE_MATCH_GOLANG_ALLOW_MAIN_MODULE_PSEUDO_VERSION_COMPARISON)\n    allow-main-module-pseudo-version-comparison: false\n\n  javascript:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_JAVASCRIPT_USING_CPES)\n    using-cpes: false\n\n  python:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_PYTHON_USING_CPES)\n    using-cpes: false\n\n  ruby:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_RUBY_USING_CPES)\n    using-cpes: false\n\n  rust:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_RUST_USING_CPES)\n    using-cpes: false\n\n  hex:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_HEX_USING_CPES)\n    using-cpes: false\n\n  stock:\n    # use CPE matching to find vulnerabilities (env: GRYPE_MATCH_STOCK_USING_CPES)\n    using-cpes: true\n\n  dpkg:\n    # (env: GRYPE_MATCH_DPKG_USING_CPES)\n    using-cpes: false\n\n    # strategy for handling missing epochs in dpkg package versions during matching (options: zero, auto) (env: GRYPE_MATCH_DPKG_MISSING_EPOCH_STRATEGY)\n    missing-epoch-strategy: 'zero'\n\n    # use CPE matching for packages from end-of-life distributions (env: GRYPE_MATCH_DPKG_USE_CPES_FOR_EOL)\n    use-cpes-for-eol: false\n\n  rpm:\n    # (env: GRYPE_MATCH_RPM_USING_CPES)\n    using-cpes: false\n\n    # strategy for handling missing epochs in RPM package versions during matching (options: zero, auto) (env: GRYPE_MATCH_RPM_MISSING_EPOCH_STRATEGY)\n    missing-epoch-strategy: 'auto'\n\n    # use CPE matching for packages from end-of-life distributions (env: GRYPE_MATCH_RPM_USE_CPES_FOR_EOL)\n    use-cpes-for-eol: false\n\n# upon scanning, if a severity is found at or above the given severity then the return code will be 1\n# default is unset which will skip this validation (options: negligible, low, medium, high, critical) (env: GRYPE_FAIL_ON_SEVERITY)\nfail-on-severity: ''\n\nregistry:\n  # skip TLS verification when communicating with the registry (env: GRYPE_REGISTRY_INSECURE_SKIP_TLS_VERIFY)\n  insecure-skip-tls-verify: false\n\n  # use http instead of https when connecting to the registry (env: GRYPE_REGISTRY_INSECURE_USE_HTTP)\n  insecure-use-http: false\n\n  # Authentication credentials for specific registries. Each entry describes authentication for a specific authority:\n  # -\tauthority: the registry authority URL the URL to the registry (e.g. \"docker.io\", \"localhost:5000\", etc.) (env: SYFT_REGISTRY_AUTH_AUTHORITY)\n  # \tusername: a username if using basic credentials (env: SYFT_REGISTRY_AUTH_USERNAME)\n  # \tpassword: a corresponding password (env: SYFT_REGISTRY_AUTH_PASSWORD)\n  # \ttoken: a token if using token-based authentication, mutually exclusive with username/password (env: SYFT_REGISTRY_AUTH_TOKEN)\n  # \ttls-cert: filepath to the client certificate used for TLS authentication to the registry (env: SYFT_REGISTRY_AUTH_TLS_CERT)\n  # \ttls-key: filepath to the client key used for TLS authentication to the registry (env: SYFT_REGISTRY_AUTH_TLS_KEY)\n  auth: []\n\n  # filepath to a CA certificate (or directory containing *.crt, *.cert, *.pem) used to generate the client certificate (env: GRYPE_REGISTRY_CA_CERT)\n  ca-cert: ''\n\n# show suppressed/ignored vulnerabilities in the output (only supported with table output format) (env: GRYPE_SHOW_SUPPRESSED)\nshow-suppressed: false\n\n# orient results by CVE instead of the original vulnerability ID when possible (env: GRYPE_BY_CVE)\nby-cve: false\n\n# sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (env: GRYPE_SORT_BY)\nsort-by: 'risk'\n\n# same as --name; set the name of the target being analyzed (env: GRYPE_NAME)\nname: ''\n\n# allows users to specify which image source should be used to generate the sbom\n# valid values are: registry, docker, podman (env: GRYPE_DEFAULT_IMAGE_PULL_SOURCE)\ndefault-image-pull-source: ''\n\n# specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...) (env: GRYPE_FROM)\nfrom: []\n\n# a list of VEX documents to consider when producing scanning results (env: GRYPE_VEX_DOCUMENTS)\nvex-documents: []\n\n# VEX statuses to consider as ignored rules (env: GRYPE_VEX_ADD)\nvex-add: []\n\n# match kernel-header packages with upstream kernel as kernel vulnerabilities (env: GRYPE_MATCH_UPSTREAM_KERNEL_HEADERS)\nmatch-upstream-kernel-headers: false\n\nfix-channel:\n  redhat-eus:\n    # whether fixes from this channel should be considered, options are \"never\", \"always\", or \"auto\" (conditionally applied based on SBOM data) (env: GRYPE_FIX_CHANNEL_REDHAT_EUS_APPLY)\n    apply: 'auto'\n\n    # (env: GRYPE_FIX_CHANNEL_REDHAT_EUS_VERSIONS)\n    versions: '>= 8.0'\n\n  ubuntu-esm:\n    # whether fixes from this channel should be considered, options are \"never\", \"always\", or \"auto\" (conditionally applied based on SBOM data) (env: GRYPE_FIX_CHANNEL_UBUNTU_ESM_APPLY)\n    apply: 'auto'\n\n    # (env: GRYPE_FIX_CHANNEL_UBUNTU_ESM_VERSIONS)\n    versions: ''\n\n# (env: GRYPE_TIMESTAMP)\ntimestamp: true\n\nalerts:\n  # enable/disable warnings about packages from end-of-life (EOL) distros. When enabled, grype will track and report packages that come from distros that have reached their end-of-life date. (env: GRYPE_ALERTS_ENABLE_EOL_DISTRO_WARNINGS)\n  enable-eol-distro-warnings: true\n\ndb:\n  # location to write the vulnerability database cache (env: GRYPE_DB_CACHE_DIR)\n  cache-dir: '~/.cache/grype/db'\n\n  # URL of the vulnerability database (env: GRYPE_DB_UPDATE_URL)\n  update-url: 'https://grype.anchore.io/databases'\n\n  # certificate to trust download the database and listing file (env: GRYPE_DB_CA_CERT)\n  ca-cert: ''\n\n  # check for database updates on execution (env: GRYPE_DB_AUTO_UPDATE)\n  auto-update: true\n\n  # validate the database matches the known hash each execution (env: GRYPE_DB_VALIDATE_BY_HASH_ON_START)\n  validate-by-hash-on-start: true\n\n  # ensure db build is no older than the max-allowed-built-age (env: GRYPE_DB_VALIDATE_AGE)\n  validate-age: true\n\n  # Max allowed age for vulnerability database,\n  # age being the time since it was built\n  # Default max age is 120h (or five days) (env: GRYPE_DB_MAX_ALLOWED_BUILT_AGE)\n  max-allowed-built-age: 120h0m0s\n\n  # fail the scan if unable to check for database updates (env: GRYPE_DB_REQUIRE_UPDATE_CHECK)\n  require-update-check: false\n\n  # Timeout for downloading GRYPE_DB_UPDATE_URL to see if the database needs to be downloaded\n  # This file is ~156KiB as of 2024-04-17 so the download should be quick; adjust as needed (env: GRYPE_DB_UPDATE_AVAILABLE_TIMEOUT)\n  update-available-timeout: 30s\n\n  # Timeout for downloading actual vulnerability DB\n  # The DB is ~156MB as of 2024-04-17 so slower connections may exceed the default timeout; adjust as needed (env: GRYPE_DB_UPDATE_DOWNLOAD_TIMEOUT)\n  update-download-timeout: 5m0s\n\n  # Maximum frequency to check for vulnerability database updates (env: GRYPE_DB_MAX_UPDATE_CHECK_FREQUENCY)\n  max-update-check-frequency: 2h0m0s\n\nexp:\n",
+   "stderr": "",
+   "duration_ms": 18,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-50e54c94",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "grype",
+    "--fixture",
+    "/opt/ctk/fixtures/container-image/image.tar",
+    "--quiet"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "unknown flag: --fixture\n",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-23520646",
+   "title": "Built from the tool's own advertised flags \u2014 run against container-image"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 25,
+   "binary": "grype",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "58cb039fbc22b259",
+ "examples": [
+  {
+   "id": "version",
+   "title": "Version and database schema",
+   "argv": [
+    "grype",
+    "version"
+   ],
+   "stdout": "Application:         grype\nVersion:             [not provided]\nBuildDate:           [not provided]\nGitCommit:           [not provided]\nGitDescription:      [not provided]\nPlatform:            linux/arm64\nGoVersion:           go1.26.5\nCompiler:            gc\nSyft Version:        v1.51.0\nSupported DB Schema: 6\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 16,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--add-cpes-if-none": "generate CPEs for packages with no CPE data",
+   "--by-cve": "orient results by CVE instead of the original vulnerability ID when possible",
+   "--config": "grype configuration file(s) to use",
+   "-c": "grype configuration file(s) to use",
+   "--distro": "distro to match against in the format: <distro>[-:@]<version>",
+   "--exclude": "exclude paths from being scanned using a glob expression",
+   "--fail-on": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+   "-f": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+   "--file": "file to write the default report output to (default is STDOUT)",
+   "--from": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+   "--help": "help for grype",
+   "-h": "help for grype",
+   "--ignore-states": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+   "--name": "set the name of the target being analyzed",
+   "--only-fixed": "ignore matches for vulnerabilities that are not fixed",
+   "--only-notfixed": "ignore matches for vulnerabilities that are fixed",
+   "--output": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+   "-o": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+   "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+   "--profile": "configuration profiles to use",
+   "--quiet": "suppress all logging output",
+   "-q": "suppress all logging output",
+   "--scope": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+   "-s": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+   "--show-suppressed": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+   "--sort-by": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+   "--template": "specify the path to a Go template file (requires 'template' output to be selected)",
+   "-t": "specify the path to a Go template file (requires 'template' output to be selected)",
+   "--verbose": "increase verbosity (-v = info, -vv = debug)",
+   "-v": "increase verbosity (-v = info, -vv = debug)",
+   "--version": "version for grype",
+   "--vex": "a list of VEX documents to consider when producing scanning results"
+  },
+  "values_seen": {
+   "--distro": "string",
+   "-f": "string",
+   "--fail-on": "string",
+   "--file": "string",
+   "--ignore-states": "string",
+   "--name": "string",
+   "--platform": "string",
+   "-s": "string",
+   "--scope": "string",
+   "--sort-by": "string",
+   "-t": "string",
+   "--template": "string",
+   "-v": "count",
+   "--verbose": "count"
+  },
+  "aliases": {
+   "--config": [
+    "-c"
+   ],
+   "--fail-on": [
+    "-f"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--scope": [
+    "-s"
+   ],
+   "--template": [
+    "-t"
+   ],
+   "--verbose": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for completion",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "config": {
+    "--help": "help for locations",
+    "--load": "load and validate the grype configuration",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--all": "include every file extension supported"
+   },
+   "db": {
+    "--help": "help for update",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--output": "format to display results (available=[text, json]) (default \"text\")",
+    "--packages": "only include packages",
+    "--vulns": "only include vulnerabilities",
+    "--broad-cpe-matching": "allow for specific package CPE attributes to match with '*' values on the vulnerability",
+    "--distro": "refine to results with the given operating system (format: 'name', 'name[-:@]version', 'name[-:@]maj.min', 'name[-:@]codename')",
+    "--ecosystem": "ecosystem of the package to search within",
+    "--fixed-state": "only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)",
+    "--limit": "limit the number of results returned, use 0 for no limit (default 5000)",
+    "--modified-after": "only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)",
+    "--pkg": "package name/CPE/PURL to search for",
+    "--provider": "only show vulnerabilities from the given provider",
+    "--published-after": "only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)",
+    "--vuln": "only show results for the given vulnerability ID"
+   },
+   "explain": {
+    "--help": "help for explain",
+    "--id": "CVE IDs to explain",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "help": {
+    "--help": "help for help",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "version": {
+    "--help": "help for version",
+    "--output": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "-f": {
+    "--add-cpes-if-none": "generate CPEs for packages with no CPE data",
+    "--by-cve": "orient results by CVE instead of the original vulnerability ID when possible",
+    "--config": "grype configuration file(s) to use",
+    "--distro": "distro to match against in the format: <distro>[-:@]<version>",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--fail-on": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+    "--file": "file to write the default report output to (default is STDOUT)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+    "--help": "help for grype",
+    "--ignore-states": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+    "--name": "set the name of the target being analyzed",
+    "--only-fixed": "ignore matches for vulnerabilities that are not fixed",
+    "--only-notfixed": "ignore matches for vulnerabilities that are fixed",
+    "--output": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--scope": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--show-suppressed": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+    "--sort-by": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+    "--template": "specify the path to a Go template file (requires 'template' output to be selected)",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--version": "version for grype",
+    "--vex": "a list of VEX documents to consider when producing scanning results"
+   },
+   "--file": {
+    "--add-cpes-if-none": "generate CPEs for packages with no CPE data",
+    "--by-cve": "orient results by CVE instead of the original vulnerability ID when possible",
+    "--config": "grype configuration file(s) to use",
+    "--distro": "distro to match against in the format: <distro>[-:@]<version>",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--fail-on": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+    "--file": "file to write the default report output to (default is STDOUT)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+    "--help": "help for grype",
+    "--ignore-states": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+    "--name": "set the name of the target being analyzed",
+    "--only-fixed": "ignore matches for vulnerabilities that are not fixed",
+    "--only-notfixed": "ignore matches for vulnerabilities that are fixed",
+    "--output": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--scope": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--show-suppressed": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+    "--sort-by": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+    "--template": "specify the path to a Go template file (requires 'template' output to be selected)",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--version": "version for grype",
+    "--vex": "a list of VEX documents to consider when producing scanning results"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "config",
+   "db",
+   "explain",
+   "help",
+   "version"
+  ],
+  "binary": "grype",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "eaa638d6025adfdace67a5a064b11ad0e0efc909e588a4178a74f7e439cd4730",
+  "text": "A vulnerability scanner for container images, filesystems, and SBOMs.\n\nSupports the following image sources:\n    grype yourrepo/yourimage:tag             defaults to using images from a Docker daemon\n    grype path/to/yourproject                a Docker tar, OCI tar, OCI directory, SIF container, or generic filesystem directory\n\nYou can also explicitly specify the scheme to use:\n    grype podman:yourrepo/yourimage:tag          explicitly use the Podman daemon\n    grype docker:yourrepo/yourimage:tag          explicitly use the Docker daemon\n    grype docker-archive:path/to/yourimage.tar   use a tarball from disk for archives created from \"docker save\"\n    grype oci-archive:path/to/yourimage.tar      use a tarball from disk for OCI archives (from Podman or otherwise)\n    grype oci-dir:path/to/yourimage              read directly from a path on disk for OCI layout directories (from Skopeo or otherwise)\n    grype singularity:path/to/yourimage.sif      read directly from a Singularity Image Format (SIF) container on disk\n    grype dir:path/to/yourproject                read directly from a path on disk (any directory)\n    grype file:path/to/yourfile                  read directly from a file on disk\n    grype sbom:path/to/syft.json                 read Syft JSON from path on disk\n    grype registry:yourrepo/yourimage:tag        pull image directly from a registry (no container runtime required)\n    grype purl:path/to/purl/file                 read a newline separated file of package URLs from a path on disk\n    grype PURL                                   read a single package PURL directly (e.g. pkg:apk/openssl@3.2.1?distro=alpine-3.20.3)\n    grype cpes:path/to/cpes/file                 read a newline separated file of package CPEs from a path on disk\n    grype CPE                                    read a single CPE directly (e.g. cpe:2.3:a:openssl:openssl:3.0.14:*:*:*:*:*)\n    grype zarf:path/to/package.tar.zst           scan all SBOMs within a Zarf package archive\n\nYou can also pipe in Syft JSON directly:\n\tsyft yourimage:tag -o json | grype\n\nUsage:\n  grype [IMAGE] [flags]\n  grype [command]\n\nAvailable Commands:\n  completion  Generate a shell completion for Grype (listing local docker images)\n  config      show the grype configuration\n  db          vulnerability database operations\n  explain     Ask grype to explain a set of findings\n  help        Help about any command\n  version     show version information\n\nFlags:\n      --add-cpes-if-none       generate CPEs for packages with no CPE data\n      --by-cve                 orient results by CVE instead of the original vulnerability ID when possible\n  -c, --config stringArray     grype configuration file(s) to use\n      --distro string          distro to match against in the format: <distro>[-:@]<version>\n      --exclude stringArray    exclude paths from being scanned using a glob expression\n  -f, --fail-on string         set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]\n      --file string            file to write the default report output to (default is STDOUT)\n      --from stringArray       specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)\n  -h, --help                   help for grype\n      --ignore-states string   ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]\n      --name string            set the name of the target being analyzed\n      --only-fixed             ignore matches for vulnerabilities that are not fixed\n      --only-notfixed          ignore matches for vulnerabilities that are fixed\n  -o, --output stringArray     report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]\n      --platform string        an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')\n      --profile stringArray    configuration profiles to use\n  -q, --quiet                  suppress all logging output\n  -s, --scope string           selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")\n      --show-suppressed        show suppressed/ignored vulnerabilities in the output (only supported with table output format)\n      --sort-by string         sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")\n  -t, --template string        specify the path to a Go template file (requires 'template' output to be selected)\n  -v, --verbose count          increase verbosity (-v = info, -vv = debug)\n      --version                version for grype\n      --vex stringArray        a list of VEX documents to consider when producing scanning results\n\nUse \"grype [command] --help\" for more information about a command.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--add-cpes-if-none",
+   "--by-cve",
+   "--config",
+   "--distro",
+   "--exclude",
+   "--fail-on",
+   "--file",
+   "--from",
+   "--ignore-states",
+   "--name",
+   "--only-fixed",
+   "--only-notfixed",
+   "--output",
+   "--platform",
+   "--scope",
+   "--show-suppressed",
+   "--sort-by",
+   "--template",
+   "--verbose",
+   "--vex"
+  ],
+  "unconfirmed": [
+   "--append",
+   "--broad-cpe-matching",
+   "--dry-run",
+   "--ecosystem",
+   "--fixed-state",
+   "--fixture",
+   "--force",
+   "--id",
+   "--limit",
+   "--modified-after",
+   "--pkg",
+   "--provider",
+   "--published-after",
+   "--pull",
+   "--root",
+   "--schema",
+   "--vuln",
+   "--vunnel-data",
+   "check",
+   "completion",
+   "db",
+   "delete",
+   "diff",
+   "explain",
+   "import",
+   "list",
+   "providers",
+   "search",
+   "status",
+   "update",
+   "version",
+   "vuln"
+  ],
+  "help_only": [
+   "--help",
+   "--profile",
+   "--quiet",
+   "--version",
+   "-c",
+   "-f",
+   "-h",
+   "-o",
+   "-q",
+   "-s",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.625
+ },
+ "surface": {
+  "flags": {
+   "--add-cpes-if-none": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "generate CPEs for packages with no CPE data",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": false
+   },
+   "--append": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "path for existing fixture directory to append to (mutually exclusive with --output)",
+    "kind": "option",
+    "first_tag": "v0.112.0",
+    "first_date": "2026-05-01T18:57:08Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/dbtest/cmd/manager/extract.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--broad-cpe-matching": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "allow for specific package CPE attributes to match with '*' values on the vulnerability",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_packages.go",
+    "takes_value": false
+   },
+   "--by-cve": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "orient results by CVE instead of the original vulnerability ID when possible",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": false
+   },
+   "--config": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "grype configuration file(s) to use",
+    "kind": "option",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.1.0-beta.1",
+    "last_date": "2020-07-27T10:12:40-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cmd.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--distro": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "distro to match against in the format: <distro>[-:@]<version>",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_os.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--dry-run": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "show what would be regenerated without making changes",
+    "kind": "option",
+    "first_tag": "v0.112.0",
+    "first_date": "2026-05-01T18:57:08Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/dbtest/cmd/manager/regenerate.go",
+    "takes_value": false
+   },
+   "--ecosystem": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "ecosystem of the package to search within",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_packages.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--exclude": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "exclude paths from being scanned using a glob expression",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--fail-on": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--file": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "file to write the default report output to (default is STDOUT)",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--fixed-state": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)",
+    "kind": "option",
+    "first_tag": "v0.101.0",
+    "first_date": "2025-10-15T16:59:50Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--fixture": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "path to a specific fixture to regenerate (optional)",
+    "kind": "option",
+    "first_tag": "v0.112.0",
+    "first_date": "2026-05-01T18:57:08Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/dbtest/cmd/manager/regenerate.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--force": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "regenerate even if fixture has been modified",
+    "kind": "option",
+    "first_tag": "v0.112.0",
+    "first_date": "2026-05-01T18:57:08Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/dbtest/cmd/manager/regenerate.go",
+    "takes_value": false
+   },
+   "--from": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+    "kind": "option",
+    "first_tag": "v0.104.0",
+    "first_date": "2025-11-17T22:23:33Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for grype",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--id": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "CVE IDs to explain",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/explain.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--ignore-states": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "limit the number of results returned, use 0 for no limit",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_bounds.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--modified-after": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--name": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "set the name of the target being analyzed",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--only-fixed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ignore matches for vulnerabilities that are not fixed",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": false
+   },
+   "--only-notfixed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "ignore matches for vulnerabilities that are fixed",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": false
+   },
+   "--output": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_check.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--pkg": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "package name/CPE/PURL to search for",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_packages.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--platform": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--profile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "configuration profiles to use"
+   },
+   "--provider": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only show vulnerabilities from the given provider",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--published-after": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--pull": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "fetch the latest v1 schema from upstream and overwrite the pinned schema-v1.json before regenerating",
+    "kind": "option",
+    "first_tag": "v0.115.0",
+    "first_date": "2026-06-26T11:33:24Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "grype/db/internal/provider/unmarshal/osvmodel/generate/main.go",
+    "takes_value": false
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "suppress all logging output",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--root": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "name to use for the top-level struct (defaults to the schema title if empty)",
+    "kind": "option",
+    "first_tag": "v0.115.0",
+    "first_date": "2026-06-26T11:33:24Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "grype/db/internal/provider/unmarshal/osvmodel/generate/main.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--schema": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "show supported DB schema",
+    "kind": "option",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.1.0-beta.1",
+    "last_date": "2020-07-27T10:12:40-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/db_status.go",
+    "takes_value": false
+   },
+   "--scope": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--show-suppressed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": false
+   },
+   "--sort-by": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/sort_by.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--template": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "specify the path to a Go template file (requires 'template' output to be selected)",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "increase verbosity (-v = info, -vv = debug)",
+    "kind": "option",
+    "metavar": "count",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.1.0-beta.1",
+    "last_date": "2020-07-27T10:12:40-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cmd.go",
+    "takes_value": false,
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "version for grype"
+   },
+   "--vex": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "a list of VEX documents to consider when producing scanning results",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/grype.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--vuln": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "only show results for the given vulnerability ID",
+    "kind": "option",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/options/database_search_vulnerabilities.go",
+    "takes_value": true,
+    "value_type": "stringarray"
+   },
+   "--vunnel-data": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "path to vunnel data directory (required)",
+    "kind": "option",
+    "first_tag": "v0.112.0",
+    "first_date": "2026-05-01T18:57:08Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "internal/dbtest/cmd/manager/extract.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "check": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Check to see if there is a database update available",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_check.go"
+   },
+   "completion": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Generate a shell completion for Grype (listing local docker images)",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/completion.go"
+   },
+   "db": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "vulnerability database operations",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db.go"
+   },
+   "delete": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Delete the vulnerability database",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_delete.go"
+   },
+   "diff": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Diff two databases, showing packages with added, removed, and modified vulnerability matches",
+    "kind": "subcommand",
+    "first_tag": "v0.111.0",
+    "first_date": "2026-04-09T13:14:52Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_diff.go"
+   },
+   "explain": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ask grype to explain a set of findings",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/explain.go"
+   },
+   "import": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Import a vulnerability database or archive from a local file or URL",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_import.go"
+   },
+   "list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List all DBs available according to the listing URL",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_list.go"
+   },
+   "providers": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "List vulnerability providers that are in the database",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_providers.go"
+   },
+   "search": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Search the DB for vulnerabilities or affected packages",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_search.go"
+   },
+   "status": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Display database status and metadata",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_status.go"
+   },
+   "update": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Download and install the latest vulnerability database",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_update.go"
+   },
+   "version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "show the version",
+    "kind": "subcommand",
+    "first_tag": "v0.1.0-beta.1",
+    "first_date": "2020-07-27T10:12:40-04:00",
+    "last_tag": "v0.1.0-beta.1",
+    "last_date": "2020-07-27T10:12:40-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/version.go"
+   },
+   "vuln": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Search for vulnerabilities within the DB (supports DB schema v6+ only)",
+    "kind": "subcommand",
+    "first_tag": "v0.92.2",
+    "first_date": "2025-05-21T00:41:37Z",
+    "last_tag": "v0.117.0",
+    "last_date": "2026-08-10T16:48:27Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/grype/cli/commands/db_search_vuln.go"
+   }
+  },
+  "subcommands": [
+   "completion",
+   "config",
+   "db",
+   "explain",
+   "help",
+   "version"
+  ],
+  "subcommand_flags": {
+   "completion": {
+    "--help": "help for completion",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "config": {
+    "--help": "help for locations",
+    "--load": "load and validate the grype configuration",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--all": "include every file extension supported"
+   },
+   "db": {
+    "--help": "help for update",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--output": "format to display results (available=[text, json]) (default \"text\")",
+    "--packages": "only include packages",
+    "--vulns": "only include vulnerabilities",
+    "--broad-cpe-matching": "allow for specific package CPE attributes to match with '*' values on the vulnerability",
+    "--distro": "refine to results with the given operating system (format: 'name', 'name[-:@]version', 'name[-:@]maj.min', 'name[-:@]codename')",
+    "--ecosystem": "ecosystem of the package to search within",
+    "--fixed-state": "only show vulnerabilities with the given fix state (fixed, not-fixed, unknown, wont-fix)",
+    "--limit": "limit the number of results returned, use 0 for no limit (default 5000)",
+    "--modified-after": "only show vulnerabilities originally published or modified since the given date (format: YYYY-MM-DD)",
+    "--pkg": "package name/CPE/PURL to search for",
+    "--provider": "only show vulnerabilities from the given provider",
+    "--published-after": "only show vulnerabilities originally published after the given date (format: YYYY-MM-DD)",
+    "--vuln": "only show results for the given vulnerability ID"
+   },
+   "explain": {
+    "--help": "help for explain",
+    "--id": "CVE IDs to explain",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "help": {
+    "--help": "help for help",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "version": {
+    "--help": "help for version",
+    "--output": "the format to show the results (allowable: [text json]) (default \"text\")",
+    "--config": "grype configuration file(s) to use",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)"
+   },
+   "-f": {
+    "--add-cpes-if-none": "generate CPEs for packages with no CPE data",
+    "--by-cve": "orient results by CVE instead of the original vulnerability ID when possible",
+    "--config": "grype configuration file(s) to use",
+    "--distro": "distro to match against in the format: <distro>[-:@]<version>",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--fail-on": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+    "--file": "file to write the default report output to (default is STDOUT)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+    "--help": "help for grype",
+    "--ignore-states": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+    "--name": "set the name of the target being analyzed",
+    "--only-fixed": "ignore matches for vulnerabilities that are not fixed",
+    "--only-notfixed": "ignore matches for vulnerabilities that are fixed",
+    "--output": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--scope": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--show-suppressed": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+    "--sort-by": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+    "--template": "specify the path to a Go template file (requires 'template' output to be selected)",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--version": "version for grype",
+    "--vex": "a list of VEX documents to consider when producing scanning results"
+   },
+   "--file": {
+    "--add-cpes-if-none": "generate CPEs for packages with no CPE data",
+    "--by-cve": "orient results by CVE instead of the original vulnerability ID when possible",
+    "--config": "grype configuration file(s) to use",
+    "--distro": "distro to match against in the format: <distro>[-:@]<version>",
+    "--exclude": "exclude paths from being scanned using a glob expression",
+    "--fail-on": "set the return code to 2 if a vulnerability is found with a severity >= the given severity, options=[negligible low medium high critical]",
+    "--file": "file to write the default report output to (default is STDOUT)",
+    "--from": "specify the source behavior to use (e.g. docker, registry, podman, oci-dir, ...)",
+    "--help": "help for grype",
+    "--ignore-states": "ignore matches for vulnerabilities with specified comma separated fix states, options=[fixed not-fixed unknown wont-fix]",
+    "--name": "set the name of the target being analyzed",
+    "--only-fixed": "ignore matches for vulnerabilities that are not fixed",
+    "--only-notfixed": "ignore matches for vulnerabilities that are fixed",
+    "--output": "report output formatter, formats=[json table cyclonedx cyclonedx-json sarif template], deprecated formats=[embedded-cyclonedx-vex-json embedded-cyclonedx-vex-xml]",
+    "--platform": "an optional platform specifier for container image sources (e.g. 'linux/arm64', 'linux/arm64/v8', 'arm64', 'linux')",
+    "--profile": "configuration profiles to use",
+    "--quiet": "suppress all logging output",
+    "--scope": "selection of layers to analyze, options=[squashed all-layers deep-squashed] (default \"squashed\")",
+    "--show-suppressed": "show suppressed/ignored vulnerabilities in the output (only supported with table output format)",
+    "--sort-by": "sort the match results with the given strategy, options=[package severity epss risk kev vulnerability] (default \"risk\")",
+    "--template": "specify the path to a Go template file (requires 'template' output to be selected)",
+    "--verbose": "increase verbosity (-v = info, -vv = debug)",
+    "--version": "version for grype",
+    "--vex": "a list of VEX documents to consider when producing scanning results"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 6,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-ffd0d315",
+    "argv": [
+     "grype",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 524
+   },
+   {
+    "id": "t-surface-5d01e6cc",
+    "argv": [
+     "grype",
+     "/opt/ctk/fixtures/container-image/image.tar"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 2371
+   },
+   {
+    "id": "t-surface-8861bab9",
+    "argv": [
+     "grype",
+     "-f",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 5011
+   },
+   {
+    "id": "t-surface-dbee959a",
+    "argv": [
+     "grype",
+     "--file",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 5011
+   },
+   {
+    "id": "t-surface-50e54c94",
+    "argv": [
+     "grype",
+     "config",
+     "/opt/ctk/fixtures/source-corpus/requirements.txt"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 2,
+    "exit_code": 0,
+    "output_bytes": 11507
+   },
+   {
+    "id": "t-surface-23520646",
+    "argv": [
+     "grype",
+     "--fixture",
+     "/opt/ctk/fixtures/container-image/image.tar",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 24
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Grype",
+ "repo": "anchore/grype",
+ "head_sha": "b5fa92bbcbef655497e3be840a2f718380e2cdd3",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T18:57:39.239128+00:00"
+}

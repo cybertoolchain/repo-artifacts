@@ -1,0 +1,20 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "dockerfile",
+  "image_digest": null,
+  "duration_s": 3.82,
+  "log_tail": "#3 DONE 0.7s\n\n#4 [internal] load metadata for mcr.microsoft.com/dotnet/runtime:8.0-alpine\n#4 DONE 1.0s\n\n#5 [internal] load .dockerignore\n#5 transferring context: 2B done\n#5 DONE 0.0s\n\n#6 [internal] load build context\n#6 transferring context: 2B done\n#6 DONE 0.0s\n\n#7 [stage-2 2/8] COPY --from=jlink /jlinked /opt/jdk/\n#7 CACHED\n\n#8 [stage-2 3/8] COPY --from=go /usr/local/go/ /usr/local/go/\n#8 CACHED\n\n#9 [stage-2 4/8] ADD cli/target/dependency-check--release.zip /\n#9 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::mxhqs8wcv7sue1f3e3q67m748: \"/cli/target/dependency-check--release.zip\": not found\n\n#10 [jlink 1/2] FROM docker.io/azul/zulu-openjdk-alpine:25@sha256:7cc9cae0df6f90dab5217923bfdfca818363cd346ac59645b000f6a203fd6561\n#10 resolve docker.io/azul/zulu-openjdk-alpine:25@sha256:7cc9cae0df6f90dab5217923bfdfca818363cd346ac59645b000f6a203fd6561 0.0s done\n#10 sha256:5de55e5ef9c033997441461efe7ba23a986db059c0bb78b38f84ee0d72b99167 0B / 4.18MB 0.0s\n#10 sha256:c65a1fce653ae40a7d5aa51df6606e08cb24f136b6e5c353c4bc526e71557e86 0B / 181.96MB 0.0s\n#10 ...\n\n#11 [jlink 2/2] RUN \"/usr/lib/jvm/zulu25/bin/jlink\" --compress=zip-6 --module-path /opt/java/openjdk/jmods --add-modules java.base,java.compiler,java.datatransfer,jdk.crypto.ec,java.desktop,java.instrument,java.logging,java.management,java.naming,java.rmi,java.scripting,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,jdk.net --output /jlinked\n#11 CANCELED\n\n#12 [go 1/1] FROM docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2\n#12 resolve docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2 0.0s done\n#12 CANCELED\n\n#13 [stage-2 1/8] FROM mcr.microsoft.com/dotnet/runtime:8.0-alpine@sha256:031990dddf16d1a2ce898aad5f0620e750e354f957a172cc462b426e6b019aab\n#13 resolve mcr.microsoft.com/dotnet/runtime:8.0-alpine@sha256:031990dddf16d1a2ce898aad5f0620e750e354f957a172cc462b426e6b019aab 0.0s done\n#13 CANCELED\n------\n > [stage-2 4/8] ADD cli/target/dependency-check--release.zip /:\n------\nDockerfile:25\n--------------------\n  23 |     COPY --from=go /usr/local/go/ /usr/local/go/\n  24 |     \n  25 | >>> ADD cli/target/dependency-check-${VERSION}-release.zip /\n  26 |     \n  27 |     RUN apk upgrade --no-cache                                                                           && \\\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::mxhqs8wcv7sue1f3e3q67m748: \"/cli/target/dependency-check--release.zip\": not found",
+  "error": "upstream docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "skipped_reason": "upstream docker build failed",
+ "tool": "DependencyCheck",
+ "repo": "dependency-check/DependencyCheck",
+ "head_sha": "c1383ae877a4332c7898a9e927cb712fa57f6287",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:48:20.019225+00:00"
+}

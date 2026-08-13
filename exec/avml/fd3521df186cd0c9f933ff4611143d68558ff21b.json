@@ -1,0 +1,621 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:b09cd6895b5f866ae96e3e728f661f3d144c84d077e45efbc803f232eb0a2df2",
+  "duration_s": 75.88,
+  "log_tail": "#11 56.78 debconf: falling back to frontend: Teletype\n#11 56.82 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 56.85 Setting up texinfo (6.8-6+b1) ...\n#11 56.86 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#11 56.87 Setting up dmsetup (2:1.02.185-2) ...\n#11 56.88 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#11 56.89 Processing triggers for install-info (6.8-6+b1) ...\n#11 56.89 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 DONE 57.0s\n\n#12 [build 5/6] RUN cargo build --release\n#12 51.41    Compiling tokio-native-tls v0.3.1\n#12 51.46    Compiling hyper-tls v0.6.0\n#12 51.52    Compiling reqwest v0.13.4\n#12 52.17    Compiling typespec_client_core v1.1.0\n#12 53.41    Compiling azure_storage_blob v1.0.0\n#12 55.32    Compiling avml v0.20.0 (/src)\n#12 68.38     Finished `release` profile [optimized] target(s) in 1m 08s\n#12 DONE 68.5s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.5s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.1s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.187 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.8s done\n#19 exporting manifest sha256:7a3762eebcf0e156b34af16f9f460b9a0b5156b3b672623759297cafb6c7dda0 0.0s done\n#19 exporting config sha256:d857e82ec18e6f1bb9e8f987cc3ee8281adc69a7a25a1c9976ddbf70b08c31a4 0.0s done\n#19 exporting attestation manifest sha256:a9d27a812d8b69d5d2e0d5a9183d2f544a4cb25cf947e53ac9838f7c8ec1ab94 0.0s done\n#19 exporting manifest list sha256:b09cd6895b5f866ae96e3e728f661f3d144c84d077e45efbc803f232eb0a2df2 done\n#19 naming to docker.io/ctk-exec/avml:fd3521df186c done\n#19 unpacking to docker.io/ctk-exec/avml:fd3521df186c\n#19 unpacking to docker.io/ctk-exec/avml:fd3521df186c 0.8s done\n#19 DONE 4.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "avml",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "A portable volatile memory acquisition tool for Linux\n\nUsage: avml <COMMAND>\n\nCommands:\n  acquire  Acquire a memory snapshot to a local file (and optionally upload it)\n  convert  Convert between AVML and `LiME` snapshot formats and a raw memory image\n  upload   Upload an already-acquired snapshot file to remote storage\n  stream   Stream a memory snapshot directly to remote storage, without writing it to a local file\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "acquire",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Acquire a memory snapshot to a local file (and optionally upload it)\n\nUsage: avml acquire [OPTIONS] <FILENAME>\n\nArguments:\n  <FILENAME>\n          name of the file to write to on local system\n\nOptions:\n      --compress\n          compress via snappy\n\n      --source <SOURCE>\n          specify input source\n\n          Possible values:\n          - /dev/crash:  Provides a read-only view of physical memory.  Access to memory using this device must be paged aligned and read one page at a time\n          - /dev/mem:    Provides a read-write view of physical memory, though AVML opens it in a read-only fashion.  Access to to memory using this device can be disabled using the kernel configuration options `CONFIG_STRICT_DEVMEM` or `CONFIG_IO_STRICT_DEVMEM`\n          - /proc/kcore: Provides a virtual ELF coredump of kernel memory.  This can be used to access physical memory\n\n      --max-disk-usage <MAX_DISK_USAGE>\n          Specify the maximum estimated disk usage (in MiB)\n\n      --max-disk-usage-percentage <MAX_DISK_USAGE_PERCENTAGE>\n          Specify the maximum estimated disk usage to stay under\n\n      --url <URL>\n          upload via HTTP PUT upon acquisition; mutually exclusive with --sas-url\n\n      --delete\n          delete upon successful upload\n\n      --sas-url <SAS_URL>\n          upload via Azure Blob Store upon acquisition; mutually exclusive with --url\n\n      --sas-block-size <SAS_BLOCK_SIZE>\n          specify maximum block size in MiB; must be greater than 0\n\n      --sas-block-concurrency <SAS_BLOCK_CONCURRENCY>\n          specify blob upload concurrency; must be greater than 0\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "convert",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Convert between AVML and `LiME` snapshot formats and a raw memory image\n\nUsage: avml convert [OPTIONS] <SRC> <DST>\n\nArguments:\n  <SRC>  name of the source file to read from on local system\n  <DST>  name of the destination file to write to on local system\n\nOptions:\n      --source-format <SOURCE_FORMAT>  specify input format [default: lime_compressed] [possible values: raw, lime, lime_compressed]\n      --format <FORMAT>                specify output format [default: lime] [possible values: raw, lime, lime_compressed]\n  -h, --help                           Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "upload",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Upload an already-acquired snapshot file to remote storage\n\nUsage: avml upload <COMMAND>\n\nCommands:\n  put   Upload a local file via HTTP PUT\n  blob  Upload a local file to Azure Block Blob Storage\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "upload",
+    "put",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Upload a local file via HTTP PUT\n\nUsage: avml upload put <FILENAME> <URL>\n\nArguments:\n  <FILENAME>  name of the file to upload on the local system\n  <URL>       url to upload via HTTP PUT\n\nOptions:\n  -h, --help  Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "upload",
+    "blob",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Upload a local file to Azure Block Blob Storage\n\nUsage: avml upload blob [OPTIONS] <FILENAME> <URL>\n\nArguments:\n  <FILENAME>  name of the file to upload on the local system\n  <URL>       SAS URL identifying the destination Block Blob\n\nOptions:\n      --sas-block-concurrency <SAS_BLOCK_CONCURRENCY>\n          specify blob upload concurrency; must be greater than 0\n      --sas-block-size <SAS_BLOCK_SIZE>\n          specify maximum block size in MiB; must be greater than 0\n  -h, --help\n          Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "upload",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: avml upload <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "stream",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Stream a memory snapshot directly to remote storage, without writing it to a local file\n\nUsage: avml stream <COMMAND>\n\nCommands:\n  blob  Stream to Azure Block Blob Storage via `stage_block` + `commit_block_list`\n  tcp   Stream to a remote TCP listener (e.g. `nc -l PORT > snapshot.lime`)\n  help  Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help  Print help\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "stream",
+    "blob",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Stream to Azure Block Blob Storage via `stage_block` + `commit_block_list`\n\nUsage: avml stream blob [OPTIONS] <SAS_URL>\n\nArguments:\n  <SAS_URL>\n          SAS URL identifying the destination Block Blob\n\nOptions:\n      --compress\n          compress via snappy\n\n      --source <SOURCE>\n          specify input source. If unset, the source is probed once at start (kcore, then /dev/crash, then /dev/mem); the choice cannot be changed once any bytes have been written\n\n          Possible values:\n          - /dev/crash:  Provides a read-only view of physical memory.  Access to memory using this device must be paged aligned and read one page at a time\n          - /dev/mem:    Provides a read-write view of physical memory, though AVML opens it in a read-only fashion.  Access to to memory using this device can be disabled using the kernel configuration options `CONFIG_STRICT_DEVMEM` or `CONFIG_IO_STRICT_DEVMEM`\n          - /proc/kcore: Provides a virtual ELF coredump of kernel memory.  This can be used to access physical memory\n\n      --sas-block-size <SAS_BLOCK_SIZE>\n          minimum block size in MiB. The actual block size may be larger if needed to keep the total block count below Azure's 50,000 limit\n\n      --sas-block-concurrency <SAS_BLOCK_CONCURRENCY>\n          maximum number of in-flight `stage_block` calls\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "stream",
+    "tcp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Stream to a remote TCP listener (e.g. `nc -l PORT > snapshot.lime`).\n\nThe destination is opened with a single `connect`; on connection failure mid-stream the snapshot aborts without retry.\n\nUsage: avml stream tcp [OPTIONS] <ADDR>\n\nArguments:\n  <ADDR>\n          destination TCP listener as host:port. Hostnames are resolved\n\nOptions:\n      --compress\n          compress via snappy\n\n      --source <SOURCE>\n          specify input source. If unset, the source is probed once at start (kcore, then /dev/crash, then /dev/mem); the choice cannot be changed once any bytes have been written\n\n          Possible values:\n          - /dev/crash:  Provides a read-only view of physical memory.  Access to memory using this device must be paged aligned and read one page at a time\n          - /dev/mem:    Provides a read-write view of physical memory, though AVML opens it in a read-only fashion.  Access to to memory using this device can be disabled using the kernel configuration options `CONFIG_STRICT_DEVMEM` or `CONFIG_IO_STRICT_DEVMEM`\n          - /proc/kcore: Provides a virtual ELF coredump of kernel memory.  This can be used to access physical memory\n\n  -h, --help\n          Print help (see a summary with '-h')\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "stream",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: avml stream <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "avml",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: avml <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "avml"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for avml\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "avml"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'avml' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "avml",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {
+   "acquire": {
+    "--compress": "compress via snappy",
+    "--source": "specify input source",
+    "--max-disk-usage": "Specify the maximum estimated disk usage (in MiB)",
+    "--max-disk-usage-percentage": "Specify the maximum estimated disk usage to stay under",
+    "--url": "upload via HTTP PUT upon acquisition; mutually exclusive with --sas-url",
+    "--delete": "delete upon successful upload",
+    "--sas-url": "upload via Azure Blob Store upon acquisition; mutually exclusive with --url",
+    "--sas-block-size": "specify maximum block size in MiB; must be greater than 0",
+    "--sas-block-concurrency": "specify blob upload concurrency; must be greater than 0",
+    "--help": "Print help (see a summary with '-h')"
+   },
+   "convert": {
+    "--source-format": "specify input format [default: lime_compressed] [possible values: raw, lime, lime_compressed]",
+    "--format": "specify output format [default: lime] [possible values: raw, lime, lime_compressed]",
+    "--help": "Print help"
+   },
+   "upload": {
+    "--help": "Print help",
+    "--sas-block-concurrency": "specify blob upload concurrency; must be greater than 0",
+    "--sas-block-size": "specify maximum block size in MiB; must be greater than 0"
+   },
+   "stream": {
+    "--help": "Print help (see a summary with '-h')",
+    "--compress": "compress via snappy",
+    "--source": "specify input source. If unset, the source is probed once at start (kcore, then /dev/crash, then /dev/mem); the choice cannot be changed once any bytes have been written",
+    "--sas-block-size": "minimum block size in MiB. The actual block size may be larger if needed to keep the total block count below Azure's 50,000 limit",
+    "--sas-block-concurrency": "maximum number of in-flight `stage_block` calls"
+   },
+   "help": {}
+  },
+  "subcommands": [
+   "acquire",
+   "convert",
+   "upload",
+   "stream",
+   "help"
+  ],
+  "binary": "avml",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "b675cd6ba421b5c56d706dd0190fed2b31484b8788e6b0547d7ec892482d2d31",
+  "text": "A portable volatile memory acquisition tool for Linux\n\nUsage: avml <COMMAND>\n\nCommands:\n  acquire  Acquire a memory snapshot to a local file (and optionally upload it)\n  convert  Convert between AVML and `LiME` snapshot formats and a raw memory image\n  upload   Upload an already-acquired snapshot file to remote storage\n  stream   Stream a memory snapshot directly to remote storage, without writing it to a local file\n  help     Print this message or the help of the given subcommand(s)\n\nOptions:\n  -h, --help     Print help\n  -V, --version  Print version\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--help",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--compress",
+   "--delete",
+   "--max-disk-usage",
+   "--max-disk-usage-percentage",
+   "--sas-block-concurrency",
+   "--sas-block-size",
+   "--sas-url",
+   "--source",
+   "--url"
+  ],
+  "help_only": [
+   "-V",
+   "-h"
+  ],
+  "mining_coverage": 0.5
+ },
+ "surface": {
+  "flags": {
+   "--compress": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "compress via snappy",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--delete": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "delete upon successful upload",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--max-disk-usage": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the maximum estimated disk usage (in MB)",
+    "kind": "option",
+    "first_tag": "v0.10.0",
+    "first_date": "2023-01-24T07:48:54-08:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--max-disk-usage-percentage": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify the maximum estimated disk usage to stay under",
+    "kind": "option",
+    "first_tag": "v0.10.0",
+    "first_date": "2023-01-24T07:48:54-08:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--sas-block-concurrency": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "specify blob upload concurrency; must be greater than 0",
+    "kind": "option",
+    "first_tag": "v0.6.1",
+    "first_date": "2022-04-05T12:25:34-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--sas-block-size": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "specify maximum block size in MiB; must be greater than 0",
+    "kind": "option",
+    "first_tag": "v0.4.1",
+    "first_date": "2022-01-26T16:17:42-05:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--sas-url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "upload via Azure Blob Store upon acquisition",
+    "kind": "option",
+    "first_tag": "v0.4.1",
+    "first_date": "2022-01-26T16:17:42-05:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--source": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "specify input source",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "upload via HTTP PUT upon acquisition",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "kind": "option",
+    "first_tag": "v0.1.0",
+    "first_date": "2019-06-07T10:14:47-04:00",
+    "last_tag": "v0.18.0",
+    "last_date": "2026-05-20T16:41:25-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": [
+   "acquire",
+   "convert",
+   "help",
+   "stream",
+   "upload"
+  ],
+  "subcommand_flags": {
+   "acquire": {
+    "--compress": "compress via snappy",
+    "--source": "specify input source",
+    "--max-disk-usage": "Specify the maximum estimated disk usage (in MiB)",
+    "--max-disk-usage-percentage": "Specify the maximum estimated disk usage to stay under",
+    "--url": "upload via HTTP PUT upon acquisition; mutually exclusive with --sas-url",
+    "--delete": "delete upon successful upload",
+    "--sas-url": "upload via Azure Blob Store upon acquisition; mutually exclusive with --url",
+    "--sas-block-size": "specify maximum block size in MiB; must be greater than 0",
+    "--sas-block-concurrency": "specify blob upload concurrency; must be greater than 0",
+    "--help": "Print help (see a summary with '-h')"
+   },
+   "convert": {
+    "--source-format": "specify input format [default: lime_compressed] [possible values: raw, lime, lime_compressed]",
+    "--format": "specify output format [default: lime] [possible values: raw, lime, lime_compressed]",
+    "--help": "Print help"
+   },
+   "upload": {
+    "--help": "Print help",
+    "--sas-block-concurrency": "specify blob upload concurrency; must be greater than 0",
+    "--sas-block-size": "specify maximum block size in MiB; must be greater than 0"
+   },
+   "stream": {
+    "--help": "Print help (see a summary with '-h')",
+    "--compress": "compress via snappy",
+    "--source": "specify input source. If unset, the source is probed once at start (kcore, then /dev/crash, then /dev/mem); the choice cannot be changed once any bytes have been written",
+    "--sas-block-size": "minimum block size in MiB. The actual block size may be larger if needed to keep the total block count below Azure's 50,000 limit",
+    "--sas-block-concurrency": "maximum number of in-flight `stage_block` calls"
+   },
+   "help": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-32d18b6e",
+    "argv": [
+     "avml",
+     "convert",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 158,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 143
+   },
+   {
+    "id": "t-readme-88304ca8",
+    "argv": [
+     "avml",
+     "convert",
+     "--source-format",
+     "lime",
+     "--format",
+     "lime_compressed",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 163,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 2,
+    "exit_code": 1,
+    "output_bytes": 143
+   },
+   {
+    "id": "t-surface-4889e05a",
+    "argv": [
+     "avml",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 2,
+    "exit_code": 2,
+    "output_bytes": 125
+   },
+   {
+    "id": "t-net-fad49e14",
+    "argv": [
+     "avml",
+     "--url",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 101
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "sudo target/x86_64-unknown-linux-musl/release/avml acquire --compress output.lime",
+    "source": "ci",
+    "path": ".github/workflows/build.yml",
+    "line": 50,
+    "reason": "needs-live-target",
+    "token": "output.lime"
+   },
+   {
+    "raw": "sudo target/aarch64-unknown-linux-musl/release/avml acquire --compress output.lime",
+    "source": "ci",
+    "path": ".github/workflows/build.yml",
+    "line": 68,
+    "reason": "needs-live-target",
+    "token": "output.lime"
+   },
+   {
+    "raw": "avml acquire --compress output.lime.compressed",
+    "source": "readme",
+    "path": "README.md",
+    "line": 56,
+    "reason": "needs-live-target",
+    "token": "output.lime.compressed"
+   },
+   {
+    "raw": "avml acquire output.lime",
+    "source": "readme",
+    "path": "README.md",
+    "line": 64,
+    "reason": "needs-live-target",
+    "token": "output.lime"
+   },
+   {
+    "raw": "avml stream tcp collector.example.com:9000",
+    "source": "readme",
+    "path": "README.md",
+    "line": 116,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "AVML",
+ "repo": "microsoft/avml",
+ "head_sha": "fd3521df186cd0c9f933ff4611143d68558ff21b",
+ "analyzer": "exec",
+ "analyzer_version": "11",
+ "generated_at": "2026-08-12T19:18:31.437142+00:00"
+}
