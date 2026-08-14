@@ -1,0 +1,782 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:2efe9aaf71225ba0c0a2b8b674050b584f72d4adc0137f506bc09f6de3a61053",
+  "duration_s": 33.56,
+  "log_tail": "#11 9.575 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 9.625 debconf: unable to initialize frontend: Dialog\n#11 9.625 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 9.625 debconf: falling back to frontend: Readline\n#11 9.630 debconf: unable to initialize frontend: Readline\n#11 9.630 debconf: (This frontend requires a controlling tty.)\n#11 9.630 debconf: falling back to frontend: Teletype\n#11 9.660 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 9.677 Setting up texinfo (6.8-6+b1) ...\n#11 9.697 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 9.717 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 9.8s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 3.0s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.380 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.5s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.7s done\n#20 exporting manifest sha256:acc393a71a562a55969b7c453d44dfe4866c5fe17763ae51edf9c734d27019c2 0.0s done\n#20 exporting config sha256:19f208b7a366766c318cfaef0097464d54ef5bb441a4d18b5c81e388005dab63 0.0s done\n#20 exporting attestation manifest sha256:2126ebcc75cf5664a779b72347054c84fd15cebd25196107af243f8911535ba7 0.0s done\n#20 exporting manifest list sha256:2efe9aaf71225ba0c0a2b8b674050b584f72d4adc0137f506bc09f6de3a61053 0.0s done\n#20 naming to docker.io/ctk-exec/policy_sentry:916d502ca978\n#20 naming to docker.io/ctk-exec/policy_sentry:916d502ca978 done\n#20 unpacking to docker.io/ctk-exec/policy_sentry:916d502ca978\n#20 unpacking to docker.io/ctk-exec/policy_sentry:916d502ca978 1.4s done\n#20 DONE 5.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "policy_sentry",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry [OPTIONS] COMMAND [ARGS]...\n\n  Policy Sentry is a tool for generating least-privilege IAM Policies.\n\nOptions:\n  --version  Show the version and exit.\n  --help     Show this message and exit.\n\nCommands:\n  create-template  Create write-policy YML template files\n  initialize       Create a local datastore to store AWS IAM information.\n  query            Allow users to query the IAM tables from command line\n  write-policy     Write least-privilege IAM policies, restricting all actions\n                   to resource ARNs.\n",
+   "stderr": "",
+   "duration_ms": 373,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "create-template",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry create-template [OPTIONS]\n\n  Writes YML file templates for use in the write-policy command, so users can\n  fill out the fields without needing to look up the required format.\n\nOptions:\n  -o, --output-file TEXT          Relative path to output file where we want\n                                  to store policy_sentry YML files.\n                                  [required]\n  -t, --template-type [actions|crud]\n                                  Type of write_policy template to create -\n                                  actions or CRUD. Case insensitive.\n                                  [required]\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 369,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "initialize",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry initialize [OPTIONS]\n\n  CLI command for initializing the local data file\n\nOptions:\n  --access-level-overrides-file TEXT\n                                  Path to access level overrides file, used to\n                                  override the Access Levels per action\n                                  provided by AWS docs\n  --fetch                         Specify this flag to fetch the HTML Docs\n                                  directly from the AWS website. This will be\n                                  helpful if the docs in the Git repository\n                                  are behind the live docs and you need to use\n                                  the latest version of the docs right now.\n  --build                         Build the IAM data file from the HTML files\n                                  rather than copying the data file from the\n                                  python package. Defaults to false\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 364,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry query [OPTIONS] COMMAND [ARGS]...\n\n  Allow users to query the IAM tables from command line\n\nOptions:\n  --help  Show this message and exit.\n\nCommands:\n  action-table     Query the action table based on access levels, conditions,\n                   or actions that only support wildcard resources.\n  arn-table        Query the ARN table to show RAW ARNs, like\n                   `aws:s3:::bucket/object`. Use --list-arn-types ARN types,\n                   like `object`.\n  condition-table  Query the condition table.\n  service-table    Query the service table.\n",
+   "stderr": "",
+   "duration_ms": 353,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "action-table",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry query action-table [OPTIONS]\n\n  Query the Action Table from the Policy Sentry database\n\nOptions:\n  -s, --service TEXT              Filter according to AWS service.  [required]\n  -n, --name TEXT                 The name of IAM Action. For example, if the\n                                  action is \"iam:ListUsers\", supply\n                                  \"ListUsers\" here.\n  -a, --access-level [read|write|list|tagging|permissions-management]\n                                  Filter according to CRUD levels. Acceptable\n                                  values are read, write, list, tagging,\n                                  permissions-management\n  -c, --condition TEXT            Supply a condition key to show a list of all\n                                  IAM actions that support the condition key.\n  -r, --resource-type TEXT        Supply a resource type to show a list of all\n                                  IAM actions that support the resource type.\n  --fmt [yaml|json]               Format output as YAML or JSON. Defaults to\n                                  \"json\"\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 340,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "or",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "Usage: policy_sentry query [OPTIONS] COMMAND [ARGS]...\nTry 'policy_sentry query --help' for help.\n\nError: No such command 'or'.\n",
+   "duration_ms": 323,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "arn-table",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry query arn-table [OPTIONS]\n\n  Query the ARN Table from the Policy Sentry database\n\nOptions:\n  -s, --service TEXT              Filter according to AWS service.  [required]\n  -n, --name TEXT                 The short name of the resource ARN type. For\n                                  example, `bucket` under service `s3`.\n  -l, --list-arn-types            Show the short names of ARN Types. If empty,\n                                  this will show RAW ARNs only.\n  --fmt [yaml|json]               Format output as YAML or JSON. Defaults to\n                                  \"json\"\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 324,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "like",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "Usage: policy_sentry query [OPTIONS] COMMAND [ARGS]...\nTry 'policy_sentry query --help' for help.\n\nError: No such command 'like'.\n",
+   "duration_ms": 328,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "condition-table",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry query condition-table [OPTIONS]\n\n  Query the condition table from the Policy Sentry database\n\nOptions:\n  -n, --name TEXT                 Get details on a specific condition key.\n                                  Leave this blank to get a list of all\n                                  condition keys available to the service.\n  -s, --service TEXT              Filter according to AWS service.  [required]\n  --fmt [yaml|json]               Format output as YAML or JSON. Defaults to\n                                  \"json\"\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 309,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "query",
+    "service-table",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry query service-table [OPTIONS]\n\n  Query the service table from the Policy Sentry database\n\nOptions:\n  --fmt [yaml|json|csv]           Format output as YAML, JSON or CSV. Defaults\n                                  to \"json\"\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 340,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "write-policy",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: policy_sentry write-policy [OPTIONS]\n\n  Write least-privilege IAM policies, restricting all actions to resource\n  ARNs.\n\nOptions:\n  -i, --input-file TEXT           Path of the YAML File used for generating\n                                  policies\n  -m, --minimize                  Minimize the resulting statement with *safe*\n                                  usage of wildcards to reduce policy length.\n  --minimize INTEGER RANGE        Sets the minimum character length for\n                                  minimization. Defaults to zero.  [x>=0]\n  --fmt [yaml|json|terraform]     Format output as YAML or JSON. Defaults to\n                                  \"json\"\n  -v, --verbose [critical|error|warning|info|debug]\n  --help                          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 338,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "policy_sentry",
+    "to",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "Usage: policy_sentry [OPTIONS] COMMAND [ARGS]...\nTry 'policy_sentry --help' for help.\n\nError: No such command 'to'.\n",
+   "duration_ms": 333,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "policy_sentry"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for policy_sentry\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "policy_sentry"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'policy_sentry' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 14,
+   "binary": "policy_sentry",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "policy_sentry",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--version": "Show the version and exit.",
+   "--help": "Show this message and exit."
+  },
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {
+   "create-template": {
+    "--output-file": "Relative path to output file where we want to store policy_sentry YML files. [required]",
+    "--template-type": "Type of write_policy template to create - actions or CRUD. Case insensitive. [required]",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "initialize": {
+    "--access-level-overrides-file": "Path to access level overrides file, used to override the Access Levels per action provided by AWS docs",
+    "--fetch": "Specify this flag to fetch the HTML Docs directly from the AWS website. This will be helpful if the docs in the Git repository are behind the live docs and you need to use the latest version of the docs right now.",
+    "--build": "Build the IAM data file from the HTML files rather than copying the data file from the python package. Defaults to false",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "query": {
+    "--help": "Show this message and exit.",
+    "--service": "Filter according to AWS service.  [required]",
+    "--name": "Get details on a specific condition key. Leave this blank to get a list of all condition keys available to the service.",
+    "--access-level": "Filter according to CRUD levels. Acceptable values are read, write, list, tagging, permissions-management",
+    "--condition": "Supply a condition key to show a list of all IAM actions that support the condition key.",
+    "--resource-type": "Supply a resource type to show a list of all IAM actions that support the resource type.",
+    "--fmt": "Format output as YAML, JSON or CSV. Defaults to \"json\"",
+    "--verbose": "",
+    "--list-arn-types": "Show the short names of ARN Types. If empty, this will show RAW ARNs only."
+   },
+   "write-policy": {
+    "--input-file": "Path of the YAML File used for generating policies",
+    "--minimize": "Minimize the resulting statement with *safe* usage of wildcards to reduce policy length.",
+    "--fmt": "Format output as YAML or JSON. Defaults to \"json\"",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "to": {}
+  },
+  "subcommands": [
+   "create-template",
+   "initialize",
+   "query",
+   "write-policy",
+   "to"
+  ],
+  "binary": "policy_sentry",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "4fd53ab8da516dabc193791f7ce092c573baaf2aa1b73b80c0950bbe9aa2cb38",
+  "text": "Usage: policy_sentry [OPTIONS] COMMAND [ARGS]...\n\n  Policy Sentry is a tool for generating least-privilege IAM Policies.\n\nOptions:\n  --version  Show the version and exit.\n  --help     Show this message and exit.\n\nCommands:\n  create-template  Create write-policy YML template files\n  initialize       Create a local datastore to store AWS IAM information.\n  query            Allow users to query the IAM tables from command line\n  write-policy     Write least-privilege IAM policies, restricting all actions\n                   to resource ARNs.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--access-level",
+   "--access-level-overrides-file",
+   "--audit-file",
+   "--build",
+   "--condition",
+   "--crud",
+   "--fetch",
+   "--file",
+   "--fmt",
+   "--input-dir",
+   "--input-file",
+   "--list-arn-types",
+   "--minimize",
+   "--minimize_length",
+   "--name",
+   "--output-dir",
+   "--output-file",
+   "--print-policy",
+   "--resource-type",
+   "--service",
+   "--show",
+   "--template-type",
+   "--verbose"
+  ],
+  "help_only": [
+   "--help",
+   "--version"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--access-level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Filter according to CRUD levels. Acceptable values are read, write, list, tagging, permissions-management",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--access-level-overrides-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to access level overrides file, used to override the Access Levels per action provided by AWS docs",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/initialize.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--audit-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The file containing AWS actions to audit. Default path is $HOME/.policy_sentry/audit/permissions-access-level.txt.",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/analyze_iam_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--build": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Build the IAM data file from the HTML files rather than copying the data file from the python package. Defaults to false",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/initialize.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--condition": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Supply a condition key to show a list of all IAM actions that support the condition key.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--crud": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use the CRUD functionality. Defaults to false",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--fetch": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Specify this flag to fetch the HTML Docs directly from the AWS website. This will be helpful if the docs in the Git repository are behind the live docs and you need to use the latest version of the docs right now.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/initialize.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Supply the requestors IAM policy as a JSON file. Accepts relative path.",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/analyze_iam_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--fmt": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Format output as YAML, JSON or CSV. Defaults to \"json\"",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this message and exit."
+   },
+   "--input-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relative path to Input directory that contains policy_sentry .yaml files (CRUD mode only)",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy_dir.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--input-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path of the YAML File used for generating policies",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--list-arn-types": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show the short names of ARN Types. If empty, this will show RAW ARNs only.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--minimize": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Minimize the resulting statement with *safe* usage of wildcards to reduce policy length.",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--minimize_length": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Sets the minimum character length for minimization. Defaults to zero.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--name": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Get details on a specific condition key. Leave this blank to get a list of all condition keys available to the service.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relative path to directory to store AWS JSON policies",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/write_policy_dir.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Relative path to output file where we want to store policy_sentry YML files.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/create_template.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--print-policy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Print the example policy where actions are restricted to ARNs. Defaults to false.",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/analyze_iam_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--resource-type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Supply a resource type to show a list of all IAM actions that support the resource type.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--service": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Filter according to AWS service.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/query.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--show": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show CRUD levels. Acceptable values are read, write, list, tagging, permissions-management",
+    "kind": "option",
+    "first_tag": "0.4.1",
+    "first_date": "2019-10-14T09:35:14-04:00",
+    "last_tag": "0.4.1",
+    "last_date": "2019-10-14T09:35:14-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/analyze_iam_policy.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--template-type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Type of write_policy template to create - actions or CRUD. Case insensitive.",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/create_template.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "0.11.3",
+    "first_date": "2020-12-28T16:54:34-05:00",
+    "last_tag": "0.16.0",
+    "last_date": "2026-04-13T15:35:40-07:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "policy_sentry/command/create_template.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show the version and exit."
+   }
+  },
+  "subcommands": [
+   "create-template",
+   "initialize",
+   "query",
+   "to",
+   "write-policy"
+  ],
+  "subcommand_flags": {
+   "create-template": {
+    "--output-file": "Relative path to output file where we want to store policy_sentry YML files. [required]",
+    "--template-type": "Type of write_policy template to create - actions or CRUD. Case insensitive. [required]",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "initialize": {
+    "--access-level-overrides-file": "Path to access level overrides file, used to override the Access Levels per action provided by AWS docs",
+    "--fetch": "Specify this flag to fetch the HTML Docs directly from the AWS website. This will be helpful if the docs in the Git repository are behind the live docs and you need to use the latest version of the docs right now.",
+    "--build": "Build the IAM data file from the HTML files rather than copying the data file from the python package. Defaults to false",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "query": {
+    "--help": "Show this message and exit.",
+    "--service": "Filter according to AWS service.  [required]",
+    "--name": "Get details on a specific condition key. Leave this blank to get a list of all condition keys available to the service.",
+    "--access-level": "Filter according to CRUD levels. Acceptable values are read, write, list, tagging, permissions-management",
+    "--condition": "Supply a condition key to show a list of all IAM actions that support the condition key.",
+    "--resource-type": "Supply a resource type to show a list of all IAM actions that support the resource type.",
+    "--fmt": "Format output as YAML, JSON or CSV. Defaults to \"json\"",
+    "--verbose": "",
+    "--list-arn-types": "Show the short names of ARN Types. If empty, this will show RAW ARNs only."
+   },
+   "write-policy": {
+    "--input-file": "Path of the YAML File used for generating policies",
+    "--minimize": "Minimize the resulting statement with *safe* usage of wildcards to reduce policy length.",
+    "--fmt": "Format output as YAML or JSON. Defaults to \"json\"",
+    "--verbose": "",
+    "--help": "Show this message and exit."
+   },
+   "to": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 0,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [],
+  "not_attempted": [
+   {
+    "raw": "policy_sentry create-template --output-file crud.yml --template-type crud",
+    "source": "readme",
+    "path": "README.md",
+    "line": 142,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "policy_sentry write-policy --input-file crud.yml",
+    "source": "readme",
+    "path": "README.md",
+    "line": 215,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "policy_sentry write-policy --input-file examples/yml/actions.yml",
+    "source": "readme",
+    "path": "docs/writing-policies/actions-mode.md",
+    "line": 16,
+    "reason": "unmappable-path",
+    "token": "examples/yml/actions.yml"
+   },
+   {
+    "raw": "policy_sentry create-template --output-file actions.yml --template-type actions",
+    "source": "readme",
+    "path": "docs/writing-policies/actions-mode.md",
+    "line": 25,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "policy_sentry write-policy --input-file actions.yml",
+    "source": "readme",
+    "path": "docs/writing-policies/actions-mode.md",
+    "line": 54,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "policy_sentry write-policy --input-file examples/yml/crud.yml",
+    "source": "readme",
+    "path": "docs/writing-policies/crud-mode.md",
+    "line": 18,
+    "reason": "unmappable-path",
+    "token": "examples/yml/crud.yml"
+   },
+   {
+    "raw": "policy_sentry write-policy --input-file crud.yml --minimize 0",
+    "source": "readme",
+    "path": "docs/writing-policies/minimization.md",
+    "line": 49,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "Policy Sentry",
+ "repo": "salesforce/policy_sentry",
+ "head_sha": "916d502ca97877cf7b45457a6560da06de96df94",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T00:18:12.309082+00:00"
+}

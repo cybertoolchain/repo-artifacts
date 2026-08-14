@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:0fb7ce6c764c93ba5b8dce4e7fb932f73634cc8303f65f930ae1a54881eef760",
-  "duration_s": 53.01,
-  "log_tail": "#11 21.45   Building wheel for odfpy (pyproject.toml): started\n#11 21.61   Building wheel for odfpy (pyproject.toml): finished with status 'done'\n#11 21.61   Created wheel for odfpy: filename=odfpy-1.4.1-py2.py3-none-any.whl size=160717 sha256=a467fc49c3ca24df856165742a12c672df18e52d65d968aa5c6bf0e4cb3b1aec\n#11 21.61   Stored in directory: /tmp/pip-ephem-wheel-cache-2fa9hm8x/wheels/36/5d/63/8243a7ee78fff0f944d638fd0e66d7278888f5e2285d7346b6\n#11 21.62   Building wheel for twofish (pyproject.toml): started\n#11 22.23   Building wheel for twofish (pyproject.toml): finished with status 'done'\n#11 22.23   Created wheel for twofish: filename=twofish-0.3.0-cp312-cp312-linux_aarch64.whl size=27114 sha256=9474057d04d3406d3dd426a119bd4d78ce8a43586a33b0c1bf97bfeb53147370\n#11 22.23   Stored in directory: /tmp/pip-ephem-wheel-cache-2fa9hm8x/wheels/fa/81/02/abf836d4acb19a3de48f6bfd738cb9bcb762978b835bca2faa\n#11 22.23 Successfully built adscan odfpy twofish\n#11 22.29 Installing collected packages: twofish, pybase62, flatbuffers, XlsxWriter, xlrd, whatthepatch, urllib3, typing-extensions, striprtf, soupsieve, smmap, six, rpmfile, pyyaml, pygments, pycryptodomex, pycparser, pyasn1, protobuf, Pillow, packaging, numpy, mdurl, lxml, javaobj-py3, idna, humanfriendly, et-xmlfile, defusedxml, colorama, charset_normalizer, certifi, base58, sentry-sdk, requests, python-pptx, python-docx, python-dateutil, pyasn1-modules, openpyxl, onnxruntime, odfpy, markdown-it-py, gitdb, cffi, beautifulsoup4, rich, pyjks, pandas, gitpython, cryptography, pdfminer-six, credsweeper, adscan\n#11 29.84 \n#11 29.84 Successfully installed Pillow-12.3.0 XlsxWriter-3.2.9 adscan-11.1.0 base58-2.1.1 beautifulsoup4-4.15.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 colorama-0.4.6 credsweeper-1.15.1 cryptography-50.0.0 defusedxml-0.7.1 et-xmlfile-2.0.0 flatbuffers-25.12.19 gitdb-4.0.12 gitpython-3.1.59 humanfriendly-10.0 idna-3.18 javaobj-py3-0.6.1 lxml-6.1.1 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.5.2 odfpy-1.4.1 onnxruntime-1.28.0 openpyxl-3.1.5 packaging-26.3 pandas-3.0.5 pdfminer-six-20260107 protobuf-7.35.1 pyasn1-0.6.4 pyasn1-modules-0.4.2 pybase62-1.0.0 pycparser-3.0 pycryptodomex-3.23.0 pygments-2.20.0 pyjks-20.0.0 python-dateutil-2.9.0.post0 python-docx-1.2.0 python-pptx-1.0.2 pyyaml-6.0.3 requests-2.34.2 rich-15.0.0 rpmfile-2.2.1 sentry-sdk-2.68.0 six-1.17.0 smmap-5.0.3 soupsieve-2.9.2 striprtf-0.0.32 twofish-0.3.0 typing-extensions-4.16.0 urllib3-2.7.0 whatthepatch-1.0.7 xlrd-2.0.2\n#11 DONE 30.5s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.8s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.134 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.6s done\n#20 exporting manifest sha256:e2c7f48e4648e411a5823027c0866d594326c975302d5e8c6658e216715ddb38 done\n#20 exporting config sha256:919f078c516fcbfc9425e46e51c617ce3c576df62e19464644f6f9a54bc6d962 done\n#20 exporting attestation manifest sha256:6a2dd7edd9879eb356d8c2d3a37ecb613e0229f67ce0a787dae202068699ca3a 0.0s done\n#20 exporting manifest list sha256:0fb7ce6c764c93ba5b8dce4e7fb932f73634cc8303f65f930ae1a54881eef760 done\n#20 naming to docker.io/ctk-exec/adscan:090a65db5208 done\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208 1.9s done\n#20 DONE 8.6s",
+  "image_digest": "sha256:30c439eedac8daf4ff0d15fc08c880c28bd03ada88866fde314c86c81db6b644",
+  "duration_s": 89.64,
+  "log_tail": "#11 11.33 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 11.36 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 11.40 debconf: unable to initialize frontend: Dialog\n#11 11.40 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 11.40 debconf: falling back to frontend: Readline\n#11 11.41 debconf: unable to initialize frontend: Readline\n#11 11.41 debconf: (This frontend requires a controlling tty.)\n#11 11.41 debconf: falling back to frontend: Teletype\n#11 11.44 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 11.45 Setting up texinfo (6.8-6+b1) ...\n#11 11.48 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 11.50 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 11.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.9s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 3.5s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.5s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.138 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.9s done\n#20 exporting manifest sha256:5d47d39abd745bce8e25d0fe2c0489a2537dbd545d6a85d58ca650bb65c549c0 done\n#20 exporting config sha256:d58c1fd6236899efa477295eecfff31a1c441ce2fc4a7f463e5c2fe88e9479b3 done\n#20 exporting attestation manifest sha256:31fa0bf30d300827f9485fcf8eb714e5e721ad7a945f0c13eaa5285d726d121a 0.0s done\n#20 exporting manifest list sha256:30c439eedac8daf4ff0d15fc08c880c28bd03ada88866fde314c86c81db6b644 done\n#20 naming to docker.io/ctk-exec/adscan:090a65db5208 done\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208\n#20 unpacking to docker.io/ctk-exec/adscan:090a65db5208 2.7s done\n#20 DONE 9.7s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "usage: adscan [-h] [--version] [--image IMAGE] [--verbose] [--debug]\n              [--no-update-check]\n              command ...\n\npositional arguments:\n  command\n    install          Install ADscan (Docker mode)\n    check            Check Docker-mode prerequisites\n    start            Start ADscan interactive session\n    ci               [EXPERIMENTAL] Run ADscan in autonomous mode (no prompts,\n                     end-to-end automated scan)\n    demo             Run a deterministic 60-second demo scan and produce a\n                     real PDF.\n    execute          Run a single REPL command non-interactively (scripting /\n                     smoke-test).\n    doctor           Fast one-shot health check (DNS, connectivity, auth,\n                     posture).\n    deliver          Generate full Client Deliverable Kit (4 PDFs + ZIP) [PRO]\n    cheatsheet       Pentester Cheatsheet PDF [LITE]\n    mitre-navigator  MITRE ATT&CK Navigator layer (JSON) [LITE]\n    update           Update the launcher (pip) and pull the latest ADscan\n                     image\n    upgrade          Alias of update\n    version          Show launcher version\n    welcome          Show the editorial welcome screen (default with no\n                     command).\n\noptions:\n  -h, --help         show this help message and exit\n  --version          Show launcher version and Docker image configuration.\n  --image IMAGE      Override the ADscan Docker image (defaults to env\n                     ADSCAN_DOCKER_IMAGE or channel).\n  --verbose          Enable verbose output (launcher + forwarded to container\n                     subcommands where applicable).\n  --debug            Enable debug output (launcher + forwarded to container\n                     subcommands where applicable).\n  --no-update-check  Skip the launcher/runtime version probe and update\n                     prompts (no PyPI / Docker Hub call). Usable as a prefix\n                     before any command, including container passthroughs.\n                     Mid-engagement / airgapped / version-pinned use only.\n\nDeliverables \u2014 LITE (free)\n  cheatsheet         Pentester Cheatsheet PDF                    [LITE]\n  mitre-navigator    MITRE ATT&CK Navigator layer (JSON)         [LITE]\n\nDeliverables \u2014 PRO\n  deliver            Full Client Deliverable Kit (4 PDFs + ZIP)  [PRO]\n",
    "stderr": "",
-   "duration_ms": 451,
+   "duration_ms": 555,
    "truncated": false,
    "error": null
   },
@@ -29,7 +29,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for adscan\n",
-   "duration_ms": 1,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'adscan' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -2728,46 +2728,10 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 6,
+  "tried": 4,
   "tried_this_wave": 4,
   "promoted": 0,
   "results": [
-   {
-    "id": "t-net-a2674087",
-    "argv": [
-     "base58",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 2,
-    "output_bytes": 143
-   },
-   {
-    "id": "t-net-f0b90e2f",
-    "argv": [
-     "base58",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 2,
-    "output_bytes": 129
-   },
    {
     "id": "t-net-3854b2d6",
     "argv": [
@@ -2868,6 +2832,6 @@
  "repo": "ADScanPro/adscan",
  "head_sha": "090a65db52083081bf527e43a92682cf47658f72",
  "analyzer": "exec",
- "analyzer_version": "12",
- "generated_at": "2026-08-13T19:06:15.384478+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T02:19:43.800377+00:00"
 }

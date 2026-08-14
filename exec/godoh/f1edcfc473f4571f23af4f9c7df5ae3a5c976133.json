@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:31294145e97fbf262feeb0e4817273cd76076c371a67bfdf56f361fe947ac72a",
-  "duration_s": 7.5,
-  "log_tail": "#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.602 go: downloading github.com/miekg/dns v1.1.57\n#11 0.605 go: downloading github.com/rs/zerolog v1.31.0\n#11 0.605 go: downloading github.com/spf13/cobra v1.8.0\n#11 0.689 go: downloading golang.org/x/sys v0.15.0\n#11 0.689 go: downloading golang.org/x/net v0.19.0\n#11 0.707 go: downloading github.com/mattn/go-colorable v0.1.13\n#11 0.750 go: downloading github.com/spf13/pflag v1.0.5\n#11 0.846 go: downloading github.com/mattn/go-isatty v0.0.20\n#11 ...\n\n#5 [stage-1 1/7] FROM docker.io/library/debian:bookworm-slim@sha256:7b140f374b289a7c2befc338f42ebe6441b7ea838a042bbd5acbfca6ec875818\n#5 CACHED\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 DONE 4.8s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.100 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:672fe766f93f88eaf28da1baca273df7105b9f27aa2318641e19dbc950d1aeed done\n#18 exporting config sha256:17d858036863658c583483e8f33d5d9eb6624747cf0c39cefac215892ad1c77b done\n#18 exporting attestation manifest sha256:0066351d099302ab05335814c9e2a0b9505f3327ea36d8699d89f4d303670dc6 0.0s done\n#18 exporting manifest list sha256:31294145e97fbf262feeb0e4817273cd76076c371a67bfdf56f361fe947ac72a done\n#18 naming to docker.io/ctk-exec/godoh:f1edcfc473f4 done\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4 0.6s done\n#18 DONE 1.0s",
+  "image_digest": "sha256:0feb4b14e2d9ab61a65115c8f11c9e7936b30c6ea0939105c2af483fd305948f",
+  "duration_s": 10.99,
+  "log_tail": "#8 CACHED\n\n#9 [build 3/5] COPY . .\n#9 DONE 0.0s\n\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.2s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.793 go: downloading github.com/rs/zerolog v1.31.0\n#11 0.795 go: downloading github.com/miekg/dns v1.1.57\n#11 0.797 go: downloading github.com/spf13/cobra v1.8.0\n#11 0.931 go: downloading github.com/spf13/pflag v1.0.5\n#11 0.973 go: downloading golang.org/x/sys v0.15.0\n#11 0.973 go: downloading golang.org/x/net v0.19.0\n#11 0.992 go: downloading github.com/mattn/go-colorable v0.1.13\n#11 1.317 go: downloading github.com/mattn/go-isatty v0.0.20\n#11 DONE 7.2s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.306 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.4s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.6s done\n#18 exporting manifest sha256:8f5546b597666aceea393a960d137a982a025c76ed6878c2a834d9e4b7d0b764 0.0s done\n#18 exporting config sha256:dffc1139cb201b7e4d18c1f5cfccbe4826bd651bd336093328c29a5755fbe568 0.0s done\n#18 exporting attestation manifest sha256:6192c1c9712b3c80dbe10a1df4f4eecd1a0657ca8fec66d6300bd4012729a8c9 0.1s done\n#18 exporting manifest list sha256:0feb4b14e2d9ab61a65115c8f11c9e7936b30c6ea0939105c2af483fd305948f\n#18 exporting manifest list sha256:0feb4b14e2d9ab61a65115c8f11c9e7936b30c6ea0939105c2af483fd305948f 0.0s done\n#18 naming to docker.io/ctk-exec/godoh:f1edcfc473f4 done\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4\n#18 unpacking to docker.io/ctk-exec/godoh:f1edcfc473f4 0.2s done\n#18 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "A DNS (over-HTTPS) C2\n    Version: \n\tBy @leonjza from @sensepost\n\nUsage:\n  godoh [flags]\n  godoh [command]\n\nAvailable Commands:\n  agent       Connect as an Agent to the DoH C2\n  c2          Starts the godoh C2 server\n  completion  Generate the autocompletion script for the specified shell\n  help        Help about any command\n  receive     Receive a file via DoH\n  send        Send a file via DoH\n  test        Test DNS communications\n\nFlags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -h, --help                   help for godoh\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n\nUse \"godoh [command] --help\" for more information about a command.\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null
   },
@@ -42,7 +42,7 @@
    "exit_code": 0,
    "stdout": "Connect as an Agent to the DoH C2.\n\nExample:\n\tgodoh --domain example.com agent\n\tgodoh --domain example.com agent -n agent1\n\tgodoh --domain example.com agent --agent-name agent1 --poll-time 5\n\nUsage:\n  godoh agent [flags]\n\nFlags:\n  -n, --agent-name string   Agent name to use. (default: random)\n  -h, --help                help for agent\n  -t, --poll-time int       Time in seconds between polls. (default 10)\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -55,7 +55,7 @@
    "exit_code": 0,
    "stdout": "Starts the godoh C2 server.\n\nThe implementation is pretty simple in that it will accept most communications\ninbound, assuming a full DNS stream conversation is done.\n\nEven though a global DNS provider is chosen as part of the base command, this\nsub command cares little for that as any incoming, raw DNS packets are parsed.\n\nExamples:\n\tgodoh --domain example.com c2\n\nUsage:\n  godoh c2 [flags]\n\nFlags:\n  -h, --help   help for c2\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -68,7 +68,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for godoh for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  godoh completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n\nUse \"godoh completion [command] --help\" for more information about a command.\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -82,7 +82,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(godoh completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tgodoh completion bash > /etc/bash_completion.d/godoh\n\n#### macOS:\n\n\tgodoh completion bash > $(brew --prefix)/etc/bash_completion.d/godoh\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -96,7 +96,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tgodoh completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tgodoh completion fish > ~/.config/fish/completions/godoh.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -110,7 +110,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tgodoh completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  godoh completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -124,7 +124,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the zsh shell.\n\nIf shell completion is not already enabled in your environment you will need\nto enable it.  You can execute the following once:\n\n\techo \"autoload -U compinit; compinit\" >> ~/.zshrc\n\nTo load completions in your current shell session:\n\n\tsource <(godoh completion zsh)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tgodoh completion zsh > \"${fpath[1]}/_godoh\"\n\n#### macOS:\n\n\tgodoh completion zsh > $(brew --prefix)/share/zsh/site-functions/_godoh\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  godoh completion zsh [flags]\n\nFlags:\n  -h, --help              help for zsh\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null
   },
@@ -137,7 +137,7 @@
    "exit_code": 0,
    "stdout": "Help provides help for any command in the application.\nSimply type godoh help [path to command] for full details.\n\nUsage:\n  godoh help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 2,
+   "duration_ms": 3,
    "truncated": false,
    "error": null
   },
@@ -150,7 +150,7 @@
    "exit_code": 0,
    "stdout": "Receive a file via DoH.\nStarts a DNS server to receive files. Files received will be dumped to the \ncurrent working directory using the original file name the target file had.\n\nExample:\n\tgodoh --domain example.com receive\n\nUsage:\n  godoh receive [flags]\n\nFlags:\n  -h, --help   help for receive\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -176,7 +176,7 @@
    "exit_code": 0,
    "stdout": "Tests communications to all of the known DNS-over-HTTPS communications providers.\nFor example:\n\n\tgodoh test --name google.com --type TXT\n\tgodoh test -n duckduckgo.com --type A\n\nUsage:\n  godoh test [flags]\n\nFlags:\n  -h, --help          help for test\n  -n, --name string   Name to lookup.\n  -t, --type string   Record type to lookup. (default \"A\")\n\nGlobal Flags:\n      --debug                  enable debug logging\n      --disable-logging        disable all logging\n  -d, --domain string          DNS Domain to use. (ie: example.com)\n  -p, --provider string        Preferred DNS provider to use. [possible: googlefront, google, cloudflare, quad9, raw] (default \"google\")\n  -K, --validate-certificate   Validate DoH provider SSL certificates\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -203,7 +203,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'godoh' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -223,6 +223,12 @@
   }
  ],
  "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "godoh",
+   "source": "go.mod module (root package main)"
+  }
+ ],
  "examples": [],
  "help": {
   "flags_seen": {
@@ -680,98 +686,10 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 7,
-  "tried_this_wave": 2,
+  "tried": 4,
+  "tried_this_wave": 4,
   "promoted": 0,
   "results": [
-   {
-    "id": "net-1",
-    "argv": [
-     "godoh",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 1,
-    "output_bytes": 121
-   },
-   {
-    "id": "net-2",
-    "argv": [
-     "godoh",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 1,
-    "output_bytes": 107
-   },
-   {
-    "id": "t-model-35bb17b7",
-    "argv": [
-     "godoh",
-     "agent",
-     "-d",
-     "/opt/ctk/fixtures/source-corpus/Dockerfile"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "unstable",
-    "reason": "output-differs-between-runs:0.0",
-    "grader": 2,
-    "exit_code": 1,
-    "output_bytes": 261,
-    "stability": 0.0
-   },
-   {
-    "id": "t-model-1fa394c1",
-    "argv": [
-     "godoh",
-     "c2",
-     "-d",
-     "/opt/ctk/fixtures/source-corpus/Dockerfile"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "harness-error:timeout",
-    "grader": 2,
-    "exit_code": null,
-    "output_bytes": 262144
-   },
-   {
-    "id": "t-model-3acec2ce",
-    "argv": [
-     "godoh",
-     "receive",
-     "-d",
-     "/opt/ctk/fixtures/source-corpus/Dockerfile"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "harness-error:timeout",
-    "grader": 2,
-    "exit_code": null,
-    "output_bytes": 63
-   },
    {
     "id": "t-net-9ba014de",
     "argv": [
@@ -808,6 +726,42 @@
     "skipped_reason": "target_unavailable",
     "exit_code": null,
     "output_bytes": 0
+   },
+   {
+    "id": "t-net-e9a0f8cf",
+    "argv": [
+     "godoh",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 121
+   },
+   {
+    "id": "t-net-cf518f9d",
+    "argv": [
+     "godoh",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 107
    }
   ],
   "not_attempted": []
@@ -816,6 +770,6 @@
  "repo": "sensepost/goDoH",
  "head_sha": "f1edcfc473f4571f23af4f9c7df5ae3a5c976133",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-03T17:33:49.421727+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T01:12:28.736784+00:00"
 }

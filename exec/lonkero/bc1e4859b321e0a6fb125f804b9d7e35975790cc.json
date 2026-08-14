@@ -1,0 +1,849 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:84aa8519d30fa037df0c103dec76333da58a94e278eb1c254335554bbd67f447",
+  "duration_s": 315.17,
+  "log_tail": "#13 9.518 debconf: (This frontend requires a controlling tty.)\n#13 9.518 debconf: falling back to frontend: Teletype\n#13 9.539 \n#13 9.539 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#13 9.550 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#13 9.568 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#13 9.598 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#13 9.628 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#13 9.668 debconf: unable to initialize frontend: Dialog\n#13 9.668 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#13 9.668 debconf: falling back to frontend: Readline\n#13 9.672 debconf: unable to initialize frontend: Readline\n#13 9.672 debconf: (This frontend requires a controlling tty.)\n#13 9.672 debconf: falling back to frontend: Teletype\n#13 9.694 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#13 9.705 Setting up texinfo (6.8-6+b1) ...\n#13 9.714 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#13 9.718 Setting up dmsetup (2:1.02.185-2) ...\n#13 9.724 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#13 9.728 Processing triggers for install-info (6.8-6+b1) ...\n#13 9.732 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#13 DONE 9.9s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.1s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.104 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.5s done\n#19 exporting manifest sha256:ce70f1e0d642f6699c7c37709ae187ff9c592401fe94aaa9e03e7219f70f058a done\n#19 exporting config sha256:b580574508b9536abf33f7452d9bc951fffd8c61d33c50de5dd01f6621cdac16 done\n#19 exporting attestation manifest sha256:fd5db1f2cea29c579b3dcb98c0b902062068c03f6089b007a3dd1f947dece193 done\n#19 exporting manifest list sha256:84aa8519d30fa037df0c103dec76333da58a94e278eb1c254335554bbd67f447 done\n#19 naming to docker.io/ctk-exec/lonkero:bc1e4859b321 done\n#19 unpacking to docker.io/ctk-exec/lonkero:bc1e4859b321\n#19 unpacking to docker.io/ctk-exec/lonkero:bc1e4859b321 0.7s done\n#19 DONE 4.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "lonkero",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Web scanner built for actual pentests. Fast, modular, Rust.\n\nUsage: lonkero [OPTIONS] <COMMAND>\n\nCommands:\n  scan      Scan a target for vulnerabilities\n  list      List available scanner modules\n  validate  Validate target URL(s)\n  init      Generate sample configuration file\n  version   Show scanner version and build info\n  license   Manage license\n  ml        Machine Learning settings and statistics\n  ai        AI-powered interactive security testing (conversational pentesting)\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "scan",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Scan a target for vulnerabilities\n\nUsage: lonkero scan [OPTIONS] <TARGETS>...\n\nArguments:\n  <TARGETS>...\n          Target URL(s) to scan\n\nOptions:\n  -m, --mode <MODE>\n          Scan mode: intelligent (context-aware, default), fast, normal, thorough, insane\n\n          Possible values:\n          - intelligent: Context-aware intelligent scanning (v3.5 default) Uses tech detection, endpoint deduplication, and per-parameter risk scoring\n          - fast:        Legacy: 50 payloads globally\n          - normal:      Legacy: 500 payloads globally\n          - thorough:    Legacy: 5000 payloads globally\n          - insane:      Legacy: unlimited payloads globally\n          \n          [default: intelligent]\n\n  -o, --output <OUTPUT>\n          Output file path\n\n  -f, --format <FORMAT>\n          Output format: json, html, pdf, sarif, markdown, csv, xlsx\n          \n          [default: json]\n          [possible values: json, html, pdf, sarif, markdown, csv, xlsx, junit]\n\n      --subdomains\n          Enable subdomain enumeration\n\n      --dorks\n          Generate Google dork queries for reconnaissance (not enabled by default)\n\n      --crawl <CRAWL>\n          Enable web crawler (enabled by default to discover real parameters)\n          \n          [default: true]\n          [possible values: true, false]\n\n      --max-depth <MAX_DEPTH>\n          Maximum crawl depth\n          \n          [default: 3]\n\n      --concurrency <CONCURRENCY>\n          Maximum concurrent requests\n          \n          [default: 50]\n\n      --timeout <TIMEOUT>\n          Request timeout in seconds\n          \n          [default: 30]\n\n  -v, --verbose\n          Enable verbose output\n\n  -d, --debug\n          Enable debug output\n\n      --user-agent <USER_AGENT>\n          Custom User-Agent string\n\n      --cookie <COOKIE>\n          Authentication cookie\n\n  -q, --quiet\n          Quiet mode - only show vulnerabilities\n\n  -c, --config <CONFIG>\n          Configuration file path\n\n      --token <TOKEN>\n          Authentication bearer token\n\n      --basic-auth <BASIC_AUTH>\n          HTTP Basic auth (user:pass)\n\n  -L, --license-key <LICENSE_KEY>\n          License key (or set LONKERO_LICENSE_KEY environment variable)\n          \n          [env: LONKERO_LICENSE_KEY=]\n\n      --auth-username <AUTH_USERNAME>\n          Auto-login username (requires --auth-password)\n\n      --auth-password <AUTH_PASSWORD>\n          Auto-login password (requires --auth-username)\n\n      --auth-login-url <AUTH_LOGIN_URL>\n          Custom login URL (for auto-login)\n\n  -H, --header <HEADER>\n          Custom headers (format: \"Header: Value\")\n\n      --skip <SKIP>\n          Skip specific scanner modules\n\n      --only <ONLY>\n          Only run specific scanner modules\n\n      --proxy <PROXY>\n          Proxy URL (http://host:port)\n\n      --insecure\n          Disable TLS certificate verification\n\n      --rate-limit <RATE_LIMIT>\n          Rate limit (requests per second)\n          \n          [default: 100]\n\n      --no-rate-limit\n          Disable rate limiting entirely (use with caution!)\n\n      --admin-username <ADMIN_USERNAME>\n          Admin username for multi-role authorization testing\n\n      --admin-password <ADMIN_PASSWORD>\n          Admin password for multi-role authorization testing\n\n      --admin-login-url <ADMIN_LOGIN_URL>\n          Admin login URL (if different from user login URL)\n\n      --multi-role\n          Enable multi-role authorization testing (requires both user and admin credentials)\n\n      --record-session\n          Enable session recording during headless crawling\n\n      --session-output <SESSION_OUTPUT>\n          Session recording output file (default: session_recording.har)\n\n      --session-format <SESSION_FORMAT>\n          Session recording format: har, json, html\n\n          Possible values:\n          - har:  HAR format (HTTP Archive) - compatible with browser dev tools\n          - json: JSON timeline format with all events\n          - html: Interactive HTML report with timeline\n          \n          [default: har]\n\n      --payload-intensity <PAYLOAD_INTENSITY>\n          Payload intensity override: auto (default), minimal (50), standard (500), extended (5000), maximum (all) In intelligent mode, this overrides per-parameter intensity. In legacy modes, ignored\n\n          Possible values:\n          - auto:     Auto: Use intelligent mode's per-parameter risk scoring (default)\n          - minimal:  Minimal: 50 payloads per parameter (fastest, may miss some vulns)\n          - standard: Standard: 500 payloads per parameter (balanced)\n          - extended: Extended: 5000 payloads per parameter (thorough)\n          - maximum:  Maximum: All available payloads (slowest, best coverage)\n          \n          [default: auto]\n\n      --browser-assist\n          Enable Browser-Assist mode: route requests through real browser for authentic TLS fingerprints Requires Lonkero Browser-Assist extension installed in Chrome\n\n      --auth-type <AUTH_TYPE>\n          Authorization type for Browser-Assist mode\n\n          Possible values:\n          - bug-bounty:      Bug bounty program authorization\n          - pentest:         Pentest engagement\n          - internal-audit:  Internal security audit\n          - dev-testing:     Dev/staging testing\n          - self-authorized: Self-authorized (testing own assets)\n          \n          [default: self-authorized]\n\n      --scope <SCOPE>\n          Scope patterns for Browser-Assist mode (e.g., \"*.example.com\")\n\n      --audit-log <AUDIT_LOG>\n          Audit log output path for Browser-Assist mode\n\n      --no-ml\n          Disable ML model scoring (model scoring is one-way, no data leaves your machine)\n\n  -h, --help\n          Print help (see a summary with '-h')\n\n  -V, --version\n          Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "list",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List available scanner modules\n\nUsage: lonkero list [OPTIONS]\n\nOptions:\n  -v, --verbose                    Show detailed information\n  -c, --category <CATEGORY>        Filter by category\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "validate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Validate target URL(s)\n\nUsage: lonkero validate [OPTIONS] [TARGETS]...\n\nArguments:\n  [TARGETS]...  Target URL(s) to validate\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "init",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Generate sample configuration file\n\nUsage: lonkero init [OPTIONS]\n\nOptions:\n  -o, --output <OUTPUT>            Output path for config file [default: lonkero.toml]\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show scanner version and build info\n\nUsage: lonkero version [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "license",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Manage license\n\nUsage: lonkero license [OPTIONS] <COMMAND>\n\nCommands:\n  activate    Activate a license key\n  status      Show current license status\n  deactivate  Deactivate the current license\n  help        Print this message or the help of the given subcommand(s)\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "license",
+    "activate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Activate a license key\n\nUsage: lonkero license activate [OPTIONS] <KEY>\n\nArguments:\n  <KEY>  License key to activate\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "license",
+    "status",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show current license status\n\nUsage: lonkero license status [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "license",
+    "deactivate",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Deactivate the current license\n\nUsage: lonkero license deactivate [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "license",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: lonkero license [OPTIONS] <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Machine Learning settings and statistics\n\nUsage: lonkero ml [OPTIONS] <COMMAND>\n\nCommands:\n  enable       Enable ML features with GDPR consent\n  disable      Disable ML features\n  stats        Show ML statistics and status\n  export       Export your ML data (GDPR Article 15 - Right to access)\n  delete-data  Delete all ML data (GDPR Article 17 - Right to erasure)\n  sync         Fetch latest detection model from server\n  help         Print this message or the help of the given subcommand(s)\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "enable",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Enable ML features with GDPR consent\n\nUsage: lonkero ml enable [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "disable",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Disable ML features\n\nUsage: lonkero ml disable [OPTIONS]\n\nOptions:\n      --delete-data                Also delete all collected training data\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "stats",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show ML statistics and status\n\nUsage: lonkero ml stats [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "export",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Export your ML data (GDPR Article 15 - Right to access)\n\nUsage: lonkero ml export [OPTIONS]\n\nOptions:\n  -o, --output <OUTPUT>            Output file path [default: ml_data_export.json]\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "delete-data",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Delete all ML data (GDPR Article 17 - Right to erasure)\n\nUsage: lonkero ml delete-data [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "sync",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Fetch latest detection model from server\n\nUsage: lonkero ml sync [OPTIONS]\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ml",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: lonkero ml [OPTIONS] <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "ai",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "AI-powered interactive security testing (conversational pentesting)\n\nUsage: lonkero ai [OPTIONS] <TARGET>\n\nArguments:\n  <TARGET>  Target URL to test\n\nOptions:\n      --provider <PROVIDER>        LLM provider: claude (default), ollama [default: claude]\n      --model <MODEL>              Model to use (provider-specific, e.g. claude-sonnet-4-5-20250929, llama3.1:70b)\n      --api-key <API_KEY>          API key for Claude (or set ANTHROPIC_API_KEY env var) [env: ANTHROPIC_API_KEY=]\n      --ollama-url <OLLAMA_URL>    Ollama server URL (default: http://localhost:11434)\n      --auto                       Run in auto mode (AI drives the entire pentest autonomously)\n      --max-rounds <MAX_ROUNDS>    Maximum autonomous rounds in auto mode (default: 20) [default: 20]\n      --cookie <COOKIE>            Authentication cookie to pass through to lonkero scans\n      --token <TOKEN>              Authentication bearer token to pass through to lonkero scans\n      --basic-auth <BASIC_AUTH>    HTTP Basic auth to pass through (user:pass)\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n      --proxy <PROXY>              Proxy URL to pass through to lonkero scans\n  -H, --header <HEADER>            Custom headers to pass through (format: \"Header: Value\")\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n      --insecure                   Disable TLS certificate verification\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "lonkero",
+    "help",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unrecognized subcommand '--help'\n\nUsage: lonkero [OPTIONS] <COMMAND>\n\nFor more information, try '--help'.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "lonkero"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for lonkero\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "lonkero"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'lonkero' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 23,
+   "binary": "lonkero",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "lonkero",
+   "source": "Cargo.toml [[bin]]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--verbose": "Enable verbose output",
+   "-v": "Enable verbose output",
+   "--debug": "Enable debug output",
+   "-d": "Enable debug output",
+   "--quiet": "Quiet mode - only show vulnerabilities",
+   "-q": "Quiet mode - only show vulnerabilities",
+   "--config": "Configuration file path",
+   "-c": "Configuration file path",
+   "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+   "-L": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "-c": "<CONFIG>",
+   "--config": "<CONFIG>",
+   "-L": "<LICENSE_KEY>",
+   "--license-key": "<LICENSE_KEY>"
+  },
+  "aliases": {
+   "--verbose": [
+    "-v"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--config": [
+    "-c"
+   ],
+   "--license-key": [
+    "-L"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {
+   "scan": {
+    "--mode": "Scan mode: intelligent (context-aware, default), fast, normal, thorough, insane",
+    "--output": "Output file path",
+    "--format": "Output format: json, html, pdf, sarif, markdown, csv, xlsx",
+    "--subdomains": "Enable subdomain enumeration",
+    "--dorks": "Generate Google dork queries for reconnaissance (not enabled by default)",
+    "--crawl": "Enable web crawler (enabled by default to discover real parameters)",
+    "--max-depth": "Maximum crawl depth",
+    "--concurrency": "Maximum concurrent requests",
+    "--timeout": "Request timeout in seconds",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--user-agent": "Custom User-Agent string",
+    "--cookie": "Authentication cookie",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--token": "Authentication bearer token",
+    "--basic-auth": "HTTP Basic auth (user:pass)",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable)",
+    "--auth-username": "Auto-login username (requires --auth-password)",
+    "--auth-password": "Auto-login password (requires --auth-username)",
+    "--auth-login-url": "Custom login URL (for auto-login)",
+    "--header": "Custom headers (format: \"Header: Value\")",
+    "--skip": "Skip specific scanner modules",
+    "--only": "Only run specific scanner modules",
+    "--proxy": "Proxy URL (http://host:port)",
+    "--insecure": "Disable TLS certificate verification",
+    "--rate-limit": "Rate limit (requests per second)",
+    "--no-rate-limit": "Disable rate limiting entirely (use with caution!)",
+    "--admin-username": "Admin username for multi-role authorization testing",
+    "--admin-password": "Admin password for multi-role authorization testing",
+    "--admin-login-url": "Admin login URL (if different from user login URL)",
+    "--multi-role": "Enable multi-role authorization testing (requires both user and admin credentials)",
+    "--record-session": "Enable session recording during headless crawling",
+    "--session-output": "Session recording output file (default: session_recording.har)",
+    "--session-format": "Session recording format: har, json, html",
+    "--payload-intensity": "Payload intensity override: auto (default), minimal (50), standard (500), extended (5000), maximum (all) In intelligent mode, this overrides per-parameter intensity. In legacy modes, ignored",
+    "--browser-assist": "Enable Browser-Assist mode: route requests through real browser for authentic TLS fingerprints Requires Lonkero Browser-Assist extension installed in Chrome",
+    "--auth-type": "Authorization type for Browser-Assist mode",
+    "--scope": "Scope patterns for Browser-Assist mode (e.g., \"*.example.com\")",
+    "--audit-log": "Audit log output path for Browser-Assist mode",
+    "--no-ml": "Disable ML model scoring (model scoring is one-way, no data leaves your machine)",
+    "--help": "Print help (see a summary with '-h')",
+    "--version": "Print version"
+   },
+   "list": {
+    "--verbose": "Show detailed information",
+    "--category": "Filter by category",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "validate": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "init": {
+    "--output": "Output path for config file [default: lonkero.toml]",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "version": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "license": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "ml": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version",
+    "--delete-data": "Also delete all collected training data",
+    "--output": "Output file path [default: ml_data_export.json]"
+   },
+   "ai": {
+    "--provider": "LLM provider: claude (default), ollama [default: claude]",
+    "--model": "Model to use (provider-specific, e.g. claude-sonnet-4-5-20250929, llama3.1:70b)",
+    "--api-key": "API key for Claude (or set ANTHROPIC_API_KEY env var) [env: ANTHROPIC_API_KEY=]",
+    "--ollama-url": "Ollama server URL (default: http://localhost:11434)",
+    "--auto": "Run in auto mode (AI drives the entire pentest autonomously)",
+    "--max-rounds": "Maximum autonomous rounds in auto mode (default: 20) [default: 20]",
+    "--cookie": "Authentication cookie to pass through to lonkero scans",
+    "--token": "Authentication bearer token to pass through to lonkero scans",
+    "--basic-auth": "HTTP Basic auth to pass through (user:pass)",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--proxy": "Proxy URL to pass through to lonkero scans",
+    "--header": "Custom headers to pass through (format: \"Header: Value\")",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--insecure": "Disable TLS certificate verification",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "help": {}
+  },
+  "subcommands": [
+   "scan",
+   "list",
+   "validate",
+   "init",
+   "version",
+   "license",
+   "ml",
+   "ai",
+   "help"
+  ],
+  "binary": "lonkero",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "af13e934597eacf3db808859185d3121c5a9c01e5ebdf080a63b6bd9273f3672",
+  "text": "Web scanner built for actual pentests. Fast, modular, Rust.\n\nUsage: lonkero [OPTIONS] <COMMAND>\n\nCommands:\n  scan      Scan a target for vulnerabilities\n  list      List available scanner modules\n  validate  Validate target URL(s)\n  init      Generate sample configuration file\n  version   Show scanner version and build info\n  license   Manage license\n  ml        Machine Learning settings and statistics\n  ai        AI-powered interactive security testing (conversational pentesting)\n  help      Print this message or the help of the given subcommand(s)\n\nOptions:\n  -v, --verbose                    Enable verbose output\n  -d, --debug                      Enable debug output\n  -q, --quiet                      Quiet mode - only show vulnerabilities\n  -c, --config <CONFIG>            Configuration file path\n  -L, --license-key <LICENSE_KEY>  License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]\n  -h, --help                       Print help\n  -V, --version                    Print version\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--config",
+   "--debug",
+   "--help",
+   "--license-key",
+   "--quiet",
+   "--verbose",
+   "--version",
+   "-L",
+   "-V",
+   "-c",
+   "-d",
+   "-h",
+   "-q",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Configuration file path",
+    "metavar": "<CONFIG>",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable debug output",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--license-key": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "metavar": "<LICENSE_KEY>",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Quiet mode - only show vulnerabilities",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable verbose output",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": [
+   "ai",
+   "help",
+   "init",
+   "license",
+   "list",
+   "ml",
+   "scan",
+   "validate",
+   "version"
+  ],
+  "subcommand_flags": {
+   "scan": {
+    "--mode": "Scan mode: intelligent (context-aware, default), fast, normal, thorough, insane",
+    "--output": "Output file path",
+    "--format": "Output format: json, html, pdf, sarif, markdown, csv, xlsx",
+    "--subdomains": "Enable subdomain enumeration",
+    "--dorks": "Generate Google dork queries for reconnaissance (not enabled by default)",
+    "--crawl": "Enable web crawler (enabled by default to discover real parameters)",
+    "--max-depth": "Maximum crawl depth",
+    "--concurrency": "Maximum concurrent requests",
+    "--timeout": "Request timeout in seconds",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--user-agent": "Custom User-Agent string",
+    "--cookie": "Authentication cookie",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--token": "Authentication bearer token",
+    "--basic-auth": "HTTP Basic auth (user:pass)",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable)",
+    "--auth-username": "Auto-login username (requires --auth-password)",
+    "--auth-password": "Auto-login password (requires --auth-username)",
+    "--auth-login-url": "Custom login URL (for auto-login)",
+    "--header": "Custom headers (format: \"Header: Value\")",
+    "--skip": "Skip specific scanner modules",
+    "--only": "Only run specific scanner modules",
+    "--proxy": "Proxy URL (http://host:port)",
+    "--insecure": "Disable TLS certificate verification",
+    "--rate-limit": "Rate limit (requests per second)",
+    "--no-rate-limit": "Disable rate limiting entirely (use with caution!)",
+    "--admin-username": "Admin username for multi-role authorization testing",
+    "--admin-password": "Admin password for multi-role authorization testing",
+    "--admin-login-url": "Admin login URL (if different from user login URL)",
+    "--multi-role": "Enable multi-role authorization testing (requires both user and admin credentials)",
+    "--record-session": "Enable session recording during headless crawling",
+    "--session-output": "Session recording output file (default: session_recording.har)",
+    "--session-format": "Session recording format: har, json, html",
+    "--payload-intensity": "Payload intensity override: auto (default), minimal (50), standard (500), extended (5000), maximum (all) In intelligent mode, this overrides per-parameter intensity. In legacy modes, ignored",
+    "--browser-assist": "Enable Browser-Assist mode: route requests through real browser for authentic TLS fingerprints Requires Lonkero Browser-Assist extension installed in Chrome",
+    "--auth-type": "Authorization type for Browser-Assist mode",
+    "--scope": "Scope patterns for Browser-Assist mode (e.g., \"*.example.com\")",
+    "--audit-log": "Audit log output path for Browser-Assist mode",
+    "--no-ml": "Disable ML model scoring (model scoring is one-way, no data leaves your machine)",
+    "--help": "Print help (see a summary with '-h')",
+    "--version": "Print version"
+   },
+   "list": {
+    "--verbose": "Show detailed information",
+    "--category": "Filter by category",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "validate": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "init": {
+    "--output": "Output path for config file [default: lonkero.toml]",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "version": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "license": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "ml": {
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version",
+    "--delete-data": "Also delete all collected training data",
+    "--output": "Output file path [default: ml_data_export.json]"
+   },
+   "ai": {
+    "--provider": "LLM provider: claude (default), ollama [default: claude]",
+    "--model": "Model to use (provider-specific, e.g. claude-sonnet-4-5-20250929, llama3.1:70b)",
+    "--api-key": "API key for Claude (or set ANTHROPIC_API_KEY env var) [env: ANTHROPIC_API_KEY=]",
+    "--ollama-url": "Ollama server URL (default: http://localhost:11434)",
+    "--auto": "Run in auto mode (AI drives the entire pentest autonomously)",
+    "--max-rounds": "Maximum autonomous rounds in auto mode (default: 20) [default: 20]",
+    "--cookie": "Authentication cookie to pass through to lonkero scans",
+    "--token": "Authentication bearer token to pass through to lonkero scans",
+    "--basic-auth": "HTTP Basic auth to pass through (user:pass)",
+    "--verbose": "Enable verbose output",
+    "--debug": "Enable debug output",
+    "--proxy": "Proxy URL to pass through to lonkero scans",
+    "--header": "Custom headers to pass through (format: \"Header: Value\")",
+    "--quiet": "Quiet mode - only show vulnerabilities",
+    "--config": "Configuration file path",
+    "--insecure": "Disable TLS certificate verification",
+    "--license-key": "License key (or set LONKERO_LICENSE_KEY environment variable) [env: LONKERO_LICENSE_KEY=]",
+    "--help": "Print help",
+    "--version": "Print version"
+   },
+   "help": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-1c664bcd",
+    "argv": [
+     "lonkero",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 118
+   },
+   {
+    "id": "t-net-313d71c6",
+    "argv": [
+     "lonkero",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 111
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "lonkero scan --crawl --format json --output lonkero-results.json https://training-data-lonkero.bountyy-fi-clients.workers.dev/",
+    "source": "ci",
+    "path": ".github/workflows/scheduled-scan.yml",
+    "line": 49,
+    "reason": "needs-live-target",
+    "token": "https://training-data-lonkero.bountyy-fi-clients.workers.dev/"
+   },
+   {
+    "raw": "lonkero ai https://example.com",
+    "source": "readme",
+    "path": "README.md",
+    "line": 287,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "lonkero scan --config lonkero.yml",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1100,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "lonkero ml stats",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1359,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "lonkero scan https://example.com -o report.pdf",
+    "source": "readme",
+    "path": "README.md",
+    "line": 1708,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "lonkero",
+ "repo": "bountyyfi/lonkero",
+ "head_sha": "bc1e4859b321e0a6fb125f804b9d7e35975790cc",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T00:09:19.131576+00:00"
+}

@@ -1,0 +1,26 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 1.48,
+  "log_tail": "#6 CACHED\n\n#7 [build 3/6] WORKDIR /src\n#7 CACHED\n\n#8 [internal] load .dockerignore\n#8 transferring context: 2B done\n#8 DONE 0.0s\n\n#9 [internal] load build context\n#9 transferring context: 6.32MB 0.1s done\n#9 DONE 0.2s\n\n#10 [build 4/6] COPY . .\n#10 DONE 0.2s\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2 libsodium23  && rm -rf /var/lib/apt/lists/*\n#11 0.377 Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]\n#11 CANCELED\n\n#12 [build 5/6] RUN cargo build --release\n#12 0.184 error: failed to load manifest for workspace member `/src/libs/libwifi`\n#12 0.184 referenced by workspace at `/src/Cargo.toml`\n#12 0.184 \n#12 0.184 Caused by:\n#12 0.184   failed to read `/src/libs/libwifi/Cargo.toml`\n#12 0.184 \n#12 0.184 Caused by:\n#12 0.184   No such file or directory (os error 2)\n#12 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 5/6] RUN cargo build --release:\n0.184 error: failed to load manifest for workspace member `/src/libs/libwifi`\n0.184 referenced by workspace at `/src/Cargo.toml`\n0.184 \n0.184 Caused by:\n0.184   failed to read `/src/libs/libwifi/Cargo.toml`\n0.184 \n0.184 Caused by:\n0.184   No such file or directory (os error 2)\n------\nDockerfile.ctk:8\n--------------------\n   6 |     WORKDIR /src\n   7 |     COPY . .\n   8 | >>> RUN cargo build --release\n   9 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n  10 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "angryoxide",
+   "source": "Cargo.toml [[bin]]"
+  }
+ ],
+ "skipped_reason": "docker build failed",
+ "tool": "AngryOxide",
+ "repo": "Ragnt/AngryOxide",
+ "head_sha": "5f85d0edfdbd83e1854db4dc8d23a8a487ab15d6",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-13T21:44:16.085779+00:00"
+}

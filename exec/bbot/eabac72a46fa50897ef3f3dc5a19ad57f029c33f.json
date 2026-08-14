@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:8cc1ac79b89c3f16ee0101e344eef69a527f5fa993b86cab6c889f4a4400db5d",
-  "duration_s": 40.86,
-  "log_tail": "#10 23.39   Building wheel for bbot (pyproject.toml): started\n#10 23.52   Building wheel for bbot (pyproject.toml): finished with status 'done'\n#10 23.52   Created wheel for bbot: filename=bbot-3.0.1-py3-none-any.whl size=1838782 sha256=b2484ed7d10ee02acc7e3f6338fd314afc1b50e1c1c6f5f3dfcc9c47057b5323\n#10 23.52   Stored in directory: /tmp/pip-ephem-wheel-cache-xt67_hr1/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 23.52   Building wheel for wordninja (pyproject.toml): started\n#10 23.76   Building wheel for wordninja (pyproject.toml): finished with status 'done'\n#10 23.76   Created wheel for wordninja: filename=wordninja-2.0.0-py3-none-any.whl size=541553 sha256=3ebf6f0768c3a3223a60c1f773b197850343e6c177d1a8e2e0b383952454fe2b\n#10 23.76   Stored in directory: /tmp/pip-ephem-wheel-cache-xt67_hr1/wheels/6e/31/92/f12667e4dd102e546832a02f41feca39ae916889006517e595\n#10 23.76 Successfully built bbot wordninja\n#10 23.86 Installing collected packages: yara-python, wordninja, puremagic, ptyprocess, lockfile, zstandard, xxhash, xmltodict, websockets, urllib3, unidecode, typing-extensions, tabulate, soupsieve, socksio, shellingham, setproctitle, resolvelib, regex, radixtarget, pyzmq, pyyaml, python-daemon, pyjwt, pygments, pycryptodome, pycparser, psutil, pexpect, packaging, orjson, orderly-set, mmh3, mdurl, MarkupSafe, lxml, idna, filelock, dnspython, cloudcheck, charset_normalizer, certifi, cachetools, cachebox, blasthttp, annotated-types, annotated-doc, xmltojson, typing-inspection, requests, pydantic-core, markdown-it-py, jinja2, deepdiff, cffi, beautifulsoup4, ansible-runner, rich, requests-file, pydantic, cryptography, typer, tldextract, blastdns, ansible-core, asndb, bbot\n#10 28.35 \n#10 28.36 Successfully installed MarkupSafe-3.0.3 annotated-doc-0.0.5 annotated-types-0.8.0 ansible-core-2.21.3 ansible-runner-2.4.3 asndb-1.1.0 bbot-3.0.1 beautifulsoup4-4.15.0 blastdns-1.9.1 blasthttp-0.9.0 cachebox-5.2.3 cachetools-7.1.7 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 cloudcheck-11.1.0 cryptography-50.0.0 deepdiff-9.1.0 dnspython-2.8.0 filelock-3.32.3 idna-3.18 jinja2-3.1.6 lockfile-0.12.2 lxml-6.1.1 markdown-it-py-4.2.0 mdurl-0.1.2 mmh3-5.2.1 orderly-set-5.5.0 orjson-3.11.9 packaging-26.3 pexpect-4.9.0 psutil-7.2.2 ptyprocess-0.7.0 puremagic-1.30 pycparser-3.0 pycryptodome-3.23.0 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.20.0 pyjwt-2.13.0 python-daemon-3.1.2 pyyaml-6.0.3 pyzmq-27.1.0 radixtarget-4.2.0 regex-2026.7.19 requests-2.34.2 requests-file-3.0.1 resolvelib-1.2.1 rich-15.0.0 setproctitle-1.3.7 shellingham-1.5.4 socksio-1.0.0 soupsieve-2.9.2 tabulate-0.8.10 tldextract-5.3.2 typer-0.27.1 typing-extensions-4.16.0 typing-inspection-0.4.4 unidecode-1.4.0 urllib3-2.7.0 websockets-16.1.1 wordninja-2.0.0 xmltodict-0.14.2 xmltojson-2.0.3 xxhash-3.8.1 yara-python-4.5.4 zstandard-0.25.0\n#10 DONE 28.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.6s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.1s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.160 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.3s done\n#20 exporting manifest sha256:3b32e49131141bb90c620c3a118da2b3b4982d55e16918d5e48f980a52035344 done\n#20 exporting config sha256:421cd8f6abf268e4a3d8e496b35e7082781fc2338c0dff4a9f4a0521f94093ad 0.0s done\n#20 exporting attestation manifest sha256:14a8b93e2fbc86308898ba879d5e68e3426141eeed8584f169381f69db7220bb 0.0s done\n#20 exporting manifest list sha256:8cc1ac79b89c3f16ee0101e344eef69a527f5fa993b86cab6c889f4a4400db5d done\n#20 naming to docker.io/ctk-exec/bbot:eabac72a46fa done\n#20 unpacking to docker.io/ctk-exec/bbot:eabac72a46fa\n#20 unpacking to docker.io/ctk-exec/bbot:eabac72a46fa 1.2s done\n#20 DONE 5.5s",
+  "image_digest": "sha256:dacabc105a33e57c1e3db731194a241a76781102809600620fbe308e5ae23897",
+  "duration_s": 59.05,
+  "log_tail": "#11 8.197 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 8.226 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 8.269 debconf: unable to initialize frontend: Dialog\n#11 8.269 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 8.269 debconf: falling back to frontend: Readline\n#11 8.273 debconf: unable to initialize frontend: Readline\n#11 8.273 debconf: (This frontend requires a controlling tty.)\n#11 8.273 debconf: falling back to frontend: Teletype\n#11 8.297 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 8.310 Setting up texinfo (6.8-6+b1) ...\n#11 8.326 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 8.357 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 8.4s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.6s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.200 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.1s done\n#20 exporting manifest sha256:404eb5761ca3d67598b9b9a6c906123d61d47fad72e3b590162c7ccd9683017e done\n#20 exporting config sha256:ca338261427a71b961803ba49dd7a3b74662c31b9c92806a841f27766b1750ef done\n#20 exporting attestation manifest sha256:7c415266733810ef1b5b5a059a815f262775596a4bdcf36c068a086f79edb58d 0.0s done\n#20 exporting manifest list sha256:dacabc105a33e57c1e3db731194a241a76781102809600620fbe308e5ae23897 done\n#20 naming to docker.io/ctk-exec/bbot:eabac72a46fa done\n#20 unpacking to docker.io/ctk-exec/bbot:eabac72a46fa\n#20 unpacking to docker.io/ctk-exec/bbot:eabac72a46fa 1.4s done\n#20 DONE 5.6s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "usage: bbot [-h] [-t TARGET [TARGET ...]] [-s SEEDS [SEEDS ...]]\n            [-b BLACKLIST [BLACKLIST ...]] [--strict-scope] [-p [PRESET ...]]\n            [-c [CONFIG ...]] [-lp] [-m MODULE [MODULE ...]] [-l] [-lmo]\n            [-em MODULE [MODULE ...]] [-f FLAG [FLAG ...]] [-lf]\n            [-rf FLAG [FLAG ...]] [-ef FLAG [FLAG ...]] [-n SCAN_NAME] [-v]\n            [-d] [-S] [--force] [-y] [--fast-mode] [--dry-run]\n            [--current-preset] [--current-preset-full] [-mh MODULE] [-o DIR]\n            [-om MODULE [MODULE ...]] [-eom MODULE [MODULE ...]] [-lo]\n            [--json] [--brief] [--no-color]\n            [--event-types EVENT_TYPES [EVENT_TYPES ...]] [--exclude-cdn]\n            [--no-deps | --force-deps | --retry-deps | --ignore-failed-deps]\n            [--install-all-deps] [--version] [--reset-config]\n            [--reset-secrets] [--proxy HTTP_PROXY]\n            [--no-proxy HOST [HOST ...]]\n            [-H CUSTOM_HEADERS [CUSTOM_HEADERS ...]]\n            [-C CUSTOM_COOKIES [CUSTOM_COOKIES ...]]\n            [--custom-yara-rules CUSTOM_YARA_RULES] [--user-agent USER_AGENT]\n            [--user-agent-suffix SUFFIX]\n\nBighuge BLS OSINT Tool\n\noptions:\n  -h, --help            show this help message and exit\n\nTarget:\n  -t TARGET [TARGET ...], --targets TARGET [TARGET ...]\n                        Target scope\n  -s SEEDS [SEEDS ...], --seeds SEEDS [SEEDS ...]\n                        Define seeds to drive passive modules without being in scope (if not specified, defaults to same as targets)\n  -b BLACKLIST [BLACKLIST ...], --blacklist BLACKLIST [BLACKLIST ...]\n                        Don't touch these things\n  --strict-scope        Don't consider subdomains of target to be in-scope - exact matches only\n\nPresets:\n  -p [PRESET ...], --preset [PRESET ...]\n                        Enable BBOT preset(s)\n  -c [CONFIG ...], --config [CONFIG ...]\n                        Custom config options in key=value format: e.g. 'modules.shodan.api_key=1234'\n  -lp, --list-presets   List available presets.\n\nModules:\n  -m MODULE [MODULE ...], --modules MODULE [MODULE ...]\n                        Modules to enable. Choices: affiliates,ajaxpro,anubisdb,apkpure,asn,aspnet_bin_exposure,azure_tenant,baddns,baddns_direct,baddns_zone,badsecrets,bevigil,bucket_amazon,bucket_digitalocean,bucket_file_enum,bucket_firebase,bucket_google,bucket_hetzner,bucket_microsoft,bufferoverrun,builtwith,bypass403,c99,censys_dns,censys_ip,certspotter,chaos,code_repository,credshed,crt,crt_db,dehashed,dnsbimi,dnsbrute,dnsbrute_mutations,dnscaa,dnscommonsrv,dnsdumpster,dnstlsrpt,docker_pull,dockerhub,dotnetnuke,emailformat,filedownload,fingerprintx,fullhunt,generic_ssrf,git,git_clone,gitdumper,github_codesearch,github_org,github_usersearch,github_workflows,gitlab_com,gitlab_onprem,google_playstore,gowitness,graphql_introspection,hackertarget,host_header,http,hunt,hunterio,iis_shortnames,ip2location,ipneighbor,ipstack,jadx,kreuzberg,leakix,legba,lightfuzz,medusa,myssl,newsletters,ntlm,nuclei,oauth,otx,paramminer_cookies,paramminer_getparams,paramminer_headers,pgp,portfilter,portscan,postman,postman_download,rapiddns,reflected_parameters,retirejs,robots,securitytrails,securitytxt,shodan_dns,shodan_enterprise,shodan_idb,skymem,social,sslcert,subdomaincenter,subdomainradar,telerik,trajan,trickest,trufflehog,url_manipulation,urlscan,viewdns,virtualhost,virustotal,waf_bypass,wafw00f,wayback,webbrute,webbrute_shortnames\n  -l, --list-modules    List available modules.\n  -lmo, --list-module-options\n                        Show all module config options\n  -em MODULE [MODULE ...], --exclude-modules MODULE [MODULE ...]\n                        Exclude these modules.\n  -f FLAG [FLAG ...], --flags FLAG [FLAG ...]\n                        Enable modules by flag. Choices: active,affiliates,baddns,cloud-enum,code-enum,download,email-enum,iis-shortnames,invasive,loud,passive,portscan,safe,service-enum,slow,social-enum,subdomain-enum,subdomain-hijack,web,web-heavy,web-paramminer,web-screenshots\n  -lf, --list-flags     List available flags.\n  -rf FLAG [FLAG ...], --require-flags FLAG [FLAG ...]\n                        Only enable modules with these flags (e.g. -rf passive)\n  -ef FLAG [FLAG ...], --exclude-flags FLAG [FLAG ...]\n                        Disable modules with these flags. (e.g. -ef loud)\n\nScan:\n  -n SCAN_NAME, --name SCAN_NAME\n                        Name of scan (default: random)\n  -v, --verbose         Be more verbose\n  -d, --debug           Enable debugging\n  -S, --silent          Be quiet\n  --force               Run scan even in the case of condition violations or failed module setups\n  -y, --yes             Skip scan confirmation prompt\n  --fast-mode           Scan only the provided targets as fast as possible, with no extra discovery\n  --dry-run             Abort before executing scan\n  --current-preset      Show the current preset in YAML format\n  --current-preset-full\n                        Show the current preset in its full form, including defaults\n  -mh MODULE, --module-help MODULE\n                        Show help for a specific module\n\nOutput:\n  -o DIR, --output-dir DIR\n                        Directory to output scan results\n  -om MODULE [MODULE ...], --output-modules MODULE [MODULE ...]\n                        Add output module(s). Choices: asset_inventory,csv,discord,elastic,emails,json,kafka,mongo,mysql,nats,neo4j,nmap_xml,postgres,rabbitmq,slack,splunk,sqlite,stdout,subdomains,teams,txt,web_parameters,web_report,webhook,websocket,zeromq\n  -eom MODULE [MODULE ...], --exclude-output-modules MODULE [MODULE ...]\n                        Exclude output module(s)\n  -lo, --list-output-modules\n                        List available output modules\n  --json, -j            Output scan data in JSON format\n  --brief, -br          Output only the data itself\n  --no-color            Disable colored terminal output\n  --event-types EVENT_TYPES [EVENT_TYPES ...]\n                        Choose which event types to display\n  --exclude-cdn, -ec    Filter out unwanted open ports on CDNs/WAFs (80,443 only)\n\nModule dependencies:\n  Control how modules install their dependencies\n\n  --no-deps             Don't install module dependencies\n  --force-deps          Force install all module dependencies\n  --retry-deps          Try again to install failed module dependencies\n  --ignore-failed-deps  Run modules even if they have failed dependencies\n  --install-all-deps    Install dependencies for all modules\n\nMisc:\n  --version             show BBOT version and exit\n  --reset-config        Regenerate bbot.yml from current defaults (overwrites; backs up to .bak)\n  --reset-secrets       Regenerate secrets.yml from current defaults (overwrites; backs up to .bak)\n  --proxy HTTP_PROXY    Use this proxy for all HTTP requests\n  --no-proxy HOST [HOST ...]\n                        Exclude these hosts from proxy (e.g. localhost *.internal.corp 10.0.0.0/8)\n  -H CUSTOM_HEADERS [CUSTOM_HEADERS ...], --custom-headers CUSTOM_HEADERS [CUSTOM_HEADERS ...]\n                        List of custom headers as key value pairs (header=value).\n  -C CUSTOM_COOKIES [CUSTOM_COOKIES ...], --custom-cookies CUSTOM_COOKIES [CUSTOM_COOKIES ...]\n                        List of custom cookies as key value pairs (cookie=value).\n  --custom-yara-rules CUSTOM_YARA_RULES, -cy CUSTOM_YARA_RULES\n                        Add custom yara rules to excavate\n  --user-agent USER_AGENT, -ua USER_AGENT\n                        Set the user-agent for all HTTP requests\n  --user-agent-suffix SUFFIX, -uas SUFFIX\n                        Suffix to append to the user-agent\n\nEXAMPLES\n\n    Subdomains:\n        bbot -t evilcorp.com -p subdomain-enum\n\n    Subdomains (passive only):\n        bbot -t evilcorp.com -p subdomain-enum -rf passive\n\n    Subdomains + port scan + web screenshots:\n        bbot -t evilcorp.com -p subdomain-enum -m portscan gowitness -n my_scan -o .\n\n    Subdomains + basic web scan:\n        bbot -t evilcorp.com -p subdomain-enum web\n\n    Web spider:\n        bbot -t www.evilcorp.com -p spider -c web.spider_distance=2 web.spider_depth=2\n\n    Everything everywhere all at once:\n        bbot -t evilcorp.com -p kitchen-sink\n\n    List modules:\n        bbot -l\n\n    List output modules:\n        bbot -lo\n\n    List presets:\n        bbot -lp\n\n    List flags:\n        bbot -lf\n\n    Show help for a specific module:\n        bbot -mh <module_name>\n",
    "stderr": " \u001b[1;38;5;208m ______ \u001b[0m _____   ____ _______\n \u001b[1;38;5;208m|  ___ \\\u001b[0m|  __ \\ / __ \\__   __|\n \u001b[1;38;5;208m| |___) \u001b[0m| |__) | |  | | | |\n \u001b[1;38;5;208m|  ___ <\u001b[0m|  __ <| |  | | | |\n \u001b[1;38;5;208m| |___) \u001b[0m| |__) | |__| | | |\n \u001b[1;38;5;208m|______/\u001b[0m|_____/ \\____/  |_|\n \u001b[1;38;5;208mBIGHUGE\u001b[0m BLS OSINT TOOL 3.0.1\n\nwww.blacklanternsecurity.com/bbot\n\n\u001b[1;38;5;69m[INFO]\u001b[0m Creating BBOT config at /home/ctk/.config/bbot/bbot.yml\n\u001b[1;38;5;69m[INFO]\u001b[0m Creating BBOT secrets at /home/ctk/.config/bbot/secrets.yml\n",
-   "duration_ms": 873,
+   "duration_ms": 738,
    "truncated": false,
    "error": null
   },
@@ -1306,97 +1306,10 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 6,
-  "tried_this_wave": 1,
+  "tried": 3,
+  "tried_this_wave": 3,
   "promoted": 0,
   "results": [
-   {
-    "id": "t-net-b58edf7a",
-    "argv": [
-     "bbot",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "nonzero-exit-against-live-target",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 2,
-    "output_bytes": 88
-   },
-   {
-    "id": "t-net-774cf877",
-    "argv": [
-     "bbot",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "nonzero-exit-against-live-target",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 2,
-    "output_bytes": 88
-   },
-   {
-    "id": "t-model-2d617807",
-    "argv": [
-     "bbot",
-     "scan",
-     "/opt/ctk/fixtures/source-corpus/Dockerfile"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "output-does-not-reference-its-input",
-    "grader": 2,
-    "exit_code": 2,
-    "output_bytes": 88
-   },
-   {
-    "id": "t-model-43824d63",
-    "argv": [
-     "bbot",
-     "scan",
-     "/opt/ctk/fixtures/source-corpus/app/settings.py"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "output-does-not-reference-its-input",
-    "grader": 2,
-    "exit_code": 2,
-    "output_bytes": 88
-   },
-   {
-    "id": "t-model-b85a8bb7",
-    "argv": [
-     "ansible",
-     "all",
-     "-m",
-     "ping",
-     "-i",
-     "/opt/ctk/fixtures/container-image/image.tar"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "printed-usage",
-    "grader": 2,
-    "exit_code": 5,
-    "output_bytes": 2269
-   },
    {
     "id": "t-net-289141e3",
     "argv": [
@@ -1414,6 +1327,42 @@
     "skipped_reason": "target_unavailable",
     "exit_code": null,
     "output_bytes": 0
+   },
+   {
+    "id": "t-net-b58edf7a",
+    "argv": [
+     "bbot",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1717
+   },
+   {
+    "id": "t-net-774cf877",
+    "argv": [
+     "bbot",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1710
    }
   ],
   "not_attempted": [
@@ -1727,6 +1676,6 @@
  "repo": "blacklanternsecurity/bbot",
  "head_sha": "eabac72a46fa50897ef3f3dc5a19ad57f029c33f",
  "analyzer": "exec",
- "analyzer_version": "12",
- "generated_at": "2026-08-13T19:04:49.489847+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T02:54:54.437599+00:00"
 }

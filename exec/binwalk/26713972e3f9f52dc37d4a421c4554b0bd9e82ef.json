@@ -1,0 +1,951 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "rust",
+  "image_digest": "sha256:15bc0dfaa42b71bc839fb0917fd04f48e5a5b78b14814ac0b0d8db7ce723b805",
+  "duration_s": 80.32,
+  "log_tail": "#12 24.40    Compiling zeroize v1.9.0\n#12 24.48    Compiling darling_macro v0.23.0\n#12 24.51    Compiling darling_macro v0.21.3\n#12 24.70    Compiling askama_parser v0.14.0\n#12 24.84    Compiling darling v0.23.0\n#12 24.84    Compiling darling v0.21.3\n#12 24.86    Compiling serde_with_macros v3.22.0\n#12 24.86    Compiling plotly_derive v0.13.5\n#12 25.29    Compiling liblzma v0.4.8\n#12 25.34    Compiling serde_with v3.22.0\n#12 25.78    Compiling askama_derive v0.14.0\n#12 26.21    Compiling zstd v0.13.3\n#12 26.29    Compiling zip v7.2.0\n#12 26.79    Compiling plotly_kaleido v0.13.6\n#12 26.87    Compiling askama v0.14.0\n#12 43.04    Compiling plotly v0.13.5\n#12 46.29    Compiling binwalk v3.1.1 (/src)\n#12 72.59     Finished `release` profile [optimized] target(s) in 1m 12s\n#12 DONE 72.7s\n\n#13 [build 6/6] RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ ;\n#13 DONE 0.3s\n\n#14 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#14 DONE 0.1s\n\n#15 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.1s\n\n#17 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.140 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.2s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.8s done\n#19 exporting manifest sha256:8236e5abc2d28bac5f2e0bb1bce5f1358b2cf7896f98f9556e330818ca9e3cd9 done\n#19 exporting config sha256:3ebe60c866c46038b7c02e34050948b02389eb6946783b51e13eb12e17a9bdc9 done\n#19 exporting attestation manifest sha256:c80fd6f8c5131700558fdb3535d28cf205521ccdc24ac9f6c2107309a5acb214 0.0s done\n#19 exporting manifest list sha256:15bc0dfaa42b71bc839fb0917fd04f48e5a5b78b14814ac0b0d8db7ce723b805 done\n#19 naming to docker.io/ctk-exec/binwalk:26713972e3f9 done\n#19 unpacking to docker.io/ctk-exec/binwalk:26713972e3f9\n#19 unpacking to docker.io/ctk-exec/binwalk:26713972e3f9 0.7s done\n#19 DONE 4.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "binwalk",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyzes data for embedded file types\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nArguments:\n  [FILE_NAME]  Path to the file to analyze\n\nOptions:\n  -L, --list                   List supported signatures and extractors\n  -s, --stdin                  Read data from standard input\n  -q, --quiet                  Supress normal stdout output\n  -v, --verbose                During recursive extraction display *all* results\n  -e, --extract                Automatically extract known file types\n  -c, --carve                  Carve both known and unknown file contents to disk\n  -M, --matryoshka             Recursively scan extracted files\n  -a, --search-all             Search for all signatures at all offsets\n  -E, --entropy                Generate an entropy graph with Plotly\n  -p, --png <PNG>              Save entropy graph as a PNG file\n  -l, --log <LOG>              Log JSON results to a file ('-' for stdout)\n  -t, --threads <THREADS>      Manually specify the number of threads to use\n  -x, --exclude <EXCLUDE>...   Do no scan for these signatures\n  -y, --include <INCLUDE>...   Only scan for these signatures\n  -d, --directory <DIRECTORY>  Extract files/folders to a custom directory [default: extractions]\n  -h, --help                   Print help\n  -V, --version                Print version\n",
+   "stderr": "",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "binwalk"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for binwalk\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "binwalk"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'binwalk' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-1d959088",
+   "title": "From the project's documentation \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--carve",
+    "/opt/ctk/fixtures/binaries/marked-unstripped",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unexpected argument '/opt/ctk/fixtures/binaries/marked-unstripped' found\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nFor more information, try '--help'.\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-8192cde7",
+   "title": "Carve both known and unknown file contents to disk (--carve)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--directory",
+    "/opt/ctk/fixtures/binaries/marked-unstripped",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-6c1fc65b",
+   "title": "Extract files/folders to a custom directory [default: extractions] (--directory)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--entropy",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 101,
+   "stdout": "Calculating file entropy...",
+   "stderr": "\nthread 'main' (18) panicked at /usr/local/cargo/registry/src/index.crates.io-1949cf8c6b5b557f/plotly-0.13.5/src/plot.rs:861:14:\nCould not find default application for HTML files.\nConsider using the `to_html` method obtain a string representation instead. If using the `kaleido` or `plotly_static` feature the\n`write_image` method can be used to produce a static image in one of the following formats:\n- ImageFormat::PNG\n- ImageFormat::JPEG\n- ImageFormat::WEBP\n- ImageFormat::SVG\n- ImageFormat::PDF\n- ImageFormat::EPS // will be removed in version 0.14.0\n\nUsed as follows:\nlet plot = Plot::new();\n...\nlet width = 1024;\nlet height = 680;\nlet scale = 1.0;\nplot.write_image(\"filename\", ImageFormat::PNG, width, height, scale);\n\nSee https://plotly.github.io/plotly.rs/content/getting_started.html for further details.\n: Os { code: 2, kind: NotFound, message: \"No such file or directory\" }\nnote: run with `RUST_BACKTRACE=1` environment variable to display a backtrace\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-c6374da4",
+   "title": "Generate an entropy graph with Plotly (--entropy)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--exclude",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyzed 1 file for 111 file signatures (251 magic patterns) in 1.0 milliseconds\n",
+   "stderr": "[2026-08-14T02:56:32Z ERROR binwalk::common] Failed to open file : No such file or directory (os error 2)\n[2026-08-14T02:56:32Z ERROR binwalk] Failed to read  data\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-334c4ce0",
+   "title": "Do no scan for these signatures (--exclude)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--extract",
+    "/opt/ctk/fixtures/binaries/marked-unstripped",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "error: unexpected argument '/opt/ctk/fixtures/binaries/marked-unstripped' found\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nFor more information, try '--help'.\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-724037ed",
+   "title": "Automatically extract known file types (--extract)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--include",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyzed 1 file for 0 file signatures (0 magic patterns) in 1.0 milliseconds\n",
+   "stderr": "[2026-08-14T02:56:32Z ERROR binwalk::common] Failed to open file : No such file or directory (os error 2)\n[2026-08-14T02:56:32Z ERROR binwalk] Failed to read  data\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d32dff5b",
+   "title": "Only scan for these signatures (--include)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--list",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nSignature Description              Signature Name                     Extraction Utility\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n7-zip archive data                 7zip                               7zz\nAES Acceleration Table             aes_acceleration_table             None\nAES Forward Table                  aes_forward_table                  None\nAES RCON                           aes_rcon                           None\nAES Reverse Table                  aes_reverse_table                  None\nAES S-Box                          aes_sbox                           None\nAndroid boot image                 android_bootimg                    None\nAndroid sparse image               android_sparse                     Built-in\nApple Disk iMaGe                   dmg                                dmg2img\nAPple File System                  apfs                               7zz\nArcadyan obfuscated LZMA           arcadyan                           Built-in\nARJ archive data                   arj                                7zz\nAutel obfuscated firmware          autel                              Built-in\nBIN firmware header                binhdr                             None\nBMP image (Bitmap)                 bmp                                Built-in\nBTRFS file system                  btrfs                              None\nbzip2 compressed data              bzip2                              Built-in\nCFE bootloader                     cfe                                None\nCHK firmware header                chk                                None\ncompress'd data                    compressd                          7zz\nCopyright text                     copyright                          None\nCPIO ASCII archive                 cpio                               7zz\nCramFS filesystem                  cramfs                             7zz\nCRC32 polynomial table             crc32                              None\nCSman DAT file                     csman                              Built-in\nD-Link Encrpted Image              encrpted_img                       Built-in\nD-Link MH01 firmware image         mh01                               Built-in\nD-Link TLV firmware                dlink_tlv                          Built-in\nDahua ZIP archive                  dahua_zip                          Built-in\nDebian package file                deb                                None\nDevice tree blob (DTB)             dtb                                Built-in\nDirectX shader bytecode            dxbc                               Built-in\nDKBS firmware header               dkbs                               Built-in\nDLK encrypted firmware             dlke                               Built-in\nDLOB firmware header               dlob                               None\nDMS firmware image                 dms                                Built-in\nDOS Master Boot Record             mbr                                Built-in\nDPAPI blob data                    dpapi                              None\neCos kernel exception handler      ecos                               None\nEFI Global Partition Table         efigpt                             7zz\nELF binary                         elf                                None\nEXT filesystem                     ext                                tsk_recover\nFAT file system                    fat                                tsk_recover\nGIF image                          gif                                Built-in\nGPG signed file                    gpg_signed                         Built-in\ngzip compressed data               gzip                               Built-in\nHP Printer Job Language data       pjl                                None\nIntel serial flash for PCH ROM     pchrom                             uefi-firmware-parser\nISO9660 primary volume             iso9660                            7zz\nJBOOT firmware header              jboot_arm                          None\nJBOOT SCH2 header                  jboot_sch2                         Built-in\nJBOOT STAG header                  jboot_stag                         None\nJFFS2 filesystem                   jffs2                              jefferson\nJPEG image                         jpeg                               Built-in\nKnown encrypted firmware           encfw                              Built-in\nLinux ARM boot executable zImage   linux_arm_zimage                   None\nLinux kernel ARM64 boot image      linux_arm64_boot_image             None\nLinux kernel boot image            linux_boot_image                   None\nLinux kernel version               linux_kernel                       vmlinux-to-elf\nLogFS file system                  logfs                              None\nLUKS header                        luks                               None\nLZ4 compressed data                lz4                                lz4\nLZFSE compressed data              lzfse                              lzfse\nLZMA compressed data               lzma                               Built-in\nLZO compressed data                lzop                               lzop\nMatter OTA firmware                matter_ota                         Built-in\nMD5 hash constants                 md5                                None\nMicrosoft Cabinet archive          cab                                cabextract\nMotorola S-record                  srecord                            srec_cat\nMotorola S-record (generic)        srecord_generic                    srec_cat\nNTFS partition                     ntfs                               tsk_recover\nOpenSSL encryption                 openssl                            Built-in\nPackImg firmware header            packimg                            None\nPcap-NG capture file               pcapng                             Built-in\nPDF document                       pdf                                None\nPEM certificate                    pem_certificate                    Built-in\nPEM private key                    pem_private_key                    Built-in\nPEM public key                     pem_public_key                     Built-in\nPKCS DER hash                      pkcs_der_hash                      None\nPNG image                          png                                Built-in\nPOSIX tar archive                  tarball                            tar\nQEMU QCOW Image                    qcow                               None\nQNX IFS image                      qnx_ifs                            dumpifs\nRAR archive                        rar                                unrar\nRIFF image                         riff                               Built-in\nRomFS filesystem                   romfs                              Built-in\nRSA encrypted session key          rsa                                None\nRTK firmware header                rtk                                None\nSEAMA firmware header              seama                              None\nSHA256 hash constants              sha256                             None\nSHRS encrypted firmware            shrs                               Built-in\nSquashFS file system               squashfs                           sasquatch\nSVG image                          svg                                Built-in\nTP-Link firmware header            tplink                             None\nTP-Link RTOS firmware              tplink_rtos                        None\nTRX firmware image                 trx                                Built-in\nU-Boot version string              uboot                              None\nUBI image                          ubi                                ubireader_extract_images\nUBIFS image                        ubifs                              ubireader_extract_files\nUEFI capsule image                 uefi_capsule                       uefi-firmware-parser\nUEFI PI firmware volume            uefi_pi_volume                     uefi-firmware-parser\nuImage firmware image              uimage                             Built-in\nVxWorks symbol table               vxworks_symtab                     Built-in\nVxWorks WIND kernel version        wind_kernel                        None\nWindows CE binary image            wince                              Built-in\nWindows PE binary                  pe                                 None\nXZ compressed data                 xz                                 Built-in\nYAFFSv2 filesystem                 yaffs                              unyaffs\nZIP archive                        zip                                7zz\nZlib compressed file               zlib                               Built-in\nZSTD compressed data               zstd                               zstd\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nTotal signatures: 111\nExtractable signatures: 72\n",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-6a5df80d",
+   "title": "List supported signatures and extractors (--list)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--log",
+    "/tmp/ctk-capture/log.out",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-78b719ea",
+   "title": "Log JSON results to a file ('-' for stdout) (--log)",
+   "followup": {
+    "argv": [
+     "jq",
+     ".",
+     "/tmp/ctk-capture/log.out"
+    ],
+    "stdout": "[\n  {\n    \"Analysis\": {\n      \"file_path\": \"/opt/ctk/fixtures/binaries/marked-unstripped\",\n      \"file_map\": [\n        {\n          \"offset\": 0,\n          \"id\": \"abfcf6ff-2689-4fee-b17f-f067110e7fef\",\n          \"size\": 72608,\n          \"name\": \"elf\",\n          \"confidence\": 128,\n          \"description\": \"ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\",\n          \"always_display\": false,\n          \"extraction_declined\": false\n        }\n      ],\n      \"extractions\": {}\n    }\n  }\n]\n",
+    "exit_code": 0,
+    "truncated": false
+   }
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--matryoshka",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d3e97648",
+   "title": "Recursively scan extracted files (--matryoshka)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--quiet",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-76b86323",
+   "title": "Supress normal stdout output (--quiet)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--search-all",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 1.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-09949836",
+   "title": "Search for all signatures at all offsets (--search-all)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--stdin",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "Analyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-ad0ad7b3",
+   "title": "Read data from standard input (--stdin)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--threads",
+    "1",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-4a303038",
+   "title": "Manually specify the number of threads to use (--threads)"
+  },
+  {
+   "argv": [
+    "binwalk",
+    "--verbose",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "exit_code": 0,
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 1.0 milliseconds\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d5baf01d",
+   "title": "During recursive extraction display *all* results (--verbose)"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 18,
+   "binary": "binwalk",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "615a4bb5f6622791",
+ "examples": [
+  {
+   "id": "t-readme-1d959088",
+   "title": "From the project's documentation \u2014 run against binaries",
+   "argv": [
+    "binwalk",
+    "/opt/ctk/fixtures/binaries/marked-unstripped"
+   ],
+   "stdout": "\n                                                                              /opt/ctk/fixtures/binaries/marked-unstripped\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\nDECIMAL                            HEXADECIMAL                        DESCRIPTION\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n0                                  0x0                                ELF binary, 64-bit shared object, ARM 64-bit for System-V (Unix), little endian\n--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------\n\nAnalyzed 1 file for 111 file signatures (251 magic patterns) in 2.0 milliseconds\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--list": "List supported signatures and extractors",
+   "-L": "List supported signatures and extractors",
+   "--stdin": "Read data from standard input",
+   "-s": "Read data from standard input",
+   "--quiet": "Supress normal stdout output",
+   "-q": "Supress normal stdout output",
+   "--verbose": "During recursive extraction display *all* results",
+   "-v": "During recursive extraction display *all* results",
+   "--extract": "Automatically extract known file types",
+   "-e": "Automatically extract known file types",
+   "--carve": "Carve both known and unknown file contents to disk",
+   "-c": "Carve both known and unknown file contents to disk",
+   "--matryoshka": "Recursively scan extracted files",
+   "-M": "Recursively scan extracted files",
+   "--search-all": "Search for all signatures at all offsets",
+   "-a": "Search for all signatures at all offsets",
+   "--entropy": "Generate an entropy graph with Plotly",
+   "-E": "Generate an entropy graph with Plotly",
+   "--png": "Save entropy graph as a PNG file",
+   "-p": "Save entropy graph as a PNG file",
+   "--log": "Log JSON results to a file ('-' for stdout)",
+   "-l": "Log JSON results to a file ('-' for stdout)",
+   "--threads": "Manually specify the number of threads to use",
+   "-t": "Manually specify the number of threads to use",
+   "--exclude": "Do no scan for these signatures",
+   "-x": "Do no scan for these signatures",
+   "--include": "Only scan for these signatures",
+   "-y": "Only scan for these signatures",
+   "--directory": "Extract files/folders to a custom directory [default: extractions]",
+   "-d": "Extract files/folders to a custom directory [default: extractions]",
+   "--help": "Print help",
+   "-h": "Print help",
+   "--version": "Print version",
+   "-V": "Print version"
+  },
+  "values_seen": {
+   "-p": "<PNG>",
+   "--png": "<PNG>",
+   "-l": "<LOG>",
+   "--log": "<LOG>",
+   "-t": "<THREADS>",
+   "--threads": "<THREADS>",
+   "-d": "<DIRECTORY>",
+   "--directory": "<DIRECTORY>"
+  },
+  "aliases": {
+   "--list": [
+    "-L"
+   ],
+   "--stdin": [
+    "-s"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--extract": [
+    "-e"
+   ],
+   "--carve": [
+    "-c"
+   ],
+   "--matryoshka": [
+    "-M"
+   ],
+   "--search-all": [
+    "-a"
+   ],
+   "--entropy": [
+    "-E"
+   ],
+   "--png": [
+    "-p"
+   ],
+   "--log": [
+    "-l"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--exclude": [
+    "-x"
+   ],
+   "--include": [
+    "-y"
+   ],
+   "--directory": [
+    "-d"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-V"
+   ]
+  },
+  "subcommand_flags": {
+   "--carve": {},
+   "--extract": {}
+  },
+  "subcommands": [],
+  "binary": "binwalk",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "95bf6cd059ccf0ec5a05ffd3ec05e20e137ef885fef53017dd6c79d5c6aa657e",
+  "text": "Analyzes data for embedded file types\n\nUsage: binwalk [OPTIONS] [FILE_NAME]\n\nArguments:\n  [FILE_NAME]  Path to the file to analyze\n\nOptions:\n  -L, --list                   List supported signatures and extractors\n  -s, --stdin                  Read data from standard input\n  -q, --quiet                  Supress normal stdout output\n  -v, --verbose                During recursive extraction display *all* results\n  -e, --extract                Automatically extract known file types\n  -c, --carve                  Carve both known and unknown file contents to disk\n  -M, --matryoshka             Recursively scan extracted files\n  -a, --search-all             Search for all signatures at all offsets\n  -E, --entropy                Generate an entropy graph with Plotly\n  -p, --png <PNG>              Save entropy graph as a PNG file\n  -l, --log <LOG>              Log JSON results to a file ('-' for stdout)\n  -t, --threads <THREADS>      Manually specify the number of threads to use\n  -x, --exclude <EXCLUDE>...   Do no scan for these signatures\n  -y, --include <INCLUDE>...   Only scan for these signatures\n  -d, --directory <DIRECTORY>  Extract files/folders to a custom directory [default: extractions]\n  -h, --help                   Print help\n  -V, --version                Print version\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [],
+  "help_only": [
+   "--carve",
+   "--directory",
+   "--entropy",
+   "--exclude",
+   "--extract",
+   "--help",
+   "--include",
+   "--list",
+   "--log",
+   "--matryoshka",
+   "--png",
+   "--quiet",
+   "--search-all",
+   "--stdin",
+   "--threads",
+   "--verbose",
+   "--version",
+   "-E",
+   "-L",
+   "-M",
+   "-V",
+   "-a",
+   "-c",
+   "-d",
+   "-e",
+   "-h",
+   "-l",
+   "-p",
+   "-q",
+   "-s",
+   "-t",
+   "-v",
+   "-x",
+   "-y"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--carve": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Carve both known and unknown file contents to disk",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--directory": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extract files/folders to a custom directory [default: extractions]",
+    "metavar": "<DIRECTORY>",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--entropy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate an entropy graph with Plotly",
+    "aliases": [
+     "-E"
+    ]
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do no scan for these signatures",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--extract": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Automatically extract known file types",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print help",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--include": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only scan for these signatures",
+    "aliases": [
+     "-y"
+    ]
+   },
+   "--list": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List supported signatures and extractors",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--log": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Log JSON results to a file ('-' for stdout)",
+    "metavar": "<LOG>",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--matryoshka": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Recursively scan extracted files",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--png": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save entropy graph as a PNG file",
+    "metavar": "<PNG>",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Supress normal stdout output",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--search-all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Search for all signatures at all offsets",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--stdin": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Read data from standard input",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Manually specify the number of threads to use",
+    "metavar": "<THREADS>",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "During recursive extraction display *all* results",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print version",
+    "aliases": [
+     "-V"
+    ]
+   }
+  },
+  "subcommands": [],
+  "subcommand_flags": {
+   "--carve": {},
+   "--extract": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 17,
+  "tried_this_wave": 14,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-1d959088",
+    "argv": [
+     "binwalk",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 30,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "stability": 1.0
+   },
+   {
+    "id": "t-surface-826a89ef",
+    "argv": [
+     "binwalk",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/3-lines",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 309
+   },
+   {
+    "id": "t-surface-aea3d593",
+    "argv": [
+     "binwalk",
+     "--stdin",
+     "/opt/ctk/fixtures/source-corpus",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-opt-8192cde7",
+    "argv": [
+     "binwalk",
+     "--carve",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 155,
+    "flag": "--carve"
+   },
+   {
+    "id": "t-opt-6c1fc65b",
+    "argv": [
+     "binwalk",
+     "--directory",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.714",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "flag": "--directory",
+    "stability": 0.714
+   },
+   {
+    "id": "t-opt-c6374da4",
+    "argv": [
+     "binwalk",
+     "--entropy",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 101,
+    "output_bytes": 990,
+    "flag": "--entropy"
+   },
+   {
+    "id": "t-opt-334c4ce0",
+    "argv": [
+     "binwalk",
+     "--exclude",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/3-lines",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 245,
+    "flag": "--exclude"
+   },
+   {
+    "id": "t-opt-724037ed",
+    "argv": [
+     "binwalk",
+     "--extract",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 155,
+    "flag": "--extract"
+   },
+   {
+    "id": "t-opt-d32dff5b",
+    "argv": [
+     "binwalk",
+     "--include",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/3-lines",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 241,
+    "flag": "--include"
+   },
+   {
+    "id": "t-opt-6a5df80d",
+    "argv": [
+     "binwalk",
+     "--list",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 9369,
+    "flag": "--list"
+   },
+   {
+    "id": "t-opt-78b719ea",
+    "argv": [
+     "binwalk",
+     "--log",
+     "/tmp/ctk-capture/log.out",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.857",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1557,
+    "flag": "--log",
+    "stability": 0.857
+   },
+   {
+    "id": "t-opt-d3e97648",
+    "argv": [
+     "binwalk",
+     "--matryoshka",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "operand-not-read",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "flag": "--matryoshka",
+    "stability": 1.0
+   },
+   {
+    "id": "t-opt-76b86323",
+    "argv": [
+     "binwalk",
+     "--quiet",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 0,
+    "flag": "--quiet"
+   },
+   {
+    "id": "t-opt-09949836",
+    "argv": [
+     "binwalk",
+     "--search-all",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.714",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "flag": "--search-all",
+    "stability": 0.714
+   },
+   {
+    "id": "t-opt-ad0ad7b3",
+    "argv": [
+     "binwalk",
+     "--stdin",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 81,
+    "flag": "--stdin"
+   },
+   {
+    "id": "t-opt-4a303038",
+    "argv": [
+     "binwalk",
+     "--threads",
+     "1",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.714",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "flag": "--threads",
+    "stability": 0.714
+   },
+   {
+    "id": "t-opt-d5baf01d",
+    "argv": [
+     "binwalk",
+     "--verbose",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.714",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1041,
+    "flag": "--verbose",
+    "stability": 0.714
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "binwalk",
+ "repo": "ReFirmLabs/binwalk",
+ "head_sha": "26713972e3f9f52dc37d4a421c4554b0bd9e82ef",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T02:56:33.387499+00:00"
+}

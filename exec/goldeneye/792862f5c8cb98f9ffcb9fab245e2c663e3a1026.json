@@ -1,19 +1,256 @@
 {
  "build": {
-  "ok": false,
-  "tier": null,
-  "image_digest": null,
-  "duration_s": 0.0,
-  "log_tail": "",
-  "error": "no_build_tier",
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:fa57b3dfef262d15ce7b9e10acf3a4b3b46909d0b0296ae7cf861b02cadedb56",
+  "duration_s": 44.65,
+  "log_tail": "#11 31.80 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 31.80 debconf: falling back to frontend: Readline\n#11 31.81 debconf: unable to initialize frontend: Readline\n#11 31.81 debconf: (This frontend requires a controlling tty.)\n#11 31.81 debconf: falling back to frontend: Teletype\n#11 31.86 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 31.90 Setting up texinfo (6.8-6+b1) ...\n#11 31.92 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 31.95 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 32.7s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.155 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 3.3s done\n#21 exporting manifest sha256:b1d1d02e9efe3276d88d40b17a4fc34a1036c0ce56c1dab09d8fdd8990ea4349 done\n#21 exporting config sha256:a7235e3be1943d933601ab944b13aa799ca8a5dfa5cffa9d2e9776a83d97991b done\n#21 exporting attestation manifest sha256:e406ad2c3f78391a3255cbc0446c22f8989ed4ede414a8155cb51ed0f971228b done\n#21 exporting manifest list sha256:fa57b3dfef262d15ce7b9e10acf3a4b3b46909d0b0296ae7cf861b02cadedb56 done\n#21 naming to docker.io/ctk-exec/goldeneye:792862f5c8cb done\n#21 unpacking to docker.io/ctk-exec/goldeneye:792862f5c8cb\n#21 unpacking to docker.io/ctk-exec/goldeneye:792862f5c8cb 0.7s done\n#21 DONE 4.1s",
+  "error": null,
   "timed_out": false
  },
- "captures": [],
- "skipped_reason": "no_build_tier",
+ "captures": [
+  {
+   "argv": [
+    "goldeneye",
+    "--help"
+   ],
+   "exit_code": 2,
+   "stdout": "\n-----------------------------------------------------------------------------------------------------------\n\nGoldenEye v2.1 by Jan Seidl <jseidl@wroot.org>\n\n USAGE: ./goldeneye.py <url> [OPTIONS]\n\n OPTIONS:\n\t Flag\t\t\tDescription\t\t\t\t\t\tDefault\n\t -u, --useragents\tFile with user-agents to use\t\t\t\t(default: randomly generated)\n\t -w, --workers\t\tNumber of concurrent workers\t\t\t\t(default: 10)\n\t -s, --sockets\t\tNumber of concurrent sockets\t\t\t\t(default: 500)\n\t -m, --method\t\tHTTP Method to use 'get' or 'post'  or 'random'\t\t(default: get)\n\t -n, --nosslcheck\tDo not verify SSL Certificate\t\t\t\t(default: True)\n\t -d, --debug\t\tEnable Debug Mode [more verbose output]\t\t\t(default: False)\n\t -h, --help\t\tShows this help\n\n-----------------------------------------------------------------------------------------------------------\n",
+   "stderr": "/src/goldeneye.py:8: SyntaxWarning: invalid escape sequence '\\_'\n  | $$  \\__/  /$$$$$$ | $$  /$$$$$$$  /$$$$$$  /$$$$$$$ | $$       /$$   /$$  /$$$$$$\nInvalid URL supplied\n",
+   "duration_ms": 155,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "goldeneye"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for goldeneye\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "goldeneye"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'goldeneye' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "goldeneye",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--useragents": "File with user-agents to use\t\t\t\t(default: randomly generated)",
+   "-u": "File with user-agents to use\t\t\t\t(default: randomly generated)",
+   "--workers": "Number of concurrent workers\t\t\t\t(default: 10)",
+   "-w": "Number of concurrent workers\t\t\t\t(default: 10)",
+   "--sockets": "Number of concurrent sockets\t\t\t\t(default: 500)",
+   "-s": "Number of concurrent sockets\t\t\t\t(default: 500)",
+   "--method": "HTTP Method to use 'get' or 'post'  or 'random'\t\t(default: get)",
+   "-m": "HTTP Method to use 'get' or 'post'  or 'random'\t\t(default: get)",
+   "--nosslcheck": "Do not verify SSL Certificate\t\t\t\t(default: True)",
+   "-n": "Do not verify SSL Certificate\t\t\t\t(default: True)",
+   "--debug": "Enable Debug Mode [more verbose output]\t\t\t(default: False)",
+   "-d": "Enable Debug Mode [more verbose output]\t\t\t(default: False)",
+   "--help": "Shows this help",
+   "-h": "Shows this help"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--useragents": [
+    "-u"
+   ],
+   "--workers": [
+    "-w"
+   ],
+   "--sockets": [
+    "-s"
+   ],
+   "--method": [
+    "-m"
+   ],
+   "--nosslcheck": [
+    "-n"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "goldeneye",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "6e46b2dd0c59f11e6170e04cfee16769fbc47d4113efd2a617b5643698c3a54a",
+  "text": "\n-----------------------------------------------------------------------------------------------------------\n\nGoldenEye v2.1 by Jan Seidl <jseidl@wroot.org>\n\n USAGE: ./goldeneye.py <url> [OPTIONS]\n\n OPTIONS:\n\t Flag\t\t\tDescription\t\t\t\t\t\tDefault\n\t -u, --useragents\tFile with user-agents to use\t\t\t\t(default: randomly generated)\n\t -w, --workers\t\tNumber of concurrent workers\t\t\t\t(default: 10)\n\t -s, --sockets\t\tNumber of concurrent sockets\t\t\t\t(default: 500)\n\t -m, --method\t\tHTTP Method to use 'get' or 'post'  or 'random'\t\t(default: get)\n\t -n, --nosslcheck\tDo not verify SSL Certificate\t\t\t\t(default: True)\n\t -d, --debug\t\tEnable Debug Mode [more verbose output]\t\t\t(default: False)\n\t -h, --help\t\tShows this help\n\n-----------------------------------------------------------------------------------------------------------\n/src/goldeneye.py:8: SyntaxWarning: invalid escape sequence '\\_'\n  | $$  \\__/  /$$$$$$ | $$  /$$$$$$$  /$$$$$$  /$$$$$$$ | $$       /$$   /$$  /$$$$$$\nInvalid URL supplied\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--debug",
+   "--help",
+   "--method",
+   "--sockets",
+   "--useragents",
+   "--workers"
+  ],
+  "unconfirmed": [],
+  "help_only": [
+   "--nosslcheck",
+   "-d",
+   "-h",
+   "-m",
+   "-n",
+   "-s",
+   "-u",
+   "-w"
+  ],
+  "mining_coverage": 0.42857142857142855
+ },
+ "surface": {
+  "flags": {
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable Debug Mode [more verbose output]\t\t\t(default: False)",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Shows this help",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--method": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "HTTP Method to use 'get' or 'post'  or 'random'\t\t(default: get)",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--nosslcheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not verify SSL Certificate\t\t\t\t(default: True)",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--sockets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent sockets\t\t\t\t(default: 500)",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--useragents": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "File with user-agents to use\t\t\t\t(default: randomly generated)",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--workers": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent workers\t\t\t\t(default: 10)",
+    "kind": "option",
+    "first_tag": "1.2.0",
+    "first_date": "2014-02-21T18:01:32-03:00",
+    "last_tag": "1.2.0",
+    "last_date": "2014-02-21T18:01:32-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "README.md",
+    "aliases": [
+     "-w"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
  "tool": "goldeneye",
  "repo": "jseidl/GoldenEye",
  "head_sha": "792862f5c8cb98f9ffcb9fab245e2c663e3a1026",
  "analyzer": "exec",
- "analyzer_version": "5",
- "generated_at": "2026-07-27T01:25:40.170531+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-13T20:52:18.952051+00:00"
 }

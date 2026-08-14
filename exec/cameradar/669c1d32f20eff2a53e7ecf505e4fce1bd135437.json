@@ -1,0 +1,645 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:ee8d2424f571177de8f35e2ea0d121d609e5f41de776032713a1b0145fc0929c",
+  "duration_s": 27.36,
+  "log_tail": "#10 21.58 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#10 21.58 debconf: falling back to frontend: Readline\n#10 21.59 debconf: unable to initialize frontend: Readline\n#10 21.59 debconf: (This frontend requires a controlling tty.)\n#10 21.59 debconf: falling back to frontend: Teletype\n#10 21.61 \n#10 21.61 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#10 21.63 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#10 21.66 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#10 21.69 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#10 21.72 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#10 21.76 debconf: unable to initialize frontend: Dialog\n#10 21.76 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#10 21.76 debconf: falling back to frontend: Readline\n#10 21.77 debconf: unable to initialize frontend: Readline\n#10 21.77 debconf: (This frontend requires a controlling tty.)\n#10 21.77 debconf: falling back to frontend: Teletype\n#10 21.79 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#10 21.81 Setting up texinfo (6.8-6+b1) ...\n#10 21.82 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#10 21.83 Processing triggers for install-info (6.8-6+b1) ...\n#10 DONE 21.9s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.191 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.5s done\n#18 exporting manifest sha256:dd61d7ab44537d7ffe9be1fd00722a705eea4b3a9004660a6b2b6fc1805c39b0 done\n#18 exporting config sha256:d4790dcf142f3fa88d35e48b748aff0bd7db301ef99e00e7803826bd408eccce 0.0s done\n#18 exporting attestation manifest sha256:73b996216a66df912b2f6aec4e2be13ddbaa738df0a963ad96a26df61cb47767 0.0s done\n#18 exporting manifest list sha256:ee8d2424f571177de8f35e2ea0d121d609e5f41de776032713a1b0145fc0929c done\n#18 naming to docker.io/ctk-exec/cameradar:669c1d32f20e done\n#18 unpacking to docker.io/ctk-exec/cameradar:669c1d32f20e\n#18 unpacking to docker.io/ctk-exec/cameradar:669c1d32f20e 0.9s done\n#18 DONE 4.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cameradar",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   Cameradar - Scan targets for RTSP streams\n\nUSAGE:\n   Cameradar [global options] [command [command options]]\n\nVERSION:\n   dev\n\nCOMMANDS:\n   version  Print version information\n   help, h  Shows a list of commands or help for one command\n\nGLOBAL OPTIONS:\n   --targets string, -t string [ --targets string, -t string ]  The targets on which to scan for open RTSP streams in a network range format [$TARGETS]\n   --ports string, -p string [ --ports string, -p string ]      The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]\n   --custom-routes string, -r string                            The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]\n   --custom-credentials string, -c string                       The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]\n   --scanner string                                             Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]\n   --scan-speed int, -s int                                     The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]\n   --attack-interval duration, -I duration                      The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]\n   --timeout duration, -T duration                              The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]\n   --framecheck                                                 When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]\n   --skip-scan                                                  Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]\n   --debug, -d                                                  Enable debug logs [$DEBUG]\n   --ui string                                                  UI mode: auto, tui, or plain (default: \"auto\") [$UI]\n   --output string                                              Write discovered streams to an M3U file at the given path [$OUTPUT]\n   --help, -h                                                   show help\n   --version, -v                                                print the version\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "cameradar",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   Cameradar version - Print version information\n\nUSAGE:\n   Cameradar version [options]\n\nOPTIONS:\n   --help, -h  show help\n\nGLOBAL OPTIONS:\n   --targets string, -t string [ --targets string, -t string ]  The targets on which to scan for open RTSP streams in a network range format [$TARGETS]\n   --ports string, -p string [ --ports string, -p string ]      The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]\n   --custom-routes string, -r string                            The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]\n   --custom-credentials string, -c string                       The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]\n   --scanner string                                             Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]\n   --scan-speed int, -s int                                     The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]\n   --attack-interval duration, -I duration                      The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]\n   --timeout duration, -T duration                              The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]\n   --framecheck                                                 When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]\n   --skip-scan                                                  Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]\n   --debug, -d                                                  Enable debug logs [$DEBUG]\n   --ui string                                                  UI mode: auto, tui, or plain (default: \"auto\") [$UI]\n   --output string                                              Write discovered streams to an M3U file at the given path [$OUTPUT]\n",
+   "stderr": "",
+   "duration_ms": 5,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "cameradar"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for cameradar\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "cameradar"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'cameradar' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 5,
+   "binary": "cameradar",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "cameradar",
+   "source": "cmd/<name>/"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--targets": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+   "-t": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+   "--ports": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+   "-p": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+   "--custom-routes": "The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]",
+   "-r": "The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]",
+   "--custom-credentials": "The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]",
+   "-c": "The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]",
+   "--scanner": "Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]",
+   "--scan-speed": "The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]",
+   "-s": "The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]",
+   "--attack-interval": "The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]",
+   "-I": "The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]",
+   "--timeout": "The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]",
+   "-T": "The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]",
+   "--framecheck": "When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]",
+   "--skip-scan": "Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]",
+   "--debug": "Enable debug logs [$DEBUG]",
+   "-d": "Enable debug logs [$DEBUG]",
+   "--ui": "UI mode: auto, tui, or plain (default: \"auto\") [$UI]",
+   "--output": "Write discovered streams to an M3U file at the given path [$OUTPUT]",
+   "--help": "show help",
+   "-h": "show help",
+   "--version": "print the version",
+   "-v": "print the version"
+  },
+  "values_seen": {
+   "--custom-routes": "string",
+   "-r": "string",
+   "--custom-credentials": "string",
+   "-c": "string",
+   "--scanner": "string",
+   "--scan-speed": "int",
+   "-s": "int",
+   "--attack-interval": "duration",
+   "-I": "duration",
+   "--timeout": "duration",
+   "-T": "duration",
+   "--ui": "string",
+   "--output": "string"
+  },
+  "aliases": {
+   "--custom-routes": [
+    "-r"
+   ],
+   "--custom-credentials": [
+    "-c"
+   ],
+   "--scan-speed": [
+    "-s"
+   ],
+   "--attack-interval": [
+    "-I"
+   ],
+   "--timeout": [
+    "-T"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "version": {
+    "--help": "show help",
+    "--targets": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+    "-t": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+    "--ports": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+    "-p": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+    "--custom-routes": "The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]",
+    "--custom-credentials": "The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]",
+    "--scanner": "Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]",
+    "--scan-speed": "The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]",
+    "--attack-interval": "The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]",
+    "--timeout": "The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]",
+    "--framecheck": "When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]",
+    "--skip-scan": "Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]",
+    "--debug": "Enable debug logs [$DEBUG]",
+    "--ui": "UI mode: auto, tui, or plain (default: \"auto\") [$UI]",
+    "--output": "Write discovered streams to an M3U file at the given path [$OUTPUT]"
+   }
+  },
+  "subcommands": [
+   "version"
+  ],
+  "binary": "cameradar",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "1c5a97b122e232f704abd0badae1d32e1c4bb0d9e9461c0beb2f731f954b3e90",
+  "text": "NAME:\n   Cameradar - Scan targets for RTSP streams\n\nUSAGE:\n   Cameradar [global options] [command [command options]]\n\nVERSION:\n   dev\n\nCOMMANDS:\n   version  Print version information\n   help, h  Shows a list of commands or help for one command\n\nGLOBAL OPTIONS:\n   --targets string, -t string [ --targets string, -t string ]  The targets on which to scan for open RTSP streams in a network range format [$TARGETS]\n   --ports string, -p string [ --ports string, -p string ]      The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]\n   --custom-routes string, -r string                            The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]\n   --custom-credentials string, -c string                       The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]\n   --scanner string                                             Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]\n   --scan-speed int, -s int                                     The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]\n   --attack-interval duration, -I duration                      The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]\n   --timeout duration, -T duration                              The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]\n   --framecheck                                                 When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]\n   --skip-scan                                                  Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]\n   --debug, -d                                                  Enable debug logs [$DEBUG]\n   --ui string                                                  UI mode: auto, tui, or plain (default: \"auto\") [$UI]\n   --output string                                              Write discovered streams to an M3U file at the given path [$OUTPUT]\n   --help, -h                                                   show help\n   --version, -v                                                print the version\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--attack-interval",
+   "--custom-credentials",
+   "--custom-routes",
+   "--debug",
+   "--help",
+   "--ports",
+   "--scan-speed",
+   "--targets",
+   "--timeout"
+  ],
+  "unconfirmed": [
+   "--log",
+   "--nmap-output",
+   "--output-file",
+   "--speed",
+   "--target",
+   "--verbose"
+  ],
+  "help_only": [
+   "--framecheck",
+   "--output",
+   "--scanner",
+   "--skip-scan",
+   "--ui",
+   "--version",
+   "-I",
+   "-T",
+   "-c",
+   "-d",
+   "-h",
+   "-p",
+   "-r",
+   "-s",
+   "-t",
+   "-v"
+  ],
+  "mining_coverage": 0.36
+ },
+ "surface": {
+  "flags": {
+   "--attack-interval": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]",
+    "kind": "option",
+    "metavar": "duration",
+    "first_tag": "v4.1.1",
+    "first_date": "2019-11-30T16:57:27+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "duration",
+    "aliases": [
+     "-I"
+    ]
+   },
+   "--custom-credentials": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--custom-routes": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]",
+    "kind": "option",
+    "metavar": "string",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable debug logs [$DEBUG]",
+    "kind": "option",
+    "first_tag": "v4.0.0",
+    "first_date": "2019-05-26T08:33:08+02:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": false,
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--framecheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show help",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": false,
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--log": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable the logs for nmap's output to stdout",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v3.0.2",
+    "last_date": "2019-04-06T12:56:15+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cameradar/cameradar.go",
+    "takes_value": false
+   },
+   "--nmap-output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The path where nmap will create its XML result file",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v2.1.0",
+    "last_date": "2018-11-12T07:41:23+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write discovered streams to an M3U file at the given path [$OUTPUT]",
+    "metavar": "string"
+   },
+   "--output-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Output scan results as a JSON file. If not specified, results are not written to a file.",
+    "kind": "option",
+    "first_tag": "v5.0.4",
+    "first_date": "2025-07-13T21:18:36+02:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--ports": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--scan-speed": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]",
+    "kind": "option",
+    "metavar": "int",
+    "first_tag": "v4.1.1",
+    "first_date": "2019-11-30T16:57:27+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--scanner": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]",
+    "metavar": "string"
+   },
+   "--skip-scan": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]"
+   },
+   "--speed": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The nmap speed preset to use for discovery",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v4.1.0",
+    "last_date": "2019-06-29T04:10:59+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--target": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The target on which to scan for open RTSP streams - required (ex: 172.16.100.0/24)",
+    "kind": "option",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v2.1.0",
+    "last_date": "2018-11-12T07:41:23+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--targets": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2019-01-22T21:16:16+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "stringslice"
+   },
+   "--timeout": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]",
+    "kind": "option",
+    "metavar": "duration",
+    "first_tag": "v2.1.0",
+    "first_date": "2018-11-12T07:41:23+01:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": true,
+    "value_type": "duration",
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--ui": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "UI mode: auto, tui, or plain (default: \"auto\") [$UI]",
+    "metavar": "string"
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable the verbose logs",
+    "kind": "option",
+    "first_tag": "v4.0.0",
+    "first_date": "2019-05-26T08:33:08+02:00",
+    "last_tag": "v5.0.4",
+    "last_date": "2025-07-13T21:18:36+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "cmd/cameradar/cameradar.go",
+    "takes_value": false
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "print the version",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]"
+   },
+   "-t": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]"
+   }
+  },
+  "subcommands": [
+   "version"
+  ],
+  "subcommand_flags": {
+   "version": {
+    "--help": "show help",
+    "--targets": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+    "-t": "The targets on which to scan for open RTSP streams in a network range format [$TARGETS]",
+    "--ports": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+    "-p": "The ports on which to search for RTSP streams (default: \"554\", \"5554\", \"8554\", \"http\", \"322\", \"8322\") [$PORTS]",
+    "--custom-routes": "The path on which to load a custom routes dictionary [$CUSTOM_ROUTES]",
+    "--custom-credentials": "The path on which to load a custom credentials JSON dictionary [$CUSTOM_CREDENTIALS]",
+    "--scanner": "Discovery scanner backend: nmap or masscan (default: \"nmap\") [$SCANNER]",
+    "--scan-speed": "The nmap speed preset to use for scanning (lower is stealthier) (default: 4) [$SCAN_SPEED]",
+    "--attack-interval": "The interval between each attack (i.e: 2000ms, higher is stealthier) (default: 0s) [$ATTACK_INTERVAL]",
+    "--timeout": "The timeout to use for attack attempts (i.e: 2000ms) (default: 2s) [$TIMEOUT]",
+    "--framecheck": "When DESCRIBE returns 200 OK, require a frame probe check before accepting routes or credentials (slower) [$FRAMECHECK]",
+    "--skip-scan": "Skip discovery and treat every target and port as an RTSP stream [$SKIP_SCAN]",
+    "--debug": "Enable debug logs [$DEBUG]",
+    "--ui": "UI mode: auto, tui, or plain (default: \"auto\") [$UI]",
+    "--output": "Write discovered streams to an M3U file at the given path [$OUTPUT]"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-a12d1c93",
+    "argv": [
+     "cameradar",
+     "--target",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 2395
+   },
+   {
+    "id": "t-net-794f6bf6",
+    "argv": [
+     "cameradar",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 45
+   },
+   {
+    "id": "t-net-b233a037",
+    "argv": [
+     "cameradar",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 45
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "SSL_CERT_FILE=/path/to/ca-or-server.crt cameradar --targets localhost --ports 8322 --skip-scan --custom-routes routes.txt --custom-credentials credentials.json",
+    "source": "readme",
+    "path": "README.md",
+    "line": 201,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "FRAMECHECK=true cameradar --targets 192.168.1.0/24 --ports \"554,8554\"",
+    "source": "readme",
+    "path": "README.md",
+    "line": 304,
+    "reason": "needs-live-target",
+    "token": "192.168.1.0/24"
+   }
+  ]
+ },
+ "tool": "cameradar",
+ "repo": "Ullaakut/cameradar",
+ "head_sha": "669c1d32f20eff2a53e7ecf505e4fce1bd135437",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T01:18:08.990509+00:00"
+}

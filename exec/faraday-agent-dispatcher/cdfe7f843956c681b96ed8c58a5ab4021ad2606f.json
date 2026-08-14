@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:2b0b196825c93acb203aed090559ff8b958b643ceb7d74fd72544df538db08f0",
-  "duration_s": 55.47,
-  "log_tail": "#10 40.88   Stored in directory: /tmp/pip-ephem-wheel-cache-gadirmbs/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 40.88   Building wheel for validators (pyproject.toml): started\n#10 40.98   Building wheel for validators (pyproject.toml): finished with status 'done'\n#10 40.98   Created wheel for validators: filename=validators-0.20.0-py3-none-any.whl size=19665 sha256=bdf25c3f7724575b5111acbac7b3c6edea6bae248573d425ccdb528be15f5acd\n#10 40.98   Stored in directory: /tmp/pip-ephem-wheel-cache-gadirmbs/wheels/97/ff/db/8c9971b2816ce633c00d05bf0178b77f9315ba2284f2607857\n#10 40.99 Successfully built faraday_agent_dispatcher validators\n#10 41.06 Installing collected packages: pytz, websockets, urllib3, tzdata, typing_extensions, tabulate, syslog_rfc5424_formatter, soupsieve, six, simplejson, semver, pyyaml, python-box, pyrate-limiter, pycparser, psutil, propcache, packaging, numpy, multidict, markdown, lxml, itsdangerous, invoke, idna, hyperframe, html2text, hpack, h11, graphql-core, frozenlist, filelock, defusedxml, decorator, colorama, Click, charset_normalizer, certifi, bidict, bcrypt, backoff, attrs, annotated-types, aiohappyeyeballs, yarl, wsproto, validators, typing-inspection, requests, python-dateutil, pydantic-core, marshmallow, httpcore, h2, cffi, beautifulsoup4, anyio, aiosignal, zaproxy, simple-websocket, requests-toolbelt, requests-ratelimiter, requests-file, pynacl, pydantic, pandas, httpx, gql, faraday_agent_parameters_types, cryptography, arrow, aiohttp, tldextract, python-owasp-zap-v2.4, python-engineio, pydantic-extra-types, paramiko, python-socketio, python-gvm, pytenable, faraday-plugins, faraday_agent_dispatcher\n#10 46.59 \n#10 46.59 Successfully installed Click-8.4.2 aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 annotated-types-0.8.0 anyio-4.14.2 arrow-1.4.0 attrs-26.1.0 backoff-2.2.1 bcrypt-5.0.0 beautifulsoup4-4.15.0 bidict-0.23.1 certifi-2026.7.22 cffi-2.1.0 charset_normalizer-3.4.9 colorama-0.4.6 cryptography-50.0.0 decorator-5.3.1 defusedxml-0.7.1 faraday-plugins-1.29.0 faraday_agent_dispatcher-3.9.1 faraday_agent_parameters_types-1.9.1 filelock-3.32.2 frozenlist-1.8.0 gql-4.0.0 graphql-core-3.2.11 h11-0.16.0 h2-4.4.0 hpack-4.2.0 html2text-2025.4.15 httpcore-1.0.9 httpx-0.28.1 hyperframe-6.1.0 idna-3.18 invoke-3.0.3 itsdangerous-2.2.0 lxml-6.1.1 markdown-3.10.3 marshmallow-3.26.2 multidict-6.7.1 numpy-2.5.1 packaging-26.2 pandas-3.0.5 paramiko-5.0.0 propcache-0.5.2 psutil-7.2.2 pycparser-3.0 pydantic-2.13.4 pydantic-core-2.46.4 pydantic-extra-types-2.11.1 pynacl-1.6.2 pyrate-limiter-4.4.0 pytenable-26.6.1 python-box-7.4.1 python-dateutil-2.9.0.post0 python-engineio-4.13.4 python-gvm-27.5.0 python-owasp-zap-v2.4-0.1.0 python-socketio-5.8.0 pytz-2026.3.post1 pyyaml-6.0.3 requests-2.34.2 requests-file-3.0.1 requests-ratelimiter-0.10.0 requests-toolbelt-1.0.0 semver-3.0.4 simple-websocket-1.1.0 simplejson-4.1.1 six-1.17.0 soupsieve-2.9.1 syslog_rfc5424_formatter-1.2.3 tabulate-0.10.0 tldextract-5.3.1 typing-inspection-0.4.2 typing_extensions-4.16.0 tzdata-2026.3 urllib3-2.7.0 validators-0.20.0 websockets-17.0.1 wsproto-1.3.2 yarl-1.24.5 zaproxy-0.6.0\n#10 DONE 46.9s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.6s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.114 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.5s done\n#20 exporting manifest sha256:beb5675d7209382e824c7f85bfa9b0fd6d0006ed38f7406662f5b97af85e64d3 done\n#20 exporting config sha256:85c555dfe173761a4081cc09901428f480ab3bb47acd95538d9be36e6b281630 done\n#20 exporting attestation manifest sha256:ca8a942123424f16e9a72f8235c25fc3ef730abe73fc920068e0774c0be19627 done\n#20 exporting manifest list sha256:2b0b196825c93acb203aed090559ff8b958b643ceb7d74fd72544df538db08f0 done\n#20 naming to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956 done\n#20 unpacking to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956\n#20 unpacking to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956 1.5s done\n#20 DONE 6.0s",
+  "image_digest": "sha256:f2d98a0342bce4d4ee9933de008e328cc6911f1cc4219f6bf779a13be5d92b5a",
+  "duration_s": 75.78,
+  "log_tail": "#11 14.33 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 14.38 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 14.46 debconf: unable to initialize frontend: Dialog\n#11 14.46 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 14.46 debconf: falling back to frontend: Readline\n#11 14.47 debconf: unable to initialize frontend: Readline\n#11 14.47 debconf: (This frontend requires a controlling tty.)\n#11 14.47 debconf: falling back to frontend: Teletype\n#11 14.51 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 14.81 Setting up texinfo (6.8-6+b1) ...\n#11 14.87 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 14.93 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 15.0s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 4.8s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.8s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 5.5s done\n#20 exporting manifest sha256:cdb7ba3d42511f07a2a673a1b11888007ee58f0b5aaa1e6169da08fa72aaa603 done\n#20 exporting config sha256:290b6aa17791bc0ae8d533eda604c391254ddb39e7f466808c56072817465429 done\n#20 exporting attestation manifest sha256:b59d846e7ba18e38259b6cb54770825cf675d67ae4a5ee20f4c15054193696f7 0.0s done\n#20 exporting manifest list sha256:f2d98a0342bce4d4ee9933de008e328cc6911f1cc4219f6bf779a13be5d92b5a done\n#20 naming to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956 done\n#20 unpacking to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956\n#20 unpacking to docker.io/ctk-exec/faraday_agent_dispatcher:cdfe7f843956 1.8s done\n#20 DONE 7.3s",
   "error": null,
   "timed_out": false
  },
@@ -14,80 +14,47 @@
     "faraday-dispatcher",
     "--help"
    ],
-   "exit_code": 1,
-   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\n",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/faraday-dispatcher\", line 3, in <module>\n    from faraday_agent_dispatcher.cli.main import cli\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/main.py\", line 29, in <module>\n    from faraday_agent_dispatcher.cli.wizard import Wizard, DEFAULT_PAGE_SIZE\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/wizard.py\", line 8, in <module>\n    from faraday_agent_dispatcher import config\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/config.py\", line 49, in <module>\n    FARADAY_PATH.mkdir()\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.faraday'\n",
-   "duration_ms": 426,
+   "exit_code": 0,
+   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\nUsage: faraday-dispatcher [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  -v, --version  Show the version and exit.\n  -h, --help     Show this message and exit.\n\nCommands:\n  config-wizard  faraday-dispatcher config_wizard\n  run            faraday-dispatcher run\n",
+   "stderr": "",
+   "duration_ms": 571,
    "truncated": false,
    "error": null
   },
   {
    "argv": [
     "faraday-dispatcher",
-    "-h"
-   ],
-   "exit_code": 1,
-   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\n",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/faraday-dispatcher\", line 3, in <module>\n    from faraday_agent_dispatcher.cli.main import cli\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/main.py\", line 29, in <module>\n    from faraday_agent_dispatcher.cli.wizard import Wizard, DEFAULT_PAGE_SIZE\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/wizard.py\", line 8, in <module>\n    from faraday_agent_dispatcher import config\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/config.py\", line 49, in <module>\n    FARADAY_PATH.mkdir()\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.faraday'\n",
-   "duration_ms": 407,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "faraday-dispatcher",
-    "help"
-   ],
-   "exit_code": 1,
-   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\n",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/faraday-dispatcher\", line 3, in <module>\n    from faraday_agent_dispatcher.cli.main import cli\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/main.py\", line 29, in <module>\n    from faraday_agent_dispatcher.cli.wizard import Wizard, DEFAULT_PAGE_SIZE\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/wizard.py\", line 8, in <module>\n    from faraday_agent_dispatcher import config\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/config.py\", line 49, in <module>\n    FARADAY_PATH.mkdir()\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.faraday'\n",
-   "duration_ms": 397,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "faraday-dispatcher",
-    "--usage"
-   ],
-   "exit_code": 1,
-   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\n",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/faraday-dispatcher\", line 3, in <module>\n    from faraday_agent_dispatcher.cli.main import cli\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/main.py\", line 29, in <module>\n    from faraday_agent_dispatcher.cli.wizard import Wizard, DEFAULT_PAGE_SIZE\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/wizard.py\", line 8, in <module>\n    from faraday_agent_dispatcher import config\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/config.py\", line 49, in <module>\n    FARADAY_PATH.mkdir()\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.faraday'\n",
-   "duration_ms": 396,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "faraday-dispatcher"
-   ],
-   "exit_code": 1,
-   "stdout": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\n",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/faraday-dispatcher\", line 3, in <module>\n    from faraday_agent_dispatcher.cli.main import cli\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/main.py\", line 29, in <module>\n    from faraday_agent_dispatcher.cli.wizard import Wizard, DEFAULT_PAGE_SIZE\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/cli/wizard.py\", line 8, in <module>\n    from faraday_agent_dispatcher import config\n  File \"/opt/venv/lib/python3.12/site-packages/faraday_agent_dispatcher/config.py\", line 49, in <module>\n    FARADAY_PATH.mkdir()\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/home/ctk/.faraday'\n",
-   "duration_ms": 394,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "cffi-gen-src",
+    "config-wizard",
     "--help"
    ],
    "exit_code": 0,
-   "stdout": "usage: cffi-gen-src [-h] {exec-python,read-sources} ...\n\nGenerate CFFI C source for extension modules.\n\npositional arguments:\n  {exec-python,read-sources}\n    exec-python         Execute a Python script that defines an FFI object\n    read-sources        Read cdef and C source prelude files that define an\n                        FFI object\n\noptions:\n  -h, --help            show this help message and exit\n",
+   "stdout": "Usage: faraday-dispatcher config-wizard [OPTIONS]\n\n  faraday-dispatcher config_wizard\n\nOptions:\n  -c, --config-filepath TEXT     Path to config ini file\n  --logdir TEXT                  Path to logger directory\n  --log-level TEXT               Log level set =\n                                 [notset|debug|info|warning|error|critical]\n  --debug                        Set debug logging, overrides --log-level\n                                 option\n  -p, --page-size INTEGER RANGE  Size of paged options  [2<=x<=20]\n  -h, --help                     Show this message and exit.\n",
    "stderr": "",
-   "duration_ms": 64,
+   "duration_ms": 541,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "faraday-dispatcher",
+    "run",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: faraday-dispatcher run [OPTIONS]\n\n  faraday-dispatcher run\n\nOptions:\n  -c, --config-file TEXT  Path to config ini file\n  --logdir TEXT           Path to logger directory\n  --log-level TEXT        Log level set =\n                          [notset|debug|info|warning|error|critical]\n  --debug                 Set debug logging, overrides --log-level option\n  --token TEXT            Registration token from Faraday server\n  -h, --help              Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 556,
    "truncated": false,
    "error": null
   },
   {
    "argv": [
     "man",
-    "cffi-gen-src"
+    "faraday-dispatcher"
    ],
    "exit_code": 16,
    "stdout": "",
-   "stderr": "No manual entry for cffi-gen-src\n",
+   "stderr": "No manual entry for faraday-dispatcher\n",
    "duration_ms": 1,
    "truncated": false,
    "error": null,
@@ -98,11 +65,11 @@
     "info",
     "--output=-",
     "--subnodes",
-    "cffi-gen-src"
+    "faraday-dispatcher"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "info: No menu item 'cffi-gen-src' in node '(dir)Top'\n",
+   "stderr": "info: No menu item 'faraday-dispatcher' in node '(dir)Top'\n",
    "duration_ms": 2,
    "truncated": false,
    "error": null,
@@ -110,41 +77,73 @@
   },
   {
    "argv": [
-    "faraday-agent-dispatcher",
-    "config-wizard"
+    "faraday-dispatcher",
+    "/opt/ctk/fixtures/source-corpus"
    ],
-   "exit_code": null,
+   "exit_code": 2,
    "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
+   "stderr": "Usage: faraday-dispatcher [OPTIONS] COMMAND [ARGS]...\nTry 'faraday-dispatcher --help' for help.\n\nError: No such command '/opt/ctk/fixtures/source-corpus'.\n",
+   "duration_ms": 576,
    "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'faraday-agent-dispatcher'",
+   "error": null,
    "kind": "scenario",
-   "id": "t-model-cf386308",
-   "title": "Candidate \u2014 run against no fixture"
+   "id": "t-surface-3024d41f",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
   },
   {
    "argv": [
-    "faraday-agent-dispatcher",
-    "run",
-    "/opt/ctk/fixtures/binaries/marked-unstripped"
+    "faraday-dispatcher",
+    "--config-file",
+    "/opt/ctk/fixtures/source-corpus"
    ],
-   "exit_code": null,
+   "exit_code": 2,
    "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
+   "stderr": "Usage: faraday-dispatcher [OPTIONS] COMMAND [ARGS]...\nTry 'faraday-dispatcher --help' for help.\n\nError: No such option '--config-file'.\n",
+   "duration_ms": 559,
    "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'faraday-agent-dispatcher'",
+   "error": null,
    "kind": "scenario",
-   "id": "t-model-7d9d754c",
-   "title": "Candidate \u2014 run against binaries"
+   "id": "t-surface-3f5cb8fa",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "faraday-dispatcher",
+    "--config-filepath",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "Usage: faraday-dispatcher [OPTIONS] COMMAND [ARGS]...\nTry 'faraday-dispatcher --help' for help.\n\nError: No such option '--config-filepath'.\n",
+   "duration_ms": 580,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-3bfd8d6e",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "faraday-dispatcher",
+    "run",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 2,
+   "stdout": "",
+   "stderr": "Usage: faraday-dispatcher run [OPTIONS]\nTry 'faraday-dispatcher run --help' for help.\n\nError: Got unexpected extra argument (/opt/ctk/fixtures/source-corpus)\n",
+   "duration_ms": 571,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-03362763",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
   },
   {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 10,
-   "binary": "cffi-gen-src",
+   "commands_run": 9,
+   "binary": "faraday-dispatcher",
    "exit_code": null,
    "stdout": "",
    "stderr": "",
@@ -154,12 +153,349 @@
   }
  ],
  "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "faraday-dispatcher",
+   "source": "setup.py console_scripts"
+  }
+ ],
  "examples": [],
- "skipped_reason": "uncorroborated_entrypoint",
+ "help": {
+  "flags_seen": {
+   "--version": "Show the version and exit.",
+   "-v": "Show the version and exit.",
+   "--help": "Show this message and exit.",
+   "-h": "Show this message and exit."
+  },
+  "values_seen": {},
+  "aliases": {
+   "--version": [
+    "-v"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {
+   "config-wizard": {
+    "--config-filepath": "Path to config ini file",
+    "--logdir": "Path to logger directory",
+    "--log-level": "Log level set = [notset|debug|info|warning|error|critical]",
+    "--debug": "Set debug logging, overrides --log-level option",
+    "--page-size": "Size of paged options  [2<=x<=20]",
+    "--help": "Show this message and exit."
+   },
+   "run": {
+    "--config-file": "Path to config ini file",
+    "--logdir": "Path to logger directory",
+    "--log-level": "Log level set = [notset|debug|info|warning|error|critical]",
+    "--debug": "Set debug logging, overrides --log-level option",
+    "--token": "Registration token from Faraday server",
+    "--help": "Show this message and exit."
+   },
+   "--config-file": {},
+   "--config-filepath": {}
+  },
+  "subcommands": [
+   "config-wizard",
+   "run"
+  ],
+  "binary": "faraday-dispatcher",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "6acd5f056aa1c4d27ad842f01cba8aed353203b15640870fd7949b09a7e819d4",
+  "text": "\u001b[93mThe configuration folder does not exist, creating it\u001b[0m\nUsage: faraday-dispatcher [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  -v, --version  Show the version and exit.\n  -h, --help     Show this message and exit.\n\nCommands:\n  config-wizard  faraday-dispatcher config_wizard\n  run            faraday-dispatcher run\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--config-file",
+   "--config-filepath",
+   "--debug",
+   "--log-level",
+   "--logdir",
+   "--page-size",
+   "--token"
+  ],
+  "help_only": [
+   "--help",
+   "--version",
+   "-h",
+   "-v"
+  ],
+  "mining_coverage": 0.0
+ },
+ "surface": {
+  "flags": {
+   "--config-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to config ini file",
+    "kind": "option",
+    "first_tag": "0.1",
+    "first_date": "2019-11-12T18:21:51-03:00",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--config-filepath": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to config ini file",
+    "kind": "option",
+    "first_tag": "1.2.1",
+    "first_date": "2020-06-22T21:23:54Z",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--debug": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set debug logging, overrides --log-level option",
+    "kind": "option",
+    "first_tag": "1.2.1",
+    "first_date": "2020-06-22T21:23:54Z",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this message and exit.",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--log-level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Log level set = [notset|debug|info|warning|error|critical]",
+    "kind": "option",
+    "first_tag": "1.2.1",
+    "first_date": "2020-06-22T21:23:54Z",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--logdir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to logger directory",
+    "kind": "option",
+    "first_tag": "0.1",
+    "first_date": "2019-11-12T18:21:51-03:00",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--page-size": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Size of paged options",
+    "kind": "option",
+    "first_tag": "1.3.0",
+    "first_date": "2020-09-03T23:17:36Z",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--token": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Registration token from Faraday server",
+    "kind": "option",
+    "first_tag": "1.5.0",
+    "first_date": "2021-03-31T05:18:07Z",
+    "last_tag": "3.9.1",
+    "last_date": "2026-01-26T16:38:05Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "faraday_agent_dispatcher/cli/main.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show the version and exit.",
+    "aliases": [
+     "-v"
+    ]
+   }
+  },
+  "subcommands": [
+   "config-wizard",
+   "run"
+  ],
+  "subcommand_flags": {
+   "config-wizard": {
+    "--config-filepath": "Path to config ini file",
+    "--logdir": "Path to logger directory",
+    "--log-level": "Log level set = [notset|debug|info|warning|error|critical]",
+    "--debug": "Set debug logging, overrides --log-level option",
+    "--page-size": "Size of paged options  [2<=x<=20]",
+    "--help": "Show this message and exit."
+   },
+   "run": {
+    "--config-file": "Path to config ini file",
+    "--logdir": "Path to logger directory",
+    "--log-level": "Log level set = [notset|debug|info|warning|error|critical]",
+    "--debug": "Set debug logging, overrides --log-level option",
+    "--token": "Registration token from Faraday server",
+    "--help": "Show this message and exit."
+   },
+   "--config-file": {},
+   "--config-filepath": {}
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 6,
+  "tried_this_wave": 6,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-3024d41f",
+    "argv": [
+     "faraday-dispatcher",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 155
+   },
+   {
+    "id": "t-surface-3f5cb8fa",
+    "argv": [
+     "faraday-dispatcher",
+     "--config-file",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 136
+   },
+   {
+    "id": "t-surface-3bfd8d6e",
+    "argv": [
+     "faraday-dispatcher",
+     "--config-filepath",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 140
+   },
+   {
+    "id": "t-surface-03362763",
+    "argv": [
+     "faraday-dispatcher",
+     "run",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 158
+   },
+   {
+    "id": "t-net-98c61c2f",
+    "argv": [
+     "faraday-dispatcher",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 197
+   },
+   {
+    "id": "t-net-c2e1d947",
+    "argv": [
+     "faraday-dispatcher",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 190
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "faraday-dispatcher config-wizard",
+    "source": "readme",
+    "path": "docs/docs/getting-started.md",
+    "line": 22,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
  "tool": "faraday-agent-dispatcher",
  "repo": "infobyte/faraday_agent_dispatcher",
  "head_sha": "cdfe7f843956c681b96ed8c58a5ab4021ad2606f",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-03T00:05:33.519757+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T01:11:46.006876+00:00"
 }

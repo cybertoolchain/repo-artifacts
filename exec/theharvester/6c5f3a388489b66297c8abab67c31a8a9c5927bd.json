@@ -1,0 +1,831 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:bedaf74b8feaea332d575ed45fb6fcb5f1fb2729f6d88eb3fc559308e33e3eb2",
+  "duration_s": 55.44,
+  "log_tail": "#11 20.21 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 20.24 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 20.30 debconf: unable to initialize frontend: Dialog\n#11 20.30 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 20.30 debconf: falling back to frontend: Readline\n#11 20.31 debconf: unable to initialize frontend: Readline\n#11 20.31 debconf: (This frontend requires a controlling tty.)\n#11 20.31 debconf: falling back to frontend: Teletype\n#11 20.34 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 20.37 Setting up texinfo (6.8-6+b1) ...\n#11 20.38 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 20.40 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 20.5s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.5s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.209 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.4s done\n#20 exporting manifest sha256:14622670417ec6cdfbb0fa083837088a909b3c22f51b3181c032d841eda3707c done\n#20 exporting config sha256:345e291542e072ec2f5a86425dd8b6ffc1c10592dcab0f44198e52e1b53efec0 done\n#20 exporting attestation manifest sha256:64f3b352c000b8744f35898d415c27f65f84fce195706b7fc5f9f2fbd19dfbed 0.0s done\n#20 exporting manifest list sha256:bedaf74b8feaea332d575ed45fb6fcb5f1fb2729f6d88eb3fc559308e33e3eb2 done\n#20 naming to docker.io/ctk-exec/theharvester:6c5f3a388489 done\n#20 unpacking to docker.io/ctk-exec/theharvester:6c5f3a388489\n#20 unpacking to docker.io/ctk-exec/theharvester:6c5f3a388489 2.6s done\n#20 DONE 9.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "theHarvester",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Created default proxies.yaml at /home/ctk/.theHarvester/proxies.yaml\n*******************************************************************\n*  _   _                                            _             *\n* | |_| |__   ___    /\\  /\\__ _ _ ____   _____  ___| |_ ___ _ __  *\n* | __|  _ \\ / _ \\  / /_/ / _` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__| *\n* | |_| | | |  __/ / __  / (_| | |   \\ V /  __/\\__ \\ ||  __/ |    *\n*  \\__|_| |_|\\___| \\/ /_/ \\__,_|_|    \\_/ \\___||___/\\__\\___|_|    *\n*                                                                 *\n* theHarvester 4.11.1                                             *\n* Coded by Christian Martorella                                   *\n* Edge-Security Research                                          *\n* cmartorella@edge-security.com                                   *\n*                                                                 *\n*******************************************************************\nusage: theHarvester [-h] -d DOMAIN [-l LIMIT] [-S START] [-p] [-s]\n                    [--screenshot SCREENSHOT] [-e DNS_SERVER] [-t]\n                    [-r [DNS_RESOLVE]] [-n] [-c] [-f FILENAME] [-w WORDLIST]\n                    [-a] [-q] [-b SOURCE]\n\ntheHarvester is used to gather open source intelligence (OSINT) on a company\nor domain.\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Company name or domain to search.\n  -l LIMIT, --limit LIMIT\n                        Limit the number of search results, default=500.\n  -S START, --start START\n                        Start with result number X, default=0.\n  -p, --proxies         Use proxies for requests, enter proxies in\n                        proxies.yaml.\n  -s, --shodan          Use Shodan to query discovered hosts.\n  --screenshot SCREENSHOT\n                        Take screenshots of resolved domains specify output\n                        directory: --screenshot output_directory\n  -e DNS_SERVER, --dns-server DNS_SERVER\n                        DNS server to use for lookup.\n  -t, --take-over       Check for takeovers.\n  -r [DNS_RESOLVE], --dns-resolve [DNS_RESOLVE]\n                        Perform DNS resolution on subdomains with a resolver\n                        list or passed in resolvers, default False.\n  -n, --dns-lookup      Enable DNS server lookup, default False.\n  -c, --dns-brute       Perform a DNS brute force on the domain.\n  -f FILENAME, --filename FILENAME\n                        Save the results to an XML and JSON file.\n  -w WORDLIST, --wordlist WORDLIST\n                        Specify a wordlist for API endpoint scanning.\n  -a, --api-scan        Scan for API endpoints.\n  -q, --quiet           Suppress missing API key warnings and reading the api-\n                        keys file.\n  -b SOURCE, --source SOURCE\n                        baidu, bevigil, bitbucket, brave, bufferoverun,\n                        builtwith, censys, certspotter, chaos, commoncrawl,\n                        criminalip, crtsh, dehashed, dnsdumpster, duckduckgo,\n                        dymo, fofa, fullhunt, github-code, gitlab,\n                        hackertarget, haveibeenpwned, hudsonrock, hunter,\n                        hunterhow, intelx, leakix, leaklookup, mojeek, netlas,\n                        onyphe, otx, pentesttools, projectdiscovery, rapiddns,\n                        robtex, rocketreach, securityscorecard,\n                        securityTrails, sherlockeye, shodan, shodanInternetDB,\n                        subdomaincenter, subdomainfinderc99, thc, threatcrowd,\n                        tomba, urlscan, venacus, virustotal, waybackarchive,\n                        whoisxml, windvane, yahoo, zoomeye\n",
+   "stderr": "",
+   "duration_ms": 831,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "theHarvester"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for theHarvester\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "theHarvester"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'theHarvester' in node '(dir)Top'\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "theHarvester",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "theHarvester",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "restfulHarvest",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--domain": "Company name or domain to search.",
+   "-d": "Company name or domain to search.",
+   "--limit": "Limit the number of search results, default=500.",
+   "-l": "Limit the number of search results, default=500.",
+   "--start": "Start with result number X, default=0.",
+   "-S": "Start with result number X, default=0.",
+   "--proxies": "Use proxies for requests, enter proxies in proxies.yaml.",
+   "-p": "Use proxies for requests, enter proxies in proxies.yaml.",
+   "--shodan": "Use Shodan to query discovered hosts.",
+   "-s": "Use Shodan to query discovered hosts.",
+   "--screenshot": "Take screenshots of resolved domains specify output directory: --screenshot output_directory",
+   "--dns-server": "DNS server to use for lookup.",
+   "-e": "DNS server to use for lookup.",
+   "--take-over": "Check for takeovers.",
+   "-t": "Check for takeovers.",
+   "--dns-resolve": "Perform DNS resolution on subdomains with a resolver list or passed in resolvers, default False.",
+   "-r": "Perform DNS resolution on subdomains with a resolver list or passed in resolvers, default False.",
+   "--dns-lookup": "Enable DNS server lookup, default False.",
+   "-n": "Enable DNS server lookup, default False.",
+   "--dns-brute": "Perform a DNS brute force on the domain.",
+   "-c": "Perform a DNS brute force on the domain.",
+   "--filename": "Save the results to an XML and JSON file.",
+   "-f": "Save the results to an XML and JSON file.",
+   "--wordlist": "Specify a wordlist for API endpoint scanning.",
+   "-w": "Specify a wordlist for API endpoint scanning.",
+   "--api-scan": "Scan for API endpoints.",
+   "-a": "Scan for API endpoints.",
+   "--quiet": "Suppress missing API key warnings and reading the api- keys file.",
+   "-q": "Suppress missing API key warnings and reading the api- keys file.",
+   "--source": "baidu, bevigil, bitbucket, brave, bufferoverun, builtwith, censys, certspotter, chaos, commoncrawl, criminalip, crtsh, dehashed, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanInternetDB, subdomaincenter, subdomainfinderc99, thc, threatcrowd, tomba, urlscan, venacus, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye",
+   "-b": "baidu, bevigil, bitbucket, brave, bufferoverun, builtwith, censys, certspotter, chaos, commoncrawl, criminalip, crtsh, dehashed, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanInternetDB, subdomaincenter, subdomainfinderc99, thc, threatcrowd, tomba, urlscan, venacus, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye"
+  },
+  "values_seen": {
+   "-d": "DOMAIN",
+   "--domain": "DOMAIN",
+   "-l": "LIMIT",
+   "--limit": "LIMIT",
+   "-S": "START",
+   "--start": "START",
+   "--screenshot": "SCREENSHOT",
+   "-e": "DNS_SERVER",
+   "--dns-server": "DNS_SERVER",
+   "-r": "[DNS_RESOLVE]",
+   "--dns-resolve": "[DNS_RESOLVE]",
+   "-f": "FILENAME",
+   "--filename": "FILENAME",
+   "-w": "WORDLIST",
+   "--wordlist": "WORDLIST",
+   "-b": "SOURCE",
+   "--source": "SOURCE"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--domain": [
+    "-d"
+   ],
+   "--limit": [
+    "-l"
+   ],
+   "--start": [
+    "-S"
+   ],
+   "--proxies": [
+    "-p"
+   ],
+   "--shodan": [
+    "-s"
+   ],
+   "--dns-server": [
+    "-e"
+   ],
+   "--take-over": [
+    "-t"
+   ],
+   "--dns-resolve": [
+    "-r"
+   ],
+   "--dns-lookup": [
+    "-n"
+   ],
+   "--dns-brute": [
+    "-c"
+   ],
+   "--filename": [
+    "-f"
+   ],
+   "--wordlist": [
+    "-w"
+   ],
+   "--api-scan": [
+    "-a"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--source": [
+    "-b"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "theHarvester",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "609a1ea44731c4f38f3c54102b6d96ff5d194246a84c41e27979f44bbfce86ae",
+  "text": "Created default proxies.yaml at /home/ctk/.theHarvester/proxies.yaml\n*******************************************************************\n*  _   _                                            _             *\n* | |_| |__   ___    /\\  /\\__ _ _ ____   _____  ___| |_ ___ _ __  *\n* | __|  _ \\ / _ \\  / /_/ / _` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__| *\n* | |_| | | |  __/ / __  / (_| | |   \\ V /  __/\\__ \\ ||  __/ |    *\n*  \\__|_| |_|\\___| \\/ /_/ \\__,_|_|    \\_/ \\___||___/\\__\\___|_|    *\n*                                                                 *\n* theHarvester 4.11.1                                             *\n* Coded by Christian Martorella                                   *\n* Edge-Security Research                                          *\n* cmartorella@edge-security.com                                   *\n*                                                                 *\n*******************************************************************\nusage: theHarvester [-h] -d DOMAIN [-l LIMIT] [-S START] [-p] [-s]\n                    [--screenshot SCREENSHOT] [-e DNS_SERVER] [-t]\n                    [-r [DNS_RESOLVE]] [-n] [-c] [-f FILENAME] [-w WORDLIST]\n                    [-a] [-q] [-b SOURCE]\n\ntheHarvester is used to gather open source intelligence (OSINT) on a company\nor domain.\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Company name or domain to search.\n  -l LIMIT, --limit LIMIT\n                        Limit the number of search results, default=500.\n  -S START, --start START\n                        Start with result number X, default=0.\n  -p, --proxies         Use proxies for requests, enter proxies in\n                        proxies.yaml.\n  -s, --shodan          Use Shodan to query discovered hosts.\n  --screenshot SCREENSHOT\n                        Take screenshots of resolved domains specify output\n                        directory: --screenshot output_directory\n  -e DNS_SERVER, --dns-server DNS_SERVER\n                        DNS server to use for lookup.\n  -t, --take-over       Check for takeovers.\n  -r [DNS_RESOLVE], --dns-resolve [DNS_RESOLVE]\n                        Perform DNS resolution on subdomains with a resolver\n                        list or passed in resolvers, default False.\n  -n, --dns-lookup      Enable DNS server lookup, default False.\n  -c, --dns-brute       Perform a DNS brute force on the domain.\n  -f FILENAME, --filename FILENAME\n                        Save the results to an XML and JSON file.\n  -w WORDLIST, --wordlist WORDLIST\n                        Specify a wordlist for API endpoint scanning.\n  -a, --api-scan        Scan for API endpoints.\n  -q, --quiet           Suppress missing API key warnings and reading the api-\n                        keys file.\n  -b SOURCE, --source SOURCE\n                        baidu, bevigil, bitbucket, brave, bufferoverun,\n                        builtwith, censys, certspotter, chaos, commoncrawl,\n                        criminalip, crtsh, dehashed, dnsdumpster, duckduckgo,\n                        dymo, fofa, fullhunt, github-code, gitlab,\n                        hackertarget, haveibeenpwned, hudsonrock, hunter,\n                        hunterhow, intelx, leakix, leaklookup, mojeek, netlas,\n                        onyphe, otx, pentesttools, projectdiscovery, rapiddns,\n                        robtex, rocketreach, securityscorecard,\n                        securityTrails, sherlockeye, shodan, shodanInternetDB,\n                        subdomaincenter, subdomainfinderc99, thc, threatcrowd,\n                        tomba, urlscan, venacus, virustotal, waybackarchive,\n                        whoisxml, windvane, yahoo, zoomeye\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--api-scan",
+   "--dns-brute",
+   "--dns-lookup",
+   "--dns-resolve",
+   "--dns-server",
+   "--domain",
+   "--filename",
+   "--limit",
+   "--proxies",
+   "--quiet",
+   "--screenshot",
+   "--shodan",
+   "--source",
+   "--start",
+   "--take-over",
+   "--wordlist"
+  ],
+  "unconfirmed": [
+   "--dns-tld",
+   "--google-dork",
+   "--host",
+   "--log-level",
+   "--port",
+   "--rate-limit",
+   "--reload",
+   "--virtual-host"
+  ],
+  "help_only": [
+   "--help",
+   "-S",
+   "-a",
+   "-b",
+   "-c",
+   "-d",
+   "-e",
+   "-f",
+   "-h",
+   "-l",
+   "-n",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-w"
+  ],
+  "mining_coverage": 0.48484848484848486
+ },
+ "surface": {
+  "flags": {
+   "--api-scan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Scan for API endpoints.",
+    "kind": "option",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--dns-brute": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform a DNS brute force on the domain.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--dns-lookup": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable DNS server lookup, default False.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--dns-resolve": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform DNS resolution on subdomains with a resolver list or passed in resolvers, default False.",
+    "kind": "option",
+    "metavar": "[DNS_RESOLVE]",
+    "first_tag": "4.3.0",
+    "first_date": "2023-05-19T13:34:04+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--dns-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "DNS server to use for lookup.",
+    "kind": "option",
+    "metavar": "DNS_SERVER",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--dns-tld": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Perform a DNS TLD expansion discovery, default False.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.0.3",
+    "last_date": "2021-11-25T17:42:02Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Company name or domain to search.",
+    "kind": "option",
+    "metavar": "DOMAIN",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--filename": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Save the results to an XML and JSON file.",
+    "kind": "option",
+    "metavar": "FILENAME",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--google-dork": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use Google Dorks for Google search.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.0.3",
+    "last_date": "2021-11-25T17:42:02Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "IP address to listen on default is 127.0.0.1",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Limit the number of search results, default=500.",
+    "kind": "option",
+    "metavar": "LIMIT",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--log-level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set logging level, default is info but [critical|error|warning|info|debug|trace] can be set",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port to bind the web server to, default is 5000",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--proxies": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use proxies for requests, enter proxies in proxies.yaml.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Suppress missing API key warnings and reading the api- keys file.",
+    "kind": "option",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--rate-limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set API rate limit (e.g., \"10/minute\", \"100/hour\"), default is 5/minute",
+    "kind": "option",
+    "first_tag": "4.9.0",
+    "first_date": "2025-12-21T05:53:24Z",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--reload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable automatic reload used during development of the api",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": false
+   },
+   "--screenshot": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Take screenshots of resolved domains specify output directory: --screenshot output_directory",
+    "kind": "option",
+    "metavar": "SCREENSHOT",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--shodan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use Shodan to query discovered hosts.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--source": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "baidu, bevigil, bitbucket, brave, bufferoverun, builtwith, censys, certspotter, chaos, commoncrawl, criminalip, crtsh, dehashed, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanInternetDB, subdomaincenter, subdomainfinderc99, thc, threatcrowd, tomba, urlscan, venacus, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye",
+    "kind": "option",
+    "metavar": "SOURCE",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--start": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Start with result number X, default=0.",
+    "kind": "option",
+    "metavar": "START",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--take-over": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check for takeovers.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--virtual-host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Verify host name via DNS resolution and search for virtual hosts.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.8.2",
+    "last_date": "2025-07-21T20:25:59+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false
+   },
+   "--wordlist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify a wordlist for API endpoint scanning.",
+    "kind": "option",
+    "metavar": "WORDLIST",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-w"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-14eecaa2",
+    "argv": [
+     "theHarvester",
+     "--host",
+     "dvwa",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1277
+   },
+   {
+    "id": "t-net-b92370b9",
+    "argv": [
+     "theHarvester",
+     "--domain",
+     "ctk.test",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-b92370b9' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-356060b1",
+    "argv": [
+     "theHarvester",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-b92370b9' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-85fd79f9",
+    "argv": [
+     "theHarvester",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1277
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "theHarvester -d yale.edu -b baidu",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 72,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b certspotter",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 76,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d hcl.com -b crtsh",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 80,
+    "reason": "needs-live-target",
+    "token": "hcl.com"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b duckduckgo",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 84,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b hackertarget",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 88,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b otx",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 92,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b rapiddns",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 96,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b urlscan",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 100,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -b yahoo",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 104,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   },
+   {
+    "raw": "theHarvester -d yale.edu -c",
+    "source": "ci",
+    "path": ".github/workflows/theHarvester.yml",
+    "line": 108,
+    "reason": "needs-live-target",
+    "token": "yale.edu"
+   }
+  ]
+ },
+ "tool": "theharvester",
+ "repo": "laramies/theHarvester",
+ "head_sha": "6c5f3a388489b66297c8abab67c31a8a9c5927bd",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-13T23:38:21.865542+00:00"
+}

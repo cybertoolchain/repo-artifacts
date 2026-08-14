@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:97d1b2450421df180cf05bc0f11b62a40792fea9cdc6b249d900679c099f4f43",
-  "duration_s": 47.53,
-  "log_tail": "#10 34.05   Created wheel for python-status: filename=python_status-1.0.1-py3-none-any.whl size=4590 sha256=bcfd0da1e80e9f6c2b3f9c6da199c9130f892bf9a42fda22347cd3f22bf6843d\n#10 34.05   Stored in directory: /tmp/pip-ephem-wheel-cache-npdu74bk/wheels/c9/40/4a/86d990d91f152dc0667cf01f4a002c700f45c7c460033e2fea\n#10 34.05 Successfully built faraday-cli validators python-status\n#10 34.11 Installing collected packages: text-unidecode, spinners, pytz, python-status, pyperclip, py-sneakers, wcwidth, urllib3, tzdata, typing-extensions, termcolor, tabulate, soupsieve, six, simplejson, rpds-py, PyYAML, python-slugify, pygments, packaging, numpy, mdurl, markdown, lxml, idna, html2text, h11, filelock, decorator, colorama, click, charset_normalizer, certifi, attrs, validators, requests, referencing, python-dateutil, markdown-it-py, luddite, log-symbols, httpcore, beautifulsoup4, anyio, rich, requests-file, pandas, jsonschema-specifications, httpx, arrow, tldextract, simple-rest-client, rich-argparse, jsonschema, faraday-plugins, cmd2, faraday-cli\n#10 ...\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#10 [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && (/opt/venv/bin/pip install --no-cache-dir .      || ([ -f requirements.txt ]          && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt))\n#10 39.52 \n#10 39.52 Successfully installed PyYAML-6.0.3 anyio-4.14.2 arrow-1.4.0 attrs-26.1.0 beautifulsoup4-4.15.0 certifi-2026.7.22 charset_normalizer-3.4.9 click-8.4.2 cmd2-2.7.0 colorama-0.4.6 decorator-5.3.1 faraday-cli-2.2.2 faraday-plugins-1.29.0 filelock-3.32.2 h11-0.16.0 html2text-2025.4.15 httpcore-1.0.9 httpx-0.28.0 idna-3.18 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 log-symbols-0.0.14 luddite-1.0.4 lxml-6.1.1 markdown-3.10.3 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.5.1 packaging-26.2 pandas-3.0.5 py-sneakers-1.0.1 pygments-2.20.0 pyperclip-1.11.0 python-dateutil-2.9.0.post0 python-slugify-8.0.4 python-status-1.0.1 pytz-2026.3.post1 referencing-0.37.0 requests-2.34.2 requests-file-3.0.1 rich-15.0.0 rich-argparse-1.8.0 rpds-py-2026.6.3 simple-rest-client-1.2.1 simplejson-4.1.1 six-1.17.0 soupsieve-2.9.1 spinners-0.0.24 tabulate-0.10.0 termcolor-3.3.0 text-unidecode-1.3 tldextract-5.3.1 typing-extensions-4.16.0 tzdata-2026.3 urllib3-2.7.0 validators-0.20.0 wcwidth-0.8.2\n#10 DONE 39.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.6s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.121 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.1s done\n#20 exporting manifest sha256:d35ec938fc1dba8f9aa74b7c47df41163112b614bf587600491b2597b8d2f35c done\n#20 exporting config sha256:c214053e0f9ae5f5a020ef043ce6bab4bf5c2a469e86abd0b91b34fc1890fcc7 done\n#20 exporting attestation manifest sha256:03184bc56379c4b666642e32008c7e32247ec4c61cb422afc9c2c3aca5c21e26 done\n#20 exporting manifest list sha256:97d1b2450421df180cf05bc0f11b62a40792fea9cdc6b249d900679c099f4f43 done\n#20 naming to docker.io/ctk-exec/faraday-cli:1b432e654570 done\n#20 unpacking to docker.io/ctk-exec/faraday-cli:1b432e654570\n#20 unpacking to docker.io/ctk-exec/faraday-cli:1b432e654570 1.0s done\n#20 DONE 5.1s",
+  "image_digest": "sha256:c53390576466e372639d380eae6524fb7ea82840777429dbe8666549bd8a442c",
+  "duration_s": 48.46,
+  "log_tail": "#10 31.47   Building wheel for validators (pyproject.toml): started\n#10 31.60   Building wheel for validators (pyproject.toml): finished with status 'done'\n#10 31.60   Created wheel for validators: filename=validators-0.20.0-py3-none-any.whl size=19668 sha256=d2d88e4414ab0181ae92761e88d0125817ab7e71f78ebbd0cea5ccf1264bb171\n#10 31.60   Stored in directory: /tmp/pip-ephem-wheel-cache-cj07bj0l/wheels/97/ff/db/8c9971b2816ce633c00d05bf0178b77f9315ba2284f2607857\n#10 31.61   Building wheel for python-status (pyproject.toml): started\n#10 31.73   Building wheel for python-status (pyproject.toml): finished with status 'done'\n#10 31.73   Created wheel for python-status: filename=python_status-1.0.1-py3-none-any.whl size=4591 sha256=2da65e5fc3b82541dcef710d5424567f6ecbab83b49b412630eb496af58bd65d\n#10 31.73   Stored in directory: /tmp/pip-ephem-wheel-cache-cj07bj0l/wheels/c9/40/4a/86d990d91f152dc0667cf01f4a002c700f45c7c460033e2fea\n#10 31.73 Successfully built faraday-cli validators python-status\n#10 31.79 Installing collected packages: text-unidecode, spinners, pytz, python-status, pyperclip, py-sneakers, wcwidth, urllib3, tzdata, typing-extensions, termcolor, tabulate, soupsieve, six, simplejson, rpds-py, PyYAML, python-slugify, pygments, packaging, numpy, mdurl, markdown, lxml, idna, html2text, h11, filelock, decorator, colorama, click, charset_normalizer, certifi, attrs, validators, requests, referencing, python-dateutil, markdown-it-py, luddite, log-symbols, httpcore, beautifulsoup4, anyio, rich, requests-file, pandas, jsonschema-specifications, httpx, arrow, tldextract, simple-rest-client, rich-argparse, jsonschema, faraday-plugins, cmd2, faraday-cli\n#10 38.24 \n#10 38.24 Successfully installed PyYAML-6.0.3 anyio-4.14.2 arrow-1.4.0 attrs-26.1.0 beautifulsoup4-4.15.0 certifi-2026.7.22 charset_normalizer-3.5.0 click-8.4.2 cmd2-2.7.0 colorama-0.4.6 decorator-5.3.1 faraday-cli-2.2.2 faraday-plugins-1.29.0 filelock-3.32.3 h11-0.16.0 html2text-2025.4.15 httpcore-1.0.9 httpx-0.28.0 idna-3.18 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 log-symbols-0.0.14 luddite-1.0.4 lxml-6.1.1 markdown-3.10.3 markdown-it-py-4.2.0 mdurl-0.1.2 numpy-2.5.2 packaging-26.3 pandas-3.0.5 py-sneakers-1.0.1 pygments-2.20.0 pyperclip-1.11.0 python-dateutil-2.9.0.post0 python-slugify-8.0.4 python-status-1.0.1 pytz-2026.3.post1 referencing-0.37.0 requests-2.34.2 requests-file-3.0.1 rich-15.0.0 rich-argparse-1.8.0 rpds-py-2026.6.3 simple-rest-client-1.2.1 simplejson-4.1.1 six-1.17.0 soupsieve-2.9.2 spinners-0.0.24 tabulate-0.10.0 termcolor-3.3.0 text-unidecode-1.3 tldextract-5.3.2 typing-extensions-4.16.0 tzdata-2026.3 urllib3-2.7.0 validators-0.20.0 wcwidth-0.8.2\n#10 DONE 38.5s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.5s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.5s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.115 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.2s done\n#20 exporting manifest sha256:94ad068009d2cb2c2429e7742c658ecc81da5c6d433924adadf164dc4fe928e1 done\n#20 exporting config sha256:4c87014e9dae66510f16c5e6edf650385a96f388be10bfc32ace9a3eade1cf63 done\n#20 exporting attestation manifest sha256:31857a1710ff0c5eeb32ce01790b38d3e835f7e55330730137f9bce792f52427 0.0s done\n#20 exporting manifest list sha256:c53390576466e372639d380eae6524fb7ea82840777429dbe8666549bd8a442c done\n#20 naming to docker.io/ctk-exec/faraday-cli:1b432e654570 done\n#20 unpacking to docker.io/ctk-exec/faraday-cli:1b432e654570\n#20 unpacking to docker.io/ctk-exec/faraday-cli:1b432e654570 2.2s done\n#20 DONE 6.5s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "usage: faraday-cli [-h] [command] ...\n\nCommands as arguments\n\npositional arguments:\n  command       optional command to run, if no command given, enter an\n                interactive shell\n  command_args  optional arguments for command\n\noptions:\n  -h, --help    show this help message and exit\n",
    "stderr": "",
-   "duration_ms": 495,
+   "duration_ms": 529,
    "truncated": false,
    "error": null
   },
@@ -53,24 +53,704 @@
    "argv": [
     "faraday-cli",
     "workspace",
-    "select",
-    "test_ws"
+    "list",
+    "-p"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nEXCEPTION of type 'MissingConfig' occurred with message: Missing Config, run 'faraday-cli auth'\nCannot write persistent history file '/home/ctk/.faraday-cli_history': [Errno 30] Read-only file system: '/home/ctk/.faraday-cli_history'\n",
-   "duration_ms": 865,
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\n\r\r\u280b Gathering data\r\r\u2819 Gathering data\rEXCEPTION of type 'MissingConfig' occurred with message: Missing Config, run 'faraday-cli auth'\n\r",
+   "duration_ms": 1034,
    "truncated": false,
    "error": null,
    "kind": "scenario",
-   "id": "t-model-ef86bfad",
-   "title": "Candidate \u2014 run against no fixture"
+   "id": "t-readme-1f8f35ac",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--agent-id",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 906,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-b6497c62",
+   "title": "ID of the agent (--agent-id)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--agent_id",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 899,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-b6881bb0",
+   "title": "Agent ID (--agent_id)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--bins",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 884,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-c0312103",
+   "title": "Bins of Histogram (--bins)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--calendar",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --calendar\n",
+   "duration_ms": 881,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-7f956fa6",
+   "title": "Calendar Heatmap chart (--calendar)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--confirmed",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --confirmed\n",
+   "duration_ms": 880,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-ea9dd20b",
+   "title": "Confirmed vulnerabilities (--confirmed)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--create-workspace",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --create-workspace\n",
+   "duration_ms": 879,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-137337c0",
+   "title": "Create the workspace it not exists (--create-workspace)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--different-scale",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --different-scale\n",
+   "duration_ms": 902,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-44addc5d",
+   "title": "Categories have different scales (--different-scale)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--dont-select",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --dont-select\n",
+   "duration_ms": 939,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-5e1e4841",
+   "title": "Dont select after create (--dont-select)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--executor_id",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 931,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d35db9c6",
+   "title": "Executor ID (--executor_id)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--force",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --force\n",
+   "duration_ms": 976,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-6223d441",
+   "title": "Process the output of the command regardless of the results (--force)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--histogram",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --histogram\n",
+   "duration_ms": 1003,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-e604c17c",
+   "title": "The --histogram option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--host_id",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 989,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-24fbb158",
+   "title": "Id of the host (--host_id)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--ignore-info",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --ignore-info\n",
+   "duration_ms": 1046,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-ad67fd55",
+   "title": "The --ignore-info option, advertised by the tool's own help, against no fixture"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--ignore-ssl",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --ignore-ssl\n",
+   "duration_ms": 1017,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-3dc71a16",
+   "title": "Ignore SSL verification (--ignore-ssl)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--json-output",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --json-output\n",
+   "duration_ms": 917,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-1a5f40f3",
+   "title": "Show output in json (--json-output)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--label-before",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --label-before\n",
+   "duration_ms": 931,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d3c26f20",
+   "title": "Display the values before the bars (--label-before)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--limit",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 953,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-38dfd95e",
+   "title": "Limit results per page (--limit)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--list-ip",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --list-ip\n",
+   "duration_ms": 909,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-f59c5b6b",
+   "title": "List ip only (--list-ip)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--no-interaction",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --no-interaction\n",
+   "duration_ms": 892,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-d4eedf27",
+   "title": "Skips user interaction for list pages (--no-interaction)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--no-labels",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --no-labels\n",
+   "duration_ms": 1004,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-24bcf4b6",
+   "title": "Do not print the label column (--no-labels)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--no-values",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --no-values\n",
+   "duration_ms": 965,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-7d4869af",
+   "title": "Do not print the values at end (--no-values)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--output",
+    "/tmp/ctk-capture/output.out",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '/tmp/ctk-capture/output.out' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 952,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-16189fa0",
+   "title": "Report output (--output)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--page",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 965,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-8b627da6",
+   "title": "Get specific page (--page)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--port",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 1011,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-2346ce9c",
+   "title": "Listen in port (--port)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--pretty",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --pretty\n",
+   "duration_ms": 979,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-113a290f",
+   "title": "Show table in a pretty format (--pretty)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--resolve-hostname",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --resolve-hostname\n",
+   "duration_ms": 939,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-56aed88b",
+   "title": "Doesnt resolve hostname (--resolve-hostname)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--show-inactive",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --show-inactive\n",
+   "duration_ms": 930,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-55de7404",
+   "title": "Show inactive workspaces (--show-inactive)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--show-ip",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --show-ip\n",
+   "duration_ms": 919,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-562bb9f8",
+   "title": "Show ip only (--show-ip)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--stacked",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --stacked\n",
+   "duration_ms": 914,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-a6a45869",
+   "title": "Stacked bar graph (--stacked)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--stat-type",
+    "severity",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: 'severity' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 924,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-52bd6b62",
+   "title": "Type of stat (--stat-type)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--status",
+    "open",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: 'open' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 932,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-f5584854",
+   "title": "Status of the vuln: open, closed, re-opened, risk-accepted (--status)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--stdin",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --stdin\n",
+   "duration_ms": 943,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-232af8da",
+   "title": "Read executor-params from stdin (--stdin)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--type",
+    "severity",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: 'severity' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 962,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-0080c21d",
+   "title": "Type of stat (--type)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--verbose",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --verbose\n",
+   "duration_ms": 961,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-1b159eee",
+   "title": "Verbose output, helpful for debugging (--verbose)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--vertical",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: unrecognized arguments: --vertical\n",
+   "duration_ms": 950,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-ec7c360d",
+   "title": "Vertical graph (--vertical)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--vulnerability-id",
+    "1",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '1' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 946,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-f906a140",
+   "title": "Vulnerability ID (--vulnerability-id)"
+  },
+  {
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "--width",
+    "50",
+    "list",
+    "-p"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\nusage: workspace [-h]\n                 {create,delete,disable,enable,get,list,select,dashboard} ...\nworkspace: error: argument {create,delete,disable,enable,get,list,select,dashboard}: invalid choice: '50' (choose from 'create', 'delete', 'disable', 'enable', 'get', 'list', 'select', 'dashboard')\n",
+   "duration_ms": 949,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-31da0776",
+   "title": "Width of graph in characters default:50 (--width)"
   },
   {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 4,
+   "commands_run": 41,
    "binary": "faraday-cli",
    "exit_code": null,
    "stdout": "",
@@ -80,8 +760,31 @@
    "error": null
   }
  ],
- "input_fingerprint": null,
- "examples": [],
+ "input_fingerprint": "23ee9297da7546a5",
+ "declared_commands": [
+  {
+   "name": "faraday-cli",
+   "source": "setup.py console_scripts"
+  }
+ ],
+ "examples": [
+  {
+   "id": "t-readme-1f8f35ac",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "faraday-cli",
+    "workspace",
+    "list",
+    "-p"
+   ],
+   "stdout": "",
+   "stderr": "Cant load plugin module: burp [No module named 'distutils']\n\r\r\u280b Gathering data\r\r\u2819 Gathering data\rEXCEPTION of type 'MissingConfig' occurred with message: Missing Config, run 'faraday-cli auth'\n\r",
+   "exit_code": 0,
+   "duration_ms": 1034,
+   "truncated": false,
+   "error": null
+  }
+ ],
  "help": {
   "flags_seen": {
    "--help": "show this help message and exit",
@@ -93,12 +796,14 @@
     "-h"
    ]
   },
-  "subcommand_flags": {},
+  "subcommand_flags": {
+   "workspace": {}
+  },
   "subcommands": [],
   "binary": "faraday-cli",
   "ladder_used": "--help",
   "depth": 2,
-  "capped": false,
+  "capped": true,
   "text_sha256": "12e3f0242bad48a7599473230deb3d67c6c7b438e5860e0df5e82ef139cc6fe3",
   "text": "usage: faraday-cli [-h] [command] ...\n\nCommands as arguments\n\npositional arguments:\n  command       optional command to run, if no command given, enter an\n                interactive shell\n  command_args  optional arguments for command\n\noptions:\n  -h, --help    show this help message and exit\n"
  },
@@ -1570,16 +2275,19 @@
     "source_path": "faraday_cli/shell/modules/workspace.py"
    }
   },
-  "subcommands": []
+  "subcommands": [],
+  "subcommand_flags": {
+   "workspace": {}
+  }
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 20,
-  "tried_this_wave": 1,
+  "tried": 51,
+  "tried_this_wave": 38,
   "promoted": 0,
   "results": [
    {
-    "id": "readme-1",
+    "id": "t-readme-5b2530c9",
     "argv": [
      "faraday-cli",
      "host",
@@ -1589,12 +2297,13 @@
     "path": "README.md",
     "line": 73,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 219
+    "output_bytes": 81
    },
    {
-    "id": "readme-2",
+    "id": "t-readme-503b0bee",
     "argv": [
      "faraday-cli",
      "tool",
@@ -1605,12 +2314,13 @@
     "path": "README.md",
     "line": 134,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 247
+    "output_bytes": 109
    },
    {
-    "id": "readme-3",
+    "id": "t-readme-0617a8c7",
     "argv": [
      "faraday-cli",
      "agent",
@@ -1620,12 +2330,13 @@
     "path": "README.md",
     "line": 148,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 294
+    "output_bytes": 156
    },
    {
-    "id": "readme-4",
+    "id": "t-readme-1f8f35ac",
     "argv": [
      "faraday-cli",
      "workspace",
@@ -1635,13 +2346,15 @@
     "source": "readme",
     "path": "docs/docs/commands.md",
     "line": 60,
-    "grade": "rejected",
-    "reason": "error-output:3/5-lines",
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 332
+    "output_bytes": 194,
+    "stability": 1.0
    },
    {
-    "id": "readme-5",
+    "id": "t-readme-dc4e4f11",
     "argv": [
      "faraday-cli",
      "host",
@@ -1652,12 +2365,13 @@
     "path": "docs/docs/commands.md",
     "line": 185,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 219
+    "output_bytes": 81
    },
    {
-    "id": "readme-6",
+    "id": "t-readme-2b0eb391",
     "argv": [
      "faraday-cli",
      "service",
@@ -1668,12 +2382,13 @@
     "path": "docs/docs/commands.md",
     "line": 323,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 219
+    "output_bytes": 81
    },
    {
-    "id": "readme-7",
+    "id": "t-readme-210acd2e",
     "argv": [
      "faraday-cli",
      "vuln",
@@ -1684,12 +2399,13 @@
     "path": "docs/docs/commands.md",
     "line": 359,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 219
+    "output_bytes": 81
    },
    {
-    "id": "readme-8",
+    "id": "t-readme-7349a057",
     "argv": [
      "faraday-cli",
      "executive_report",
@@ -1710,12 +2426,13 @@
     "path": "docs/docs/commands.md",
     "line": 744,
     "grade": "rejected",
-    "reason": "error-output:2/3-lines",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 222
+    "output_bytes": 84
    },
    {
-    "id": "readme-9",
+    "id": "t-readme-38d8c7e0",
     "argv": [
      "faraday-cli",
      "tool",
@@ -1728,12 +2445,13 @@
     "path": "docs/docs/index.md",
     "line": 17,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 247
+    "output_bytes": 109
    },
    {
-    "id": "readme-10",
+    "id": "t-readme-3e2c4afe",
     "argv": [
      "faraday-cli",
      "executive_report",
@@ -1748,12 +2466,13 @@
     "path": "docs/docs/index.md",
     "line": 48,
     "grade": "rejected",
-    "reason": "error-output:2/3-lines",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 222
+    "output_bytes": 84
    },
    {
-    "id": "surface-11",
+    "id": "t-surface-d0e3f7a1",
     "argv": [
      "faraday-cli",
      "/opt/ctk/fixtures/source-corpus"
@@ -1762,12 +2481,766 @@
     "path": "surface",
     "line": 0,
     "grade": "rejected",
-    "reason": "error-output:3/3-lines",
+    "reason": "error-output:2/2-lines",
+    "grader": 3,
     "exit_code": 0,
-    "output_bytes": 256
+    "output_bytes": 118
    },
    {
-    "id": "net-1",
+    "id": "t-net-42aca2ac",
+    "argv": [
+     "faraday-cli",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/2-lines",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 90
+   },
+   {
+    "id": "t-net-a96ce942",
+    "argv": [
+     "faraday-cli",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "error-output:2/2-lines",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 83
+   },
+   {
+    "id": "t-opt-b6497c62",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--agent-id",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--agent-id"
+   },
+   {
+    "id": "t-opt-b6881bb0",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--agent_id",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--agent_id"
+   },
+   {
+    "id": "t-opt-c0312103",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--bins",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--bins"
+   },
+   {
+    "id": "t-opt-7f956fa6",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--calendar",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 213,
+    "flag": "--calendar"
+   },
+   {
+    "id": "t-opt-ea9dd20b",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--confirmed",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 214,
+    "flag": "--confirmed"
+   },
+   {
+    "id": "t-opt-137337c0",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--create-workspace",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 221,
+    "flag": "--create-workspace"
+   },
+   {
+    "id": "t-opt-44addc5d",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--different-scale",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 220,
+    "flag": "--different-scale"
+   },
+   {
+    "id": "t-opt-5e1e4841",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--dont-select",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 216,
+    "flag": "--dont-select"
+   },
+   {
+    "id": "t-opt-d35db9c6",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--executor_id",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--executor_id"
+   },
+   {
+    "id": "t-opt-6223d441",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--force",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 210,
+    "flag": "--force"
+   },
+   {
+    "id": "t-opt-e604c17c",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--histogram",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 214,
+    "flag": "--histogram"
+   },
+   {
+    "id": "t-opt-24fbb158",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--host_id",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--host_id"
+   },
+   {
+    "id": "t-opt-ad67fd55",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--ignore-info",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 216,
+    "flag": "--ignore-info"
+   },
+   {
+    "id": "t-opt-3dc71a16",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--ignore-ssl",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 215,
+    "flag": "--ignore-ssl"
+   },
+   {
+    "id": "t-opt-1a5f40f3",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--json-output",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 216,
+    "flag": "--json-output"
+   },
+   {
+    "id": "t-opt-d3c26f20",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--label-before",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 217,
+    "flag": "--label-before"
+   },
+   {
+    "id": "t-opt-38dfd95e",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--limit",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--limit"
+   },
+   {
+    "id": "t-opt-f59c5b6b",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--list-ip",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 212,
+    "flag": "--list-ip"
+   },
+   {
+    "id": "t-opt-d4eedf27",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--no-interaction",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 219,
+    "flag": "--no-interaction"
+   },
+   {
+    "id": "t-opt-24bcf4b6",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--no-labels",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 214,
+    "flag": "--no-labels"
+   },
+   {
+    "id": "t-opt-7d4869af",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--no-values",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 214,
+    "flag": "--no-values"
+   },
+   {
+    "id": "t-opt-16189fa0",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--output",
+     "/tmp/ctk-capture/output.out",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 383,
+    "flag": "--output"
+   },
+   {
+    "id": "t-opt-8b627da6",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--page",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--page"
+   },
+   {
+    "id": "t-opt-2346ce9c",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--port",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--port"
+   },
+   {
+    "id": "t-opt-113a290f",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--pretty",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 211,
+    "flag": "--pretty"
+   },
+   {
+    "id": "t-opt-56aed88b",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--resolve-hostname",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 221,
+    "flag": "--resolve-hostname"
+   },
+   {
+    "id": "t-opt-55de7404",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--show-inactive",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 218,
+    "flag": "--show-inactive"
+   },
+   {
+    "id": "t-opt-562bb9f8",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--show-ip",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 212,
+    "flag": "--show-ip"
+   },
+   {
+    "id": "t-opt-a6a45869",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--stacked",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 212,
+    "flag": "--stacked"
+   },
+   {
+    "id": "t-opt-52bd6b62",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--stat-type",
+     "severity",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 364,
+    "flag": "--stat-type"
+   },
+   {
+    "id": "t-opt-f5584854",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--status",
+     "open",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 360,
+    "flag": "--status"
+   },
+   {
+    "id": "t-opt-232af8da",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--stdin",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 210,
+    "flag": "--stdin"
+   },
+   {
+    "id": "t-opt-0080c21d",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--type",
+     "severity",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 364,
+    "flag": "--type"
+   },
+   {
+    "id": "t-opt-1b159eee",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--verbose",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 212,
+    "flag": "--verbose"
+   },
+   {
+    "id": "t-opt-ec7c360d",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--vertical",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 213,
+    "flag": "--vertical"
+   },
+   {
+    "id": "t-opt-f906a140",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--vulnerability-id",
+     "1",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 357,
+    "flag": "--vulnerability-id"
+   },
+   {
+    "id": "t-opt-31da0776",
+    "argv": [
+     "faraday-cli",
+     "workspace",
+     "--width",
+     "50",
+     "list",
+     "-p"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 358,
+    "flag": "--width"
+   },
+   {
+    "id": "t-net-26b9b2a2",
     "argv": [
      "faraday-cli",
      "--url",
@@ -1784,140 +3257,6 @@
     "skipped_reason": null,
     "exit_code": 2,
     "output_bytes": 88
-   },
-   {
-    "id": "net-2",
-    "argv": [
-     "faraday-cli",
-     "http://dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 0,
-    "output_bytes": 228
-   },
-   {
-    "id": "net-3",
-    "argv": [
-     "faraday-cli",
-     "dvwa"
-    ],
-    "source": "surface",
-    "path": "surface",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "targets": [
-     "dvwa"
-    ],
-    "skipped_reason": null,
-    "exit_code": 0,
-    "output_bytes": 221
-   },
-   {
-    "id": "t-model-e43fcc7c",
-    "argv": [
-     "faraday-cli",
-     "auth"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 262
-   },
-   {
-    "id": "t-model-20b26f43",
-    "argv": [
-     "faraday-cli",
-     "workspace",
-     "create",
-     "demo_ws"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 237
-   },
-   {
-    "id": "t-model-5fcbd6d0",
-    "argv": [
-     "faraday-cli",
-     "workspace",
-     "select",
-     "demo_ws"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 294
-   },
-   {
-    "id": "t-model-fd0bf2ca",
-    "argv": [
-     "faraday-cli",
-     "list_ws"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 224
-   },
-   {
-    "id": "t-model-852bc254",
-    "argv": [
-     "faraday-cli",
-     "workspace",
-     "create",
-     "test_ws"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 237
-   },
-   {
-    "id": "t-model-ef86bfad",
-    "argv": [
-     "faraday-cli",
-     "workspace",
-     "select",
-     "test_ws"
-    ],
-    "source": "model",
-    "path": "model",
-    "line": 0,
-    "grade": "rejected",
-    "reason": "error-output:3/3-lines",
-    "grader": 2,
-    "exit_code": 0,
-    "output_bytes": 294
    }
   ],
   "not_attempted": [
@@ -2095,6 +3434,6 @@
  "repo": "infobyte/faraday-cli",
  "head_sha": "1b432e65457051ae5c7eef00abd16e0aec5fdf1a",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-03T17:27:37.076921+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T02:56:44.929064+00:00"
 }

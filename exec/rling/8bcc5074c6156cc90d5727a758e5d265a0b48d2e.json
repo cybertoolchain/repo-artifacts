@@ -2,21 +2,21 @@
  "build": {
   "ok": true,
   "tier": "c",
-  "image_digest": "sha256:2b3c73485d15280e0f555e24449870de07449cf0f5df8775f3c9c1980d12eb5c",
-  "duration_s": 33.29,
-  "log_tail": "#12 25.98 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 26.06 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#12 26.08 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#12 26.11 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#12 26.14 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#12 26.20 debconf: unable to initialize frontend: Dialog\n#12 26.20 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 26.20 debconf: falling back to frontend: Readline\n#12 26.20 debconf: unable to initialize frontend: Readline\n#12 26.20 debconf: (This frontend requires a controlling tty.)\n#12 26.20 debconf: falling back to frontend: Teletype\n#12 26.24 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 26.26 Setting up texinfo (6.8-6+b1) ...\n#12 26.27 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#12 26.28 Setting up dmsetup (2:1.02.185-2) ...\n#12 26.29 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#12 26.30 Processing triggers for install-info (6.8-6+b1) ...\n#12 26.31 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#12 DONE 26.4s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.122 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.1s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.4s done\n#19 exporting manifest sha256:7f87d260df48ad4a94cbb5863458bed3353bb8f2b388d3bb589587ba6d5da1f4 done\n#19 exporting config sha256:6998a11f67ba665feb75aa9fb2ea1d1b10dfc37c790d79c28b05d883b1606566 done\n#19 exporting attestation manifest sha256:412a8d89eb5e0095e5aeaa58e0cbd58eca6d75a92c4b5c63d0a6307416e8edf6 0.0s done\n#19 exporting manifest list sha256:2b3c73485d15280e0f555e24449870de07449cf0f5df8775f3c9c1980d12eb5c done\n#19 naming to docker.io/ctk-exec/rling:8bcc5074c615 done\n#19 unpacking to docker.io/ctk-exec/rling:8bcc5074c615\n#19 unpacking to docker.io/ctk-exec/rling:8bcc5074c615 0.7s done\n#19 DONE 4.1s",
+  "image_digest": "sha256:dacee45113133c4a16771b5db0d8b12e2ae2bbfaa721e130da6c89b02fc36b5c",
+  "duration_s": 2.74,
+  "log_tail": "\n#9 [build 3/5] WORKDIR /src\n#9 CACHED\n\n#10 [build 4/5] COPY . .\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\";     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\";     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\";     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\";     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\");     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\";     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\";     else make -j\"$(nproc)\"; fi\n#11 0.162 cc -fomit-frame-pointer -pthread -O3 -fgnu89-inline -c rling.c\n#11 0.162 cc -fomit-frame-pointer -pthread -O3 -fgnu89-inline -c yarn.c\n#11 0.163 cc -fomit-frame-pointer -pthread -O3 -fgnu89-inline -c qsort_mt.c\n#11 0.163 cc -fomit-frame-pointer -O3  -fgnu89-inline -o getpass getpass.c\n#11 0.163 cc -fomit-frame-pointer -O3  -fgnu89-inline -o rehex rehex.c\n#11 0.164 cc -fomit-frame-pointer -O3  -fgnu89-inline -o splitlen splitlen.c\n#11 0.164 cc -fomit-frame-pointer -O3  -fgnu89-inline -o dedupe dedupe.c -lJudy\n#11 0.999 cc  -fgnu89-inline -pthread -o rling rling.o yarn.o qsort_mt.o -lz\n#11 DONE 1.0s\n\n#12 [stage-1 2/8] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.0s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.246 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.3s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 0.2s done\n#19 exporting manifest sha256:8b6258eb01164b31dfd6c0240ee0571e435d1f963ebdfd08ca9686e7dca95b3b 0.0s done\n#19 exporting config sha256:dbf6177566e2650c41aaa6ca921fd891ffa61c9fae541aef837767892f0c1fdd 0.0s done\n#19 exporting attestation manifest sha256:4245907cd57aed6869c8b5eafac087ca2e6b4d1b2802333a0dabaffcfe5eefcd 0.0s done\n#19 exporting manifest list sha256:dacee45113133c4a16771b5db0d8b12e2ae2bbfaa721e130da6c89b02fc36b5c done\n#19 naming to docker.io/ctk-exec/rling:8bcc5074c615 done\n#19 unpacking to docker.io/ctk-exec/rling:8bcc5074c615 0.0s done\n#19 DONE 0.3s",
   "error": null,
   "timed_out": false
  },
  "captures": [
   {
    "argv": [
-    "rling",
+    "dedupe",
     "--help"
    ],
    "exit_code": 1,
    "stdout": "",
-   "stderr": "rling: unrecognized option '--help'\nrling version: 1.84 2026/07/03 05:52:30 dlr Exp dlr $\n\nrling - remove matching lines from a file\nrling input output [remfil1 remfile2 ...]\n\n\t-i\t\tIgnore any error/missing files on remove list\n\t-d\t\tRemoves duplicate lines from input (on by default)\n\t-D file\t\tWrite duplicates to file\n\t-n\t\tDo not remove duplicate lines from input\n\t-c\t\tOutput lines common to input and remove files\n\t-s\t\tSort output. Default is input order.\n\t\t\tThis will make the -b and -f options substantially faster\n\t-t number\tNumber of threads to use\n\t-p prime\tForce size of hash table\n\t-b\t\tUse binary search vs hash (slower, but less memory)\n\t-2\t\tUse rli2 mode - all files must be sorted. Low mem usage.\n\t-f\t\tUse files instead of memory (slower, but small memory)\n\t-l [len]\t\tLimit all matching to a specific length.\n\t-M memsize\tMaximum memory to use for -f mode\n\t-T path\t\tDirectory to store temp files in\n\t-q [cahwl]\tDo frequency analysis on input\n\t\t\ta - all output, c - count, l - length, w - word,\n\t\t\ts - running statistics, h - append histogram\n\t\t\tAdditional files will be matched against input files\n\t-h\t\tThis help\n\n\tstdin and stdout can be used in the place of any filename\nTotal runtime 0.0000 seconds\n",
+   "stderr": "dedupe: unrecognized option '--help'\ndedupe Version 1.5 2020/07/31 02:36:55 dlr Exp dlr $\n\ndedupe [-u] [file file...]\nIf no files supplied, reads from stdin.  Always writes to stdout\nIf stdin is used as a filename, the actual stdin will read\n\t-x\t\tUse xxHash to hash each line. Saves memory\n\t-S exp\t\tSets $HEX[] conversion for char or range\n\t-U exp\t\tResets $HEX[] conversion for char or range\n\t\t\tSpecify a character like a,b,c, or a range like a-f,\n\t\t\t0x61-0x66 or as decimal values line 0-32.\n",
    "duration_ms": 0,
    "truncated": false,
    "error": null
@@ -24,11 +24,11 @@
   {
    "argv": [
     "man",
-    "rling"
+    "dedupe"
    ],
    "exit_code": 16,
    "stdout": "",
-   "stderr": "No manual entry for rling\n",
+   "stderr": "No manual entry for dedupe\n",
    "duration_ms": 1,
    "truncated": false,
    "error": null,
@@ -39,11 +39,11 @@
     "info",
     "--output=-",
     "--subnodes",
-    "rling"
+    "dedupe"
    ],
    "exit_code": 0,
    "stdout": "",
-   "stderr": "info: Cannot find node '(rling)Top'\n",
+   "stderr": "info: Cannot find node '(dedupe)Top'\n",
    "duration_ms": 1,
    "truncated": false,
    "error": null,
@@ -59,8 +59,8 @@
    ],
    "exit_code": 0,
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
-   "duration_ms": 0,
+   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0004 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0006 seconds\n",
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -79,8 +79,8 @@
    ],
    "exit_code": 0,
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Temporary file path: /opt/ctk/fixtures/hashes/wordlist.txt\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
-   "duration_ms": 0,
+   "stderr": "Temporary file path: /opt/ctk/fixtures/hashes/wordlist.txt\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0004 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0006 seconds\n",
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -98,8 +98,8 @@
    ],
    "exit_code": 0,
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Will output lines common to input and remove files\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
-   "duration_ms": 0,
+   "stderr": "Will output lines common to input and remove files\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0003 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0005 seconds\n",
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -117,8 +117,8 @@
    ],
    "exit_code": 0,
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
-   "duration_ms": 0,
+   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0003 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0005 seconds\n",
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -126,11 +126,62 @@
    "title": "Sort output (-s)"
   },
   {
+   "argv": [
+    "rling",
+    "-q",
+    "cw",
+    "/opt/ctk/fixtures/hashes/wordlist.txt",
+    "stdout",
+    "known-weak.txt",
+    "common-words.txt"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "File \"known-weak.txt\" not found.  Aborting (see -i option)\nTotal runtime 0.0000 seconds\n",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-9a78c5ca",
+   "title": "From the project's documentation \u2014 run against hashes"
+  },
+  {
+   "argv": [
+    "dedupe",
+    "/opt/ctk/fixtures/hashes/md5.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "31f52566fe81e1f92d72e90f5845db10\nbaa990ff718d8f66a9e253f0a83b0976\n2723e0671d80057b86428a6fd7b1a5b5\n6245d29769953e9fc4ebd2050668efb4\nc85cfd6cc5c159174bd98c747a1bb4f8\nb52aa655dfa49004391cae3febd0c3db\ne0ad5c871fb0f2576e14f7e37757d32d\ne037c9d237c1e0cadebaf93530562155\n",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-556226ce",
+   "title": "Built from the tool's own advertised flags \u2014 run against hashes"
+  },
+  {
+   "argv": [
+    "dedupe",
+    "/opt/ctk/fixtures/hashes/md5.txt",
+    "/opt/ctk/fixtures/hashes/md5.txt"
+   ],
+   "exit_code": 0,
+   "stdout": "31f52566fe81e1f92d72e90f5845db10\nbaa990ff718d8f66a9e253f0a83b0976\n2723e0671d80057b86428a6fd7b1a5b5\n6245d29769953e9fc4ebd2050668efb4\nc85cfd6cc5c159174bd98c747a1bb4f8\nb52aa655dfa49004391cae3febd0c3db\ne0ad5c871fb0f2576e14f7e37757d32d\ne037c9d237c1e0cadebaf93530562155\n",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-d2a9df93",
+   "title": "Built from the tool's own advertised flags \u2014 run against hashes"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 7,
-   "binary": "rling",
+   "commands_run": 10,
+   "binary": "dedupe",
    "exit_code": null,
    "stdout": "",
    "stderr": "",
@@ -152,9 +203,9 @@
     "stdout"
    ],
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
+   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0004 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0006 seconds\n",
    "exit_code": 0,
-   "duration_ms": 0,
+   "duration_ms": 1,
    "truncated": false,
    "error": null
   },
@@ -171,9 +222,9 @@
     "stdout"
    ],
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Temporary file path: /opt/ctk/fixtures/hashes/wordlist.txt\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
+   "stderr": "Temporary file path: /opt/ctk/fixtures/hashes/wordlist.txt\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0004 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0006 seconds\n",
    "exit_code": 0,
-   "duration_ms": 0,
+   "duration_ms": 1,
    "truncated": false,
    "error": null
   },
@@ -189,9 +240,9 @@
     "stdout"
    ],
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Will output lines common to input and remove files\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
+   "stderr": "Will output lines common to input and remove files\nReading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0003 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0000 seconds\n\n0 total lines matched in 0.0000 seconds\nFinal sort in 0.0000 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0005 seconds\n",
    "exit_code": 0,
-   "duration_ms": 0,
+   "duration_ms": 1,
    "truncated": false,
    "error": null
   },
@@ -207,541 +258,32 @@
     "stdout"
    ],
    "stdout": "\t\tHistogram of lengths\nCount     Length    Percent Cumulative\n5              9     41.67%     41.67%\n2              8     16.67%     58.33%\n2             12     16.67%     75.00%\n1              7      8.33%     83.33%\n1             11      8.33%     91.67%\n1             16      8.33%    100.00%\n",
-   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0000 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0002 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0003 seconds\n",
+   "stderr": "Reading \"/opt/ctk/fixtures/hashes/wordlist.txt\"...    \b\b\b\b100%   131 bytes total in 0.0001 seconds\nCounting lines...    \b\b\b\bFound 12 lines in 0.0003 seconds\nEstimated memory required: 104,858,051 (100.00Mbytes)\nSorting... took 0.0000 seconds\nAnalyzing:     \rFrequency:      \b\b\b\b12 unique (0 duplicate lines) in 0.0001 seconds\n\n0 total lines matched in 0.0001 seconds\nInput file had 12 lines, with lengths from 7 to 16\nWriting analysis to \"stdout\"\n\nWrote 8 lines in 0.0000 seconds\nTotal runtime 0.0005 seconds\n",
+   "exit_code": 0,
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-surface-556226ce",
+   "title": "Built from the tool's own advertised flags \u2014 run against hashes",
+   "argv": [
+    "dedupe",
+    "/opt/ctk/fixtures/hashes/md5.txt"
+   ],
+   "stdout": "31f52566fe81e1f92d72e90f5845db10\nbaa990ff718d8f66a9e253f0a83b0976\n2723e0671d80057b86428a6fd7b1a5b5\n6245d29769953e9fc4ebd2050668efb4\nc85cfd6cc5c159174bd98c747a1bb4f8\nb52aa655dfa49004391cae3febd0c3db\ne0ad5c871fb0f2576e14f7e37757d32d\ne037c9d237c1e0cadebaf93530562155\n",
+   "stderr": "",
    "exit_code": 0,
    "duration_ms": 0,
    "truncated": false,
    "error": null
   }
  ],
- "help": {
-  "flags_seen": {
-   "-i": "Ignore any error/missing files on remove list",
-   "-d": "Removes duplicate lines from input (on by default)",
-   "-D": "Write duplicates to file",
-   "-n": "Do not remove duplicate lines from input",
-   "-c": "Output lines common to input and remove files",
-   "-s": "Sort output. Default is input order. This will make the -b and -f options substantially faster",
-   "-t": "",
-   "-p": "",
-   "-b": "Use binary search vs hash (slower, but less memory)",
-   "-2": "Use rli2 mode - all files must be sorted. Low mem usage.",
-   "-f": "Use files instead of memory (slower, but small memory)",
-   "-l": "Limit all matching to a specific length.",
-   "-M": "",
-   "-T": "Directory to store temp files in",
-   "-q": "a - all output, c - count, l - length, w - word, s - running statistics, h - append histogram Additional files will be matched against input files",
-   "-h": "This help"
-  },
-  "values_seen": {
-   "-D": "file",
-   "-l": "[len]",
-   "-T": "path"
-  },
-  "aliases": {},
-  "subcommand_flags": {},
-  "subcommands": [],
-  "binary": "rling",
-  "ladder_used": "--help",
-  "depth": 2,
-  "capped": false,
-  "text_sha256": "26884a9c82da5a98d08989847eebc5b32ea52a5025fd5fee4262972bc99412e8",
-  "text": "rling: unrecognized option '--help'\nrling version: 1.84 2026/07/03 05:52:30 dlr Exp dlr $\n\nrling - remove matching lines from a file\nrling input output [remfil1 remfile2 ...]\n\n\t-i\t\tIgnore any error/missing files on remove list\n\t-d\t\tRemoves duplicate lines from input (on by default)\n\t-D file\t\tWrite duplicates to file\n\t-n\t\tDo not remove duplicate lines from input\n\t-c\t\tOutput lines common to input and remove files\n\t-s\t\tSort output. Default is input order.\n\t\t\tThis will make the -b and -f options substantially faster\n\t-t number\tNumber of threads to use\n\t-p prime\tForce size of hash table\n\t-b\t\tUse binary search vs hash (slower, but less memory)\n\t-2\t\tUse rli2 mode - all files must be sorted. Low mem usage.\n\t-f\t\tUse files instead of memory (slower, but small memory)\n\t-l [len]\t\tLimit all matching to a specific length.\n\t-M memsize\tMaximum memory to use for -f mode\n\t-T path\t\tDirectory to store temp files in\n\t-q [cahwl]\tDo frequency analysis on input\n\t\t\ta - all output, c - count, l - length, w - word,\n\t\t\ts - running statistics, h - append histogram\n\t\t\tAdditional files will be matched against input files\n\t-h\t\tThis help\n\n\tstdin and stdout can be used in the place of any filename\nTotal runtime 0.0000 seconds\n"
- },
- "validation": {
-  "confirmed": [],
-  "unconfirmed": [],
-  "help_only": [
-   "-2",
-   "-D",
-   "-M",
-   "-T",
-   "-b",
-   "-c",
-   "-d",
-   "-f",
-   "-h",
-   "-i",
-   "-l",
-   "-n",
-   "-p",
-   "-q",
-   "-s",
-   "-t"
-  ],
-  "mining_coverage": 0.0
- },
- "surface": {
-  "flags": {
-   "-2": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Use rli2 mode - all files must be sorted. Low mem usage."
-   },
-   "-D": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Write duplicates to file",
-    "metavar": "file"
-   },
-   "-M": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": ""
-   },
-   "-T": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Directory to store temp files in",
-    "metavar": "path"
-   },
-   "-b": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Use binary search vs hash (slower, but less memory)"
-   },
-   "-c": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Output lines common to input and remove files"
-   },
-   "-d": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Removes duplicate lines from input (on by default)"
-   },
-   "-f": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Use files instead of memory (slower, but small memory)"
-   },
-   "-h": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "This help"
-   },
-   "-i": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Ignore any error/missing files on remove list"
-   },
-   "-l": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Limit all matching to a specific length.",
-    "metavar": "[len]"
-   },
-   "-n": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Do not remove duplicate lines from input"
-   },
-   "-p": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": ""
-   },
-   "-q": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "a - all output, c - count, l - length, w - word, s - running statistics, h - append histogram Additional files will be matched against input files"
-   },
-   "-s": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": "Sort output. Default is input order. This will make the -b and -f options substantially faster"
-   },
-   "-t": {
-    "source": "runtime",
-    "runtime_confirmed": true,
-    "help": ""
-   }
-  },
-  "subcommands": []
- },
- "skipped_reason": null,
- "example_trials": {
-  "tried": 19,
-  "tried_this_wave": 0,
-  "promoted": 0,
-  "results": [
-   {
-    "argv": [
-     "rling",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "grade": "verified",
-    "id": "t-readme-d38d2ddc",
-    "line": 147,
-    "output_bytes": 834,
-    "path": "README.md",
-    "reason": "ran-with-output",
-    "source": "readme",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-q",
-     "cw",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout",
-     "known-weak.txt",
-     "common-words.txt"
-    ],
-    "exit_code": 1,
-    "grade": "rejected",
-    "id": "t-readme-9a78c5ca",
-    "line": 204,
-    "output_bytes": 88,
-    "path": "README.md",
-    "reason": "failed-with-error-output",
-    "source": "readme"
-   },
-   {
-    "argv": [
-     "rling",
-     "/opt/ctk/fixtures/hashes/md5.txt"
-    ],
-    "exit_code": 1,
-    "grade": "rejected",
-    "id": "t-surface-464e4a79",
-    "line": 0,
-    "output_bytes": 1230,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "/opt/ctk/fixtures/hashes/md5.txt",
-     "/opt/ctk/fixtures/hashes/md5.txt"
-    ],
-    "exit_code": 1,
-    "grade": "rejected",
-    "id": "t-surface-d26f3294",
-    "line": 0,
-    "output_bytes": 556,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-f",
-     "/opt/ctk/fixtures/hashes/md5.txt"
-    ],
-    "exit_code": 1,
-    "grade": "rejected",
-    "id": "t-surface-37af2c1c",
-    "line": 0,
-    "output_bytes": 1230,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-i",
-     "/opt/ctk/fixtures/hashes/md5.txt"
-    ],
-    "exit_code": 1,
-    "grade": "rejected",
-    "id": "t-surface-fd26844a",
-    "line": 0,
-    "output_bytes": 1230,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-2",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-2",
-    "grade": "verified",
-    "id": "t-opt-6f6f2fa5",
-    "line": 0,
-    "output_bytes": 834,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-D",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 1,
-    "flag": "-D",
-    "grade": "rejected",
-    "id": "t-opt-b9193888",
-    "line": 0,
-    "output_bytes": 137,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-M",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 1,
-    "flag": "-M",
-    "grade": "rejected",
-    "id": "t-opt-a2152bfd",
-    "line": 0,
-    "output_bytes": 236,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-T",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-T",
-    "grade": "verified",
-    "id": "t-opt-d3d72435",
-    "line": 0,
-    "output_bytes": 893,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-b",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-b",
-    "grade": "verified",
-    "id": "t-opt-0e82131f",
-    "line": 0,
-    "output_bytes": 834,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-c",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-c",
-    "grade": "verified",
-    "id": "t-opt-c99ff4a2",
-    "line": 0,
-    "output_bytes": 885,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-d",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-d",
-    "grade": "verified",
-    "id": "t-opt-0e4c7cb3",
-    "line": 0,
-    "output_bytes": 834,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-f",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 1,
-    "flag": "-f",
-    "grade": "rejected",
-    "id": "t-opt-41840e63",
-    "line": 0,
-    "output_bytes": 218,
-    "path": "surface",
-    "reason": "failed-with-error-output",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-i",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-i",
-    "grade": "verified",
-    "id": "t-opt-7bd7d0df",
-    "line": 0,
-    "output_bytes": 834,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-n",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-n",
-    "grade": "verified",
-    "id": "t-opt-d6b99e65",
-    "line": 0,
-    "output_bytes": 834,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-p",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 1,
-    "flag": "-p",
-    "grade": "rejected",
-    "id": "t-opt-200e6f01",
-    "line": 0,
-    "output_bytes": 63,
-    "path": "surface",
-    "reason": "output-does-not-reference-its-input",
-    "source": "surface"
-   },
-   {
-    "argv": [
-     "rling",
-     "-s",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 0,
-    "flag": "-s",
-    "grade": "verified",
-    "id": "t-opt-eb29adc3",
-    "line": 0,
-    "output_bytes": 805,
-    "path": "surface",
-    "reason": "ran-with-output",
-    "source": "surface",
-    "stability": 1.0
-   },
-   {
-    "argv": [
-     "rling",
-     "-t",
-     "-q",
-     "h",
-     "/opt/ctk/fixtures/hashes/wordlist.txt",
-     "stdout"
-    ],
-    "exit_code": 1,
-    "flag": "-t",
-    "grade": "rejected",
-    "id": "t-opt-0f3e8e82",
-    "line": 0,
-    "output_bytes": 56,
-    "path": "surface",
-    "reason": "no-output",
-    "source": "surface"
-   }
-  ],
-  "not_attempted": [
-   {
-    "raw": "rling [options] input output [remfile1 remfile2 ...]",
-    "source": "readme",
-    "path": "README.md",
-    "line": 64,
-    "reason": "syntax-template",
-    "token": "[options]"
-   },
-   {
-    "raw": "rling -q h wordlist.txt.gz stdout",
-    "source": "readme",
-    "path": "README.md",
-    "line": 212,
-    "reason": "no-input-bound",
-    "token": ""
-   }
-  ]
- },
+ "skipped_reason": "uncorroborated_entrypoint",
  "tool": "rling",
  "repo": "Cynosureprime/rling",
  "head_sha": "8bcc5074c6156cc90d5727a758e5d265a0b48d2e",
  "analyzer": "exec",
- "analyzer_version": "11",
- "generated_at": "2026-08-04T05:26:10.299279+00:00"
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T02:56:53.296160+00:00"
 }
