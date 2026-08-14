@@ -1,0 +1,34 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "go",
+  "image_digest": null,
+  "duration_s": 20.52,
+  "log_tail": "#6 DONE 0.0s\n\n#7 [internal] load build context\n#7 transferring context: 21.12MB 4.1s done\n#7 DONE 4.1s\n\n#8 [build 2/5] WORKDIR /src\n#8 CACHED\n\n#9 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#9 CACHED\n\n#10 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#10 CACHED\n\n#11 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#12 CACHED\n\n#13 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#13 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::n7v57ggh8kj0w5zeeg17ij86a: \"/.ctk-fixtures\": not found\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::n7v57ggh8kj0w5zeeg17ij86a: \"/.ctk-agent/agent.py\": not found\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::n7v57ggh8kj0w5zeeg17ij86a: \"/.ctk-agent/helptext.py\": not found\n\n#16 [build 3/5] COPY . .\n#16 CANCELED\n------\n > [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py:\n------\n------\n > [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py:\n------\n------\n > [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/:\n------\nDockerfile.ctk:42\n--------------------\n  40 |     COPY .ctk-agent/agent.py /opt/ctk/agent.py\n  41 |     COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n  42 | >>> COPY .ctk-fixtures/ /opt/ctk/fixtures/\n  43 |     RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n  44 |     USER 65532\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::n7v57ggh8kj0w5zeeg17ij86a: \"/.ctk-fixtures\": not found",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "eksctl",
+   "source": "cmd/<name>/"
+  },
+  {
+   "name": "schema",
+   "source": "cmd/<name>/"
+  },
+  {
+   "name": "ec2geninfo",
+   "source": "cmd/<name>/"
+  }
+ ],
+ "skipped_reason": "docker build failed",
+ "tool": "eksctl",
+ "repo": "weaveworks/eksctl",
+ "head_sha": "6ee3b761771c4ae78c76c82bbf2ea168afd61a9e",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-14T18:23:25.124218+00:00"
+}
