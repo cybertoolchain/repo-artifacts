@@ -1,0 +1,585 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:81f5e359563311f7b402bc1d33c0743a13a03c13be57c4674e2bd6b76c3671d0",
+  "duration_s": 60.7,
+  "log_tail": "#12 12.23 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 12.23 debconf: falling back to frontend: Readline\n#12 12.23 debconf: unable to initialize frontend: Readline\n#12 12.23 debconf: (This frontend requires a controlling tty.)\n#12 12.23 debconf: falling back to frontend: Teletype\n#12 12.26 \n#12 12.26 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 12.28 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#12 12.30 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#12 12.34 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#12 12.37 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#12 12.41 debconf: unable to initialize frontend: Dialog\n#12 12.41 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 12.41 debconf: falling back to frontend: Readline\n#12 12.42 debconf: unable to initialize frontend: Readline\n#12 12.42 debconf: (This frontend requires a controlling tty.)\n#12 12.42 debconf: falling back to frontend: Teletype\n#12 12.45 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 12.47 Setting up texinfo (6.8-6+b1) ...\n#12 12.50 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#12 12.52 Processing triggers for install-info (6.8-6+b1) ...\n#12 DONE 12.6s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.2s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.233 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.5s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.8s done\n#18 exporting manifest sha256:f3e1dcf55970e73206b4501392c6eea2b40fea4cc9b5c313d1530dd05287639f 0.0s done\n#18 exporting config sha256:7de2dca55a282073159a0751f6a06beb21ec65016d81c19fb52c36ef5d217bf4 0.0s done\n#18 exporting attestation manifest sha256:0073a7877e94ebaa62ebd818bcb877da8c02528a230df6e4970b40dd0f9498d3 0.1s done\n#18 exporting manifest list sha256:81f5e359563311f7b402bc1d33c0743a13a03c13be57c4674e2bd6b76c3671d0 0.0s done\n#18 naming to docker.io/ctk-exec/ollama:e5a81899d014 done\n#18 unpacking to docker.io/ctk-exec/ollama:e5a81899d014\n#18 unpacking to docker.io/ctk-exec/ollama:e5a81899d014 1.7s done\n#18 DONE 5.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "ollama",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Large language model runner\n\nUsage:\n  ollama [flags]\n  ollama [command]\n\nAvailable Commands:\n  serve        Start Ollama\n  create       Create a model\n  show         Show information for a model\n  run          Run a model\n  stop         Stop a running model\n  pull         Pull a model from a registry\n  push         Push a model to a registry\n  signin       Sign in to ollama.com\n  signout      Sign out from ollama.com\n  list         List models\n  ps           List running models\n  cp           Copy a model\n  rm           Remove a model\n  launch       Launch the Ollama menu or an integration\n  help         Help about any command\n\nFlags:\n  -h, --help         help for ollama\n      --nowordwrap   Don't wrap words to the next line automatically\n      --verbose      Show timings for response\n  -v, --version      Show version information\n\nUse \"ollama [command] --help\" for more information about a command.\n",
+   "stderr": "",
+   "duration_ms": 13,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "serve",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Start Ollama\n\nUsage:\n  ollama serve [flags]\n\nAliases:\n  serve, start\n\nFlags:\n  -h, --help   help for serve\n\nEnvironment Variables:\n      OLLAMA_DEBUG                  Show additional debug information (e.g. OLLAMA_DEBUG=1)\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n      OLLAMA_CONTEXT_LENGTH         Context length to use unless otherwise specified (default: 4k/32k/256k based on VRAM)\n      OLLAMA_KEEP_ALIVE             The duration that models stay loaded in memory (default \"5m\")\n      OLLAMA_MAX_LOADED_MODELS      Maximum number of loaded models per GPU\n      OLLAMA_MAX_TRANSFER_STREAMS   Maximum parallel transfer streams for safetensors model pulls/pushes (default 4)\n      OLLAMA_MAX_QUEUE              Maximum number of queued requests\n      OLLAMA_MODELS                 The path to the models directory\n      OLLAMA_NUM_PARALLEL           Maximum number of parallel requests\n      OLLAMA_NO_CLOUD               Disable Ollama cloud features (remote inference and web search)\n      OLLAMA_NOPRUNE                Do not prune model blobs on startup\n      OLLAMA_ORIGINS                A comma separated list of allowed origins\n      OLLAMA_SCHED_SPREAD           Always schedule model across all GPUs\n      OLLAMA_FLASH_ATTENTION        Enabled flash attention\n      OLLAMA_KV_CACHE_TYPE          Quantization type for the K/V cache (default: f16)\n      OLLAMA_LLM_LIBRARY            Set LLM library to bypass autodetection\n      OLLAMA_GPU_OVERHEAD           Reserve a portion of VRAM per GPU (bytes)\n      OLLAMA_IGPU_ENABLE            Enable integrated GPUs\n      LLAMA_ARG_FIT                 Enable llama.cpp automatic fit of unset memory options (default \"on\")\n      LLAMA_ARG_FIT_TARGET          Target free VRAM margin per device for llama.cpp fit (MiB)\n      OLLAMA_LOAD_TIMEOUT           How long to allow model loads to stall before giving up (default \"5m\")\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "create",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Create a model\n\nUsage:\n  ollama create MODEL [flags]\n\nFlags:\n      --draft-quantize string   Quantize draft model to this level\n      --experimental            Enable experimental safetensors model creation\n  -f, --file string             Name of the Modelfile (default \"Modelfile\")\n  -h, --help                    help for create\n  -q, --quantize string         Quantize model to this level (e.g. q4_K_M)\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "show",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Show information for a model\n\nUsage:\n  ollama show MODEL [flags]\n\nFlags:\n  -h, --help         help for show\n      --license      Show license of a model\n      --modelfile    Show Modelfile of a model\n      --parameters   Show parameters of a model\n      --system       Show system message of a model\n      --template     Show template of a model\n  -v, --verbose      Show detailed model information\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "run",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Run a model\n\nUsage:\n  ollama run MODEL [PROMPT] [flags]\n\nFlags:\n      --dimensions int          Truncate output embeddings to specified dimension (embedding models only)\n      --format string           Response format (e.g. json)\n  -h, --help                    help for run\n      --hidethinking            Hide thinking output (if provided)\n      --insecure                Use an insecure registry\n      --keepalive string        Duration to keep a model loaded (e.g. 5m)\n      --nowordwrap              Don't wrap words to the next line automatically\n      --think string[=\"true\"]   Enable thinking mode: true/false or high/medium/low for supported models\n      --truncate                For embedding models: truncate inputs exceeding context length (default: true). Set --truncate=false to error instead\n      --verbose                 Show timings for response\n\nEnvironment Variables:\n      OLLAMA_EDITOR                 Path to editor for interactive prompt editing (Ctrl+G)\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n      OLLAMA_NOHISTORY              Do not preserve readline history\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "stop",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Stop a running model\n\nUsage:\n  ollama stop MODEL [flags]\n\nFlags:\n  -h, --help   help for stop\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "pull",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Pull a model from a registry\n\nUsage:\n  ollama pull MODEL [flags]\n\nFlags:\n  -h, --help       help for pull\n      --insecure   Use an insecure registry\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "push",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Push a model to a registry\n\nUsage:\n  ollama push MODEL [flags]\n\nFlags:\n  -h, --help       help for push\n      --insecure   Use an insecure registry\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "signin",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Sign in to ollama.com\n\nUsage:\n  ollama signin [flags]\n\nFlags:\n  -h, --help   help for signin\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "signout",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Sign out from ollama.com\n\nUsage:\n  ollama signout [flags]\n\nFlags:\n  -h, --help   help for signout\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "list",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List models\n\nUsage:\n  ollama list [flags]\n\nAliases:\n  list, ls\n\nFlags:\n  -h, --help   help for list\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "ps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "List running models\n\nUsage:\n  ollama ps [flags]\n\nFlags:\n  -h, --help   help for ps\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "cp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Copy a model\n\nUsage:\n  ollama cp SOURCE DESTINATION [flags]\n\nFlags:\n  -h, --help   help for cp\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "rm",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Remove a model\n\nUsage:\n  ollama rm MODEL [MODEL...] [flags]\n\nFlags:\n  -h, --help   help for rm\n\nEnvironment Variables:\n      OLLAMA_HOST                   IP Address for the ollama server (default 127.0.0.1:11434)\n",
+   "stderr": "",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "launch",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Launch the Ollama interactive menu, or directly launch a specific integration.\n\nWithout arguments, this is equivalent to running 'ollama' directly.\nFlags and extra arguments require an integration name.\n\nSupported integrations:\n  claude          Claude Code\n  chatgpt         ChatGPT (aliases: codex-app, codex-desktop, codex-gui)\n  hermes          Hermes Agent\n  openclaw        OpenClaw (aliases: clawdbot, moltbot)\n  opencode        OpenCode\n  codex           Codex\n  hermes-desktop  Hermes Desktop\n  copilot         Copilot CLI (aliases: copilot-cli)\n  omp             OMP\n  droid           Droid\n  dsh             DeepSeek Harness (alias: deepseek-harness)\n  kimi            Kimi Code CLI\n  muse            Muse Code (aliases: muse-code)\n  pi              Pi\n  pool            Pool\n  cline           Cline\n  qwen            Qwen Code\n  vscode          VS Code (aliases: code)\n\nExamples:\n  ollama launch\n  ollama launch claude\n  ollama launch claude --model <model>\n  ollama launch chatgpt\n  ollama launch chatgpt --restore\n  ollama launch hermes\n  ollama launch hermes-desktop\n  ollama launch dsh\n  ollama launch droid --config (does not auto-launch)\n  ollama launch codex --restore\n  ollama launch codex -- --sandbox workspace-write\n\nUsage:\n  ollama launch [INTEGRATION] [-- [EXTRA_ARGS...]] [flags]\n\nFlags:\n      --config         Configure without launching\n  -h, --help           help for launch\n      --model string   Model to use\n      --restore        Restore an integration to its default profile\n  -y, --yes            Automatically answer yes to confirmation prompts\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "ollama",
+    "help",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Help provides help for any command in the application.\nSimply type ollama help [path to command] for full details.\n\nUsage:\n  ollama help [command] [flags]\n\nFlags:\n  -h, --help   help for help\n",
+   "stderr": "",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "ollama"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for ollama\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "ollama"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'ollama' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 19,
+   "binary": "ollama",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "ollama",
+   "source": "go.mod module (root package main)"
+  },
+  {
+   "name": "runner",
+   "source": "cmd/<name>/"
+  },
+  {
+   "name": "bench",
+   "source": "cmd/<name>/"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "help for ollama",
+   "-h": "help for ollama",
+   "--nowordwrap": "Don't wrap words to the next line automatically",
+   "--verbose": "Show timings for response",
+   "--version": "Show version information",
+   "-v": "Show version information"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--version": [
+    "-v"
+   ]
+  },
+  "subcommand_flags": {
+   "serve": {
+    "--help": "help for serve"
+   },
+   "create": {
+    "--draft-quantize": "Quantize draft model to this level",
+    "--experimental": "Enable experimental safetensors model creation",
+    "--file": "Name of the Modelfile (default \"Modelfile\")",
+    "--help": "help for create",
+    "--quantize": "Quantize model to this level (e.g. q4_K_M)"
+   },
+   "show": {
+    "--help": "help for show",
+    "--license": "Show license of a model",
+    "--modelfile": "Show Modelfile of a model",
+    "--parameters": "Show parameters of a model",
+    "--system": "Show system message of a model",
+    "--template": "Show template of a model",
+    "--verbose": "Show detailed model information"
+   },
+   "run": {
+    "--dimensions": "Truncate output embeddings to specified dimension (embedding models only)",
+    "--format": "Response format (e.g. json)",
+    "--help": "help for run",
+    "--hidethinking": "Hide thinking output (if provided)",
+    "--insecure": "Use an insecure registry",
+    "--keepalive": "Duration to keep a model loaded (e.g. 5m)",
+    "--nowordwrap": "Don't wrap words to the next line automatically",
+    "--think": "Enable thinking mode: true/false or high/medium/low for supported models",
+    "--truncate": "For embedding models: truncate inputs exceeding context length (default: true). Set --truncate=false to error instead",
+    "--verbose": "Show timings for response"
+   },
+   "stop": {
+    "--help": "help for stop"
+   },
+   "pull": {
+    "--help": "help for pull",
+    "--insecure": "Use an insecure registry"
+   },
+   "push": {
+    "--help": "help for push",
+    "--insecure": "Use an insecure registry"
+   },
+   "signin": {
+    "--help": "help for signin"
+   },
+   "signout": {
+    "--help": "help for signout"
+   },
+   "list": {
+    "--help": "help for list"
+   },
+   "ps": {
+    "--help": "help for ps"
+   },
+   "cp": {
+    "--help": "help for cp"
+   },
+   "rm": {
+    "--help": "help for rm"
+   },
+   "launch": {
+    "--config": "Configure without launching",
+    "--help": "help for launch",
+    "--model": "Model to use",
+    "--restore": "Restore an integration to its default profile",
+    "--yes": "Automatically answer yes to confirmation prompts"
+   },
+   "help": {
+    "--help": "help for help"
+   }
+  },
+  "subcommands": [
+   "serve",
+   "create",
+   "show",
+   "run",
+   "stop",
+   "pull",
+   "push",
+   "signin",
+   "signout",
+   "list",
+   "ps",
+   "cp",
+   "rm",
+   "launch",
+   "help"
+  ],
+  "binary": "ollama",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "09e2f2d03dea98ef17527c2855f5a0effae1cece18c6170a721fcee8920aea7e",
+  "text": "Large language model runner\n\nUsage:\n  ollama [flags]\n  ollama [command]\n\nAvailable Commands:\n  serve        Start Ollama\n  create       Create a model\n  show         Show information for a model\n  run          Run a model\n  stop         Stop a running model\n  pull         Pull a model from a registry\n  push         Push a model to a registry\n  signin       Sign in to ollama.com\n  signout      Sign out from ollama.com\n  list         List models\n  ps           List running models\n  cp           Copy a model\n  rm           Remove a model\n  launch       Launch the Ollama menu or an integration\n  help         Help about any command\n\nFlags:\n  -h, --help         help for ollama\n      --nowordwrap   Don't wrap words to the next line automatically\n      --verbose      Show timings for response\n  -v, --version      Show version information\n\nUse \"ollama [command] --help\" for more information about a command.\n"
+ },
+ "surface": {
+  "flags": {
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "help for ollama",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--nowordwrap": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't wrap words to the next line automatically"
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show timings for response"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show version information",
+    "aliases": [
+     "-v"
+    ]
+   }
+  },
+  "subcommands": [
+   "cp",
+   "create",
+   "help",
+   "launch",
+   "list",
+   "ps",
+   "pull",
+   "push",
+   "rm",
+   "run",
+   "serve",
+   "show",
+   "signin",
+   "signout",
+   "stop"
+  ],
+  "subcommand_flags": {
+   "serve": {
+    "--help": "help for serve"
+   },
+   "create": {
+    "--draft-quantize": "Quantize draft model to this level",
+    "--experimental": "Enable experimental safetensors model creation",
+    "--file": "Name of the Modelfile (default \"Modelfile\")",
+    "--help": "help for create",
+    "--quantize": "Quantize model to this level (e.g. q4_K_M)"
+   },
+   "show": {
+    "--help": "help for show",
+    "--license": "Show license of a model",
+    "--modelfile": "Show Modelfile of a model",
+    "--parameters": "Show parameters of a model",
+    "--system": "Show system message of a model",
+    "--template": "Show template of a model",
+    "--verbose": "Show detailed model information"
+   },
+   "run": {
+    "--dimensions": "Truncate output embeddings to specified dimension (embedding models only)",
+    "--format": "Response format (e.g. json)",
+    "--help": "help for run",
+    "--hidethinking": "Hide thinking output (if provided)",
+    "--insecure": "Use an insecure registry",
+    "--keepalive": "Duration to keep a model loaded (e.g. 5m)",
+    "--nowordwrap": "Don't wrap words to the next line automatically",
+    "--think": "Enable thinking mode: true/false or high/medium/low for supported models",
+    "--truncate": "For embedding models: truncate inputs exceeding context length (default: true). Set --truncate=false to error instead",
+    "--verbose": "Show timings for response"
+   },
+   "stop": {
+    "--help": "help for stop"
+   },
+   "pull": {
+    "--help": "help for pull",
+    "--insecure": "Use an insecure registry"
+   },
+   "push": {
+    "--help": "help for push",
+    "--insecure": "Use an insecure registry"
+   },
+   "signin": {
+    "--help": "help for signin"
+   },
+   "signout": {
+    "--help": "help for signout"
+   },
+   "list": {
+    "--help": "help for list"
+   },
+   "ps": {
+    "--help": "help for ps"
+   },
+   "cp": {
+    "--help": "help for cp"
+   },
+   "rm": {
+    "--help": "help for rm"
+   },
+   "launch": {
+    "--config": "Configure without launching",
+    "--help": "help for launch",
+    "--model": "Model to use",
+    "--restore": "Restore an integration to its default profile",
+    "--yes": "Automatically answer yes to confirmation prompts"
+   },
+   "help": {
+    "--help": "help for help"
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 0,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [],
+  "not_attempted": [
+   {
+    "raw": "ollama --version",
+    "source": "ci",
+    "path": ".github/workflows/test-install.yaml",
+    "line": 22,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "./ollama --version",
+    "source": "ci",
+    "path": ".github/workflows/test.yaml",
+    "line": 165,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "./ollama serve",
+    "source": "readme",
+    "path": "AGENTS.md",
+    "line": 10,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "ollama",
+    "source": "readme",
+    "path": "README.md",
+    "line": 55,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "ollama launch claude",
+    "source": "readme",
+    "path": "README.md",
+    "line": 65,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "ollama launch openclaw",
+    "source": "readme",
+    "path": "README.md",
+    "line": 75,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "Ollama",
+ "repo": "ollama/ollama",
+ "head_sha": "e5a81899d014a847a08d47393351908b53d74008",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T02:27:56.297507+00:00"
+}

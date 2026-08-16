@@ -1,0 +1,155 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:f30b69eb4cda7d6429ae1c06b6894b77f1fc3c4ffe21ff9d8debe715608b864b",
+  "duration_s": 41.11,
+  "log_tail": "#10 22.62   Building wheel for binary2strings (pyproject.toml): finished with status 'done'\n#10 22.62   Created wheel for binary2strings: filename=binary2strings-0.1.13-cp312-cp312-linux_aarch64.whl size=129637 sha256=f67e55a2d6058163cf84af7d800a1479477afc4f496253217ab3f6054dda91c4\n#10 22.62   Stored in directory: /tmp/pip-ephem-wheel-cache-l70p8wlr/wheels/51/92/ca/d266f21c07c7c4e5bd482b148047389e686b9336f77b87719f\n#10 22.62   Building wheel for halo (pyproject.toml): started\n#10 22.75   Building wheel for halo (pyproject.toml): finished with status 'done'\n#10 22.75   Created wheel for halo: filename=halo-0.0.31-py3-none-any.whl size=11336 sha256=0b4264ed7554e38805ee554a5e19e8e20d7b197d446653e4a50223d016b46448\n#10 22.75   Stored in directory: /tmp/pip-ephem-wheel-cache-l70p8wlr/wheels/0b/b2/f8/376708b4c66e68a1a7d40aaba26521645e7f5ad3b9ef756031\n#10 22.75 Successfully built flare-floss binary2strings halo\n#10 22.79 Installing collected packages: spinners, sortedcontainers, funcy, cxxfilt, typing-extensions, tqdm, termcolor, tabulate, six, python-flirt, pygments, pycparser, pyasn1, pefile, networkx, msgpack, mdurl, intervaltree, dncil, colorama, binary2strings, annotated-types, typing-inspection, pydantic-core, pyasn1-modules, markdown-it-py, log_symbols, vivisect, rich, pydantic, halo, viv-utils, flare-floss\n#10 28.65 \n#10 28.65 Successfully installed annotated-types-0.8.0 binary2strings-0.1.13 colorama-0.4.6 cxxfilt-0.3.0 dncil-1.0.2 flare-floss-3.1.1 funcy-2.0 halo-0.0.31 intervaltree-3.2.1 log_symbols-0.0.14 markdown-it-py-4.2.0 mdurl-0.1.2 msgpack-1.2.1 networkx-3.6.1 pefile-2024.8.26 pyasn1-0.6.4 pyasn1-modules-0.4.2 pycparser-3.0 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.20.0 python-flirt-0.10.0 rich-15.0.0 six-1.17.0 sortedcontainers-2.4.0 spinners-0.0.24 tabulate-0.10.0 termcolor-3.3.0 tqdm-4.70.0 typing-extensions-4.16.0 typing-inspection-0.4.4 viv-utils-0.8.1 vivisect-1.3.2\n#10 DONE 28.9s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.5s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.9s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.159 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.1s done\n#20 exporting manifest sha256:bd6c238651580f5fb5a58c36371c15f03364e2e926fdffd3b0e23eea4f8a6d88 0.0s done\n#20 exporting config sha256:7a1b48e08305f725e434d05d25b1892d271ceb21155eb245abdb6ed0be574e79 0.0s done\n#20 exporting attestation manifest sha256:c2bee13241ff5ae368f0afee4a4d7c8c893de526ba077317bd63e42f7b23d085 0.1s done\n#20 exporting manifest list sha256:f30b69eb4cda7d6429ae1c06b6894b77f1fc3c4ffe21ff9d8debe715608b864b\n#20 exporting manifest list sha256:f30b69eb4cda7d6429ae1c06b6894b77f1fc3c4ffe21ff9d8debe715608b864b 0.0s done\n#20 naming to docker.io/ctk-exec/flare-floss:6cb1c8ec352c done\n#20 unpacking to docker.io/ctk-exec/flare-floss:6cb1c8ec352c\n#20 unpacking to docker.io/ctk-exec/flare-floss:6cb1c8ec352c 1.7s done\n#20 DONE 5.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "floss",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/floss\", line 3, in <module>\n    from floss.main import main\n  File \"/opt/venv/lib/python3.12/site-packages/floss/main.py\", line 33, in <module>\n    import floss.utils\n  File \"/opt/venv/lib/python3.12/site-packages/floss/utils.py\", line 37, in <module>\n    import floss.strings\n  File \"/opt/venv/lib/python3.12/site-packages/floss/strings.py\", line 19, in <module>\n    from floss.results import StaticString, StringEncoding\n  File \"/opt/venv/lib/python3.12/site-packages/floss/results.py\", line 36, in <module>\n    from floss.render import Verbosity\nModuleNotFoundError: No module named 'floss.render'\n",
+   "duration_ms": 627,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "floss",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/floss\", line 3, in <module>\n    from floss.main import main\n  File \"/opt/venv/lib/python3.12/site-packages/floss/main.py\", line 33, in <module>\n    import floss.utils\n  File \"/opt/venv/lib/python3.12/site-packages/floss/utils.py\", line 37, in <module>\n    import floss.strings\n  File \"/opt/venv/lib/python3.12/site-packages/floss/strings.py\", line 19, in <module>\n    from floss.results import StaticString, StringEncoding\n  File \"/opt/venv/lib/python3.12/site-packages/floss/results.py\", line 36, in <module>\n    from floss.render import Verbosity\nModuleNotFoundError: No module named 'floss.render'\n",
+   "duration_ms": 665,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "floss",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/floss\", line 3, in <module>\n    from floss.main import main\n  File \"/opt/venv/lib/python3.12/site-packages/floss/main.py\", line 33, in <module>\n    import floss.utils\n  File \"/opt/venv/lib/python3.12/site-packages/floss/utils.py\", line 37, in <module>\n    import floss.strings\n  File \"/opt/venv/lib/python3.12/site-packages/floss/strings.py\", line 19, in <module>\n    from floss.results import StaticString, StringEncoding\n  File \"/opt/venv/lib/python3.12/site-packages/floss/results.py\", line 36, in <module>\n    from floss.render import Verbosity\nModuleNotFoundError: No module named 'floss.render'\n",
+   "duration_ms": 1042,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "floss",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/floss\", line 3, in <module>\n    from floss.main import main\n  File \"/opt/venv/lib/python3.12/site-packages/floss/main.py\", line 33, in <module>\n    import floss.utils\n  File \"/opt/venv/lib/python3.12/site-packages/floss/utils.py\", line 37, in <module>\n    import floss.strings\n  File \"/opt/venv/lib/python3.12/site-packages/floss/strings.py\", line 19, in <module>\n    from floss.results import StaticString, StringEncoding\n  File \"/opt/venv/lib/python3.12/site-packages/floss/results.py\", line 36, in <module>\n    from floss.render import Verbosity\nModuleNotFoundError: No module named 'floss.render'\n",
+   "duration_ms": 697,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "floss"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/floss\", line 3, in <module>\n    from floss.main import main\n  File \"/opt/venv/lib/python3.12/site-packages/floss/main.py\", line 33, in <module>\n    import floss.utils\n  File \"/opt/venv/lib/python3.12/site-packages/floss/utils.py\", line 37, in <module>\n    import floss.strings\n  File \"/opt/venv/lib/python3.12/site-packages/floss/strings.py\", line 19, in <module>\n    from floss.results import StaticString, StringEncoding\n  File \"/opt/venv/lib/python3.12/site-packages/floss/results.py\", line 36, in <module>\n    from floss.render import Verbosity\nModuleNotFoundError: No module named 'floss.render'\n",
+   "duration_ms": 706,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "markdown-it",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: markdown-it [-h] [-v] [--stdin] [filenames ...]\n\nParse one or more markdown files, convert each to HTML, and print to stdout\n\npositional arguments:\n  filenames      specify an optional list of files to convert\n\noptions:\n  -h, --help     show this help message and exit\n  -v, --version  show program's version number and exit\n  --stdin        read Markdown from standard input\n\nInteractive:\n\n  $ markdown-it\n  markdown-it-py [version 4.2.0] (interactive)\n  Type Ctrl-D to complete input, or Ctrl-C to exit.\n  >>> # Example\n  ... > markdown *input*\n  ...\n  <h1>Example</h1>\n  <blockquote>\n  <p>markdown <em>input</em></p>\n  </blockquote>\n\nBatch:\n\n  $ markdown-it README.md README.footer.md > index.html\n",
+   "stderr": "",
+   "duration_ms": 242,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "markdown-it"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for markdown-it\n",
+   "duration_ms": 289,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "markdown-it"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'markdown-it' in node '(dir)Top'\n",
+   "duration_ms": 19,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "markdown-it",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Cannot open file \"/opt/ctk/fixtures/source-corpus\".\n",
+   "duration_ms": 254,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-9433dd16",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 9,
+   "binary": "markdown-it",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "floss",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "FLOSS",
+ "repo": "mandiant/flare-floss",
+ "head_sha": "6cb1c8ec352c74d1e50be3ba9e0da8ed7aea33b2",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T02:07:56.993698+00:00"
+}

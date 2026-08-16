@@ -1,0 +1,2440 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:05c18f7ecd343de3a29b35b6db17bc49ffef14a991a94d70306a7c14ff378576",
+  "duration_s": 96.1,
+  "log_tail": "#11 18.44 debconf: unable to initialize frontend: Dialog\n#11 18.44 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 18.44 debconf: falling back to frontend: Readline\n#11 18.45 debconf: unable to initialize frontend: Readline\n#11 18.45 debconf: (This frontend requires a controlling tty.)\n#11 18.45 debconf: falling back to frontend: Teletype\n#11 18.51 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 18.57 Setting up texinfo (6.8-6+b1) ...\n#11 18.61 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 18.68 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 19.0s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 2.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.4s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.4s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 3.6s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.5s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.2s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.288 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 8.1s done\n#20 exporting manifest sha256:254fe8b0e5622cd52bec1cb994ca09cc57d3ec3f8629163280ad4ee2577ac27e 0.1s done\n#20 exporting config sha256:12d2a089930a26648593a90b4bfcb730e1b3babe8fb8e840194fc2bf2fb4fc4b 0.1s done\n#20 exporting attestation manifest sha256:73c877c12eb9ffa8349e1a6648dd6ffe0853c276fa357443460b4364fd7c32bb\n#20 exporting attestation manifest sha256:73c877c12eb9ffa8349e1a6648dd6ffe0853c276fa357443460b4364fd7c32bb 0.2s done\n#20 exporting manifest list sha256:05c18f7ecd343de3a29b35b6db17bc49ffef14a991a94d70306a7c14ff378576\n#20 exporting manifest list sha256:05c18f7ecd343de3a29b35b6db17bc49ffef14a991a94d70306a7c14ff378576 0.0s done\n#20 naming to docker.io/ctk-exec/dirsearch:b08e8b42efb8 0.0s done\n#20 unpacking to docker.io/ctk-exec/dirsearch:b08e8b42efb8\n#20 unpacking to docker.io/ctk-exec/dirsearch:b08e8b42efb8 1.7s done\n#20 DONE 10.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "dirsearch",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: dirsearch [-u|--url] target [-e|--extensions] extensions [options]\n\nOptions:\n  --version             show program's version number and exit\n  -h, --help            show this help message and exit\n\n  Mandatory:\n    -u URL, --url=URL   Target URL(s), can use multiple flags\n    -l PATH, --urls-file=PATH\n                        URL list file\n    --stdin             Read URL(s) from STDIN\n    --cidr=CIDR         Target CIDR\n    --raw=PATH          Load raw HTTP request from file (use '--scheme' flag\n                        to set the scheme)\n    --nmap-report=PATH  Load targets from nmap report (Ensure the inclusion of\n                        the -sV flag during nmap scan for comprehensive\n                        results)\n    -s SESSION_FILE, --session=SESSION_FILE\n                        Session file\n    --session-id=ID     Load session by numeric id (use --list-sessions to see\n                        ids)\n    --config=PATH       Path to configuration file (Default:\n                        'DIRSEARCH_CONFIG' environment variable, otherwise\n                        'config.ini')\n\n  Dictionary Settings:\n    -w WORDLISTS, --wordlists=WORDLISTS\n                        Wordlist files or directories contain wordlists\n                        (separated by commas)\n    --wordlist-categories=WORDLIST_CATEGORIES\n                        Comma-separated wordlist category names (e.g.\n                        common,conf,web). Use 'all' to include all bundled\n                        categories\n    --wordlist-backend=BACKEND\n                        Wordlist generation backend: auto, python, native\n                        (default: auto)\n    --wordlist-status   Show resolved wordlist files and generated entry\n                        count, then exit\n    --wordlist-max-size=COUNT\n                        Maximum generated wordlist entries before aborting\n                        (default: 500000)\n    -e EXTENSIONS, --extensions=EXTENSIONS\n                        Extension list, separated by commas (e.g. php,asp)\n    -f, --force-extensions\n                        Add extensions to the end of every wordlist entry. By\n                        default dirsearch only replaces the %EXT% keyword with\n                        extensions\n    --overwrite-extensions\n                        Overwrite other extensions in the wordlist with your\n                        extensions (selected via `-e`)\n    --exclude-extensions=EXTENSIONS\n                        Exclude extension list, separated by commas (e.g.\n                        asp,jsp)\n    --prefixes=PREFIXES\n                        Add custom prefixes to all wordlist entries (separated\n                        by commas)\n    --suffixes=SUFFIXES\n                        Add custom suffixes to all wordlist entries, ignore\n                        directories (separated by commas)\n    -U, --uppercase     Uppercase wordlist\n    -L, --lowercase     Lowercase wordlist\n    -C, --capital       Capital wordlist\n\n  General Settings:\n    -t THREADS, --threads=THREADS\n                        Number of threads\n    --list-sessions     List resumable sessions and exit\n    --sessions-dir=PATH\n                        Directory to search for resumable sessions (default:\n                        dirsearch path /sessions, or $HOME/.dirsearch/sessions\n                        when bundled)\n    -a, --async         Enable asynchronous mode\n    --sync, --no-async  Use synchronous Python mode\n    -r, --recursive     Brute-force recursively\n    --deep-recursive    Perform recursive scan on every directory depth (e.g.\n                        api/users -> api/)\n    --force-recursive   Do recursive brute-force for every found path, not\n                        only directories\n    -R DEPTH, --max-recursion-depth=DEPTH\n                        Maximum recursion depth\n    --recursion-status=CODES\n                        Valid status codes to perform recursive scan, support\n                        ranges (separated by commas)\n    --filter-threshold=THRESHOLD\n                        Maximum number of results with duplicate responses\n                        before getting filtered out\n    --subdirs=SUBDIRS   Scan sub-directories of the given URL[s] (separated by\n                        commas)\n    --exclude-subdirs=SUBDIRS\n                        Exclude the following subdirectories during recursive\n                        scan (separated by commas)\n    -i CODES, --include-status=CODES\n                        Include status codes, separated by commas, support\n                        ranges (e.g. 200,300-399)\n    -x CODES, --exclude-status=CODES\n                        Exclude status codes, separated by commas, support\n                        ranges (e.g. 301,500-599)\n    --exclude-sizes=SIZES\n                        Exclude responses by sizes, separated by commas (e.g.\n                        0,0B,4KB)\n    --exclude-text=TEXTS\n                        Exclude responses by text, can use multiple flags\n    --exclude-regex=REGEX\n                        Exclude responses by regular expression\n    --exclude-redirect=STRING\n                        Exclude responses if this regex (or text) matches\n                        redirect URL (e.g. '/index.html')\n    --exclude-response=PATH\n                        Exclude responses similar to response of this page,\n                        path as input (e.g. 404.html)\n    --skip-on-status=CODES\n                        Skip target whenever hit one of these status codes,\n                        separated by commas, support ranges\n    --min-response-size=LENGTH\n                        Minimum response length (e.g. 1024,1KB)\n    --max-response-size=LENGTH\n                        Maximum response length (e.g. 1024,1KB)\n    --max-time=SECONDS  Maximum runtime for the scan\n    --target-max-time=SECONDS\n                        Maximum runtime for a target\n    --exit-on-error     Exit whenever an error occurs\n\n  Advanced Filtering:\n    --auto-calibration  Force extra wildcard calibration from the beginning\n    --matcher-mode=MODE, --mmode=MODE\n                        Advanced matcher operator: and, or\n    --filter-mode=MODE, --fmode=MODE\n                        Advanced filter operator: and, or\n    --match-status=CODES, --mc=CODES\n                        Advanced matcher for status codes, separated by\n                        commas, support ranges\n    --filter-status=CODES, --fc=CODES\n                        Advanced filter for status codes, separated by commas,\n                        support ranges\n    --match-size=SIZES, --ms=SIZES\n                        Advanced matcher for response length, separated by\n                        commas, support ranges\n    --filter-size=SIZES, --fs=SIZES\n                        Advanced filter for response length, separated by\n                        commas, support ranges\n    --match-words=WORDS, --mw=WORDS\n                        Advanced matcher for response word count, separated by\n                        commas, support ranges\n    --filter-words=WORDS, --fw=WORDS\n                        Advanced filter for response word count, separated by\n                        commas, support ranges\n    --match-lines=LINES, --ml=LINES\n                        Advanced matcher for response line count, separated by\n                        commas, support ranges\n    --filter-lines=LINES, --fl=LINES\n                        Advanced filter for response line count, separated by\n                        commas, support ranges\n    --match-regex=REGEX, --mr=REGEX\n                        Advanced matcher for response body regular expression\n    --filter-regex=REGEX, --fr=REGEX\n                        Advanced filter for response body regular expression\n    --match-header=TEXT\n                        Advanced matcher for response headers by text, can use\n                        multiple flags\n    --filter-header=TEXT\n                        Advanced filter for response headers by text, can use\n                        multiple flags\n    --match-header-regex=REGEX\n                        Advanced matcher for response headers regular\n                        expression\n    --filter-header-regex=REGEX\n                        Advanced filter for response headers regular\n                        expression\n    --match-time=TIME, --mt=TIME\n                        Advanced matcher for elapsed milliseconds, e.g. >100\n                        or <100\n    --filter-time=TIME, --ft=TIME\n                        Advanced filter for elapsed milliseconds, e.g. >100 or\n                        <100\n\n  Request Settings:\n    -m METHOD, --http-method=METHOD\n                        HTTP method (default: GET)\n    --request-backend=BACKEND\n                        Request backend: python, native (default: python)\n    -d DATA, --data=DATA\n                        HTTP request data\n    --data-file=PATH    File contains HTTP request data\n    -H HEADERS, --header=HEADERS\n                        HTTP request header, can use multiple flags\n    --headers-file=PATH\n                        File contains HTTP request headers\n    -F, --follow-redirects\n                        Follow HTTP redirects\n    --random-agent      Choose a random User-Agent for each request\n    --auth=CREDENTIAL   Authentication credential (e.g. user:password or\n                        bearer token)\n    --auth-type=TYPE    Authentication type (basic, digest, bearer, ntlm, jwt)\n    --cert-file=PATH    File contains client-side certificate\n    --key-file=PATH     File contains client-side certificate private key\n                        (unencrypted)\n    --user-agent=USER_AGENT\n    --cookie=COOKIE     \n\n  Connection Settings:\n    --timeout=TIMEOUT   Connection timeout\n    --delay=DELAY       Delay between requests\n    -p PROXY, --proxy=PROXY\n                        Proxy URL (HTTP/SOCKS), can use multiple flags\n    --proxies-file=PATH\n                        File contains proxy servers\n    --proxy-auth=CREDENTIAL\n                        Proxy authentication credential\n    --replay-proxy=PROXY\n                        Proxy to replay with found paths\n    --tor               Use Tor network as proxy\n    --scheme=SCHEME     Scheme for raw request or if there is no scheme in the\n                        URL (Default: auto-detect)\n    --max-rate=RATE     Max requests per second\n    --retries=RETRIES   Number of retries for failed requests\n    --ip=IP             Server IP address\n    --interface=NETWORK_INTERFACE\n                        Network interface to use\n\n  Advanced Settings:\n    --crawl             Crawl for new paths in responses\n\n  View Settings:\n    --full-url          Full URLs in the output (enabled automatically in\n                        quiet mode)\n    --redirects-history\n                        Show redirects history\n    --no-color          No colored output\n    -q, --quiet-mode    Quiet mode\n    --disable-cli       Turn off command-line output\n    -v, --verbose       Show verbose output with response time and content\n                        type\n\n  Output Settings:\n    -O FORMAT, --output-formats=FORMAT\n                        Report formats, separated by commas (Available:\n                        simple, plain, json, xml, md, csv, html, sqlite)\n    -o PATH, --output-file=PATH\n                        Output file location\n    --mysql-url=URL     Database URL for MySQL output (Format:\n                        mysql://[username:password@]host[:port]/database-name)\n    --postgres-url=URL  Database URL for PostgreSQL output (Format:\n                        postgres://[username:password@]host[:port]/database-\n                        name)\n    --log=PATH          Log file\n\nSee 'config.ini' for the example configuration file\n",
+   "stderr": "",
+   "duration_ms": 481,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "dirsearch"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for dirsearch\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "dirsearch"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'dirsearch' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "dirsearch",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "6d47d30c45f89e3b",
+ "declared_commands": [
+  {
+   "name": "dirsearch",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "dirsearch-build-native",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [
+  {
+   "id": "net-1",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "dirsearch",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:52:43] Scanning: \n[17:52:44] 200 -   474B - /.gitattributes\n[17:52:46] 200 -    4KB - /about.php\n[17:52:50] 200 -    7KB - /CHANGELOG.md\n[17:52:50] 301 -   349B - /config  ->  http://dvwa/config/\n[17:52:51] 301 -   351B - /database  ->  http://dvwa/database/\n[17:52:51] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:52:52] 200 -    1KB - /favicon.ico\n[17:52:53] 302 -     0B - /index.php  ->  login.php\n[17:52:53] 302 -     0B - /index.php/login/  ->  login.php\n[17:52:54] 200 -    1KB - /login.php\n[17:52:54] 302 -     0B - /logout.php  ->  login.php\n[17:52:55] 400 -   342B - /Office/graph.php#xxe\n[17:52:55] 200 -   154B - /php.ini\n[17:52:55] 302 -     0B - /phpinfo.php  ->  login.php\n[17:52:56] 200 -   32KB - /README.md\n[17:52:56] 200 -    25B - /robots.txt\n[17:52:56] 200 -   151B - /security.txt\n[17:52:56] 200 -    4KB - /setup.php\n[17:52:57] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-b9aa68c4",
+   "title": "Perform recursive scan on every directory depth (e.g. api/users -> api/) (--deep-recursive)",
+   "argv": [
+    "dirsearch",
+    "--deep-recursive",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:53:08] Scanning: \n[17:53:08] 200 -   474B - /.gitattributes\n[17:53:10] 200 -    4KB - /about.php\n[17:53:14] 200 -    7KB - /CHANGELOG.md\n[17:53:14] 301 -   349B - /config  ->  http://dvwa/config/\nAdded to the queue: config/\n[17:53:15] 301 -   351B - /database  ->  http://dvwa/database/\nAdded to the queue: database/\n[17:53:15] 301 -   347B - /docs  ->  http://dvwa/docs/\nAdded to the queue: docs/\n[17:53:16] 200 -    1KB - /favicon.ico\n[17:53:17] 302 -     0B - /index.php  ->  login.php\n[17:53:17] 302 -     0B - /index.php/login/  ->  login.php\n[17:53:17] 200 -    1KB - /login.php\n[17:53:17] 302 -     0B - /logout.php  ->  login.php\n[17:53:18] 400 -   342B - /Office/graph.php#xxe\n[17:53:19] 200 -   154B - /php.ini\n[17:53:19] 302 -     0B - /phpinfo.php  ->  login.php\n[17:53:20] 200 -   32KB - /README.md\n[17:53:20] 200 -    25B - /robots.txt\n[17:53:20] 200 -   151B - /security.txt\n[17:53:21] 200 -    4KB - /setup.php\n[17:53:22] 301 -   348B - /tests  ->  http://dvwa/tests/\nAdded to the queue: tests/\n\n[17:53:23] Scanning: config/\n[17:53:31] 200 -     0B - /config/config.inc.php\n[17:53:35] 400 -   342B - /config/Office/graph.php#xxe\n\n[17:53:40] Scanning: database/\n[17:53:51] 400 -   342B - /database/Office/graph.php#xxe\n\n[17:53:56] Scanning: docs/\n[17:54:06] 301 -   356B - /docs/graphics  ->  http://dvwa/docs/graphics/\nAdded to the queue: docs/graphics/\n[17:54:09] 400 -   342B - /docs/Office/graph.php#xxe\n\n[17:54:14] Scanning: tests/\n[17:54:28] 400 -   342B - /tests/Office/graph.php#xxe\n[17:54:29] 200 -   321B - /tests/README.md\n\n[17:54:33] Scanning: docs/graphics/\n[17:54:44] 400 -   342B - /docs/graphics/Office/graph.php#xxe\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-41af747f",
+   "title": "Exit whenever an error occurs (--exit-on-error)",
+   "argv": [
+    "dirsearch",
+    "--exit-on-error",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:55:00] Scanning: \n[17:55:01] 200 -   474B - /.gitattributes\n[17:55:03] 200 -    4KB - /about.php\n[17:55:07] 200 -    7KB - /CHANGELOG.md\n[17:55:07] 301 -   349B - /config  ->  http://dvwa/config/\n[17:55:08] 301 -   351B - /database  ->  http://dvwa/database/\n[17:55:08] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:55:09] 200 -    1KB - /favicon.ico\n[17:55:10] 302 -     0B - /index.php  ->  login.php\n[17:55:10] 302 -     0B - /index.php/login/  ->  login.php\n[17:55:11] 200 -    1KB - /login.php\n[17:55:11] 302 -     0B - /logout.php  ->  login.php\n[17:55:12] 400 -   342B - /Office/graph.php#xxe\n[17:55:13] 200 -   154B - /php.ini\n[17:55:13] 302 -     0B - /phpinfo.php  ->  login.php\n[17:55:14] 200 -   32KB - /README.md\n[17:55:14] 200 -    25B - /robots.txt\n[17:55:14] 200 -   151B - /security.txt\n[17:55:15] 200 -    4KB - /setup.php\n[17:55:16] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-726b0cda",
+   "title": "Follow HTTP redirects (--follow-redirects)",
+   "argv": [
+    "dirsearch",
+    "--follow-redirects",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:55:27] Scanning: \n[17:55:28] 200 -   474B - /.gitattributes\n[17:55:29] 200 -    4KB - /about.php\n[17:55:33] 200 -    7KB - /CHANGELOG.md\n[17:55:35] 200 -    1KB - /favicon.ico\n[17:55:37] 200 -    1KB - /login.php\n[17:55:38] 400 -   342B - /Office/graph.php#xxe\n[17:55:39] 200 -   154B - /php.ini\n[17:55:40] 200 -   32KB - /README.md\n[17:55:40] 200 -    25B - /robots.txt\n[17:55:40] 200 -   151B - /security.txt\n[17:55:40] 200 -    4KB - /setup.php\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-f8af1cfd",
+   "title": "Add extensions to the end of every wordlist entry (--force-extensions)",
+   "argv": [
+    "dirsearch",
+    "--force-extensions",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 30458\n\nTarget: http://dvwa/\n\n[17:55:58] Scanning: \n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.asp\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd/\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.php\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.aspx\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.jsp\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.html\n[17:55:58] 400 -   342B - /%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/%2e%2e/etc/passwd.htm\n[17:55:59] 200 -   474B - /.gitattributes\n[17:56:03] 200 -    4KB - /about.php\n[17:56:12] 200 -    7KB - /CHANGELOG.md\n[17:56:13] 301 -   349B - /config  ->  http://dvwa/config/\n[17:56:14] 301 -   351B - /database  ->  http://dvwa/database/\n[17:56:15] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:56:17] 200 -    1KB - /favicon.ico\n[17:56:19] 302 -     0B - /index.php  ->  login.php\n[17:56:19] 302 -     0B - /index.php/login/  ->  login.php\n[17:56:21] 200 -    1KB - /login.php\n[17:56:21] 302 -     0B - /logout.php  ->  login.php\n[17:56:24] 200 -   154B - /php.ini\n[17:56:24] 302 -     0B - /phpinfo.php  ->  login.php\n[17:56:26] 200 -   32KB - /README.md\n[17:56:27] 200 -    25B - /robots.txt\n[17:56:28] 302 -     0B - /security.php  ->  login.php\n[17:56:28] 200 -   151B - /security.txt\n[17:56:28] 200 -    4KB - /setup.php\n[17:56:31] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8229e3f9",
+   "title": "Do recursive brute-force for every found path, not only directories (--force-recursive)",
+   "argv": [
+    "dirsearch",
+    "--force-recursive",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:56:47] Scanning: \n[17:56:48] 200 -   474B - /.gitattributes\n[17:56:50] 200 -    4KB - /about.php\n[17:56:53] 200 -    7KB - /CHANGELOG.md\n[17:56:54] 301 -   349B - /config  ->  http://dvwa/config/\n[17:56:54] 301 -   351B - /database  ->  http://dvwa/database/\n[17:56:55] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:56:55] 200 -    1KB - /favicon.ico\n[17:56:56] 302 -     0B - /index.php  ->  login.php\n[17:56:56] 302 -     0B - /index.php/login/  ->  login.php\n[17:56:57] 200 -    1KB - /login.php\n[17:56:57] 302 -     0B - /logout.php  ->  login.php\n[17:56:58] 400 -   342B - /Office/graph.php#xxe\n[17:56:59] 200 -   154B - /php.ini\n[17:56:59] 302 -     0B - /phpinfo.php  ->  login.php\n[17:56:59] 200 -   32KB - /README.md\n[17:57:00] 200 -    25B - /robots.txt\n[17:57:00] 200 -   151B - /security.txt\n[17:57:00] 200 -    4KB - /setup.php\n[17:57:01] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-96a5bdb0",
+   "title": "Full URLs in the output (enabled automatically in quiet mode) (--full-url)",
+   "argv": [
+    "dirsearch",
+    "--full-url",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:57:12] Scanning: \n[17:57:13] 200 -   474B - http://dvwa/.gitattributes\n[17:57:14] 200 -    4KB - http://dvwa/about.php\n[17:57:18] 200 -    7KB - http://dvwa/CHANGELOG.md\n[17:57:19] 301 -   349B - http://dvwa/config  ->  http://dvwa/config/\n[17:57:19] 301 -   351B - http://dvwa/database  ->  http://dvwa/database/\n[17:57:20] 301 -   347B - http://dvwa/docs  ->  http://dvwa/docs/\n[17:57:20] 200 -    1KB - http://dvwa/favicon.ico\n[17:57:21] 302 -     0B - http://dvwa/index.php  ->  login.php\n[17:57:22] 302 -     0B - http://dvwa/index.php/login/  ->  login.php\n[17:57:22] 200 -    1KB - http://dvwa/login.php\n[17:57:22] 302 -     0B - http://dvwa/logout.php  ->  login.php\n[17:57:23] 400 -   342B - http://dvwa/Office/graph.php#xxe\n[17:57:24] 302 -     0B - http://dvwa/phpinfo.php  ->  login.php\n[17:57:24] 200 -   154B - http://dvwa/php.ini\n[17:57:25] 200 -   32KB - http://dvwa/README.md\n[17:57:25] 200 -    25B - http://dvwa/robots.txt\n[17:57:25] 200 -   151B - http://dvwa/security.txt\n[17:57:26] 200 -    4KB - http://dvwa/setup.php\n[17:57:27] 301 -   348B - http://dvwa/tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-641c5228",
+   "title": "Lowercase wordlist (--lowercase)",
+   "argv": [
+    "dirsearch",
+    "--lowercase",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:57:38] Scanning: \n[17:57:38] 200 -   474B - /.gitattributes\n[17:57:40] 200 -    4KB - /about.php\n[17:57:45] 301 -   349B - /config  ->  http://dvwa/config/\n[17:57:45] 301 -   351B - /database  ->  http://dvwa/database/\n[17:57:46] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:57:46] 200 -    1KB - /favicon.ico\n[17:57:47] 302 -     0B - /index.php  ->  login.php\n[17:57:47] 302 -     0B - /index.php/login/  ->  login.php\n[17:57:47] 302 -     0B - /index.php  ->  login.php\n[17:57:48] 200 -    1KB - /login.php\n[17:57:48] 302 -     0B - /logout.php  ->  login.php\n[17:57:49] 400 -   342B - /office/graph.php#xxe\n[17:57:50] 200 -   154B - /php.ini\n[17:57:50] 302 -     0B - /phpinfo.php  ->  login.php\n[17:57:51] 200 -    25B - /robots.txt\n[17:57:51] 200 -   151B - /security.txt\n[17:57:51] 200 -    4KB - /setup.php\n[17:57:52] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-7c889211",
+   "title": "Enable asynchronous mode (--async)",
+   "argv": [
+    "dirsearch",
+    "--async",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:58:04] Scanning: \n[17:58:05] 200 -   474B - /.gitattributes\n[17:58:06] 200 -    4KB - /about.php\n[17:58:10] 200 -    7KB - /CHANGELOG.md\n[17:58:11] 301 -   349B - /config  ->  http://dvwa/config/\n[17:58:11] 301 -   351B - /database  ->  http://dvwa/database/\n[17:58:12] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:58:12] 200 -    1KB - /favicon.ico\n[17:58:13] 302 -     0B - /index.php  ->  login.php\n[17:58:13] 302 -     0B - /index.php/login/  ->  login.php\n[17:58:14] 200 -    1KB - /login.php\n[17:58:14] 302 -     0B - /logout.php  ->  login.php\n[17:58:15] 400 -   342B - /Office/graph.php#xxe\n[17:58:16] 200 -   154B - /php.ini\n[17:58:16] 302 -     0B - /phpinfo.php  ->  login.php\n[17:58:16] 200 -   32KB - /README.md\n[17:58:17] 200 -    25B - /robots.txt\n[17:58:17] 200 -   151B - /security.txt\n[17:58:17] 200 -    4KB - /setup.php\n[17:58:18] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-2b94350e",
+   "title": "Force extra wildcard calibration from the beginning (--auto-calibration)",
+   "argv": [
+    "dirsearch",
+    "--auto-calibration",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:58:31] Scanning: \n[17:58:32] 200 -   474B - /.gitattributes\n[17:58:33] 200 -    4KB - /about.php\n[17:58:37] 200 -    7KB - /CHANGELOG.md\n[17:58:38] 301 -   349B - /config  ->  http://dvwa/config/\n[17:58:38] 301 -   351B - /database  ->  http://dvwa/database/\n[17:58:39] 200 -    1KB - /favicon.ico\n[17:58:40] 302 -     0B - /index.php/login/  ->  login.php\n[17:58:40] 302 -     0B - /index.php  ->  login.php\n[17:58:41] 200 -    1KB - /login.php\n[17:58:41] 302 -     0B - /logout.php  ->  login.php\n[17:58:42] 400 -   342B - /Office/graph.php#xxe\n[17:58:43] 200 -   154B - /php.ini\n[17:58:43] 302 -     0B - /phpinfo.php  ->  login.php\n[17:58:44] 200 -   32KB - /README.md\n[17:58:44] 200 -    25B - /robots.txt\n[17:58:44] 200 -   151B - /security.txt\n[17:58:45] 200 -    4KB - /setup.php\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e5bcec42",
+   "title": "Log file (--log)",
+   "argv": [
+    "dirsearch",
+    "--log",
+    "/tmp/ctk-capture/log.out",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nLog File: /tmp/ctk-capture/log.out\n\nTarget: http://dvwa/\n\n[17:58:57] Scanning: \n[17:58:58] 200 -   474B - /.gitattributes\n[17:59:00] 200 -    4KB - /about.php\n[17:59:04] 200 -    7KB - /CHANGELOG.md\n[17:59:04] 301 -   349B - /config  ->  http://dvwa/config/\n[17:59:05] 301 -   351B - /database  ->  http://dvwa/database/\n[17:59:05] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:59:06] 200 -    1KB - /favicon.ico\n[17:59:07] 302 -     0B - /index.php  ->  login.php\n[17:59:07] 302 -     0B - /index.php/login/  ->  login.php\n[17:59:08] 200 -    1KB - /login.php\n[17:59:08] 302 -     0B - /logout.php  ->  login.php\n[17:59:09] 400 -   342B - /Office/graph.php#xxe\n[17:59:09] 200 -   154B - /php.ini\n[17:59:09] 302 -     0B - /phpinfo.php  ->  login.php\n[17:59:10] 200 -   32KB - /README.md\n[17:59:10] 200 -    25B - /robots.txt\n[17:59:11] 200 -   151B - /security.txt\n[17:59:11] 200 -    4KB - /setup.php\n[17:59:12] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-0e928911",
+   "title": "Output file location (--output-file)",
+   "argv": [
+    "dirsearch",
+    "--output-file",
+    "/tmp/ctk-capture/output-file.out",
+    "-u",
+    "http://dvwa",
+    "--no-color"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n  _|. _ _  _  _  _ _|_    v0.5.0\n (_||| _) (/_(_|| (_| )\n\nExtensions: php, asp, aspx, jsp, html, htm | HTTP method: GET | Threads: 25\nWordlist size: 12296\n\nTarget: http://dvwa/\n\n[17:59:23] Scanning: \n[17:59:25] 200 -   474B - /.gitattributes\n[17:59:27] 200 -    4KB - /about.php\n[17:59:31] 200 -    7KB - /CHANGELOG.md\n[17:59:31] 301 -   349B - /config  ->  http://dvwa/config/\n[17:59:32] 301 -   351B - /database  ->  http://dvwa/database/\n[17:59:32] 301 -   347B - /docs  ->  http://dvwa/docs/\n[17:59:33] 200 -    1KB - /favicon.ico\n[17:59:34] 302 -     0B - /index.php  ->  login.php\n[17:59:34] 302 -     0B - /index.php/login/  ->  login.php\n[17:59:35] 200 -    1KB - /login.php\n[17:59:35] 302 -     0B - /logout.php  ->  login.php\n[17:59:36] 400 -   342B - /Office/graph.php#xxe\n[17:59:37] 200 -   154B - /php.ini\n[17:59:37] 302 -     0B - /phpinfo.php  ->  login.php\n[17:59:38] 200 -   32KB - /README.md\n[17:59:38] 200 -    25B - /robots.txt\n[17:59:38] 200 -   151B - /security.txt\n[17:59:38] 200 -    4KB - /setup.php\n[17:59:40] 301 -   348B - /tests  ->  http://dvwa/tests/\n\nTask Completed\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--version": "show program's version number and exit",
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--url": "Target URL(s), can use multiple flags",
+   "-u": "Target URL(s), can use multiple flags",
+   "--urls-file": "URL list file",
+   "-l": "URL list file",
+   "--stdin": "Read URL(s) from STDIN",
+   "--cidr": "Target CIDR",
+   "--raw": "Load raw HTTP request from file (use '--scheme' flag to set the scheme)",
+   "--nmap-report": "Load targets from nmap report (Ensure the inclusion of the -sV flag during nmap scan for comprehensive results)",
+   "--session": "Session file",
+   "-s": "Session file",
+   "--session-id": "Load session by numeric id (use --list-sessions to see ids)",
+   "--config": "Path to configuration file (Default: 'DIRSEARCH_CONFIG' environment variable, otherwise 'config.ini')",
+   "--wordlists": "Wordlist files or directories contain wordlists (separated by commas)",
+   "-w": "Wordlist files or directories contain wordlists (separated by commas)",
+   "--wordlist-categories": "Comma-separated wordlist category names (e.g. common,conf,web). Use 'all' to include all bundled categories",
+   "--wordlist-backend": "Wordlist generation backend: auto, python, native (default: auto)",
+   "--wordlist-status": "Show resolved wordlist files and generated entry count, then exit",
+   "--wordlist-max-size": "Maximum generated wordlist entries before aborting (default: 500000)",
+   "--extensions": "Extension list, separated by commas (e.g. php,asp)",
+   "-e": "Extension list, separated by commas (e.g. php,asp)",
+   "--force-extensions": "Add extensions to the end of every wordlist entry. By default dirsearch only replaces the %EXT% keyword with extensions",
+   "-f": "Add extensions to the end of every wordlist entry. By default dirsearch only replaces the %EXT% keyword with extensions",
+   "--overwrite-extensions": "Overwrite other extensions in the wordlist with your extensions (selected via `-e`)",
+   "--exclude-extensions": "Exclude extension list, separated by commas (e.g. asp,jsp)",
+   "--prefixes": "Add custom prefixes to all wordlist entries (separated by commas)",
+   "--suffixes": "Add custom suffixes to all wordlist entries, ignore directories (separated by commas)",
+   "--uppercase": "Uppercase wordlist",
+   "-U": "Uppercase wordlist",
+   "--lowercase": "Lowercase wordlist",
+   "-L": "Lowercase wordlist",
+   "--capital": "Capital wordlist",
+   "-C": "Capital wordlist",
+   "--threads": "Number of threads",
+   "-t": "Number of threads",
+   "--list-sessions": "List resumable sessions and exit",
+   "--sessions-dir": "Directory to search for resumable sessions (default: dirsearch path /sessions, or $HOME/.dirsearch/sessions when bundled)",
+   "--async": "Enable asynchronous mode",
+   "-a": "Enable asynchronous mode",
+   "--sync": "Use synchronous Python mode",
+   "--no-async": "Use synchronous Python mode",
+   "--recursive": "Brute-force recursively",
+   "-r": "Brute-force recursively",
+   "--deep-recursive": "Perform recursive scan on every directory depth (e.g. api/users -> api/)",
+   "--force-recursive": "Do recursive brute-force for every found path, not only directories",
+   "--max-recursion-depth": "Maximum recursion depth",
+   "-R": "Maximum recursion depth",
+   "--recursion-status": "Valid status codes to perform recursive scan, support ranges (separated by commas)",
+   "--filter-threshold": "Maximum number of results with duplicate responses before getting filtered out",
+   "--subdirs": "Scan sub-directories of the given URL[s] (separated by commas)",
+   "--exclude-subdirs": "Exclude the following subdirectories during recursive scan (separated by commas)",
+   "--include-status": "Include status codes, separated by commas, support ranges (e.g. 200,300-399)",
+   "-i": "Include status codes, separated by commas, support ranges (e.g. 200,300-399)",
+   "--exclude-status": "Exclude status codes, separated by commas, support ranges (e.g. 301,500-599)",
+   "-x": "Exclude status codes, separated by commas, support ranges (e.g. 301,500-599)",
+   "--exclude-sizes": "Exclude responses by sizes, separated by commas (e.g. 0,0B,4KB)",
+   "--exclude-text": "Exclude responses by text, can use multiple flags",
+   "--exclude-regex": "Exclude responses by regular expression",
+   "--exclude-redirect": "Exclude responses if this regex (or text) matches redirect URL (e.g. '/index.html')",
+   "--exclude-response": "Exclude responses similar to response of this page, path as input (e.g. 404.html)",
+   "--skip-on-status": "Skip target whenever hit one of these status codes, separated by commas, support ranges",
+   "--min-response-size": "Minimum response length (e.g. 1024,1KB)",
+   "--max-response-size": "Maximum response length (e.g. 1024,1KB)",
+   "--max-time": "Maximum runtime for the scan",
+   "--target-max-time": "Maximum runtime for a target",
+   "--exit-on-error": "Exit whenever an error occurs",
+   "--auto-calibration": "Force extra wildcard calibration from the beginning",
+   "--matcher-mode": "Advanced matcher operator: and, or",
+   "--mmode": "Advanced matcher operator: and, or",
+   "--filter-mode": "Advanced filter operator: and, or",
+   "--fmode": "Advanced filter operator: and, or",
+   "--match-status": "Advanced matcher for status codes, separated by commas, support ranges",
+   "--mc": "Advanced matcher for status codes, separated by commas, support ranges",
+   "--filter-status": "Advanced filter for status codes, separated by commas, support ranges",
+   "--fc": "Advanced filter for status codes, separated by commas, support ranges",
+   "--match-size": "Advanced matcher for response length, separated by commas, support ranges",
+   "--ms": "Advanced matcher for response length, separated by commas, support ranges",
+   "--filter-size": "Advanced filter for response length, separated by commas, support ranges",
+   "--fs": "Advanced filter for response length, separated by commas, support ranges",
+   "--match-words": "Advanced matcher for response word count, separated by commas, support ranges",
+   "--mw": "Advanced matcher for response word count, separated by commas, support ranges",
+   "--filter-words": "Advanced filter for response word count, separated by commas, support ranges",
+   "--fw": "Advanced filter for response word count, separated by commas, support ranges",
+   "--match-lines": "Advanced matcher for response line count, separated by commas, support ranges",
+   "--ml": "Advanced matcher for response line count, separated by commas, support ranges",
+   "--filter-lines": "Advanced filter for response line count, separated by commas, support ranges",
+   "--fl": "Advanced filter for response line count, separated by commas, support ranges",
+   "--match-regex": "Advanced matcher for response body regular expression",
+   "--mr": "Advanced matcher for response body regular expression",
+   "--filter-regex": "Advanced filter for response body regular expression",
+   "--fr": "Advanced filter for response body regular expression",
+   "--match-header": "Advanced matcher for response headers by text, can use multiple flags",
+   "--filter-header": "Advanced filter for response headers by text, can use multiple flags",
+   "--match-header-regex": "Advanced matcher for response headers regular expression",
+   "--filter-header-regex": "Advanced filter for response headers regular expression",
+   "--match-time": "Advanced matcher for elapsed milliseconds, e.g. >100 or <100",
+   "--mt": "Advanced matcher for elapsed milliseconds, e.g. >100 or <100",
+   "--filter-time": "Advanced filter for elapsed milliseconds, e.g. >100 or <100",
+   "--ft": "Advanced filter for elapsed milliseconds, e.g. >100 or <100",
+   "--http-method": "HTTP method (default: GET)",
+   "-m": "HTTP method (default: GET)",
+   "--request-backend": "Request backend: python, native (default: python)",
+   "--data": "HTTP request data",
+   "-d": "HTTP request data",
+   "--data-file": "File contains HTTP request data",
+   "--header": "HTTP request header, can use multiple flags",
+   "-H": "HTTP request header, can use multiple flags",
+   "--headers-file": "File contains HTTP request headers",
+   "--follow-redirects": "Follow HTTP redirects",
+   "-F": "Follow HTTP redirects",
+   "--random-agent": "Choose a random User-Agent for each request",
+   "--auth": "Authentication credential (e.g. user:password or bearer token)",
+   "--auth-type": "Authentication type (basic, digest, bearer, ntlm, jwt)",
+   "--cert-file": "File contains client-side certificate",
+   "--key-file": "File contains client-side certificate private key (unencrypted)",
+   "--user-agent": "",
+   "--cookie": "",
+   "--timeout": "Connection timeout",
+   "--delay": "Delay between requests",
+   "--proxy": "Proxy URL (HTTP/SOCKS), can use multiple flags",
+   "-p": "Proxy URL (HTTP/SOCKS), can use multiple flags",
+   "--proxies-file": "File contains proxy servers",
+   "--proxy-auth": "Proxy authentication credential",
+   "--replay-proxy": "Proxy to replay with found paths",
+   "--tor": "Use Tor network as proxy",
+   "--scheme": "Scheme for raw request or if there is no scheme in the URL (Default: auto-detect)",
+   "--max-rate": "Max requests per second",
+   "--retries": "Number of retries for failed requests",
+   "--ip": "Server IP address",
+   "--interface": "Network interface to use",
+   "--crawl": "Crawl for new paths in responses",
+   "--full-url": "Full URLs in the output (enabled automatically in quiet mode)",
+   "--redirects-history": "Show redirects history",
+   "--no-color": "No colored output",
+   "--quiet-mode": "Quiet mode",
+   "-q": "Quiet mode",
+   "--disable-cli": "Turn off command-line output",
+   "--verbose": "Show verbose output with response time and content type",
+   "-v": "Show verbose output with response time and content type",
+   "--output-formats": "Report formats, separated by commas (Available: simple, plain, json, xml, md, csv, html, sqlite)",
+   "-O": "Report formats, separated by commas (Available: simple, plain, json, xml, md, csv, html, sqlite)",
+   "--output-file": "Output file location",
+   "-o": "Output file location",
+   "--mysql-url": "Database URL for MySQL output (Format: mysql://[username:password@]host[:port]/database-name)",
+   "--postgres-url": "Database URL for PostgreSQL output (Format: postgres://[username:password@]host[:port]/database- name)",
+   "--log": "Log file"
+  },
+  "values_seen": {
+   "-u": "URL",
+   "--url": "URL",
+   "-l": "PATH",
+   "--urls-file": "PATH",
+   "--cidr": "CIDR",
+   "--raw": "PATH",
+   "--nmap-report": "PATH",
+   "-s": "SESSION_FILE",
+   "--session": "SESSION_FILE",
+   "--session-id": "ID",
+   "--config": "PATH",
+   "-w": "WORDLISTS",
+   "--wordlists": "WORDLISTS",
+   "--wordlist-categories": "WORDLIST_CATEGORIES",
+   "--wordlist-backend": "BACKEND",
+   "--wordlist-max-size": "COUNT",
+   "-e": "EXTENSIONS",
+   "--extensions": "EXTENSIONS",
+   "--exclude-extensions": "EXTENSIONS",
+   "--prefixes": "PREFIXES",
+   "--suffixes": "SUFFIXES",
+   "-t": "THREADS",
+   "--threads": "THREADS",
+   "--sessions-dir": "PATH",
+   "-R": "DEPTH",
+   "--max-recursion-depth": "DEPTH",
+   "--recursion-status": "CODES",
+   "--filter-threshold": "THRESHOLD",
+   "--subdirs": "SUBDIRS",
+   "--exclude-subdirs": "SUBDIRS",
+   "-i": "CODES",
+   "--include-status": "CODES",
+   "-x": "CODES",
+   "--exclude-status": "CODES",
+   "--exclude-sizes": "SIZES",
+   "--exclude-text": "TEXTS",
+   "--exclude-regex": "REGEX",
+   "--exclude-redirect": "STRING",
+   "--exclude-response": "PATH",
+   "--skip-on-status": "CODES",
+   "--min-response-size": "LENGTH",
+   "--max-response-size": "LENGTH",
+   "--max-time": "SECONDS",
+   "--target-max-time": "SECONDS",
+   "--matcher-mode": "MODE",
+   "--mmode": "MODE",
+   "--filter-mode": "MODE",
+   "--fmode": "MODE",
+   "--match-status": "CODES",
+   "--mc": "CODES",
+   "--filter-status": "CODES",
+   "--fc": "CODES",
+   "--match-size": "SIZES",
+   "--ms": "SIZES",
+   "--filter-size": "SIZES",
+   "--fs": "SIZES",
+   "--match-words": "WORDS",
+   "--mw": "WORDS",
+   "--filter-words": "WORDS",
+   "--fw": "WORDS",
+   "--match-lines": "LINES",
+   "--ml": "LINES",
+   "--filter-lines": "LINES",
+   "--fl": "LINES",
+   "--match-regex": "REGEX",
+   "--mr": "REGEX",
+   "--filter-regex": "REGEX",
+   "--fr": "REGEX",
+   "--match-header": "TEXT",
+   "--filter-header": "TEXT",
+   "--match-header-regex": "REGEX",
+   "--filter-header-regex": "REGEX",
+   "--match-time": "TIME",
+   "--mt": "TIME",
+   "--filter-time": "TIME",
+   "--ft": "TIME",
+   "-m": "METHOD",
+   "--http-method": "METHOD",
+   "--request-backend": "BACKEND",
+   "-d": "DATA",
+   "--data": "DATA",
+   "--data-file": "PATH",
+   "-H": "HEADERS",
+   "--header": "HEADERS",
+   "--headers-file": "PATH",
+   "--auth": "CREDENTIAL",
+   "--auth-type": "TYPE",
+   "--cert-file": "PATH",
+   "--key-file": "PATH",
+   "--user-agent": "USER_AGENT",
+   "--cookie": "COOKIE",
+   "--timeout": "TIMEOUT",
+   "--delay": "DELAY",
+   "-p": "PROXY",
+   "--proxy": "PROXY",
+   "--proxies-file": "PATH",
+   "--proxy-auth": "CREDENTIAL",
+   "--replay-proxy": "PROXY",
+   "--scheme": "SCHEME",
+   "--max-rate": "RATE",
+   "--retries": "RETRIES",
+   "--ip": "IP",
+   "--interface": "NETWORK_INTERFACE",
+   "-O": "FORMAT",
+   "--output-formats": "FORMAT",
+   "-o": "PATH",
+   "--output-file": "PATH",
+   "--mysql-url": "URL",
+   "--postgres-url": "URL",
+   "--log": "PATH"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--url": [
+    "-u"
+   ],
+   "--urls-file": [
+    "-l"
+   ],
+   "--session": [
+    "-s"
+   ],
+   "--wordlists": [
+    "-w"
+   ],
+   "--extensions": [
+    "-e"
+   ],
+   "--force-extensions": [
+    "-f"
+   ],
+   "--uppercase": [
+    "-U"
+   ],
+   "--lowercase": [
+    "-L"
+   ],
+   "--capital": [
+    "-C"
+   ],
+   "--threads": [
+    "-t"
+   ],
+   "--async": [
+    "-a"
+   ],
+   "--sync": [
+    "--no-async"
+   ],
+   "--recursive": [
+    "-r"
+   ],
+   "--max-recursion-depth": [
+    "-R"
+   ],
+   "--include-status": [
+    "-i"
+   ],
+   "--exclude-status": [
+    "-x"
+   ],
+   "--matcher-mode": [
+    "--mmode"
+   ],
+   "--filter-mode": [
+    "--fmode"
+   ],
+   "--match-status": [
+    "--mc"
+   ],
+   "--filter-status": [
+    "--fc"
+   ],
+   "--match-size": [
+    "--ms"
+   ],
+   "--filter-size": [
+    "--fs"
+   ],
+   "--match-words": [
+    "--mw"
+   ],
+   "--filter-words": [
+    "--fw"
+   ],
+   "--match-lines": [
+    "--ml"
+   ],
+   "--filter-lines": [
+    "--fl"
+   ],
+   "--match-regex": [
+    "--mr"
+   ],
+   "--filter-regex": [
+    "--fr"
+   ],
+   "--match-time": [
+    "--mt"
+   ],
+   "--filter-time": [
+    "--ft"
+   ],
+   "--http-method": [
+    "-m"
+   ],
+   "--data": [
+    "-d"
+   ],
+   "--header": [
+    "-H"
+   ],
+   "--follow-redirects": [
+    "-F"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--quiet-mode": [
+    "-q"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--output-formats": [
+    "-O"
+   ],
+   "--output-file": [
+    "-o"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "dirsearch",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "bae224afdb64ad4ab717daf634a01fad0e1e9cfb4e1bd9f50d8a9f94eae65f77",
+  "text": "Usage: dirsearch [-u|--url] target [-e|--extensions] extensions [options]\n\nOptions:\n  --version             show program's version number and exit\n  -h, --help            show this help message and exit\n\n  Mandatory:\n    -u URL, --url=URL   Target URL(s), can use multiple flags\n    -l PATH, --urls-file=PATH\n                        URL list file\n    --stdin             Read URL(s) from STDIN\n    --cidr=CIDR         Target CIDR\n    --raw=PATH          Load raw HTTP request from file (use '--scheme' flag\n                        to set the scheme)\n    --nmap-report=PATH  Load targets from nmap report (Ensure the inclusion of\n                        the -sV flag during nmap scan for comprehensive\n                        results)\n    -s SESSION_FILE, --session=SESSION_FILE\n                        Session file\n    --session-id=ID     Load session by numeric id (use --list-sessions to see\n                        ids)\n    --config=PATH       Path to configuration file (Default:\n                        'DIRSEARCH_CONFIG' environment variable, otherwise\n                        'config.ini')\n\n  Dictionary Settings:\n    -w WORDLISTS, --wordlists=WORDLISTS\n                        Wordlist files or directories contain wordlists\n                        (separated by commas)\n    --wordlist-categories=WORDLIST_CATEGORIES\n                        Comma-separated wordlist category names (e.g.\n                        common,conf,web). Use 'all' to include all bundled\n                        categories\n    --wordlist-backend=BACKEND\n                        Wordlist generation backend: auto, python, native\n                        (default: auto)\n    --wordlist-status   Show resolved wordlist files and generated entry\n                        count, then exit\n    --wordlist-max-size=COUNT\n                        Maximum generated wordlist entries before aborting\n                        (default: 500000)\n    -e EXTENSIONS, --extensions=EXTENSIONS\n                        Extension list, separated by commas (e.g. php,asp)\n    -f, --force-extensions\n                        Add extensions to the end of every wordlist entry. By\n                        default dirsearch only replaces the %EXT% keyword with\n                        extensions\n    --overwrite-extensions\n                        Overwrite other extensions in the wordlist with your\n                        extensions (selected via `-e`)\n    --exclude-extensions=EXTENSIONS\n                        Exclude extension list, separated by commas (e.g.\n                        asp,jsp)\n    --prefixes=PREFIXES\n                        Add custom prefixes to all wordlist entries (separated\n                        by commas)\n    --suffixes=SUFFIXES\n                        Add custom suffixes to all wordlist entries, ignore\n                        directories (separated by commas)\n    -U, --uppercase     Uppercase wordlist\n    -L, --lowercase     Lowercase wordlist\n    -C, --capital       Capital wordlist\n\n  General Settings:\n    -t THREADS, --threads=THREADS\n                        Number of threads\n    --list-sessions     List resumable sessions and exit\n    --sessions-dir=PATH\n                        Directory to search for resumable sessions (default:\n                        dirsearch path /sessions, or $HOME/.dirsearch/sessions\n                        when bundled)\n    -a, --async         Enable asynchronous mode\n    --sync, --no-async  Use synchronous Python mode\n    -r, --recursive     Brute-force recursively\n    --deep-recursive    Perform recursive scan on every directory depth (e.g.\n                        api/users -> api/)\n    --force-recursive   Do recursive brute-force for every found path, not\n                        only directories\n    -R DEPTH, --max-recursion-depth=DEPTH\n                        Maximum recursion depth\n    --recursion-status=CODES\n                        Valid status codes to perform recursive scan, support\n                        ranges (separated by commas)\n    --filter-threshold=THRESHOLD\n                        Maximum number of results with duplicate responses\n                        before getting filtered out\n    --subdirs=SUBDIRS   Scan sub-directories of the given URL[s] (separated by\n                        commas)\n    --exclude-subdirs=SUBDIRS\n                        Exclude the following subdirectories during recursive\n                        scan (separated by commas)\n    -i CODES, --include-status=CODES\n                        Include status codes, separated by commas, support\n                        ranges (e.g. 200,300-399)\n    -x CODES, --exclude-status=CODES\n                        Exclude status codes, separated by commas, support\n                        ranges (e.g. 301,500-599)\n    --exclude-sizes=SIZES\n                        Exclude responses by sizes, separated by commas (e.g.\n                        0,0B,4KB)\n    --exclude-text=TEXTS\n                        Exclude responses by text, can use multiple flags\n    --exclude-regex=REGEX\n                        Exclude responses by regular expression\n    --exclude-redirect=STRING\n                        Exclude responses if this regex (or text) matches\n                        redirect URL (e.g. '/index.html')\n    --exclude-response=PATH\n                        Exclude responses similar to response of this page,\n                        path as input (e.g. 404.html)\n    --skip-on-status=CODES\n                        Skip target whenever hit one of these status codes,\n                        separated by commas, support ranges\n    --min-response-size=LENGTH\n                        Minimum response length (e.g. 1024,1KB)\n    --max-response-size=LENGTH\n                        Maximum response length (e.g. 1024,1KB)\n    --max-time=SECONDS  Maximum runtime for the scan\n    --target-max-time=SECONDS\n                        Maximum runtime for a target\n    --exit-on-error     Exit whenever an error occurs\n\n  Advanced Filtering:\n    --auto-calibration  Force extra wildcard calibration from the beginning\n    --matcher-mode=MODE, --mmode=MODE\n                        Advanced matcher operator: and, or\n    --filter-mode=MODE, --fmode=MODE\n                        Advanced filter operator: and, or\n    --match-status=CODES, --mc=CODES\n                        Advanced matcher for status codes, separated by\n                        commas, support ranges\n    --filter-status=CODES, --fc=CODES\n                        Advanced filter for status codes, separated by commas,\n                        support ranges\n    --match-size=SIZES, --ms=SIZES\n                        Advanced matcher for response length, separated by\n                        commas, support ranges\n    --filter-size=SIZES, --fs=SIZES\n                        Advanced filter for response length, separated by\n                        commas, support ranges\n    --match-words=WORDS, --mw=WORDS\n                        Advanced matcher for response word count, separated by\n                        commas, support ranges\n    --filter-words=WORDS, --fw=WORDS\n                        Advanced filter for response word count, separated by\n                        commas, support ranges\n    --match-lines=LINES, --ml=LINES\n                        Advanced matcher for response line count, separated by\n                        commas, support ranges\n    --filter-lines=LINES, --fl=LINES\n                        Advanced filter for response line count, separated by\n                        commas, support ranges\n    --match-regex=REGEX, --mr=REGEX\n                        Advanced matcher for response body regular expression\n    --filter-regex=REGEX, --fr=REGEX\n                        Advanced filter for response body regular expression\n    --match-header=TEXT\n                        Advanced matcher for response headers by text, can use\n                        multiple flags\n    --filter-header=TEXT\n                        Advanced filter for response headers by text, can use\n                        multiple flags\n    --match-header-regex=REGEX\n                        Advanced matcher for response headers regular\n                        expression\n    --filter-header-regex=REGEX\n                        Advanced filter for response headers regular\n                        expression\n    --match-time=TIME, --mt=TIME\n                        Advanced matcher for elapsed milliseconds, e.g. >100\n                        or <100\n    --filter-time=TIME, --ft=TIME\n                        Advanced filter for elapsed milliseconds, e.g. >100 or\n                        <100\n\n  Request Settings:\n    -m METHOD, --http-method=METHOD\n                        HTTP method (default: GET)\n    --request-backend=BACKEND\n                        Request backend: python, native (default: python)\n    -d DATA, --data=DATA\n                        HTTP request data\n    --data-file=PATH    File contains HTTP request data\n    -H HEADERS, --header=HEADERS\n                        HTTP request header, can use multiple flags\n    --headers-file=PATH\n                        File contains HTTP request headers\n    -F, --follow-redirects\n                        Follow HTTP redirects\n    --random-agent      Choose a random User-Agent for each request\n    --auth=CREDENTIAL   Authentication credential (e.g. user:password or\n                        bearer token)\n    --auth-type=TYPE    Authentication type (basic, digest, bearer, ntlm, jwt)\n    --cert-file=PATH    File contains client-side certificate\n    --key-file=PATH     File contains client-side certificate private key\n                        (unencrypted)\n    --user-agent=USER_AGENT\n    --cookie=COOKIE     \n\n  Connection Settings:\n    --timeout=TIMEOUT   Connection timeout\n    --delay=DELAY       Delay between requests\n    -p PROXY, --proxy=PROXY\n                        Proxy URL (HTTP/SOCKS), can use multiple flags\n    --proxies-file=PATH\n                        File contains proxy servers\n    --proxy-auth=CREDENTIAL\n                        Proxy authentication credential\n    --replay-proxy=PROXY\n                        Proxy to replay with found paths\n    --tor               Use Tor network as proxy\n    --scheme=SCHEME     Scheme for raw request or if there is no scheme in the\n                        URL (Default: auto-detect)\n    --max-rate=RATE     Max requests per second\n    --retries=RETRIES   Number of retries for failed requests\n    --ip=IP             Server IP address\n    --interface=NETWORK_INTERFACE\n                        Network interface to use\n\n  Advanced Settings:\n    --crawl             Crawl for new paths in responses\n\n  View Settings:\n    --full-url          Full URLs in the output (enabled automatically in\n                        quiet mode)\n    --redirects-history\n                        Show redirects history\n    --no-color          No colored output\n    -q, --quiet-mode    Quiet mode\n    --disable-cli       Turn off command-line output\n    -v, --verbose       Show verbose output with response time and content\n                        type\n\n  Output Settings:\n    -O FORMAT, --output-formats=FORMAT\n                        Report formats, separated by commas (Available:\n                        simple, plain, json, xml, md, csv, html, sqlite)\n    -o PATH, --output-file=PATH\n                        Output file location\n    --mysql-url=URL     Database URL for MySQL output (Format:\n                        mysql://[username:password@]host[:port]/database-name)\n    --postgres-url=URL  Database URL for PostgreSQL output (Format:\n                        postgres://[username:password@]host[:port]/database-\n                        name)\n    --log=PATH          Log file\n\nSee 'config.ini' for the example configuration file\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--async",
+   "--auto-calibration",
+   "--capital",
+   "--crawl",
+   "--deep-recursive",
+   "--disable-cli",
+   "--exit-on-error",
+   "--follow-redirects",
+   "--force-extensions",
+   "--force-recursive",
+   "--full-url",
+   "--help",
+   "--list-sessions",
+   "--lowercase",
+   "--no-async",
+   "--no-color",
+   "--overwrite-extensions",
+   "--quiet-mode",
+   "--random-agent",
+   "--recursive",
+   "--redirects-history",
+   "--stdin",
+   "--tor",
+   "--uppercase",
+   "--verbose",
+   "--version",
+   "--wordlist-status"
+  ],
+  "unconfirmed": [
+   "--dest",
+   "--keep-target",
+   "--manifest-path",
+   "--no-force-reinstall",
+   "--out",
+   "--output-dir",
+   "--project-root",
+   "--python",
+   "--python-build-standalone-release",
+   "--python-version",
+   "--release-tag",
+   "--source",
+   "--stack",
+   "--target",
+   "--target-dir",
+   "config",
+   "stack"
+  ],
+  "help_only": [
+   "--auth",
+   "--auth-type",
+   "--cert-file",
+   "--cidr",
+   "--config",
+   "--cookie",
+   "--data",
+   "--data-file",
+   "--delay",
+   "--exclude-extensions",
+   "--exclude-redirect",
+   "--exclude-regex",
+   "--exclude-response",
+   "--exclude-sizes",
+   "--exclude-status",
+   "--exclude-subdirs",
+   "--exclude-text",
+   "--extensions",
+   "--fc",
+   "--filter-header",
+   "--filter-header-regex",
+   "--filter-lines",
+   "--filter-mode",
+   "--filter-regex",
+   "--filter-size",
+   "--filter-status",
+   "--filter-threshold",
+   "--filter-time",
+   "--filter-words",
+   "--fl",
+   "--fmode",
+   "--fr",
+   "--fs",
+   "--ft",
+   "--fw",
+   "--header",
+   "--headers-file",
+   "--http-method",
+   "--include-status",
+   "--interface",
+   "--ip",
+   "--key-file",
+   "--log",
+   "--match-header",
+   "--match-header-regex",
+   "--match-lines",
+   "--match-regex",
+   "--match-size",
+   "--match-status",
+   "--match-time",
+   "--match-words",
+   "--matcher-mode",
+   "--max-rate",
+   "--max-recursion-depth",
+   "--max-response-size",
+   "--max-time",
+   "--mc",
+   "--min-response-size",
+   "--ml",
+   "--mmode",
+   "--mr",
+   "--ms",
+   "--mt",
+   "--mw",
+   "--mysql-url",
+   "--nmap-report",
+   "--output-file",
+   "--output-formats",
+   "--postgres-url",
+   "--prefixes",
+   "--proxies-file",
+   "--proxy",
+   "--proxy-auth",
+   "--raw",
+   "--recursion-status",
+   "--replay-proxy",
+   "--request-backend",
+   "--retries",
+   "--scheme",
+   "--session",
+   "--session-id",
+   "--sessions-dir",
+   "--skip-on-status",
+   "--subdirs",
+   "--suffixes",
+   "--sync",
+   "--target-max-time",
+   "--threads",
+   "--timeout",
+   "--url",
+   "--urls-file",
+   "--user-agent",
+   "--wordlist-backend",
+   "--wordlist-categories",
+   "--wordlist-max-size",
+   "--wordlists",
+   "-C",
+   "-F",
+   "-H",
+   "-L",
+   "-O",
+   "-R",
+   "-U",
+   "-a",
+   "-d",
+   "-e",
+   "-f",
+   "-h",
+   "-i",
+   "-l",
+   "-m",
+   "-o",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-u",
+   "-v",
+   "-w",
+   "-x"
+  ],
+  "mining_coverage": 0.18243243243243243
+ },
+ "surface": {
+  "flags": {
+   "--async": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable asynchronous mode",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Authentication credential (e.g. user:password or bearer token)",
+    "metavar": "CREDENTIAL"
+   },
+   "--auth-type": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Authentication type (basic, digest, bearer, ntlm, jwt)",
+    "metavar": "TYPE"
+   },
+   "--auto-calibration": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Force extra wildcard calibration from the beginning",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--capital": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Capital wordlist",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--cert-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File contains client-side certificate",
+    "metavar": "PATH"
+   },
+   "--cidr": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target CIDR",
+    "metavar": "CIDR"
+   },
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to configuration file (Default: 'DIRSEARCH_CONFIG' environment variable, otherwise 'config.ini')",
+    "metavar": "PATH"
+   },
+   "--cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "",
+    "metavar": "COOKIE"
+   },
+   "--crawl": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Crawl for new paths in responses",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP request data",
+    "metavar": "DATA",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--data-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File contains HTTP request data",
+    "metavar": "PATH"
+   },
+   "--deep-recursive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform recursive scan on every directory depth (e.g. api/users -> api/)",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--delay": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Delay between requests",
+    "metavar": "DELAY"
+   },
+   "--dest": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Destination directory for category files (default: db/categories)",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/split_wordlists.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--disable-cli": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Turn off command-line output",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--exclude-extensions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude extension list, separated by commas (e.g. asp,jsp)",
+    "metavar": "EXTENSIONS"
+   },
+   "--exclude-redirect": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude responses if this regex (or text) matches redirect URL (e.g. '/index.html')",
+    "metavar": "STRING"
+   },
+   "--exclude-regex": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude responses by regular expression",
+    "metavar": "REGEX"
+   },
+   "--exclude-response": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude responses similar to response of this page, path as input (e.g. 404.html)",
+    "metavar": "PATH"
+   },
+   "--exclude-sizes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude responses by sizes, separated by commas (e.g. 0,0B,4KB)",
+    "metavar": "SIZES"
+   },
+   "--exclude-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude status codes, separated by commas, support ranges (e.g. 301,500-599)",
+    "metavar": "CODES",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--exclude-subdirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude the following subdirectories during recursive scan (separated by commas)",
+    "metavar": "SUBDIRS"
+   },
+   "--exclude-text": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude responses by text, can use multiple flags",
+    "metavar": "TEXTS"
+   },
+   "--exit-on-error": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Exit whenever an error occurs",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--extensions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Extension list, separated by commas (e.g. php,asp)",
+    "metavar": "EXTENSIONS",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--filter-header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response headers by text, can use multiple flags",
+    "metavar": "TEXT"
+   },
+   "--filter-header-regex": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response headers regular expression",
+    "metavar": "REGEX"
+   },
+   "--filter-lines": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response line count, separated by commas, support ranges",
+    "metavar": "LINES",
+    "aliases": [
+     "--fl"
+    ]
+   },
+   "--filter-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter operator: and, or",
+    "metavar": "MODE",
+    "aliases": [
+     "--fmode"
+    ]
+   },
+   "--filter-regex": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response body regular expression",
+    "metavar": "REGEX",
+    "aliases": [
+     "--fr"
+    ]
+   },
+   "--filter-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response length, separated by commas, support ranges",
+    "metavar": "SIZES",
+    "aliases": [
+     "--fs"
+    ]
+   },
+   "--filter-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for status codes, separated by commas, support ranges",
+    "metavar": "CODES",
+    "aliases": [
+     "--fc"
+    ]
+   },
+   "--filter-threshold": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum number of results with duplicate responses before getting filtered out",
+    "metavar": "THRESHOLD"
+   },
+   "--filter-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for elapsed milliseconds, e.g. >100 or <100",
+    "metavar": "TIME",
+    "aliases": [
+     "--ft"
+    ]
+   },
+   "--filter-words": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced filter for response word count, separated by commas, support ranges",
+    "metavar": "WORDS",
+    "aliases": [
+     "--fw"
+    ]
+   },
+   "--follow-redirects": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Follow HTTP redirects",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-F"
+    ]
+   },
+   "--force-extensions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Add extensions to the end of every wordlist entry. By default dirsearch only replaces the %EXT% keyword with extensions",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--force-recursive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do recursive brute-force for every found path, not only directories",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--full-url": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Full URLs in the output (enabled automatically in quiet mode)",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP request header, can use multiple flags",
+    "metavar": "HEADERS",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--headers-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File contains HTTP request headers",
+    "metavar": "PATH"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--http-method": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP method (default: GET)",
+    "metavar": "METHOD",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--include-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Include status codes, separated by commas, support ranges (e.g. 200,300-399)",
+    "metavar": "CODES",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--interface": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Network interface to use",
+    "metavar": "NETWORK_INTERFACE"
+   },
+   "--ip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Server IP address",
+    "metavar": "IP"
+   },
+   "--keep-target": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Keep the Cargo target directory after a successful build",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_native.py",
+    "takes_value": false
+   },
+   "--key-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File contains client-side certificate private key (unencrypted)",
+    "metavar": "PATH"
+   },
+   "--list-sessions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "List resumable sessions and exit",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--log": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Log file",
+    "metavar": "PATH"
+   },
+   "--lowercase": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Lowercase wordlist",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--manifest-path": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to native/Cargo.toml",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_native.py",
+    "takes_value": true,
+    "value_type": "path"
+   },
+   "--match-header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response headers by text, can use multiple flags",
+    "metavar": "TEXT"
+   },
+   "--match-header-regex": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response headers regular expression",
+    "metavar": "REGEX"
+   },
+   "--match-lines": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response line count, separated by commas, support ranges",
+    "metavar": "LINES",
+    "aliases": [
+     "--ml"
+    ]
+   },
+   "--match-regex": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response body regular expression",
+    "metavar": "REGEX",
+    "aliases": [
+     "--mr"
+    ]
+   },
+   "--match-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response length, separated by commas, support ranges",
+    "metavar": "SIZES",
+    "aliases": [
+     "--ms"
+    ]
+   },
+   "--match-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for status codes, separated by commas, support ranges",
+    "metavar": "CODES",
+    "aliases": [
+     "--mc"
+    ]
+   },
+   "--match-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for elapsed milliseconds, e.g. >100 or <100",
+    "metavar": "TIME",
+    "aliases": [
+     "--mt"
+    ]
+   },
+   "--match-words": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher for response word count, separated by commas, support ranges",
+    "metavar": "WORDS",
+    "aliases": [
+     "--mw"
+    ]
+   },
+   "--matcher-mode": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Advanced matcher operator: and, or",
+    "metavar": "MODE",
+    "aliases": [
+     "--mmode"
+    ]
+   },
+   "--max-rate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Max requests per second",
+    "metavar": "RATE"
+   },
+   "--max-recursion-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum recursion depth",
+    "metavar": "DEPTH",
+    "aliases": [
+     "-R"
+    ]
+   },
+   "--max-response-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum response length (e.g. 1024,1KB)",
+    "metavar": "LENGTH"
+   },
+   "--max-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum runtime for the scan",
+    "metavar": "SECONDS"
+   },
+   "--min-response-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Minimum response length (e.g. 1024,1KB)",
+    "metavar": "LENGTH"
+   },
+   "--mysql-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Database URL for MySQL output (Format: mysql://[username:password@]host[:port]/database-name)",
+    "metavar": "URL"
+   },
+   "--nmap-report": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load targets from nmap report (Ensure the inclusion of the -sV flag during nmap scan for comprehensive results)",
+    "metavar": "PATH"
+   },
+   "--no-color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "No colored output",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--no-force-reinstall": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Do not pass --force-reinstall to pip",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "lib/core/native_builder.py",
+    "takes_value": false
+   },
+   "--out": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Directory for the built native wheel",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_native.py",
+    "takes_value": true,
+    "value_type": "path"
+   },
+   "--output-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output file location",
+    "metavar": "PATH",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--output-formats": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Report formats, separated by commas (Available: simple, plain, json, xml, md, csv, html, sqlite)",
+    "metavar": "FORMAT",
+    "aliases": [
+     "-O"
+    ]
+   },
+   "--overwrite-extensions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Overwrite other extensions in the wordlist with your extensions (selected via `-e`)",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--postgres-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Database URL for PostgreSQL output (Format: postgres://[username:password@]host[:port]/database- name)",
+    "metavar": "URL"
+   },
+   "--prefixes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Add custom prefixes to all wordlist entries (separated by commas)",
+    "metavar": "PREFIXES"
+   },
+   "--project-root": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--proxies-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File contains proxy servers",
+    "metavar": "PATH"
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Proxy URL (HTTP/SOCKS), can use multiple flags",
+    "metavar": "PROXY",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--proxy-auth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Proxy authentication credential",
+    "metavar": "CREDENTIAL"
+   },
+   "--python": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Python executable to install into",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_native.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--python-build-standalone-release": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--python-version": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--quiet-mode": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Quiet mode",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--random-agent": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Choose a random User-Agent for each request",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--raw": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load raw HTTP request from file (use '--scheme' flag to set the scheme)",
+    "metavar": "PATH"
+   },
+   "--recursion-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Valid status codes to perform recursive scan, support ranges (separated by commas)",
+    "metavar": "CODES"
+   },
+   "--recursive": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Brute-force recursively",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--redirects-history": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show redirects history",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--release-tag": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--replay-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Proxy to replay with found paths",
+    "metavar": "PROXY"
+   },
+   "--request-backend": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Request backend: python, native (default: python)",
+    "metavar": "BACKEND"
+   },
+   "--retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of retries for failed requests",
+    "metavar": "RETRIES"
+   },
+   "--scheme": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scheme for raw request or if there is no scheme in the URL (Default: auto-detect)",
+    "metavar": "SCHEME"
+   },
+   "--session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Session file",
+    "metavar": "SESSION_FILE",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--session-id": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load session by numeric id (use --list-sessions to see ids)",
+    "metavar": "ID"
+   },
+   "--sessions-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Directory to search for resumable sessions (default: dirsearch path /sessions, or $HOME/.dirsearch/sessions when bundled)",
+    "metavar": "PATH"
+   },
+   "--skip-on-status": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip target whenever hit one of these status codes, separated by commas, support ranges",
+    "metavar": "CODES"
+   },
+   "--source": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Source wordlist (default: db/dicc.txt)",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/split_wordlists.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--stack": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "choices": [
+     "threaded",
+     "async",
+     "native-rust"
+    ],
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--stdin": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Read URL(s) from STDIN",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--subdirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan sub-directories of the given URL[s] (separated by commas)",
+    "metavar": "SUBDIRS"
+   },
+   "--suffixes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Add custom suffixes to all wordlist entries, ignore directories (separated by commas)",
+    "metavar": "SUFFIXES"
+   },
+   "--sync": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use synchronous Python mode",
+    "aliases": [
+     "--no-async"
+    ],
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--target": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_portable.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--target-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Optional Cargo target directory, useful for read-only source trees",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/build_native.py",
+    "takes_value": true,
+    "value_type": "path"
+   },
+   "--target-max-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum runtime for a target",
+    "metavar": "SECONDS"
+   },
+   "--threads": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of threads",
+    "metavar": "THREADS",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Connection timeout",
+    "metavar": "TIMEOUT"
+   },
+   "--tor": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use Tor network as proxy",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--uppercase": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Uppercase wordlist",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-U"
+    ]
+   },
+   "--url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target URL(s), can use multiple flags",
+    "metavar": "URL",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--urls-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "URL list file",
+    "metavar": "PATH",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--user-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "",
+    "metavar": "USER_AGENT"
+   },
+   "--verbose": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show verbose output with response time and content type",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show program's version number and exit",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--wordlist-backend": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wordlist generation backend: auto, python, native (default: auto)",
+    "metavar": "BACKEND"
+   },
+   "--wordlist-categories": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma-separated wordlist category names (e.g. common,conf,web). Use 'all' to include all bundled categories",
+    "metavar": "WORDLIST_CATEGORIES"
+   },
+   "--wordlist-max-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum generated wordlist entries before aborting (default: 500000)",
+    "metavar": "COUNT"
+   },
+   "--wordlist-status": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show resolved wordlist files and generated entry count, then exit",
+    "kind": "option",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/options.md"
+   },
+   "--wordlists": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wordlist files or directories contain wordlists (separated by commas)",
+    "metavar": "WORDLISTS",
+    "aliases": [
+     "-w"
+    ]
+   },
+   "config": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to config.ini",
+    "kind": "positional",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/configure_stack.py"
+   },
+   "stack": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Release stack to configure",
+    "kind": "positional",
+    "first_tag": "v0.5.0",
+    "first_date": "2026-08-13T23:12:59-03:00",
+    "last_tag": "v0.5.0",
+    "last_date": "2026-08-13T23:12:59-03:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "scripts/configure_stack.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-ff17e31e",
+    "argv": [
+     "dirsearch",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 42
+   },
+   {
+    "id": "t-net-36dd939e",
+    "argv": [
+     "dirsearch",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 42
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "dirsearch --version",
+    "source": "ci",
+    "path": ".github/workflows/ci.yml",
+    "line": 28,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "dirsearch -u https://example.com -e php,html,js",
+    "source": "readme",
+    "path": "README.md",
+    "line": 35,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "dirsearch -u https://example.com -w /tmp/dirsearch-wordlist.txt --request-backend native --wordlist-backend native -q",
+    "source": "readme",
+    "path": "docs/installation.md",
+    "line": 88,
+    "reason": "unmappable-path",
+    "token": "/tmp/dirsearch-wordlist.txt"
+   },
+   {
+    "raw": "./dirsearch-v0.5.0-rc1-linux-x64-async-portable/dirsearch -u https://target",
+    "source": "readme",
+    "path": "docs/installation.md",
+    "line": 219,
+    "reason": "needs-live-target",
+    "token": "https://target"
+   }
+  ]
+ },
+ "tool": "dirsearch",
+ "repo": "maurosoria/dirsearch",
+ "head_sha": "b08e8b42efb822bf0b4bda87bd00cb04e6116a2d",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-15T17:59:55.465511+00:00"
+}

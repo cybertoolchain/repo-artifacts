@@ -1,0 +1,2056 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "dockerfile",
+  "image_digest": "sha256:5760af1a651911608425ba2d3a597c682a3ae7cc60e40e7774accb9b30077402",
+  "duration_s": 12.97,
+  "log_tail": "#4 DONE 0.0s\n\n#6 [2/6] RUN ((apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils && rm -rf /var/lib/apt/lists/*) ||      (apk add --no-cache python3 mandoc less) ||      (dnf install -y python3 man-db less) ||      true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in upstream image\" >&2; exit 1)\n#6 0.206 /bin/sh: apt-get: not found\n#6 0.641 ( 1/17) Installing ncurses-terminfo-base (6.5_p20251123-r0)\n#6 0.667 ( 2/17) Installing libncursesw (6.5_p20251123-r0)\n#6 0.729 ( 3/17) Installing less (685-r0)\n#6 0.761 ( 4/17) Installing mandoc (1.14.6-r14)\n#6 0.789 ( 5/17) Installing libexpat (2.8.2-r0)\n#6 0.814 ( 6/17) Installing libffi (3.5.2-r0)\n#6 0.842 ( 7/17) Installing gdbm (1.26-r0)\n#6 0.872 ( 8/17) Installing libgcc (15.2.0-r2)\n#6 0.894 ( 9/17) Installing libstdc++ (15.2.0-r2)\n#6 0.930 (10/17) Installing mpdecimal (4.0.1-r0)\n#6 0.955 (11/17) Installing libpanelw (6.5_p20251123-r0)\n#6 0.978 (12/17) Installing readline (8.3.1-r0)\n#6 1.038 (13/17) Installing sqlite-libs (3.51.2-r0)\n#6 1.079 (14/17) Installing python3 (3.12.14-r0)\n#6 1.380 (15/17) Installing python3-pycache-pyc0 (3.12.14-r0)\n#6 1.494 (16/17) Installing pyc (3.12.14-r0)\n#6 1.494 (17/17) Installing python3-pyc (3.12.14-r0)\n#6 1.494 Executing busybox-1.37.0-r30.trigger\n#6 1.510 OK: 95.3 MiB in 48 packages\n#6 DONE 1.6s\n\n#7 [3/6] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#7 DONE 0.1s\n\n#8 [4/6] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#8 DONE 0.1s\n\n#9 [5/6] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#9 DONE 0.1s\n\n#10 [6/6] RUN (useradd -u 65532 -m -s /usr/sbin/nologin ctk || adduser -D -u 65532 -s /usr/sbin/nologin ctk || true) &&     command -v python3 >/dev/null || (echo \"ctk: no python3 in image\" >&2; exit 1)\n#10 0.324 /bin/sh: useradd: not found\n#10 DONE 0.4s\n\n#11 exporting to image\n#11 exporting layers\n#11 exporting layers 1.3s done\n#11 exporting manifest sha256:a1c72c99d5819609602f693eb6facccf1183b5f8491698cec1118fbf8c412058 0.0s done\n#11 exporting config sha256:11a8510b44344a77d9bb829d8a89872a552908a9f8224b9a387368b36d89f4a3 0.0s done\n#11 exporting attestation manifest sha256:80a17a25503921df040f164c762948e438e0e59c759ded02e9e01ad0f53301ce 0.0s done\n#11 exporting manifest list sha256:5760af1a651911608425ba2d3a597c682a3ae7cc60e40e7774accb9b30077402\n#11 exporting manifest list sha256:5760af1a651911608425ba2d3a597c682a3ae7cc60e40e7774accb9b30077402 0.0s done\n#11 naming to docker.io/ctk-exec/nikto:312645d87347 done\n#11 unpacking to docker.io/ctk-exec/nikto:312645d87347\n#11 unpacking to docker.io/ctk-exec/nikto:312645d87347 1.0s done\n#11 DONE 2.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "nikto.pl",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n   Options:\n       -Add-header         Add HTTP headers (can be used multiple times, one per header pair)\n       -ask+               Whether to ask about submitting updates\n                               yes   Ask about each (default)\n                               no    Don't ask, don't send\n                               auto  Don't ask, just send\n       -check6             Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)\n       -Cgidirs+           Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"\n       -config+            Use this config file\n       -Display+           Turn on/off display outputs:\n                               1     Show redirects\n                               2     Show cookies received\n                               3     Show all 200/OK responses\n                               4     Show URLs which require authentication\n                               D     Debug output\n                               E     Display all HTTP errors\n                               P     Print progress to STDOUT\n                               S     Scrub output of IPs and hostnames\n                               V     Verbose output\n       -dbcheck           Check database and other key files for syntax errors\n       -evasion+          Encoding technique:\n                               1     Random URI encoding (non-UTF8)\n                               2     Directory self-reference (/./)\n                               3     Premature URL ending\n                               4     Prepend long random string\n                               5     Fake parameter\n                               6     TAB as request spacer\n                               7     Change the case of the URL\n                               8     Use Windows directory separator (\\)\n                               A     Use a carriage return (0x0d) as a request spacer\n                               B     Use binary value 0x0b as a request spacer\n                               R     Random User-Agent from database per request\n        -followredirects   Follow 3xx redirects to new location\n        -Format+           Save file (-o) format:\n                               csv   Comma-separated-value\n                               json  JSON Format\n                               htm   HTML Format\n                               sql   Generic SQL (see docs for schema)\n                               sqld  SQL Direct (MySQL/PostgreSQL via DBI)\n                               txt   Plain text\n                               xml   XML Format\n                               (if not specified the format will be taken from the file extension passed to -output)\n       -Help              This help information\n       -host+             Target host/URL\n       -id+               Host authentication to use, format is id:pass or id:pass:realm\n       -ipv4                 IPv4 Only\n       -ipv6                 IPv6 Only\n       -key+              Client certificate key file\n       -list-plugins      List all available plugins, perform no testing\n       -maxtime+          Maximum testing time per host (e.g., 1h, 60m, 3600s)\n       -mutate+           Guess additional file names:\n                               1     Test all files with all root directories\n                               2     Guess for password file names\n                               3     Enumerate user names via Apache (/~user type requests)\n                               4     Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)\n       -mutate-options    Provide information for mutates\n       -nocheck           Don't check for updates on startup\n       -nocookies         Do not use cookies from responses in requests\n       -nointeractive     Disables interactive features\n       -nolookup          Disables DNS lookups\n       -nossl             Disables the use of SSL\n       -nosslkeepalive    Disable TLS connection reuse (keep-alive on by default)\n       -noslash           Strip trailing slash from URL (e.g., '/admin/' to '/admin')\n       -no404             Disables nikto attempting to guess a 404 page\n       -Option            Over-ride an option in nikto.conf, can be issued multiple times\n       -output+           Write output to this file ('.' for auto-name)\n       -Pause+            Pause between tests (seconds)\n       -Platform+         Platform of target (nix, win, all)\n       -Plugins+          List of plugins to run (default: ALL)\n       -port+             Port to use (default 80)\n       -RSAcert+          Client certificate file\n       -root+             Prepend root value to all requests, format is /directory\n       -Save              Save positive responses to this directory ('.' for auto-name)\n       -ssl               Force ssl mode on port\n       -Tuning+           Scan tuning:\n                               1     Interesting File / Seen in logs\n                               2     Misconfiguration / Default File\n                               3     Information Disclosure\n                               4     Injection (XSS/Script/HTML)\n                               5     Remote File Retrieval - Inside Web Root\n                               6     Denial of Service\n                               7     Remote File Retrieval - Server Wide\n                               8     Command Execution / Remote Shell\n                               9     SQL Injection\n                               0     File Upload\n                               a     Authentication Bypass\n                               b     Software Identification\n                               c     Remote Source Inclusion\n                               d     WebService\n                               e     Administrative Console\n                               x     Reverse Tuning Options (i.e., include all except specified)\n       -timeout+          Timeout for requests (default 10 seconds)\n       -Userdbs           Load only user databases, not the standard databases\n                               all   Disable standard dbs and load only user dbs\n                               tests Disable only db_tests and load udb_tests\n       -useragent         Force User-Agent instead of pulling from database\n       -url+              Target host/URL (alias of -host)\n       -useproxy          Use the proxy defined in nikto.conf, or argument http://server:port\n       -Version           Print plugin and database versions\n       -vhost+            Virtual host (for Host header)\n       -404code           Ignore these HTTP codes as negative responses (always). Format is \"302,301\".\n       -404string         Ignore this string in response body content as negative response (always). Can be a regular expression.\n   \t\t+ requires a value\n\n",
+   "stderr": "Unknown option: help\n",
+   "duration_ms": 65,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "nikto.pl"
+   ],
+   "exit_code": 5,
+   "stdout": "",
+   "stderr": "man: No entry for nikto.pl in the manual.\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "nikto.pl"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'info'",
+   "source": "info"
+  },
+  {
+   "argv": [
+    "nikto.pl",
+    "-Version"
+   ],
+   "exit_code": 0,
+   "stdout": "Nikto 2.6.1 (LW 2.5)\n",
+   "stderr": "",
+   "duration_ms": 64,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "version",
+   "title": "Version banner"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "nikto.pl",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "0230addf92f69aee",
+ "examples": [
+  {
+   "id": "version",
+   "title": "Version banner",
+   "argv": [
+    "nikto.pl",
+    "-Version"
+   ],
+   "stdout": "Nikto 2.6.1 (LW 2.5)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 64,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "dvwa-scan",
+   "title": "HTTP scan of the live DVWA target",
+   "argv": [
+    "nikto.pl",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:29:52 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:29:59 (GMT0) (7 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "wordpress-scan",
+   "title": "HTTP scan of a live WordPress site",
+   "argv": [
+    "nikto.pl",
+    "-h",
+    "http://wordpress",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "wordpress-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "wordpress",
+     "image": "docker.io/library/wordpress",
+     "digest": "sha256:8ae66efb09a2cc4f1ce44414c52b0ce4198c1f8ed338a6f51910bc09cd7d8bbb",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          wordpress\n+ Target Hostname:    wordpress\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:30:31 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.57 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.2.17.\n+ [000427] /: Link header(s) found with value(s): <http://wordpress/wp-json/>; rel=\"https://api.w.org/\". See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Link\n+ [999100] /wp-admin/: Uncommon header(s) 'x-redirect-by' found, with contents: WordPress.\n+ [999996] /robots.txt: contains 2 entries which should be manually viewed. See: https://developer.mozilla.org/en-US/docs/Glossary/Robots.txt\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [999967] /: Web Server returns a valid response with junk HTTP methods which may cause false positives.\n+ [600050] Apache/2.4.57 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.2.17 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ Scan terminated: 0 errors and 12 items reported on the remote host\n+ End Time:           2026-08-16 01:31:32 (GMT0) (61 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n+ ERROR: Host maximum execution time of 60 seconds reached\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "admin_user": "admin",
+    "installed": true
+   }
+  },
+  {
+   "id": "t-opt-232ba92e",
+   "title": "Don't check for updates on startup (-nocheck)",
+   "argv": [
+    "nikto.pl",
+    "-nocheck",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:31:42 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:31:49 (GMT0) (7 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-0f67e512",
+   "title": "Follow 3xx redirects to new location (-followredirects)",
+   "argv": [
+    "nikto.pl",
+    "-followredirects",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:32:13 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [000287] /login.php: Retrieved x-powered-by header: PHP/8.5.6.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] login.php: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] login.php: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] login.php: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] login.php: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] login.php: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8268 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:32:21 (GMT0) (8 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-4dc27de0",
+   "title": "IPv4 Only (-ipv4)",
+   "argv": [
+    "nikto.pl",
+    "-ipv4",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:32:46 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:32:52 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-9cda7861",
+   "title": "IPv6 Only (-ipv6)",
+   "argv": [
+    "nikto.pl",
+    "-ipv6",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:33:08 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:33:15 (GMT0) (7 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-f8a73893",
+   "title": "Do not use cookies from responses in requests (-nocookies)",
+   "argv": [
+    "nikto.pl",
+    "-nocookies",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:33:30 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000029] /: Cookie security created without the httponly flag. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies\n+ [000029] /: Cookie PHPSESSID created without the httponly flag. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Cookies\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 13 items reported on the remote host\n+ End Time:           2026-08-16 01:33:37 (GMT0) (7 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e62630e3",
+   "title": "Disables DNS lookups (-nolookup)",
+   "argv": [
+    "nikto.pl",
+    "-nolookup",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:33:51 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:33:58 (GMT0) (7 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8b83996c",
+   "title": "Force ssl mode on port (-ssl)",
+   "argv": [
+    "nikto.pl",
+    "-ssl",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ [FAIL] Unable to connect to dvwa:80.\n",
+   "stderr": "Argument \"Unable to connect to dvwa:80\" isn't numeric in numeric ne (!=) at /opt/nikto/nikto.pl line 155.\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-38f74c93",
+   "title": "Ignore this string in response body content as negative response\u2026 (-404string)",
+   "argv": [
+    "nikto.pl",
+    "-404string=ctk",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:34:23 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:34:29 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-9870d547",
+   "title": "Add HTTP headers (can be used multiple times, one per header pair) (-Add-header)",
+   "argv": [
+    "nikto.pl",
+    "-Add-header",
+    "X-CTK-Example: 1",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:34:44 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:34:50 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-d284ac4b",
+   "title": "Load only user databases, not the standard databases all Disable\u2026 (-Userdbs)",
+   "argv": [
+    "nikto.pl",
+    "-Userdbs",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Unable to load valid checks!\n",
+   "stderr": "",
+   "exit_code": 1,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-5f431061",
+   "title": "Target host/URL (-host)",
+   "argv": [
+    "nikto.pl",
+    "-host",
+    "http://dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:35:08 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:35:14 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-04df997f",
+   "title": "Host authentication to use, format is id:pass or id:pass:realm (-id)",
+   "argv": [
+    "nikto.pl",
+    "-id=dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:35:27 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:35:32 (GMT0) (5 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-fcb332c8",
+   "title": "Strip trailing slash from URL (e.g., '/admin/' to '/admin') (-noslash)",
+   "argv": [
+    "nikto.pl",
+    "-noslash",
+    "http://dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:35:44 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:35:50 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-75a3996b",
+   "title": "Disables the use of SSL (-nossl)",
+   "argv": [
+    "nikto.pl",
+    "-nossl",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:36:01 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8002 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:36:06 (GMT0) (5 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-c0a458b1",
+   "title": "Virtual host (for Host header) (-vhost)",
+   "argv": [
+    "nikto.pl",
+    "-vhost",
+    "X-CTK-Example: 1",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ [FAIL] Unable to connect to dvwa:80.\n",
+   "stderr": "Argument \"Unable to connect to dvwa:80\" isn't numeric in numeric ne (!=) at /opt/nikto/nikto.pl line 155.\n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-4ff836ba",
+   "title": "Encoding technique: 1 Random URI encoding (non-UTF8) 2 Directory\u2026 (-evasion)",
+   "argv": [
+    "nikto.pl",
+    "-evasion",
+    "http://dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Using Encoding:     Random URI encoding (non-UTF8)\n+ Using Encoding:     Directory self-reference (/./)\n+ Using Encoding:     Premature URL ending\n+ Using Encoding:     Change the case of the URL\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:36:49 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 7999 requests: 0 errors and 10 items reported on the remote host\n+ End Time:           2026-08-16 01:36:55 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-6bd0e2a8",
+   "title": "Target host/URL (alias of -host) (-url)",
+   "argv": [
+    "nikto.pl",
+    "-url",
+    "http://dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:37:07 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:37:12 (GMT0) (5 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-43a45e88",
+   "title": "Platform of target (nix, win, all) (-Platform)",
+   "argv": [
+    "nikto.pl",
+    "-Platform=nix",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:37:24 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8000 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:37:30 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-a44e873b",
+   "title": "Write output to this file ('.' for auto-name) (-output)",
+   "argv": [
+    "nikto.pl",
+    "-output",
+    "/tmp/ctk-capture/output.out",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:37:41 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:37:47 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-73127e90",
+   "title": "Force User-Agent instead of pulling from database (-useragent)",
+   "argv": [
+    "nikto.pl",
+    "-useragent=ctk-example",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:38:00 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:38:06 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-8f842472",
+   "title": "Use the proxy defined in nikto.conf, or argument http://server:port (-useproxy)",
+   "argv": [
+    "nikto.pl",
+    "-useproxy",
+    "http://dvwa",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Proxy:              dvwa:80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:38:12 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8002 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:38:17 (GMT0) (5 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e28fcf83",
+   "title": "Disables interactive features (-nointeractive)",
+   "argv": [
+    "nikto.pl",
+    "-nointeractive",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:38:28 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:38:33 (GMT0) (5 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  },
+  {
+   "id": "t-opt-e831605d",
+   "title": "Disable TLS connection reuse (keep-alive on by default) (-nosslkeepalive)",
+   "argv": [
+    "nikto.pl",
+    "-nosslkeepalive",
+    "-h",
+    "http://dvwa",
+    "-maxtime",
+    "60"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "- Nikto v2.6.1\n---------------------------------------------------------------------------\n+ Target IP:          dvwa\n+ Target Hostname:    dvwa\n+ Target Port:        80\n+ Platform:           Linux/Unix\n+ Start Time:         2026-08-16 01:38:44 (GMT0)\n---------------------------------------------------------------------------\n+ Server: Apache/2.4.67 (Debian)\n+ [000287] /: Retrieved x-powered-by header: PHP/8.5.6.\n+ No CGI Directories found (use '-C all' to force check all possible dirs). CGI tests skipped.\n+ [600625] PHP/8.5.6 appears to be outdated (current is at least 8.5.8).\n+ [600050] Apache/2.4.67 appears to be outdated (current is at least 2.4.68).\n+ [013587] /: Suggested security header missing: strict-transport-security. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Strict-Transport-Security\n+ [013587] /: Suggested security header missing: permissions-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Permissions-Policy\n+ [013587] /: Suggested security header missing: x-content-type-options. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options\n+ [013587] /: Suggested security header missing: content-security-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP\n+ [013587] /: Suggested security header missing: referrer-policy. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Referrer-Policy\n+ [006333] /login.php: Admin login page/section found.\n+ [007342] /: X-Frame-Options header is deprecated and was replaced with the Content-Security-Policy HTTP header with the frame-ancestors directive. See: https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/X-Frame-Options\n+ [007352] /: The X-Content-Type-Options header is not set. This could allow the user agent to render the content of the site in a different fashion to the MIME type. See: https://www.netsparker.com/web-vulnerability-scanner/vulnerabilities/missing-content-type-header/\n+ 8001 requests: 0 errors and 11 items reported on the remote host\n+ End Time:           2026-08-16 01:38:50 (GMT0) (6 seconds)\n---------------------------------------------------------------------------\n+ 1 host(s) tested\n",
+   "stderr": "+ ERROR: Failed to check for updates: \n",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "-Add-header": "Add HTTP headers (can be used multiple times, one per header pair)",
+   "-ask": "Whether to ask about submitting updates yes Ask about each (default) no Don't ask, don't send auto Don't ask, just send",
+   "-check6": "Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)",
+   "-Cgidirs": "Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"",
+   "-config": "Use this config file",
+   "-Display": "Turn on/off display outputs: 1 Show redirects 2 Show cookies received 3 Show all 200/OK responses 4 Show URLs which require authentication D Debug output E Display all HTTP errors P Print progress to STDOUT S Scrub output of IPs and hostnames V Verbose output",
+   "-dbcheck": "Check database and other key files for syntax errors",
+   "-evasion": "Encoding technique: 1 Random URI encoding (non-UTF8) 2 Directory self-reference (/./) 3 Premature URL ending 4 Prepend long random string 5 Fake parameter 6 TAB as request spacer 7 Change the case of the URL 8 Use Windows directory separator (\\) A Use a carriage return (0x0d) as a request spacer B Use binary value 0x0b as a request spacer R Random User-Agent from database per request",
+   "-followredirects": "Follow 3xx redirects to new location",
+   "-Format": "Save file (-o) format: csv Comma-separated-value json JSON Format htm HTML Format sql Generic SQL (see docs for schema) sqld SQL Direct (MySQL/PostgreSQL via DBI) txt Plain text xml XML Format (if not specified the format will be taken from the file extension passed to -output)",
+   "-Help": "This help information",
+   "-host": "Target host/URL",
+   "-id": "Host authentication to use, format is id:pass or id:pass:realm",
+   "-ipv4": "IPv4 Only",
+   "-ipv6": "IPv6 Only",
+   "-key": "Client certificate key file",
+   "-list-plugins": "List all available plugins, perform no testing",
+   "-maxtime": "Maximum testing time per host (e.g., 1h, 60m, 3600s)",
+   "-mutate": "Guess additional file names: 1 Test all files with all root directories 2 Guess for password file names 3 Enumerate user names via Apache (/~user type requests) 4 Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)",
+   "-mutate-options": "Provide information for mutates",
+   "-nocheck": "Don't check for updates on startup",
+   "-nocookies": "Do not use cookies from responses in requests",
+   "-nointeractive": "Disables interactive features",
+   "-nolookup": "Disables DNS lookups",
+   "-nossl": "Disables the use of SSL",
+   "-nosslkeepalive": "Disable TLS connection reuse (keep-alive on by default)",
+   "-noslash": "Strip trailing slash from URL (e.g., '/admin/' to '/admin')",
+   "-no404": "Disables nikto attempting to guess a 404 page",
+   "-Option": "Over-ride an option in nikto.conf, can be issued multiple times",
+   "-output": "Write output to this file ('.' for auto-name)",
+   "-Pause": "Pause between tests (seconds)",
+   "-Platform": "Platform of target (nix, win, all)",
+   "-Plugins": "List of plugins to run (default: ALL)",
+   "-port": "Port to use (default 80)",
+   "-RSAcert": "Client certificate file",
+   "-root": "Prepend root value to all requests, format is /directory",
+   "-Save": "Save positive responses to this directory ('.' for auto-name)",
+   "-ssl": "Force ssl mode on port",
+   "-Tuning": "Scan tuning: 1 Interesting File / Seen in logs 2 Misconfiguration / Default File 3 Information Disclosure 4 Injection (XSS/Script/HTML) 5 Remote File Retrieval - Inside Web Root 6 Denial of Service 7 Remote File Retrieval - Server Wide 8 Command Execution / Remote Shell 9 SQL Injection 0 File Upload a Authentication Bypass b Software Identification c Remote Source Inclusion d WebService e Administrative Console x Reverse Tuning Options (i.e., include all except specified)",
+   "-timeout": "Timeout for requests (default 10 seconds)",
+   "-Userdbs": "Load only user databases, not the standard databases all Disable standard dbs and load only user dbs tests Disable only db_tests and load udb_tests",
+   "-useragent": "Force User-Agent instead of pulling from database",
+   "-url": "Target host/URL (alias of -host)",
+   "-useproxy": "Use the proxy defined in nikto.conf, or argument http://server:port",
+   "-Version": "Print plugin and database versions",
+   "-vhost": "Virtual host (for Host header)",
+   "-404code": "Ignore these HTTP codes as negative responses (always). Format is \"302,301\".",
+   "-404string": "Ignore this string in response body content as negative response (always). Can be a regular expression."
+  },
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "nikto.pl",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "6944c1c5037077cb3676b64688e894ba41dcb9f993fcc4b57f55842f93f15fe5",
+  "text": "\n   Options:\n       -Add-header         Add HTTP headers (can be used multiple times, one per header pair)\n       -ask+               Whether to ask about submitting updates\n                               yes   Ask about each (default)\n                               no    Don't ask, don't send\n                               auto  Don't ask, just send\n       -check6             Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)\n       -Cgidirs+           Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\"\n       -config+            Use this config file\n       -Display+           Turn on/off display outputs:\n                               1     Show redirects\n                               2     Show cookies received\n                               3     Show all 200/OK responses\n                               4     Show URLs which require authentication\n                               D     Debug output\n                               E     Display all HTTP errors\n                               P     Print progress to STDOUT\n                               S     Scrub output of IPs and hostnames\n                               V     Verbose output\n       -dbcheck           Check database and other key files for syntax errors\n       -evasion+          Encoding technique:\n                               1     Random URI encoding (non-UTF8)\n                               2     Directory self-reference (/./)\n                               3     Premature URL ending\n                               4     Prepend long random string\n                               5     Fake parameter\n                               6     TAB as request spacer\n                               7     Change the case of the URL\n                               8     Use Windows directory separator (\\)\n                               A     Use a carriage return (0x0d) as a request spacer\n                               B     Use binary value 0x0b as a request spacer\n                               R     Random User-Agent from database per request\n        -followredirects   Follow 3xx redirects to new location\n        -Format+           Save file (-o) format:\n                               csv   Comma-separated-value\n                               json  JSON Format\n                               htm   HTML Format\n                               sql   Generic SQL (see docs for schema)\n                               sqld  SQL Direct (MySQL/PostgreSQL via DBI)\n                               txt   Plain text\n                               xml   XML Format\n                               (if not specified the format will be taken from the file extension passed to -output)\n       -Help              This help information\n       -host+             Target host/URL\n       -id+               Host authentication to use, format is id:pass or id:pass:realm\n       -ipv4                 IPv4 Only\n       -ipv6                 IPv6 Only\n       -key+              Client certificate key file\n       -list-plugins      List all available plugins, perform no testing\n       -maxtime+          Maximum testing time per host (e.g., 1h, 60m, 3600s)\n       -mutate+           Guess additional file names:\n                               1     Test all files with all root directories\n                               2     Guess for password file names\n                               3     Enumerate user names via Apache (/~user type requests)\n                               4     Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)\n       -mutate-options    Provide information for mutates\n       -nocheck           Don't check for updates on startup\n       -nocookies         Do not use cookies from responses in requests\n       -nointeractive     Disables interactive features\n       -nolookup          Disables DNS lookups\n       -nossl             Disables the use of SSL\n       -nosslkeepalive    Disable TLS connection reuse (keep-alive on by default)\n       -noslash           Strip trailing slash from URL (e.g., '/admin/' to '/admin')\n       -no404             Disables nikto attempting to guess a 404 page\n       -Option            Over-ride an option in nikto.conf, can be issued multiple times\n       -output+           Write output to this file ('.' for auto-name)\n       -Pause+            Pause between tests (seconds)\n       -Platform+         Platform of target (nix, win, all)\n       -Plugins+          List of plugins to run (default: ALL)\n       -port+             Port to use (default 80)\n       -RSAcert+          Client certificate file\n       -root+             Prepend root value to all requests, format is /directory\n       -Save              Save positive responses to this directory ('.' for auto-name)\n       -ssl               Force ssl mode on port\n       -Tuning+           Scan tuning:\n                               1     Interesting File / Seen in logs\n                               2     Misconfiguration / Default File\n                               3     Information Disclosure\n                               4     Injection (XSS/Script/HTML)\n                               5     Remote File Retrieval - Inside Web Root\n                               6     Denial of Service\n                               7     Remote File Retrieval - Server Wide\n                               8     Command Execution / Remote Shell\n                               9     SQL Injection\n                               0     File Upload\n                               a     Authentication Bypass\n                               b     Software Identification\n                               c     Remote Source Inclusion\n                               d     WebService\n                               e     Administrative Console\n                               x     Reverse Tuning Options (i.e., include all except specified)\n       -timeout+          Timeout for requests (default 10 seconds)\n       -Userdbs           Load only user databases, not the standard databases\n                               all   Disable standard dbs and load only user dbs\n                               tests Disable only db_tests and load udb_tests\n       -useragent         Force User-Agent instead of pulling from database\n       -url+              Target host/URL (alias of -host)\n       -useproxy          Use the proxy defined in nikto.conf, or argument http://server:port\n       -Version           Print plugin and database versions\n       -vhost+            Virtual host (for Host header)\n       -404code           Ignore these HTTP codes as negative responses (always). Format is \"302,301\".\n       -404string         Ignore this string in response body content as negative response (always). Can be a regular expression.\n   \t\t+ requires a value\n\nUnknown option: help\n"
+ },
+ "surface": {
+  "flags": {
+   "-404code": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore these HTTP codes as negative responses (always). Format is \"302,301\"."
+   },
+   "-404string": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore this string in response body content as negative response (always). Can be a regular expression."
+   },
+   "-Add-header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Add HTTP headers (can be used multiple times, one per header pair)"
+   },
+   "-Cgidirs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan these CGI dirs: \"none\", \"all\", or values like \"/cgi/ /cgi-a/\""
+   },
+   "-Display": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Turn on/off display outputs: 1 Show redirects 2 Show cookies received 3 Show all 200/OK responses 4 Show URLs which require authentication D Debug output E Display all HTTP errors P Print progress to STDOUT S Scrub output of IPs and hostnames V Verbose output"
+   },
+   "-Format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save file (-o) format: csv Comma-separated-value json JSON Format htm HTML Format sql Generic SQL (see docs for schema) sqld SQL Direct (MySQL/PostgreSQL via DBI) txt Plain text xml XML Format (if not specified the format will be taken from the file extension passed to -output)"
+   },
+   "-Help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "This help information"
+   },
+   "-Option": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Over-ride an option in nikto.conf, can be issued multiple times"
+   },
+   "-Pause": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Pause between tests (seconds)"
+   },
+   "-Platform": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Platform of target (nix, win, all)"
+   },
+   "-Plugins": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List of plugins to run (default: ALL)"
+   },
+   "-RSAcert": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Client certificate file"
+   },
+   "-Save": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Save positive responses to this directory ('.' for auto-name)"
+   },
+   "-Tuning": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Scan tuning: 1 Interesting File / Seen in logs 2 Misconfiguration / Default File 3 Information Disclosure 4 Injection (XSS/Script/HTML) 5 Remote File Retrieval - Inside Web Root 6 Denial of Service 7 Remote File Retrieval - Server Wide 8 Command Execution / Remote Shell 9 SQL Injection 0 File Upload a Authentication Bypass b Software Identification c Remote Source Inclusion d WebService e Administrative Console x Reverse Tuning Options (i.e., include all except specified)"
+   },
+   "-Userdbs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load only user databases, not the standard databases all Disable standard dbs and load only user dbs tests Disable only db_tests and load udb_tests"
+   },
+   "-Version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print plugin and database versions"
+   },
+   "-ask": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Whether to ask about submitting updates yes Ask about each (default) no Don't ask, don't send auto Don't ask, just send"
+   },
+   "-check6": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check if IPv6 is working (connects to ipv6.google.com or value set in nikto.conf)"
+   },
+   "-config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use this config file"
+   },
+   "-dbcheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check database and other key files for syntax errors"
+   },
+   "-evasion": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Encoding technique: 1 Random URI encoding (non-UTF8) 2 Directory self-reference (/./) 3 Premature URL ending 4 Prepend long random string 5 Fake parameter 6 TAB as request spacer 7 Change the case of the URL 8 Use Windows directory separator (\\) A Use a carriage return (0x0d) as a request spacer B Use binary value 0x0b as a request spacer R Random User-Agent from database per request"
+   },
+   "-followredirects": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Follow 3xx redirects to new location"
+   },
+   "-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target host/URL"
+   },
+   "-id": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Host authentication to use, format is id:pass or id:pass:realm"
+   },
+   "-ipv4": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv4 Only"
+   },
+   "-ipv6": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "IPv6 Only"
+   },
+   "-key": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Client certificate key file"
+   },
+   "-list-plugins": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List all available plugins, perform no testing"
+   },
+   "-maxtime": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum testing time per host (e.g., 1h, 60m, 3600s)"
+   },
+   "-mutate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Guess additional file names: 1 Test all files with all root directories 2 Guess for password file names 3 Enumerate user names via Apache (/~user type requests) 4 Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)"
+   },
+   "-mutate-options": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Provide information for mutates"
+   },
+   "-no404": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables nikto attempting to guess a 404 page"
+   },
+   "-nocheck": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates on startup"
+   },
+   "-nocookies": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not use cookies from responses in requests"
+   },
+   "-nointeractive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables interactive features"
+   },
+   "-nolookup": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables DNS lookups"
+   },
+   "-noslash": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Strip trailing slash from URL (e.g., '/admin/' to '/admin')"
+   },
+   "-nossl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disables the use of SSL"
+   },
+   "-nosslkeepalive": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable TLS connection reuse (keep-alive on by default)"
+   },
+   "-output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Write output to this file ('.' for auto-name)"
+   },
+   "-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Port to use (default 80)"
+   },
+   "-root": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prepend root value to all requests, format is /directory"
+   },
+   "-ssl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force ssl mode on port"
+   },
+   "-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Timeout for requests (default 10 seconds)"
+   },
+   "-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target host/URL (alias of -host)"
+   },
+   "-useproxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the proxy defined in nikto.conf, or argument http://server:port"
+   },
+   "-useragent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force User-Agent instead of pulling from database"
+   },
+   "-vhost": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Virtual host (for Host header)"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 26,
+  "tried_this_wave": 1,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-361c9954",
+    "argv": [
+     "nikto",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 308
+   },
+   {
+    "id": "t-net-38e239a9",
+    "argv": [
+     "nikto",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 308
+   },
+   {
+    "id": "t-net-01329e4f",
+    "argv": [
+     "nikto.pl",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964
+   },
+   {
+    "id": "t-net-28e9ec30",
+    "argv": [
+     "nikto.pl",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964
+   },
+   {
+    "id": "t-opt-917d6883",
+    "argv": [
+     "nikto.pl",
+     "-404code",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 45,
+    "flag": "-404code"
+   },
+   {
+    "id": "t-opt-3f4afb05",
+    "argv": [
+     "nikto.pl",
+     "-Cgidirs",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-Cgidirs"
+   },
+   {
+    "id": "t-opt-340807ab",
+    "argv": [
+     "nikto.pl",
+     "-Display",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-Display"
+   },
+   {
+    "id": "t-opt-b68f976d",
+    "argv": [
+     "nikto.pl",
+     "-Format",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 35,
+    "flag": "-Format"
+   },
+   {
+    "id": "t-opt-84bb4f98",
+    "argv": [
+     "nikto.pl",
+     "-Option",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-Option"
+   },
+   {
+    "id": "t-opt-f7cd9995",
+    "argv": [
+     "nikto.pl",
+     "-Pause",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6858,
+    "flag": "-Pause"
+   },
+   {
+    "id": "t-opt-375752a9",
+    "argv": [
+     "nikto.pl",
+     "-Plugins",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-Plugins"
+   },
+   {
+    "id": "t-opt-e909c28f",
+    "argv": [
+     "nikto.pl",
+     "-RSAcert",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-RSAcert"
+   },
+   {
+    "id": "t-opt-940aaa5a",
+    "argv": [
+     "nikto.pl",
+     "-Save",
+     "/tmp/ctk-capture/save.out",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 91,
+    "flag": "-Save"
+   },
+   {
+    "id": "t-opt-27b8e688",
+    "argv": [
+     "nikto.pl",
+     "-Tuning",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-Tuning"
+   },
+   {
+    "id": "t-opt-2d6f7857",
+    "argv": [
+     "nikto.pl",
+     "-ask",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-ask"
+   },
+   {
+    "id": "t-opt-10e764e6",
+    "argv": [
+     "nikto.pl",
+     "-check6",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 248,
+    "flag": "-check6"
+   },
+   {
+    "id": "t-opt-b8b99397",
+    "argv": [
+     "nikto.pl",
+     "-config",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-config"
+   },
+   {
+    "id": "t-opt-5c23f498",
+    "argv": [
+     "nikto.pl",
+     "-dbcheck",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "nonzero-exit-against-live-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 972,
+    "flag": "-dbcheck"
+   },
+   {
+    "id": "t-opt-41377d78",
+    "argv": [
+     "nikto.pl",
+     "-key",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-key"
+   },
+   {
+    "id": "t-opt-f4d2f42b",
+    "argv": [
+     "nikto.pl",
+     "-list-plugins",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 5878,
+    "flag": "-list-plugins"
+   },
+   {
+    "id": "t-opt-64cfa59b",
+    "argv": [
+     "nikto.pl",
+     "-mutate",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 7072,
+    "flag": "-mutate"
+   },
+   {
+    "id": "t-opt-68e0c50d",
+    "argv": [
+     "nikto.pl",
+     "-mutate-options",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-mutate-options"
+   },
+   {
+    "id": "t-opt-feff66aa",
+    "argv": [
+     "nikto.pl",
+     "-no404",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6821,
+    "flag": "-no404"
+   },
+   {
+    "id": "t-opt-c40b4e0b",
+    "argv": [
+     "nikto.pl",
+     "-root",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6964,
+    "flag": "-root"
+   },
+   {
+    "id": "t-opt-0fea8e0f",
+    "argv": [
+     "nikto.pl",
+     "-timeout",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-target",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 6863,
+    "flag": "-timeout"
+   },
+   {
+    "id": "t-opt-c5639ada",
+    "argv": [
+     "nikto.pl",
+     "-port",
+     "80",
+     "-h",
+     "http://dvwa",
+     "-maxtime",
+     "60"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 148,
+    "flag": "-port"
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "nikto",
+ "repo": "sullo/nikto",
+ "head_sha": "312645d873478a77986627ab1fc8cffe595e85d4",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T01:38:56.291707+00:00"
+}

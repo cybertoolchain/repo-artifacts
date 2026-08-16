@@ -1,0 +1,657 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:f9ac5e6b4bc513d5a9b532a7ca08242c02d246e0f9b1a0d6d364415bccfaea3b",
+  "duration_s": 20.74,
+  "log_tail": "#11 1.519 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 1.519 go: downloading golang.org/x/time v0.14.0\n#11 1.519 go: downloading github.com/go-logr/stdr v1.2.2\n#11 1.519 go: downloading github.com/liggitt/tabwriter v0.0.0-20181228230101-89fcab3d43de\n#11 1.522 go: downloading k8s.io/kube-openapi v0.0.0-20260319004828-5883c5ee87b9\n#11 1.522 go: downloading sigs.k8s.io/structured-merge-diff/v6 v6.3.2\n#11 1.522 go: downloading github.com/fxamacker/cbor/v2 v2.9.0\n#11 1.522 go: downloading sigs.k8s.io/randfill v1.0.0\n#11 1.522 go: downloading github.com/davecgh/go-spew v1.1.2-0.20180830191138-d8f796af33cc\n#11 1.523 go: downloading sigs.k8s.io/json v0.0.0-20250730193827-2d320260d730\n#11 1.523 go: downloading gopkg.in/inf.v0 v0.9.1\n#11 1.657 go: downloading github.com/x448/float16 v0.8.4\n#11 1.726 go: downloading github.com/json-iterator/go v1.1.12\n#11 1.803 go: downloading github.com/modern-go/reflect2 v1.0.3-0.20250322232337-35a7c28c31ee\n#11 1.803 go: downloading github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd\n#11 1.954 go: downloading golang.org/x/sync v0.22.0\n#11 DONE 12.6s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.3s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.1s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.1s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.248 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.3s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 1.2s done\n#18 exporting manifest sha256:30a40b49fde1645dea1c0b15583fc6115153ccf8f3df77b3347a66174374dc31 0.1s done\n#18 exporting config sha256:94ca8b508784fed111f222925b72a2762709678288d262306500e62fef64960e 0.0s done\n#18 exporting attestation manifest sha256:7f6c94aad6288ddd03847b35028941851304bc9bcc1a88890a366c20c065e5f8\n#18 exporting attestation manifest sha256:7f6c94aad6288ddd03847b35028941851304bc9bcc1a88890a366c20c065e5f8 0.1s done\n#18 exporting manifest list sha256:f9ac5e6b4bc513d5a9b532a7ca08242c02d246e0f9b1a0d6d364415bccfaea3b\n#18 exporting manifest list sha256:f9ac5e6b4bc513d5a9b532a7ca08242c02d246e0f9b1a0d6d364415bccfaea3b 0.0s done\n#18 naming to docker.io/ctk-exec/cri-tools:ba03eabc1450 done\n#18 unpacking to docker.io/ctk-exec/cri-tools:ba03eabc1450\n#18 unpacking to docker.io/ctk-exec/cri-tools:ba03eabc1450 1.5s done\n#18 DONE 2.9s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "cri-tools",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'cri-tools'"
+  },
+  {
+   "argv": [
+    "crictl",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl - client for CRI\n\nUSAGE:\n   crictl [global options] command [command options]\n\nVERSION:\n   unknown\n\nCOMMANDS:\n   attach                 Attach to a running container\n   checkpoint             Checkpoint one or more running containers\n   completion             Output shell completion code\n   config                 Get, set and list crictl configuration options\n   create                 Create a new container\n   events, event          Stream the events of containers\n   exec                   Run a command in a running container\n   imagefsinfo            Return image filesystem info\n   images, image, img     List images\n   info                   Display information of the container runtime\n   inspect                Display the status of one or more containers\n   inspecti               Return the status of one or more images\n   inspectp               Display the status of one or more pods\n   logs                   Fetch the logs of a container\n   metricdescs            List metric descriptors. Returns information about the metrics available through the CRI.\n   metricsp               List pod metrics. Metrics are unstructured key/value pairs gathered by CRI meant to replace cAdvisor's /metrics/cadvisor endpoint.\n   pods                   List pods\n   port-forward           Forward local port to a pod\n   ps                     List containers\n   pull                   Pull an image from a registry\n   rm                     Remove one or more containers\n   rmi                    Remove one or more images\n   rmp                    Remove one or more pods\n   run                    Run a new container inside a sandbox\n   runp                   Run a new pod\n   runtime-config         Retrieve the container runtime configuration\n   start                  Start one or more created containers\n   stats                  List container(s) resource usage statistics\n   statsp                 List pod statistics. Stats represent a structured API that will fulfill the Kubelet's /stats/summary endpoint.\n   stop                   Stop one or more running containers\n   stopp                  Stop one or more running pods\n   update                 Update one or more running containers\n   update-runtime-config  Update the runtime configuration\n   version                Display runtime version information\n   help, h                Shows a list of commands or help for one command\n\nGLOBAL OPTIONS:\n   --config value, -c value                   Location of the client config file. If not specified and the default does not exist, the program's directory is searched as well (default: \"/etc/crictl.yaml\") [$CRI_CONFIG_FILE]\n   --debug, -D                                Enable debug mode (default: false)\n   --enable-tracing                           Enable OpenTelemetry tracing. (default: false)\n   --image-endpoint value, -i value           Endpoint of CRI image manager service (default: uses 'runtime-endpoint' setting) [$IMAGE_SERVICE_ENDPOINT]\n   --max-retries value                        Max retries for connecting to an explicitly set endpoint with exponential backoff (0 to disable, negative for infinite) (default: 3)\n   --profile-cpu value                        Write a pprof CPU profile to the provided path.\n   --profile-mem value                        Write a pprof memory profile to the provided path.\n   --runtime-endpoint value, -r value         Endpoint of CRI container runtime service (default: uses in order the first successful one of [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]). Default is now deprecated and the endpoint should be set instead. [$CONTAINER_RUNTIME_ENDPOINT]\n   --timeout value, -t value                  Timeout of connecting to the server in seconds (e.g. 2s, 20s.). 0 or less is set to default (default: 2s)\n   --tracing-endpoint value                   Address to which the gRPC tracing collector will send spans to. (default: \"127.0.0.1:4317\")\n   --tracing-sampling-rate-per-million value  Number of samples to collect per million OpenTelemetry spans. Set to 1000000 or -1 to always sample. (default: -1)\n   --help, -h                                 show help\n   --version, -v                              print the version\n",
+   "stderr": "",
+   "duration_ms": 10,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "attach",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl attach - Attach to a running container\n\nUSAGE:\n   crictl attach [command options] CONTAINER-ID\n\nOPTIONS:\n   --stdin, -i                               Keep STDIN open (default: false)\n   --tls-ca value                            Path to the streaming TLS CA certificate\n   --tls-cert value                          Path to the streaming TLS certificate\n   --tls-key value                           Path to the streaming TLS key\n   --tls-sni value, --tls-server-name value  Server name used in the TLS client to check server certificates against (default: \"localhost\")\n   --transport value, -r value               Transport protocol to use, one of: spdy|websocket (default: \"spdy\")\n   --tty, -t                                 Allocate a pseudo-TTY (default: false)\n   --help, -h                                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "checkpoint",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl checkpoint - Checkpoint one or more running containers\n\nUSAGE:\n   crictl checkpoint [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --export value, -e value  Specify the name of the tar archive (/path/to/checkpoint.tar) used to export the checkpoint image.\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl completion - Output shell completion code\n\nUSAGE:\n   crictl completion [command options] SHELL\n\nDESCRIPTION:\n   Output shell completion code for bash, zsh or fish.\n\n   Examples:\n\n       # Installing bash completion on Linux\n       source <(crictl completion bash)\n\n       # Installing zsh completion on Linux\n       source <(crictl completion zsh)\n\n       # Installing fish completion on Linux\n       crictl completion fish | source\n     \n\nOPTIONS:\n   --help, -h  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "config",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl config - Get, set and list crictl configuration options\n\nUSAGE:\n   crictl config [command options] [<crictl options>]\n\nEXAMPLES:\n   # Set the key \"debug\" to \"true\"\n   crictl config --set debug=true\n\n   # Set the key \"debug\" to \"true\"\n   crictl config debug true\n\n   # Get the value of \"debug\"\n   crictl config --get debug\n\n   # Show the full configuration\n   crictl config --list\n\nCRICTL OPTIONS:\n   runtime-endpoint:      Container Runtime Interface (CRI) runtime endpoint (default: \"\")\n   image-endpoint:        Container Runtime Interface (CRI) image endpoint (default: \"\")\n   timeout:               Timeout of connecting to server (default: 2)\n   debug:                 Enable debug output (default: false)\n   pull-image-on-create:  Enable pulling image on create requests (default: false)\n   disable-pull-on-run:   Disable pulling image on run requests (default: false)\n   max-retries:           Max retries for connecting to an explicitly set endpoint (default: 3, 0 to disable, negative for infinite)\n\nOPTIONS:\n   --get value                  Show the option value\n   --list                       Show all option value (default: false)\n   --set value [ --set value ]  Set option (can specify multiple or separate values with commas: opt1=val1,opt2=val2)\n   --help, -h                   show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "create",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl create - Create a new container\n\nUSAGE:\n   crictl create [command options] POD container-config.[json|yaml] pod-config.[json|yaml]\n\nCOMMANDS:\n   jsonschema, js  Display the JSON schema for the pod or container config\n   help, h         Shows a list of commands or help for one command\n\nOPTIONS:\n   --auth AUTH_STRING                Use AUTH_STRING for accessing the registry. AUTH_STRING is a base64 encoded 'USERNAME[:PASSWORD]' [$CRICTL_AUTH]\n   --cancel-timeout value, -T value  Seconds to wait for the request to complete before cancelling (default: 0s)\n   --creds USERNAME[:PASSWORD]       Use USERNAME[:PASSWORD] for accessing the registry [$CRICTL_CREDS]\n   --no-pull                         Do not pull the image on container creation (overrides pull-image-on-create=true in config) (default: false)\n   --pull-timeout value, --pt value  Maximum time to be used for pulling the image, disabled if set to 0s (default: 0s) [$CRICTL_PULL_TIMEOUT]\n   --username USERNAME, -u USERNAME  Use USERNAME for accessing the registry. The password will be requested on the command line\n   --with-pull                       Pull the image on container creation (overrides pull-image-on-create=false in config) (default: false)\n   --help, -h                        show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "exec",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl exec - Run a command in a running container\n\nUSAGE:\n   crictl exec [command options] [CONTAINER-ID] COMMAND [ARG...]\n\nDESCRIPTION:\n   The CONTAINER-ID is only required if none of the following filter flags are set:\n   --image, --label, --last, --latest, --name, --pod, --state\n\nOPTIONS:\n   --ignore-errors, -e                       Ignore errors during command execution (default: false)\n   --image value                             Exec command for all containers matching this container image filter\n   --interactive, -i                         Keep STDIN open (default: false)\n   --label value [ --label value ]           Exec command for all containers matching this key=value label filter\n   --last value, -n value                    Exec command for all last n containers, set to 0 for unlimited (default: 0)\n   --latest, -l                              Exec command for the most recently created container (default: false)\n   --name value                              Exec command for all containers matching this name filter regular expression pattern\n   --parallel, -x                            Run the command in parallel if multiple containers are selected (default: false)\n   --pod value, -p value                     Exec command for all containers matching this pod ID filter\n   --quiet, -q                               Do not print the container ID if multiple containers are selected (default: false)\n   --state value                             Exec command for all containers matching this container state filter\n   --sync, -s                                Run the command synchronously (default: false)\n   --timeout value                           Timeout in seconds (default: 0)\n   --tls-ca value                            Path to the streaming TLS CA certificate\n   --tls-cert value                          Path to the streaming TLS certificate\n   --tls-key value                           Path to the streaming TLS key\n   --tls-sni value, --tls-server-name value  Server name used in the TLS client to check server certificates against (default: \"localhost\")\n   --transport value, -r value               Transport protocol to use, one of: spdy|websocket (default: \"spdy\")\n   --tty, -t                                 Allocate a pseudo-TTY (default: false)\n   --help, -h                                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "imagefsinfo",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl imagefsinfo - Return image filesystem info\n\nUSAGE:\n   crictl imagefsinfo [command options]\n\nOPTIONS:\n   --output value, -o value  Output format, One of: json|yaml|go-template|table\n   --template value          The template string is only used when output is go-template; The Template format is golang template\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "info",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl info - Display information of the container runtime\n\nUSAGE:\n   crictl info [command options]\n\nOPTIONS:\n   --output value, -o value  Output format, One of: json|yaml|go-template (default: \"json\")\n   --quiet, -q               Do not show verbose information (default: false)\n   --template value          The template string is only used when output is go-template; The Template format is golang template\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "inspect",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl inspect - Display the status of one or more containers\n\nUSAGE:\n   crictl inspect [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --all, -a                        Show all containers (default: false)\n   --image value                    Filter by container image\n   --label value [ --label value ]  Filter by key=value label\n   --last value, -n value           Show last n recently created containers (includes all states). Set 0 for unlimited. (default: 0)\n   --latest, -l                     Show the most recently created container (includes all states) (default: false)\n   --name value                     Filter by container name regular expression pattern\n   --namespace value                Filter by pod namespace regular expression pattern\n   --output value, -o value         Output format, One of: json|yaml|go-template|table\n   --pod value, -p value            Filter by pod id\n   --quiet, -q                      Do not show verbose information (default: false)\n   --state value, -s value          Filter by container state\n   --template value                 The template string is only used when output is go-template; The Template format is golang template\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "inspecti",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl inspecti - Return the status of one or more images\n\nUSAGE:\n   crictl inspecti [command options] IMAGE-ID [IMAGE-ID...]\n\nOPTIONS:\n   --filter value, -f value [ --filter value, -f value ]  Filter output based on provided conditions.\n      Available filters: \n      * dangling=(boolean - true or false)\n      * reference=/regular expression/\n      * before=<image-name>[:<tag>]|<image id>|<image@digest>\n      * since=<image-name>[:<tag>]|<image id>|<image@digest>\n      Multiple filters can be combined together.\n   --name value              Filter by image name\n   --output value, -o value  Output format, One of: json|yaml|go-template|table\n   --quiet, -q               Do not show verbose information (default: false)\n   --template value          The template string is only used when output is go-template; The Template format is golang template\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 13,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "inspectp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl inspectp - Display the status of one or more pods\n\nUSAGE:\n   crictl inspectp [command options] POD-ID [POD-ID...]\n\nOPTIONS:\n   --label value [ --label value ]  Filter by key=value label\n   --last value, -n value           Show last n recently created pods. Set 0 for unlimited (default: 0)\n   --latest, -l                     Show the most recently created pod (default: false)\n   --name value                     Filter by pod name regular expression pattern\n   --namespace value                Filter by pod namespace regular expression pattern\n   --output value, -o value         Output format, One of: json|yaml|go-template|table\n   --quiet, -q                      Do not show verbose information (default: false)\n   --state value, -s value          Filter by pod state\n   --template value                 The template string is only used when output is go-template; The Template format is golang template\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "logs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl logs - Fetch the logs of a container\n\nUSAGE:\n   crictl logs [command options] CONTAINER-ID\n\nOPTIONS:\n   --follow, -f              Follow log output (default: false)\n   --limit-bytes value       Maximum bytes of logs to return. Defaults to no limit (default: -1)\n   --previous, -p            Print the logs for the previous instance of the container in a pod if it exists (default: false)\n   --reopen, -r              Reopen the container logs for the provided container (default: false)\n   --since value             Show logs since timestamp (e.g. 2013-01-02T13:23:37) or relative (e.g. 42m for 42 minutes)\n   --stream value, -s value  Show specified stream (stdout or stderr). Defaults to both.\n   --tail value              Number of lines to show from the end of the logs. Defaults to all (default: -1)\n   --timestamps, -t          Show timestamps (default: false)\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "metricdescs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl metricdescs - List metric descriptors. Returns information about the metrics available through the CRI.\n\nUSAGE:\n   crictl metricdescs [command options]\n\nOPTIONS:\n   --output value, -o value  Output format, One of: json|yaml\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "metricsp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl metricsp - List pod metrics. Metrics are unstructured key/value pairs gathered by CRI meant to replace cAdvisor's /metrics/cadvisor endpoint.\n\nUSAGE:\n   crictl metricsp [command options]\n\nOPTIONS:\n   --output value, -o value  Output format, One of: json|yaml\n   --watch, -w               Watch pod metrics (default: false)\n   --help, -h                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "pods",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl pods - List pods\n\nUSAGE:\n   crictl pods [command options]\n\nOPTIONS:\n   --id value                       filter by pod id\n   --label value [ --label value ]  Filter by key=value label\n   --last value, -n value           Show last n recently created pods. Set 0 for unlimited (default: 0)\n   --latest, -l                     Show the most recently created pod (default: false)\n   --name value                     Filter by pod name regular expression pattern\n   --namespace value                Filter by pod namespace regular expression pattern\n   --no-trunc                       Show output without truncating the ID (default: false)\n   --output value, -o value         Output format, One of: json|yaml|table (default: \"table\")\n   --quiet, -q                      List only pod IDs (default: false)\n   --state value, -s value          Filter by pod state\n   --verbose, -v                    Show verbose info for pods (default: false)\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "port-forward",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl port-forward - Forward local port to a pod\n\nUSAGE:\n   crictl port-forward [command options] POD-ID [LOCAL_PORT:]REMOTE_PORT\n\nOPTIONS:\n   --tls-ca value                            Path to the streaming TLS CA certificate\n   --tls-cert value                          Path to the streaming TLS certificate\n   --tls-key value                           Path to the streaming TLS key\n   --tls-sni value, --tls-server-name value  Server name used in the TLS client to check server certificates against (default: \"localhost\")\n   --transport value, -r value               Transport protocol to use, one of: spdy|websocket (default: \"spdy\")\n   --help, -h                                show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "ps",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl ps - List containers\n\nUSAGE:\n   crictl ps [command options]\n\nOPTIONS:\n   --all, -a                        Show all containers (default: false)\n   --id value                       Filter by container id\n   --image value                    Filter by container image\n   --label value [ --label value ]  Filter by key=value label\n   --last value, -n value           Show last n recently created containers (includes all states). Set 0 for unlimited. (default: 0)\n   --latest, -l                     Show the most recently created container (includes all states) (default: false)\n   --name value                     Filter by container name regular expression pattern\n   --namespace value                Filter by pod namespace regular expression pattern\n   --no-trunc                       Show output without truncating the ID (default: false)\n   --output value, -o value         Output format, One of: json|yaml|table (default: \"table\")\n   --pod value, -p value            Filter by pod id\n   --quiet, -q                      Only display container IDs (default: false)\n   --resolve-image-path, -r         Show image path instead of image id (default: false)\n   --state value, -s value          Filter by container state\n   --verbose, -v                    Show verbose information for containers (default: false)\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "pull",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl pull - Pull an image from a registry\n\nUSAGE:\n   crictl pull [command options] NAME[:TAG|@DIGEST]\n\nCOMMANDS:\n   jsonschema, js  Display the JSON schema for the pod-config.json, \n   help, h         Shows a list of commands or help for one command\n\nOPTIONS:\n   --annotation value, -a value [ --annotation value, -a value ]  Annotation to be set on the pulled image\n   --auth AUTH_STRING                                             Use AUTH_STRING for accessing the registry. AUTH_STRING is a base64 encoded 'USERNAME[:PASSWORD]' [$CRICTL_AUTH]\n   --creds USERNAME[:PASSWORD]                                    Use USERNAME[:PASSWORD] for accessing the registry [$CRICTL_CREDS]\n   --pod-config pod-config.[json|yaml]                            Use pod-config.[json|yaml] to override the pull c\n   --pull-timeout value, --pt value                               Maximum time to be used for pulling the image, disabled if set to 0s (default: 0s) [$CRICTL_PULL_TIMEOUT]\n   --username USERNAME, -u USERNAME                               Use USERNAME for accessing the registry. The password will be requested on the command line\n   --help, -h                                                     show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 12,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "rm",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl rm - Remove one or more containers\n\nUSAGE:\n   crictl rm [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --all, -a        Remove all containers (default: false)\n   --force, -f      Force removal of the container, disregarding if running (default: false)\n   --keep-logs, -k  Preserve the container log file and its rotations (default: false)\n   --help, -h       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "rmi",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl rmi - Remove one or more images\n\nUSAGE:\n   crictl rmi [command options] IMAGE-ID [IMAGE-ID...]\n\nDESCRIPTION:\n   Remove one or more images by ID or reference.\n\n   NOTE: Due to CRI API limitations, when you specify an image by tag (e.g., 'localhost/test:latest'),\n   the entire image will be removed along with ALL of its tags, not just the specified tag.\n   This behavior differs from 'docker rmi', 'nerdctl rmi', and 'ctr image rm', which only remove\n   the specified tag. To remove only a specific tag, use the container runtime's native CLI tool\n   (e.g., 'nerdctl', 'ctr', or 'podman').\n\nOPTIONS:\n   --all, -a    Remove all images (default: false)\n   --prune, -q  Remove all unused images (default: false)\n   --help, -h   show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "rmp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl rmp - Remove one or more pods\n\nUSAGE:\n   crictl rmp [command options] POD-ID [POD-ID...]\n\nOPTIONS:\n   --all, -a    Remove all pods (default: false)\n   --force, -f  Force removal of the pod sandbox, disregarding if running (default: false)\n   --help, -h   show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 11,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "run",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl run - Run a new container inside a sandbox\n\nUSAGE:\n   crictl run [command options] container-config.[json|yaml] pod-config.[json|yaml]\n\nCOMMANDS:\n   jsonschema, js  Display the JSON schema for the pod or container config\n   help, h         Shows a list of commands or help for one command\n\nOPTIONS:\n   --auth AUTH_STRING                Use AUTH_STRING for accessing the registry. AUTH_STRING is a base64 encoded 'USERNAME[:PASSWORD]' [$CRICTL_AUTH]\n   --cancel-timeout value, -T value  Seconds to wait for the request to complete before cancelling (default: 0s)\n   --creds USERNAME[:PASSWORD]       Use USERNAME[:PASSWORD] for accessing the registry [$CRICTL_CREDS]\n   --no-pull                         Do not pull the image (overrides disable-pull-on-run=false in config) (default: false)\n   --pull-timeout value, --pt value  Maximum time to be used for pulling the image, disabled if set to 0s (default: 0s) [$CRICTL_PULL_TIMEOUT]\n   --runtime value, -r value         Runtime handler to use. Available options are defined by the container runtime.\n   --username USERNAME, -u USERNAME  Use USERNAME for accessing the registry. The password will be requested on the command line\n   --with-pull                       Pull the image (overrides disable-pull-on-run=true in config) (default: false)\n   --help, -h                        show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 86,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "runp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl runp - Run a new pod\n\nUSAGE:\n   crictl runp [command options] pod-config.[json|yaml]\n\nCOMMANDS:\n   jsonschema, js  Display the JSON schema for the pod-config.json\n   help, h         Shows a list of commands or help for one command\n\nOPTIONS:\n   --cancel-timeout value, -T value  Seconds to wait for a run pod sandbox request to complete before cancelling the request (default: 0s)\n   --runtime value, -r value         Runtime handler to use. Available options are defined by the container runtime.\n   --help, -h                        show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "runtime-config",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl runtime-config - Retrieve the container runtime configuration\n\nUSAGE:\n   crictl runtime-config [command options]\n\nOPTIONS:\n   --help, -h  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 12,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "start",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl start - Start one or more created containers\n\nUSAGE:\n   crictl start [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --help, -h  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "stats",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl stats - List container(s) resource usage statistics\n\nUSAGE:\n   crictl stats [command options] [ID]\n\nOPTIONS:\n   --all, -a                        Show all containers (default shows just running) (default: false)\n   --id value                       Filter by container id\n   --label value [ --label value ]  Filter by key=value label\n   --output value, -o value         Output format, One of: json|yaml|table\n   --pod value, -p value            Filter by pod id\n   --seconds value, -s value        Sample duration for CPU usage in seconds (default: 1)\n   --watch, -w                      Watch pod resources (default: false)\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 9,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "statsp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl statsp - List pod statistics. Stats represent a structured API that will fulfill the Kubelet's /stats/summary endpoint.\n\nUSAGE:\n   crictl statsp [command options] [ID]\n\nOPTIONS:\n   --id value                       Filter by pod id\n   --label value [ --label value ]  Filter by key=value label\n   --output value, -o value         Output format, One of: json|yaml|table\n   --seconds value, -s value        Sample duration for CPU usage in seconds (default: 1)\n   --watch, -w                      Watch pod resources (default: false)\n   --help, -h                       show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 40,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "stop",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl stop - Stop one or more running containers\n\nUSAGE:\n   crictl stop [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --all, -a                  Stop all running containers (default: false)\n   --timeout value, -t value  Seconds to wait to kill the container after a graceful stop is requested (default: 0)\n   --help, -h                 show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "stopp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl stopp - Stop one or more running pods\n\nUSAGE:\n   crictl stopp [command options] POD-ID [POD-ID...]\n\nOPTIONS:\n   --help, -h  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "update",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl update - Update one or more running containers\n\nUSAGE:\n   crictl update [command options] CONTAINER-ID [CONTAINER-ID...]\n\nOPTIONS:\n   --cpu-count value      (Windows only) Number of CPUs available to the container (default: 0)\n   --cpu-maximum value    (Windows only) Portion of CPU cycles specified as a percentage * 100 (default: 0)\n   --cpu-period value     CPU CFS period to be used for hardcapping (in usecs). 0 to use system default (default: 0)\n   --cpu-quota value      CPU CFS hardcap limit (in usecs). Allowed cpu time in a given period (default: 0)\n   --cpu-share value      CPU shares (relative weight vs. other containers) (default: 0)\n   --cpuset-cpus value    CPU(s) to use\n   --cpuset-mems value    Memory node(s) to use\n   --memory value         Memory limit (in bytes) (default: 0)\n   --oom-score-adj value  OOM Killer score to use\n   --help, -h             show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "update-runtime-config",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl update-runtime-config - Update the runtime configuration\n\nUSAGE:\n   crictl update-runtime-config [command options]\n\nOPTIONS:\n   --pod-cidr value, -p value  The new Classless Inter-Domain Routing (CIDR) value to be used for pod IP addresses. If the CIDR is empty, runtimes should omit it.\n   --help, -h                  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 11,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "crictl",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "NAME:\n   crictl version - Display runtime version information\n\nUSAGE:\n   crictl version [command options]\n\nOPTIONS:\n   --help, -h  show help\n",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\n",
+   "duration_ms": 23,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "crictl"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for crictl\n",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "crictl"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'crictl' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "crictl",
+    "rmi",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=warning msg=\"Image connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead.\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/containerd/containerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/crio/crio.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/crio/crio.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\n",
+   "duration_ms": 12,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-edcc1f13",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "crictl",
+    "images",
+    "--filter",
+    "/opt/ctk/fixtures/source-corpus",
+    "--filter",
+    "reference=nginx"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=warning msg=\"Image connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead.\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/containerd/containerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/crio/crio.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/crio/crio.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-386cd5f5",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "crictl",
+    "images",
+    "--filter",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=warning msg=\"Image connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead.\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/containerd/containerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///run/crio/crio.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/crio/crio.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 image API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\n",
+   "duration_ms": 20,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-bcbfbc3f",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "crictl",
+    "checkpoint",
+    "--export=/opt/ctk/fixtures/container-image/image.tar",
+    "39fcdd7a4f1d4"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=warning msg=\"runtime connect using default endpoints: [unix:///run/containerd/containerd.sock unix:///run/crio/crio.sock unix:///var/run/cri-dockerd.sock]. As the default settings are now deprecated, you should set the endpoint instead.\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 runtime API for endpoint \\\"unix:///run/containerd/containerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/containerd/containerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 runtime API for endpoint \\\"unix:///run/crio/crio.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /run/crio/crio.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 runtime API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\ntime=\"2026-08-16T03:00:51Z\" level=error msg=\"validate service connection: validate CRI v1 runtime API for endpoint \\\"unix:///var/run/cri-dockerd.sock\\\": rpc error: code = Unavailable desc = connection error: desc = \\\"transport: Error while dialing: dial unix /var/run/cri-dockerd.sock: connect: no such file or directory\\\"\"\n",
+   "duration_ms": 9,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-3c85645f",
+   "title": "From the project's documentation \u2014 run against container-image"
+  },
+  {
+   "argv": [
+    "crictl",
+    "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+   ],
+   "exit_code": 3,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\nNo help topic for '/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml'\n",
+   "duration_ms": 15,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-45027e91",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "crictl",
+    "/opt/ctk/fixtures/container-image/image.tar"
+   ],
+   "exit_code": 3,
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\nNo help topic for '/opt/ctk/fixtures/container-image/image.tar'\n",
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-856e95e8",
+   "title": "Built from the tool's own advertised flags \u2014 run against container-image"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 43,
+   "binary": "crictl",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "crictl",
+   "source": "cmd/<name>/"
+  },
+  {
+   "name": "critest",
+   "source": "cmd/<name>/"
+  },
+  {
+   "name": "cri-tools",
+   "source": "go.mod module"
+  }
+ ],
+ "examples": [
+  {
+   "id": "t-surface-45027e91",
+   "title": "Built from the tool's own advertised flags \u2014 run against source-corpus",
+   "argv": [
+    "crictl",
+    "/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml"
+   ],
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\nNo help topic for '/opt/ctk/fixtures/source-corpus/k8s/deployment.yaml'\n",
+   "exit_code": 3,
+   "duration_ms": 15,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-surface-856e95e8",
+   "title": "Built from the tool's own advertised flags \u2014 run against container-image",
+   "argv": [
+    "crictl",
+    "/opt/ctk/fixtures/container-image/image.tar"
+   ],
+   "stdout": "",
+   "stderr": "time=\"2026-08-16T03:00:51Z\" level=warning msg=\"Config \\\"/etc/crictl.yaml\\\" does not exist, trying next: \\\"/usr/local/bin/crictl.yaml\\\"\"\nNo help topic for '/opt/ctk/fixtures/container-image/image.tar'\n",
+   "exit_code": 3,
+   "duration_ms": 7,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "cri-tools",
+ "repo": "kubernetes-sigs/cri-tools",
+ "head_sha": "ba03eabc14500ba95be34f9cb7149c0f7de6ce33",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T03:00:53.439783+00:00"
+}

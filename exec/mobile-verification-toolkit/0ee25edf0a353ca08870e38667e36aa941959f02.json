@@ -1,0 +1,706 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:a75c89692b234936eb069b7d1f52fd2ce90065fb765884223f6bc4c769976a70",
+  "duration_s": 37.18,
+  "log_tail": "#11 11.65 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 11.71 debconf: unable to initialize frontend: Dialog\n#11 11.71 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 11.71 debconf: falling back to frontend: Readline\n#11 11.72 debconf: unable to initialize frontend: Readline\n#11 11.72 debconf: (This frontend requires a controlling tty.)\n#11 11.72 debconf: falling back to frontend: Teletype\n#11 11.77 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 11.80 Setting up texinfo (6.8-6+b1) ...\n#11 11.83 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 11.88 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 12.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 2.9s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.5s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 4.6s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.3s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.245 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.5s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.5s done\n#20 exporting manifest sha256:806b2745f99f0982d2ee6e3e1b89240461c8f9249aebfd086936941ced14e736 0.0s done\n#20 exporting config sha256:64b2e734dc31102ebcb113f4c8876877ccbee5e7e300c609435ea586d21d44c0 0.0s done\n#20 exporting attestation manifest sha256:137a98bd8c4b7719d3e238263d16c6a0ace9023c06abc8090b5eed7244ea248f 0.1s done\n#20 exporting manifest list sha256:a75c89692b234936eb069b7d1f52fd2ce90065fb765884223f6bc4c769976a70\n#20 exporting manifest list sha256:a75c89692b234936eb069b7d1f52fd2ce90065fb765884223f6bc4c769976a70 0.1s done\n#20 naming to docker.io/ctk-exec/mvt:0ee25edf0a35 0.0s done\n#20 unpacking to docker.io/ctk-exec/mvt:0ee25edf0a35\n#20 unpacking to docker.io/ctk-exec/mvt:0ee25edf0a35 1.7s done\n#20 DONE 6.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "mvt-ios",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: mvt-ios [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --load-command PATH             Load a custom CLI command from a Python file\n                                  or folder (can be invoked multiple times)\n  --disable-update-check          Disable MVT version update check\n  --disable-indicator-update-check\n                                  Disable indicators update check\n  --help                          Show this message and exit.\n\nCommands:\n  check-backup       Extract artifacts from an iTunes backup\n  check-fs           Extract artifacts from a full filesystem dump\n  check-iocs         Compare stored JSON results to provided indicators\n  check-sysdiagnose  Extract artifacts from an iOS sysdiagnose archive\n  completion         Generate or install shell completion\n  decrypt-backup     Decrypt an encrypted iTunes backup\n  download-iocs      Download public STIX2 indicators\n  extract-key        Extract decryption key from an iTunes backup\n  version            Show the currently installed version of MVT\n",
+   "stderr": "",
+   "duration_ms": 787,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "check-backup",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios check-backup [OPTIONS] BACKUP_PATH\n\n  Extract artifacts from an iTunes backup\n\nOptions:\n  -i, --iocs PATH     Path to indicators file (can be invoked multiple time)\n  -o, --output PATH   Specify a path to a folder where you want to store JSON\n                      results\n  -f, --fast          Avoid running time/resource consuming features\n  -l, --list-modules  Print list of available modules and exit\n  -m, --module TEXT   Name of a single module you would like to run instead of\n                      all\n  --load-module PATH  Load custom MVT module(s) from a Python file or folder\n                      (can be invoked multiple times)\n  -H, --hashes        Generate hashes of all the files analyzed\n  -v, --verbose       Verbose mode\n  -h, --help          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 624,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "check-fs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios check-fs [OPTIONS] DUMP_PATH\n\n  Extract artifacts from a full filesystem dump\n\nOptions:\n  -i, --iocs PATH     Path to indicators file (can be invoked multiple time)\n  -o, --output PATH   Specify a path to a folder where you want to store JSON\n                      results\n  -f, --fast          Avoid running time/resource consuming features\n  -l, --list-modules  Print list of available modules and exit\n  -m, --module TEXT   Name of a single module you would like to run instead of\n                      all\n  --load-module PATH  Load custom MVT module(s) from a Python file or folder\n                      (can be invoked multiple times)\n  -H, --hashes        Generate hashes of all the files analyzed\n  -v, --verbose       Verbose mode\n  -h, --help          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 630,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "check-iocs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios check-iocs [OPTIONS] FOLDER\n\n  Compare stored JSON results to provided indicators\n\nOptions:\n  -i, --iocs PATH     Path to indicators file (can be invoked multiple time)\n  -l, --list-modules  Print list of available modules and exit\n  -m, --module TEXT   Name of a single module you would like to run instead of\n                      all\n  --load-module PATH  Load custom MVT module(s) from a Python file or folder\n                      (can be invoked multiple times)\n  -h, --help          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 579,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "check-sysdiagnose",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios check-sysdiagnose [OPTIONS] SYSDIAGNOSE_PATH\n\n  Extract artifacts from an iOS sysdiagnose archive\n\nOptions:\n  -i, --iocs PATH     Path to indicators file (can be invoked multiple time)\n  -o, --output PATH   Specify a path to a folder where you want to store JSON\n                      results\n  -l, --list-modules  Print list of available modules and exit\n  -m, --module TEXT   Name of a single module you would like to run instead of\n                      all\n  --load-module PATH  Load custom MVT module(s) from a Python file or folder\n                      (can be invoked multiple times)\n  -H, --hashes        Generate hashes of all the files analyzed\n  -v, --verbose       Verbose mode\n  -h, --help          Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 612,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "completion",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: mvt-ios completion [OPTIONS] [bash|zsh|fish]\n\n  Generate or install shell completion\n\nOptions:\n  --install   Write completion files and update shell configuration.\n  -h, --help  Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 561,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "decrypt-backup",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios decrypt-backup [OPTIONS] BACKUP_PATH\n\n  Decrypt an encrypted iTunes backup\n\nOptions:\n  -d, --destination TEXT  Path to the folder where the decrypted backup should\n                          be stored  [required]\n  -p, --password TEXT     Password to use to decrypt the backup (or, set the\n                          {MVT_IOS_BACKUP_PASSWORD} environment variable)\n                          NOTE: This argument is mutually exclusive with\n                          arguments[key_file].\n  -k, --key-file PATH     File containing raw encryption key to use to decrypt\n                          the backup NOTE: This argument is mutually exclusive\n                          with arguments[password].\n  -H, --hashes            Generate hashes of all the files analyzed\n  -h, --help              Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 592,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "download-iocs",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios download-iocs [OPTIONS]\n\n  Download public STIX2 indicators\n\nOptions:\n  -h, --help  Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 547,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "extract-key",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios extract-key [OPTIONS] BACKUP_PATH\n\n  Extract decryption key from an iTunes backup\n\nOptions:\n  -p, --password TEXT  Password to use to decrypt the backup (or, set the\n                       {MVT_IOS_BACKUP_PASSWORD} environment variable)\n  -k, --key-file FILE  File containing raw encryption key to use to decrypt\n                       the backup\n  -h, --help           Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 572,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "version",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\nUsage: mvt-ios version [OPTIONS]\n\n  Show the currently installed version of MVT\n\nOptions:\n  --help  Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 524,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "mvt-ios"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for mvt-ios\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "mvt-ios"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'mvt-ios' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "completion"
+   ],
+   "exit_code": 0,
+   "stdout": "Shell completion for mvt-ios\n\nPrint a completion script:\n  mvt-ios completion bash > ~/.mvt-ios-complete.bash\n  mvt-ios completion zsh > ~/.mvt-ios-complete.zsh\n  mkdir -p ~/.config/fish/completions\n  mvt-ios completion fish > ~/.config/fish/completions/mvt-ios.fish\n\nLoad the generated Bash script from ~/.bashrc:\n  [ -f ~/.mvt-ios-complete.bash ] && . ~/.mvt-ios-complete.bash\n\nLoad the generated Zsh script from ~/.zshrc:\n  [ -f ~/.mvt-ios-complete.zsh ] && . ~/.mvt-ios-complete.zsh\n\nFish loads completion files from ~/.config/fish/completions automatically.\n\nTo write these files and update Bash/Zsh shell configuration automatically:\n  mvt-ios completion bash --install\n  mvt-ios completion zsh --install\n  mvt-ios completion fish --install\n\n",
+   "stderr": "",
+   "duration_ms": 555,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-cd1bde29",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "completion",
+    "bash"
+   ],
+   "exit_code": 0,
+   "stdout": "_mvt_ios_completion() {\n    local IFS=$'\\n'\n    local response\n\n    response=$(env COMP_WORDS=\"${COMP_WORDS[*]}\" COMP_CWORD=$COMP_CWORD _MVT_IOS_COMPLETE=bash_complete $1)\n\n    for completion in $response; do\n        IFS=',' read type value <<< \"$completion\"\n\n        if [[ $type == 'dir' ]]; then\n            COMPREPLY=()\n            compopt -o dirnames\n        elif [[ $type == 'file' ]]; then\n            COMPREPLY=()\n            compopt -o default\n        elif [[ $type == 'plain' ]]; then\n            COMPREPLY+=($value)\n        fi\n    done\n\n    return 0\n}\n\n_mvt_ios_completion_setup() {\n    complete -o nosort -F _mvt_ios_completion mvt-ios\n}\n\n_mvt_ios_completion_setup;\n\n",
+   "stderr": "",
+   "duration_ms": 542,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-26a58fcf",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "mvt-ios",
+    "check-fs",
+    "--load-module",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 0,
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\n               [mvt.ios.cmd_check_fs] Loaded a total of 0 unique indicators\n               [mvt] Checking iOS filesystem located at: \n/opt/ctk/fixtures/source-corpus\n               [mvt.ios.modules.fs.cache_files] Running module CacheFiles...\n               [mvt.ios.modules.fs.filesystem] Running module Filesystem...\n               [mvt.ios.modules.fs.net_netusage] Running module Netusage...\n               [mvt.ios.modules.fs.analytics] Running module Analytics...\n               [mvt.ios.modules.fs.analytics] Extracted 0 records from analytics\ndatabases\n               [mvt.ios.modules.fs.analytics_ios_versions] Running module \nAnalyticsIOSVersions...\n               [mvt.ios.modules.fs.analytics_ios_versions] The \nAnalyticsIOSVersions module does not support checking for indicators\n               [mvt.ios.modules.fs.safari_favicon] Running module \nSafariFavicon...\n               [mvt.ios.modules.fs.safari_favicon] Extracted a total of 0 \nfavicon records\n               [mvt.ios.modules.fs.shutdownlog] Running module ShutdownLog...\n               [mvt.ios.modules.fs.shutdownlog] There might be no data to \nextract by module ShutdownLog: unable to find any shutdown log files\n               [mvt.ios.modules.fs.version_history] Running module \nIOSVersionHistory...\n               [mvt.ios.modules.fs.version_history] The IOSVersionHistory module\ndoes not support checking for indicators\n               [mvt.ios.modules.fs.webkit_indexeddb] Running module \nWebkitIndexedDB...\n               [mvt.ios.modules.fs.webkit_indexeddb] Extracted a total of 0 \nWebKit IndexedDB records\n               [mvt.ios.modules.fs.webkit_localstorage] Running module \nWebkitLocalStorage...\n               [mvt.ios.modules.fs.webkit_localstorage] Extracted a total of 0 \nrecords from WebKit Local Storages\n               [mvt.ios.modules.fs.webkit_safariviewservice] Running module \nWebkitSafariViewService...\n               [mvt.ios.modules.fs.webkit_safariviewservice] Extracted a total \nof 0 records from WebKit SafariViewService WebsiteData\n               [mvt.ios.modules.mixed.calls] Running module Calls...\n               [mvt.ios.modules.mixed.calls] There might be no data to extract \nby module Calls: unable to find the module's database file\n               [mvt.ios.modules.mixed.chrome_favicon] Running module \nChromeFavicon...\n               [mvt.ios.modules.mixed.chrome_favicon] There might be no data to \nextract by module ChromeFavicon: unable to find the module's database file\n               [mvt.ios.modules.mixed.chrome_history] Running module \nChromeHistory...\n               [mvt.ios.modules.mixed.chrome_history] There might be no data to \nextract by module ChromeHistory: unable to find the module's database file\n               [mvt.ios.modules.mixed.contacts] Running module Contacts...\n               [mvt.ios.modules.mixed.contacts] There might be no data to \nextract by module Contacts: unable to find the module's database file\n               [mvt.ios.modules.mixed.firefox_favicon] Running module \nFirefoxFavicon...\n               [mvt.ios.modules.mixed.firefox_favicon] There might be no data to\nextract by module FirefoxFavicon: unable to find the module's database file\n               [mvt.ios.modules.mixed.firefox_history] Running module \nFirefoxHistory...\n               [mvt.ios.modules.mixed.firefox_history] There might be no data to\nextract by module FirefoxHistory: unable to find the module's database file\n               [mvt.ios.modules.mixed.idstatuscache] Running module \nIDStatusCache...\n               [mvt.ios.modules.mixed.idstatuscache] Extracted a total of 0 ID \nStatus Cache entries\n               [mvt.ios.modules.mixed.interactionc] Running module \nInteractionC...\n               [mvt.ios.modules.mixed.interactionc] There might be no data to \nextract by module InteractionC: unable to find the module's database file\n               [mvt.ios.modules.mixed.locationd] Running module \nLocationdClients...\n               [mvt.ios.modules.mixed.locationd] Extracted a total of 0 \nLocationd Clients entries\n               [mvt.ios.modules.mixed.osanalytics_addaily] Running module \nOSAnalyticsADDaily...\n               [mvt.ios.modules.mixed.osanalytics_addaily] There might be no \ndata to extract by module OSAnalyticsADDaily: unable to find the module's \ndatabase file\n               [mvt.ios.modules.mixed.net_datausage] Running module Datausage...\n               [mvt.ios.modules.mixed.net_datausage] There might be no data to \nextract by module Datausage: unable to find the module's database file\n               [mvt.ios.modules.mixed.safari_browserstate] Running module \nSafariBrowserState...\n               [mvt.ios.modules.mixed.safari_browserstate] Extracted a total of \n0 tab records and 0 session history entries\n               [mvt.ios.modules.mixed.safari_history] Running module \nSafariHistory...\n               [mvt.ios.modules.mixed.safari_history] Extracted a total of 0 \nhistory records\n               [mvt.ios.modules.mixed.tcc] Running module TCC...\n               [mvt.ios.modules.mixed.tcc] There might be no data to extract by \nmodule TCC: unable to find the module's database file\n               [mvt.ios.modules.mixed.sms] Running module SMS...\n               [mvt.ios.modules.mixed.sms] There might be no data to extract by \nmodule SMS: unable to find the module's database file\n               [mvt.ios.modules.mixed.sms_attachments] Running module \nSMSAttachments...\n               [mvt.ios.modules.mixed.sms_attachments] There might be no data to\nextract by module SMSAttachments: unable to find the module's database file\n               [mvt.ios.modules.mixed.webkit_resource_load_statistics] Running \nmodule WebkitResourceLoadStatistics...\n               [mvt.ios.modules.mixed.webkit_session_resource_log] Running \nmodule WebkitSessionResourceLog...\n               [mvt.ios.modules.mixed.webkit_session_resource_log] Extracted \nrecords from 0 Safari browsing session resource logs\n               [mvt.ios.modules.mixed.whatsapp] Running module Whatsapp...\n               [mvt.ios.modules.mixed.whatsapp] There might be no data to \nextract by module Whatsapp: unable to find the module's database file\n               [mvt.ios.modules.mixed.shortcuts] Running module Shortcuts...\n               [mvt.ios.modules.mixed.shortcuts] There might be no data to \nextract by module Shortcuts: unable to find the module's database file\n               [mvt.ios.modules.mixed.applications] Running module \nApplications...\n               [mvt.ios.modules.mixed.applications] Extracted a total of 0 \napplications\n               [mvt.ios.modules.mixed.calendar] Running module Calendar...\n               [mvt.ios.modules.mixed.calendar] There might be no data to \nextract by module Calendar: unable to find the module's database file\n               [mvt.ios.modules.mixed.global_preferences] Running module \nGlobalPreferences...\n               [mvt.ios.modules.mixed.global_preferences] There might be no data\nto extract by module GlobalPreferences: unable to find the module's database \nfile\n\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 ALERTS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 MVT produced 0 INFORMATIONAL alerts.                                         \u2502\n\u2502 MVT produced 0 LOW alerts.                                                   \u2502\n\u2502 MVT produced 0 MEDIUM alerts.                                                \u2502\n\u2502 MVT produced 0 HIGH alerts.                                                  \u2502\n\u2502 MVT produced 0 CRITICAL alerts.                                              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 NOTE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 The lack of severe alerts does not equate to a clean bill of health.         \u2502\n\u2502                                                                              \u2502\n\u2502 Please seek reputable expert help if you have serious concerns about a       \u2502\n\u2502 possible spyware attack. Such support is available to human rights defenders \u2502\n\u2502 and civil society through Amnesty International's Security Lab at            \u2502\n\u2502 https://securitylab.amnesty.org/get-help/?c=mvt                              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n",
+   "stderr": "",
+   "duration_ms": 569,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-f09fe625",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 15,
+   "binary": "mvt-ios",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "53c1b98b17218899",
+ "declared_commands": [
+  {
+   "name": "mvt-ios",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "mvt-android",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [
+  {
+   "id": "t-readme-cd1bde29",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "mvt-ios",
+    "completion"
+   ],
+   "stdout": "Shell completion for mvt-ios\n\nPrint a completion script:\n  mvt-ios completion bash > ~/.mvt-ios-complete.bash\n  mvt-ios completion zsh > ~/.mvt-ios-complete.zsh\n  mkdir -p ~/.config/fish/completions\n  mvt-ios completion fish > ~/.config/fish/completions/mvt-ios.fish\n\nLoad the generated Bash script from ~/.bashrc:\n  [ -f ~/.mvt-ios-complete.bash ] && . ~/.mvt-ios-complete.bash\n\nLoad the generated Zsh script from ~/.zshrc:\n  [ -f ~/.mvt-ios-complete.zsh ] && . ~/.mvt-ios-complete.zsh\n\nFish loads completion files from ~/.config/fish/completions automatically.\n\nTo write these files and update Bash/Zsh shell configuration automatically:\n  mvt-ios completion bash --install\n  mvt-ios completion zsh --install\n  mvt-ios completion fish --install\n\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 555,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-26a58fcf",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "mvt-ios",
+    "completion",
+    "bash"
+   ],
+   "stdout": "_mvt_ios_completion() {\n    local IFS=$'\\n'\n    local response\n\n    response=$(env COMP_WORDS=\"${COMP_WORDS[*]}\" COMP_CWORD=$COMP_CWORD _MVT_IOS_COMPLETE=bash_complete $1)\n\n    for completion in $response; do\n        IFS=',' read type value <<< \"$completion\"\n\n        if [[ $type == 'dir' ]]; then\n            COMPREPLY=()\n            compopt -o dirnames\n        elif [[ $type == 'file' ]]; then\n            COMPREPLY=()\n            compopt -o default\n        elif [[ $type == 'plain' ]]; then\n            COMPREPLY+=($value)\n        fi\n    done\n\n    return 0\n}\n\n_mvt_ios_completion_setup() {\n    complete -o nosort -F _mvt_ios_completion mvt-ios\n}\n\n_mvt_ios_completion_setup;\n\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 542,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-f09fe625",
+   "title": "From the project's documentation \u2014 run against source-corpus",
+   "argv": [
+    "mvt-ios",
+    "check-fs",
+    "--load-module",
+    "/opt/ctk/fixtures/source-corpus",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "stdout": "\n\n        MVT - Mobile Verification Toolkit\n                https://mvt.re\n                Version: 2026.7.29\nERROR          [mvt.common.updates] Failed to check for updates, skipping \nupdates: HTTPSConnectionPool(host='pypi.org', port=443): Max retries exceeded \nwith url: /pypi/mvt/json (Caused by \nNameResolutionError(\"HTTPSConnection(host='pypi.org', port=443): Failed to \nresolve 'pypi.org' ([Errno -3] Temporary failure in name resolution)\"))\n                You have not yet downloaded any indicators, check the \n`download-iocs` command!\n\n\n               [mvt.ios.cmd_check_fs] Loaded a total of 0 unique indicators\n               [mvt] Checking iOS filesystem located at: \n/opt/ctk/fixtures/source-corpus\n               [mvt.ios.modules.fs.cache_files] Running module CacheFiles...\n               [mvt.ios.modules.fs.filesystem] Running module Filesystem...\n               [mvt.ios.modules.fs.net_netusage] Running module Netusage...\n               [mvt.ios.modules.fs.analytics] Running module Analytics...\n               [mvt.ios.modules.fs.analytics] Extracted 0 records from analytics\ndatabases\n               [mvt.ios.modules.fs.analytics_ios_versions] Running module \nAnalyticsIOSVersions...\n               [mvt.ios.modules.fs.analytics_ios_versions] The \nAnalyticsIOSVersions module does not support checking for indicators\n               [mvt.ios.modules.fs.safari_favicon] Running module \nSafariFavicon...\n               [mvt.ios.modules.fs.safari_favicon] Extracted a total of 0 \nfavicon records\n               [mvt.ios.modules.fs.shutdownlog] Running module ShutdownLog...\n               [mvt.ios.modules.fs.shutdownlog] There might be no data to \nextract by module ShutdownLog: unable to find any shutdown log files\n               [mvt.ios.modules.fs.version_history] Running module \nIOSVersionHistory...\n               [mvt.ios.modules.fs.version_history] The IOSVersionHistory module\ndoes not support checking for indicators\n               [mvt.ios.modules.fs.webkit_indexeddb] Running module \nWebkitIndexedDB...\n               [mvt.ios.modules.fs.webkit_indexeddb] Extracted a total of 0 \nWebKit IndexedDB records\n               [mvt.ios.modules.fs.webkit_localstorage] Running module \nWebkitLocalStorage...\n               [mvt.ios.modules.fs.webkit_localstorage] Extracted a total of 0 \nrecords from WebKit Local Storages\n               [mvt.ios.modules.fs.webkit_safariviewservice] Running module \nWebkitSafariViewService...\n               [mvt.ios.modules.fs.webkit_safariviewservice] Extracted a total \nof 0 records from WebKit SafariViewService WebsiteData\n               [mvt.ios.modules.mixed.calls] Running module Calls...\n               [mvt.ios.modules.mixed.calls] There might be no data to extract \nby module Calls: unable to find the module's database file\n               [mvt.ios.modules.mixed.chrome_favicon] Running module \nChromeFavicon...\n               [mvt.ios.modules.mixed.chrome_favicon] There might be no data to \nextract by module ChromeFavicon: unable to find the module's database file\n               [mvt.ios.modules.mixed.chrome_history] Running module \nChromeHistory...\n               [mvt.ios.modules.mixed.chrome_history] There might be no data to \nextract by module ChromeHistory: unable to find the module's database file\n               [mvt.ios.modules.mixed.contacts] Running module Contacts...\n               [mvt.ios.modules.mixed.contacts] There might be no data to \nextract by module Contacts: unable to find the module's database file\n               [mvt.ios.modules.mixed.firefox_favicon] Running module \nFirefoxFavicon...\n               [mvt.ios.modules.mixed.firefox_favicon] There might be no data to\nextract by module FirefoxFavicon: unable to find the module's database file\n               [mvt.ios.modules.mixed.firefox_history] Running module \nFirefoxHistory...\n               [mvt.ios.modules.mixed.firefox_history] There might be no data to\nextract by module FirefoxHistory: unable to find the module's database file\n               [mvt.ios.modules.mixed.idstatuscache] Running module \nIDStatusCache...\n               [mvt.ios.modules.mixed.idstatuscache] Extracted a total of 0 ID \nStatus Cache entries\n               [mvt.ios.modules.mixed.interactionc] Running module \nInteractionC...\n               [mvt.ios.modules.mixed.interactionc] There might be no data to \nextract by module InteractionC: unable to find the module's database file\n               [mvt.ios.modules.mixed.locationd] Running module \nLocationdClients...\n               [mvt.ios.modules.mixed.locationd] Extracted a total of 0 \nLocationd Clients entries\n               [mvt.ios.modules.mixed.osanalytics_addaily] Running module \nOSAnalyticsADDaily...\n               [mvt.ios.modules.mixed.osanalytics_addaily] There might be no \ndata to extract by module OSAnalyticsADDaily: unable to find the module's \ndatabase file\n               [mvt.ios.modules.mixed.net_datausage] Running module Datausage...\n               [mvt.ios.modules.mixed.net_datausage] There might be no data to \nextract by module Datausage: unable to find the module's database file\n               [mvt.ios.modules.mixed.safari_browserstate] Running module \nSafariBrowserState...\n               [mvt.ios.modules.mixed.safari_browserstate] Extracted a total of \n0 tab records and 0 session history entries\n               [mvt.ios.modules.mixed.safari_history] Running module \nSafariHistory...\n               [mvt.ios.modules.mixed.safari_history] Extracted a total of 0 \nhistory records\n               [mvt.ios.modules.mixed.tcc] Running module TCC...\n               [mvt.ios.modules.mixed.tcc] There might be no data to extract by \nmodule TCC: unable to find the module's database file\n               [mvt.ios.modules.mixed.sms] Running module SMS...\n               [mvt.ios.modules.mixed.sms] There might be no data to extract by \nmodule SMS: unable to find the module's database file\n               [mvt.ios.modules.mixed.sms_attachments] Running module \nSMSAttachments...\n               [mvt.ios.modules.mixed.sms_attachments] There might be no data to\nextract by module SMSAttachments: unable to find the module's database file\n               [mvt.ios.modules.mixed.webkit_resource_load_statistics] Running \nmodule WebkitResourceLoadStatistics...\n               [mvt.ios.modules.mixed.webkit_session_resource_log] Running \nmodule WebkitSessionResourceLog...\n               [mvt.ios.modules.mixed.webkit_session_resource_log] Extracted \nrecords from 0 Safari browsing session resource logs\n               [mvt.ios.modules.mixed.whatsapp] Running module Whatsapp...\n               [mvt.ios.modules.mixed.whatsapp] There might be no data to \nextract by module Whatsapp: unable to find the module's database file\n               [mvt.ios.modules.mixed.shortcuts] Running module Shortcuts...\n               [mvt.ios.modules.mixed.shortcuts] There might be no data to \nextract by module Shortcuts: unable to find the module's database file\n               [mvt.ios.modules.mixed.applications] Running module \nApplications...\n               [mvt.ios.modules.mixed.applications] Extracted a total of 0 \napplications\n               [mvt.ios.modules.mixed.calendar] Running module Calendar...\n               [mvt.ios.modules.mixed.calendar] There might be no data to \nextract by module Calendar: unable to find the module's database file\n               [mvt.ios.modules.mixed.global_preferences] Running module \nGlobalPreferences...\n               [mvt.ios.modules.mixed.global_preferences] There might be no data\nto extract by module GlobalPreferences: unable to find the module's database \nfile\n\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 ALERTS \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 MVT produced 0 INFORMATIONAL alerts.                                         \u2502\n\u2502 MVT produced 0 LOW alerts.                                                   \u2502\n\u2502 MVT produced 0 MEDIUM alerts.                                                \u2502\n\u2502 MVT produced 0 HIGH alerts.                                                  \u2502\n\u2502 MVT produced 0 CRITICAL alerts.                                              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n\n\u256d\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500 NOTE \u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256e\n\u2502 The lack of severe alerts does not equate to a clean bill of health.         \u2502\n\u2502                                                                              \u2502\n\u2502 Please seek reputable expert help if you have serious concerns about a       \u2502\n\u2502 possible spyware attack. Such support is available to human rights defenders \u2502\n\u2502 and civil society through Amnesty International's Security Lab at            \u2502\n\u2502 https://securitylab.amnesty.org/get-help/?c=mvt                              \u2502\n\u2570\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u2500\u256f\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 569,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--load-command": "Load a custom CLI command from a Python file or folder (can be invoked multiple times)",
+   "--disable-update-check": "Disable MVT version update check",
+   "--disable-indicator-update-check": "Disable indicators update check",
+   "--help": "Show this message and exit."
+  },
+  "values_seen": {
+   "--load-command": "PATH"
+  },
+  "aliases": {},
+  "subcommand_flags": {
+   "check-backup": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--fast": "Avoid running time/resource consuming features",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "check-fs": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--fast": "Avoid running time/resource consuming features",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "check-iocs": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--help": "Show this message and exit."
+   },
+   "check-sysdiagnose": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "completion": {
+    "--install": "Write completion files and update shell configuration.",
+    "--help": "Show this message and exit."
+   },
+   "decrypt-backup": {
+    "--destination": "Path to the folder where the decrypted backup should be stored [required]",
+    "--password": "Password to use to decrypt the backup (or, set the {MVT_IOS_BACKUP_PASSWORD} environment variable) NOTE: This argument is mutually exclusive with arguments[key_file].",
+    "--key-file": "File containing raw encryption key to use to decrypt the backup NOTE: This argument is mutually exclusive with arguments[password].",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--help": "Show this message and exit."
+   },
+   "download-iocs": {
+    "--help": "Show this message and exit."
+   },
+   "extract-key": {
+    "--password": "Password to use to decrypt the backup (or, set the {MVT_IOS_BACKUP_PASSWORD} environment variable)",
+    "--key-file": "File containing raw encryption key to use to decrypt the backup",
+    "--help": "Show this message and exit."
+   },
+   "version": {
+    "--help": "Show this message and exit."
+   }
+  },
+  "subcommands": [
+   "check-backup",
+   "check-fs",
+   "check-iocs",
+   "check-sysdiagnose",
+   "completion",
+   "decrypt-backup",
+   "download-iocs",
+   "extract-key",
+   "version"
+  ],
+  "binary": "mvt-ios",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "6453fd7b2f8c6fd1828ebcf7d7f16bfc3ef68383b35a81aad64e286005c55df5",
+  "text": "Usage: mvt-ios [OPTIONS] COMMAND [ARGS]...\n\nOptions:\n  --load-command PATH             Load a custom CLI command from a Python file\n                                  or folder (can be invoked multiple times)\n  --disable-update-check          Disable MVT version update check\n  --disable-indicator-update-check\n                                  Disable indicators update check\n  --help                          Show this message and exit.\n\nCommands:\n  check-backup       Extract artifacts from an iTunes backup\n  check-fs           Extract artifacts from a full filesystem dump\n  check-iocs         Compare stored JSON results to provided indicators\n  check-sysdiagnose  Extract artifacts from an iOS sysdiagnose archive\n  completion         Generate or install shell completion\n  decrypt-backup     Decrypt an encrypted iTunes backup\n  download-iocs      Download public STIX2 indicators\n  extract-key        Extract decryption key from an iTunes backup\n  version            Show the currently installed version of MVT\n"
+ },
+ "surface": {
+  "flags": {
+   "--disable-indicator-update-check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable indicators update check"
+   },
+   "--disable-update-check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable MVT version update check"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this message and exit."
+   },
+   "--load-command": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load a custom CLI command from a Python file or folder (can be invoked multiple times)",
+    "metavar": "PATH"
+   }
+  },
+  "subcommands": [
+   "check-backup",
+   "check-fs",
+   "check-iocs",
+   "check-sysdiagnose",
+   "completion",
+   "decrypt-backup",
+   "download-iocs",
+   "extract-key",
+   "version"
+  ],
+  "subcommand_flags": {
+   "check-backup": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--fast": "Avoid running time/resource consuming features",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "check-fs": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--fast": "Avoid running time/resource consuming features",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "check-iocs": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--help": "Show this message and exit."
+   },
+   "check-sysdiagnose": {
+    "--iocs": "Path to indicators file (can be invoked multiple time)",
+    "--output": "Specify a path to a folder where you want to store JSON results",
+    "--list-modules": "Print list of available modules and exit",
+    "--module": "Name of a single module you would like to run instead of all",
+    "--load-module": "Load custom MVT module(s) from a Python file or folder (can be invoked multiple times)",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--verbose": "Verbose mode",
+    "--help": "Show this message and exit."
+   },
+   "completion": {
+    "--install": "Write completion files and update shell configuration.",
+    "--help": "Show this message and exit."
+   },
+   "decrypt-backup": {
+    "--destination": "Path to the folder where the decrypted backup should be stored [required]",
+    "--password": "Password to use to decrypt the backup (or, set the {MVT_IOS_BACKUP_PASSWORD} environment variable) NOTE: This argument is mutually exclusive with arguments[key_file].",
+    "--key-file": "File containing raw encryption key to use to decrypt the backup NOTE: This argument is mutually exclusive with arguments[password].",
+    "--hashes": "Generate hashes of all the files analyzed",
+    "--help": "Show this message and exit."
+   },
+   "download-iocs": {
+    "--help": "Show this message and exit."
+   },
+   "extract-key": {
+    "--password": "Password to use to decrypt the backup (or, set the {MVT_IOS_BACKUP_PASSWORD} environment variable)",
+    "--key-file": "File containing raw encryption key to use to decrypt the backup",
+    "--help": "Show this message and exit."
+   },
+   "version": {
+    "--help": "Show this message and exit."
+   }
+  }
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 11,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-surface-830072cc",
+    "argv": [
+     "mvt",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'mvt'",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-readme-f00e9a23",
+    "argv": [
+     "mvt-ios",
+     "summarize",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/custom_commands.md",
+    "line": 46,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 111
+   },
+   {
+    "id": "t-readme-ade7938a",
+    "argv": [
+     "mvt-ios",
+     "--load-command",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "case-summary",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/custom_commands.md",
+    "line": 78,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 230
+   },
+   {
+    "id": "t-readme-16776e0c",
+    "argv": [
+     "mvt-ios",
+     "check-backup",
+     "--load-module",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/development.md",
+    "line": 48,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 2715
+   },
+   {
+    "id": "t-readme-79ee1525",
+    "argv": [
+     "mvt-ios",
+     "extract-key",
+     "-k",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/ios/backup/check.md",
+    "line": 28,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 741
+   },
+   {
+    "id": "t-readme-1744dc06",
+    "argv": [
+     "mvt-ios",
+     "decrypt-backup",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/ios/backup/check.md",
+    "line": 58,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 775
+   },
+   {
+    "id": "t-readme-6d1ff91a",
+    "argv": [
+     "mvt-ios",
+     "check-backup",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/ios/backup/check.md",
+    "line": 85,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 2715
+   },
+   {
+    "id": "t-readme-d55de8d4",
+    "argv": [
+     "mvt-ios",
+     "check-fs",
+     "/opt/ctk/fixtures/source-corpus",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/ios/filesystem/check.md",
+    "line": 25,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 2699
+   },
+   {
+    "id": "t-readme-a3725856",
+    "argv": [
+     "mvt-ios",
+     "check-sysdiagnose",
+     "--load-module",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "--output",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "docs/ios/sysdiagnose.md",
+    "line": 11,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 2735
+   },
+   {
+    "id": "t-surface-16c1ef0a",
+    "argv": [
+     "mvt-ios",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 133
+   },
+   {
+    "id": "t-surface-0d71141b",
+    "argv": [
+     "mvt-ios",
+     "--load-command",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 99
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "mvt-ios completion bash --install",
+    "source": "readme",
+    "path": "docs/command_completion.md",
+    "line": 59,
+    "reason": "needs-network-or-interactive",
+    "token": "--install"
+   },
+   {
+    "raw": "MVT_PROFILE=1 dev/mvt-ios check-backup test_backup",
+    "source": "readme",
+    "path": "docs/development.md",
+    "line": 128,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "Mobile Verification Toolkit",
+ "repo": "mvt-project/mvt",
+ "head_sha": "0ee25edf0a353ca08870e38667e36aa941959f02",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T02:48:47.755492+00:00"
+}

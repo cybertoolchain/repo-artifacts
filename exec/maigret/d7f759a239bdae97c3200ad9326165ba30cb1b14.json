@@ -1,0 +1,806 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:1ba12a6e1d18b26726adbfa1cc46605db29c5fcf3f5f230be496d485dba16285",
+  "duration_s": 48.47,
+  "log_tail": "#11 11.88 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 11.92 debconf: unable to initialize frontend: Dialog\n#11 11.92 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 11.92 debconf: falling back to frontend: Readline\n#11 11.93 debconf: unable to initialize frontend: Readline\n#11 11.93 debconf: (This frontend requires a controlling tty.)\n#11 11.93 debconf: falling back to frontend: Teletype\n#11 11.95 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 11.99 Setting up texinfo (6.8-6+b1) ...\n#11 12.05 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 12.13 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 12.3s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.8s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.227 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 5.6s done\n#20 exporting manifest sha256:8d53d7a32ee19c6753acb00aa1c0b3382af7fd782588b97a0cf1161a2c5de180 0.0s done\n#20 exporting config sha256:30b01610e61d3c9521574acf38c8331b4f92616a117a1c060f1d3067fbb17a5a 0.0s done\n#20 exporting attestation manifest sha256:b584f12827e4f1c13057e79ab132f5685d43d709952a7fe2f3f83db91b7feae6\n#20 exporting attestation manifest sha256:b584f12827e4f1c13057e79ab132f5685d43d709952a7fe2f3f83db91b7feae6 0.1s done\n#20 exporting manifest list sha256:1ba12a6e1d18b26726adbfa1cc46605db29c5fcf3f5f230be496d485dba16285 0.0s done\n#20 naming to docker.io/ctk-exec/maigret:d7f759a239bd done\n#20 unpacking to docker.io/ctk-exec/maigret:d7f759a239bd\n#20 unpacking to docker.io/ctk-exec/maigret:d7f759a239bd 3.5s done\n#20 DONE 9.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "maigret",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: maigret [-h] [--version] [--timeout TIMEOUT] [--retries RETRIES]\n               [-n CONNECTIONS] [--dns-resolver {async,threaded}]\n               [--no-recursion] [--no-extracting] [--enrich]\n               [--id-type {username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}]\n               [--permute] [--db DB_FILE] [--no-autoupdate] [--force-update]\n               [--cookies-jar-file COOKIE_FILE] [--ignore-ids IGNORED_IDS]\n               [--folderoutput PATH] [--proxy PROXY_URL]\n               [--tor-proxy TOR_PROXY_URL] [--i2p-proxy I2P_PROXY_URL]\n               [--with-domains] [--cloudflare-bypass] [-a] [--top-sites N]\n               [--tags TAGS] [--exclude-tags EXCLUDE_TAGS]\n               [--keywords KEYWORD [KEYWORD ...]] [--site SITE_NAME]\n               [--use-disabled-sites] [--parse URL] [--submit URL]\n               [--self-check] [--auto-disable] [--diagnose] [--stats]\n               [--web [PORT]] [--print-not-found] [--print-errors] [--verbose]\n               [--info] [--debug] [--no-color] [--no-progressbar] [-T] [-C]\n               [-H] [-X] [-P] [-M] [-G] [--neo4j] [-J TYPE] [--ai]\n               [--ai-model AI_MODEL] [--reports-sorting {default,data}]\n               [USERNAMES ...]\n\nMaigret v0.6.4\nDocumentation: https://maigret.readthedocs.io/\nAll settings are also configurable through files, see docs.\n\npositional arguments:\n  USERNAMES             One or more usernames to search by.\n\noptions:\n  -h, --help            show this help message and exit\n  --version             Display version information and dependencies.\n  --timeout TIMEOUT     Time in seconds to wait for response to requests\n                        (default 30s). A longer timeout will be more likely to\n                        get results from slow sites. On the other hand, this\n                        may cause a long delay to gather all results.\n  --retries RETRIES     Attempts to restart temporarily failed requests.\n  -n CONNECTIONS, --max-connections CONNECTIONS\n                        Allowed number of concurrent connections (default\n                        100).\n  --dns-resolver {async,threaded}\n                        DNS resolver to use. 'async' (default) uses aiohttp's\n                        AsyncResolver (via aiodns/c-ares) \u2014 fastest under high\n                        concurrency. 'threaded' uses the OS getaddrinfo via a\n                        threadpool \u2014 slower, but respects the system DNS\n                        configuration. Switch to 'threaded' if you see 'Could\n                        not contact DNS servers' for every site (issue #2688).\n  --no-recursion        Disable recursive search by additional data extracted\n                        from pages.\n  --no-extracting       Disable parsing pages for additional data and other\n                        usernames.\n  --enrich              Fetch secondary API/JSON endpoints derived from\n                        profile URLs (via socid_extractor url_mutations) and\n                        merge extracted fields into results. Off by default;\n                        adds extra HTTP requests per claimed site.\n  --id-type {username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}\n                        Specify identifier(s) type (default: username).\n  --permute             Permute at least 2 usernames to generate more possible\n                        usernames.\n  --db DB_FILE          Load Maigret database from a JSON file or HTTP web\n                        resource.\n  --no-autoupdate       Disable automatic database updates on startup.\n  --force-update        Force check for database updates and download if\n                        available.\n  --cookies-jar-file COOKIE_FILE\n                        File with cookies.\n  --ignore-ids IGNORED_IDS\n                        Do not make search by the specified username or other\n                        ids.\n  --folderoutput PATH, -fo PATH\n                        If using multiple usernames, the output of the results\n                        will be saved to this folder.\n  --proxy PROXY_URL, -p PROXY_URL\n                        Make requests over a proxy. e.g.\n                        socks5://127.0.0.1:1080 (socks5:// and socks5h:// are\n                        equivalent, both resolve at the proxy)\n  --tor-proxy TOR_PROXY_URL\n                        Specify URL of your Tor gateway. Default is\n                        socks5://127.0.0.1:9050\n  --i2p-proxy I2P_PROXY_URL\n                        Specify URL of your I2P gateway. Default is\n                        http://127.0.0.1:4444\n  --with-domains        Enable (experimental) feature of checking domains on\n                        usernames.\n  --cloudflare-bypass   Enable Cloudflare webgate bypass for sites with\n                        protection cf_js_challenge / cf_firewall / webgate.\n                        Requires a local CloudflareBypassForScraping instance\n                        (see settings.json ->\n                        cloudflare_bypass.modules[0].url).\n  --reports-sorting {default,data}\n                        Method of results sorting in reports (default: in\n                        order of getting the result)\n\nSite filtering:\n  Options to set site search scope\n\n  -a, --all-sites       Use all sites for scan.\n  --top-sites N         Count of sites for scan ranked by Alexa Top (default:\n                        500).\n  --tags TAGS           Specify tags of sites (see `--stats`).\n  --exclude-tags EXCLUDE_TAGS\n                        Specify tags to exclude from search (blacklist).\n  --keywords KEYWORD [KEYWORD ...]\n                        Specify keywords to search for in HTML content. Sites\n                        containing both username AND any keyword get special\n                        highlighting. e.g. --keywords tech python\n  --site SITE_NAME      Limit analysis to just the specified sites (multiple\n                        option).\n  --use-disabled-sites  Use disabled sites to search (may cause many false\n                        positives).\n\nOperating modes:\n  Various functions except the default search by a username. Modes are executed sequentially in the order of declaration.\n\n  --parse URL           Parse page by URL and extract username and IDs to use\n                        for search.\n  --submit URL          URL of existing profile in new site to submit.\n  --self-check          Do self check for sites and database. Use --auto-\n                        disable to disable failing sites.\n  --auto-disable        With --self-check: automatically disable sites that\n                        fail checks.\n  --diagnose            With --self-check: print detailed diagnosis for each\n                        failing site.\n  --stats               Show database statistics (most frequent sites engines\n                        and tags).\n  --web [PORT]          Launch the web interface on the specified port\n                        (default: 5000 if no PORT is provided).\n\nOutput options:\n  Options to change verbosity and view of the console output\n\n  --print-not-found     Print sites where the username was not found.\n  --print-errors        Print errors messages: connection, captcha, site\n                        country ban, etc.\n  --verbose, -v         Display extra information and metrics.\n  --info, -vv           Display extra/service information and metrics.\n  --debug, -vvv, -d     Display extra/service/debug information and metrics,\n                        save responses in debug.log.\n  --no-color            Don't color terminal output\n  --no-progressbar      Don't show progressbar.\n\nReport formats:\n  Supported formats of report files\n\n  -T, --txt             Create a TXT report (one report per username).\n  -C, --csv             Create a CSV report (one report per username).\n  -H, --html            Create an HTML report file (general report on all\n                        usernames).\n  -X, --xmind           Generate a legacy XML XMind mindmap with a manifest\n                        for modern readers (one report per username).\n  -P, --pdf             Generate a PDF report (general report on all\n                        usernames).\n  -M, --md              Generate a Markdown report (general report on all\n                        usernames).\n  -G, --graph           Generate a graph report (general report on all\n                        usernames).\n  --neo4j               Generate a Neo4j Cypher report (general report on all\n                        usernames).\n  -J TYPE, --json TYPE  Generate a JSON report of specific type: simple,\n                        ndjson (one report per username).\n  --ai                  Generate an AI-powered analysis of the search results\n                        using OpenAI API. Requires OPENAI_API_KEY env var or\n                        openai_api_key in settings.\n  --ai-model AI_MODEL   OpenAI model to use for AI analysis (default:\n                        gpt-5.4).\n",
+   "stderr": "",
+   "duration_ms": 888,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "maigret"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for maigret\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "maigret"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'maigret' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "maigret",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "maigret",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "update_sitesmd",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--version": "Display version information and dependencies.",
+   "--timeout": "Time in seconds to wait for response to requests (default 30s). A longer timeout will be more likely to get results from slow sites. On the other hand, this may cause a long delay to gather all results.",
+   "--retries": "Attempts to restart temporarily failed requests.",
+   "--max-connections": "Allowed number of concurrent connections (default 100).",
+   "-n": "Allowed number of concurrent connections (default 100).",
+   "--dns-resolver": "DNS resolver to use. 'async' (default) uses aiohttp's AsyncResolver (via aiodns/c-ares) \u2014 fastest under high concurrency. 'threaded' uses the OS getaddrinfo via a threadpool \u2014 slower, but respects the system DNS configuration. Switch to 'threaded' if you see 'Could not contact DNS servers' for every site (issue #2688).",
+   "--no-recursion": "Disable recursive search by additional data extracted from pages.",
+   "--no-extracting": "Disable parsing pages for additional data and other usernames.",
+   "--enrich": "Fetch secondary API/JSON endpoints derived from profile URLs (via socid_extractor url_mutations) and merge extracted fields into results. Off by default; adds extra HTTP requests per claimed site.",
+   "--id-type": "Specify identifier(s) type (default: username).",
+   "--permute": "Permute at least 2 usernames to generate more possible usernames.",
+   "--db": "Load Maigret database from a JSON file or HTTP web resource.",
+   "--no-autoupdate": "Disable automatic database updates on startup.",
+   "--force-update": "Force check for database updates and download if available.",
+   "--cookies-jar-file": "File with cookies.",
+   "--ignore-ids": "Do not make search by the specified username or other ids.",
+   "--folderoutput": "If using multiple usernames, the output of the results will be saved to this folder.",
+   "-fo": "If using multiple usernames, the output of the results will be saved to this folder.",
+   "--proxy": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080 (socks5:// and socks5h:// are equivalent, both resolve at the proxy)",
+   "-p": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080 (socks5:// and socks5h:// are equivalent, both resolve at the proxy)",
+   "--tor-proxy": "Specify URL of your Tor gateway. Default is socks5://127.0.0.1:9050",
+   "--i2p-proxy": "Specify URL of your I2P gateway. Default is http://127.0.0.1:4444",
+   "--with-domains": "Enable (experimental) feature of checking domains on usernames.",
+   "--cloudflare-bypass": "Enable Cloudflare webgate bypass for sites with protection cf_js_challenge / cf_firewall / webgate. Requires a local CloudflareBypassForScraping instance (see settings.json -> cloudflare_bypass.modules[0].url).",
+   "--reports-sorting": "Method of results sorting in reports (default: in order of getting the result)",
+   "--all-sites": "Use all sites for scan.",
+   "-a": "Use all sites for scan.",
+   "--top-sites": "Count of sites for scan ranked by Alexa Top (default: 500).",
+   "--tags": "Specify tags of sites (see `--stats`).",
+   "--exclude-tags": "Specify tags to exclude from search (blacklist).",
+   "--keywords": "Specify keywords to search for in HTML content. Sites containing both username AND any keyword get special highlighting. e.g. --keywords tech python",
+   "--site": "Limit analysis to just the specified sites (multiple option).",
+   "--use-disabled-sites": "Use disabled sites to search (may cause many false positives).",
+   "--parse": "Parse page by URL and extract username and IDs to use for search.",
+   "--submit": "URL of existing profile in new site to submit.",
+   "--self-check": "Do self check for sites and database. Use --auto- disable to disable failing sites.",
+   "--auto-disable": "With --self-check: automatically disable sites that fail checks.",
+   "--diagnose": "With --self-check: print detailed diagnosis for each failing site.",
+   "--stats": "Show database statistics (most frequent sites engines and tags).",
+   "--web": "Launch the web interface on the specified port (default: 5000 if no PORT is provided).",
+   "--print-not-found": "Print sites where the username was not found.",
+   "--print-errors": "Print errors messages: connection, captcha, site country ban, etc.",
+   "--verbose": "Display extra information and metrics.",
+   "-v": "Display extra information and metrics.",
+   "--info": "Display extra/service information and metrics.",
+   "-vv": "Display extra/service information and metrics.",
+   "--debug": "Display extra/service/debug information and metrics, save responses in debug.log.",
+   "-vvv": "Display extra/service/debug information and metrics, save responses in debug.log.",
+   "-d": "Display extra/service/debug information and metrics, save responses in debug.log.",
+   "--no-color": "Don't color terminal output",
+   "--no-progressbar": "Don't show progressbar.",
+   "--txt": "Create a TXT report (one report per username).",
+   "-T": "Create a TXT report (one report per username).",
+   "--csv": "Create a CSV report (one report per username).",
+   "-C": "Create a CSV report (one report per username).",
+   "--html": "Create an HTML report file (general report on all usernames).",
+   "-H": "Create an HTML report file (general report on all usernames).",
+   "--xmind": "Generate a legacy XML XMind mindmap with a manifest for modern readers (one report per username).",
+   "-X": "Generate a legacy XML XMind mindmap with a manifest for modern readers (one report per username).",
+   "--pdf": "Generate a PDF report (general report on all usernames).",
+   "-P": "Generate a PDF report (general report on all usernames).",
+   "--md": "Generate a Markdown report (general report on all usernames).",
+   "-M": "Generate a Markdown report (general report on all usernames).",
+   "--graph": "Generate a graph report (general report on all usernames).",
+   "-G": "Generate a graph report (general report on all usernames).",
+   "--neo4j": "Generate a Neo4j Cypher report (general report on all usernames).",
+   "--json": "Generate a JSON report of specific type: simple, ndjson (one report per username).",
+   "-J": "Generate a JSON report of specific type: simple, ndjson (one report per username).",
+   "--ai": "Generate an AI-powered analysis of the search results using OpenAI API. Requires OPENAI_API_KEY env var or openai_api_key in settings.",
+   "--ai-model": "OpenAI model to use for AI analysis (default: gpt-5.4)."
+  },
+  "values_seen": {
+   "--timeout": "TIMEOUT",
+   "--retries": "RETRIES",
+   "-n": "CONNECTIONS",
+   "--max-connections": "CONNECTIONS",
+   "--dns-resolver": "{async,threaded}",
+   "--id-type": "{username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}",
+   "--db": "DB_FILE",
+   "--cookies-jar-file": "COOKIE_FILE",
+   "--ignore-ids": "IGNORED_IDS",
+   "--folderoutput": "PATH",
+   "-fo": "PATH",
+   "--proxy": "PROXY_URL",
+   "-p": "PROXY_URL",
+   "--tor-proxy": "TOR_PROXY_URL",
+   "--i2p-proxy": "I2P_PROXY_URL",
+   "--reports-sorting": "{default,data}",
+   "--top-sites": "N",
+   "--tags": "TAGS",
+   "--exclude-tags": "EXCLUDE_TAGS",
+   "--site": "SITE_NAME",
+   "--parse": "URL",
+   "--submit": "URL",
+   "--web": "[PORT]",
+   "-J": "TYPE",
+   "--json": "TYPE",
+   "--ai-model": "AI_MODEL"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--max-connections": [
+    "-n"
+   ],
+   "--folderoutput": [
+    "-fo"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--all-sites": [
+    "-a"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--info": [
+    "-vv"
+   ],
+   "--debug": [
+    "-vvv",
+    "-d"
+   ],
+   "--txt": [
+    "-T"
+   ],
+   "--csv": [
+    "-C"
+   ],
+   "--html": [
+    "-H"
+   ],
+   "--xmind": [
+    "-X"
+   ],
+   "--pdf": [
+    "-P"
+   ],
+   "--md": [
+    "-M"
+   ],
+   "--graph": [
+    "-G"
+   ],
+   "--json": [
+    "-J"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "maigret",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "44e00377882e57abb2de076c46dceb42db14d603548b1bb3390d029cd4a90447",
+  "text": "usage: maigret [-h] [--version] [--timeout TIMEOUT] [--retries RETRIES]\n               [-n CONNECTIONS] [--dns-resolver {async,threaded}]\n               [--no-recursion] [--no-extracting] [--enrich]\n               [--id-type {username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}]\n               [--permute] [--db DB_FILE] [--no-autoupdate] [--force-update]\n               [--cookies-jar-file COOKIE_FILE] [--ignore-ids IGNORED_IDS]\n               [--folderoutput PATH] [--proxy PROXY_URL]\n               [--tor-proxy TOR_PROXY_URL] [--i2p-proxy I2P_PROXY_URL]\n               [--with-domains] [--cloudflare-bypass] [-a] [--top-sites N]\n               [--tags TAGS] [--exclude-tags EXCLUDE_TAGS]\n               [--keywords KEYWORD [KEYWORD ...]] [--site SITE_NAME]\n               [--use-disabled-sites] [--parse URL] [--submit URL]\n               [--self-check] [--auto-disable] [--diagnose] [--stats]\n               [--web [PORT]] [--print-not-found] [--print-errors] [--verbose]\n               [--info] [--debug] [--no-color] [--no-progressbar] [-T] [-C]\n               [-H] [-X] [-P] [-M] [-G] [--neo4j] [-J TYPE] [--ai]\n               [--ai-model AI_MODEL] [--reports-sorting {default,data}]\n               [USERNAMES ...]\n\nMaigret v0.6.4\nDocumentation: https://maigret.readthedocs.io/\nAll settings are also configurable through files, see docs.\n\npositional arguments:\n  USERNAMES             One or more usernames to search by.\n\noptions:\n  -h, --help            show this help message and exit\n  --version             Display version information and dependencies.\n  --timeout TIMEOUT     Time in seconds to wait for response to requests\n                        (default 30s). A longer timeout will be more likely to\n                        get results from slow sites. On the other hand, this\n                        may cause a long delay to gather all results.\n  --retries RETRIES     Attempts to restart temporarily failed requests.\n  -n CONNECTIONS, --max-connections CONNECTIONS\n                        Allowed number of concurrent connections (default\n                        100).\n  --dns-resolver {async,threaded}\n                        DNS resolver to use. 'async' (default) uses aiohttp's\n                        AsyncResolver (via aiodns/c-ares) \u2014 fastest under high\n                        concurrency. 'threaded' uses the OS getaddrinfo via a\n                        threadpool \u2014 slower, but respects the system DNS\n                        configuration. Switch to 'threaded' if you see 'Could\n                        not contact DNS servers' for every site (issue #2688).\n  --no-recursion        Disable recursive search by additional data extracted\n                        from pages.\n  --no-extracting       Disable parsing pages for additional data and other\n                        usernames.\n  --enrich              Fetch secondary API/JSON endpoints derived from\n                        profile URLs (via socid_extractor url_mutations) and\n                        merge extracted fields into results. Off by default;\n                        adds extra HTTP requests per claimed site.\n  --id-type {username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}\n                        Specify identifier(s) type (default: username).\n  --permute             Permute at least 2 usernames to generate more possible\n                        usernames.\n  --db DB_FILE          Load Maigret database from a JSON file or HTTP web\n                        resource.\n  --no-autoupdate       Disable automatic database updates on startup.\n  --force-update        Force check for database updates and download if\n                        available.\n  --cookies-jar-file COOKIE_FILE\n                        File with cookies.\n  --ignore-ids IGNORED_IDS\n                        Do not make search by the specified username or other\n                        ids.\n  --folderoutput PATH, -fo PATH\n                        If using multiple usernames, the output of the results\n                        will be saved to this folder.\n  --proxy PROXY_URL, -p PROXY_URL\n                        Make requests over a proxy. e.g.\n                        socks5://127.0.0.1:1080 (socks5:// and socks5h:// are\n                        equivalent, both resolve at the proxy)\n  --tor-proxy TOR_PROXY_URL\n                        Specify URL of your Tor gateway. Default is\n                        socks5://127.0.0.1:9050\n  --i2p-proxy I2P_PROXY_URL\n                        Specify URL of your I2P gateway. Default is\n                        http://127.0.0.1:4444\n  --with-domains        Enable (experimental) feature of checking domains on\n                        usernames.\n  --cloudflare-bypass   Enable Cloudflare webgate bypass for sites with\n                        protection cf_js_challenge / cf_firewall / webgate.\n                        Requires a local CloudflareBypassForScraping instance\n                        (see settings.json ->\n                        cloudflare_bypass.modules[0].url).\n  --reports-sorting {default,data}\n                        Method of results sorting in reports (default: in\n                        order of getting the result)\n\nSite filtering:\n  Options to set site search scope\n\n  -a, --all-sites       Use all sites for scan.\n  --top-sites N         Count of sites for scan ranked by Alexa Top (default:\n                        500).\n  --tags TAGS           Specify tags of sites (see `--stats`).\n  --exclude-tags EXCLUDE_TAGS\n                        Specify tags to exclude from search (blacklist).\n  --keywords KEYWORD [KEYWORD ...]\n                        Specify keywords to search for in HTML content. Sites\n                        containing both username AND any keyword get special\n                        highlighting. e.g. --keywords tech python\n  --site SITE_NAME      Limit analysis to just the specified sites (multiple\n                        option).\n  --use-disabled-sites  Use disabled sites to search (may cause many false\n                        positives).\n\nOperating modes:\n  Various functions except the default search by a username. Modes are executed sequentially in the order of declaration.\n\n  --parse URL           Parse page by URL and extract username and IDs to use\n                        for search.\n  --submit URL          URL of existing profile in new site to submit.\n  --self-check          Do self check for sites and database. Use --auto-\n                        disable to disable failing sites.\n  --auto-disable        With --self-check: automatically disable sites that\n                        fail checks.\n  --diagnose            With --self-check: print detailed diagnosis for each\n                        failing site.\n  --stats               Show database statistics (most frequent sites engines\n                        and tags).\n  --web [PORT]          Launch the web interface on the specified port\n                        (default: 5000 if no PORT is provided).\n\nOutput options:\n  Options to change verbosity and view of the console output\n\n  --print-not-found     Print sites where the username was not found.\n  --print-errors        Print errors messages: connection, captcha, site\n                        country ban, etc.\n  --verbose, -v         Display extra information and metrics.\n  --info, -vv           Display extra/service information and metrics.\n  --debug, -vvv, -d     Display extra/service/debug information and metrics,\n                        save responses in debug.log.\n  --no-color            Don't color terminal output\n  --no-progressbar      Don't show progressbar.\n\nReport formats:\n  Supported formats of report files\n\n  -T, --txt             Create a TXT report (one report per username).\n  -C, --csv             Create a CSV report (one report per username).\n  -H, --html            Create an HTML report file (general report on all\n                        usernames).\n  -X, --xmind           Generate a legacy XML XMind mindmap with a manifest\n                        for modern readers (one report per username).\n  -P, --pdf             Generate a PDF report (general report on all\n                        usernames).\n  -M, --md              Generate a Markdown report (general report on all\n                        usernames).\n  -G, --graph           Generate a graph report (general report on all\n                        usernames).\n  --neo4j               Generate a Neo4j Cypher report (general report on all\n                        usernames).\n  -J TYPE, --json TYPE  Generate a JSON report of specific type: simple,\n                        ndjson (one report per username).\n  --ai                  Generate an AI-powered analysis of the search results\n                        using OpenAI API. Requires OPENAI_API_KEY env var or\n                        openai_api_key in settings.\n  --ai-model AI_MODEL   OpenAI model to use for AI analysis (default:\n                        gpt-5.4).\n"
+ },
+ "surface": {
+  "flags": {
+   "--ai": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate an AI-powered analysis of the search results using OpenAI API. Requires OPENAI_API_KEY env var or openai_api_key in settings."
+   },
+   "--ai-model": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "OpenAI model to use for AI analysis (default: gpt-5.4).",
+    "metavar": "AI_MODEL"
+   },
+   "--all-sites": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use all sites for scan.",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--auto-disable": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "With --self-check: automatically disable sites that fail checks."
+   },
+   "--cloudflare-bypass": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable Cloudflare webgate bypass for sites with protection cf_js_challenge / cf_firewall / webgate. Requires a local CloudflareBypassForScraping instance (see settings.json -> cloudflare_bypass.modules[0].url)."
+   },
+   "--cookies-jar-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "File with cookies.",
+    "metavar": "COOKIE_FILE"
+   },
+   "--csv": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Create a CSV report (one report per username).",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--db": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Load Maigret database from a JSON file or HTTP web resource.",
+    "metavar": "DB_FILE"
+   },
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display extra/service/debug information and metrics, save responses in debug.log.",
+    "aliases": [
+     "-vvv",
+     "-d"
+    ]
+   },
+   "--diagnose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "With --self-check: print detailed diagnosis for each failing site."
+   },
+   "--dns-resolver": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "DNS resolver to use. 'async' (default) uses aiohttp's AsyncResolver (via aiodns/c-ares) \u2014 fastest under high concurrency. 'threaded' uses the OS getaddrinfo via a threadpool \u2014 slower, but respects the system DNS configuration. Switch to 'threaded' if you see 'Could not contact DNS servers' for every site (issue #2688).",
+    "metavar": "{async,threaded}"
+   },
+   "--enrich": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Fetch secondary API/JSON endpoints derived from profile URLs (via socid_extractor url_mutations) and merge extracted fields into results. Off by default; adds extra HTTP requests per claimed site."
+   },
+   "--exclude-tags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify tags to exclude from search (blacklist).",
+    "metavar": "EXCLUDE_TAGS"
+   },
+   "--folderoutput": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "If using multiple usernames, the output of the results will be saved to this folder.",
+    "metavar": "PATH",
+    "aliases": [
+     "-fo"
+    ]
+   },
+   "--force-update": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force check for database updates and download if available."
+   },
+   "--graph": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a graph report (general report on all usernames).",
+    "aliases": [
+     "-G"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--html": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Create an HTML report file (general report on all usernames).",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--i2p-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify URL of your I2P gateway. Default is http://127.0.0.1:4444",
+    "metavar": "I2P_PROXY_URL"
+   },
+   "--id-type": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify identifier(s) type (default: username).",
+    "metavar": "{username,yandex_public_id,gaia_id,vk_id,ok_id,wikimapia_uid,steam_id,uidme_uguid,yelp_userid,orcid,qq_id,bilibili_id}"
+   },
+   "--ignore-ids": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not make search by the specified username or other ids.",
+    "metavar": "IGNORED_IDS"
+   },
+   "--info": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display extra/service information and metrics.",
+    "aliases": [
+     "-vv"
+    ]
+   },
+   "--json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a JSON report of specific type: simple, ndjson (one report per username).",
+    "metavar": "TYPE",
+    "aliases": [
+     "-J"
+    ]
+   },
+   "--keywords": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify keywords to search for in HTML content. Sites containing both username AND any keyword get special highlighting. e.g. --keywords tech python"
+   },
+   "--max-connections": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Allowed number of concurrent connections (default 100).",
+    "metavar": "CONNECTIONS",
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--md": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a Markdown report (general report on all usernames).",
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--neo4j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a Neo4j Cypher report (general report on all usernames)."
+   },
+   "--no-autoupdate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable automatic database updates on startup."
+   },
+   "--no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't color terminal output"
+   },
+   "--no-extracting": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable parsing pages for additional data and other usernames."
+   },
+   "--no-progressbar": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't show progressbar."
+   },
+   "--no-recursion": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable recursive search by additional data extracted from pages."
+   },
+   "--parse": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Parse page by URL and extract username and IDs to use for search.",
+    "metavar": "URL"
+   },
+   "--pdf": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a PDF report (general report on all usernames).",
+    "aliases": [
+     "-P"
+    ]
+   },
+   "--permute": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Permute at least 2 usernames to generate more possible usernames."
+   },
+   "--print-errors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print errors messages: connection, captcha, site country ban, etc."
+   },
+   "--print-not-found": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print sites where the username was not found."
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Make requests over a proxy. e.g. socks5://127.0.0.1:1080 (socks5:// and socks5h:// are equivalent, both resolve at the proxy)",
+    "metavar": "PROXY_URL",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--reports-sorting": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Method of results sorting in reports (default: in order of getting the result)",
+    "metavar": "{default,data}"
+   },
+   "--retries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Attempts to restart temporarily failed requests.",
+    "metavar": "RETRIES"
+   },
+   "--self-check": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do self check for sites and database. Use --auto- disable to disable failing sites."
+   },
+   "--site": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Limit analysis to just the specified sites (multiple option).",
+    "metavar": "SITE_NAME"
+   },
+   "--stats": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show database statistics (most frequent sites engines and tags)."
+   },
+   "--submit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "URL of existing profile in new site to submit.",
+    "metavar": "URL"
+   },
+   "--tags": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify tags of sites (see `--stats`).",
+    "metavar": "TAGS"
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Time in seconds to wait for response to requests (default 30s). A longer timeout will be more likely to get results from slow sites. On the other hand, this may cause a long delay to gather all results.",
+    "metavar": "TIMEOUT"
+   },
+   "--top-sites": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Count of sites for scan ranked by Alexa Top (default: 500).",
+    "metavar": "N"
+   },
+   "--tor-proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specify URL of your Tor gateway. Default is socks5://127.0.0.1:9050",
+    "metavar": "TOR_PROXY_URL"
+   },
+   "--txt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Create a TXT report (one report per username).",
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--use-disabled-sites": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use disabled sites to search (may cause many false positives)."
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display extra information and metrics.",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Display version information and dependencies."
+   },
+   "--web": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Launch the web interface on the specified port (default: 5000 if no PORT is provided).",
+    "metavar": "[PORT]"
+   },
+   "--with-domains": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable (experimental) feature of checking domains on usernames."
+   },
+   "--xmind": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Generate a legacy XML XMind mindmap with a manifest for modern readers (one report per username).",
+    "aliases": [
+     "-X"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-e6402d05",
+    "argv": [
+     "maigret",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-e6402d05' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-2b1709ef",
+    "argv": [
+     "maigret",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 1315
+   },
+   {
+    "id": "t-net-f22ca229",
+    "argv": [
+     "maigret",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 1315
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "maigret --version",
+    "source": "ci",
+    "path": ".github/workflows/python-package.yml",
+    "line": 75,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   },
+   {
+    "raw": "maigret YOUR_USERNAME",
+    "source": "readme",
+    "path": "README.md",
+    "line": 90,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret --web 5000",
+    "source": "readme",
+    "path": "README.md",
+    "line": 286,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user --timeout 60",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 21,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user --retries 2",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 25,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user -n 20",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 29,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user --proxy http://user:pass@residential-proxy:port",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 33,
+    "reason": "needs-live-target",
+    "token": "http://user:pass@residential-proxy:port"
+   },
+   {
+    "raw": "maigret user --tor-proxy socks5://127.0.0.1:9050   # only .onion goes via Tor",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 60,
+    "reason": "unmappable-path",
+    "token": "socks5://127.0.0.1:9050"
+   },
+   {
+    "raw": "maigret user --i2p-proxy http://127.0.0.1:4444     # only .i2p goes via I2P",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 61,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user --force-update",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 92,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user --no-autoupdate",
+    "source": "readme",
+    "path": "TROUBLESHOOTING.md",
+    "line": 98,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret soxoj",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 30,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret user1 user2 user3",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 36,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret vitalik.eth --tags crypto",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 42,
+    "reason": "needs-live-target",
+    "token": "vitalik.eth"
+   },
+   {
+    "raw": "maigret soxoj --html",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 48,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret soxoj --pdf",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 49,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret soxoj --xmind",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 50,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "maigret soxoj --timeout 60 --retries 2",
+    "source": "readme",
+    "path": "cloudshell-tutorial.md",
+    "line": 62,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "Maigret",
+ "repo": "soxoj/maigret",
+ "head_sha": "d7f759a239bdae97c3200ad9326165ba30cb1b14",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T02:29:29.970231+00:00"
+}

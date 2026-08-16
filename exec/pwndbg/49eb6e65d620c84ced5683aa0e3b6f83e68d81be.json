@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:71283de51c908a738bfea56f85eee3f84a32eda23f345d361eb7fd51e91ac1a6",
-  "duration_s": 142.33,
-  "log_tail": "#11 62.71   Building wheel for pwndbg (pyproject.toml): started\n#11 62.73   Building wheel for pwndbg (pyproject.toml): finished with status 'done'\n#11 62.73   Created wheel for pwndbg: filename=pwndbg-2026.7.29-py3-none-any.whl size=876810 sha256=ae5755fa6f4df3134ff053de3075c58197c86d9737575fc506f89010c8cb247e\n#11 62.73   Stored in directory: /tmp/pip-ephem-wheel-cache-d1zahyup/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 62.73   Building wheel for pt (pyproject.toml): started\n#11 62.86   Building wheel for pt (pyproject.toml): finished with status 'done'\n#11 62.86   Created wheel for pt: filename=pt-1.0.0-py3-none-any.whl size=27136 sha256=e65ff10ce82011811c056a8c08650e9bcfd46568b07a484c04b66a462e9a0d07\n#11 62.86   Stored in directory: /tmp/pip-ephem-wheel-cache-d1zahyup/wheels/6d/a8/e7/a3668489d28ffc5a8ae0c61118c996c3f3a8246059a2b9f46a\n#11 62.86 Successfully built pwndbg pt\n#11 63.03 Installing collected packages: sortedcontainers, pyserial, pure-eval, ptyprocess, ply, zstandard, ziglang, wcwidth, uv, urllib3, unix-ar, unicorn, typing-extensions, traitlets, tqdm, toml, tabulate, six, setuptools, pysocks, pygments, pyelftools, pycparser, pt, psutil, platformdirs, pexpect, parso, packaging, niche-elf, networkx, mdurl, MarkupSafe, invoke, intervaltree, idna, filelock, executing, charset_normalizer, certifi, capstone6pwndbg, capstone, bcrypt, asttokens, stack_data, ropgadget, requests, python-dateutil, prompt_toolkit, plumbum, matplotlib-inline, markdown-it-py, mako, jpype1, jedi, ipython-pygments-lexers, colored_traceback, cffi, rpyc, rich, pynacl, pyghidra, ipython, cryptography, paramiko, declib, pwntools, libbs, decomp2dbg, pwndbg\n#11 72.55 \n#11 72.55 Successfully installed MarkupSafe-3.0.3 asttokens-3.0.2 bcrypt-5.0.0 capstone-6.0.0a10 capstone6pwndbg-6.0.0a9 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.0 colored_traceback-0.4.2 cryptography-50.0.0 declib-4.5.0 decomp2dbg-3.14.1 executing-2.2.1 filelock-3.32.3 idna-3.18 intervaltree-3.2.1 invoke-3.0.3 ipython-9.16.1 ipython-pygments-lexers-1.1.1 jedi-0.20.0 jpype1-1.6.0 libbs-3.8.1 mako-1.4.1 markdown-it-py-4.2.0 matplotlib-inline-0.2.2 mdurl-0.1.2 networkx-3.6.1 niche-elf-0.3.6 packaging-26.3 paramiko-5.0.0 parso-0.8.7 pexpect-4.9.0 platformdirs-4.11.3 plumbum-2.0.2 ply-3.11 prompt_toolkit-3.0.53 psutil-7.2.2 pt-1.0.0 ptyprocess-0.7.0 pure-eval-0.2.3 pwndbg-2026.7.29 pwntools-4.14.1 pycparser-3.0 pyelftools-0.33 pyghidra-2.2.1 pygments-2.20.0 pynacl-1.6.2 pyserial-3.5 pysocks-1.7.1 python-dateutil-2.9.0.post0 requests-2.34.2 rich-15.0.0 ropgadget-7.6 rpyc-6.0.2 setuptools-84.0.0 six-1.17.0 sortedcontainers-2.4.0 stack_data-0.6.3 tabulate-0.10.0 toml-0.10.2 tqdm-4.70.0 traitlets-5.16.1 typing-extensions-4.16.0 unicorn-2.1.4 unix-ar-0.2.1 urllib3-2.7.0 uv-0.12.4 wcwidth-0.8.2 ziglang-0.14.1 zstandard-0.25.0\n#11 DONE 72.9s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 2.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.237 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 12.6s done\n#20 exporting manifest sha256:5d218f89f32eed7d76baf5f7c8744d38cdfb1c37b58f19fa381118f38ac14c22 done\n#20 exporting config sha256:92c98f8f7bd6adb0b17ee7c1d7d93914f561afd5ffac4c025132dd34fd7f4988 0.0s done\n#20 exporting attestation manifest sha256:f397637d15b2314e044225e3eede6c48ac2fb4c80a783aa823e568fca261ed29 0.0s done\n#20 exporting manifest list sha256:71283de51c908a738bfea56f85eee3f84a32eda23f345d361eb7fd51e91ac1a6 done\n#20 naming to docker.io/ctk-exec/pwndbg:49eb6e65d620 done\n#20 unpacking to docker.io/ctk-exec/pwndbg:49eb6e65d620\n#20 unpacking to docker.io/ctk-exec/pwndbg:49eb6e65d620 5.5s done\n#20 DONE 18.2s",
+  "image_digest": "sha256:025ddd07511d1b0961aff17927234a356295e6ade47c9435fe0b8700940c3d9b",
+  "duration_s": 45.96,
+  "log_tail": "#10 15.87   Stored in directory: /tmp/pip-ephem-wheel-cache-x474tzr0/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 15.88   Building wheel for pt (pyproject.toml): started\n#10 15.97   Building wheel for pt (pyproject.toml): finished with status 'done'\n#10 15.98   Created wheel for pt: filename=pt-1.0.0-py3-none-any.whl size=27136 sha256=e65ff10ce82011811c056a8c08650e9bcfd46568b07a484c04b66a462e9a0d07\n#10 15.98   Stored in directory: /tmp/pip-ephem-wheel-cache-x474tzr0/wheels/6d/a8/e7/a3668489d28ffc5a8ae0c61118c996c3f3a8246059a2b9f46a\n#10 15.98 Successfully built pwndbg pt\n#10 16.14 Installing collected packages: sortedcontainers, pyserial, pure-eval, ptyprocess, ply, zstandard, ziglang, wcwidth, uv, urllib3, unix-ar, unicorn, typing-extensions, traitlets, tqdm, toml, tabulate, six, setuptools, pysocks, pygments, pyelftools, pycparser, pt, psutil, platformdirs, pexpect, parso, packaging, niche-elf, networkx, mdurl, MarkupSafe, invoke, intervaltree, idna, filelock, executing, charset_normalizer, certifi, capstone6pwndbg, capstone, bcrypt, asttokens, stack_data, ropgadget, requests, python-dateutil, prompt_toolkit, plumbum, matplotlib-inline, markdown-it-py, mako, jpype1, jedi, ipython-pygments-lexers, colored_traceback, cffi, rpyc, rich, pynacl, pyghidra, ipython, cryptography, paramiko, declib, pwntools, libbs, decomp2dbg, pwndbg\n#10 23.83 \n#10 23.84 Successfully installed MarkupSafe-3.0.3 asttokens-3.0.2 bcrypt-5.0.0 capstone-6.0.0a10 capstone6pwndbg-6.0.0a9 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 colored_traceback-0.4.2 cryptography-50.0.0 declib-4.5.0 decomp2dbg-3.14.1 executing-2.2.1 filelock-3.32.3 idna-3.18 intervaltree-3.2.1 invoke-3.0.3 ipython-9.16.1 ipython-pygments-lexers-1.1.1 jedi-0.20.0 jpype1-1.6.0 libbs-3.8.1 mako-1.4.1 markdown-it-py-4.2.0 matplotlib-inline-0.2.2 mdurl-0.1.2 networkx-3.6.1 niche-elf-0.3.6 packaging-26.3 paramiko-5.0.0 parso-0.8.7 pexpect-4.9.0 platformdirs-4.11.3 plumbum-2.0.2 ply-3.11 prompt_toolkit-3.0.53 psutil-7.2.2 pt-1.0.0 ptyprocess-0.7.0 pure-eval-0.2.3 pwndbg-2026.7.29 pwntools-4.14.1 pycparser-3.0 pyelftools-0.33 pyghidra-2.2.1 pygments-2.20.0 pynacl-1.6.2 pyserial-3.5 pysocks-1.7.1 python-dateutil-2.9.0.post0 requests-2.34.2 rich-15.0.0 ropgadget-7.6 rpyc-6.0.2 setuptools-84.0.0 six-1.17.0 sortedcontainers-2.4.0 stack_data-0.6.3 tabulate-0.10.0 toml-0.10.2 tqdm-4.70.0 traitlets-5.16.1 typing-extensions-4.16.0 unicorn-2.1.4 unix-ar-0.2.1 urllib3-2.7.0 uv-0.12.5 wcwidth-0.8.2 ziglang-0.14.1 zstandard-0.25.0\n#10 DONE 24.0s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 1.9s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.123 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 11.2s done\n#20 exporting manifest sha256:93e811aba9b1597ea14d11d8ce6cb3bf966d5956b3fb7748af8f0cc4ab43cc38 done\n#20 exporting config sha256:5e817eb7aef73421cdaddd599bbf17d854783c38067e6887cd523901643b04a0 done\n#20 exporting attestation manifest sha256:52bbe8d97553d1813836736aaf24bf1de01d84703fe9edc710a4fc60c993dc7d done\n#20 exporting manifest list sha256:025ddd07511d1b0961aff17927234a356295e6ade47c9435fe0b8700940c3d9b done\n#20 naming to docker.io/ctk-exec/pwndbg:49eb6e65d620 done\n#20 unpacking to docker.io/ctk-exec/pwndbg:49eb6e65d620\n#20 unpacking to docker.io/ctk-exec/pwndbg:49eb6e65d620 4.1s done\n#20 DONE 15.3s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 1,
    "stdout": "ERROR: Could not find 'gdb' binary\n",
    "stderr": "",
-   "duration_ms": 88,
+   "duration_ms": 78,
    "truncated": false,
    "error": null
   },
@@ -29,7 +29,7 @@
    "exit_code": 1,
    "stdout": "ERROR: Could not find 'gdb' binary\n",
    "stderr": "",
-   "duration_ms": 99,
+   "duration_ms": 75,
    "truncated": false,
    "error": null
   },
@@ -41,7 +41,7 @@
    "exit_code": 1,
    "stdout": "ERROR: Could not find 'gdb' binary\n",
    "stderr": "",
-   "duration_ms": 102,
+   "duration_ms": 81,
    "truncated": false,
    "error": null
   },
@@ -76,7 +76,7 @@
    "exit_code": 0,
    "stdout": "usage: pwndbg-lldb [-h] [-v] [-n ATTACH_NAME | -p ATTACH_PID] [-w] [target]\n\npositional arguments:\n  target\n\noptions:\n  -h, --help            show this help message and exit\n  -v, --verbose         Enable debug output\n  -n ATTACH_NAME, --attach-name ATTACH_NAME\n                        Tells the debugger to attach to a process with the\n                        given name.\n  -p ATTACH_PID, --attach-pid ATTACH_PID\n                        Tells the debugger to attach to a process with the\n                        given pid.\n  -w, --wait-for        Tells the debugger to wait for a process with the\n                        given pid or name to launch before attaching.\n",
    "stderr": "",
-   "duration_ms": 120,
+   "duration_ms": 112,
    "truncated": false,
    "error": null
   },
@@ -88,7 +88,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for pwndbg-lldb\n",
-   "duration_ms": 2,
+   "duration_ms": 1,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -103,65 +103,16 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'pwndbg-lldb' in node '(dir)Top'\n",
-   "duration_ms": 4,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
   },
   {
-   "argv": [
-    "pwndbg-lldb",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": 1,
-   "stdout": "",
-   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/pwndbg-lldb\", line 6, in <module>\n    sys.exit(main())\n             ^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/pwndbginit/pwndbg_lldb.py\", line 206, in main\n    launch(drive(startup), debug=debug)\n  File \"/opt/venv/lib/python3.12/site-packages/pwndbginit/pwndbg_lldb.py\", line 57, in launch\n    os.environ[\"LLDB_DEBUGSERVER_PATH\"] = shutil.which(\"lldb-server\")\n    ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"<frozen os>\", line 719, in __setitem__\n  File \"<frozen os>\", line 793, in encode\nTypeError: str expected, not NoneType\n",
-   "duration_ms": 120,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-surface-7ff2cdba",
-   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
-  },
-  {
-   "argv": [
-    "pwndbg-lldb",
-    "--file",
-    "/opt/ctk/fixtures/source-corpus",
-    "--plain"
-   ],
-   "exit_code": 2,
-   "stdout": "",
-   "stderr": "usage: pwndbg-lldb [-h] [-v] [-n ATTACH_NAME | -p ATTACH_PID] [-w] [target]\npwndbg-lldb: error: unrecognized arguments: --file --plain\n",
-   "duration_ms": 113,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-surface-a751a758",
-   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
-  },
-  {
-   "argv": [
-    "pwndbg-lldb",
-    "--path",
-    "/opt/ctk/fixtures/source-corpus",
-    "--plain"
-   ],
-   "exit_code": 2,
-   "stdout": "",
-   "stderr": "usage: pwndbg-lldb [-h] [-v] [-n ATTACH_NAME | -p ATTACH_PID] [-w] [target]\npwndbg-lldb: error: unrecognized arguments: --path --plain\n",
-   "duration_ms": 107,
-   "truncated": false,
-   "error": null,
-   "kind": "scenario",
-   "id": "t-surface-a5317073",
-   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 11,
+   "commands_run": 8,
    "binary": "pwndbg-lldb",
    "exit_code": null,
    "stdout": "",
@@ -219,10 +170,7 @@
     "-w"
    ]
   },
-  "subcommand_flags": {
-   "--file": {},
-   "--path": {}
-  },
+  "subcommand_flags": {},
   "subcommands": [],
   "binary": "pwndbg-lldb",
   "ladder_used": "--help",
@@ -5533,16 +5481,12 @@
     "source_path": "pwndbg/commands/pcplist.py"
    }
   },
-  "subcommands": [],
-  "subcommand_flags": {
-   "--file": {},
-   "--path": {}
-  }
+  "subcommands": []
  },
  "skipped_reason": null,
  "example_trials": {
   "tried": 6,
-  "tried_this_wave": 5,
+  "tried_this_wave": 2,
   "promoted": 0,
   "results": [
    {
@@ -5672,5 +5616,5 @@
  "head_sha": "49eb6e65d620c84ced5683aa0e3b6f83e68d81be",
  "analyzer": "exec",
  "analyzer_version": "13",
- "generated_at": "2026-08-14T19:16:52.450094+00:00"
+ "generated_at": "2026-08-16T03:24:01.431863+00:00"
 }

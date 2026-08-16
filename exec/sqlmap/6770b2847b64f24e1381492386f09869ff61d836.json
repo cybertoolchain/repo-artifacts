@@ -1,0 +1,455 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:22775406f32319e2261acd2ec4d8cdcafe8ac73db93b2f7a288f7210584a2da0",
+  "duration_s": 28.96,
+  "log_tail": "#11 3.624    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 1.8/1.8 MB 19.2 MB/s eta 0:00:00\n#11 3.626 Installing collected packages: pip\n#11 3.626   Attempting uninstall: pip\n#11 3.627     Found existing installation: pip 25.0.1\n#11 3.649     Uninstalling pip-25.0.1:\n#11 3.649       Successfully uninstalled pip-25.0.1\n#11 4.205 Successfully installed pip-26.2.1\n#11 DONE 4.5s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.4s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.2s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.3s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 8.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.2s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.3s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 1.297 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 1.6s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.7s done\n#21 exporting manifest sha256:f56017b09eb37413f1cd23a086e1e65936828a96947ba208afc368feebce2be8 0.1s done\n#21 exporting config sha256:4654ff4c221cc40099de5b5266148708feb3051aa2a1c28108afa0e04b46b017 0.0s done\n#21 exporting attestation manifest sha256:009114475d38a3ffbd89217275464a28456a6419736fb4cd0765c7d4e185acf9\n#21 exporting attestation manifest sha256:009114475d38a3ffbd89217275464a28456a6419736fb4cd0765c7d4e185acf9 0.1s done\n#21 exporting manifest list sha256:22775406f32319e2261acd2ec4d8cdcafe8ac73db93b2f7a288f7210584a2da0 0.1s done\n#21 naming to docker.io/ctk-exec/sqlmap:6770b2847b64\n#21 naming to docker.io/ctk-exec/sqlmap:6770b2847b64 0.0s done\n#21 unpacking to docker.io/ctk-exec/sqlmap:6770b2847b64\n#21 unpacking to docker.io/ctk-exec/sqlmap:6770b2847b64 0.9s done\n#21 DONE 2.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "sqlmap",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "        ___\n       __H__\n ___ ___[,]_____ ___ ___  {1.10.8.35#dev}\n|_ -| . [(]     | .'| . |\n|___|_  [(]_|_|_|__,|  _|\n      |_|V...       |_|   https://sqlmap.org\n\nUsage: python sqlmap.py [options]\n\nOptions:\n  -h, --help            Show basic help message and exit\n  -hh                   Show advanced help message and exit\n  --version             Show program's version number and exit\n  -v VERBOSE            Verbosity level: 0-6 (default 1)\n\n  Target:\n    At least one of these options has to be provided to define the\n    target(s)\n\n    -u URL, --url=URL   Target URL (e.g. \"http://www.site.com/vuln.php?id=1\")\n    -g GOOGLEDORK       Process Google dork results as target URLs\n\n  Request:\n    These options can be used to specify how to connect to the target URL\n\n    --data=DATA         Data string to be sent through POST (e.g. \"id=1\")\n    --cookie=COOKIE     HTTP Cookie header value (e.g. \"PHPSESSID=a8d127e..\")\n    --random-agent      Use randomly selected HTTP User-Agent header value\n    --proxy=PROXY       Use a proxy to connect to the target URL\n    --tor               Use Tor anonymity network\n    --check-tor         Check to see if Tor is used properly\n\n  Injection:\n    These options can be used to specify which parameters to test for,\n    provide custom injection payloads and optional tampering scripts\n\n    -p TESTPARAMETER    Testable parameter(s)\n    --dbms=DBMS         Force back-end DBMS to provided value\n\n  Detection:\n    These options can be used to customize the detection phase\n\n    --level=LEVEL       Level of tests to perform (1-5, default 1)\n    --risk=RISK         Risk of tests to perform (1-3, default 1)\n\n  Techniques:\n    These options can be used to tweak testing of specific SQL injection\n    techniques\n\n    --technique=TECH..  SQL injection techniques to use (default \"BEUSTQ\")\n\n  Enumeration:\n    These options can be used to enumerate the back-end database\n    management system information, structure and data contained in the\n    tables\n\n    -a, --all           Retrieve everything\n    -b, --banner        Retrieve DBMS banner\n    --current-user      Retrieve DBMS current user\n    --current-db        Retrieve DBMS current database\n    --passwords         Enumerate DBMS users password hashes\n    --dbs               Enumerate DBMS databases\n    --tables            Enumerate DBMS database tables\n    --columns           Enumerate DBMS database table columns\n    --schema            Enumerate DBMS schema\n    --dump              Dump DBMS database table entries\n    --dump-all          Dump entries of all DBMS database tables\n    -D DB               DBMS database to enumerate\n    -T TBL              DBMS database table(s) to enumerate\n    -C COL              DBMS database table column(s) to enumerate\n\n  Operating system access:\n    These options can be used to access the back-end database management\n    system underlying operating system\n\n    --os-shell          Prompt for an interactive operating system shell\n    --os-pwn            Prompt for an OOB shell, Meterpreter or VNC\n\n  General:\n    These options can be used to set some general working parameters\n\n    --batch             Never ask for user input, use the default behavior\n    --flush-session     Flush session files for current target\n\n  Miscellaneous:\n    These options do not fit into any other category\n\n    --wizard            Simple wizard interface for beginner users\n",
+   "stderr": "",
+   "duration_ms": 1045,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "sqlmap"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for sqlmap\n",
+   "duration_ms": 8,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "sqlmap"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'sqlmap' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "sqlmap",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "Show basic help message and exit",
+   "-h": "Show basic help message and exit",
+   "-hh": "Show advanced help message and exit",
+   "--version": "Show program's version number and exit",
+   "-v": "Verbosity level: 0-6 (default 1)",
+   "--url": "Target URL (e.g. \"http://www.site.com/vuln.php?id=1\")",
+   "-u": "Target URL (e.g. \"http://www.site.com/vuln.php?id=1\")",
+   "-g": "Process Google dork results as target URLs",
+   "--data": "Data string to be sent through POST (e.g. \"id=1\")",
+   "--cookie": "HTTP Cookie header value (e.g. \"PHPSESSID=a8d127e..\")",
+   "--random-agent": "Use randomly selected HTTP User-Agent header value",
+   "--proxy": "Use a proxy to connect to the target URL",
+   "--tor": "Use Tor anonymity network",
+   "--check-tor": "Check to see if Tor is used properly",
+   "-p": "Testable parameter(s)",
+   "--dbms": "Force back-end DBMS to provided value",
+   "--level": "Level of tests to perform (1-5, default 1)",
+   "--risk": "Risk of tests to perform (1-3, default 1)",
+   "--technique": "SQL injection techniques to use (default \"BEUSTQ\")",
+   "--all": "Retrieve everything",
+   "-a": "Retrieve everything",
+   "--banner": "Retrieve DBMS banner",
+   "-b": "Retrieve DBMS banner",
+   "--current-user": "Retrieve DBMS current user",
+   "--current-db": "Retrieve DBMS current database",
+   "--passwords": "Enumerate DBMS users password hashes",
+   "--dbs": "Enumerate DBMS databases",
+   "--tables": "Enumerate DBMS database tables",
+   "--columns": "Enumerate DBMS database table columns",
+   "--schema": "Enumerate DBMS schema",
+   "--dump": "Dump DBMS database table entries",
+   "--dump-all": "Dump entries of all DBMS database tables",
+   "-D": "DBMS database to enumerate",
+   "-T": "DBMS database table(s) to enumerate",
+   "-C": "DBMS database table column(s) to enumerate",
+   "--os-shell": "Prompt for an interactive operating system shell",
+   "--os-pwn": "Prompt for an OOB shell, Meterpreter or VNC",
+   "--batch": "Never ask for user input, use the default behavior",
+   "--flush-session": "Flush session files for current target",
+   "--wizard": "Simple wizard interface for beginner users"
+  },
+  "values_seen": {
+   "-v": "VERBOSE",
+   "-u": "URL",
+   "--url": "URL",
+   "-g": "GOOGLEDORK",
+   "--data": "DATA",
+   "--cookie": "COOKIE",
+   "--proxy": "PROXY",
+   "-p": "TESTPARAMETER",
+   "--dbms": "DBMS",
+   "--level": "LEVEL",
+   "--risk": "RISK",
+   "--technique": "TECH..",
+   "-D": "DB",
+   "-T": "TBL",
+   "-C": "COL"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--url": [
+    "-u"
+   ],
+   "--all": [
+    "-a"
+   ],
+   "--banner": [
+    "-b"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "sqlmap",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "2b35da6d8da38512fba7fd0d9fbf7ef03b09abdd4c8a68bb4618da7098ec760a",
+  "text": "        ___\n       __H__\n ___ ___[,]_____ ___ ___  {1.10.8.35#dev}\n|_ -| . [(]     | .'| . |\n|___|_  [(]_|_|_|__,|  _|\n      |_|V...       |_|   https://sqlmap.org\n\nUsage: python sqlmap.py [options]\n\nOptions:\n  -h, --help            Show basic help message and exit\n  -hh                   Show advanced help message and exit\n  --version             Show program's version number and exit\n  -v VERBOSE            Verbosity level: 0-6 (default 1)\n\n  Target:\n    At least one of these options has to be provided to define the\n    target(s)\n\n    -u URL, --url=URL   Target URL (e.g. \"http://www.site.com/vuln.php?id=1\")\n    -g GOOGLEDORK       Process Google dork results as target URLs\n\n  Request:\n    These options can be used to specify how to connect to the target URL\n\n    --data=DATA         Data string to be sent through POST (e.g. \"id=1\")\n    --cookie=COOKIE     HTTP Cookie header value (e.g. \"PHPSESSID=a8d127e..\")\n    --random-agent      Use randomly selected HTTP User-Agent header value\n    --proxy=PROXY       Use a proxy to connect to the target URL\n    --tor               Use Tor anonymity network\n    --check-tor         Check to see if Tor is used properly\n\n  Injection:\n    These options can be used to specify which parameters to test for,\n    provide custom injection payloads and optional tampering scripts\n\n    -p TESTPARAMETER    Testable parameter(s)\n    --dbms=DBMS         Force back-end DBMS to provided value\n\n  Detection:\n    These options can be used to customize the detection phase\n\n    --level=LEVEL       Level of tests to perform (1-5, default 1)\n    --risk=RISK         Risk of tests to perform (1-3, default 1)\n\n  Techniques:\n    These options can be used to tweak testing of specific SQL injection\n    techniques\n\n    --technique=TECH..  SQL injection techniques to use (default \"BEUSTQ\")\n\n  Enumeration:\n    These options can be used to enumerate the back-end database\n    management system information, structure and data contained in the\n    tables\n\n    -a, --all           Retrieve everything\n    -b, --banner        Retrieve DBMS banner\n    --current-user      Retrieve DBMS current user\n    --current-db        Retrieve DBMS current database\n    --passwords         Enumerate DBMS users password hashes\n    --dbs               Enumerate DBMS databases\n    --tables            Enumerate DBMS database tables\n    --columns           Enumerate DBMS database table columns\n    --schema            Enumerate DBMS schema\n    --dump              Dump DBMS database table entries\n    --dump-all          Dump entries of all DBMS database tables\n    -D DB               DBMS database to enumerate\n    -T TBL              DBMS database table(s) to enumerate\n    -C COL              DBMS database table column(s) to enumerate\n\n  Operating system access:\n    These options can be used to access the back-end database management\n    system underlying operating system\n\n    --os-shell          Prompt for an interactive operating system shell\n    --os-pwn            Prompt for an OOB shell, Meterpreter or VNC\n\n  General:\n    These options can be used to set some general working parameters\n\n    --batch             Never ask for user input, use the default behavior\n    --flush-session     Flush session files for current target\n\n  Miscellaneous:\n    These options do not fit into any other category\n\n    --wizard            Simple wizard interface for beginner users\n"
+ },
+ "surface": {
+  "flags": {
+   "--all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve everything",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--banner": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve DBMS banner",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--batch": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Never ask for user input, use the default behavior"
+   },
+   "--check-tor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Check to see if Tor is used properly"
+   },
+   "--columns": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enumerate DBMS database table columns"
+   },
+   "--cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "HTTP Cookie header value (e.g. \"PHPSESSID=a8d127e..\")",
+    "metavar": "COOKIE"
+   },
+   "--current-db": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve DBMS current database"
+   },
+   "--current-user": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Retrieve DBMS current user"
+   },
+   "--data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Data string to be sent through POST (e.g. \"id=1\")",
+    "metavar": "DATA"
+   },
+   "--dbms": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force back-end DBMS to provided value",
+    "metavar": "DBMS"
+   },
+   "--dbs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enumerate DBMS databases"
+   },
+   "--dump": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Dump DBMS database table entries"
+   },
+   "--dump-all": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Dump entries of all DBMS database tables"
+   },
+   "--flush-session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Flush session files for current target"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show basic help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--level": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Level of tests to perform (1-5, default 1)",
+    "metavar": "LEVEL"
+   },
+   "--os-pwn": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prompt for an OOB shell, Meterpreter or VNC"
+   },
+   "--os-shell": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Prompt for an interactive operating system shell"
+   },
+   "--passwords": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enumerate DBMS users password hashes"
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a proxy to connect to the target URL",
+    "metavar": "PROXY"
+   },
+   "--random-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use randomly selected HTTP User-Agent header value"
+   },
+   "--risk": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Risk of tests to perform (1-3, default 1)",
+    "metavar": "RISK"
+   },
+   "--schema": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enumerate DBMS schema"
+   },
+   "--tables": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enumerate DBMS database tables"
+   },
+   "--technique": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "SQL injection techniques to use (default \"BEUSTQ\")",
+    "metavar": "TECH.."
+   },
+   "--tor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use Tor anonymity network"
+   },
+   "--url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Target URL (e.g. \"http://www.site.com/vuln.php?id=1\")",
+    "metavar": "URL",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show program's version number and exit"
+   },
+   "--wizard": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Simple wizard interface for beginner users"
+   },
+   "-C": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "DBMS database table column(s) to enumerate",
+    "metavar": "COL"
+   },
+   "-D": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "DBMS database to enumerate",
+    "metavar": "DB"
+   },
+   "-T": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "DBMS database table(s) to enumerate",
+    "metavar": "TBL"
+   },
+   "-g": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Process Google dork results as target URLs",
+    "metavar": "GOOGLEDORK"
+   },
+   "-hh": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show advanced help message and exit"
+   },
+   "-p": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Testable parameter(s)",
+    "metavar": "TESTPARAMETER"
+   },
+   "-v": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Verbosity level: 0-6 (default 1)",
+    "metavar": "VERBOSE"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-5501c5f2",
+    "argv": [
+     "sqlmap",
+     "-u",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.769",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1759,
+    "stability": 0.769
+   },
+   {
+    "id": "t-net-9042764a",
+    "argv": [
+     "sqlmap",
+     "--url",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.704",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1759,
+    "stability": 0.704
+   },
+   {
+    "id": "t-net-79eb0097",
+    "argv": [
+     "sqlmap",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.769",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1759,
+    "stability": 0.769
+   },
+   {
+    "id": "t-net-52d3f863",
+    "argv": [
+     "sqlmap",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.704",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 0,
+    "output_bytes": 1759,
+    "stability": 0.704
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "sqlmap",
+ "repo": "sqlmapproject/sqlmap",
+ "head_sha": "6770b2847b64f24e1381492386f09869ff61d836",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T00:55:42.675252+00:00"
+}

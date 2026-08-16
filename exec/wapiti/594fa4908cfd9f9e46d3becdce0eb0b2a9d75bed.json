@@ -1,0 +1,869 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:42bafea03b93ec1d2a08f4015216aa512acf77786bfee148bf7c0729a8379c20",
+  "duration_s": 76.02,
+  "log_tail": "#11 34.18 Downloading pycryptodomex-3.23.0-cp37-abi3-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (2.2 MB)\n#11 34.50    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 2.2/2.2 MB 6.9 MB/s  0:00:00\n#11 34.64 Building wheels for collected packages: wapiti3\n#11 34.64   Building wheel for wapiti3 (pyproject.toml): started\n#11 34.89   Building wheel for wapiti3 (pyproject.toml): finished with status 'done'\n#11 34.89   Created wheel for wapiti3: filename=wapiti3-3.3.2-py3-none-any.whl size=929262 sha256=50dd284a849f455e89857a8bf0ed9c8ef175bc3f4ce6d736c1e3e7e7207028d8\n#11 34.89   Stored in directory: /tmp/pip-ephem-wheel-cache-1hmyq057/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 34.90 Successfully built wapiti3\n#11 34.95 Installing collected packages: sortedcontainers, pyperclip, publicsuffix2, brotli, zstandard, wcwidth, typing-extensions, tornado, tld, soupsieve, socksio, ruamel.yaml, PyYAML, pyparsing, pylsqpack, pycryptodomex, pycparser, pyasn1, packaging, msgpack, mitmproxy-linux, MarkupSafe, lz4, kaitaistruct, jeepney, itsdangerous, idna, hyperframe, hpack, h11, greenlet, dnspython, click, certifi, blinker, bcrypt, attrs, asgiref, aiosqlite, wsproto, werkzeug, wapiti-swagger, urwid, sqlalchemy, pyee, mitmproxy-rs, mako, ldap3, jinja2, httpcore, h2, cffi, browser-cookie3, beautifulsoup4, anyio, playwright, httpx, flask, cryptography, argon2-cffi-bindings, service-identity, pyspnego, pyOpenSSL, argon2-cffi, httpx-ntlm, aioquic, mitmproxy, wapiti3\n#11 39.12 \n#11 39.13 Successfully installed MarkupSafe-3.0.3 PyYAML-6.0.3 aioquic-1.2.0 aiosqlite-0.22.1 anyio-4.14.2 argon2-cffi-25.1.0 argon2-cffi-bindings-25.1.0 asgiref-3.11.1 attrs-26.1.0 bcrypt-5.0.0 beautifulsoup4-4.15.0 blinker-1.9.0 brotli-1.2.0 browser-cookie3-0.20.1 certifi-2026.7.22 cffi-2.1.1 click-8.4.2 cryptography-48.0.1 dnspython-2.8.0 flask-3.1.3 greenlet-3.5.5 h11-0.16.0 h2-4.3.0 hpack-4.2.0 httpcore-1.0.9 httpx-0.28.1 httpx-ntlm-1.4.0 hyperframe-6.1.0 idna-3.18 itsdangerous-2.2.0 jeepney-0.9.0 jinja2-3.1.6 kaitaistruct-0.11 ldap3-2.9.1 lz4-4.4.5 mako-1.4.1 mitmproxy-12.2.3 mitmproxy-linux-0.12.11 mitmproxy-rs-0.12.11 msgpack-1.1.2 packaging-26.3 playwright-1.62.0 publicsuffix2-2.20191221 pyOpenSSL-26.2.0 pyasn1-0.6.4 pycparser-3.0 pycryptodomex-3.23.0 pyee-13.0.1 pylsqpack-0.3.24 pyparsing-3.3.2 pyperclip-1.11.0 pyspnego-0.12.1 ruamel.yaml-0.19.1 service-identity-26.1.0 socksio-1.0.0 sortedcontainers-2.4.0 soupsieve-2.9.2 sqlalchemy-2.0.52 tld-0.13.2 tornado-6.5.5 typing-extensions-4.14.0 urwid-3.0.5 wapiti-swagger-0.1.9 wapiti3-3.3.2 wcwidth-0.8.2 werkzeug-3.1.8 wsproto-1.3.2 zstandard-0.25.0\n#11 DONE 39.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.5s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.1s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.178 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 8.6s done\n#20 exporting manifest sha256:96e8478cbb5c1585b49e88832c248ec540cf035884514613bee30da5437a0fe2 0.0s done\n#20 exporting config sha256:80ae51f4e03b77aedab61b2048b00467f4ab95d61406ab1642e2b75e7fb3408a 0.0s done\n#20 exporting attestation manifest sha256:de613cf4259d1aaa9ddabe24839ccf225a0555b96c47c519c0395ac9e71b10f9\n#20 exporting attestation manifest sha256:de613cf4259d1aaa9ddabe24839ccf225a0555b96c47c519c0395ac9e71b10f9 0.0s done\n#20 exporting manifest list sha256:42bafea03b93ec1d2a08f4015216aa512acf77786bfee148bf7c0729a8379c20 0.0s done\n#20 naming to docker.io/ctk-exec/wapiti:594fa4908cfd done\n#20 unpacking to docker.io/ctk-exec/wapiti:594fa4908cfd\n#20 unpacking to docker.io/ctk-exec/wapiti:594fa4908cfd 2.4s done\n#20 DONE 11.2s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "wapiti",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "\n     __      __               .__  __  .__________\n    /  \\    /  \\_____  ______ |__|/  |_|__\\_____  \\\n    \\   \\/\\/   /\\__  \\ \\____ \\|  \\   __\\  | _(__  <\n     \\        /  / __ \\|  |_> >  ||  | |  |/       \\\n      \\__/\\  /  (____  /   __/|__||__| |__/______  /\n           \\/        \\/|__|                      \\/\nusage: wapiti [-h] [-u URL] [--swagger URI] [--data data]\n              [--scope {url,page,folder,subdomain,domain,punk}]\n              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL]\n              [--tor] [--mitm-port PORT] [--headless {no,hidden,visible,both}]\n              [--wait TIME] [-a CREDENTIALS] [--auth-user USERNAME]\n              [--auth-password PASSWORD] [--auth-method {basic,digest,ntlm}]\n              [--form-cred CREDENTIALS] [--form-user USERNAME]\n              [--form-password PASSWORD] [--form-url URL] [--form-data DATA]\n              [--form-enctype DATA] [--form-script FILENAME] [-c COOKIE_FILE]\n              [-sf SIDE_FILE] [-C COOKIE_VALUE] [--jwt JWT]\n              [--drop-set-cookie] [--skip-crawl] [--resume-crawl]\n              [--flush-attacks] [--flush-session] [--store-session PATH]\n              [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]\n              [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]\n              [--max-files-per-dir MAX] [--max-scan-time SECONDS]\n              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]\n              [--tasks tasks] [--external-endpoint EXTERNAL_ENDPOINT_URL]\n              [--internal-endpoint INTERNAL_ENDPOINT_URL]\n              [--endpoint ENDPOINT_URL] [--dns-endpoint DNS_ENDPOINT_DOMAIN]\n              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]\n              [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]\n              [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL] [--no-bugreport]\n              [--update] [--version] [--cms CMS_LIST] [--wapp-url WAPP_URL]\n              [--wapp-dir WAPP_DIR]\n\nWapiti 3.3.2: Web application vulnerability scanner\n\noptions:\n  -h, --help            show this help message and exit\n  -u URL, --url URL     The base URL used to define the scan scope (default\n                        scope is folder)\n  --swagger URI         Swagger file URI (path or URL) to target API endpoints\n  --data data           Urlencoded data to send with the base URL if it is a\n                        POST request\n  --scope {url,page,folder,subdomain,domain,punk}\n                        Set scan scope\n  -m MODULES_LIST, --module MODULES_LIST\n                        List of modules to load\n  --list-modules        List Wapiti attack modules and exit\n  -l LEVEL, --level LEVEL\n                        Set attack level\n  -p PROXY_URL, --proxy PROXY_URL\n                        Set the HTTP(S) proxy to use. Supported: http(s) and\n                        socks proxies\n  --tor                 Use Tor listener (127.0.0.1:9050)\n  --mitm-port PORT      Instead of crawling, launch an intercepting proxy on\n                        the given port\n  --headless {no,hidden,visible,both}\n                        Use a Firefox headless crawler for browsing (slower).\n                        Use 'both' to run standard then headless.\n  --wait TIME           Wait the specified amount of seconds before analyzing\n                        a webpage (headless mode only)\n  -a CREDENTIALS, --auth-cred CREDENTIALS\n                        (DEPRECATED) Set HTTP authentication credentials\n  --auth-user USERNAME  Set HTTP authentication username credentials\n  --auth-password PASSWORD\n                        Set HTTP authentication password credentials\n  --auth-method {basic,digest,ntlm}\n                        Set the HTTP authentication method to use\n  --form-cred CREDENTIALS\n                        (DEPRECATED) Set login form credentials\n  --form-user USERNAME  Set login form credentials\n  --form-password PASSWORD\n                        Set password form credentials\n  --form-url URL        Set login form URL\n  --form-data DATA      Set login form POST data\n  --form-enctype DATA   Set enctype to use to POST form data to form URL\n  --form-script FILENAME\n                        Use a custom Python authentication plugin\n  -c COOKIE_FILE, --cookie COOKIE_FILE\n                        Set a JSON cookie file to use. You can also pass\n                        'firefox' or 'chrome' to load cookies from your\n                        browser.\n  -sf SIDE_FILE, --side-file SIDE_FILE\n                        Use a .side file generated using Selenium IDE to\n                        perform an authenticated scan.\n  -C COOKIE_VALUE, --cookie-value COOKIE_VALUE\n                        Set a cookie to use for every request for\n                        authenticated scan. You can put multiple cookies\n                        separated by semicolons as a value\n  --jwt JWT             Set a JWT token use for every request for\n                        authenticated scan.\n  --drop-set-cookie     Ignore Set-Cookie header from HTTP responses\n  --skip-crawl          Don't resume the scanning process, attack URLs scanned\n                        during a previous session\n  --resume-crawl        Resume the scanning process (if stopped) even if some\n                        attacks were previously performed\n  --flush-attacks       Flush attack history and vulnerabilities for the\n                        current session\n  --flush-session       Flush everything that was previously found for this\n                        target (crawled URLs, vulns, etc)\n  --store-session PATH  Directory where to store attack history and session\n                        data.\n  --store-config PATH   Directory where to store configuration databases.\n  -s URL, --start URL   Adds a url to start scan with\n  -x URL, --exclude URL\n                        Adds a url to exclude from the scan\n  -r PARAMETER, --remove PARAMETER\n                        Remove this parameter from urls\n  --skip PARAMETER      Skip attacking given parameter(s)\n  -d DEPTH, --depth DEPTH\n                        Set how deep the scanner should explore the website\n  --max-links-per-page MAX\n                        Set how many (in-scope) links the scanner should\n                        extract for each page\n  --max-files-per-dir MAX\n                        Set how many pages the scanner should explore per\n                        directory\n  --max-scan-time SECONDS\n                        Set how many seconds you want the scan to last (floats\n                        accepted)\n  --max-attack-time SECONDS\n                        Set how many seconds you want each attack module to\n                        last (floats accepted)\n  --max-parameters MAX  URLs and forms having more than MAX input parameters\n                        will be erased before attack.\n  -S FORCE, --scan-force FORCE\n                        Easy way to reduce the number of scanned and attacked\n                        URLs. Possible values: paranoid, sneaky, polite,\n                        normal, aggressive, insane\n  --tasks tasks         Number of concurrent tasks to use for the exploration\n                        (crawling) of the target.\n  --external-endpoint EXTERNAL_ENDPOINT_URL\n                        Url serving as endpoint for target\n  --internal-endpoint INTERNAL_ENDPOINT_URL\n                        Url serving as endpoint for attacker\n  --endpoint ENDPOINT_URL\n                        Url serving as endpoint for both attacker and target\n  --dns-endpoint DNS_ENDPOINT_DOMAIN\n                        Domain serving as DNS endpoint for Log4Shell attack\n  -t SECONDS, --timeout SECONDS\n                        Set timeout for requests\n  -H HEADER, --header HEADER\n                        Set a custom header to use for every requests\n  -A AGENT, --user-agent AGENT\n                        Set a custom user-agent to use for every requests\n  --verify-ssl {0,1}    Set SSL check (default is no check)\n  --color               Colorize output\n  -v LEVEL, --verbose LEVEL\n                        Set verbosity level (0: quiet, 1: normal, 2: verbose)\n  --log OUTPUT_PATH     Output log file\n  -f FORMAT, --format FORMAT\n                        Set output format. Supported: csv, html, json, md,\n                        txt, xml. Default is html.\n  -o OUTPUT_PATH, --output OUTPUT_PATH\n                        Output file or folder\n  -dr DETAILED_REPORT_LEVEL, --detailed-report DETAILED_REPORT_LEVEL\n                        level 1 : include only the HTTP requests, level 2 :\n                        include HTTP requests and responses\n  --no-bugreport        Don't send automatic bug report when an attack module\n                        fails\n  --update              Update Wapiti attack modules and exit\n  --version             Show program's version number and exit\n  --cms CMS_LIST        Choose the CMS to scan. Possible choices : drupal,\n                        joomla, magento, prestashop, spip, typo3, wp\n  --wapp-url WAPP_URL   Provide a custom URL for updating Wappalyzer Database\n  --wapp-dir WAPP_DIR   Provide a custom directory path for updating\n                        Wappalyzer Database\n",
+   "stderr": "",
+   "duration_ms": 1480,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "wapiti"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for wapiti\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "wapiti"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'wapiti' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "wapiti",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "688a2f41a7df08c0",
+ "declared_commands": [
+  {
+   "name": "wapiti",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "wapiti-getcookie",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "wapiti-install-headless-browser",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [
+  {
+   "id": "t-net-c80defc2",
+   "title": "Built from the tool's own advertised flags \u2014 run against the live dvwa target",
+   "argv": [
+    "wapiti",
+    "--url",
+    "http://dvwa"
+   ],
+   "target_stack": [
+    {
+     "name": "dvwa-db",
+     "image": "docker.io/library/mariadb",
+     "digest": "sha256:be981e4113326ada8d6004174dd09eeaefc03094037f811182a52d4f2e737350",
+     "version": null,
+     "source": "upstream",
+     "role": "supporting service"
+    },
+    {
+     "name": "dvwa",
+     "image": "ghcr.io/digininja/dvwa",
+     "digest": "sha256:091498cedec31b4a3091a1262e6a5a0ce5ec32d4bd26486558818346ccc89d67",
+     "version": null,
+     "source": "upstream",
+     "role": "web application under test"
+    }
+   ],
+   "caps_granted": [],
+   "stdout": "\n     __    __            _ _   _ _____\n    / / /\\ \\ \\__ _ _ __ (_) |_(_)___ /\n    \\ \\/  \\/ / _` | '_ \\| | __| | |_ \\\n     \\  /\\  / (_| | |_) | | |_| |___) |\n      \\/  \\/ \\__,_| .__/|_|\\__|_|____/\n                  |_|                 \nWapiti 3.3.2 (wapiti-scanner.github.io)\nHttpOnly flag is not set on the cookie 'security' set at 'http://dvwa/'\nSecure flag is not set on the cookie: 'security' set at 'http://dvwa/'\nHttpOnly flag is not set on the cookie 'PHPSESSID' set at 'http://dvwa/'\nSecure flag is not set on the cookie: 'PHPSESSID' set at 'http://dvwa/'\nSensitive data (cookie in the response) was sent over an unencrypted HTTP connection to http://dvwa/. The server redirected, but not to an HTTPS URL, leaving the initial data and the redirection exposed.\nX-Frame-Options is not set on http://dvwa/\nX-Content-Type-Options is not set on http://dvwa/\nCSP is not set for URL: http://dvwa/\nHost dvwa serves HTTP content without redirecting to HTTPS.\nCleartext transmission of sensitive information: Password field 'password' is sent over unencrypted connections from URL http://dvwa/login.php\n\n[*] Some similar passive alerts were suppressed to keep the report readable:\n    cookieflags: 2 similar alert(s) suppressed\n    https_redirect: 1 similar alert(s) suppressed\n    http_headers: 4 similar alert(s) suppressed\n    csp: 2 similar alert(s) suppressed\n[*] Saving scan state, please wait...\nThis scan has been saved in the file /home/ctk/.wapiti/scans/dvwa_folder_d9b4fe15.db\n[*] Wapiti found 3 URLs and forms during the scan\n\n[*] Launching module sql\n\n[*] Launching module exec\n\n[*] Launching module xss\n\n[*] Launching module redirect\n\n[*] Launching module upload\n\n[*] Launching module ssrf\n[*] Asking endpoint URL https://wapiti3.ovh/get_ssrf.php?session_id=w49ac9 for results, please wait...\n[!] Unable to request endpoint URL 'https://wapiti3.ovh/'\n1 requests were skipped due to network issues\n\n[*] Launching module file\n\n[*] Launching module ssl\nsslscan is not installed or not found in PATH, module will be skipped\n\n[*] Launching module permanentxss\n\n[*] Generating report...\nA report has been generated in the file /home/ctk/.wapiti/generated_report\nOpen /home/ctk/.wapiti/generated_report/dvwa_08152026_1632.html with a browser to see this report.\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": null,
+   "truncated": false,
+   "skipped_reason": null,
+   "error": null,
+   "target_seed": {
+    "security_level": "low",
+    "authenticated": true
+   }
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--url": "The base URL used to define the scan scope (default scope is folder)",
+   "-u": "The base URL used to define the scan scope (default scope is folder)",
+   "--swagger": "Swagger file URI (path or URL) to target API endpoints",
+   "--data": "Urlencoded data to send with the base URL if it is a POST request",
+   "--scope": "Set scan scope",
+   "--module": "List of modules to load",
+   "-m": "List of modules to load",
+   "--list-modules": "List Wapiti attack modules and exit",
+   "--level": "Set attack level",
+   "-l": "Set attack level",
+   "--proxy": "Set the HTTP(S) proxy to use. Supported: http(s) and socks proxies",
+   "-p": "Set the HTTP(S) proxy to use. Supported: http(s) and socks proxies",
+   "--tor": "Use Tor listener (127.0.0.1:9050)",
+   "--mitm-port": "Instead of crawling, launch an intercepting proxy on the given port",
+   "--headless": "Use a Firefox headless crawler for browsing (slower). Use 'both' to run standard then headless.",
+   "--wait": "Wait the specified amount of seconds before analyzing a webpage (headless mode only)",
+   "--auth-cred": "(DEPRECATED) Set HTTP authentication credentials",
+   "-a": "(DEPRECATED) Set HTTP authentication credentials",
+   "--auth-user": "Set HTTP authentication username credentials",
+   "--auth-password": "Set HTTP authentication password credentials",
+   "--auth-method": "Set the HTTP authentication method to use",
+   "--form-cred": "(DEPRECATED) Set login form credentials",
+   "--form-user": "Set login form credentials",
+   "--form-password": "Set password form credentials",
+   "--form-url": "Set login form URL",
+   "--form-data": "Set login form POST data",
+   "--form-enctype": "Set enctype to use to POST form data to form URL",
+   "--form-script": "Use a custom Python authentication plugin",
+   "--cookie": "Set a JSON cookie file to use. You can also pass 'firefox' or 'chrome' to load cookies from your browser.",
+   "-c": "Set a JSON cookie file to use. You can also pass 'firefox' or 'chrome' to load cookies from your browser.",
+   "--side-file": "Use a .side file generated using Selenium IDE to perform an authenticated scan.",
+   "-sf": "Use a .side file generated using Selenium IDE to perform an authenticated scan.",
+   "--cookie-value": "Set a cookie to use for every request for authenticated scan. You can put multiple cookies separated by semicolons as a value",
+   "-C": "Set a cookie to use for every request for authenticated scan. You can put multiple cookies separated by semicolons as a value",
+   "--jwt": "Set a JWT token use for every request for authenticated scan.",
+   "--drop-set-cookie": "Ignore Set-Cookie header from HTTP responses",
+   "--skip-crawl": "Don't resume the scanning process, attack URLs scanned during a previous session",
+   "--resume-crawl": "Resume the scanning process (if stopped) even if some attacks were previously performed",
+   "--flush-attacks": "Flush attack history and vulnerabilities for the current session",
+   "--flush-session": "Flush everything that was previously found for this target (crawled URLs, vulns, etc)",
+   "--store-session": "Directory where to store attack history and session data.",
+   "--store-config": "Directory where to store configuration databases.",
+   "--start": "Adds a url to start scan with",
+   "-s": "Adds a url to start scan with",
+   "--exclude": "Adds a url to exclude from the scan",
+   "-x": "Adds a url to exclude from the scan",
+   "--remove": "Remove this parameter from urls",
+   "-r": "Remove this parameter from urls",
+   "--skip": "Skip attacking given parameter(s)",
+   "--depth": "Set how deep the scanner should explore the website",
+   "-d": "Set how deep the scanner should explore the website",
+   "--max-links-per-page": "Set how many (in-scope) links the scanner should extract for each page",
+   "--max-files-per-dir": "Set how many pages the scanner should explore per directory",
+   "--max-scan-time": "Set how many seconds you want the scan to last (floats accepted)",
+   "--max-attack-time": "Set how many seconds you want each attack module to last (floats accepted)",
+   "--max-parameters": "URLs and forms having more than MAX input parameters will be erased before attack.",
+   "--scan-force": "Easy way to reduce the number of scanned and attacked URLs. Possible values: paranoid, sneaky, polite, normal, aggressive, insane",
+   "-S": "Easy way to reduce the number of scanned and attacked URLs. Possible values: paranoid, sneaky, polite, normal, aggressive, insane",
+   "--tasks": "Number of concurrent tasks to use for the exploration (crawling) of the target.",
+   "--external-endpoint": "Url serving as endpoint for target",
+   "--internal-endpoint": "Url serving as endpoint for attacker",
+   "--endpoint": "Url serving as endpoint for both attacker and target",
+   "--dns-endpoint": "Domain serving as DNS endpoint for Log4Shell attack",
+   "--timeout": "Set timeout for requests",
+   "-t": "Set timeout for requests",
+   "--header": "Set a custom header to use for every requests",
+   "-H": "Set a custom header to use for every requests",
+   "--user-agent": "Set a custom user-agent to use for every requests",
+   "-A": "Set a custom user-agent to use for every requests",
+   "--verify-ssl": "Set SSL check (default is no check)",
+   "--color": "Colorize output",
+   "--verbose": "Set verbosity level (0: quiet, 1: normal, 2: verbose)",
+   "-v": "Set verbosity level (0: quiet, 1: normal, 2: verbose)",
+   "--log": "Output log file",
+   "--format": "Set output format. Supported: csv, html, json, md, txt, xml. Default is html.",
+   "-f": "Set output format. Supported: csv, html, json, md, txt, xml. Default is html.",
+   "--output": "Output file or folder",
+   "-o": "Output file or folder",
+   "--detailed-report": "level 1 : include only the HTTP requests, level 2 : include HTTP requests and responses",
+   "-dr": "level 1 : include only the HTTP requests, level 2 : include HTTP requests and responses",
+   "--no-bugreport": "Don't send automatic bug report when an attack module fails",
+   "--update": "Update Wapiti attack modules and exit",
+   "--version": "Show program's version number and exit",
+   "--cms": "Choose the CMS to scan. Possible choices : drupal, joomla, magento, prestashop, spip, typo3, wp",
+   "--wapp-url": "Provide a custom URL for updating Wappalyzer Database",
+   "--wapp-dir": "Provide a custom directory path for updating Wappalyzer Database"
+  },
+  "values_seen": {
+   "-u": "URL",
+   "--url": "URL",
+   "--swagger": "URI",
+   "--scope": "{url,page,folder,subdomain,domain,punk}",
+   "-m": "MODULES_LIST",
+   "--module": "MODULES_LIST",
+   "-l": "LEVEL",
+   "--level": "LEVEL",
+   "-p": "PROXY_URL",
+   "--proxy": "PROXY_URL",
+   "--mitm-port": "PORT",
+   "--headless": "{no,hidden,visible,both}",
+   "--wait": "TIME",
+   "-a": "CREDENTIALS",
+   "--auth-cred": "CREDENTIALS",
+   "--auth-user": "USERNAME",
+   "--auth-password": "PASSWORD",
+   "--auth-method": "{basic,digest,ntlm}",
+   "--form-cred": "CREDENTIALS",
+   "--form-user": "USERNAME",
+   "--form-password": "PASSWORD",
+   "--form-url": "URL",
+   "--form-data": "DATA",
+   "--form-enctype": "DATA",
+   "--form-script": "FILENAME",
+   "-c": "COOKIE_FILE",
+   "--cookie": "COOKIE_FILE",
+   "-sf": "SIDE_FILE",
+   "--side-file": "SIDE_FILE",
+   "-C": "COOKIE_VALUE",
+   "--cookie-value": "COOKIE_VALUE",
+   "--jwt": "JWT",
+   "--store-session": "PATH",
+   "--store-config": "PATH",
+   "-s": "URL",
+   "--start": "URL",
+   "-x": "URL",
+   "--exclude": "URL",
+   "-r": "PARAMETER",
+   "--remove": "PARAMETER",
+   "--skip": "PARAMETER",
+   "-d": "DEPTH",
+   "--depth": "DEPTH",
+   "--max-links-per-page": "MAX",
+   "--max-files-per-dir": "MAX",
+   "--max-scan-time": "SECONDS",
+   "--max-attack-time": "SECONDS",
+   "--max-parameters": "MAX",
+   "-S": "FORCE",
+   "--scan-force": "FORCE",
+   "--external-endpoint": "EXTERNAL_ENDPOINT_URL",
+   "--internal-endpoint": "INTERNAL_ENDPOINT_URL",
+   "--endpoint": "ENDPOINT_URL",
+   "--dns-endpoint": "DNS_ENDPOINT_DOMAIN",
+   "-t": "SECONDS",
+   "--timeout": "SECONDS",
+   "-H": "HEADER",
+   "--header": "HEADER",
+   "-A": "AGENT",
+   "--user-agent": "AGENT",
+   "--verify-ssl": "{0,1}",
+   "-v": "LEVEL",
+   "--verbose": "LEVEL",
+   "--log": "OUTPUT_PATH",
+   "-f": "FORMAT",
+   "--format": "FORMAT",
+   "-o": "OUTPUT_PATH",
+   "--output": "OUTPUT_PATH",
+   "-dr": "DETAILED_REPORT_LEVEL",
+   "--detailed-report": "DETAILED_REPORT_LEVEL",
+   "--cms": "CMS_LIST",
+   "--wapp-url": "WAPP_URL",
+   "--wapp-dir": "WAPP_DIR"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--url": [
+    "-u"
+   ],
+   "--module": [
+    "-m"
+   ],
+   "--level": [
+    "-l"
+   ],
+   "--proxy": [
+    "-p"
+   ],
+   "--auth-cred": [
+    "-a"
+   ],
+   "--cookie": [
+    "-c"
+   ],
+   "--side-file": [
+    "-sf"
+   ],
+   "--cookie-value": [
+    "-C"
+   ],
+   "--start": [
+    "-s"
+   ],
+   "--exclude": [
+    "-x"
+   ],
+   "--remove": [
+    "-r"
+   ],
+   "--depth": [
+    "-d"
+   ],
+   "--scan-force": [
+    "-S"
+   ],
+   "--timeout": [
+    "-t"
+   ],
+   "--header": [
+    "-H"
+   ],
+   "--user-agent": [
+    "-A"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--format": [
+    "-f"
+   ],
+   "--output": [
+    "-o"
+   ],
+   "--detailed-report": [
+    "-dr"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "wapiti",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "4a55e92132e864fe85c2477d4af235e66346d26fdea3e5a604455c5e6b4281c1",
+  "text": "\n     __      __               .__  __  .__________\n    /  \\    /  \\_____  ______ |__|/  |_|__\\_____  \\\n    \\   \\/\\/   /\\__  \\ \\____ \\|  \\   __\\  | _(__  <\n     \\        /  / __ \\|  |_> >  ||  | |  |/       \\\n      \\__/\\  /  (____  /   __/|__||__| |__/______  /\n           \\/        \\/|__|                      \\/\nusage: wapiti [-h] [-u URL] [--swagger URI] [--data data]\n              [--scope {url,page,folder,subdomain,domain,punk}]\n              [-m MODULES_LIST] [--list-modules] [-l LEVEL] [-p PROXY_URL]\n              [--tor] [--mitm-port PORT] [--headless {no,hidden,visible,both}]\n              [--wait TIME] [-a CREDENTIALS] [--auth-user USERNAME]\n              [--auth-password PASSWORD] [--auth-method {basic,digest,ntlm}]\n              [--form-cred CREDENTIALS] [--form-user USERNAME]\n              [--form-password PASSWORD] [--form-url URL] [--form-data DATA]\n              [--form-enctype DATA] [--form-script FILENAME] [-c COOKIE_FILE]\n              [-sf SIDE_FILE] [-C COOKIE_VALUE] [--jwt JWT]\n              [--drop-set-cookie] [--skip-crawl] [--resume-crawl]\n              [--flush-attacks] [--flush-session] [--store-session PATH]\n              [--store-config PATH] [-s URL] [-x URL] [-r PARAMETER]\n              [--skip PARAMETER] [-d DEPTH] [--max-links-per-page MAX]\n              [--max-files-per-dir MAX] [--max-scan-time SECONDS]\n              [--max-attack-time SECONDS] [--max-parameters MAX] [-S FORCE]\n              [--tasks tasks] [--external-endpoint EXTERNAL_ENDPOINT_URL]\n              [--internal-endpoint INTERNAL_ENDPOINT_URL]\n              [--endpoint ENDPOINT_URL] [--dns-endpoint DNS_ENDPOINT_DOMAIN]\n              [-t SECONDS] [-H HEADER] [-A AGENT] [--verify-ssl {0,1}]\n              [--color] [-v LEVEL] [--log OUTPUT_PATH] [-f FORMAT]\n              [-o OUTPUT_PATH] [-dr DETAILED_REPORT_LEVEL] [--no-bugreport]\n              [--update] [--version] [--cms CMS_LIST] [--wapp-url WAPP_URL]\n              [--wapp-dir WAPP_DIR]\n\nWapiti 3.3.2: Web application vulnerability scanner\n\noptions:\n  -h, --help            show this help message and exit\n  -u URL, --url URL     The base URL used to define the scan scope (default\n                        scope is folder)\n  --swagger URI         Swagger file URI (path or URL) to target API endpoints\n  --data data           Urlencoded data to send with the base URL if it is a\n                        POST request\n  --scope {url,page,folder,subdomain,domain,punk}\n                        Set scan scope\n  -m MODULES_LIST, --module MODULES_LIST\n                        List of modules to load\n  --list-modules        List Wapiti attack modules and exit\n  -l LEVEL, --level LEVEL\n                        Set attack level\n  -p PROXY_URL, --proxy PROXY_URL\n                        Set the HTTP(S) proxy to use. Supported: http(s) and\n                        socks proxies\n  --tor                 Use Tor listener (127.0.0.1:9050)\n  --mitm-port PORT      Instead of crawling, launch an intercepting proxy on\n                        the given port\n  --headless {no,hidden,visible,both}\n                        Use a Firefox headless crawler for browsing (slower).\n                        Use 'both' to run standard then headless.\n  --wait TIME           Wait the specified amount of seconds before analyzing\n                        a webpage (headless mode only)\n  -a CREDENTIALS, --auth-cred CREDENTIALS\n                        (DEPRECATED) Set HTTP authentication credentials\n  --auth-user USERNAME  Set HTTP authentication username credentials\n  --auth-password PASSWORD\n                        Set HTTP authentication password credentials\n  --auth-method {basic,digest,ntlm}\n                        Set the HTTP authentication method to use\n  --form-cred CREDENTIALS\n                        (DEPRECATED) Set login form credentials\n  --form-user USERNAME  Set login form credentials\n  --form-password PASSWORD\n                        Set password form credentials\n  --form-url URL        Set login form URL\n  --form-data DATA      Set login form POST data\n  --form-enctype DATA   Set enctype to use to POST form data to form URL\n  --form-script FILENAME\n                        Use a custom Python authentication plugin\n  -c COOKIE_FILE, --cookie COOKIE_FILE\n                        Set a JSON cookie file to use. You can also pass\n                        'firefox' or 'chrome' to load cookies from your\n                        browser.\n  -sf SIDE_FILE, --side-file SIDE_FILE\n                        Use a .side file generated using Selenium IDE to\n                        perform an authenticated scan.\n  -C COOKIE_VALUE, --cookie-value COOKIE_VALUE\n                        Set a cookie to use for every request for\n                        authenticated scan. You can put multiple cookies\n                        separated by semicolons as a value\n  --jwt JWT             Set a JWT token use for every request for\n                        authenticated scan.\n  --drop-set-cookie     Ignore Set-Cookie header from HTTP responses\n  --skip-crawl          Don't resume the scanning process, attack URLs scanned\n                        during a previous session\n  --resume-crawl        Resume the scanning process (if stopped) even if some\n                        attacks were previously performed\n  --flush-attacks       Flush attack history and vulnerabilities for the\n                        current session\n  --flush-session       Flush everything that was previously found for this\n                        target (crawled URLs, vulns, etc)\n  --store-session PATH  Directory where to store attack history and session\n                        data.\n  --store-config PATH   Directory where to store configuration databases.\n  -s URL, --start URL   Adds a url to start scan with\n  -x URL, --exclude URL\n                        Adds a url to exclude from the scan\n  -r PARAMETER, --remove PARAMETER\n                        Remove this parameter from urls\n  --skip PARAMETER      Skip attacking given parameter(s)\n  -d DEPTH, --depth DEPTH\n                        Set how deep the scanner should explore the website\n  --max-links-per-page MAX\n                        Set how many (in-scope) links the scanner should\n                        extract for each page\n  --max-files-per-dir MAX\n                        Set how many pages the scanner should explore per\n                        directory\n  --max-scan-time SECONDS\n                        Set how many seconds you want the scan to last (floats\n                        accepted)\n  --max-attack-time SECONDS\n                        Set how many seconds you want each attack module to\n                        last (floats accepted)\n  --max-parameters MAX  URLs and forms having more than MAX input parameters\n                        will be erased before attack.\n  -S FORCE, --scan-force FORCE\n                        Easy way to reduce the number of scanned and attacked\n                        URLs. Possible values: paranoid, sneaky, polite,\n                        normal, aggressive, insane\n  --tasks tasks         Number of concurrent tasks to use for the exploration\n                        (crawling) of the target.\n  --external-endpoint EXTERNAL_ENDPOINT_URL\n                        Url serving as endpoint for target\n  --internal-endpoint INTERNAL_ENDPOINT_URL\n                        Url serving as endpoint for attacker\n  --endpoint ENDPOINT_URL\n                        Url serving as endpoint for both attacker and target\n  --dns-endpoint DNS_ENDPOINT_DOMAIN\n                        Domain serving as DNS endpoint for Log4Shell attack\n  -t SECONDS, --timeout SECONDS\n                        Set timeout for requests\n  -H HEADER, --header HEADER\n                        Set a custom header to use for every requests\n  -A AGENT, --user-agent AGENT\n                        Set a custom user-agent to use for every requests\n  --verify-ssl {0,1}    Set SSL check (default is no check)\n  --color               Colorize output\n  -v LEVEL, --verbose LEVEL\n                        Set verbosity level (0: quiet, 1: normal, 2: verbose)\n  --log OUTPUT_PATH     Output log file\n  -f FORMAT, --format FORMAT\n                        Set output format. Supported: csv, html, json, md,\n                        txt, xml. Default is html.\n  -o OUTPUT_PATH, --output OUTPUT_PATH\n                        Output file or folder\n  -dr DETAILED_REPORT_LEVEL, --detailed-report DETAILED_REPORT_LEVEL\n                        level 1 : include only the HTTP requests, level 2 :\n                        include HTTP requests and responses\n  --no-bugreport        Don't send automatic bug report when an attack module\n                        fails\n  --update              Update Wapiti attack modules and exit\n  --version             Show program's version number and exit\n  --cms CMS_LIST        Choose the CMS to scan. Possible choices : drupal,\n                        joomla, magento, prestashop, spip, typo3, wp\n  --wapp-url WAPP_URL   Provide a custom URL for updating Wappalyzer Database\n  --wapp-dir WAPP_DIR   Provide a custom directory path for updating\n                        Wappalyzer Database\n"
+ },
+ "surface": {
+  "flags": {
+   "--auth-cred": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "(DEPRECATED) Set HTTP authentication credentials",
+    "metavar": "CREDENTIALS",
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--auth-method": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the HTTP authentication method to use",
+    "metavar": "{basic,digest,ntlm}"
+   },
+   "--auth-password": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set HTTP authentication password credentials",
+    "metavar": "PASSWORD"
+   },
+   "--auth-user": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set HTTP authentication username credentials",
+    "metavar": "USERNAME"
+   },
+   "--cms": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Choose the CMS to scan. Possible choices : drupal, joomla, magento, prestashop, spip, typo3, wp",
+    "metavar": "CMS_LIST"
+   },
+   "--color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Colorize output"
+   },
+   "--cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a JSON cookie file to use. You can also pass 'firefox' or 'chrome' to load cookies from your browser.",
+    "metavar": "COOKIE_FILE",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--cookie-value": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a cookie to use for every request for authenticated scan. You can put multiple cookies separated by semicolons as a value",
+    "metavar": "COOKIE_VALUE",
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Urlencoded data to send with the base URL if it is a POST request"
+   },
+   "--depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set how deep the scanner should explore the website",
+    "metavar": "DEPTH",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--detailed-report": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "level 1 : include only the HTTP requests, level 2 : include HTTP requests and responses",
+    "metavar": "DETAILED_REPORT_LEVEL",
+    "aliases": [
+     "-dr"
+    ]
+   },
+   "--dns-endpoint": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Domain serving as DNS endpoint for Log4Shell attack",
+    "metavar": "DNS_ENDPOINT_DOMAIN"
+   },
+   "--drop-set-cookie": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Ignore Set-Cookie header from HTTP responses"
+   },
+   "--endpoint": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Url serving as endpoint for both attacker and target",
+    "metavar": "ENDPOINT_URL"
+   },
+   "--exclude": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Adds a url to exclude from the scan",
+    "metavar": "URL",
+    "aliases": [
+     "-x"
+    ]
+   },
+   "--external-endpoint": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Url serving as endpoint for target",
+    "metavar": "EXTERNAL_ENDPOINT_URL"
+   },
+   "--flush-attacks": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Flush attack history and vulnerabilities for the current session"
+   },
+   "--flush-session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Flush everything that was previously found for this target (crawled URLs, vulns, etc)"
+   },
+   "--form-cred": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "(DEPRECATED) Set login form credentials",
+    "metavar": "CREDENTIALS"
+   },
+   "--form-data": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set login form POST data",
+    "metavar": "DATA"
+   },
+   "--form-enctype": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set enctype to use to POST form data to form URL",
+    "metavar": "DATA"
+   },
+   "--form-password": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set password form credentials",
+    "metavar": "PASSWORD"
+   },
+   "--form-script": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a custom Python authentication plugin",
+    "metavar": "FILENAME"
+   },
+   "--form-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set login form URL",
+    "metavar": "URL"
+   },
+   "--form-user": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set login form credentials",
+    "metavar": "USERNAME"
+   },
+   "--format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set output format. Supported: csv, html, json, md, txt, xml. Default is html.",
+    "metavar": "FORMAT",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--header": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a custom header to use for every requests",
+    "metavar": "HEADER",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--headless": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a Firefox headless crawler for browsing (slower). Use 'both' to run standard then headless.",
+    "metavar": "{no,hidden,visible,both}"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--internal-endpoint": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Url serving as endpoint for attacker",
+    "metavar": "INTERNAL_ENDPOINT_URL"
+   },
+   "--jwt": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a JWT token use for every request for authenticated scan.",
+    "metavar": "JWT"
+   },
+   "--level": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set attack level",
+    "metavar": "LEVEL",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--list-modules": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List Wapiti attack modules and exit"
+   },
+   "--log": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output log file",
+    "metavar": "OUTPUT_PATH"
+   },
+   "--max-attack-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set how many seconds you want each attack module to last (floats accepted)",
+    "metavar": "SECONDS"
+   },
+   "--max-files-per-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set how many pages the scanner should explore per directory",
+    "metavar": "MAX"
+   },
+   "--max-links-per-page": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set how many (in-scope) links the scanner should extract for each page",
+    "metavar": "MAX"
+   },
+   "--max-parameters": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "URLs and forms having more than MAX input parameters will be erased before attack.",
+    "metavar": "MAX"
+   },
+   "--max-scan-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set how many seconds you want the scan to last (floats accepted)",
+    "metavar": "SECONDS"
+   },
+   "--mitm-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Instead of crawling, launch an intercepting proxy on the given port",
+    "metavar": "PORT"
+   },
+   "--module": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "List of modules to load",
+    "metavar": "MODULES_LIST",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--no-bugreport": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't send automatic bug report when an attack module fails"
+   },
+   "--output": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output file or folder",
+    "metavar": "OUTPUT_PATH",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--proxy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set the HTTP(S) proxy to use. Supported: http(s) and socks proxies",
+    "metavar": "PROXY_URL",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--remove": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Remove this parameter from urls",
+    "metavar": "PARAMETER",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--resume-crawl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Resume the scanning process (if stopped) even if some attacks were previously performed"
+   },
+   "--scan-force": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Easy way to reduce the number of scanned and attacked URLs. Possible values: paranoid, sneaky, polite, normal, aggressive, insane",
+    "metavar": "FORCE",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--scope": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set scan scope",
+    "metavar": "{url,page,folder,subdomain,domain,punk}"
+   },
+   "--side-file": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use a .side file generated using Selenium IDE to perform an authenticated scan.",
+    "metavar": "SIDE_FILE",
+    "aliases": [
+     "-sf"
+    ]
+   },
+   "--skip": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip attacking given parameter(s)",
+    "metavar": "PARAMETER"
+   },
+   "--skip-crawl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't resume the scanning process, attack URLs scanned during a previous session"
+   },
+   "--start": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Adds a url to start scan with",
+    "metavar": "URL",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--store-config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Directory where to store configuration databases.",
+    "metavar": "PATH"
+   },
+   "--store-session": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Directory where to store attack history and session data.",
+    "metavar": "PATH"
+   },
+   "--swagger": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Swagger file URI (path or URL) to target API endpoints",
+    "metavar": "URI"
+   },
+   "--tasks": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent tasks to use for the exploration (crawling) of the target."
+   },
+   "--timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set timeout for requests",
+    "metavar": "SECONDS",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--tor": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use Tor listener (127.0.0.1:9050)"
+   },
+   "--update": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Update Wapiti attack modules and exit"
+   },
+   "--url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "The base URL used to define the scan scope (default scope is folder)",
+    "metavar": "URL",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--user-agent": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set a custom user-agent to use for every requests",
+    "metavar": "AGENT",
+    "aliases": [
+     "-A"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set verbosity level (0: quiet, 1: normal, 2: verbose)",
+    "metavar": "LEVEL",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--verify-ssl": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set SSL check (default is no check)",
+    "metavar": "{0,1}"
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show program's version number and exit"
+   },
+   "--wait": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Wait the specified amount of seconds before analyzing a webpage (headless mode only)",
+    "metavar": "TIME"
+   },
+   "--wapp-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Provide a custom directory path for updating Wappalyzer Database",
+    "metavar": "WAPP_DIR"
+   },
+   "--wapp-url": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Provide a custom URL for updating Wappalyzer Database",
+    "metavar": "WAPP_URL"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 2,
+  "tried_this_wave": 2,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-8bc96633",
+    "argv": [
+     "wapiti",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 2043
+   },
+   {
+    "id": "t-net-67dacb7a",
+    "argv": [
+     "wapiti",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1972
+   }
+  ],
+  "not_attempted": []
+ },
+ "tool": "Wapiti",
+ "repo": "wapiti-scanner/wapiti",
+ "head_sha": "594fa4908cfd9f9e46d3becdce0eb0b2a9d75bed",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-15T16:33:10.693316+00:00"
+}

@@ -1,0 +1,535 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:99ac062cba00f78dad8dc0d89972465a1d7e541b401309981a4cf9127c900120",
+  "duration_s": 78.72,
+  "log_tail": "#11 10.84 debconf: unable to initialize frontend: Dialog\n#11 10.84 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 10.84 debconf: falling back to frontend: Readline\n#11 10.84 debconf: unable to initialize frontend: Readline\n#11 10.84 debconf: (This frontend requires a controlling tty.)\n#11 10.84 debconf: falling back to frontend: Teletype\n#11 10.87 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 10.90 Setting up texinfo (6.8-6+b1) ...\n#11 10.92 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 10.97 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 11.6s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.6s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 2.9s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.244 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.4s done\n#20 exporting manifest sha256:43e1b3f296c1426c853c53a6d334f39012d3bef558d136ac2e91142b349a57c4 0.0s done\n#20 exporting config sha256:121dd671eb30a3644c414aedc453d6f8b3d77698bce38b61beb5fa99cbc9c946 0.0s done\n#20 exporting attestation manifest sha256:537dd5755245696aad2bffff43dbe1df5ac3e8f7a8b92474f256fcb3e90117b1\n#20 exporting attestation manifest sha256:537dd5755245696aad2bffff43dbe1df5ac3e8f7a8b92474f256fcb3e90117b1 0.1s done\n#20 exporting manifest list sha256:99ac062cba00f78dad8dc0d89972465a1d7e541b401309981a4cf9127c900120 0.0s done\n#20 naming to docker.io/ctk-exec/capa:9b74aa2f5264\n#20 naming to docker.io/ctk-exec/capa:9b74aa2f5264 done\n#20 unpacking to docker.io/ctk-exec/capa:9b74aa2f5264\n#20 unpacking to docker.io/ctk-exec/capa:9b74aa2f5264 1.9s done\n#20 DONE 6.5s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "capa",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: capa [-h] [--version] [-v] [-vv] [-d] [-q]\n            [--color {auto,always,never}]\n            [-f {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}]\n            [-b {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}]\n            [--restrict-to-functions RESTRICT_TO_FUNCTIONS]\n            [--restrict-to-processes RESTRICT_TO_PROCESSES]\n            [--os {auto,linux,macos,windows}] [-r RULES] [-s SIGNATURES]\n            [-t TAG] [-j]\n            input_file\n\nThe FLARE team's open-source tool to identify capabilities in executable files.\n\npositional arguments:\n  input_file            path to file to analyze\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit\n  -v, --verbose         enable verbose result document (no effect with --json)\n  -vv, --vverbose       enable very verbose result document (no effect with\n                        --json)\n  -d, --debug           enable debugging output on STDERR\n  -q, --quiet           disable all output but errors\n  --color {auto,always,never}\n                        enable ANSI color codes in results, default: only\n                        during interactive session\n  -f {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}, --format {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}\n                        select input format, auto: (default) detect file type\n                        automatically, pe: Windows PE file, dotnet: .NET PE\n                        file, elf: Executable and Linkable Format, sc32:\n                        32-bit shellcode, sc64: 64-bit shellcode, cape: CAPE\n                        sandbox report, drakvuf: DRAKVUF sandbox report,\n                        vmray: VMRay sandbox report, freeze: features\n                        previously frozen by capa, binexport2: BinExport2,\n                        binja_database: Binary Ninja Database\n  -b {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}, --backend {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}\n                        select backend, auto: (default) detect appropriate\n                        backend automatically, vivisect: vivisect, ida: IDA\n                        via idalib, pefile: pefile (file features only),\n                        binja: Binary Ninja, dotnet: .NET, binexport2:\n                        BinExport2, ghidra: Ghidra, freeze: capa freeze, cape:\n                        CAPE, drakvuf: DRAKVUF, vmray: VMRay\n  --restrict-to-functions RESTRICT_TO_FUNCTIONS\n                        provide a list of comma-separated function virtual\n                        addresses to analyze (static analysis).\n  --restrict-to-processes RESTRICT_TO_PROCESSES\n                        provide a list of comma-separated process IDs to\n                        analyze (dynamic analysis).\n  --os {auto,linux,macos,windows}\n                        select sample OS: auto (detect OS automatically -\n                        default), linux, macos, windows\n  -r RULES, --rules RULES\n                        path to rule file or directory, use embedded rules by\n                        default\n  -s SIGNATURES, --signatures SIGNATURES\n                        path to .sig/.pat file or directory used to identify\n                        library functions, use embedded signatures by default\n  -t TAG, --tag TAG     filter on rule meta field values\n  -j, --json            emit JSON instead of text\n\nBy default, capa uses a default set of embedded rules.\nYou can see the rule set here:\n  https://github.com/mandiant/capa-rules\n\nYou can load capa JSON output to capa Explorer Web:\n  https://github.com/mandiant/capa/explorer\n\nTo provide your own rule set, use the `-r` flag:\n  capa  --rules /path/to/rules  suspicious.exe\n  capa  -r      /path/to/rules  suspicious.exe\n\nexamples:\n  identify capabilities in a binary\n    capa suspicious.exe\n\n  identify capabilities in 32-bit shellcode, see `-f` for all supported formats\n    capa -f sc32 shellcode.bin\n\n  report match locations\n    capa -v suspicious.exe\n\n  report all feature match details\n    capa -vv suspicious.exe\n\n  filter rules by meta fields, e.g. rule name or namespace\n    capa -t \"create TCP socket\" suspicious.exe\n",
+   "stderr": "",
+   "duration_ms": 743,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "capa"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for capa\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "capa"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'capa' in node '(dir)Top'\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "capa",
+    "--version"
+   ],
+   "exit_code": 0,
+   "stdout": "capa 9.4.0\n",
+   "stderr": "",
+   "duration_ms": 443,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "version",
+   "title": "Version and rule-set info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "capa",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "037cd7aa9a5e0a26",
+ "declared_commands": [
+  {
+   "name": "capa",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [
+  {
+   "id": "version",
+   "title": "Version and rule-set info",
+   "argv": [
+    "capa",
+    "--version"
+   ],
+   "stdout": "capa 9.4.0\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 443,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--version": "show program's version number and exit",
+   "--verbose": "enable verbose result document (no effect with --json)",
+   "-v": "enable verbose result document (no effect with --json)",
+   "--vverbose": "enable very verbose result document (no effect with",
+   "-vv": "enable very verbose result document (no effect with",
+   "--json": "",
+   "--debug": "enable debugging output on STDERR",
+   "-d": "enable debugging output on STDERR",
+   "--quiet": "disable all output but errors",
+   "-q": "disable all output but errors",
+   "--color": "enable ANSI color codes in results, default: only during interactive session",
+   "--format": "select input format, auto: (default) detect file type automatically, pe: Windows PE file, dotnet: .NET PE file, elf: Executable and Linkable Format, sc32: 32-bit shellcode, sc64: 64-bit shellcode, cape: CAPE sandbox report, drakvuf: DRAKVUF sandbox report, vmray: VMRay sandbox report, freeze: features previously frozen by capa, binexport2: BinExport2, binja_database: Binary Ninja Database",
+   "-f": "select input format, auto: (default) detect file type automatically, pe: Windows PE file, dotnet: .NET PE file, elf: Executable and Linkable Format, sc32: 32-bit shellcode, sc64: 64-bit shellcode, cape: CAPE sandbox report, drakvuf: DRAKVUF sandbox report, vmray: VMRay sandbox report, freeze: features previously frozen by capa, binexport2: BinExport2, binja_database: Binary Ninja Database",
+   "--backend": "select backend, auto: (default) detect appropriate backend automatically, vivisect: vivisect, ida: IDA via idalib, pefile: pefile (file features only), binja: Binary Ninja, dotnet: .NET, binexport2: BinExport2, ghidra: Ghidra, freeze: capa freeze, cape: CAPE, drakvuf: DRAKVUF, vmray: VMRay",
+   "-b": "select backend, auto: (default) detect appropriate backend automatically, vivisect: vivisect, ida: IDA via idalib, pefile: pefile (file features only), binja: Binary Ninja, dotnet: .NET, binexport2: BinExport2, ghidra: Ghidra, freeze: capa freeze, cape: CAPE, drakvuf: DRAKVUF, vmray: VMRay",
+   "--restrict-to-functions": "provide a list of comma-separated function virtual addresses to analyze (static analysis).",
+   "--restrict-to-processes": "provide a list of comma-separated process IDs to analyze (dynamic analysis).",
+   "--os": "select sample OS: auto (detect OS automatically - default), linux, macos, windows",
+   "--rules": "path to rule file or directory, use embedded rules by default",
+   "-r": "path to rule file or directory, use embedded rules by default",
+   "--signatures": "path to .sig/.pat file or directory used to identify library functions, use embedded signatures by default",
+   "-s": "path to .sig/.pat file or directory used to identify library functions, use embedded signatures by default",
+   "--tag": "filter on rule meta field values",
+   "-t": "filter on rule meta field values",
+   "-j": "emit JSON instead of text"
+  },
+  "values_seen": {
+   "--color": "{auto,always,never}",
+   "-f": "{auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}",
+   "--format": "{auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}",
+   "-b": "{auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}",
+   "--backend": "{auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}",
+   "--restrict-to-functions": "RESTRICT_TO_FUNCTIONS",
+   "--restrict-to-processes": "RESTRICT_TO_PROCESSES",
+   "--os": "{auto,linux,macos,windows}",
+   "-r": "RULES",
+   "--rules": "RULES",
+   "-s": "SIGNATURES",
+   "--signatures": "SIGNATURES",
+   "-t": "TAG",
+   "--tag": "TAG"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--vverbose": [
+    "-vv"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--format": [
+    "-f"
+   ],
+   "--backend": [
+    "-b"
+   ],
+   "--rules": [
+    "-r"
+   ],
+   "--signatures": [
+    "-s"
+   ],
+   "--tag": [
+    "-t"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "capa",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "48d4c454f6e3ab65ab17ac5cefb43d5cdbea417015f356a47b583e7cb4214c65",
+  "text": "usage: capa [-h] [--version] [-v] [-vv] [-d] [-q]\n            [--color {auto,always,never}]\n            [-f {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}]\n            [-b {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}]\n            [--restrict-to-functions RESTRICT_TO_FUNCTIONS]\n            [--restrict-to-processes RESTRICT_TO_PROCESSES]\n            [--os {auto,linux,macos,windows}] [-r RULES] [-s SIGNATURES]\n            [-t TAG] [-j]\n            input_file\n\nThe FLARE team's open-source tool to identify capabilities in executable files.\n\npositional arguments:\n  input_file            path to file to analyze\n\noptions:\n  -h, --help            show this help message and exit\n  --version             show program's version number and exit\n  -v, --verbose         enable verbose result document (no effect with --json)\n  -vv, --vverbose       enable very verbose result document (no effect with\n                        --json)\n  -d, --debug           enable debugging output on STDERR\n  -q, --quiet           disable all output but errors\n  --color {auto,always,never}\n                        enable ANSI color codes in results, default: only\n                        during interactive session\n  -f {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}, --format {auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}\n                        select input format, auto: (default) detect file type\n                        automatically, pe: Windows PE file, dotnet: .NET PE\n                        file, elf: Executable and Linkable Format, sc32:\n                        32-bit shellcode, sc64: 64-bit shellcode, cape: CAPE\n                        sandbox report, drakvuf: DRAKVUF sandbox report,\n                        vmray: VMRay sandbox report, freeze: features\n                        previously frozen by capa, binexport2: BinExport2,\n                        binja_database: Binary Ninja Database\n  -b {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}, --backend {auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}\n                        select backend, auto: (default) detect appropriate\n                        backend automatically, vivisect: vivisect, ida: IDA\n                        via idalib, pefile: pefile (file features only),\n                        binja: Binary Ninja, dotnet: .NET, binexport2:\n                        BinExport2, ghidra: Ghidra, freeze: capa freeze, cape:\n                        CAPE, drakvuf: DRAKVUF, vmray: VMRay\n  --restrict-to-functions RESTRICT_TO_FUNCTIONS\n                        provide a list of comma-separated function virtual\n                        addresses to analyze (static analysis).\n  --restrict-to-processes RESTRICT_TO_PROCESSES\n                        provide a list of comma-separated process IDs to\n                        analyze (dynamic analysis).\n  --os {auto,linux,macos,windows}\n                        select sample OS: auto (detect OS automatically -\n                        default), linux, macos, windows\n  -r RULES, --rules RULES\n                        path to rule file or directory, use embedded rules by\n                        default\n  -s SIGNATURES, --signatures SIGNATURES\n                        path to .sig/.pat file or directory used to identify\n                        library functions, use embedded signatures by default\n  -t TAG, --tag TAG     filter on rule meta field values\n  -j, --json            emit JSON instead of text\n\nBy default, capa uses a default set of embedded rules.\nYou can see the rule set here:\n  https://github.com/mandiant/capa-rules\n\nYou can load capa JSON output to capa Explorer Web:\n  https://github.com/mandiant/capa/explorer\n\nTo provide your own rule set, use the `-r` flag:\n  capa  --rules /path/to/rules  suspicious.exe\n  capa  -r      /path/to/rules  suspicious.exe\n\nexamples:\n  identify capabilities in a binary\n    capa suspicious.exe\n\n  identify capabilities in 32-bit shellcode, see `-f` for all supported formats\n    capa -f sc32 shellcode.bin\n\n  report match locations\n    capa -v suspicious.exe\n\n  report all feature match details\n    capa -vv suspicious.exe\n\n  filter rules by meta fields, e.g. rule name or namespace\n    capa -t \"create TCP socket\" suspicious.exe\n"
+ },
+ "surface": {
+  "flags": {
+   "--backend": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "select backend, auto: (default) detect appropriate backend automatically, vivisect: vivisect, ida: IDA via idalib, pefile: pefile (file features only), binja: Binary Ninja, dotnet: .NET, binexport2: BinExport2, ghidra: Ghidra, freeze: capa freeze, cape: CAPE, drakvuf: DRAKVUF, vmray: VMRay",
+    "metavar": "{auto,vivisect,ida,pefile,binja,dotnet,binexport2,ghidra,freeze,cape,drakvuf,vmray}",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable ANSI color codes in results, default: only during interactive session",
+    "metavar": "{auto,always,never}"
+   },
+   "--debug": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable debugging output on STDERR",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--format": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "select input format, auto: (default) detect file type automatically, pe: Windows PE file, dotnet: .NET PE file, elf: Executable and Linkable Format, sc32: 32-bit shellcode, sc64: 64-bit shellcode, cape: CAPE sandbox report, drakvuf: DRAKVUF sandbox report, vmray: VMRay sandbox report, freeze: features previously frozen by capa, binexport2: BinExport2, binja_database: Binary Ninja Database",
+    "metavar": "{auto,pe,dotnet,elf,sc32,sc64,cape,drakvuf,vmray,freeze,binexport2,binja_database}",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--os": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "select sample OS: auto (detect OS automatically - default), linux, macos, windows",
+    "metavar": "{auto,linux,macos,windows}"
+   },
+   "--quiet": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "disable all output but errors",
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--restrict-to-functions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provide a list of comma-separated function virtual addresses to analyze (static analysis).",
+    "metavar": "RESTRICT_TO_FUNCTIONS"
+   },
+   "--restrict-to-processes": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "provide a list of comma-separated process IDs to analyze (dynamic analysis).",
+    "metavar": "RESTRICT_TO_PROCESSES"
+   },
+   "--rules": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to rule file or directory, use embedded rules by default",
+    "metavar": "RULES",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--signatures": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "path to .sig/.pat file or directory used to identify library functions, use embedded signatures by default",
+    "metavar": "SIGNATURES",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--tag": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "filter on rule meta field values",
+    "metavar": "TAG",
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable verbose result document (no effect with --json)",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show program's version number and exit"
+   },
+   "--vverbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "enable very verbose result document (no effect with",
+    "aliases": [
+     "-vv"
+    ]
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "emit JSON instead of text"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 11,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-ci-4be8e32b",
+    "argv": [
+     "capa",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "ci",
+    "path": ".github/workflows/build.yml",
+    "line": 104,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 1458
+   },
+   {
+    "id": "t-ci-3e94359a",
+    "argv": [
+     "capa",
+     "-b",
+     "ghidra",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "ci",
+    "path": ".github/workflows/build.yml",
+    "line": 130,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 1458
+   },
+   {
+    "id": "t-readme-6ce20ed6",
+    "argv": [
+     "capa",
+     "-r",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "doc/installation.md",
+    "line": 35,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 12,
+    "output_bytes": 1215
+   },
+   {
+    "id": "t-readme-48586044",
+    "argv": [
+     "capa",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "doc/installation.md",
+    "line": 41,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 243
+   },
+   {
+    "id": "t-readme-72fb81f6",
+    "argv": [
+     "capa",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "doc/rules.md",
+    "line": 9,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 243
+   },
+   {
+    "id": "t-readme-1f877811",
+    "argv": [
+     "capa",
+     "--rules",
+     "/opt/ctk/fixtures/source-corpus",
+     "/opt/ctk/fixtures/binaries/marked-unstripped"
+    ],
+    "source": "readme",
+    "path": "doc/rules.md",
+    "line": 23,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 12,
+    "output_bytes": 1215
+   },
+   {
+    "id": "t-surface-0520d4cf",
+    "argv": [
+     "capa",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 243
+   },
+   {
+    "id": "t-surface-c9c6073b",
+    "argv": [
+     "capa",
+     "-d",
+     "/opt/ctk/fixtures/source-corpus",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 10,
+    "output_bytes": 243
+   },
+   {
+    "id": "t-surface-1a27943c",
+    "argv": [
+     "capa",
+     "-t",
+     "/opt/ctk/fixtures/source-corpus",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 597
+   },
+   {
+    "id": "t-surface-a90af35a",
+    "argv": [
+     "capa",
+     "-f",
+     "/opt/ctk/fixtures/source-corpus",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 726
+   },
+   {
+    "id": "t-surface-ff016aaa",
+    "argv": [
+     "capa",
+     "--rules",
+     "/opt/ctk/fixtures/source-corpus",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 597
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "dist/capa -d \"d46900384c78863420fb3e297d0a2f743cd2b6b3f7f82bf64059a168e07aceb7.json\"",
+    "source": "ci",
+    "path": ".github/workflows/build.yml",
+    "line": 112,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "capa --version",
+    "source": "readme",
+    "path": "doc/rules.md",
+    "line": 41,
+    "reason": "needs-network-or-interactive",
+    "token": "--version"
+   }
+  ]
+ },
+ "tool": "capa",
+ "repo": "mandiant/capa",
+ "head_sha": "9b74aa2f5264e7c12badfbac2135a502e2abbf84",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-16T02:07:46.128529+00:00"
+}
