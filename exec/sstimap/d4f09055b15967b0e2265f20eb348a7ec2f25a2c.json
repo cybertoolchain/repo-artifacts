@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:50a63ad75ab201ad07bcd4a27ceb0536c74dd29064f6ccac67d9e5e01d22c0e4",
-  "duration_s": 15.04,
-  "log_tail": "#11 5.711 Downloading charset_normalizer-2.0.12-py3-none-any.whl (39 kB)\n#11 5.735 Downloading idna-3.18-py3-none-any.whl (65 kB)\n#11 5.760 Downloading certifi-2026.7.22-py3-none-any.whl (136 kB)\n#11 5.785 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)\n#11 5.807 Downloading webencodings-0.6.1-py3-none-any.whl (8.7 kB)\n#11 5.847 Installing collected packages: argparse, webencodings, urllib3, six, idna, charset-normalizer, certifi, requests, html5lib, mechanize\n#11 6.293 \n#11 6.294 Successfully installed argparse-1.4.0 certifi-2026.7.22 charset-normalizer-2.0.12 html5lib-1.1 idna-3.18 mechanize-0.4.10 requests-2.27.1 six-1.17.0 urllib3-1.26.20 webencodings-0.6.1\n#11 DONE 6.5s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.5s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.2s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.8s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 1.4s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.2s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.1s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.1s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.389 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.6s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.9s done\n#21 exporting manifest sha256:ca2cd6426a831f30b8dd2a0e4c618069bf2950200f0f3e52a7d509dc3845324a 0.0s done\n#21 exporting config sha256:257ba9ddafcaf35ae7f0484c221a1112436c088a0e878efbd1331c033cc04c53 0.0s done\n#21 exporting attestation manifest sha256:ac5834b13c13ef66cd2b0f99439942497a75b1dda5362ce75b5d868219145c87 0.0s done\n#21 exporting manifest list sha256:50a63ad75ab201ad07bcd4a27ceb0536c74dd29064f6ccac67d9e5e01d22c0e4\n#21 exporting manifest list sha256:50a63ad75ab201ad07bcd4a27ceb0536c74dd29064f6ccac67d9e5e01d22c0e4 0.0s done\n#21 naming to docker.io/ctk-exec/sstimap:d4f09055b159 done\n#21 unpacking to docker.io/ctk-exec/sstimap:d4f09055b159\n#21 unpacking to docker.io/ctk-exec/sstimap:d4f09055b159 0.6s done\n#21 DONE 1.6s",
+  "image_digest": "sha256:3c769c577811ad4c81a233717e00fc6707c6a2c2d33cb4e78a6828410dbae238",
+  "duration_s": 11.16,
+  "log_tail": "#10 5.406 Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)\n#10 5.430 Downloading webencodings-0.6.1-py3-none-any.whl (8.7 kB)\n#10 5.470 Installing collected packages: argparse, webencodings, urllib3, six, idna, charset-normalizer, certifi, requests, html5lib, mechanize\n#10 5.801 \n#10 5.802 Successfully installed argparse-1.4.0 certifi-2026.7.22 charset-normalizer-2.0.12 html5lib-1.1 idna-3.18 mechanize-0.4.10 requests-2.27.1 six-1.17.0 urllib3-1.26.20 webencodings-0.6.1\n#10 DONE 6.0s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.3s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.8s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.2s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.1s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.197 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.3s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.6s done\n#21 exporting manifest sha256:5784d2fdc4eea4c2ce54fe155aeaa9979bd8acf6130bda78ccc758d2c302aa6c 0.0s done\n#21 exporting config sha256:e604597523e239c559d8d4e136ef3d602176a60dea6570763bd6bea336687b05 0.0s done\n#21 exporting attestation manifest sha256:840704bb3422eaa8386c727bea63bb1513dde83d7290fa76b81bf0d81e03c8f7 0.0s done\n#21 exporting manifest list sha256:3c769c577811ad4c81a233717e00fc6707c6a2c2d33cb4e78a6828410dbae238 0.0s done\n#21 naming to docker.io/ctk-exec/sstimap:d4f09055b159\n#21 naming to docker.io/ctk-exec/sstimap:d4f09055b159 done\n#21 unpacking to docker.io/ctk-exec/sstimap:d4f09055b159\n#21 unpacking to docker.io/ctk-exec/sstimap:d4f09055b159 1.2s done\n#21 DONE 1.9s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "usage: python -m idna [-h] [-e | -d] [--strict] [--version] [domain ...]\n\nConvert a domain name between its Unicode (U-label) and ASCII-compatible\n(A-label) forms. With no mode flag, the direction is chosen from the first\ninput \u2014 if it contains an xn-- label the stream is decoded, otherwise it is\nencoded \u2014 and the same mode is applied to every remaining input. UTS #46\nmapping is applied by default; pass --strict to disable it. When no domains\nare given on the command line and stdin is piped, one domain per line is read\nfrom stdin.\n\npositional arguments:\n  domain        One or more domain names to convert. Omit to read from stdin.\n\noptions:\n  -h, --help    show this help message and exit\n  -e, --encode  Encode the input to its ASCII A-label form.\n  -d, --decode  Decode the input from its ASCII A-label form.\n  --strict      Disable the default UTS #46 mapping and apply IDNA 2008 rules\n                verbatim.\n  --version     show program's version number and exit\n",
    "stderr": "",
-   "duration_ms": 199,
+   "duration_ms": 140,
    "truncated": false,
    "error": null
   },
@@ -29,7 +29,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for idna\n",
-   "duration_ms": 37,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'idna' in node '(dir)Top'\n",
-   "duration_ms": 25,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -71,5 +71,5 @@
  "head_sha": "d4f09055b15967b0e2265f20eb348a7ec2f25a2c",
  "analyzer": "exec",
  "analyzer_version": "13",
- "generated_at": "2026-08-16T00:56:42.092111+00:00"
+ "generated_at": "2026-08-17T02:31:08.267777+00:00"
 }

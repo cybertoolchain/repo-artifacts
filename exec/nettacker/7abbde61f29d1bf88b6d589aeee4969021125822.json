@@ -1,0 +1,494 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:e213be77575608d04d29ae517f33159f93616b38bb75b2dd0336b8649e864adf",
+  "duration_s": 42.37,
+  "log_tail": "#10 15.39   Building wheel for impacket (pyproject.toml): started\n#10 15.79   Building wheel for impacket (pyproject.toml): finished with status 'done'\n#10 15.79   Created wheel for impacket: filename=impacket-0.11.0-py3-none-any.whl size=1514667 sha256=d860fc7efab3b4ee7a0926f8d18cf34aa53fa28b7ac47f20c9f056f4be5f8cfe\n#10 15.79   Stored in directory: /tmp/pip-ephem-wheel-cache-kgwf5pxn/wheels/23/a5/d2/58d641680edd1bd03fb73b37deafa68ff849312b837538dc9f\n#10 15.79   Building wheel for ipaddr (pyproject.toml): started\n#10 15.93   Building wheel for ipaddr (pyproject.toml): finished with status 'done'\n#10 15.93   Created wheel for ipaddr: filename=ipaddr-2.2.0-py3-none-any.whl size=18353 sha256=59704c3c39ebfc3ed831f0f3131e22f600a4002db3aba23c5e9cb29e90202b3a\n#10 15.93   Stored in directory: /tmp/pip-ephem-wheel-cache-kgwf5pxn/wheels/95/99/bd/70fe0c01fa82e66ac6e05659f7d1c8bd61770d582c63c36824\n#10 15.94 Successfully built nettacker impacket ipaddr\n#10 15.98 Installing collected packages: texttable, netaddr, ipaddr, asyncio, argparse, zipp, uvloop, urllib3, typing_extensions, six, pyyaml, pysocks, pymysql, pycryptodomex, pycparser, pyasn1, py3dns, propcache, multidict, markupsafe, itsdangerous, idna, greenlet, future, frozenlist, dnspython, dill, click, charset_normalizer, certifi, blinker, bcrypt, attrs, apsw, aiohappyeyeballs, yarl, werkzeug, sqlalchemy, requests, multiprocess, ldap3, jinja2, cffi, aiosignal, pynacl, ldapdomaindump, flask, cryptography, aiohttp, pyopenssl, paramiko, dsinternals, impacket, nettacker\n#10 21.49 \n#10 21.49 Successfully installed aiohappyeyeballs-2.7.1 aiohttp-3.14.3 aiosignal-1.4.0 apsw-3.53.4.0 argparse-1.4.0 asyncio-3.4.3 attrs-26.1.0 bcrypt-5.0.0 blinker-1.9.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 click-8.4.2 cryptography-41.0.7 dill-0.4.1 dnspython-2.8.0 dsinternals-1.2.5 flask-3.1.3 frozenlist-1.8.0 future-1.0.0 greenlet-3.5.5 idna-3.18 impacket-0.11.0 ipaddr-2.2.0 itsdangerous-2.2.0 jinja2-3.1.6 ldap3-2.9.1 ldapdomaindump-0.10.0 markupsafe-3.0.3 multidict-6.7.1 multiprocess-0.70.19 netaddr-0.9.0 nettacker-0.4.1 paramiko-3.5.1 propcache-0.5.2 py3dns-4.0.2 pyasn1-0.6.4 pycparser-3.0 pycryptodomex-3.23.0 pymysql-1.2.0 pynacl-1.6.2 pyopenssl-23.3.0 pysocks-1.7.1 pyyaml-6.0.3 requests-2.34.2 six-1.17.0 sqlalchemy-2.0.52 texttable-1.7.0 typing_extensions-4.16.0 urllib3-2.7.0 uvloop-0.21.0 werkzeug-3.1.8 yarl-1.24.5 zipp-3.23.1\n#10 DONE 21.8s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 4.1s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.254 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 8.8s done\n#20 exporting manifest sha256:71b683bae4c3f63886bc6a6b1f632178e4ccd301275ecd66357da0d68460f896 0.0s done\n#20 exporting config sha256:0e95095f320776ba3e634cebfe9c35f96136f8273127e44553ba5be2d2bdcd9e done\n#20 exporting attestation manifest sha256:daf7637edc0cc4e870b72858c0b9ad30d25f6912e16e10ac247ef875bfe7ec94 0.0s done\n#20 exporting manifest list sha256:e213be77575608d04d29ae517f33159f93616b38bb75b2dd0336b8649e864adf 0.0s done\n#20 naming to docker.io/ctk-exec/nettacker:7abbde61f29d done\n#20 unpacking to docker.io/ctk-exec/nettacker:7abbde61f29d\n#20 unpacking to docker.io/ctk-exec/nettacker:7abbde61f29d 2.1s done\n#20 DONE 11.1s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "nettacker",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "   ______          __      _____ _____\n  / __ \\ \\        / /\\    / ____|  __ \\\n | |  | \\ \\  /\\  / /  \\  | (___ | |__) |\n | |  | |\\ \\/  \\/ / /\\ \\  \\___ \\|  ___/\n | |__| | \\  /\\  / ____ \\ ____) | |     \u001b[1;31mVersion 0.4.1\u001b[0m\n  \\____/   \\/  \\/_/    \\_\\_____/|_|     \u001b[1;33mQUIN\u001b[0m\n                          _   _      _   _             _\n                         | \\ | |    | | | |           | |\n  \u001b[1;36mgithub.com/OWASP\u001b[0m       |  \\| | ___| |_| |_ __ _  ___| | _____ _ __\n  \u001b[1;36mowasp.org\u001b[0m              | . ` |/ _ \\ __| __/ _` |/ __| |/ / _ \\ '__|\n  \u001b[1;36mz3r0d4y.com\u001b[0m            | |\\  |  __/ |_| || (_| | (__|   <  __/ |\n                         |_| \\_|\\___|\\__|\\__\\__,_|\\___|_|\\_\\___|_|\n\n\u001b[0m",
+   "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data/tmp'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/nettacker\", line 6, in <module>\n    sys.exit(run())\n             ^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/main.py\", line 7, in run\n    app = Nettacker()\n          ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 44, in __init__\n    self.check_dependencies()\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 73, in check_dependencies\n    Config.path.tmp_dir.mkdir(exist_ok=True, parents=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/.nettacker'\n",
+   "duration_ms": 721,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "nettacker",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "   ______          __      _____ _____\n  / __ \\ \\        / /\\    / ____|  __ \\\n | |  | \\ \\  /\\  / /  \\  | (___ | |__) |\n | |  | |\\ \\/  \\/ / /\\ \\  \\___ \\|  ___/\n | |__| | \\  /\\  / ____ \\ ____) | |     \u001b[1;31mVersion 0.4.1\u001b[0m\n  \\____/   \\/  \\/_/    \\_\\_____/|_|     \u001b[1;33mQUIN\u001b[0m\n                          _   _      _   _             _\n                         | \\ | |    | | | |           | |\n  \u001b[1;36mgithub.com/OWASP\u001b[0m       |  \\| | ___| |_| |_ __ _  ___| | _____ _ __\n  \u001b[1;36mowasp.org\u001b[0m              | . ` |/ _ \\ __| __/ _` |/ __| |/ / _ \\ '__|\n  \u001b[1;36mz3r0d4y.com\u001b[0m            | |\\  |  __/ |_| || (_| | (__|   <  __/ |\n                         |_| \\_|\\___|\\__|\\__\\__,_|\\___|_|\\_\\___|_|\n\n\u001b[0m",
+   "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data/tmp'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/nettacker\", line 6, in <module>\n    sys.exit(run())\n             ^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/main.py\", line 7, in run\n    app = Nettacker()\n          ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 44, in __init__\n    self.check_dependencies()\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 73, in check_dependencies\n    Config.path.tmp_dir.mkdir(exist_ok=True, parents=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/.nettacker'\n",
+   "duration_ms": 588,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "nettacker",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "   ______          __      _____ _____\n  / __ \\ \\        / /\\    / ____|  __ \\\n | |  | \\ \\  /\\  / /  \\  | (___ | |__) |\n | |  | |\\ \\/  \\/ / /\\ \\  \\___ \\|  ___/\n | |__| | \\  /\\  / ____ \\ ____) | |     \u001b[1;31mVersion 0.4.1\u001b[0m\n  \\____/   \\/  \\/_/    \\_\\_____/|_|     \u001b[1;33mQUIN\u001b[0m\n                          _   _      _   _             _\n                         | \\ | |    | | | |           | |\n  \u001b[1;36mgithub.com/OWASP\u001b[0m       |  \\| | ___| |_| |_ __ _  ___| | _____ _ __\n  \u001b[1;36mowasp.org\u001b[0m              | . ` |/ _ \\ __| __/ _` |/ __| |/ / _ \\ '__|\n  \u001b[1;36mz3r0d4y.com\u001b[0m            | |\\  |  __/ |_| || (_| | (__|   <  __/ |\n                         |_| \\_|\\___|\\__|\\__\\__,_|\\___|_|\\_\\___|_|\n\n\u001b[0m",
+   "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data/tmp'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/nettacker\", line 6, in <module>\n    sys.exit(run())\n             ^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/main.py\", line 7, in run\n    app = Nettacker()\n          ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 44, in __init__\n    self.check_dependencies()\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 73, in check_dependencies\n    Config.path.tmp_dir.mkdir(exist_ok=True, parents=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/.nettacker'\n",
+   "duration_ms": 593,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "nettacker",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "   ______          __      _____ _____\n  / __ \\ \\        / /\\    / ____|  __ \\\n | |  | \\ \\  /\\  / /  \\  | (___ | |__) |\n | |  | |\\ \\/  \\/ / /\\ \\  \\___ \\|  ___/\n | |__| | \\  /\\  / ____ \\ ____) | |     \u001b[1;31mVersion 0.4.1\u001b[0m\n  \\____/   \\/  \\/_/    \\_\\_____/|_|     \u001b[1;33mQUIN\u001b[0m\n                          _   _      _   _             _\n                         | \\ | |    | | | |           | |\n  \u001b[1;36mgithub.com/OWASP\u001b[0m       |  \\| | ___| |_| |_ __ _  ___| | _____ _ __\n  \u001b[1;36mowasp.org\u001b[0m              | . ` |/ _ \\ __| __/ _` |/ __| |/ / _ \\ '__|\n  \u001b[1;36mz3r0d4y.com\u001b[0m            | |\\  |  __/ |_| || (_| | (__|   <  __/ |\n                         |_| \\_|\\___|\\__|\\__\\__,_|\\___|_|\\_\\___|_|\n\n\u001b[0m",
+   "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data/tmp'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/nettacker\", line 6, in <module>\n    sys.exit(run())\n             ^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/main.py\", line 7, in run\n    app = Nettacker()\n          ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 44, in __init__\n    self.check_dependencies()\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 73, in check_dependencies\n    Config.path.tmp_dir.mkdir(exist_ok=True, parents=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/.nettacker'\n",
+   "duration_ms": 808,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "nettacker"
+   ],
+   "exit_code": 1,
+   "stdout": "   ______          __      _____ _____\n  / __ \\ \\        / /\\    / ____|  __ \\\n | |  | \\ \\  /\\  / /  \\  | (___ | |__) |\n | |  | |\\ \\/  \\/ / /\\ \\  \\___ \\|  ___/\n | |__| | \\  /\\  / ____ \\ ____) | |     \u001b[1;31mVersion 0.4.1\u001b[0m\n  \\____/   \\/  \\/_/    \\_\\_____/|_|     \u001b[1;33mQUIN\u001b[0m\n                          _   _      _   _             _\n                         | \\ | |    | | | |           | |\n  \u001b[1;36mgithub.com/OWASP\u001b[0m       |  \\| | ___| |_| |_ __ _  ___| | _____ _ __\n  \u001b[1;36mowasp.org\u001b[0m              | . ` |/ _ \\ __| __/ _` |/ __| |/ / _ \\ '__|\n  \u001b[1;36mz3r0d4y.com\u001b[0m            | |\\  |  __/ |_| || (_| | (__|   <  __/ |\n                         |_| \\_|\\___|\\__|\\__\\__,_|\\___|_|\\_\\___|_|\n\n\u001b[0m",
+   "stderr": "Traceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data/tmp'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nFileNotFoundError: [Errno 2] No such file or directory: '/.nettacker/data'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/opt/venv/bin/nettacker\", line 6, in <module>\n    sys.exit(run())\n             ^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/main.py\", line 7, in run\n    app = Nettacker()\n          ^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 44, in __init__\n    self.check_dependencies()\n  File \"/opt/venv/lib/python3.12/site-packages/nettacker/core/app.py\", line 73, in check_dependencies\n    Config.path.tmp_dir.mkdir(exist_ok=True, parents=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1315, in mkdir\n    self.parent.mkdir(parents=True, exist_ok=True)\n  File \"/usr/local/lib/python3.12/pathlib.py\", line 1311, in mkdir\n    os.mkdir(self, mode)\nOSError: [Errno 30] Read-only file system: '/.nettacker'\n",
+   "duration_ms": 655,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "DumpNTLMInfo.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/DumpNTLMInfo.py\", line 45, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 105,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "DumpNTLMInfo.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/DumpNTLMInfo.py\", line 45, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 189,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "DumpNTLMInfo.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/DumpNTLMInfo.py\", line 45, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 150,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "DumpNTLMInfo.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/DumpNTLMInfo.py\", line 45, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 147,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "DumpNTLMInfo.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/DumpNTLMInfo.py\", line 45, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 130,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Get-GPPPassword.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/Get-GPPPassword.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 262,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Get-GPPPassword.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/Get-GPPPassword.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 248,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Get-GPPPassword.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/Get-GPPPassword.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 214,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Get-GPPPassword.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/Get-GPPPassword.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 206,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "Get-GPPPassword.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/Get-GPPPassword.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 207,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetADUsers.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetADUsers.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 90,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetADUsers.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetADUsers.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 95,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetADUsers.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetADUsers.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 90,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetADUsers.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetADUsers.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 87,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetADUsers.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetADUsers.py\", line 33, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 89,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetNPUsers.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetNPUsers.py\", line 39, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 102,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetNPUsers.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetNPUsers.py\", line 39, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 99,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetNPUsers.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetNPUsers.py\", line 39, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 117,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetNPUsers.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetNPUsers.py\", line 39, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 109,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetNPUsers.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetNPUsers.py\", line 39, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 109,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetUserSPNs.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetUserSPNs.py\", line 40, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 113,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetUserSPNs.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetUserSPNs.py\", line 40, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 107,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetUserSPNs.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetUserSPNs.py\", line 40, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 108,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetUserSPNs.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetUserSPNs.py\", line 40, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 111,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "GetUserSPNs.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/GetUserSPNs.py\", line 40, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 111,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "addcomputer.py",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/addcomputer.py\", line 30, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 91,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "addcomputer.py",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/addcomputer.py\", line 30, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 83,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "addcomputer.py",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/addcomputer.py\", line 30, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 88,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "addcomputer.py",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/addcomputer.py\", line 30, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 87,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "addcomputer.py"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/addcomputer.py\", line 30, in <module>\n    from impacket import version\n  File \"/opt/venv/lib/python3.12/site-packages/impacket/version.py\", line 10, in <module>\n    import pkg_resources\nModuleNotFoundError: No module named 'pkg_resources'\n",
+   "duration_ms": 94,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "apsw",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "Usage: apsw [OPTIONS] FILENAME [SQL|CMD] [SQL|CMD]...\n\nFILENAME is the name of a SQLite database. A new database is\ncreated if the file does not exist. If omitted or an empty\nstring then an in-memory database is created.\n\nOPTIONS include:\n\n   -init filename       read/process named file\n   -echo                print commands before execution\n   -[no]header          turn headers on or off\n   -bail                stop after hitting the first error\n   -interactive         force interactive I/O (command editing and colour)\n   -batch               force batch I/O (no banners or editing)\n   -column              set output mode to 'column'\n   -csv                 set output mode to 'csv'\n   -html                set output mode to 'html'\n   -line                set output mode to 'line'\n   -list                set output mode to 'list'\n   -python              set output mode to 'python'\n   -jsonl               set output mode to 'jsonl'\n   -separator 'x'       set output field separator (|)\n   -nullvalue 'text'    set text string for NULL values\n   -version             show SQLite version\n   -encoding 'name'     the encoding to use for files\n                        opened via .import, .read & .output\n   -nocolour            disables interactive colour output, as does\n                        setting NO_COLOR environment variable\n",
+   "duration_ms": 269,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "apsw"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for apsw\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "apsw"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'apsw' in node '(dir)Top'\n",
+   "duration_ms": 6,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 38,
+   "binary": "apsw",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "nettacker",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "Nettacker",
+ "repo": "OWASP/Nettacker",
+ "head_sha": "7abbde61f29d1bf88b6d589aeee4969021125822",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-17T04:26:29.192588+00:00"
+}

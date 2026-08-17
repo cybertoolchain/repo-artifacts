@@ -1,0 +1,972 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:d2fccaaab9c38c464a32d06c30dd4e0d644780f279864e863ede96a02c9bc81b",
+  "duration_s": 42.7,
+  "log_tail": "#11 11.69 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#11 11.72 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#11 11.78 debconf: unable to initialize frontend: Dialog\n#11 11.78 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 11.78 debconf: falling back to frontend: Readline\n#11 11.78 debconf: unable to initialize frontend: Readline\n#11 11.78 debconf: (This frontend requires a controlling tty.)\n#11 11.78 debconf: falling back to frontend: Teletype\n#11 11.81 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 11.85 Setting up texinfo (6.8-6+b1) ...\n#11 11.88 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 11.92 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 12.0s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.7s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.9s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.2s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.2s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.285 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 6.6s done\n#20 exporting manifest sha256:6327d477039173221067f6f80d86ebe7124afcbab017a948b2c176bec3657500 0.0s done\n#20 exporting config sha256:804ef2c98b1a35870b5678460c061c9826727bd769ee36ac7cc312fc9ea37045 0.0s done\n#20 exporting attestation manifest sha256:8c09cb85acba0f5443c08610c17386196a0e971fe5e76abb62ebadfce44f03e0 0.0s done\n#20 exporting manifest list sha256:d2fccaaab9c38c464a32d06c30dd4e0d644780f279864e863ede96a02c9bc81b 0.0s done\n#20 naming to docker.io/ctk-exec/theharvester:1f629720e463 done\n#20 unpacking to docker.io/ctk-exec/theharvester:1f629720e463\n#20 unpacking to docker.io/ctk-exec/theharvester:1f629720e463 1.6s done\n#20 DONE 8.3s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "theHarvester",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "*******************************************************************\n*  _   _                                            _             *\n* | |_| |__   ___    /\\  /\\__ _ _ ____   _____  ___| |_ ___ _ __  *\n* | __|  _ \\ / _ \\  / /_/ / _` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__| *\n* | |_| | | |  __/ / __  / (_| | |   \\ V /  __/\\__ \\ ||  __/ |    *\n*  \\__|_| |_|\\___| \\/ /_/ \\__,_|_|    \\_/ \\___||___/\\__\\___|_|    *\n*                                                                 *\n* theHarvester 4.11.1                                             *\n* Coded by Christian Martorella                                   *\n* Edge-Security Research                                          *\n* cmartorella@edge-security.com                                   *\n*                                                                 *\n*******************************************************************\nusage: theHarvester [-h] -d DOMAIN [-l LIMIT] [-S START] [-j SOURCE_WORKERS]\n                    [-p] [--no-hosts] [-s] [--routeviews] [--screenshot DIR]\n                    [-e DNS_SERVER] [-t] [-r [DNS_RESOLVE]]\n                    [--dns-resolvers IPS_OR_FILE] [-n] [-c]\n                    [--dns-recursive-depth DNS_RECURSIVE_DEPTH]\n                    [--dns-recursive-query-limit DNS_RECURSIVE_QUERY_LIMIT]\n                    [--dns-recursive-runtime-seconds DNS_RECURSIVE_RUNTIME_SECONDS]\n                    [-f NAME] [-w WORDLIST] [-a] [--vhost]\n                    [--vhost-endpoint VHOST_ENDPOINT]\n                    [--vhost-candidate HOSTNAME]\n                    [--vhost-request-limit VHOST_REQUEST_LIMIT]\n                    [--vhost-runtime-seconds VHOST_RUNTIME_SECONDS]\n                    [--vhost-timeout-seconds VHOST_TIMEOUT_SECONDS]\n                    [--vhost-concurrency VHOST_CONCURRENCY] [--vhost-insecure]\n                    [-q] [-v] [-b SOURCE]\n\ntheHarvester is used to gather open source intelligence (OSINT) on a company\nor domain.\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Company name or domain to search, or an explicit\n                        ASN/IP/CIDR target for --routeviews.\n  -l LIMIT, --limit LIMIT\n                        Maximum results requested from each source that\n                        supports result limits (default: 500).\n  -S START, --start START\n                        Result offset for sources that support pagination\n                        (default: 0).\n  -j SOURCE_WORKERS, --source-workers SOURCE_WORKERS\n                        Maximum discovery sources to run at once (default: 3).\n  -p, --proxies         Use proxies.yaml for supported discovery-source,\n                        Shodan, and takeover requests. Takeover fails closed\n                        if no proxy is available.\n  --no-hosts            Exclude hostname results while retaining other result\n                        types returned by selected sources.\n  -s, --shodan          Query the Shodan Host API for discovered IPs, using\n                        configured proxies when enabled.\n  --routeviews          Enrich discovered IPs with sourced ASN attribution, or\n                        an explicitly targeted ASN, IP, or prefix, through\n                        RouteViews. Returned routing relationships do not\n                        establish ownership or target scope. Uses\n                        authenticated access when a RouteViews API key is\n                        configured.\n  --screenshot DIR      Save screenshots of reachable discovered hosts to DIR.\n                        This sends direct browser requests.\n  -e DNS_SERVER, --dns-server DNS_SERVER\n                        Accepted for compatibility but currently unused; use\n                        --dns-resolvers to select resolvers.\n  -t, --take-over       Check discovered hosts for provider-gated takeover\n                        indicators. Uses configured DNS resolvers and wildcard\n                        controls, does not follow redirects, and uses\n                        configured proxies when enabled. Indicators are not\n                        confirmed takeovers.\n  -r [DNS_RESOLVE], --dns-resolve [DNS_RESOLVE]\n                        Resolve discovered hostnames. Pass comma-separated\n                        resolver IPs or a text file with one IP per line; omit\n                        the value to use defaults. One run-wide phase uses at\n                        most 20 hostname jobs; its query and runtime limits\n                        are unlimited by default.\n  --dns-resolvers IPS_OR_FILE\n                        Select resolver IPs for DNS actions without enabling\n                        hostname resolution. Pass comma-separated IPs or a\n                        text file with one IP per line.\n  -n, --dns-lookup      Perform PTR lookups across the /24 network containing\n                        each discovered IPv4 address. Addresses are\n                        deduplicated; one run-wide phase uses at most 20\n                        active jobs with no default request or runtime\n                        ceiling. This sends active DNS queries.\n  -c, --dns-brute       Perform a DNS brute force on the domain.\n  --dns-recursive-depth DNS_RECURSIVE_DEPTH\n                        Enable recursive DNS discovery to this maximum depth.\n                        Zero disables it.\n  --dns-recursive-query-limit DNS_RECURSIVE_QUERY_LIMIT\n                        Hard cap on recursive DNS record queries across all\n                        resolver vantages.\n  --dns-recursive-runtime-seconds DNS_RECURSIVE_RUNTIME_SECONDS\n                        Hard runtime cap in seconds for recursive DNS\n                        discovery.\n  -f NAME, --filename NAME\n                        Write NAME.json, NAME.xml, and NAME.jsonl.\n  -w WORDLIST, --wordlist WORDLIST\n                        Path to the endpoint wordlist used by --api-scan.\n  -a, --api-scan        Check common API paths with GET, HEAD, and OPTIONS.\n                        Requests follow redirects.\n  -q, --quiet           Suppress missing API key warnings and reading the api-\n                        keys file.\n  -v, --verbose         Show informational diagnostic messages.\n  -b SOURCE, --source SOURCE\n                        Comma-separated source names or source capabilities.\n                        Multiple capabilities select the union of matching\n                        sources; they do not filter returned fields.\n                        Capabilities: subdomains, emails, ips, asns, urls,\n                        people, breaches, all. Sources: apis-guru, arquivo,\n                        baidu, bevigil, brave, bufferoverun, builtwith,\n                        censys, certspotter, commoncrawl, criminalip, crt-\n                        name, crtsh, dehashed, dnsdb, dnsdumpster, duckduckgo,\n                        dymo, fofa, fullhunt, github-code, gitlab,\n                        hackertarget, haveibeenpwned, hibpverified,\n                        hudsonrock, hunter, hunterhow, intelx, leakix,\n                        leaklookup, mojeek, netlas, onyphe, otx, pentesttools,\n                        projectdiscovery, rapiddns, robtex, rocketreach,\n                        securityscorecard, securityTrails, sherlockeye,\n                        shodan, shodanct, shodanInternetDB, sourcegraph,\n                        subdomaincenter, subdomainfinderc99, thc, tomba,\n                        urlscan, virustotal, waybackarchive, whoisxml,\n                        windvane, yahoo, zoomeye\n\nvirtual host discovery:\n  P2 direct interaction (active reconnaissance): sends direct HTTP and TLS\n  requests. For normal use, pass only --vhost; bounded safety defaults apply\n  automatically. Supplying --vhost-endpoint or --vhost-candidate also\n  enables discovery.\n\n  --vhost               Test harvested in-scope hostnames against harvested\n                        literal IPs, using HTTPS before HTTP.\n  --vhost-endpoint VHOST_ENDPOINT\n                        Replace harvested IPs with one authorized HTTP or\n                        HTTPS endpoint using a literal IP.\n  --vhost-candidate HOSTNAME\n                        Repeat to add an authorized in-scope hostname.\n                        Candidate names are never resolved through DNS.\n\nvirtual host advanced controls:\n  Optional safety overrides. Bounded defaults apply when these options are\n  omitted.\n\n  --vhost-request-limit VHOST_REQUEST_LIMIT\n                        Hard request cap shared by baseline, controls,\n                        candidates, and confirmations (default: 100).\n  --vhost-runtime-seconds VHOST_RUNTIME_SECONDS\n                        Hard wall-clock cap for virtual-host discovery\n                        (default: 30.0 seconds).\n  --vhost-timeout-seconds VHOST_TIMEOUT_SECONDS\n                        Timeout for each virtual-host request (default: 5.0\n                        seconds).\n  --vhost-concurrency VHOST_CONCURRENCY\n                        Maximum concurrent candidate requests (default: 5).\n  --vhost-insecure      Do not verify TLS certificates for HTTPS probes;\n                        evidence records tls_verified=false.\n",
+   "stderr": "",
+   "duration_ms": 753,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "theHarvester"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for theHarvester\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "theHarvester"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'theHarvester' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "theHarvester",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "theHarvester",
+   "source": "pyproject.toml [project.scripts]"
+  },
+  {
+   "name": "harvestview",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--domain": "Company name or domain to search, or an explicit ASN/IP/CIDR target for --routeviews.",
+   "-d": "Company name or domain to search, or an explicit ASN/IP/CIDR target for --routeviews.",
+   "--limit": "Maximum results requested from each source that supports result limits (default: 500).",
+   "-l": "Maximum results requested from each source that supports result limits (default: 500).",
+   "--start": "Result offset for sources that support pagination (default: 0).",
+   "-S": "Result offset for sources that support pagination (default: 0).",
+   "--source-workers": "Maximum discovery sources to run at once (default: 3).",
+   "-j": "Maximum discovery sources to run at once (default: 3).",
+   "--proxies": "Use proxies.yaml for supported discovery-source, Shodan, and takeover requests. Takeover fails closed if no proxy is available.",
+   "-p": "Use proxies.yaml for supported discovery-source, Shodan, and takeover requests. Takeover fails closed if no proxy is available.",
+   "--no-hosts": "Exclude hostname results while retaining other result types returned by selected sources.",
+   "--shodan": "Query the Shodan Host API for discovered IPs, using configured proxies when enabled.",
+   "-s": "Query the Shodan Host API for discovered IPs, using configured proxies when enabled.",
+   "--routeviews": "Enrich discovered IPs with sourced ASN attribution, or an explicitly targeted ASN, IP, or prefix, through RouteViews. Returned routing relationships do not establish ownership or target scope. Uses authenticated access when a RouteViews API key is configured.",
+   "--screenshot": "Save screenshots of reachable discovered hosts to DIR. This sends direct browser requests.",
+   "--dns-server": "Accepted for compatibility but currently unused; use",
+   "-e": "Accepted for compatibility but currently unused; use",
+   "--dns-resolvers": "",
+   "--take-over": "Check discovered hosts for provider-gated takeover indicators. Uses configured DNS resolvers and wildcard controls, does not follow redirects, and uses configured proxies when enabled. Indicators are not confirmed takeovers.",
+   "-t": "Check discovered hosts for provider-gated takeover indicators. Uses configured DNS resolvers and wildcard controls, does not follow redirects, and uses configured proxies when enabled. Indicators are not confirmed takeovers.",
+   "--dns-resolve": "Resolve discovered hostnames. Pass comma-separated resolver IPs or a text file with one IP per line; omit the value to use defaults. One run-wide phase uses at most 20 hostname jobs; its query and runtime limits are unlimited by default.",
+   "-r": "Resolve discovered hostnames. Pass comma-separated resolver IPs or a text file with one IP per line; omit the value to use defaults. One run-wide phase uses at most 20 hostname jobs; its query and runtime limits are unlimited by default.",
+   "--dns-lookup": "Perform PTR lookups across the /24 network containing each discovered IPv4 address. Addresses are deduplicated; one run-wide phase uses at most 20 active jobs with no default request or runtime ceiling. This sends active DNS queries.",
+   "-n": "Perform PTR lookups across the /24 network containing each discovered IPv4 address. Addresses are deduplicated; one run-wide phase uses at most 20 active jobs with no default request or runtime ceiling. This sends active DNS queries.",
+   "--dns-brute": "Perform a DNS brute force on the domain.",
+   "-c": "Perform a DNS brute force on the domain.",
+   "--dns-recursive-depth": "Enable recursive DNS discovery to this maximum depth. Zero disables it.",
+   "--dns-recursive-query-limit": "Hard cap on recursive DNS record queries across all resolver vantages.",
+   "--dns-recursive-runtime-seconds": "Hard runtime cap in seconds for recursive DNS discovery.",
+   "--filename": "Write NAME.json, NAME.xml, and NAME.jsonl.",
+   "-f": "Write NAME.json, NAME.xml, and NAME.jsonl.",
+   "--wordlist": "Path to the endpoint wordlist used by --api-scan.",
+   "-w": "Path to the endpoint wordlist used by --api-scan.",
+   "--api-scan": "Check common API paths with GET, HEAD, and OPTIONS. Requests follow redirects.",
+   "-a": "Check common API paths with GET, HEAD, and OPTIONS. Requests follow redirects.",
+   "--quiet": "Suppress missing API key warnings and reading the api- keys file.",
+   "-q": "Suppress missing API key warnings and reading the api- keys file.",
+   "--verbose": "Show informational diagnostic messages.",
+   "-v": "Show informational diagnostic messages.",
+   "--source": "Comma-separated source names or source capabilities. Multiple capabilities select the union of matching sources; they do not filter returned fields. Capabilities: subdomains, emails, ips, asns, urls, people, breaches, all. Sources: apis-guru, arquivo, baidu, bevigil, brave, bufferoverun, builtwith, censys, certspotter, commoncrawl, criminalip, crt- name, crtsh, dehashed, dnsdb, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hibpverified, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanct, shodanInternetDB, sourcegraph, subdomaincenter, subdomainfinderc99, thc, tomba, urlscan, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye",
+   "-b": "Comma-separated source names or source capabilities. Multiple capabilities select the union of matching sources; they do not filter returned fields. Capabilities: subdomains, emails, ips, asns, urls, people, breaches, all. Sources: apis-guru, arquivo, baidu, bevigil, brave, bufferoverun, builtwith, censys, certspotter, commoncrawl, criminalip, crt- name, crtsh, dehashed, dnsdb, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hibpverified, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanct, shodanInternetDB, sourcegraph, subdomaincenter, subdomainfinderc99, thc, tomba, urlscan, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye",
+   "--vhost": "Test harvested in-scope hostnames against harvested literal IPs, using HTTPS before HTTP.",
+   "--vhost-endpoint": "Replace harvested IPs with one authorized HTTP or HTTPS endpoint using a literal IP.",
+   "--vhost-candidate": "Repeat to add an authorized in-scope hostname. Candidate names are never resolved through DNS.",
+   "--vhost-request-limit": "Hard request cap shared by baseline, controls, candidates, and confirmations (default: 100).",
+   "--vhost-runtime-seconds": "Hard wall-clock cap for virtual-host discovery (default: 30.0 seconds).",
+   "--vhost-timeout-seconds": "Timeout for each virtual-host request (default: 5.0 seconds).",
+   "--vhost-concurrency": "Maximum concurrent candidate requests (default: 5).",
+   "--vhost-insecure": "Do not verify TLS certificates for HTTPS probes; evidence records tls_verified=false."
+  },
+  "values_seen": {
+   "-d": "DOMAIN",
+   "--domain": "DOMAIN",
+   "-l": "LIMIT",
+   "--limit": "LIMIT",
+   "-S": "START",
+   "--start": "START",
+   "-j": "SOURCE_WORKERS",
+   "--source-workers": "SOURCE_WORKERS",
+   "--screenshot": "DIR",
+   "-e": "DNS_SERVER",
+   "--dns-server": "DNS_SERVER",
+   "-r": "[DNS_RESOLVE]",
+   "--dns-resolve": "[DNS_RESOLVE]",
+   "--dns-resolvers": "IPS_OR_FILE",
+   "--dns-recursive-depth": "DNS_RECURSIVE_DEPTH",
+   "--dns-recursive-query-limit": "DNS_RECURSIVE_QUERY_LIMIT",
+   "--dns-recursive-runtime-seconds": "DNS_RECURSIVE_RUNTIME_SECONDS",
+   "-f": "NAME",
+   "--filename": "NAME",
+   "-w": "WORDLIST",
+   "--wordlist": "WORDLIST",
+   "-b": "SOURCE",
+   "--source": "SOURCE",
+   "--vhost-endpoint": "VHOST_ENDPOINT",
+   "--vhost-candidate": "HOSTNAME",
+   "--vhost-request-limit": "VHOST_REQUEST_LIMIT",
+   "--vhost-runtime-seconds": "VHOST_RUNTIME_SECONDS",
+   "--vhost-timeout-seconds": "VHOST_TIMEOUT_SECONDS",
+   "--vhost-concurrency": "VHOST_CONCURRENCY"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--domain": [
+    "-d"
+   ],
+   "--limit": [
+    "-l"
+   ],
+   "--start": [
+    "-S"
+   ],
+   "--source-workers": [
+    "-j"
+   ],
+   "--proxies": [
+    "-p"
+   ],
+   "--shodan": [
+    "-s"
+   ],
+   "--dns-server": [
+    "-e"
+   ],
+   "--take-over": [
+    "-t"
+   ],
+   "--dns-resolve": [
+    "-r"
+   ],
+   "--dns-lookup": [
+    "-n"
+   ],
+   "--dns-brute": [
+    "-c"
+   ],
+   "--filename": [
+    "-f"
+   ],
+   "--wordlist": [
+    "-w"
+   ],
+   "--api-scan": [
+    "-a"
+   ],
+   "--quiet": [
+    "-q"
+   ],
+   "--verbose": [
+    "-v"
+   ],
+   "--source": [
+    "-b"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "theHarvester",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "5af338ca225fcc6b20c231b6dda1f07dfe8fa0ea12c60ee361128cd94acb5501",
+  "text": "*******************************************************************\n*  _   _                                            _             *\n* | |_| |__   ___    /\\  /\\__ _ _ ____   _____  ___| |_ ___ _ __  *\n* | __|  _ \\ / _ \\  / /_/ / _` | '__\\ \\ / / _ \\/ __| __/ _ \\ '__| *\n* | |_| | | |  __/ / __  / (_| | |   \\ V /  __/\\__ \\ ||  __/ |    *\n*  \\__|_| |_|\\___| \\/ /_/ \\__,_|_|    \\_/ \\___||___/\\__\\___|_|    *\n*                                                                 *\n* theHarvester 4.11.1                                             *\n* Coded by Christian Martorella                                   *\n* Edge-Security Research                                          *\n* cmartorella@edge-security.com                                   *\n*                                                                 *\n*******************************************************************\nusage: theHarvester [-h] -d DOMAIN [-l LIMIT] [-S START] [-j SOURCE_WORKERS]\n                    [-p] [--no-hosts] [-s] [--routeviews] [--screenshot DIR]\n                    [-e DNS_SERVER] [-t] [-r [DNS_RESOLVE]]\n                    [--dns-resolvers IPS_OR_FILE] [-n] [-c]\n                    [--dns-recursive-depth DNS_RECURSIVE_DEPTH]\n                    [--dns-recursive-query-limit DNS_RECURSIVE_QUERY_LIMIT]\n                    [--dns-recursive-runtime-seconds DNS_RECURSIVE_RUNTIME_SECONDS]\n                    [-f NAME] [-w WORDLIST] [-a] [--vhost]\n                    [--vhost-endpoint VHOST_ENDPOINT]\n                    [--vhost-candidate HOSTNAME]\n                    [--vhost-request-limit VHOST_REQUEST_LIMIT]\n                    [--vhost-runtime-seconds VHOST_RUNTIME_SECONDS]\n                    [--vhost-timeout-seconds VHOST_TIMEOUT_SECONDS]\n                    [--vhost-concurrency VHOST_CONCURRENCY] [--vhost-insecure]\n                    [-q] [-v] [-b SOURCE]\n\ntheHarvester is used to gather open source intelligence (OSINT) on a company\nor domain.\n\noptions:\n  -h, --help            show this help message and exit\n  -d DOMAIN, --domain DOMAIN\n                        Company name or domain to search, or an explicit\n                        ASN/IP/CIDR target for --routeviews.\n  -l LIMIT, --limit LIMIT\n                        Maximum results requested from each source that\n                        supports result limits (default: 500).\n  -S START, --start START\n                        Result offset for sources that support pagination\n                        (default: 0).\n  -j SOURCE_WORKERS, --source-workers SOURCE_WORKERS\n                        Maximum discovery sources to run at once (default: 3).\n  -p, --proxies         Use proxies.yaml for supported discovery-source,\n                        Shodan, and takeover requests. Takeover fails closed\n                        if no proxy is available.\n  --no-hosts            Exclude hostname results while retaining other result\n                        types returned by selected sources.\n  -s, --shodan          Query the Shodan Host API for discovered IPs, using\n                        configured proxies when enabled.\n  --routeviews          Enrich discovered IPs with sourced ASN attribution, or\n                        an explicitly targeted ASN, IP, or prefix, through\n                        RouteViews. Returned routing relationships do not\n                        establish ownership or target scope. Uses\n                        authenticated access when a RouteViews API key is\n                        configured.\n  --screenshot DIR      Save screenshots of reachable discovered hosts to DIR.\n                        This sends direct browser requests.\n  -e DNS_SERVER, --dns-server DNS_SERVER\n                        Accepted for compatibility but currently unused; use\n                        --dns-resolvers to select resolvers.\n  -t, --take-over       Check discovered hosts for provider-gated takeover\n                        indicators. Uses configured DNS resolvers and wildcard\n                        controls, does not follow redirects, and uses\n                        configured proxies when enabled. Indicators are not\n                        confirmed takeovers.\n  -r [DNS_RESOLVE], --dns-resolve [DNS_RESOLVE]\n                        Resolve discovered hostnames. Pass comma-separated\n                        resolver IPs or a text file with one IP per line; omit\n                        the value to use defaults. One run-wide phase uses at\n                        most 20 hostname jobs; its query and runtime limits\n                        are unlimited by default.\n  --dns-resolvers IPS_OR_FILE\n                        Select resolver IPs for DNS actions without enabling\n                        hostname resolution. Pass comma-separated IPs or a\n                        text file with one IP per line.\n  -n, --dns-lookup      Perform PTR lookups across the /24 network containing\n                        each discovered IPv4 address. Addresses are\n                        deduplicated; one run-wide phase uses at most 20\n                        active jobs with no default request or runtime\n                        ceiling. This sends active DNS queries.\n  -c, --dns-brute       Perform a DNS brute force on the domain.\n  --dns-recursive-depth DNS_RECURSIVE_DEPTH\n                        Enable recursive DNS discovery to this maximum depth.\n                        Zero disables it.\n  --dns-recursive-query-limit DNS_RECURSIVE_QUERY_LIMIT\n                        Hard cap on recursive DNS record queries across all\n                        resolver vantages.\n  --dns-recursive-runtime-seconds DNS_RECURSIVE_RUNTIME_SECONDS\n                        Hard runtime cap in seconds for recursive DNS\n                        discovery.\n  -f NAME, --filename NAME\n                        Write NAME.json, NAME.xml, and NAME.jsonl.\n  -w WORDLIST, --wordlist WORDLIST\n                        Path to the endpoint wordlist used by --api-scan.\n  -a, --api-scan        Check common API paths with GET, HEAD, and OPTIONS.\n                        Requests follow redirects.\n  -q, --quiet           Suppress missing API key warnings and reading the api-\n                        keys file.\n  -v, --verbose         Show informational diagnostic messages.\n  -b SOURCE, --source SOURCE\n                        Comma-separated source names or source capabilities.\n                        Multiple capabilities select the union of matching\n                        sources; they do not filter returned fields.\n                        Capabilities: subdomains, emails, ips, asns, urls,\n                        people, breaches, all. Sources: apis-guru, arquivo,\n                        baidu, bevigil, brave, bufferoverun, builtwith,\n                        censys, certspotter, commoncrawl, criminalip, crt-\n                        name, crtsh, dehashed, dnsdb, dnsdumpster, duckduckgo,\n                        dymo, fofa, fullhunt, github-code, gitlab,\n                        hackertarget, haveibeenpwned, hibpverified,\n                        hudsonrock, hunter, hunterhow, intelx, leakix,\n                        leaklookup, mojeek, netlas, onyphe, otx, pentesttools,\n                        projectdiscovery, rapiddns, robtex, rocketreach,\n                        securityscorecard, securityTrails, sherlockeye,\n                        shodan, shodanct, shodanInternetDB, sourcegraph,\n                        subdomaincenter, subdomainfinderc99, thc, tomba,\n                        urlscan, virustotal, waybackarchive, whoisxml,\n                        windvane, yahoo, zoomeye\n\nvirtual host discovery:\n  P2 direct interaction (active reconnaissance): sends direct HTTP and TLS\n  requests. For normal use, pass only --vhost; bounded safety defaults apply\n  automatically. Supplying --vhost-endpoint or --vhost-candidate also\n  enables discovery.\n\n  --vhost               Test harvested in-scope hostnames against harvested\n                        literal IPs, using HTTPS before HTTP.\n  --vhost-endpoint VHOST_ENDPOINT\n                        Replace harvested IPs with one authorized HTTP or\n                        HTTPS endpoint using a literal IP.\n  --vhost-candidate HOSTNAME\n                        Repeat to add an authorized in-scope hostname.\n                        Candidate names are never resolved through DNS.\n\nvirtual host advanced controls:\n  Optional safety overrides. Bounded defaults apply when these options are\n  omitted.\n\n  --vhost-request-limit VHOST_REQUEST_LIMIT\n                        Hard request cap shared by baseline, controls,\n                        candidates, and confirmations (default: 100).\n  --vhost-runtime-seconds VHOST_RUNTIME_SECONDS\n                        Hard wall-clock cap for virtual-host discovery\n                        (default: 30.0 seconds).\n  --vhost-timeout-seconds VHOST_TIMEOUT_SECONDS\n                        Timeout for each virtual-host request (default: 5.0\n                        seconds).\n  --vhost-concurrency VHOST_CONCURRENCY\n                        Maximum concurrent candidate requests (default: 5).\n  --vhost-insecure      Do not verify TLS certificates for HTTPS probes;\n                        evidence records tls_verified=false.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--api-scan",
+   "--dns-brute",
+   "--dns-lookup",
+   "--dns-resolve",
+   "--dns-server",
+   "--domain",
+   "--filename",
+   "--limit",
+   "--proxies",
+   "--quiet",
+   "--screenshot",
+   "--shodan",
+   "--source",
+   "--start",
+   "--take-over",
+   "--wordlist"
+  ],
+  "unconfirmed": [
+   "--dns-tld",
+   "--google-dork",
+   "--host",
+   "--log-level",
+   "--port",
+   "--rate-limit",
+   "--reload",
+   "--virtual-host"
+  ],
+  "help_only": [
+   "--dns-recursive-depth",
+   "--dns-recursive-query-limit",
+   "--dns-recursive-runtime-seconds",
+   "--dns-resolvers",
+   "--help",
+   "--no-hosts",
+   "--routeviews",
+   "--source-workers",
+   "--verbose",
+   "--vhost",
+   "--vhost-candidate",
+   "--vhost-concurrency",
+   "--vhost-endpoint",
+   "--vhost-insecure",
+   "--vhost-request-limit",
+   "--vhost-runtime-seconds",
+   "--vhost-timeout-seconds",
+   "-S",
+   "-a",
+   "-b",
+   "-c",
+   "-d",
+   "-e",
+   "-f",
+   "-h",
+   "-j",
+   "-l",
+   "-n",
+   "-p",
+   "-q",
+   "-r",
+   "-s",
+   "-t",
+   "-v",
+   "-w"
+  ],
+  "mining_coverage": 0.3137254901960784
+ },
+ "surface": {
+  "flags": {
+   "--api-scan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check common API paths with GET, HEAD, and OPTIONS. Requests follow redirects.",
+    "kind": "option",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--dns-brute": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform a DNS brute force on the domain.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--dns-lookup": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Perform PTR lookups across the /24 network containing each discovered IPv4 address. Addresses are deduplicated; one run-wide phase uses at most 20 active jobs with no default request or runtime ceiling. This sends active DNS queries.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-n"
+    ]
+   },
+   "--dns-recursive-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable recursive DNS discovery to this maximum depth. Zero disables it.",
+    "metavar": "DNS_RECURSIVE_DEPTH"
+   },
+   "--dns-recursive-query-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hard cap on recursive DNS record queries across all resolver vantages.",
+    "metavar": "DNS_RECURSIVE_QUERY_LIMIT"
+   },
+   "--dns-recursive-runtime-seconds": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hard runtime cap in seconds for recursive DNS discovery.",
+    "metavar": "DNS_RECURSIVE_RUNTIME_SECONDS"
+   },
+   "--dns-resolve": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Resolve discovered hostnames. Pass comma-separated resolver IPs or a text file with one IP per line; omit the value to use defaults. One run-wide phase uses at most 20 hostname jobs; its query and runtime limits are unlimited by default.",
+    "kind": "option",
+    "metavar": "[DNS_RESOLVE]",
+    "first_tag": "4.3.0",
+    "first_date": "2023-05-19T13:34:04+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-r"
+    ]
+   },
+   "--dns-resolvers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "",
+    "metavar": "IPS_OR_FILE"
+   },
+   "--dns-server": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Accepted for compatibility but currently unused; use",
+    "kind": "option",
+    "metavar": "DNS_SERVER",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-e"
+    ]
+   },
+   "--dns-tld": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Perform a DNS TLD expansion discovery, default False.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.0.3",
+    "last_date": "2021-11-25T17:42:02Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--domain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Company name or domain to search, or an explicit ASN/IP/CIDR target for --routeviews.",
+    "kind": "option",
+    "metavar": "DOMAIN",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--filename": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Write NAME.json, NAME.xml, and NAME.jsonl.",
+    "kind": "option",
+    "metavar": "NAME",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-f"
+    ]
+   },
+   "--google-dork": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Use Google Dorks for Google search.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.0.3",
+    "last_date": "2021-11-25T17:42:02Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "IP address to listen on default is 127.0.0.1",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--limit": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Maximum results requested from each source that supports result limits (default: 500).",
+    "kind": "option",
+    "metavar": "LIMIT",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--log-level": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set logging level, default is info but [critical|error|warning|info|debug|trace] can be set",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--no-hosts": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exclude hostname results while retaining other result types returned by selected sources."
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port to bind the web server to, default is 5000",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--proxies": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use proxies.yaml for supported discovery-source, Shodan, and takeover requests. Takeover fails closed if no proxy is available.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--quiet": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Suppress missing API key warnings and reading the api- keys file.",
+    "kind": "option",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-q"
+    ]
+   },
+   "--rate-limit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Set API rate limit (e.g., \"10/minute\", \"100/hour\"), default is 5/minute",
+    "kind": "option",
+    "first_tag": "4.9.0",
+    "first_date": "2025-12-21T05:53:24Z",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--reload": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable automatic reload used during development of the api",
+    "kind": "option",
+    "first_tag": "4.0.0",
+    "first_date": "2021-07-01T23:15:40+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/restfulHarvest.py",
+    "takes_value": false
+   },
+   "--routeviews": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enrich discovered IPs with sourced ASN attribution, or an explicitly targeted ASN, IP, or prefix, through RouteViews. Returned routing relationships do not establish ownership or target scope. Uses authenticated access when a RouteViews API key is configured."
+   },
+   "--screenshot": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Save screenshots of reachable discovered hosts to DIR. This sends direct browser requests.",
+    "kind": "option",
+    "metavar": "DIR",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--shodan": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Query the Shodan Host API for discovered IPs, using configured proxies when enabled.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--source": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Comma-separated source names or source capabilities. Multiple capabilities select the union of matching sources; they do not filter returned fields. Capabilities: subdomains, emails, ips, asns, urls, people, breaches, all. Sources: apis-guru, arquivo, baidu, bevigil, brave, bufferoverun, builtwith, censys, certspotter, commoncrawl, criminalip, crt- name, crtsh, dehashed, dnsdb, dnsdumpster, duckduckgo, dymo, fofa, fullhunt, github-code, gitlab, hackertarget, haveibeenpwned, hibpverified, hudsonrock, hunter, hunterhow, intelx, leakix, leaklookup, mojeek, netlas, onyphe, otx, pentesttools, projectdiscovery, rapiddns, robtex, rocketreach, securityscorecard, securityTrails, sherlockeye, shodan, shodanct, shodanInternetDB, sourcegraph, subdomaincenter, subdomainfinderc99, thc, tomba, urlscan, virustotal, waybackarchive, whoisxml, windvane, yahoo, zoomeye",
+    "kind": "option",
+    "metavar": "SOURCE",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-b"
+    ]
+   },
+   "--source-workers": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum discovery sources to run at once (default: 3).",
+    "metavar": "SOURCE_WORKERS",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--start": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Result offset for sources that support pagination (default: 0).",
+    "kind": "option",
+    "metavar": "START",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--take-over": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check discovered hosts for provider-gated takeover indicators. Uses configured DNS resolvers and wildcard controls, does not follow redirects, and uses configured proxies when enabled. Indicators are not confirmed takeovers.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false,
+    "aliases": [
+     "-t"
+    ]
+   },
+   "--verbose": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show informational diagnostic messages.",
+    "aliases": [
+     "-v"
+    ]
+   },
+   "--vhost": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Test harvested in-scope hostnames against harvested literal IPs, using HTTPS before HTTP."
+   },
+   "--vhost-candidate": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Repeat to add an authorized in-scope hostname. Candidate names are never resolved through DNS.",
+    "metavar": "HOSTNAME"
+   },
+   "--vhost-concurrency": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum concurrent candidate requests (default: 5).",
+    "metavar": "VHOST_CONCURRENCY"
+   },
+   "--vhost-endpoint": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Replace harvested IPs with one authorized HTTP or HTTPS endpoint using a literal IP.",
+    "metavar": "VHOST_ENDPOINT"
+   },
+   "--vhost-insecure": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Do not verify TLS certificates for HTTPS probes; evidence records tls_verified=false."
+   },
+   "--vhost-request-limit": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hard request cap shared by baseline, controls, candidates, and confirmations (default: 100).",
+    "metavar": "VHOST_REQUEST_LIMIT"
+   },
+   "--vhost-runtime-seconds": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Hard wall-clock cap for virtual-host discovery (default: 30.0 seconds).",
+    "metavar": "VHOST_RUNTIME_SECONDS"
+   },
+   "--vhost-timeout-seconds": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Timeout for each virtual-host request (default: 5.0 seconds).",
+    "metavar": "VHOST_TIMEOUT_SECONDS"
+   },
+   "--virtual-host": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Verify host name via DNS resolution and search for virtual hosts.",
+    "kind": "option",
+    "first_tag": "3.2.0",
+    "first_date": "2020-09-09T20:43:53+02:00",
+    "last_tag": "4.8.2",
+    "last_date": "2025-07-21T20:25:59+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": false
+   },
+   "--wordlist": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to the endpoint wordlist used by --api-scan.",
+    "kind": "option",
+    "metavar": "WORDLIST",
+    "first_tag": "4.8.0",
+    "first_date": "2025-05-27T01:28:14+01:00",
+    "last_tag": "4.11.1",
+    "last_date": "2026-06-03T23:25:34+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "theHarvester/__main__.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-w"
+    ]
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 7,
+  "tried_this_wave": 4,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-43730e93",
+    "argv": [
+     "theharvester",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-43730e93' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-db3bf556",
+    "argv": [
+     "theharvester",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   },
+   {
+    "id": "t-net-60b6bc17",
+    "argv": [
+     "theharvester",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "fatal-error",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 127,
+    "output_bytes": 315
+   },
+   {
+    "id": "t-net-14eecaa2",
+    "argv": [
+     "theHarvester",
+     "--host",
+     "dvwa",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1936
+   },
+   {
+    "id": "t-net-b92370b9",
+    "argv": [
+     "theHarvester",
+     "--domain",
+     "ctk.test",
+     "--quiet"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-b92370b9' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-356060b1",
+    "argv": [
+     "theHarvester",
+     "ctk.test"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "harness-error:scenario 't-net-b92370b9' argv host 'ctk.test' is not the alias of any resolved target",
+    "targets": [
+     "dns"
+    ],
+    "skipped_reason": "target_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-85fd79f9",
+    "argv": [
+     "theHarvester",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 1936
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "theHarvester -h",
+    "source": "readme",
+    "path": "docs/wiki/Installation.md",
+    "line": 12,
+    "reason": "needs-network-or-interactive",
+    "token": "-h"
+   },
+   {
+    "raw": "theHarvester -d example.com -b crtsh,certspotter",
+    "source": "readme",
+    "path": "docs/wiki/Quick-Start.md",
+    "line": 16,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "theharvester",
+ "repo": "laramies/theHarvester",
+ "head_sha": "1f629720e463a2f6ae3211c2e37d233d91be7e4d",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-17T02:32:07.774187+00:00"
+}

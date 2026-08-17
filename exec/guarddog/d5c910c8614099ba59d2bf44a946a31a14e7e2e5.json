@@ -1,0 +1,26 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "python",
+  "image_digest": null,
+  "duration_s": 1.69,
+  "log_tail": "#10 [build 3/4] COPY . .\n#10 CACHED\n\n#11 [stage-1  6/10] RUN chmod -R a+rX /src\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 CACHED\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 CACHED\n\n#14 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#14 CACHED\n\n#15 [build 4/4] RUN python -m venv /opt/venv  && /opt/venv/bin/pip install --no-cache-dir --upgrade pip  && (/opt/venv/bin/pip install --no-cache-dir .      || ([ -f requirements.txt ]          && /opt/venv/bin/pip install --no-cache-dir -r requirements.txt))\n#15 CACHED\n\n#16 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::o1b89ltxbm56i7re3icjdmw4e: \"/.ctk-fixtures\": not found\n\n#17 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::o1b89ltxbm56i7re3icjdmw4e: \"/.ctk-agent/agent.py\": not found\n\n#18 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::o1b89ltxbm56i7re3icjdmw4e: \"/.ctk-agent/helptext.py\": not found\n------\n > [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py:\n------\n------\n > [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py:\n------\n------\n > [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/:\n------\n\n \u001b[33m4 warnings found (use docker --debug to expand):\n\u001b[0m - CopyIgnoredFile: Attempting to Copy file \".ctk-fixtures\" that is excluded by .dockerignore (line 54)\n - CopyIgnoredFile: Attempting to Copy file \".\" that is excluded by .dockerignore (line 3)\n - CopyIgnoredFile: Attempting to Copy file \".ctk-agent/agent.py\" that is excluded by .dockerignore (line 52)\n - CopyIgnoredFile: Attempting to Copy file \".ctk-agent/helptext.py\" that is excluded by .dockerignore (line 53)\nDockerfile.ctk:54\n--------------------\n  52 |     COPY .ctk-agent/agent.py /opt/ctk/agent.py\n  53 |     COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n  54 | >>> COPY .ctk-fixtures/ /opt/ctk/fixtures/\n  55 |     RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n  56 |     USER 65532\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::o1b89ltxbm56i7re3icjdmw4e: \"/.ctk-fixtures\": not found",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "guarddog",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "skipped_reason": "docker build failed",
+ "tool": "GuardDog",
+ "repo": "DataDog/guarddog",
+ "head_sha": "d5c910c8614099ba59d2bf44a946a31a14e7e2e5",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-17T03:57:22.331602+00:00"
+}

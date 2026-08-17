@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python",
-  "image_digest": "sha256:e4f5c30180f4a8de0c8e2ef7dd714fdf610df0ee0ffc5967382b734a902c1a99",
-  "duration_s": 52.02,
-  "log_tail": "#11 17.63 Downloading pyyaml-6.0.3-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl (775 kB)\n#11 17.74    \u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501 775.1/775.1 kB 7.4 MB/s  0:00:00\n#11 17.87 Building wheels for collected packages: androguard\n#11 17.87   Building wheel for androguard (pyproject.toml): started\n#11 18.17   Building wheel for androguard (pyproject.toml): finished with status 'done'\n#11 18.17   Created wheel for androguard: filename=androguard-4.1.4-py3-none-any.whl size=1027060 sha256=ba92cd3c93c619714efb7e612290dd111531a51c78d61a43a8fc106614126c8b\n#11 18.17   Stored in directory: /tmp/pip-ephem-wheel-cache-2h2w1bjx/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#11 18.18 Successfully built androguard\n#11 18.34 Installing collected packages: pure-eval, ptyprocess, asn1crypto, wcwidth, typing-extensions, traitlets, pyyaml, pyparsing, pygments, pycparser, psutil, pexpect, parso, networkx, mutf8, MarkupSafe, lxml, loguru, greenlet, executing, colorama, click, asttokens, apkInspector, stack_data, sqlalchemy, pydot, prompt_toolkit, matplotlib-inline, Mako, jedi, ipython-pygments-lexers, cffi, ipython, cryptography, alembic, dataset, androguard\n#11 25.18 \n#11 25.18 Successfully installed Mako-1.4.1 MarkupSafe-3.0.3 alembic-1.19.1 androguard-4.1.4 apkInspector-1.3.6 asn1crypto-1.5.1 asttokens-3.0.2 cffi-2.1.1 click-8.4.2 colorama-0.4.6 cryptography-50.0.0 dataset-2.0.0 executing-2.2.1 greenlet-3.5.5 ipython-9.16.1 ipython-pygments-lexers-1.1.1 jedi-0.20.0 loguru-0.7.3 lxml-6.1.1 matplotlib-inline-0.2.2 mutf8-1.1.0 networkx-3.6.1 parso-0.8.7 pexpect-4.9.0 prompt_toolkit-3.0.53 psutil-7.2.2 ptyprocess-0.7.0 pure-eval-0.2.3 pycparser-3.0 pydot-4.0.1 pygments-2.20.0 pyparsing-3.3.2 pyyaml-6.0.3 sqlalchemy-2.0.52 stack_data-0.6.3 traitlets-5.16.1 typing-extensions-4.16.0 wcwidth-0.8.2\n#11 DONE 25.7s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 8.4s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 1.4s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.3s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 4.1s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.2s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.327 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.4s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 4.1s done\n#20 exporting manifest sha256:3cd34c52f52f32dbb6600b5500762bf861425b2ac8d3a66a27120dca30923fae done\n#20 exporting config sha256:c9d71a4d0085d2dc4c5c9c7b1d63593a86bd4fe5c8f84021134438d303024c8e 0.0s done\n#20 exporting attestation manifest sha256:03f65e87c4de2ceedf15401aaafbdfef8fd8429b386601a6369fc11cf1a79b39 0.0s done\n#20 exporting manifest list sha256:e4f5c30180f4a8de0c8e2ef7dd714fdf610df0ee0ffc5967382b734a902c1a99 done\n#20 naming to docker.io/ctk-exec/androguard:4573c8c111ba\n#20 naming to docker.io/ctk-exec/androguard:4573c8c111ba done\n#20 unpacking to docker.io/ctk-exec/androguard:4573c8c111ba\n#20 unpacking to docker.io/ctk-exec/androguard:4573c8c111ba 3.4s done\n#20 DONE 7.7s",
+  "image_digest": "sha256:210719b0a24b4671e7604362a77758e4dfe68955b29d5fb7ec3e23749d75e6d8",
+  "duration_s": 63.73,
+  "log_tail": "#11 9.528 debconf: unable to initialize frontend: Dialog\n#11 9.528 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#11 9.528 debconf: falling back to frontend: Readline\n#11 9.532 debconf: unable to initialize frontend: Readline\n#11 9.532 debconf: (This frontend requires a controlling tty.)\n#11 9.532 debconf: falling back to frontend: Teletype\n#11 9.561 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#11 9.589 Setting up texinfo (6.8-6+b1) ...\n#11 9.624 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#11 9.760 Processing triggers for install-info (6.8-6+b1) ...\n#11 DONE 10.2s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 4.6s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.2s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 3.4s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.1s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.1s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.199 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.3s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.8s done\n#20 exporting manifest sha256:095e1da50756528d912a792617e325ec5ec81c5f8cc1978c20dcba066b92282c 0.0s done\n#20 exporting config sha256:69377dbdf33f9f52737bd69476f06d5a8ac01cf5956b13b12366d821b6ee8639 0.0s done\n#20 exporting attestation manifest sha256:e5d1b2880cf5857149195d8317d45c044267dfff03ab3ef4d14ab67b9c5282ff 0.1s done\n#20 exporting manifest list sha256:210719b0a24b4671e7604362a77758e4dfe68955b29d5fb7ec3e23749d75e6d8\n#20 exporting manifest list sha256:210719b0a24b4671e7604362a77758e4dfe68955b29d5fb7ec3e23749d75e6d8 0.1s done\n#20 naming to docker.io/ctk-exec/androguard:4573c8c111ba\n#20 naming to docker.io/ctk-exec/androguard:4573c8c111ba done\n#20 unpacking to docker.io/ctk-exec/androguard:4573c8c111ba\n#20 unpacking to docker.io/ctk-exec/androguard:4573c8c111ba 3.8s done\n#20 DONE 8.0s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "Usage: androguard [OPTIONS] COMMAND [ARGS]...\n\n  Androguard is a full Python tool to reverse Android Applications.\n\nOptions:\n  --version           Show the version and exit.\n  --verbose, --debug  Print more\n  --help              Show this message and exit.\n\nCommands:\n  analyze      Open a IPython Shell and start reverse engineering.\n  apkid        Prints the packageName/versionCode/versionName per APK as...\n  arsc         Decode resources.arsc either directly from a given file or...\n  axml         Parse the AndroidManifest.xml.\n  cg           Create a call graph based on the data of Analysis and...\n  decompile    Decompile an APK and create Control Flow Graphs.\n  disassemble  Disassemble Dalvik Code with size SIZE starting from an...\n  dtrace       Start dynamically an installed APK on the phone and start...\n  dump         Start and dump dynamically an installed APK on the phone\n  sign         Return the fingerprint(s) of all certificates inside an APK.\n  trace        Push an APK on the phone and start to trace all...\n",
    "stderr": "",
-   "duration_ms": 924,
+   "duration_ms": 1040,
    "truncated": false,
    "error": null
   },
@@ -30,7 +30,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 940,
+   "duration_ms": 898,
    "truncated": false,
    "error": null
   },
@@ -43,7 +43,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 929,
+   "duration_ms": 844,
    "truncated": false,
    "error": null
   },
@@ -56,7 +56,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 930,
+   "duration_ms": 877,
    "truncated": false,
    "error": null
   },
@@ -69,7 +69,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 869,
+   "duration_ms": 853,
    "truncated": false,
    "error": null
   },
@@ -82,7 +82,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 857,
+   "duration_ms": 846,
    "truncated": false,
    "error": null
   },
@@ -95,7 +95,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 850,
+   "duration_ms": 860,
    "truncated": false,
    "error": null
   },
@@ -108,7 +108,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 873,
+   "duration_ms": 843,
    "truncated": false,
    "error": null
   },
@@ -121,7 +121,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 867,
+   "duration_ms": 805,
    "truncated": false,
    "error": null
   },
@@ -134,7 +134,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 902,
+   "duration_ms": 820,
    "truncated": false,
    "error": null
   },
@@ -147,7 +147,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 857,
+   "duration_ms": 869,
    "truncated": false,
    "error": null
   },
@@ -160,7 +160,7 @@
    "exit_code": 1,
    "stdout": "",
    "stderr": "Traceback (most recent call last):\n  File \"/opt/venv/bin/androguard\", line 6, in <module>\n    sys.exit(entry_point())\n             ^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1569, in __call__\n    return self.main(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1490, in main\n    rv = self.invoke(ctx)\n         ^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1967, in invoke\n    super().invoke(ctx)\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 1353, in invoke\n    return ctx.invoke(self.callback, **ctx.params)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/click/core.py\", line 907, in invoke\n    return callback(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/androguard/cli/cli.py\", line 41, in entry_point\n    logger.add(\"androguard.log\", retention=\"10 days\")\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_logger.py\", line 802, in add\n    wrapped_sink = FileSink(path, **kwargs)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 192, in __init__\n    self._create_file(path)\n  File \"/opt/venv/lib/python3.12/site-packages/loguru/_file_sink.py\", line 226, in _create_file\n    self._file = open(path, **self._kwargs)\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^\nOSError: [Errno 30] Read-only file system: '/androguard.log'\n",
-   "duration_ms": 901,
+   "duration_ms": 838,
    "truncated": false,
    "error": null
   },
@@ -172,7 +172,7 @@
    "exit_code": 16,
    "stdout": "",
    "stderr": "No manual entry for androguard\n",
-   "duration_ms": 7,
+   "duration_ms": 5,
    "truncated": false,
    "error": null,
    "source": "man"
@@ -187,7 +187,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'androguard' in node '(dir)Top'\n",
-   "duration_ms": 2,
+   "duration_ms": 4,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -1065,5 +1065,5 @@
  "head_sha": "4573c8c111ba01ec5063925506f5bf5f9f4b536b",
  "analyzer": "exec",
  "analyzer_version": "13",
- "generated_at": "2026-08-16T02:00:26.911963+00:00"
+ "generated_at": "2026-08-17T03:48:01.661189+00:00"
 }

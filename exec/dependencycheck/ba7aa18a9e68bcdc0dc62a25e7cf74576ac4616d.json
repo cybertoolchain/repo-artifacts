@@ -1,0 +1,20 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "dockerfile",
+  "image_digest": null,
+  "duration_s": 2.24,
+  "log_tail": "#7 ...\n\n#8 [jlink 1/2] FROM docker.io/azul/zulu-openjdk-alpine:25@sha256:7cc9cae0df6f90dab5217923bfdfca818363cd346ac59645b000f6a203fd6561\n#8 resolve docker.io/azul/zulu-openjdk-alpine:25@sha256:7cc9cae0df6f90dab5217923bfdfca818363cd346ac59645b000f6a203fd6561 0.1s done\n#8 DONE 0.2s\n\n#7 [stage-2 1/8] FROM mcr.microsoft.com/dotnet/runtime:8.0-alpine@sha256:031990dddf16d1a2ce898aad5f0620e750e354f957a172cc462b426e6b019aab\n#7 ...\n\n#6 [internal] load build context\n#6 transferring context: 2B done\n#6 DONE 0.3s\n\n#9 [jlink 2/2] RUN \"/usr/lib/jvm/zulu25/bin/jlink\" --compress=zip-6 --module-path /opt/java/openjdk/jmods --add-modules java.base,java.compiler,java.datatransfer,jdk.crypto.ec,java.desktop,java.instrument,java.logging,java.management,java.naming,java.rmi,java.scripting,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,jdk.net --output /jlinked\n#9 CACHED\n\n#10 [stage-2 2/8] COPY --from=jlink /jlinked /opt/jdk/\n#10 CACHED\n\n#11 [stage-2 3/8] COPY --from=go /usr/local/go/ /usr/local/go/\n#11 CACHED\n\n#12 [stage-2 4/8] ADD cli/target/dependency-check--release.zip /\n#12 ERROR: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::e0oz9yldqk4cfuysajazd48l9: \"/cli/target/dependency-check--release.zip\": not found\n\n#7 [stage-2 1/8] FROM mcr.microsoft.com/dotnet/runtime:8.0-alpine@sha256:031990dddf16d1a2ce898aad5f0620e750e354f957a172cc462b426e6b019aab\n#7 DONE 0.4s\n\n#8 [jlink 1/2] FROM docker.io/azul/zulu-openjdk-alpine:25@sha256:7cc9cae0df6f90dab5217923bfdfca818363cd346ac59645b000f6a203fd6561\n#8 sha256:c65a1fce653ae40a7d5aa51df6606e08cb24f136b6e5c353c4bc526e71557e86 0B / 181.96MB 0.2s\n#8 ...\n\n#9 [jlink 2/2] RUN \"/usr/lib/jvm/zulu25/bin/jlink\" --compress=zip-6 --module-path /opt/java/openjdk/jmods --add-modules java.base,java.compiler,java.datatransfer,jdk.crypto.ec,java.desktop,java.instrument,java.logging,java.management,java.naming,java.rmi,java.scripting,java.security.sasl,java.sql,java.transaction.xa,java.xml,jdk.unsupported,jdk.net --output /jlinked\n#9 CANCELED\n\n#13 [go 1/1] FROM docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2\n#13 resolve docker.io/library/golang:1.26.5-alpine@sha256:0178a641fbb4858c5f1b48e34bdaabe0350a330a1b1149aabd498d0699ff5fb2 0.1s done\n#13 CANCELED\n------\n > [stage-2 4/8] ADD cli/target/dependency-check--release.zip /:\n------\nDockerfile:25\n--------------------\n  23 |     COPY --from=go /usr/local/go/ /usr/local/go/\n  24 |     \n  25 | >>> ADD cli/target/dependency-check-${VERSION}-release.zip /\n  26 |     \n  27 |     RUN apk upgrade --no-cache                                                                           && \\\n--------------------\nERROR: failed to build: failed to solve: failed to compute cache key: failed to calculate checksum of ref 7jhbb9bzd60gdacctlu9j1qzc::e0oz9yldqk4cfuysajazd48l9: \"/cli/target/dependency-check--release.zip\": not found",
+  "error": "upstream docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "skipped_reason": "upstream docker build failed",
+ "tool": "DependencyCheck",
+ "repo": "dependency-check/DependencyCheck",
+ "head_sha": "ba7aa18a9e68bcdc0dc62a25e7cf74576ac4616d",
+ "analyzer": "exec",
+ "analyzer_version": "13",
+ "generated_at": "2026-08-17T04:03:06.731354+00:00"
+}
