@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "c",
-  "image_digest": "sha256:719334929e59d6bd12a62094813fbea7c843ea80e2608a05f6e490effbddcf4e",
-  "duration_s": 29.09,
-  "log_tail": "#12 0.850       |   ^~~~~~~~~~\n#12 0.850 /usr/include/openssl/hmac.h:47:27: note: declared here\n#12 0.850    47 | OSSL_DEPRECATEDIN_3_0 int HMAC_Final(HMAC_CTX *ctx, unsigned char *md,\n#12 0.850       |                           ^~~~~~~~~~\n#12 0.850 /src/ssl/ssldecode.c:1041:7: warning: 'MD5_Final' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]\n#12 0.850  1041 |       MD5_Final(_key_s, &md5);\n#12 0.850       |       ^~~~~~~~~\n#12 0.850 /usr/include/openssl/md5.h:51:27: note: declared here\n#12 0.850    51 | OSSL_DEPRECATEDIN_3_0 int MD5_Final(unsigned char *md, MD5_CTX *c);\n#12 0.850       |                           ^~~~~~~~~\n#12 0.850 /src/ssl/ssl_rec.c:450:3: warning: 'HMAC_CTX_free' is deprecated: Since OpenSSL 3.0 [-Wdeprecated-declarations]\n#12 0.850   450 |   HMAC_CTX_free(hm);\n#12 0.850       |   ^~~~~~~~~~~~~\n#12 0.850 /usr/include/openssl/hmac.h:35:28: note: declared here\n#12 0.850    35 | OSSL_DEPRECATEDIN_3_0 void HMAC_CTX_free(HMAC_CTX *ctx);\n#12 0.850       |                            ^~~~~~~~~~~~~\n#12 1.125 [100%] Linking C executable ssldump\n#12 1.183 [100%] Built target ssldump\n#12 DONE 1.2s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.2s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.175 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.3s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 4.3s done\n#19 exporting manifest sha256:fc0d1b7fe83bfc3a8684efec2dd2c929ca01da9de35792d2864cfe41b23c9239 done\n#19 exporting config sha256:5f9a20b75d77bfbebb7af551a56a558e76fbe7ce0cf02cbd328a079aca0da9ff 0.0s done\n#19 exporting attestation manifest sha256:48718fa0b77254c1cee331c9be349a14a0dc62f432fc9bec8db5e4e278cce1d4 0.0s done\n#19 exporting manifest list sha256:719334929e59d6bd12a62094813fbea7c843ea80e2608a05f6e490effbddcf4e 0.0s done\n#19 naming to docker.io/ctk-exec/ssldump:e6b1a59ea2f5 done\n#19 unpacking to docker.io/ctk-exec/ssldump:e6b1a59ea2f5\n#19 unpacking to docker.io/ctk-exec/ssldump:e6b1a59ea2f5 0.8s done\n#19 DONE 5.2s",
+  "image_digest": "sha256:af98956f0d14bbc947fcd501d964dae4aaa9d7713eeb96d5b001b2f57d25007b",
+  "duration_s": 2.38,
+  "log_tail": "#7 DONE 0.0s\n\n#8 [build 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential autoconf automake libtool pkg-config cmake git ca-certificates     gettext autopoint flex bison     gawk texinfo groff-base python-is-python3 libltdl-dev     xz-utils unzip wget     libssl-dev libpcap-dev zlib1g-dev libcryptsetup-dev libgcrypt20-dev     libjudy-dev libnl-3-dev libnl-genl-3-dev libpcre2-dev libcurl4-openssl-dev     libusb-1.0-0-dev libnet1-dev libsqlite3-dev     libnids-dev libboost-dev libseccomp-dev libbpf-dev libjose-dev libcap-dev  && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [build 3/5] WORKDIR /src\n#9 CACHED\n\n#10 [build 4/5] COPY . .\n#10 CACHED\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\" && { make install || true; };     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\" && { make install || true; });     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\" && { make -C src install || true; };     else make -j\"$(nproc)\"; fi\n#11 CACHED\n\n#12 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/9] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/9] COPY --from=build /usr/local /usr/local\n#14 DONE 0.1s\n\n#15 [stage-1 5/9] WORKDIR /src\n#15 DONE 0.0s\n\n#16 [stage-1 6/9] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/9] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.1s\n\n#18 [stage-1 8/9] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 9/9] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.152 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.2s done\n#20 exporting manifest sha256:6c0c63daf650c59dbb903a461707c601f847344dd2ea4468b3dd862f4f2c6dde done\n#20 exporting config sha256:ac9bdbab1e7347e544e35cce58a5a759f23472f31bd9b521ae483c978d7997ab done\n#20 exporting attestation manifest sha256:ba2984f98ce3d58b514c5148d8ff116dbae64cb29f2b4afad274dce9abd50bee 0.0s done\n#20 exporting manifest list sha256:af98956f0d14bbc947fcd501d964dae4aaa9d7713eeb96d5b001b2f57d25007b done\n#20 naming to docker.io/ctk-exec/ssldump:e6b1a59ea2f5 done\n#20 unpacking to docker.io/ctk-exec/ssldump:e6b1a59ea2f5\n#20 unpacking to docker.io/ctk-exec/ssldump:e6b1a59ea2f5 0.9s done\n#20 DONE 1.2s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "ssldump: invalid option -- '-'\nUsage: ssldump [-r dumpfile] [-i interface] [-l sslkeylogfile] [-w outpcapfile]\n               [-k keyfile] [-p password] [-vtaTznsAxVNde]\n               [filter]\n",
-   "duration_ms": 3,
+   "duration_ms": 1,
    "truncated": false,
    "error": null
   },
@@ -26,34 +26,19 @@
     "man",
     "ssldump"
    ],
-   "exit_code": 16,
-   "stdout": "",
-   "stderr": "No manual entry for ssldump\n",
-   "duration_ms": 1,
+   "exit_code": 0,
+   "stdout": "SSLDUMP(1)                  General Commands Manual                 SSLDUMP(1)\n\nNAME\n       ssldump - dump SSL traffic on a network\n\nSYNOPSIS\n       ssldump [ -aAdeFHjnNPqtTvxXyz ] [ -i interface ]\n               [ -k keyfile ] [ -l sslkeylogfile ] [ -p password ] [ -r dump\u2010\n       file ] [ -w outputpcap ]\n               [ -S [crypto|d|ht|H|nroff] ] [ expression ]\n\nDESCRIPTION\n       ssldump is an SSL/TLS network protocol analyzer. It identifies TCP con\u2010\n       nections on the chosen network interface and attempts to interpret them\n       as SSL/TLS traffic. When it identifies SSL/TLS traffic, it decodes  the\n       records and displays them in a textual form to stdout. If provided with\n       the appropriate keying material, it will also decrypt  the  connections\n       and  display the application data traffic.  It supports various version\n       of SSL/TLS up to TLS version 1.3.  It also includes  support  for  JSON\n       output or JA3 support.\n\n       ssldump  has  been  originally  tested  on FreeBSD, Linux, Solaris, and\n       HP/UX. ssldump has mainly a new build process and it's mainly tested on\n       different  Linux  flavors.  Since it's based on PCAP, it should work on\n       most platforms. However, unlike tcpdump, ssldump needs to  be  able  to\n       see  both  sides of the data transmission so you may have trouble using\n       it with network taps such as SunOS nit that don't  permit  you  to  see\n       transmitted data.  Under SunOS with nit or bpf: To run ssldump you must\n       have read access to /dev/nit or /dev/bpf*.  Under  Solaris  with  dlpi:\n       You  must have read access to the network pseudo device, e.g.  /dev/le.\n       Under HP-UX with dlpi: You must be root or it must be installed  setuid\n       to  root.   Under  IRIX  with snoop: You must be root or it must be in\u2010\n       stalled setuid to root.  Under Linux: You must be root or  it  must  be\n       installed  setuid to root.  Under Ultrix and Digital UNIX: Once the su\u2010\n       per-user has enabled promiscuous-mode operation using pfconfig(8),  any\n       user may run ssldump Under BSD: You must have read access to /dev/bpf*.\n\nOPTIONS\n       -a     Print bare TCP ACKs (useful for observing Nagle behavior).\n\n       -A     Print all record fields (by default ssldump chooses the most in\u2010\n              teresting fields).\n\n       -d     Display the application data traffic.  This  usually  means  de\u2010\n              crypting it, but when -d is used ssldump will also decode appli\u2010\n              cation data traffic before the SSL session initiates.  This  al\u2010\n              lows you to see HTTPS CONNECT behavior as well as SMTP STARTTLS.\n              As a side effect, since ssldump can't tell whether plaintext  is\n              traffic  before  the  initiation  of an SSL connection or just a\n              regular TCP connection, this allows you to use ssldump to  sniff\n              any  TCP  connection.   ssldump  will automatically detect ASCII\n              data and display it directly to the screen.  non-ASCII  data  is\n              displayed as hex dumps. See also -X.\n\n       -e     Print absolute timestamps instead of relative timestamps.\n\n       -F     Specify  the  number  of  packets  after which a connection pool\n              cleaning is performed (in packets, default: 100).\n\n       -H     Print the full SSL packet header.\n\n       -i interface\n              Use interface as the network interface on which to sniff SSL/TLS\n              traffic.\n\n       -j     Switch  output  format  to JSON. Only stdout is affected by this\n              toggle.\n\n       -k keyfile\n              Use keyfile as the location of the SSL keyfile (OpenSSL  format)\n              Previous   versions   of   ssldump   automatically   looked   in\n              ./server.pem.  Now you must specify your keyfile every time.\n\n       -l sslkeylogfile\n              Use  sslkeylogfile  as  the  location   of   the   SSLKEYLOGFILE\n              (https://developer.mozilla.org/en-\n              US/docs/Mozilla/Projects/NSS/Key_Log_Format).\n\n       -n     Don't try to resolve host names from IP addresses.\n\n       -N     Attempt to parse ASN.1 when it appears, such as in  certificates\n              and DNs.\n\n       -p password\n              Use password as the SSL keyfile password.\n\n       -P     Don't put the interface into promiscuous mode.\n\n       -q     Don't  decode  any  record  fields beyond a single summary line.\n              (quiet mode).\n\n       -r file\n              Read data from file instead of from the network.  The old -f op\u2010\n              tion  still works but is deprecated and will probably be removed\n              with the next version.\n\n       -S [ crypto | d | ht | H ]\n              Specify SSL flags to ssldump.  These flags include:\n\n              crypto Print cryptographic information.\n\n              d      Print fields as decoded.\n\n              ht     Print the handshake type.\n\n              H      Print handshake type and highlights.\n\n       -t     Specify the TTL for inactive connections referenced in the  con\u2010\n              nection pool (in seconds, default: 100).\n\n       -T     Print the TCP headers.\n\n       -v     Display version and copyright information.\n\n       -w outputpcap\n              Use outputpcap as the destination for decrypted packets.\n\n       -x     Print each record in hex, as well as decoding it.\n\n       -X     When the -d option is used, binary data is automatically printed\n              in two columns with a hex dump on the  left  and  the  printable\n              characters on the right. -X suppresses the display of the print\u2010\n              able characters, thus making it easier to cut and paste the  hex\n              data into some other program.\n\n       -y     Decorate  the  output  for processing with nroff/troff. Not very\n              useful for the average user.\n\n       -z     Add timestamp in front of TCP packet description (-T)\n\n       expression\n              Selects what packets ssldump will examine. Technically speaking,\n              ssldump  supports  the full expression syntax from PCAP and tcp\u2010\n              dump.  In fact, the description here is cribbed from the tcpdump\n              man  page.  However,  since  ssldump  needs  to examine full TCP\n              streams, most of the tcpdump  expressions  will  select  traffic\n              mixes  that  ssldump  will  simply  ignore. Only the expressions\n              which don't result in incomplete TCP streams are listed here.\n\n              The expression consists of one or more  primitives.   Primitives\n              usually  consist  of  an  id (name or number) preceded by one or\n              more qualifiers.  There are three different kinds of qualifier:\n\n              type   qualifiers say what kind of thing the id name  or  number\n                     refers to.  Possible types are host, net and port.  E.g.,\n                     `host foo', `net 128.3', `port 20'.  If there is no  type\n                     qualifier, host is assumed.\n\n              dir    qualifiers  specify  a  particular  transfer direction to\n                     and/or from id.  Possible directions are src, dst, src or\n                     dst  and  src and dst.  E.g., `src foo', `dst net 128.3',\n                     `src or dst port ftp-data'.  If there is  no  dir  quali\u2010\n                     fier,  src  or  dst  is  assumed.  For `null' link layers\n                     (i.e. point to point protocols such as slip) the  inbound\n                     and  outbound qualifiers can be used to specify a desired\n                     direction.\n\n              More complex filter expressions are built up by using the  words\n              and,  or and not to combine primitives.  E.g., `host foo and not\n              port ftp and not port  ftp-data'.   To  save  typing,  identical\n              qualifier lists can be omitted.  E.g., `tcp dst port ftp or ftp-\n              data or domain' is exactly the same as `tcp dst port ftp or  tcp\n              dst port ftp-data or tcp dst port domain'.\n\n              Allowable primitives are:\n\n              dst host host\n                     True  if  the  IPv4/v6 destination field of the packet is\n                     host, which may be either an address or a name.\n\n              src host host\n                     True if the IPv4/v6 source field of the packet is host.\n\n              host host\n                     True if either the IPv4/v6 source or destination  of  the\n                     packet is host.  Any of the above host expressions can be\n                     prepended with the keywords, ip, arp, rarp, or ip6 as in:\n                          ip host host\n                     which is equivalent to:\n                          ether proto \\ip and host host\n                     If host is a name with multiple IP  addresses,  each  ad\u2010\n                     dress will be checked for a match.\n\n              ether dst ehost\n                     True if the ethernet destination address is ehost.  Ehost\n                     may be either a name from /etc/ethers or  a  number  (see\n                     ethers(3N) for numeric format).\n\n              ether src ehost\n                     True if the ethernet source address is ehost.\n\n              ether host ehost\n                     True if either the ethernet source or destination address\n                     is ehost.\n\n              gateway host\n                     True if the packet used host as  a  gateway.   I.e.,  the\n                     ethernet  source or destination address was host but nei\u2010\n                     ther the IP source nor the IP destination was host.  Host\n                     must  be  a name and must be found in both /etc/hosts and\n                     /etc/ethers.  (An equivalent expression is\n                          ether host ehost and not host host\n                     which can be used with either names or numbers for host /\n                     ehost.)   This  syntax does not work in IPv6-enabled con\u2010\n                     figuration at this moment.\n\n              dst net net\n                     True if the IPv4/v6 destination address of the packet has\n                     a  network  number  of net. Net may be either a name from\n                     /etc/networks or a network number  (see  networks(4)  for\n                     details).\n\n              src net net\n                     True  if  the  IPv4/v6 source address of the packet has a\n                     network number of net.\n\n              net net\n                     True if either the IPv4/v6 source or destination  address\n                     of the packet has a network number of net.\n\n              net net mask mask\n                     True if the IP address matches net with the specific net\u2010\n                     mask.  May be qualified with src or dst.  Note that  this\n                     syntax is not valid for IPv6 net.\n\n              net net/len\n                     True  if  the  IPv4/v6  address matches net a netmask len\n                     bits wide.  May be qualified with src or dst.\n\n              dst port port\n                     True if the packet is ip/tcp, ip/udp, ip6/tcp or  ip6/udp\n                     and  has  a destination port value of port.  The port can\n                     be a number or a name used in /etc/services (see  tcp(4P)\n                     and  udp(4P)).   If  a name is used, both the port number\n                     and protocol are checked.  If a number or ambiguous  name\n                     is  used, only the port number is checked (e.g., dst port\n                     513 will print both tcp/login traffic and  udp/who  traf\u2010\n                     fic,  and  port  domain  will  print  both tcp/domain and\n                     udp/domain traffic).\n\n              src port port\n                     True if the packet has a source port value of port.\n\n              port port\n                     True if either the source  or  destination  port  of  the\n                     packet is port.  Any of the above port expressions can be\n                     prepended with the keywords, tcp or udp, as in:\n                          tcp src port port\n                     which matches only tcp packets whose source port is port.\n\n              Primitives may be combined using:\n\n                     A parenthesized group of primitives and operators (paren\u2010\n                     theses are special to the Shell and must be escaped).\n\n                     Negation (`!' or `not').\n\n                     Concatenation (`&&' or `and').\n\n                     Alternation (`||' or `or').\n\n              Negation  has highest precedence.  Alternation and concatenation\n              have equal precedence and associate left to  right.   Note  that\n              explicit  and  tokens,  not  juxtaposition, are now required for\n              concatenation.\n\n              If an identifier is given without a  keyword,  the  most  recent\n              keyword is assumed.  For example,\n                   not host vs and ace\n              is short for\n                   not host vs and host ace\n              which should not be confused with\n                   not ( host vs or ace )\n\n              Expression arguments can be passed to ssldump as either a single\n              argument or as multiple arguments, whichever is more convenient.\n              Generally,  if  the expression contains Shell metacharacters, it\n              is easier to pass it as a single, quoted argument.  Multiple ar\u2010\n              guments are concatenated with spaces before being parsed.\n\nEXAMPLES\n       To listen to traffic on interface le0 port 443:\n              ssldump -i le0 port 443\n\n       To listen to traffic to the server romeo on port 443:\n              ssldump -i le0 port 443 and host romeo:\n\n       To switch output format to JSON:\n              ssldump -ANH -j -i le0 port 443 and host romeo\n\n       To decrypt traffic to host romeo server.pem and the password foobar:\n              ssldump -Ad -k ~/server.pem -p foobar -i le0 host romeo\n\nOUTPUT FORMAT\n       All output is printed to standard out.\n\n       ssldump  prints  an indication of every new TCP connection using a line\n       like the following\n\n       New TCP connection #2: iromeo.rtfm.com(2302) <-> sr1.rtfm.com(4433)\n\n       The host which send the first SYN is printed on the left and  the  host\n       which  responded  is  printed on the right. Ordinarily, this means that\n       the SSL client will be printed on the left with the SSL server  on  the\n       right.  In  this  case  we have a connection from iromeo.rtfm.com (port\n       2303) to sr1.rtfm.com (port 4433). To allow  the  user  to  disentangle\n       traffic  from  different connections, each connection is numbered. This\n       is connection 2.\n\n       The printout of each SSL record begins with a record  line.  This  line\n       contains  the connection and record number, a timestamp, and the record\n       type, as in the following:\n\n       2 3  0.2001 (0.0749)  S>C  Handshake      Certificate\n\n       This is record 3 on connection 2. The first timestamp is the time since\n       the  beginning of the connection. The second is the time since the pre\u2010\n       vious record. Both are in seconds.\n\n       The next field in the record line is the direction that the record  was\n       going.  C>S indicates records transmitted from client to server and S>C\n       indicates records transmitted from server to client.   ssldump  assumes\n       that  the  host  to  transmit  the first SYN is the SSL client (this is\n       nearly always correct).\n\n       The next field is the record type, one of Handshake, IAlert,  ChangeCi\u2010\n       pherSpec,  or  application_data. Finally, ssldump may print record-spe\u2010\n       cific data on the rest of the line. For Handshake  records,  it  prints\n       the handshake message. Thus, this record is a Certificate message.\n\n       ssldump  chooses  certain  record types for further decoding. These are\n       the ones that have proven to be most useful for debugging:\n\n       ClientHello - version, offered cipher suites, session id\n                            if provided)\n       ServerHello - version, session_id, chosen cipher suite,\n                      compression method\n       Alert - type and level (if obtainable)\n\n       Fuller decoding of the various records can be obtained by using the  -A\n       , -d , -k and -p flags.\n\nSIGNALS\n       When  it receives SIGUSR1, ssldump prints the list of currently tracked\n       connection on stderr.\n\n       With SIGUSR2, ssldump purges  its  internal  connection  tracking  data\n       structures.\n\nDECRYPTION\n       ssldump can decrypt traffic between two hosts if the following two con\u2010\n       ditions are met:\n              1. ssldump has the keys.\n              2. Static RSA was used.\n       In any other case, once encryption starts, ssldump will only be able to\n       determine the record type. Consider the following section of a trace.\n\n       1 5  0.4129 (0.1983)  C>S  Handshake      ClientKeyExchange\n       1 6  0.4129 (0.0000)  C>S  ChangeCipherSpec\n       1 7  0.4129 (0.0000)  C>S  Handshake\n       1 8  0.5585 (0.1456)  S>C  ChangeCipherSpec\n       1 9  0.6135 (0.0550)  S>C  Handshake\n       1 10 2.3121 (1.6986)  C>S  application_data\n       1 11 2.5336 (0.2214)  C>S  application_data\n       1 12 2.5545 (0.0209)  S>C  application_data\n       1 13 2.5592 (0.0046)  S>C  application_data\n       1 14 2.5592 (0.0000)  S>C  Alert\n\n       Note that the ClientKeyExchange message type is printed but the rest of\n       the Handshake messages do not have types. These are the  Finished  mes\u2010\n       sages,  but because they are encrypted ssldump only knows that they are\n       of type Handshake.  Similarly, had the Alert in record 14 happened dur\u2010\n       ing  the  handshake,  it's type and level would have been printed. How\u2010\n       ever, since it is encrypted we can only tell that it is an alert.\n\nBUGS\n       Please send bug reports to https://github.com/adulau/ssldump\n\n       The TCP reassembler is not perfect. No attempt is made to reassemble IP\n       fragments  and  the 3-way handshake and close handshake are imperfectly\n       implemented. In practice, this turns out not to be much of a problem.\n\n       Support is provided for only for Ethernet and loopback  interfaces  be\u2010\n       cause  that's  all that I have. If you have another kind of network you\n       will need to modify pcap_cb in base/pcap-snoop.c. If  you  have  direct\n       experience with ssldump on other networks, please send me patches.\n\n       ssldump  doesn't  implement session caching and therefore can't decrypt\n       resumed sessions.\n\nSEE ALSO\n       tcpdump(1)\n\nAUTHOR\n       ssldump was originally written by Eric Rescorla  <ekr@rtfm.com>.  Main\u2010\n       tained   by   a   bunch   of  volunteers,  see  https://github.com/adu\u2010\n       lau/ssldump/blob/master/CREDITS - Copyright (C) 2015-2023 the aforemen\u2010\n       tioned volunteers\n\n                        14th August 2023 - version 1.8              SSLDUMP(1)\n",
+   "stderr": "troff: <standard input>:188: warning [p 2, 1.8i]: cannot adjust line\n",
+   "duration_ms": 13,
    "truncated": false,
    "error": null,
    "source": "man"
   },
   {
-   "argv": [
-    "info",
-    "--output=-",
-    "--subnodes",
-    "ssldump"
-   ],
-   "exit_code": 0,
-   "stdout": "",
-   "stderr": "info: No menu item 'ssldump' in node '(dir)Top'\n",
-   "duration_ms": 2,
-   "truncated": false,
-   "error": null,
-   "source": "info"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 3,
+   "commands_run": 2,
    "binary": "ssldump",
    "exit_code": null,
    "stdout": "",
@@ -66,8 +51,37 @@
  "input_fingerprint": null,
  "examples": [],
  "help": {
-  "flags_seen": {},
-  "values_seen": {},
+  "flags_seen": {
+   "-a": "Print bare TCP ACKs (useful for observing Nagle behavior).",
+   "-A": "Print all record fields (by default ssldump chooses the most in\u2010 teresting fields).",
+   "-d": "Display the application data traffic.  This  usually  means  de\u2010 crypting it, but when -d is used ssldump will also decode appli\u2010 cation data traffic before the SSL session initiates. This al\u2010 lows you to see HTTPS CONNECT behavior as well as SMTP STARTTLS. As a side effect, since ssldump can't tell whether plaintext is traffic before the initiation of an SSL connection or just a regular TCP connection, this allows you to use ssldump to sniff any TCP connection. ssldump will automatically detect ASCII data and display it directly to the screen. non-ASCII data is displayed as hex dumps. See also -X.",
+   "-e": "Print absolute timestamps instead of relative timestamps.",
+   "-F": "Specify  the  number  of  packets  after which a connection pool cleaning is performed (in packets, default: 100).",
+   "-H": "Print the full SSL packet header.",
+   "-i": "Use interface as the network interface on which to sniff SSL/TLS traffic.",
+   "-j": "Switch  output  format  to JSON. Only stdout is affected by this toggle.",
+   "-k": "Use keyfile as the location of the SSL keyfile (OpenSSL format) Previous versions of ssldump automatically looked in ./server.pem. Now you must specify your keyfile every time.",
+   "-l": "Use sslkeylogfile as the location of the SSLKEYLOGFILE (https://developer.mozilla.org/en- US/docs/Mozilla/Projects/NSS/Key_Log_Format).",
+   "-n": "Don't try to resolve host names from IP addresses.",
+   "-N": "Attempt to parse ASN.1 when it appears, such as in  certificates and DNs.",
+   "-p": "Use password as the SSL keyfile password.",
+   "-P": "Don't put the interface into promiscuous mode.",
+   "-q": "Don't  decode  any  record  fields beyond a single summary line. (quiet mode).",
+   "-r": "Read data from file instead of from the network. The old -f op\u2010 tion still works but is deprecated and will probably be removed with the next version.",
+   "-S": "Specify SSL flags to ssldump. These flags include:",
+   "-t": "Specify the TTL for inactive connections referenced in the  con\u2010 nection pool (in seconds, default: 100).",
+   "-T": "Print the TCP headers.",
+   "-v": "Display version and copyright information.",
+   "-w": "Use outputpcap as the destination for decrypted packets.",
+   "-x": "Print each record in hex, as well as decoding it.",
+   "-X": "When the -d option is used, binary data is automatically printed in two columns with a hex dump on the left and the printable characters on the right. -X suppresses the display of the print\u2010 able characters, thus making it easier to cut and paste the hex data into some other program.",
+   "-y": "Decorate  the  output  for processing with nroff/troff. Not very useful for the average user.",
+   "-z": "Add timestamp in front of TCP packet description (-T)"
+  },
+  "values_seen": {
+   "-r": "file",
+   "-S": "[ crypto | d | ht | H ]"
+  },
   "aliases": {},
   "subcommand_flags": {},
   "subcommands": [],
@@ -79,8 +93,7 @@
   "text": "ssldump: invalid option -- '-'\nUsage: ssldump [-r dumpfile] [-i interface] [-l sslkeylogfile] [-w outpcapfile]\n               [-k keyfile] [-p password] [-vtaTznsAxVNde]\n               [filter]\n"
  },
  "validation": {
-  "confirmed": [],
-  "unconfirmed": [
+  "confirmed": [
    "-A",
    "-F",
    "-H",
@@ -107,15 +120,16 @@
    "-y",
    "-z"
   ],
+  "unconfirmed": [],
   "help_only": [],
-  "mining_coverage": null
+  "mining_coverage": 1.0
  },
  "surface": {
   "flags": {
    "-A": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Print all record fields (by default ssldump chooses the most interesting fields).",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print all record fields (by default ssldump chooses the most in\u2010 teresting fields).",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -126,9 +140,9 @@
     "source_path": "ssldump.1"
    },
    "-F": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Specify the number of packets after which a connection pool cleaning is performed (in packets, default: 100).",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify  the  number  of  packets  after which a connection pool cleaning is performed (in packets, default: 100).",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -139,8 +153,8 @@
     "source_path": "ssldump.1"
    },
    "-H": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Print the full SSL packet header.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -152,9 +166,9 @@
     "source_path": "ssldump.1"
    },
    "-N": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Attempt to parse ASN.1 when it appears, such as in certificates and DNs.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Attempt to parse ASN.1 when it appears, such as in  certificates and DNs.",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -165,8 +179,8 @@
     "source_path": "ssldump.1"
    },
    "-P": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Don't put the interface into promiscuous mode.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -178,10 +192,11 @@
     "source_path": "ssldump.1"
    },
    "-S": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Specify SSL flags to ssldump.  These flags include:",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify SSL flags to ssldump. These flags include:",
     "kind": "option",
+    "metavar": "[ crypto | d | ht | H ]",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
     "last_tag": "v1.9",
@@ -191,8 +206,8 @@
     "source_path": "ssldump.1"
    },
    "-T": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Print the TCP headers.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -204,9 +219,9 @@
     "source_path": "ssldump.1"
    },
    "-X": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "When the -d option is used, binary data is automatically printed in two columns with a hex dump on the left and the printable characters on the right. -X suppresses the display of the printable characters, thus making it easier to cut and paste the hex data into some other program.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "When the -d option is used, binary data is automatically printed in two columns with a hex dump on the left and the printable characters on the right. -X suppresses the display of the print\u2010 able characters, thus making it easier to cut and paste the hex data into some other program.",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -217,8 +232,8 @@
     "source_path": "ssldump.1"
    },
    "-a": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Print bare TCP ACKs (useful for observing Nagle behavior).",
     "kind": "option",
     "first_tag": "v1.0",
@@ -230,9 +245,9 @@
     "source_path": "ssldump.1"
    },
    "-d": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Display the application data traffic. This usually means decrypting it, but when -d is used ssldump will also decode application data traffic before the SSL session initiates. This allows you to see HTTPS CONNECT behavior as well as SMTP STARTTLS. As a side effect, since ssldump can't tell whether plaintext is traffic before the initiation of an SSL connection or just a regular TCP connection, this allows you to use ssldump to sniff any TCP connection. ssldump will automatically detect ASCII data and display it directly to the screen. non-ASCII data is displayed as hex dumps. See also -X.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Display the application data traffic.  This  usually  means  de\u2010 crypting it, but when -d is used ssldump will also decode appli\u2010 cation data traffic before the SSL session initiates. This al\u2010 lows you to see HTTPS CONNECT behavior as well as SMTP STARTTLS. As a side effect, since ssldump can't tell whether plaintext is traffic before the initiation of an SSL connection or just a regular TCP connection, this allows you to use ssldump to sniff any TCP connection. ssldump will automatically detect ASCII data and display it directly to the screen. non-ASCII data is displayed as hex dumps. See also -X.",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -243,8 +258,8 @@
     "source_path": "ssldump.1"
    },
    "-e": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Print absolute timestamps instead of relative timestamps.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -256,8 +271,8 @@
     "source_path": "ssldump.1"
    },
    "-i": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Use interface as the network interface on which to sniff SSL/TLS traffic.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -269,9 +284,9 @@
     "source_path": "ssldump.1"
    },
    "-j": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Switch output format to JSON. Only stdout is affected by this toggle.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Switch  output  format  to JSON. Only stdout is affected by this toggle.",
     "kind": "option",
     "first_tag": "v1.3",
     "first_date": "2021-02-02T15:32:28+01:00",
@@ -282,8 +297,8 @@
     "source_path": "ssldump.1"
    },
    "-k": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Use keyfile as the location of the SSL keyfile (OpenSSL format) Previous versions of ssldump automatically looked in ./server.pem. Now you must specify your keyfile every time.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -295,9 +310,9 @@
     "source_path": "ssldump.1"
    },
    "-l": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Use sslkeylogfile as the location of the SSLKEYLOGFILE (https://developer.mozilla.org/en-US/docs/Mozilla/Projects/NSS/Key_Log_Format).",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use sslkeylogfile as the location of the SSLKEYLOGFILE (https://developer.mozilla.org/en- US/docs/Mozilla/Projects/NSS/Key_Log_Format).",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -308,8 +323,8 @@
     "source_path": "ssldump.1"
    },
    "-n": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Don't try to resolve host names from IP addresses.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -321,8 +336,8 @@
     "source_path": "ssldump.1"
    },
    "-p": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Use password as the SSL keyfile password.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -334,9 +349,9 @@
     "source_path": "ssldump.1"
    },
    "-q": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Don't decode any record fields beyond a single summary line. (quiet mode).",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't  decode  any  record  fields beyond a single summary line. (quiet mode).",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -347,10 +362,11 @@
     "source_path": "ssldump.1"
    },
    "-r": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Read data from file instead of from the network. The old -f option still works but is deprecated and will probably be removed with the next version.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Read data from file instead of from the network. The old -f op\u2010 tion still works but is deprecated and will probably be removed with the next version.",
     "kind": "option",
+    "metavar": "file",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
     "last_tag": "v1.9",
@@ -360,9 +376,9 @@
     "source_path": "ssldump.1"
    },
    "-t": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Specify the TTL for inactive connections referenced in the connection pool (in seconds, default: 100).",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify the TTL for inactive connections referenced in the  con\u2010 nection pool (in seconds, default: 100).",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -373,8 +389,8 @@
     "source_path": "ssldump.1"
    },
    "-v": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Display version and copyright information.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -386,8 +402,8 @@
     "source_path": "ssldump.1"
    },
    "-w": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Use outputpcap as the destination for decrypted packets.",
     "kind": "option",
     "first_tag": "v1.3",
@@ -399,8 +415,8 @@
     "source_path": "ssldump.1"
    },
    "-x": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Print each record in hex, as well as decoding it.",
     "kind": "option",
     "first_tag": "v1.0",
@@ -412,9 +428,9 @@
     "source_path": "ssldump.1"
    },
    "-y": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Decorate the output for processing with nroff/troff. Not very useful for the average user.",
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Decorate  the  output  for processing with nroff/troff. Not very useful for the average user.",
     "kind": "option",
     "first_tag": "v1.0",
     "first_date": "2019-05-26T08:23:08+02:00",
@@ -425,8 +441,8 @@
     "source_path": "ssldump.1"
    },
    "-z": {
-    "source": "source",
-    "runtime_confirmed": false,
+    "source": "both",
+    "runtime_confirmed": true,
     "help": "Add timestamp in front of TCP packet description (-T)",
     "kind": "option",
     "first_tag": "v1.8",
@@ -509,6 +525,6 @@
  "repo": "adulau/ssldump",
  "head_sha": "e6b1a59ea2f51f29f280640ea0638c563a38b338",
  "analyzer": "exec",
- "analyzer_version": "13",
- "generated_at": "2026-08-17T02:30:49.019993+00:00"
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T01:24:58.442151+00:00"
 }

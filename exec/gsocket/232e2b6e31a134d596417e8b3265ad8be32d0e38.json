@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "c",
-  "image_digest": "sha256:2f665411c568892e9189f64d15be9dd9432e840fd7807046f94d3f55726d54ac",
-  "duration_s": 56.75,
-  "log_tail": "#12 46.26 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#12 46.30 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#12 46.33 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#12 46.37 debconf: unable to initialize frontend: Dialog\n#12 46.37 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 46.37 debconf: falling back to frontend: Readline\n#12 46.38 debconf: unable to initialize frontend: Readline\n#12 46.38 debconf: (This frontend requires a controlling tty.)\n#12 46.38 debconf: falling back to frontend: Teletype\n#12 46.40 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 46.42 Setting up texinfo (6.8-6+b1) ...\n#12 46.43 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#12 46.44 Setting up dmsetup (2:1.02.185-2) ...\n#12 46.46 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#12 46.47 Processing triggers for install-info (6.8-6+b1) ...\n#12 46.48 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#12 DONE 46.7s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.3s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.1s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.271 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.4s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.7s done\n#19 exporting manifest sha256:4ac5fdcb3d10f72d800e63d5d487a79b056c599e2fc3a8fbef33e9ae3e6a31d0 0.0s done\n#19 exporting config sha256:6fc895eabe2722e7f0b00624bbe0e9ff361515f9f1bdfdec1bff79c5a3e8425a 0.0s done\n#19 exporting attestation manifest sha256:0d23420824a786f1a7fd02c6536b7f5abd498be4dfd6bb37e0ee6f76badc6229\n#19 exporting attestation manifest sha256:0d23420824a786f1a7fd02c6536b7f5abd498be4dfd6bb37e0ee6f76badc6229 0.1s done\n#19 exporting manifest list sha256:2f665411c568892e9189f64d15be9dd9432e840fd7807046f94d3f55726d54ac 0.0s done\n#19 naming to docker.io/ctk-exec/gsocket:232e2b6e31a1\n#19 naming to docker.io/ctk-exec/gsocket:232e2b6e31a1 done\n#19 unpacking to docker.io/ctk-exec/gsocket:232e2b6e31a1\n#19 unpacking to docker.io/ctk-exec/gsocket:232e2b6e31a1 2.0s done\n#19 DONE 6.0s",
+  "image_digest": "sha256:dbe1548ac3a5abadc063cc95a9aabbf1cfdf92f2598181ac06fbe7b459472d0c",
+  "duration_s": 1.83,
+  "log_tail": "#7 DONE 0.0s\n\n#8 [build 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential autoconf automake libtool pkg-config cmake git ca-certificates     gettext autopoint flex bison     gawk texinfo groff-base python-is-python3 libltdl-dev     xz-utils unzip wget     libssl-dev libpcap-dev zlib1g-dev libcryptsetup-dev libgcrypt20-dev     libjudy-dev libnl-3-dev libnl-genl-3-dev libpcre2-dev libcurl4-openssl-dev     libusb-1.0-0-dev libnet1-dev libsqlite3-dev     libnids-dev libboost-dev libseccomp-dev libbpf-dev libjose-dev libcap-dev  && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [build 4/5] COPY . .\n#9 CACHED\n\n#10 [build 3/5] WORKDIR /src\n#10 CACHED\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\" && { make install || true; };     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\" && { make install || true; });     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\" && { make -C src install || true; };     else make -j\"$(nproc)\"; fi\n#11 CACHED\n\n#12 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/9] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/9] COPY --from=build /usr/local /usr/local\n#14 DONE 0.0s\n\n#15 [stage-1 5/9] WORKDIR /src\n#15 DONE 0.0s\n\n#16 [stage-1 6/9] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/9] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1 8/9] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 9/9] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.100 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.2s done\n#20 exporting manifest sha256:7e8b7ba690812d3999ca5b25c412764a1efbc0a110ff6718b4458f2286f3fcef 0.0s done\n#20 exporting config sha256:3bbe7ac96b3250f7624aa339193302a94377d7d5a6cb95381148b8cce6aea363 done\n#20 exporting attestation manifest sha256:ea57f03af570935cb0645ac34d93f2d9049c3b581d9c73468fcd9e78c6d3e5e8 0.0s done\n#20 exporting manifest list sha256:dbe1548ac3a5abadc063cc95a9aabbf1cfdf92f2598181ac06fbe7b459472d0c done\n#20 naming to docker.io/ctk-exec/gsocket:232e2b6e31a1 done\n#20 unpacking to docker.io/ctk-exec/gsocket:232e2b6e31a1\n#20 unpacking to docker.io/ctk-exec/gsocket:232e2b6e31a1 0.7s done\n#20 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -47,13 +47,72 @@
   },
   {
    "argv": [
+    "blitz",
+    "--help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "rsync not found. Try 'apt-get install rsync' or check PATH=?\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "blitz",
+    "-h"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "rsync not found. Try 'apt-get install rsync' or check PATH=?\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "blitz",
+    "help"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "rsync not found. Try 'apt-get install rsync' or check PATH=?\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "blitz",
+    "--usage"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "rsync not found. Try 'apt-get install rsync' or check PATH=?\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "blitz"
+   ],
+   "exit_code": 1,
+   "stdout": "",
+   "stderr": "rsync not found. Try 'apt-get install rsync' or check PATH=?\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
     "config.status",
     "--help"
    ],
    "exit_code": 0,
    "stdout": "`config.status' instantiates files and other configuration actions\nfrom templates according to the current configuration.  Unless the files\nand actions are specified as TAGs, all are instantiated by default.\n\nUsage: /src/config.status [OPTION]... [TAG]...\n\n  -h, --help       print this help, then exit\n  -V, --version    print version number and configuration settings, then exit\n      --config     print configuration, then exit\n  -q, --quiet, --silent\n                   do not print progress messages\n  -d, --debug      don't remove temporary files\n      --recheck    update config.status by reconfiguring in the same conditions\n      --file=FILE[:TEMPLATE]\n                   instantiate the configuration file FILE\n      --header=FILE[:TEMPLATE]\n                   instantiate the configuration header FILE\n\nConfiguration files:\n Makefile lib/Makefile tools/Makefile include/Makefile include/gsocket/Makefile tools/gsocket.conf man/Makefile examples/Makefile\n\nConfiguration headers:\n config.h\n\nConfiguration commands:\n depfiles\n\nReport bugs to the package provider.\n",
    "stderr": "",
-   "duration_ms": 23,
+   "duration_ms": 11,
    "truncated": false,
    "error": null
   },
@@ -66,7 +125,7 @@
    "exit_code": 0,
    "stdout": "`config.status' instantiates files and other configuration actions\nfrom templates according to the current configuration.  Unless the files\nand actions are specified as TAGs, all are instantiated by default.\n\nUsage: /src/config.status [OPTION]... [TAG]...\n\n  -h, --help       print this help, then exit\n  -V, --version    print version number and configuration settings, then exit\n      --config     print configuration, then exit\n  -q, --quiet, --silent\n                   do not print progress messages\n  -d, --debug      don't remove temporary files\n      --recheck    update config.status by reconfiguring in the same conditions\n      --file=FILE[:TEMPLATE]\n                   instantiate the configuration file FILE\n      --header=FILE[:TEMPLATE]\n                   instantiate the configuration header FILE\n\nConfiguration files:\n Makefile lib/Makefile tools/Makefile include/Makefile include/gsocket/Makefile tools/gsocket.conf man/Makefile examples/Makefile\n\nConfiguration headers:\n config.h\n\nConfiguration commands:\n depfiles\n\nReport bugs to the package provider.\n",
    "stderr": "",
-   "duration_ms": 15,
+   "duration_ms": 10,
    "truncated": false,
    "error": null
   },
@@ -80,7 +139,7 @@
    "exit_code": 0,
    "stdout": "`config.status' instantiates files and other configuration actions\nfrom templates according to the current configuration.  Unless the files\nand actions are specified as TAGs, all are instantiated by default.\n\nUsage: /src/config.status [OPTION]... [TAG]...\n\n  -h, --help       print this help, then exit\n  -V, --version    print version number and configuration settings, then exit\n      --config     print configuration, then exit\n  -q, --quiet, --silent\n                   do not print progress messages\n  -d, --debug      don't remove temporary files\n      --recheck    update config.status by reconfiguring in the same conditions\n      --file=FILE[:TEMPLATE]\n                   instantiate the configuration file FILE\n      --header=FILE[:TEMPLATE]\n                   instantiate the configuration header FILE\n\nConfiguration files:\n Makefile lib/Makefile tools/Makefile include/Makefile include/gsocket/Makefile tools/gsocket.conf man/Makefile examples/Makefile\n\nConfiguration headers:\n config.h\n\nConfiguration commands:\n depfiles\n\nReport bugs to the package provider.\n",
    "stderr": "",
-   "duration_ms": 16,
+   "duration_ms": 9,
    "truncated": false,
    "error": null
   },
@@ -107,7 +166,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: Cannot find node '(config.status)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 0,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -121,31 +180,16 @@
    "exit_code": 0,
    "stdout": "BLITZ(1)                  BSD General Commands Manual                 BLITZ(1)\n\nNAME\n     blitz \u2014 Securely transfer files between two workstations through\n     NAT/Firewall.\n\nSYNOPSIS\n     blitz [-lT] [-s secret] [-k keyfile] [-f list] [-o RSOPT=] [files ...]\n\nDESCRIPTION\n     The blitz utility is a wrapper script for gs-netcat and rsync. It allows\n     one to send files from one workstation to another workstation via the\n     Global Socket Relay Network (GSRN).\n\n     A typical use-case is where both workstations are separated by a Firewall\n     or NAT and not able to establish a direct connection between each other.\n\nOPTIONS\n     -l      Server mode. The default mode is client.\n\n     -s secret\n             A password chosen by the user. Both users need to use the same\n             password to connect.\n\n     -k FILE\n             A file containing the password.\n\n     -f FILE\n             Read list of file names from FILE. If FILE is -, the list will be\n             read from standard input.\n\n     -o RSOPT=\n             Options passed to rsync. See rsync(1) for available options.\n\n     -T      Use TOR. The blitz tool will connect via TOR to the GSRN. This\n             requires TOR to be installed and running. The IP and PORT of the\n             TOR server can be set using environment variables.\n\n     See gs-netcat(1) for more options.\n\nEXAMPLES\n     Listen for clients with password 'MySecret':\n           $ mkdir /tmp/foo && cd /tmp/foo\n           $ blitz -s MySecret -l\n\n     Copy 'file.dat' to /tmp/foo/file.dat on the server:\n           $ blitz -s MySecret file.dat\n\n     Copy '/etc/ssh/ssh*config' to /tmp/foo/etc/ssh/ on the server:\n           $ blitz -s MySecret /etc/ssh/ssh*config\n\n     It is also possible to limit the amount of path information that is sent\n     as implied directories for each path you specify. You can insert a dot\n     and a slash into the source path, like this:\n\n           $ blitz -s MySecret /etc/./ssh/ssh*config\n     The received files will be stored to /tmp/foo/ssh/ instead of\n     /tmp/foo/etc/ssh.\n\n     Copy recursively and limit bandwidth to 10kB/sec:\n           $ blitz -s MySecret -o 'RSOPT=--bwlimit=10' /usr/./share\n\n     Copy the entire root file-system:\n           $ blitz -s MySecret -o 'RSOPT=-x' /\n\n     Copy specific files read from standard input:\n           $ find . -name '*.conf' | blitz -s MySecret -f -\n\n     Run a permanent server (daemon) through TOR:\n           $ blitz -s MySecret -l -D -T\n\nENVIRONMENT\n     See gs-netcat(1) for a list of supported environment variables.\n\nSEE ALSO\n     gsocket(1), gs-netcat(1), gs-sftp(1), gs-mount(1), rsync(1)\n\nBUGS\n     Efforts have been made to have blitz \"do the right thing\" in all its var\u2010\n     ious modes. If you believe that it is doing the wrong thing under what\u2010\n     ever circumstances, please notify me (skyper@thc.org) and tell me how you\n     think it should behave.\n\nBSD                            October 12, 2020                            BSD\n",
    "stderr": "",
-   "duration_ms": 17,
+   "duration_ms": 13,
    "truncated": false,
    "error": null,
    "source": "man-file"
   },
   {
-   "argv": [
-    "gsocket",
-    "/opt/ctk/fixtures/source-corpus"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'gsocket'",
-   "kind": "scenario",
-   "id": "t-readme-360b9f4b",
-   "title": "From the project's documentation \u2014 run against source-corpus"
-  },
-  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 10,
+   "commands_run": 14,
    "binary": "config.status",
    "exit_code": null,
    "stdout": "",
@@ -353,7 +397,7 @@
  "skipped_reason": null,
  "example_trials": {
   "tried": 3,
-  "tried_this_wave": 1,
+  "tried_this_wave": 0,
   "promoted": 0,
   "results": [
    {
@@ -402,10 +446,10 @@
     "path": "README.md",
     "line": 97,
     "grade": "rejected",
-    "reason": "harness-error:FileNotFoundError: [Errno 2] No such file or directory: 'gsocket'",
+    "reason": "no-output",
     "grader": 3,
-    "exit_code": null,
-    "output_bytes": 0
+    "exit_code": 1,
+    "output_bytes": 60
    }
   ],
   "not_attempted": [
@@ -414,6 +458,14 @@
     "source": "readme",
     "path": "README.md",
     "line": 98,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "blitz -l                         # Workstation A",
+    "source": "readme",
+    "path": "README.md",
+    "line": 104,
     "reason": "no-input-bound",
     "token": ""
    },
@@ -439,6 +491,6 @@
  "repo": "hackerschoice/gsocket",
  "head_sha": "232e2b6e31a134d596417e8b3265ad8be32d0e38",
  "analyzer": "exec",
- "analyzer_version": "13",
- "generated_at": "2026-08-17T03:26:22.054374+00:00"
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T02:07:29.838963+00:00"
 }

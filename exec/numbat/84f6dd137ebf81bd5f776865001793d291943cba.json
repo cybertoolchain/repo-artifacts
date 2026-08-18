@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:ff656541fae08d504919cc7bb259f270de2b95e3f50fd436dcb38ce3cc4bbabf",
-  "duration_s": 26.25,
-  "log_tail": "#12 7.904 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 7.904 debconf: falling back to frontend: Readline\n#12 7.908 debconf: unable to initialize frontend: Readline\n#12 7.908 debconf: (This frontend requires a controlling tty.)\n#12 7.908 debconf: falling back to frontend: Teletype\n#12 7.931 \n#12 7.931 Creating config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 7.943 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#12 7.961 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#12 7.993 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#12 8.023 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#12 8.066 debconf: unable to initialize frontend: Dialog\n#12 8.066 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#12 8.066 debconf: falling back to frontend: Readline\n#12 8.069 debconf: unable to initialize frontend: Readline\n#12 8.069 debconf: (This frontend requires a controlling tty.)\n#12 8.069 debconf: falling back to frontend: Teletype\n#12 8.093 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#12 8.106 Setting up texinfo (6.8-6+b1) ...\n#12 8.117 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#12 8.127 Processing triggers for install-info (6.8-6+b1) ...\n#12 DONE 8.3s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.135 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 3.3s done\n#18 exporting manifest sha256:740e566e5a0a1428699100c2fbe5f3bbf0605ee212796b10bc8e66f056fd876f done\n#18 exporting config sha256:0c6e2b97d0c4fef3f1adbf8495f6cb6cfa2d27aecbb3ab4eba496c0793cc64fb done\n#18 exporting attestation manifest sha256:adb131c1de8bea11563ed7c2f92352ee675b5433a2b20d8cb34eadf2dee7641f done\n#18 exporting manifest list sha256:ff656541fae08d504919cc7bb259f270de2b95e3f50fd436dcb38ce3cc4bbabf done\n#18 naming to docker.io/ctk-exec/numbat:84f6dd137ebf done\n#18 unpacking to docker.io/ctk-exec/numbat:84f6dd137ebf\n#18 unpacking to docker.io/ctk-exec/numbat:84f6dd137ebf 0.7s done\n#18 DONE 4.0s",
+  "image_digest": "sha256:0fba17ec408053ca34e4c2ab89bc15580314be038e0841d60c5d0e81768b687a",
+  "duration_s": 10.35,
+  "log_tail": "\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.164 go: downloading go.etcd.io/bbolt v1.5.0\n#11 0.164 go: downloading github.com/google/cel-go v0.31.0\n#11 0.165 go: downloading github.com/klauspost/compress v1.19.2\n#11 0.166 go: downloading golang.org/x/sys v0.47.0\n#11 0.168 go: downloading go.yaml.in/yaml/v3 v3.0.5\n#11 0.168 go: downloading mvdan.cc/sh/v3 v3.13.1\n#11 0.173 go: downloading google.golang.org/protobuf v1.36.12\n#11 0.553 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240826202546-f6391c0de4c7\n#11 0.554 go: downloading cel.dev/expr v0.25.1\n#11 0.554 go: downloading golang.org/x/text v0.39.0\n#11 0.555 go: downloading github.com/antlr4-go/antlr/v4 v4.13.1\n#11 0.670 go: downloading golang.org/x/exp v0.0.0-20240823005443-9b4947da3948\n#11 0.675 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240826202546-f6391c0de4c7\n#11 DONE 7.5s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.1s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.164 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.6s done\n#18 exporting manifest sha256:cac6ecd8cd69f165b7c55fdf63f64d20a237ddd4573787aabbd843b6abc31523 done\n#18 exporting config sha256:216a6136e1cf46802e3a0016e2d26fc0ccea7f70dbb9a3fbd2bd7f454e19d67d done\n#18 exporting attestation manifest sha256:a59f1a58a0d7f5ab9e7a1177360922dc36092ff1a2d4fe610e206bb866e78ba4 0.0s done\n#18 exporting manifest list sha256:0fba17ec408053ca34e4c2ab89bc15580314be038e0841d60c5d0e81768b687a done\n#18 naming to docker.io/ctk-exec/numbat:84f6dd137ebf done\n#18 unpacking to docker.io/ctk-exec/numbat:84f6dd137ebf\n#18 unpacking to docker.io/ctk-exec/numbat:84f6dd137ebf 0.7s done\n#18 DONE 1.3s",
   "error": null,
   "timed_out": false
  },
@@ -70,7 +70,7 @@
    "exit_code": 0,
    "stdout": "chain.guardrails_off_then_egress\nchain.permission_denied_then_runtime_bypass\nchain.privilege_discovery_then_elevation\nchain.secret_manager_read_then_egress\nchain.secret_read_then_egress\nchain.workload_identity_then_lateral_execution\nexec.agent_runtime_bypass_flags\nexec.destructive_recursive_delete\nexec.download_pipe_shell\nexec.encoded_payload_shell\nexec.reverse_shell\nexec.reverse_tunnel\nexfil.curl_post_file\nexfil.dns_tunnel_exec\nexfil.env_capture_to_network\nexfil.secret_read_and_egress_oneliner\nimpact.cryptomining_launch\nimpact.disk_wipe\nimpact.fork_bomb\nimpact.mass_process_termination\nintegrity.git_hooks_bypass\nintegrity.history_tamper\nlateral.workload_exec\npersistence.git_hook_write\npersistence.privileged_account_change\npersistence.scheduler_install\npersistence.shell_profile_write\npersistence.ssh_authorized_keys\npersistence.ssh_authorized_keys_command\nprivilege.access_control_mutation\nprivilege.container_host_escape\nprivilege.container_runtime_socket_access\nprivilege.elevated_shell\nprivilege.host_namespace_entry\nprivilege.sudoers_tamper\nrecon.cloud_metadata\nrecon.network_sweep\nrecon.privilege_escalation\nsecrets.agent_read_env\nsecrets.browser_session_store_read\nsecrets.cloud_credential_read\nsecrets.cloud_secret_manager_read\nsecrets.developer_credential_read\nsecrets.process_environment_read\nsecrets.read_private_key\nsecrets.workload_identity_token_read\nsource.git_config_exec\nsource.git_remote_tamper\ntamper.agent_config_write\ntamper.detector_state_write\ntamper.guardrails_off\n",
    "stderr": "",
-   "duration_ms": 150,
+   "duration_ms": 137,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -78,10 +78,47 @@
    "title": "From the project's documentation \u2014 run against no fixture"
   },
   {
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex"
+   ],
+   "exit_code": 0,
+   "stdout": "codex       not-installed numbat hooks not installed (/home/ctk/.codex/hooks.json)\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-83217670",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex",
+    "--managed"
+   ],
+   "exit_code": 0,
+   "stdout": "codex       not-installed numbat managed hooks not installed (/etc/codex/requirements.toml)\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-e5433822",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
    "kind": "batch_summary",
    "argv": [],
    "capped": false,
-   "commands_run": 5,
+   "commands_run": 7,
    "binary": "numbat",
    "exit_code": null,
    "stdout": "",
@@ -91,7 +128,7 @@
    "error": null
   }
  ],
- "input_fingerprint": "a09b76e53e58b16e",
+ "input_fingerprint": "83e832ea3e133598",
  "declared_commands": [
   {
    "name": "numbat",
@@ -110,7 +147,42 @@
    "stdout": "chain.guardrails_off_then_egress\nchain.permission_denied_then_runtime_bypass\nchain.privilege_discovery_then_elevation\nchain.secret_manager_read_then_egress\nchain.secret_read_then_egress\nchain.workload_identity_then_lateral_execution\nexec.agent_runtime_bypass_flags\nexec.destructive_recursive_delete\nexec.download_pipe_shell\nexec.encoded_payload_shell\nexec.reverse_shell\nexec.reverse_tunnel\nexfil.curl_post_file\nexfil.dns_tunnel_exec\nexfil.env_capture_to_network\nexfil.secret_read_and_egress_oneliner\nimpact.cryptomining_launch\nimpact.disk_wipe\nimpact.fork_bomb\nimpact.mass_process_termination\nintegrity.git_hooks_bypass\nintegrity.history_tamper\nlateral.workload_exec\npersistence.git_hook_write\npersistence.privileged_account_change\npersistence.scheduler_install\npersistence.shell_profile_write\npersistence.ssh_authorized_keys\npersistence.ssh_authorized_keys_command\nprivilege.access_control_mutation\nprivilege.container_host_escape\nprivilege.container_runtime_socket_access\nprivilege.elevated_shell\nprivilege.host_namespace_entry\nprivilege.sudoers_tamper\nrecon.cloud_metadata\nrecon.network_sweep\nrecon.privilege_escalation\nsecrets.agent_read_env\nsecrets.browser_session_store_read\nsecrets.cloud_credential_read\nsecrets.cloud_secret_manager_read\nsecrets.developer_credential_read\nsecrets.process_environment_read\nsecrets.read_private_key\nsecrets.workload_identity_token_read\nsource.git_config_exec\nsource.git_remote_tamper\ntamper.agent_config_write\ntamper.detector_state_write\ntamper.guardrails_off\n",
    "stderr": "",
    "exit_code": 0,
-   "duration_ms": 150,
+   "duration_ms": 137,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-83217670",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex"
+   ],
+   "stdout": "codex       not-installed numbat hooks not installed (/home/ctk/.codex/hooks.json)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-e5433822",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex",
+    "--managed"
+   ],
+   "stdout": "codex       not-installed numbat managed hooks not installed (/etc/codex/requirements.toml)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   }
@@ -656,7 +728,7 @@
  },
  "skipped_reason": null,
  "example_trials": {
-  "tried": 30,
+  "tried": 32,
   "tried_this_wave": 0,
   "promoted": 0,
   "results": [
@@ -1241,6 +1313,45 @@
     "exit_code": 2,
     "output_bytes": 539,
     "flag": "--poll"
+   },
+   {
+    "id": "t-readme-83217670",
+    "argv": [
+     "numbat",
+     "hook",
+     "status",
+     "--agent",
+     "codex"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 89,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 83,
+    "stability": 1.0
+   },
+   {
+    "id": "t-readme-e5433822",
+    "argv": [
+     "numbat",
+     "hook",
+     "status",
+     "--agent",
+     "codex",
+     "--managed"
+    ],
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 564,
+    "grade": "verified",
+    "reason": "ran-with-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 92,
+    "stability": 1.0
    }
   ],
   "not_attempted": [
@@ -1249,14 +1360,6 @@
     "source": "readme",
     "path": "README.md",
     "line": 88,
-    "reason": "no-input-bound",
-    "token": ""
-   },
-   {
-    "raw": "numbat hook status --agent codex",
-    "source": "readme",
-    "path": "README.md",
-    "line": 89,
     "reason": "no-input-bound",
     "token": ""
    },
@@ -1421,14 +1524,6 @@
     "token": ""
    },
    {
-    "raw": "numbat hook status --agent codex --managed",
-    "source": "readme",
-    "path": "docs/deployment.md",
-    "line": 564,
-    "reason": "no-input-bound",
-    "token": ""
-   },
-   {
     "raw": "numbat hook install --agent cursor",
     "source": "readme",
     "path": "docs/live-capture.md",
@@ -1474,6 +1569,6 @@
  "repo": "perplexityai/numbat",
  "head_sha": "84f6dd137ebf81bd5f776865001793d291943cba",
  "analyzer": "exec",
- "analyzer_version": "13",
- "generated_at": "2026-08-17T02:56:50.636126+00:00"
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T03:47:16.229721+00:00"
 }

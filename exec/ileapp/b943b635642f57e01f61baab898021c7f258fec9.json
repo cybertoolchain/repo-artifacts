@@ -1,0 +1,805 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python_script",
+  "image_digest": "sha256:e332416692bb8cc1bc143d589eb4b55916c41e331bec2895c9b07a1043347d1d",
+  "duration_s": 44.46,
+  "log_tail": "#11 17.33   Stored in directory: /tmp/pip-ephem-wheel-cache-ofv9bndz/wheels/ee/bf/ee/8b734d20d3cc3e31b20be7c2aab7c407c9826dd03d87e1acf6\n#11 17.33   Building wheel for simplekml (pyproject.toml): started\n#11 17.45   Building wheel for simplekml (pyproject.toml): finished with status 'done'\n#11 17.45   Created wheel for simplekml: filename=simplekml-1.3.6-py3-none-any.whl size=65940 sha256=697cfd5c216d8a8b693592b54c12c8a6af038b96c27d70fbbcb838fe660e16b9\n#11 17.45   Stored in directory: /tmp/pip-ephem-wheel-cache-ofv9bndz/wheels/83/ee/f2/65cecfd948f1429ead035fd6d56bc6bd6574a636ddc4d65cbd\n#11 17.46 Successfully built astc_decomp_faster biplist PGPy pyliblzfse simplekml\n#11 17.52 Installing collected packages: simplekml, pytz, pyliblzfse, biplist, bencoding, astc_decomp_faster, altgraph, typing-extensions, soupsieve, six, setuptools, pytypedstream, pycryptodome, pycparser, pyasn1, protobuf, pillow, packaging, numpy, nska-deserialize, mmh3, mdplistlib, ijson, certifi, python-dateutil, pyinstaller-hooks-contrib, pillow_heif, pathlib2, cffi, beautifulsoup4, pyinstaller, pandas, cryptography, bs4, PGPy\n#11 22.34 \n#11 22.34 Successfully installed PGPy-0.6.0 altgraph-0.17.5 astc_decomp_faster-1.1.5 beautifulsoup4-4.15.0 bencoding-0.2.6 biplist-1.0.3 bs4-0.0.2 certifi-2026.7.22 cffi-2.1.1 cryptography-50.0.0 ijson-3.5.1 mdplistlib-0.1.3 mmh3-5.2.1 nska-deserialize-1.5.1 numpy-1.26.4 packaging-24.1 pandas-3.0.5 pathlib2-2.3.5 pillow-12.3.0 pillow_heif-1.5.0 protobuf-5.29.6 pyasn1-0.6.4 pycparser-3.0 pycryptodome-3.23.0 pyinstaller-6.22.2 pyinstaller-hooks-contrib-2026.6 pyliblzfse-0.4.1 python-dateutil-2.9.0.post0 pytypedstream-0.1.0 pytz-2026.3.post1 setuptools-84.0.0 simplekml-1.3.6 six-1.17.0 soupsieve-2.9.2 typing-extensions-4.16.0\n#11 DONE 22.6s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.6s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.4s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.1s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.9s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.133 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.1s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 8.3s done\n#21 exporting manifest sha256:79abc142c3791a1c6832105d8367300933ade5f0d7a8dc5a1ac43dd66d911708 done\n#21 exporting config sha256:3ea8b121ed40a05d89d5c6f50cfe34cf5b10b2b7602ab4b33f7a321a84b20c99 done\n#21 exporting attestation manifest sha256:ac78695130e3f9a68cd82bdc6cb55fba43f9b29dcf5c52862726b73a207d05a4 done\n#21 exporting manifest list sha256:e332416692bb8cc1bc143d589eb4b55916c41e331bec2895c9b07a1043347d1d done\n#21 naming to docker.io/ctk-exec/ileapp:b943b635642f done\n#21 unpacking to docker.io/ctk-exec/ileapp:b943b635642f\n#21 unpacking to docker.io/ctk-exec/ileapp:b943b635642f 3.1s done\n#21 DONE 11.4s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "ileapp",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: ileapp.py [-h] [-t {fs,tar,zip,gz,itunes,file}] [-o OUTPUT_PATH]\n                 [-i INPUT_PATH] [-tz TIMEZONE] [-w] [-m LOAD_PROFILE]\n                 [-d LOAD_CASE_DATA] [-c CREATE_PROFILE_CASEDATA] [-p]\n                 [--custom_output_folder CUSTOM_OUTPUT_FOLDER]\n                 [--custom_artifacts_path CUSTOM_ARTIFACTS_PATH]\n                 [--itunes_password ITUNES_PASSWORD] [--keychain KEYCHAIN]\n\niLEAPP v2026.3.0: iOS Logs, Events, And Plists Parser.\n\noptions:\n  -h, --help            show this help message and exit\n  -t {fs,tar,zip,gz,itunes,file}\n                        Specify the input type. 'fs' for a folder containing\n                        extracted files with normal paths and names, 'tar',\n                        'zip', or 'gz' for compressed packages containing\n                        files with normal names, 'itunes' for a folder\n                        containing a raw iTunes backup with hashed paths and\n                        names, 'file' for a single file input.\n  -o OUTPUT_PATH, --output_path OUTPUT_PATH\n                        Path to base output folder (this must exist)\n  -i INPUT_PATH, --input_path INPUT_PATH\n                        Path to input file/folder\n  -tz TIMEZONE, --timezone TIMEZONE\n                        Timezone name (e.g., 'America/New_York')\n  -w, --wrap_text       Do not wrap text for output of data files\n  -m LOAD_PROFILE, --load_profile LOAD_PROFILE\n                        Path to iLEAPP Profile file (.ilprofile).\n  -d LOAD_CASE_DATA, --load_case_data LOAD_CASE_DATA\n                        Path to LEAPP Case Data file (.lcasedata).\n  -c CREATE_PROFILE_CASEDATA, --create_profile_casedata CREATE_PROFILE_CASEDATA\n                        Generate an iLEAPP Profile file (.ilprofile) or LEAPP\n                        Case Data file (.lcasedata) into the specified path.\n                        This argument is meant to be used alone, without any\n                        other arguments.\n  -p, --artifact_paths  Generate a text file list of artifact paths. This\n                        argument is meant to be used alone, without any other\n                        arguments.\n  --custom_output_folder CUSTOM_OUTPUT_FOLDER\n                        Custom name for the output folder\n  --custom_artifacts_path CUSTOM_ARTIFACTS_PATH\n                        Additional path to load artifacts from (e.g.,\n                        scripts/alternate_artifacts)\n  --itunes_password ITUNES_PASSWORD\n                        Password used for encrypted iTunes backup\n  --keychain KEYCHAIN   Path to a keychain file captured from the device. Some\n                        apps keep their database key in the keychain, which is\n                        collected separately from the file system extraction.\n",
+   "stderr": "",
+   "duration_ms": 288,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "ileapp"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for ileapp\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "ileapp"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'ileapp' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "ileapp",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "-t": "Specify the input type. 'fs' for a folder containing extracted files with normal paths and names, 'tar', 'zip', or 'gz' for compressed packages containing files with normal names, 'itunes' for a folder containing a raw iTunes backup with hashed paths and names, 'file' for a single file input.",
+   "--output_path": "Path to base output folder (this must exist)",
+   "-o": "Path to base output folder (this must exist)",
+   "--input_path": "Path to input file/folder",
+   "-i": "Path to input file/folder",
+   "--timezone": "Timezone name (e.g., 'America/New_York')",
+   "-tz": "Timezone name (e.g., 'America/New_York')",
+   "--wrap_text": "Do not wrap text for output of data files",
+   "-w": "Do not wrap text for output of data files",
+   "--load_profile": "Path to iLEAPP Profile file (.ilprofile).",
+   "-m": "Path to iLEAPP Profile file (.ilprofile).",
+   "--load_case_data": "Path to LEAPP Case Data file (.lcasedata).",
+   "-d": "Path to LEAPP Case Data file (.lcasedata).",
+   "--create_profile_casedata": "Generate an iLEAPP Profile file (.ilprofile) or LEAPP Case Data file (.lcasedata) into the specified path. This argument is meant to be used alone, without any other arguments.",
+   "-c": "Generate an iLEAPP Profile file (.ilprofile) or LEAPP Case Data file (.lcasedata) into the specified path. This argument is meant to be used alone, without any other arguments.",
+   "--artifact_paths": "Generate a text file list of artifact paths. This argument is meant to be used alone, without any other arguments.",
+   "-p": "Generate a text file list of artifact paths. This argument is meant to be used alone, without any other arguments.",
+   "--custom_output_folder": "Custom name for the output folder",
+   "--custom_artifacts_path": "Additional path to load artifacts from (e.g., scripts/alternate_artifacts)",
+   "--itunes_password": "Password used for encrypted iTunes backup",
+   "--keychain": "Path to a keychain file captured from the device. Some apps keep their database key in the keychain, which is collected separately from the file system extraction."
+  },
+  "values_seen": {
+   "-t": "{fs,tar,zip,gz,itunes,file}",
+   "-o": "OUTPUT_PATH",
+   "--output_path": "OUTPUT_PATH",
+   "-i": "INPUT_PATH",
+   "--input_path": "INPUT_PATH",
+   "-tz": "TIMEZONE",
+   "--timezone": "TIMEZONE",
+   "-m": "LOAD_PROFILE",
+   "--load_profile": "LOAD_PROFILE",
+   "-d": "LOAD_CASE_DATA",
+   "--load_case_data": "LOAD_CASE_DATA",
+   "-c": "CREATE_PROFILE_CASEDATA",
+   "--create_profile_casedata": "CREATE_PROFILE_CASEDATA",
+   "--custom_output_folder": "CUSTOM_OUTPUT_FOLDER",
+   "--custom_artifacts_path": "CUSTOM_ARTIFACTS_PATH",
+   "--itunes_password": "ITUNES_PASSWORD",
+   "--keychain": "KEYCHAIN"
+  },
+  "aliases": {
+   "--help": [
+    "-h"
+   ],
+   "--output_path": [
+    "-o"
+   ],
+   "--input_path": [
+    "-i"
+   ],
+   "--timezone": [
+    "-tz"
+   ],
+   "--wrap_text": [
+    "-w"
+   ],
+   "--load_profile": [
+    "-m"
+   ],
+   "--load_case_data": [
+    "-d"
+   ],
+   "--create_profile_casedata": [
+    "-c"
+   ],
+   "--artifact_paths": [
+    "-p"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "ileapp",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "f66073d64c766af06caf4d312c37057706d745b885b696e3b1b07c1fcc00af15",
+  "text": "usage: ileapp.py [-h] [-t {fs,tar,zip,gz,itunes,file}] [-o OUTPUT_PATH]\n                 [-i INPUT_PATH] [-tz TIMEZONE] [-w] [-m LOAD_PROFILE]\n                 [-d LOAD_CASE_DATA] [-c CREATE_PROFILE_CASEDATA] [-p]\n                 [--custom_output_folder CUSTOM_OUTPUT_FOLDER]\n                 [--custom_artifacts_path CUSTOM_ARTIFACTS_PATH]\n                 [--itunes_password ITUNES_PASSWORD] [--keychain KEYCHAIN]\n\niLEAPP v2026.3.0: iOS Logs, Events, And Plists Parser.\n\noptions:\n  -h, --help            show this help message and exit\n  -t {fs,tar,zip,gz,itunes,file}\n                        Specify the input type. 'fs' for a folder containing\n                        extracted files with normal paths and names, 'tar',\n                        'zip', or 'gz' for compressed packages containing\n                        files with normal names, 'itunes' for a folder\n                        containing a raw iTunes backup with hashed paths and\n                        names, 'file' for a single file input.\n  -o OUTPUT_PATH, --output_path OUTPUT_PATH\n                        Path to base output folder (this must exist)\n  -i INPUT_PATH, --input_path INPUT_PATH\n                        Path to input file/folder\n  -tz TIMEZONE, --timezone TIMEZONE\n                        Timezone name (e.g., 'America/New_York')\n  -w, --wrap_text       Do not wrap text for output of data files\n  -m LOAD_PROFILE, --load_profile LOAD_PROFILE\n                        Path to iLEAPP Profile file (.ilprofile).\n  -d LOAD_CASE_DATA, --load_case_data LOAD_CASE_DATA\n                        Path to LEAPP Case Data file (.lcasedata).\n  -c CREATE_PROFILE_CASEDATA, --create_profile_casedata CREATE_PROFILE_CASEDATA\n                        Generate an iLEAPP Profile file (.ilprofile) or LEAPP\n                        Case Data file (.lcasedata) into the specified path.\n                        This argument is meant to be used alone, without any\n                        other arguments.\n  -p, --artifact_paths  Generate a text file list of artifact paths. This\n                        argument is meant to be used alone, without any other\n                        arguments.\n  --custom_output_folder CUSTOM_OUTPUT_FOLDER\n                        Custom name for the output folder\n  --custom_artifacts_path CUSTOM_ARTIFACTS_PATH\n                        Additional path to load artifacts from (e.g.,\n                        scripts/alternate_artifacts)\n  --itunes_password ITUNES_PASSWORD\n                        Password used for encrypted iTunes backup\n  --keychain KEYCHAIN   Path to a keychain file captured from the device. Some\n                        apps keep their database key in the keychain, which is\n                        collected separately from the file system extraction.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--artifact_paths",
+   "--create_profile_casedata",
+   "--custom_artifacts_path",
+   "--custom_output_folder",
+   "--input_path",
+   "--itunes_password",
+   "--keychain",
+   "--load_case_data",
+   "--load_profile",
+   "--output_path",
+   "--timezone",
+   "--wrap_text",
+   "-t"
+  ],
+  "unconfirmed": [
+   "--artifact",
+   "--base-ref",
+   "--case",
+   "--csv-to-md",
+   "--github-action",
+   "--image",
+   "--image-prompt",
+   "--input",
+   "--keep",
+   "--list",
+   "--local-repo",
+   "--platform",
+   "--registry",
+   "--root",
+   "--run",
+   "--verbose",
+   "--verify-hashes",
+   "paths"
+  ],
+  "help_only": [
+   "--help",
+   "-c",
+   "-d",
+   "-h",
+   "-i",
+   "-m",
+   "-o",
+   "-p",
+   "-tz",
+   "-w"
+  ],
+  "mining_coverage": 0.5652173913043478
+ },
+ "surface": {
+  "flags": {
+   "--artifact": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "(Optional) Name of the specific artifact function to test.",
+    "kind": "option",
+    "first_tag": "v2.3.0",
+    "first_date": "2025-08-31T20:55:45+02:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/docs/testing/testing_modules.md"
+   },
+   "--artifact_paths": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Generate a text file list of artifact paths. This argument is meant to be used alone, without any other arguments.",
+    "kind": "option",
+    "first_tag": "v1.6.2",
+    "first_date": "2020-10-16T12:13:59-04:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": false,
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--base-ref": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "commit to compare against, normally the merge base",
+    "kind": "option",
+    "first_tag": "v2026.2.1",
+    "first_date": "2026-07-27T05:48:35Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/lint_changed.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--case": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Case number for the test data",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/docs/testing/create_module_test_cases.md"
+   },
+   "--create_profile_casedata": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Generate an iLEAPP Profile file (.ilprofile) or LEAPP Case Data file (.lcasedata) into the specified path. This argument is meant to be used alone, without any other arguments.",
+    "kind": "option",
+    "metavar": "CREATE_PROFILE_CASEDATA",
+    "first_tag": "v1.19.1",
+    "first_date": "2024-03-22T16:20:59+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--csv-to-md": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only convert CSV to Markdown summary",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/filepath_search_list.py",
+    "takes_value": false
+   },
+   "--custom_artifacts_path": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Additional path to load artifacts from (e.g., scripts/alternate_artifacts)",
+    "kind": "option",
+    "metavar": "CUSTOM_ARTIFACTS_PATH",
+    "first_tag": "v2026.1.0",
+    "first_date": "2026-07-10T15:12:35-04:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--custom_output_folder": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Custom name for the output folder",
+    "kind": "option",
+    "metavar": "CUSTOM_OUTPUT_FOLDER",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--github-action": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Running as GitHub Action",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2024-12-15T19:19:36+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/all_data_headers.py",
+    "takes_value": false
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--image": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Name of the image from the manifest",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/docs/testing/create_module_test_cases.md"
+   },
+   "--image-prompt": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Prompt for image selection from the manifest",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/docs/testing/create_module_test_cases.md"
+   },
+   "--input": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to the input file (zip, tar, or tar.gz)",
+    "kind": "option",
+    "first_tag": "v2.0.0",
+    "first_date": "2024-11-07T10:18:01Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/docs/testing/create_module_test_cases.md"
+   },
+   "--input_path": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to input file/folder",
+    "kind": "option",
+    "metavar": "INPUT_PATH",
+    "first_tag": "v1.2",
+    "first_date": "2020-07-21T16:46:30-04:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--itunes_password": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Password used for encrypted iTunes backup",
+    "kind": "option",
+    "metavar": "ITUNES_PASSWORD",
+    "first_tag": "v2.3.0",
+    "first_date": "2025-08-31T20:55:45+02:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--keep": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "keep the --run output folder instead of deleting it",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/validate_sample_data.py",
+    "takes_value": false
+   },
+   "--keychain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to a keychain file captured from the device. Some apps keep their database key in the keychain, which is collected separately from the file system extraction.",
+    "kind": "option",
+    "metavar": "KEYCHAIN",
+    "first_tag": "v2026.2.1",
+    "first_date": "2026-07-27T05:48:35Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--list": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "print every match, including allowlisted ones",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/check_claim_language.py",
+    "takes_value": false
+   },
+   "--load_case_data": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to LEAPP Case Data file (.lcasedata).",
+    "kind": "option",
+    "metavar": "LOAD_CASE_DATA",
+    "first_tag": "v1.19.1",
+    "first_date": "2024-03-22T16:20:59+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--load_profile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to iLEAPP Profile file (.ilprofile).",
+    "kind": "option",
+    "metavar": "LOAD_PROFILE",
+    "first_tag": "v1.19.1",
+    "first_date": "2024-03-22T16:20:59+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--local-repo": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Path to local LAVA repo (relative to iLEAPP root)",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2024-12-15T19:19:36+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/all_data_headers.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output_path": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Path to base output folder (this must exist)",
+    "kind": "option",
+    "metavar": "OUTPUT_PATH",
+    "first_tag": "v1.2",
+    "first_date": "2020-07-21T16:46:30-04:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-o"
+    ]
+   },
+   "--platform": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "build to fetch; defaults to the platform this is run on",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/fetch_unifiedlog_iterator.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--registry": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "path to samples.json (or set ILEAPP_SAMPLES)",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/validate_sample_data.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--root": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "scan this repository instead of the one this script lives in; BASELINE/ALLOWLIST still apply, so a sibling core reports its own findings as violations",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/check_html_safety.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--run": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "parse this corpus and compare produced rows to declared rows",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/validate_sample_data.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--timezone": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Timezone name (e.g., 'America/New_York')",
+    "kind": "option",
+    "metavar": "TIMEZONE",
+    "first_tag": "v1.19.1",
+    "first_date": "2024-03-22T16:20:59+01:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-tz"
+    ]
+   },
+   "--verbose": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "also report modules whose __artifacts_v2__ could not be read",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/check_claim_language.py",
+    "takes_value": false
+   },
+   "--verify-hashes": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "re-hash every registered corpus; slow on large images",
+    "kind": "option",
+    "first_tag": "v2026.3.0",
+    "first_date": "2026-08-14T08:53:03Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/validate_sample_data.py",
+    "takes_value": false
+   },
+   "--wrap_text": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not wrap text for output of data files",
+    "kind": "option",
+    "first_tag": "v1.18.2",
+    "first_date": "2023-02-05T20:52:31-05:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "takes_value": false,
+    "aliases": [
+     "-w"
+    ]
+   },
+   "-t": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Specify the input type. 'fs' for a folder containing extracted files with normal paths and names, 'tar', 'zip', or 'gz' for compressed packages containing files with normal names, 'itunes' for a folder containing a raw iTunes backup with hashed paths and names, 'file' for a single file input.",
+    "kind": "option",
+    "metavar": "{fs,tar,zip,gz,itunes,file}",
+    "first_tag": "v1.2",
+    "first_date": "2020-07-21T16:46:30-04:00",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "ileapp.py",
+    "choices": [
+     "fs",
+     "tar",
+     "zip",
+     "gz",
+     "itunes",
+     "file"
+    ],
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "paths": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "changed Python files",
+    "kind": "positional",
+    "first_tag": "v2026.2.1",
+    "first_date": "2026-07-27T05:48:35Z",
+    "last_tag": "v2026.3.0",
+    "last_date": "2026-08-14T08:53:03Z",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "admin/scripts/lint_changed.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 4,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-03d4b541",
+    "argv": [
+     "ileapp",
+     "-c",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 92,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 568
+   },
+   {
+    "id": "t-surface-2bb373a6",
+    "argv": [
+     "ileapp",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 491
+   },
+   {
+    "id": "t-surface-2521f509",
+    "argv": [
+     "ileapp",
+     "--input",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 483
+   },
+   {
+    "id": "t-surface-bcf19470",
+    "argv": [
+     "ileapp",
+     "-i",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 483
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "dist_build/ileapp --help",
+    "source": "ci",
+    "path": ".github/workflows/test_builds.yml",
+    "line": 174,
+    "reason": "needs-network-or-interactive",
+    "token": "--help"
+   },
+   {
+    "raw": "dist_build/ileapp -t fs -i smoke_in -o smoke_out",
+    "source": "ci",
+    "path": ".github/workflows/test_builds.yml",
+    "line": 177,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "ileapp -p",
+    "source": "readme",
+    "path": "README.md",
+    "line": 91,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "iLEAPP",
+ "repo": "abrignoni/iLEAPP",
+ "head_sha": "b943b635642f57e01f61baab898021c7f258fec9",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T02:36:27.683714+00:00"
+}
