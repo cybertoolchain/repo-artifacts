@@ -1,0 +1,1367 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:2c7ba39bcec1f3a2ceb3665937e265d3a0c2ef29d44c99f4154ac503c8dc31bb",
+  "duration_s": 7.48,
+  "log_tail": "#10 4.458   Preparing metadata (pyproject.toml): finished with status 'done'\n#10 4.459 Building wheels for collected packages: penelope-shell-handler\n#10 4.460   Building wheel for penelope-shell-handler (pyproject.toml): started\n#10 4.582   Building wheel for penelope-shell-handler (pyproject.toml): finished with status 'done'\n#10 4.582   Created wheel for penelope-shell-handler: filename=penelope_shell_handler-0.21.12-py3-none-any.whl size=88817 sha256=b5031201aae0f535ebaf007332732e18091ddeea6b85bc85b304a772b3d39591\n#10 4.582   Stored in directory: /tmp/pip-ephem-wheel-cache-422029vv/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 4.584 Successfully built penelope-shell-handler\n#10 4.592 Installing collected packages: penelope-shell-handler\n#10 4.650 Successfully installed penelope-shell-handler-0.21.12\n#10 DONE 4.7s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.140 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 0.3s done\n#20 exporting manifest sha256:6fcb749307ee4d79718f2dbee56d7d39f39e72256944ba953121d98ea1bf1e7e done\n#20 exporting config sha256:09a4c736434c9d3703045a12d4fa847a134b9c8e9c19d81ae4b746ec8297c9c4 done\n#20 exporting attestation manifest sha256:ad21bb14ee9ee47cae47f11ec9099a03cfa2040ad09238cab632e9f40f16670b done\n#20 exporting manifest list sha256:2c7ba39bcec1f3a2ceb3665937e265d3a0c2ef29d44c99f4154ac503c8dc31bb done\n#20 naming to docker.io/ctk-exec/penelope:5aa5fd7a6497 done\n#20 unpacking to docker.io/ctk-exec/penelope:5aa5fd7a6497\n#20 unpacking to docker.io/ctk-exec/penelope:5aa5fd7a6497 0.6s done\n#20 DONE 1.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "penelope",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: penelope [-p PORTS] [-i] [-c] [-j] [-a] [-l] [-h] [-L] [-T] [-CT] [-M] [-m] [-S] [-ms] [-C] [-U] [-H] [-O] [--no-disk] [--mcp] [--mcp-host]\n                [--mcp-port] [--mcp-token] [-s] [-prefix] [-u] [-ud] [-N] [-v] [-d] [-dd] [-cu]\n                [args ...]\n\nPenelope Shell Handler\n\npositional arguments:\n  args                          Arguments for -s/--serve and SSH reverse shell modes\n\noptions:\n  -p, --ports                   Ports (comma separated) to listen/connect/serve, depending on -i/-c/-s options\n                                (Default: 4444/5555/8000)\n\nReverse or Bind shell?:\n  -i, --interface               Local interface/IP to listen. (Default: 0.0.0.0)\n  -c, --connect                 Bind shell Host\n  -j, --jump                    Reverse shell jump endpoints\n\nHints:\n  -a, --payloads                Show sample reverse shell payloads for active Listeners\n  -l, --interfaces              List available network interfaces\n  -h, --help                    show this help message and exit\n\nSession Logging:\n  -L, --no-log                  Disable session log files\n  -T, --no-timestamps           Disable timestamps in logs\n  -CT, --no-colored-timestamps  Disable colored timestamps in logs\n\nMisc:\n  -M, --menu                    Start in the Main Menu\n  -m, --maintain                Keep N sessions per target\n  -S, --single-session          Accommodate only the first created session\n  -ms, --max-sessions           Max active sessions per host (default 5, 0 = reject all new)\n  -C, --no-attach               Do not auto-attach on new sessions\n  -U, --no-upgrade              Disable shell auto-upgrade\n  -H, --keep-history            Keep target shell history (do not set HISTFILE=/dev/null)\n  -O, --oscp-safe               Enable OSCP-safe mode\n  --no-disk                     Keep all state in RAM (tmpfs); nothing persists to disk\n\nMCP:\n  --mcp                         Enable the MCP server over local HTTP\n  --mcp-host                    Host/IP to bind (default: 127.0.0.1)\n  --mcp-port                    Port to bind (default: saved port, else a random free port persisted to ~/.penelope/mcp.json)\n  --mcp-token                   Bearer token (default: saved token, else auto-generated and persisted)\n\nFile server:\n  -s, --serve                   Run HTTP file server mode\n  -prefix, --url-prefix         URL path prefix\n  -u, --upload                  Enable file upload (PUT/POST) to the server\n  -ud, --upload-dir             Directory to store uploads (default: CWD)\n\nDebug:\n  -N, --no-bins                 Simulate missing binaries on target (comma-separated)\n  -v, --version                 Print version and exit\n  -d, --debug                   Enable debug output\n  -dd, --dev-mode               Enable developer mode\n  -cu, --check-urls             Check hardcoded URLs health and exit\n\u001b[?25h",
+   "stderr": "",
+   "duration_ms": 406,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "penelope"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for penelope\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "penelope"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'penelope' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "penelope",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus/app/settings.py"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n",
+   "duration_ms": 30006,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "t-readme-5b3cf11e",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "penelope",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n",
+   "duration_ms": 30017,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "t-readme-e78e967e",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "penelope",
+    "-s",
+    "a.sh",
+    "/opt/ctk/fixtures/binaries/marked-unstripped",
+    "notes.txt"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;3m\u0002[!] '/a.sh' does not exist and will be ignored.\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;3m\u0002[!] '/notes.txt' does not exist and will be ignored.\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n",
+   "duration_ms": 30008,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "t-readme-adc7d00e",
+   "title": "From the project's documentation \u2014 run against binaries"
+  },
+  {
+   "argv": [
+    "penelope",
+    "-s",
+    "/opt/ctk/fixtures/source-corpus",
+    "-p",
+    "80"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n",
+   "duration_ms": 30007,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "t-readme-11b4e600",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "argv": [
+    "penelope",
+    "-s",
+    "-u",
+    "-ud",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n\u001b[2K\r\u0001\u001b[38;5;1m\u0002[-] 'ip', 'ifconfig' and 'busybox' commands are not available. (Really???)\u0001\u001b[0m\u0002\r\n",
+   "duration_ms": 30032,
+   "truncated": false,
+   "error": "timeout",
+   "kind": "scenario",
+   "id": "t-readme-1df2b802",
+   "title": "From the project's documentation \u2014 run against source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 8,
+   "binary": "penelope",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "penelope",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--ports": "Ports (comma separated) to listen/connect/serve, depending on -i/-c/-s options (Default: 4444/5555/8000)",
+   "-p": "Ports (comma separated) to listen/connect/serve, depending on -i/-c/-s options (Default: 4444/5555/8000)",
+   "--interface": "Local interface/IP to listen. (Default: 0.0.0.0)",
+   "-i": "Local interface/IP to listen. (Default: 0.0.0.0)",
+   "--connect": "Bind shell Host",
+   "-c": "Bind shell Host",
+   "--jump": "Reverse shell jump endpoints",
+   "-j": "Reverse shell jump endpoints",
+   "--payloads": "Show sample reverse shell payloads for active Listeners",
+   "-a": "Show sample reverse shell payloads for active Listeners",
+   "--interfaces": "List available network interfaces",
+   "-l": "List available network interfaces",
+   "--help": "show this help message and exit",
+   "-h": "show this help message and exit",
+   "--no-log": "Disable session log files",
+   "-L": "Disable session log files",
+   "--no-timestamps": "Disable timestamps in logs",
+   "-T": "Disable timestamps in logs",
+   "--no-colored-timestamps": "Disable colored timestamps in logs",
+   "-CT": "Disable colored timestamps in logs",
+   "--menu": "Start in the Main Menu",
+   "-M": "Start in the Main Menu",
+   "--maintain": "Keep N sessions per target",
+   "-m": "Keep N sessions per target",
+   "--single-session": "Accommodate only the first created session",
+   "-S": "Accommodate only the first created session",
+   "--max-sessions": "Max active sessions per host (default 5, 0 = reject all new)",
+   "-ms": "Max active sessions per host (default 5, 0 = reject all new)",
+   "--no-attach": "Do not auto-attach on new sessions",
+   "-C": "Do not auto-attach on new sessions",
+   "--no-upgrade": "Disable shell auto-upgrade",
+   "-U": "Disable shell auto-upgrade",
+   "--keep-history": "Keep target shell history (do not set HISTFILE=/dev/null)",
+   "-H": "Keep target shell history (do not set HISTFILE=/dev/null)",
+   "--oscp-safe": "Enable OSCP-safe mode",
+   "-O": "Enable OSCP-safe mode",
+   "--no-disk": "Keep all state in RAM (tmpfs); nothing persists to disk",
+   "--mcp": "Enable the MCP server over local HTTP",
+   "--mcp-host": "Host/IP to bind (default: 127.0.0.1)",
+   "--mcp-port": "Port to bind (default: saved port, else a random free port persisted to ~/.penelope/mcp.json)",
+   "--mcp-token": "Bearer token (default: saved token, else auto-generated and persisted)",
+   "--serve": "Run HTTP file server mode",
+   "-s": "Run HTTP file server mode",
+   "--url-prefix": "URL path prefix",
+   "-prefix": "URL path prefix",
+   "--upload": "Enable file upload (PUT/POST) to the server",
+   "-u": "Enable file upload (PUT/POST) to the server",
+   "--upload-dir": "Directory to store uploads (default: CWD)",
+   "-ud": "Directory to store uploads (default: CWD)",
+   "--no-bins": "Simulate missing binaries on target (comma-separated)",
+   "-N": "Simulate missing binaries on target (comma-separated)",
+   "--version": "Print version and exit",
+   "-v": "Print version and exit",
+   "--debug": "Enable debug output",
+   "-d": "Enable debug output",
+   "--dev-mode": "Enable developer mode",
+   "-dd": "Enable developer mode",
+   "--check-urls": "Check hardcoded URLs health and exit",
+   "-cu": "Check hardcoded URLs health and exit"
+  },
+  "values_seen": {},
+  "aliases": {
+   "--ports": [
+    "-p"
+   ],
+   "--interface": [
+    "-i"
+   ],
+   "--connect": [
+    "-c"
+   ],
+   "--jump": [
+    "-j"
+   ],
+   "--payloads": [
+    "-a"
+   ],
+   "--interfaces": [
+    "-l"
+   ],
+   "--help": [
+    "-h"
+   ],
+   "--no-log": [
+    "-L"
+   ],
+   "--no-timestamps": [
+    "-T"
+   ],
+   "--no-colored-timestamps": [
+    "-CT"
+   ],
+   "--menu": [
+    "-M"
+   ],
+   "--maintain": [
+    "-m"
+   ],
+   "--single-session": [
+    "-S"
+   ],
+   "--max-sessions": [
+    "-ms"
+   ],
+   "--no-attach": [
+    "-C"
+   ],
+   "--no-upgrade": [
+    "-U"
+   ],
+   "--keep-history": [
+    "-H"
+   ],
+   "--oscp-safe": [
+    "-O"
+   ],
+   "--serve": [
+    "-s"
+   ],
+   "--url-prefix": [
+    "-prefix"
+   ],
+   "--upload": [
+    "-u"
+   ],
+   "--upload-dir": [
+    "-ud"
+   ],
+   "--no-bins": [
+    "-N"
+   ],
+   "--version": [
+    "-v"
+   ],
+   "--debug": [
+    "-d"
+   ],
+   "--dev-mode": [
+    "-dd"
+   ],
+   "--check-urls": [
+    "-cu"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "penelope",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "33d93a68d4d9df15ec87ceb65f827bcf39b0b5699eec3bb5ba4bdda503df7f67",
+  "text": "usage: penelope [-p PORTS] [-i] [-c] [-j] [-a] [-l] [-h] [-L] [-T] [-CT] [-M] [-m] [-S] [-ms] [-C] [-U] [-H] [-O] [--no-disk] [--mcp] [--mcp-host]\n                [--mcp-port] [--mcp-token] [-s] [-prefix] [-u] [-ud] [-N] [-v] [-d] [-dd] [-cu]\n                [args ...]\n\nPenelope Shell Handler\n\npositional arguments:\n  args                          Arguments for -s/--serve and SSH reverse shell modes\n\noptions:\n  -p, --ports                   Ports (comma separated) to listen/connect/serve, depending on -i/-c/-s options\n                                (Default: 4444/5555/8000)\n\nReverse or Bind shell?:\n  -i, --interface               Local interface/IP to listen. (Default: 0.0.0.0)\n  -c, --connect                 Bind shell Host\n  -j, --jump                    Reverse shell jump endpoints\n\nHints:\n  -a, --payloads                Show sample reverse shell payloads for active Listeners\n  -l, --interfaces              List available network interfaces\n  -h, --help                    show this help message and exit\n\nSession Logging:\n  -L, --no-log                  Disable session log files\n  -T, --no-timestamps           Disable timestamps in logs\n  -CT, --no-colored-timestamps  Disable colored timestamps in logs\n\nMisc:\n  -M, --menu                    Start in the Main Menu\n  -m, --maintain                Keep N sessions per target\n  -S, --single-session          Accommodate only the first created session\n  -ms, --max-sessions           Max active sessions per host (default 5, 0 = reject all new)\n  -C, --no-attach               Do not auto-attach on new sessions\n  -U, --no-upgrade              Disable shell auto-upgrade\n  -H, --keep-history            Keep target shell history (do not set HISTFILE=/dev/null)\n  -O, --oscp-safe               Enable OSCP-safe mode\n  --no-disk                     Keep all state in RAM (tmpfs); nothing persists to disk\n\nMCP:\n  --mcp                         Enable the MCP server over local HTTP\n  --mcp-host                    Host/IP to bind (default: 127.0.0.1)\n  --mcp-port                    Port to bind (default: saved port, else a random free port persisted to ~/.penelope/mcp.json)\n  --mcp-token                   Bearer token (default: saved token, else auto-generated and persisted)\n\nFile server:\n  -s, --serve                   Run HTTP file server mode\n  -prefix, --url-prefix         URL path prefix\n  -u, --upload                  Enable file upload (PUT/POST) to the server\n  -ud, --upload-dir             Directory to store uploads (default: CWD)\n\nDebug:\n  -N, --no-bins                 Simulate missing binaries on target (comma-separated)\n  -v, --version                 Print version and exit\n  -d, --debug                   Enable debug output\n  -dd, --dev-mode               Enable developer mode\n  -cu, --check-urls             Check hardcoded URLs health and exit\n\u001b[?25h"
+ },
+ "validation": {
+  "confirmed": [
+   "--check-urls",
+   "--connect",
+   "--debug",
+   "--dev-mode",
+   "--help",
+   "--interface",
+   "--interfaces",
+   "--jump",
+   "--maintain",
+   "--max-sessions",
+   "--menu",
+   "--no-attach",
+   "--no-bins",
+   "--no-colored-timestamps",
+   "--no-log",
+   "--no-timestamps",
+   "--no-upgrade",
+   "--oscp-safe",
+   "--payloads",
+   "--ports",
+   "--serve",
+   "--single-session",
+   "--url-prefix",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--address",
+   "--ai",
+   "--configfile",
+   "--extra-silent",
+   "--hints",
+   "--no-bash",
+   "--no-history",
+   "--no-python",
+   "--plain",
+   "--port",
+   "--silent",
+   "--type",
+   "PORT",
+   "add",
+   "args",
+   "id",
+   "ports",
+   "stop"
+  ],
+  "help_only": [
+   "--keep-history",
+   "--mcp",
+   "--mcp-host",
+   "--mcp-port",
+   "--mcp-token",
+   "--no-disk",
+   "--upload",
+   "--upload-dir",
+   "-C",
+   "-CT",
+   "-H",
+   "-L",
+   "-M",
+   "-N",
+   "-O",
+   "-S",
+   "-T",
+   "-U",
+   "-a",
+   "-c",
+   "-cu",
+   "-d",
+   "-dd",
+   "-h",
+   "-i",
+   "-j",
+   "-l",
+   "-m",
+   "-ms",
+   "-p",
+   "-prefix",
+   "-s",
+   "-u",
+   "-ud",
+   "-v"
+  ],
+  "mining_coverage": 0.4067796610169492
+ },
+ "surface": {
+  "flags": {
+   "--address": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "IP Address or Interface to listen on. Default: 0.0.0.0",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.8.4",
+    "last_date": "2022-01-24T15:05:39+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--ai": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Analyze linpeas results with chatGPT",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.19.1",
+    "last_date": "2026-03-12T08:05:29Z",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--check-urls": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Check hardcoded URLs health and exit",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-cu"
+    ]
+   },
+   "--configfile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Configuration file location",
+    "kind": "option",
+    "first_tag": "v0.8.5",
+    "first_date": "2022-05-11T16:44:39+02:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "path"
+   },
+   "--connect": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Bind shell Host",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--debug": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable debug output",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-d"
+    ]
+   },
+   "--dev-mode": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable developer mode",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-dd"
+    ]
+   },
+   "--extra-silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Suppress all logging messages",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.8.0",
+    "last_date": "2022-01-24T13:50:52+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "show this help message and exit",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--hints": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Show sample payloads for reverse shell based on the registered Listeners",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--interface": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Local interface/IP to listen. (Default: 0.0.0.0)",
+    "kind": "option",
+    "first_tag": "v0.8.5",
+    "first_date": "2022-05-11T16:44:39+02:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-i"
+    ]
+   },
+   "--interfaces": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "List available network interfaces",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--jump": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Reverse shell jump endpoints",
+    "kind": "option",
+    "first_tag": "v0.18.0",
+    "first_date": "2026-01-11T19:27:56Z",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--keep-history": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Keep target shell history (do not set HISTFILE=/dev/null)",
+    "aliases": [
+     "-H"
+    ]
+   },
+   "--maintain": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Keep N sessions per target",
+    "kind": "option",
+    "first_tag": "v0.8.4",
+    "first_date": "2022-01-24T15:05:39+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--max-sessions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Max active sessions per host (default 5, 0 = reject all new)",
+    "kind": "option",
+    "first_tag": "v0.21.0",
+    "first_date": "2026-06-17T22:43:54Z",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "int",
+    "aliases": [
+     "-ms"
+    ]
+   },
+   "--mcp": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable the MCP server over local HTTP"
+   },
+   "--mcp-host": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Host/IP to bind (default: 127.0.0.1)"
+   },
+   "--mcp-port": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Port to bind (default: saved port, else a random free port persisted to ~/.penelope/mcp.json)"
+   },
+   "--mcp-token": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Bearer token (default: saved token, else auto-generated and persisted)"
+   },
+   "--menu": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Start in the Main Menu",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-M"
+    ]
+   },
+   "--no-attach": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Do not auto-attach on new sessions",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-C"
+    ]
+   },
+   "--no-bash": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Simulate bash absence on target",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.8.5",
+    "last_date": "2022-05-11T16:44:39+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--no-bins": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Simulate missing binaries on target (comma-separated)",
+    "kind": "option",
+    "first_tag": "v0.9.2",
+    "first_date": "2022-12-18T14:04:00+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-N"
+    ]
+   },
+   "--no-colored-timestamps": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable colored timestamps in logs",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-CT"
+    ]
+   },
+   "--no-disk": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Keep all state in RAM (tmpfs); nothing persists to disk"
+   },
+   "--no-history": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Disable shell history on target",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--no-log": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable session log files",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-L"
+    ]
+   },
+   "--no-python": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Simulate python absence on target",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.8.5",
+    "last_date": "2022-05-11T16:44:39+02:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--no-timestamps": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable timestamps in logs",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-T"
+    ]
+   },
+   "--no-upgrade": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Disable shell auto-upgrade",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-U"
+    ]
+   },
+   "--oscp-safe": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enable OSCP-safe mode",
+    "kind": "option",
+    "first_tag": "v0.14.14",
+    "first_date": "2025-12-12T23:47:47+02:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-O"
+    ]
+   },
+   "--payloads": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show sample reverse shell payloads for active Listeners",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-a"
+    ]
+   },
+   "--plain": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Just land to the main menu",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--port": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port to listen on",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.14.8",
+    "last_date": "2025-09-08T03:06:32+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--ports": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Ports (comma separated) to listen/connect/serve, depending on -i/-c/-s options (Default: 4444/5555/8000)",
+    "kind": "option",
+    "first_tag": "v0.14.14",
+    "first_date": "2025-12-12T23:47:47+02:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-p"
+    ]
+   },
+   "--serve": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Run HTTP file server mode",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--silent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Be a bit less verbose",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false
+   },
+   "--single-session": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Accommodate only the first created session",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-S"
+    ]
+   },
+   "--type": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listener type",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--upload": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enable file upload (PUT/POST) to the server",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--upload-dir": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Directory to store uploads (default: CWD)",
+    "aliases": [
+     "-ud"
+    ]
+   },
+   "--url-prefix": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "URL path prefix",
+    "kind": "option",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-prefix"
+    ]
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print version and exit",
+    "kind": "option",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py",
+    "takes_value": false,
+    "aliases": [
+     "-v"
+    ]
+   },
+   "PORT": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Port to listen/connect to depending on -i/-c options. Default: 4444",
+    "kind": "positional",
+    "first_tag": "v0.8.0",
+    "first_date": "2022-01-24T13:50:52+01:00",
+    "last_tag": "v0.8.4",
+    "last_date": "2022-01-24T15:05:39+01:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   },
+   "add": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Add a new listener",
+    "kind": "subcommand",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   },
+   "args": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Arguments for -s/--serve and SSH reverse shell modes",
+    "kind": "positional",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   },
+   "id": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Listener ID to stop",
+    "kind": "positional",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   },
+   "ports": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ports to listen/connect to, depending on -i/-c options. Default: 4444",
+    "kind": "positional",
+    "first_tag": "v0.8.5",
+    "first_date": "2022-05-11T16:44:39+02:00",
+    "last_tag": "v0.10.0",
+    "last_date": "2023-10-28T16:24:31+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   },
+   "stop": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Stop a listener",
+    "kind": "subcommand",
+    "first_tag": "v0.14.8",
+    "first_date": "2025-09-08T03:06:32+03:00",
+    "last_tag": "v0.21.0",
+    "last_date": "2026-06-17T22:43:54Z",
+    "live": true,
+    "attribution": "own",
+    "source_path": "penelope.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 8,
+  "tried_this_wave": 6,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-26517305",
+    "argv": [
+     "penelope",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-net-8b8eac2f",
+    "argv": [
+     "penelope",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   },
+   {
+    "id": "t-readme-5b3cf11e",
+    "argv": [
+     "penelope",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 114,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 196
+   },
+   {
+    "id": "t-readme-e78e967e",
+    "argv": [
+     "penelope",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 115,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 196
+   },
+   {
+    "id": "t-readme-adc7d00e",
+    "argv": [
+     "penelope",
+     "-s",
+     "a.sh",
+     "/opt/ctk/fixtures/binaries/marked-unstripped",
+     "notes.txt"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 116,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 343
+   },
+   {
+    "id": "t-readme-11b4e600",
+    "argv": [
+     "penelope",
+     "-s",
+     "/opt/ctk/fixtures/source-corpus",
+     "-p",
+     "80"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 117,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 196
+   },
+   {
+    "id": "t-readme-1df2b802",
+    "argv": [
+     "penelope",
+     "-s",
+     "-u",
+     "-ud",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 120,
+    "grade": "rejected",
+    "reason": "harness-error:timeout",
+    "grader": 3,
+    "exit_code": null,
+    "output_bytes": 196
+   },
+   {
+    "id": "t-net-65964bde",
+    "argv": [
+     "penelope",
+     "-u",
+     "http://dvwa",
+     "--plain"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": "network_unavailable",
+    "exit_code": null,
+    "output_bytes": 0
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "penelope                          # Listening for reverse shells on 0.0.0.0:4444",
+    "source": "readme",
+    "path": "README.md",
+    "line": 94,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "penelope -p 5555                  # Listening for reverse shells on 0.0.0.0:5555",
+    "source": "readme",
+    "path": "README.md",
+    "line": 95,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -p 4444,5555             # Listening for reverse shells on 0.0.0.0:4444 and 0.0.0.0:5555",
+    "source": "readme",
+    "path": "README.md",
+    "line": 96,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -i eth0 -p 5555          # Listening for reverse shells on eth0:5555",
+    "source": "readme",
+    "path": "README.md",
+    "line": 97,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -a                       # Listening for reverse shells on 0.0.0.0:4444 and show sample reverse shell payloads",
+    "source": "readme",
+    "path": "README.md",
+    "line": 98,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -c target -p 3333        # Connect to a bind shell on target:3333",
+    "source": "readme",
+    "path": "README.md",
+    "line": 100,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope ssh user@target          # Get a reverse shell from target on local port 4444",
+    "source": "readme",
+    "path": "README.md",
+    "line": 102,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -p 5555 ssh user@target  # Get a reverse shell from target on local port 5555",
+    "source": "readme",
+    "path": "README.md",
+    "line": 103,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -i eth0 -p 5555 -- ssh -l user -p 2222 target  # Get a reverse shell from target on eth0, local port 5555 (use -- if ssh needs switches)",
+    "source": "readme",
+    "path": "README.md",
+    "line": 104,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -s secret.txt -prefix xk9   # Hide behind a URL prefix: /xk9/secret.txt",
+    "source": "readme",
+    "path": "README.md",
+    "line": 118,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "penelope -s -u                       # Upload mode: accept PUT/POST into the CWD",
+    "source": "readme",
+    "path": "README.md",
+    "line": 119,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "penelope",
+ "repo": "brightio/penelope",
+ "head_sha": "5aa5fd7a6497a3195c3564f1c94a022d9f48f6fb",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T23:07:31.251275+00:00"
+}

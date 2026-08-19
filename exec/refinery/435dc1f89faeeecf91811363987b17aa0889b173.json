@@ -1,0 +1,90 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:11f5718e672d75024242d50984e6e841564c99f8376d0093a290052fb9f97bab",
+  "duration_s": 80.76,
+  "log_tail": "#10 12.14 Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)\n#10 12.16 Downloading wheel-0.48.0-py3-none-any.whl (33 kB)\n#10 12.19 Downloading packaging-26.3-py3-none-any.whl (129 kB)\n#10 12.22 Building wheels for collected packages: binary-refinery\n#10 12.22   Building wheel for binary-refinery (pyproject.toml): started\n#10 69.12   Building wheel for binary-refinery (pyproject.toml): finished with status 'done'\n#10 69.13   Created wheel for binary-refinery: filename=binary_refinery-0.11.2-cp312-cp312-linux_aarch64.whl size=13424492 sha256=b0af2e9cd1fcfce8e3e83a01d3c4bb4b3859df2b9e3766d9752cef699429cbfd\n#10 69.13   Stored in directory: /tmp/pip-ephem-wheel-cache-as_38yjl/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 69.13 Successfully built binary-refinery\n#10 69.15 Installing collected packages: pyperclip, toml, setuptools, pycryptodomex, pure-magic-rs, packaging, numpy, msgpack, lief, defusedxml, cython, colorama, wheel, binary-refinery\n#10 71.86 \n#10 71.86 Successfully installed binary-refinery-0.11.2 colorama-0.4.6 cython-3.2.9 defusedxml-0.7.1 lief-0.17.6 msgpack-1.2.1 numpy-2.5.2 packaging-26.3 pure-magic-rs-0.4.3 pycryptodomex-3.23.0 pyperclip-1.11.0 setuptools-84.0.0 toml-0.10.2 wheel-0.48.0\n#10 DONE 72.0s\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.3s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 1.3s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.104 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.4s done\n#20 exporting manifest sha256:e03d3559ff905a18373013bd173ebf98eda5c8c5ed758dd0a40290bc2fa38e3e done\n#20 exporting config sha256:211adba47527ce2fa6569fd5471841e6c7d2bfd6c7713324071beb0f799775e6 done\n#20 exporting attestation manifest sha256:989251f01bf4528d7c6e7c962e367cdd9957532ed189f82f3600497a762d6028 done\n#20 exporting manifest list sha256:11f5718e672d75024242d50984e6e841564c99f8376d0093a290052fb9f97bab done\n#20 naming to docker.io/ctk-exec/refinery:435dc1f89fae done\n#20 unpacking to docker.io/ctk-exec/refinery:435dc1f89fae\n#20 unpacking to docker.io/ctk-exec/refinery:435dc1f89fae 1.5s done\n#20 DONE 5.0s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "a3x",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "usage: a3x [-h] [-L] [-Q] [-v] [-T] [-F] [-x P] [-l] [-j | -d] [-z | -e] [-r] [-P NAME]\n           [pattern ...]\n\nExtract resources and decompile bytecode from compiled AutoIt scripts and executables.\n\npositional arguments:\n  pattern          A path pattern selecting items to extract; each match becomes a separate output\n                   chunk. The default is a single wildcard and extracts everything. Queries that\n                   yield no match are retried with increasing fuzziness unless the exact matching\n                   option is set.\n\noptions:\n  -x, --exclude P  Adds an exclusion pattern P: Matching paths are not emitted at all. Exclusions\n                   also use increasing fuzziness if they exclude nothing.\n  -l, --list       Return all matching paths as UTF8-encoded output chunks.\n  -j, --join-path  Join path names with the previously existing one.\n  -d, --drop-path  Do not modify the path variable for output chunks.\n  -z, --fuzzy      Adds a leading wildcard to each pattern, use -zz to also add a trailing one.\n  -e, --exact      Path patterns never match on substrings.\n  -r, --regex      Use regular expressions instead of wildcard patterns.\n  -P, --path NAME  Name of the meta variable to receive the extracted path. The default value is\n                   \"path\".\n\ngeneric options:\n  -h, --help       Show this help message and exit.\n  -L, --lenient    Increase the leniency, allowing partial results and ignoring more errors.\n  -Q, --quiet      Disables all log output.\n  -v, --verbose    Specify up to two times to increase log level.\n  -T, --try        Silence exceptions and return input data if no output would be produced.\n  -F, --iff        Only apply unit if it can handle the input format. Specify twice to drop all\n                   other chunks.\n",
+   "duration_ms": 189,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "a3x"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for a3x\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "a3x"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'a3x' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "a3x",
+    "/opt/ctk/fixtures/source-corpus"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 182,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-surface-89df01bb",
+   "title": "Built from the tool's own advertised flags \u2014 run against binaries, source-corpus"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 4,
+   "binary": "a3x",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "examples": [],
+ "skipped_reason": "uncorroborated_entrypoint",
+ "tool": "refinery",
+ "repo": "binref/refinery",
+ "head_sha": "435dc1f89faeeecf91811363987b17aa0889b173",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T23:17:16.209567+00:00"
+}

@@ -1,0 +1,1600 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:2a68e406ef96f51ffbdf0540399bc9b0aafabc44329c0fc72e0120ea73bd6bc9",
+  "duration_s": 9.91,
+  "log_tail": "\n#10 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#10 DONE 0.1s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.145 go: downloading github.com/klauspost/compress v1.19.2\n#11 0.145 go: downloading github.com/google/cel-go v0.31.0\n#11 0.145 go: downloading go.yaml.in/yaml/v3 v3.0.5\n#11 0.147 go: downloading google.golang.org/genproto/googleapis/api v0.0.0-20240826202546-f6391c0de4c7\n#11 0.147 go: downloading google.golang.org/protobuf v1.36.12\n#11 0.148 go: downloading mvdan.cc/sh/v3 v3.13.1\n#11 0.150 go: downloading golang.org/x/sys v0.47.0\n#11 0.152 go: downloading go.etcd.io/bbolt v1.5.0\n#11 0.634 go: downloading google.golang.org/genproto/googleapis/rpc v0.0.0-20240826202546-f6391c0de4c7\n#11 0.698 go: downloading cel.dev/expr v0.25.1\n#11 0.698 go: downloading github.com/antlr4-go/antlr/v4 v4.13.1\n#11 0.698 go: downloading golang.org/x/text v0.39.0\n#11 0.929 go: downloading golang.org/x/exp v0.0.0-20240823005443-9b4947da3948\n#11 DONE 6.6s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.130 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.1s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.8s done\n#18 exporting manifest sha256:16a31b4b588f98fe3bd3ac98f48eec87b7a15849681906d0dd7a50d3df0a4ad2 done\n#18 exporting config sha256:cf4bc55b9fecd92faa2c69b7dde6f2db43b7c08c00fbd7fad079c5da819d82d5 done\n#18 exporting attestation manifest sha256:09ab46db96dc65213846e284f6834b309d0b09004ecc297ab874482753439e0d 0.0s done\n#18 exporting manifest list sha256:2a68e406ef96f51ffbdf0540399bc9b0aafabc44329c0fc72e0120ea73bd6bc9 done\n#18 naming to docker.io/ctk-exec/numbat:f0778c09dc48 done\n#18 unpacking to docker.io/ctk-exec/numbat:f0778c09dc48\n#18 unpacking to docker.io/ctk-exec/numbat:f0778c09dc48 0.8s done\n#18 DONE 1.7s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "numbat",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "numbat \u2014 observe, detect, block, and reconstruct AI agent activity on the endpoint\n\nusage:\n  numbat scan [--agent NAME ... | --path FILE|DIR ...]      scan agent artifacts; emit records (NDJSON)\n  numbat timeline [--agent NAME ... | --path FILE|DIR ...]  reconstruct a per-session chronological view (text|json)\n  numbat collect [--addr 127.0.0.1:4318]   receive OTLP/HTTP protobuf logs; emit records\n  numbat ship --input-file F --http-url U  tail a local record file to an HTTP endpoint\n  numbat hook EVENT --agent NAME           live integration callback (normally not run by hand)\n  numbat hook install --agent NAME|all     install numbat's live integrations\n  numbat hook uninstall --agent NAME|all   remove numbat-owned live integrations\n  numbat hook status [--agent NAME|all]    inspect numbat-owned integration configuration\n  numbat agents [--all]                    report detected agents; --all includes absent agents\n  numbat rules check                       validate and compile rules; run companion tests\n  numbat rules list                        list effective compiled rule ids\n  numbat rules test --fixture FILE         evaluate rules against fixture events (NDJSON)\n  numbat case build <case-id> --from FILE  bundle findings, enforcement decisions, and cited events\n  numbat case verify DIR                   check a bundle against its manifest digests\n  numbat version                           print version and schema version\n\nUse --rules-dir DIR (repeatable) with scan, collect, hook EVENT, hook install,\nor rules check/list/test to add operator rules or replace embedded rules by id.\nAdd --no-builtin-rules to omit the built-ins.\nRun \"numbat help <command> [subcommand]\" for detailed flags.\n",
+   "stderr": "",
+   "duration_ms": 4,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "numbat"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for numbat\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "numbat"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'numbat' in node '(dir)Top'\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "numbat",
+    "rules",
+    "list"
+   ],
+   "exit_code": 0,
+   "stdout": "chain.guardrails_off_then_egress\nchain.permission_denied_then_runtime_bypass\nchain.privilege_discovery_then_elevation\nchain.secret_manager_read_then_egress\nchain.secret_read_then_egress\nchain.workload_identity_then_lateral_execution\nexec.agent_runtime_bypass_flags\nexec.destructive_recursive_delete\nexec.download_pipe_shell\nexec.encoded_payload_shell\nexec.reverse_shell\nexec.reverse_tunnel\nexfil.curl_post_file\nexfil.dns_tunnel_exec\nexfil.env_capture_to_network\nexfil.secret_read_and_egress_oneliner\nimpact.cryptomining_launch\nimpact.disk_wipe\nimpact.fork_bomb\nimpact.mass_process_termination\nintegrity.git_hooks_bypass\nintegrity.history_tamper\nlateral.workload_exec\npersistence.git_hook_write\npersistence.privileged_account_change\npersistence.scheduler_install\npersistence.shell_profile_write\npersistence.ssh_authorized_keys\npersistence.ssh_authorized_keys_command\nprivilege.access_control_mutation\nprivilege.container_host_escape\nprivilege.container_runtime_socket_access\nprivilege.elevated_shell\nprivilege.host_namespace_entry\nprivilege.sudoers_tamper\nrecon.cloud_metadata\nrecon.network_sweep\nrecon.privilege_escalation\nsecrets.agent_read_env\nsecrets.browser_session_store_read\nsecrets.cloud_credential_read\nsecrets.cloud_secret_manager_read\nsecrets.developer_credential_read\nsecrets.process_environment_read\nsecrets.read_private_key\nsecrets.workload_identity_token_read\nsource.git_config_exec\nsource.git_remote_tamper\ntamper.agent_config_write\ntamper.detector_state_write\ntamper.guardrails_off\n",
+   "stderr": "",
+   "duration_ms": 72,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-ea3a723e",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex"
+   ],
+   "exit_code": 0,
+   "stdout": "codex       not-installed numbat hooks not installed (/home/ctk/.codex/hooks.json)\n",
+   "stderr": "",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-83217670",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex",
+    "--managed"
+   ],
+   "exit_code": 0,
+   "stdout": "codex       not-installed numbat managed hooks not installed (/etc/codex/requirements.toml)\n",
+   "stderr": "",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-readme-e5433822",
+   "title": "From the project's documentation \u2014 run against no fixture"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 7,
+   "binary": "numbat",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "83e832ea3e133598",
+ "declared_commands": [
+  {
+   "name": "numbat",
+   "source": "cmd/<name>/"
+  }
+ ],
+ "examples": [
+  {
+   "id": "t-readme-ea3a723e",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "numbat",
+    "rules",
+    "list"
+   ],
+   "stdout": "chain.guardrails_off_then_egress\nchain.permission_denied_then_runtime_bypass\nchain.privilege_discovery_then_elevation\nchain.secret_manager_read_then_egress\nchain.secret_read_then_egress\nchain.workload_identity_then_lateral_execution\nexec.agent_runtime_bypass_flags\nexec.destructive_recursive_delete\nexec.download_pipe_shell\nexec.encoded_payload_shell\nexec.reverse_shell\nexec.reverse_tunnel\nexfil.curl_post_file\nexfil.dns_tunnel_exec\nexfil.env_capture_to_network\nexfil.secret_read_and_egress_oneliner\nimpact.cryptomining_launch\nimpact.disk_wipe\nimpact.fork_bomb\nimpact.mass_process_termination\nintegrity.git_hooks_bypass\nintegrity.history_tamper\nlateral.workload_exec\npersistence.git_hook_write\npersistence.privileged_account_change\npersistence.scheduler_install\npersistence.shell_profile_write\npersistence.ssh_authorized_keys\npersistence.ssh_authorized_keys_command\nprivilege.access_control_mutation\nprivilege.container_host_escape\nprivilege.container_runtime_socket_access\nprivilege.elevated_shell\nprivilege.host_namespace_entry\nprivilege.sudoers_tamper\nrecon.cloud_metadata\nrecon.network_sweep\nrecon.privilege_escalation\nsecrets.agent_read_env\nsecrets.browser_session_store_read\nsecrets.cloud_credential_read\nsecrets.cloud_secret_manager_read\nsecrets.developer_credential_read\nsecrets.process_environment_read\nsecrets.read_private_key\nsecrets.workload_identity_token_read\nsource.git_config_exec\nsource.git_remote_tamper\ntamper.agent_config_write\ntamper.detector_state_write\ntamper.guardrails_off\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 72,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-83217670",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex"
+   ],
+   "stdout": "codex       not-installed numbat hooks not installed (/home/ctk/.codex/hooks.json)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-readme-e5433822",
+   "title": "From the project's documentation \u2014 run against no fixture",
+   "argv": [
+    "numbat",
+    "hook",
+    "status",
+    "--agent",
+    "codex",
+    "--managed"
+   ],
+   "stdout": "codex       not-installed numbat managed hooks not installed (/etc/codex/requirements.toml)\n",
+   "stderr": "",
+   "exit_code": 0,
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {},
+  "values_seen": {},
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "numbat",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "0bbb97d36a92ea541d5649f6d72661161ab6ee9b140f0ee1fbdb3758de7dc62d",
+  "text": "numbat \u2014 observe, detect, block, and reconstruct AI agent activity on the endpoint\n\nusage:\n  numbat scan [--agent NAME ... | --path FILE|DIR ...]      scan agent artifacts; emit records (NDJSON)\n  numbat timeline [--agent NAME ... | --path FILE|DIR ...]  reconstruct a per-session chronological view (text|json)\n  numbat collect [--addr 127.0.0.1:4318]   receive OTLP/HTTP protobuf logs; emit records\n  numbat ship --input-file F --http-url U  tail a local record file to an HTTP endpoint\n  numbat hook EVENT --agent NAME           live integration callback (normally not run by hand)\n  numbat hook install --agent NAME|all     install numbat's live integrations\n  numbat hook uninstall --agent NAME|all   remove numbat-owned live integrations\n  numbat hook status [--agent NAME|all]    inspect numbat-owned integration configuration\n  numbat agents [--all]                    report detected agents; --all includes absent agents\n  numbat rules check                       validate and compile rules; run companion tests\n  numbat rules list                        list effective compiled rule ids\n  numbat rules test --fixture FILE         evaluate rules against fixture events (NDJSON)\n  numbat case build <case-id> --from FILE  bundle findings, enforcement decisions, and cited events\n  numbat case verify DIR                   check a bundle against its manifest digests\n  numbat version                           print version and schema version\n\nUse --rules-dir DIR (repeatable) with scan, collect, hook EVENT, hook install,\nor rules check/list/test to add operator rules or replace embedded rules by id.\nAdd --no-builtin-rules to omit the built-ins.\nRun \"numbat help <command> [subcommand]\" for detailed flags.\n"
+ },
+ "validation": {
+  "confirmed": [],
+  "unconfirmed": [
+   "--addr",
+   "--agent",
+   "--all",
+   "--case-id",
+   "--content",
+   "--emit",
+   "--enforce",
+   "--expect",
+   "--expect-none",
+   "--fixture",
+   "--format",
+   "--from",
+   "--http-allow-insecure",
+   "--http-auth",
+   "--http-batch-size",
+   "--http-gzip",
+   "--http-sig-header",
+   "--http-timeout",
+   "--http-timestamp-header",
+   "--http-url",
+   "--include-raw-evidence",
+   "--include-reasoning",
+   "--include-redacted-evidence",
+   "--input-file",
+   "--installed-by",
+   "--no-builtin-rules",
+   "--o",
+   "--out",
+   "--output",
+   "--output-file",
+   "--path",
+   "--poll",
+   "--profile",
+   "--require-match",
+   "--rules",
+   "--rules-dir",
+   "--state-db",
+   "--state-file"
+  ],
+  "help_only": [],
+  "mining_coverage": null
+ },
+ "surface": {
+  "flags": {
+   "--addr": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "PORT             OTLP/HTTP listen address (default 127.0.0.1:4318)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--agent": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "source agent (required): claude|codex|gemini|",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--all": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "include absent supported local agents",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--case-id": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "case identifier stamped on every emitted event and derived finding",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--content": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "preview",
+    "kind": "option",
+    "first_tag": "v0.2.0",
+    "first_date": "2026-08-17T21:23:07+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--emit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "record kind to emit: findings, events, indicators,",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--enforce": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "install in enforce mode for agents with blocking support: deny supported pre-action requests when a rule marked enforce=true matches; requires an enabled enforce=true rule in the effective catalog (default: monitor only)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": false
+   },
+   "--expect": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "exit non-zero if this rule id does not match",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--expect-none": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "exit non-zero if any rule matches",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--fixture": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "NDJSON events file to evaluate (required)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--format": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "output format (default text)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--from": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "captured NDJSON record-stream file to read",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--http-allow-insecure": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "allow plain http to non-loopback hosts",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": false
+   },
+   "--http-auth": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "HTTP delivery auth: none|bearer|hmac-sha256",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--http-batch-size": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "records per HTTP POST",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "int"
+   },
+   "--http-gzip": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "gzip the HTTP POST body",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": false
+   },
+   "--http-sig-header": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "header carrying the hmac-sha256 signature",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--http-timeout": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "HTTP request timeout",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "duration"
+   },
+   "--http-timestamp-header": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "header carrying the signed timestamp",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--http-url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "ingest URL (required when --output includes http)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--include-raw-evidence": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "copy cited evidence files verbatim into the bundle (opt-in: may include secrets/transcripts)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/case.go",
+    "takes_value": false
+   },
+   "--include-reasoning": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "include source-recorded reasoning events when an integration exposes them",
+    "kind": "option",
+    "first_tag": "v0.2.0",
+    "first_date": "2026-08-17T21:23:07+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": false
+   },
+   "--include-redacted-evidence": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "copy cited plain-text or uncompressed JSON evidence with best-effort secret masking (review before sharing)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/case.go",
+    "takes_value": false
+   },
+   "--input-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--installed-by": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "provenance marker written by `hook install`;",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--no-builtin-rules": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "install live integrations with only --rules-dir rules",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": false
+   },
+   "--o": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "bundle directory to create (must not exist)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/case.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--out": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "bundle directory to create (must not exist)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/case.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--output": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "record sink: stdout, file, or http",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--output-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "destination path when --output includes file (default findings.ndjson, or records.ndjson when --emit includes events/indicators)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "cmd/numbat/hook_install.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--path": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "artifact to read (repeatable; defaults to known",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--poll": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "interval between input-file polls (default 2s)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--profile": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "deprecated alias; full enables --include-reasoning",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--require-match": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "exit non-zero if no rule matches (for positive fixtures)",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--rules": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "directory containing source rule YAML",
+    "kind": "option",
+    "first_tag": "v0.2.0",
+    "first_date": "2026-08-17T21:23:07+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "rules/internal/rulegen/main.go",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--rules-dir": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "operator rules to add or replace by id",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--state-db": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "bbolt file holding live sequence-window state",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   },
+   "--state-file": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": ". It binds the acknowledged offset to the input file and endpoint.",
+    "kind": "option",
+    "first_tag": "v0.1.1",
+    "first_date": "2026-07-29T17:48:28+01:00",
+    "last_tag": "v0.2.0",
+    "last_date": "2026-08-17T21:23:07+01:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "docs/cli.md"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 31,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-04d87921",
+    "argv": [
+     "numbat",
+     "rules",
+     "check",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 106,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 270
+   },
+   {
+    "id": "t-readme-9e36a3aa",
+    "argv": [
+     "numbat",
+     "hook",
+     "install",
+     "--agent",
+     "codex",
+     "--emit",
+     "all",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus",
+     "--enforce"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 107,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 317
+   },
+   {
+    "id": "t-readme-504ef0f5",
+    "argv": [
+     "numbat",
+     "collect",
+     "[--addr",
+     "HOST:PORT]",
+     "receive",
+     "/opt/ctk/fixtures/source-corpus",
+     "protobuf",
+     "logs"
+    ],
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 16,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 1998
+   },
+   {
+    "id": "t-readme-05103512",
+    "argv": [
+     "numbat",
+     "rules",
+     "test",
+     "--fixture",
+     "/opt/ctk/fixtures/source-corpus/app/settings.py",
+     "evaluate",
+     "rules",
+     "against",
+     "NDJSON",
+     "events"
+    ],
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 24,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 80
+   },
+   {
+    "id": "t-readme-35ceb043",
+    "argv": [
+     "numbat",
+     "hook",
+     "install",
+     "--agent",
+     "openclaw",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus",
+     "--enforce"
+    ],
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 722,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 317
+   },
+   {
+    "id": "t-readme-d6036fee",
+    "argv": [
+     "numbat",
+     "hook",
+     "install",
+     "--agent",
+     "gemini",
+     "--enforce",
+     "--emit",
+     "all",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 528,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 317
+   },
+   {
+    "id": "t-readme-a582ff4b",
+    "argv": [
+     "numbat",
+     "hook",
+     "install",
+     "--agent",
+     "codex",
+     "--managed",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus",
+     "--enforce"
+    ],
+    "source": "readme",
+    "path": "docs/enforcement.md",
+    "line": 62,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 317
+   },
+   {
+    "id": "t-readme-944054bc",
+    "argv": [
+     "numbat",
+     "rules",
+     "check",
+     "--no-builtin-rules",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 66,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 270
+   },
+   {
+    "id": "t-readme-eb8149ab",
+    "argv": [
+     "numbat",
+     "scan",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 567,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 704
+   },
+   {
+    "id": "t-readme-9a67d12a",
+    "argv": [
+     "numbat",
+     "rules",
+     "list",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 568,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 270
+   },
+   {
+    "id": "t-readme-1f34417e",
+    "argv": [
+     "numbat",
+     "rules",
+     "list",
+     "--no-builtin-rules",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 569,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 270
+   },
+   {
+    "id": "t-readme-21b42cd6",
+    "argv": [
+     "numbat",
+     "hook",
+     "install",
+     "--agent",
+     "claude",
+     "--rules-dir",
+     "/opt/ctk/fixtures/source-corpus"
+    ],
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 589,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 83
+   },
+   {
+    "id": "t-opt-1632febc",
+    "argv": [
+     "numbat",
+     "rules",
+     "--addr",
+     "127.0.0.1:4318",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 539,
+    "flag": "--addr"
+   },
+   {
+    "id": "t-opt-d6e1d3e4",
+    "argv": [
+     "numbat",
+     "rules",
+     "--enforce",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 542,
+    "flag": "--enforce"
+   },
+   {
+    "id": "t-opt-e2da609c",
+    "argv": [
+     "numbat",
+     "rules",
+     "--format",
+     "text",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 541,
+    "flag": "--format"
+   },
+   {
+    "id": "t-opt-5db6b5bd",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-allow-insecure",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 554,
+    "flag": "--http-allow-insecure"
+   },
+   {
+    "id": "t-opt-8cd350b2",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-batch-size",
+     "1",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 550,
+    "flag": "--http-batch-size"
+   },
+   {
+    "id": "t-opt-b839a20c",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-gzip",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 544,
+    "flag": "--http-gzip"
+   },
+   {
+    "id": "t-opt-51827855",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-sig-header",
+     "X-CTK-Example: 1",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 550,
+    "flag": "--http-sig-header"
+   },
+   {
+    "id": "t-opt-7eb1f1fc",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-timeout",
+     "5s",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 547,
+    "flag": "--http-timeout"
+   },
+   {
+    "id": "t-opt-12b71c9e",
+    "argv": [
+     "numbat",
+     "rules",
+     "--http-timestamp-header",
+     "X-CTK-Example: 1",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 556,
+    "flag": "--http-timestamp-header"
+   },
+   {
+    "id": "t-opt-4279e428",
+    "argv": [
+     "numbat",
+     "rules",
+     "--include-raw-evidence",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 555,
+    "flag": "--include-raw-evidence"
+   },
+   {
+    "id": "t-opt-fd7f59b8",
+    "argv": [
+     "numbat",
+     "rules",
+     "--include-reasoning",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 552,
+    "flag": "--include-reasoning"
+   },
+   {
+    "id": "t-opt-ddffa186",
+    "argv": [
+     "numbat",
+     "rules",
+     "--include-redacted-evidence",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 560,
+    "flag": "--include-redacted-evidence"
+   },
+   {
+    "id": "t-opt-b8e6733f",
+    "argv": [
+     "numbat",
+     "rules",
+     "--no-builtin-rules",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 551,
+    "flag": "--no-builtin-rules"
+   },
+   {
+    "id": "t-opt-57be9d0a",
+    "argv": [
+     "numbat",
+     "rules",
+     "--o",
+     "/tmp/ctk-capture/o.out",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 536,
+    "flag": "--o"
+   },
+   {
+    "id": "t-opt-ce989b77",
+    "argv": [
+     "numbat",
+     "rules",
+     "--out",
+     "/tmp/ctk-capture/out.out",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 538,
+    "flag": "--out"
+   },
+   {
+    "id": "t-opt-f0746908",
+    "argv": [
+     "numbat",
+     "rules",
+     "--output",
+     "/tmp/ctk-capture/output.out",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 541,
+    "flag": "--output"
+   },
+   {
+    "id": "t-opt-61f3df4d",
+    "argv": [
+     "numbat",
+     "rules",
+     "--output-file",
+     "/tmp/ctk-capture/output-file.out",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 546,
+    "flag": "--output-file"
+   },
+   {
+    "id": "t-opt-bf323dca",
+    "argv": [
+     "numbat",
+     "rules",
+     "--path",
+     "known",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 539,
+    "flag": "--path"
+   },
+   {
+    "id": "t-opt-f886ab23",
+    "argv": [
+     "numbat",
+     "rules",
+     "--poll",
+     "2s",
+     "list"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 2,
+    "output_bytes": 539,
+    "flag": "--poll"
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "numbat hook install --agent codex --emit all",
+    "source": "readme",
+    "path": "README.md",
+    "line": 88,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat agents",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 63,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat agents --all",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 64,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat agents --format json",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 65,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat timeline --agent claude",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 337,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat timeline --agent codex --include-reasoning --content full --format json",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 340,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat collect",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 395,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat collect --addr 127.0.0.1:4318 --emit all",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 396,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent claude",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 718,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent openhands --settings /repo/.openhands/hooks.json",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 723,
+    "reason": "unmappable-path",
+    "token": "/repo/.openhands/hooks.json"
+   },
+   {
+    "raw": "numbat hook uninstall --agent claude",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 725,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat rules test --fixture events.ndjson --require-match",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 774,
+    "reason": "needs-live-target",
+    "token": "events.ndjson"
+   },
+   {
+    "raw": "numbat rules test --fixture positive.ndjson --expect secrets.agent_read_env",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 775,
+    "reason": "needs-live-target",
+    "token": "positive.ndjson"
+   },
+   {
+    "raw": "numbat rules test --fixture negative.ndjson --expect-none",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 776,
+    "reason": "needs-live-target",
+    "token": "negative.ndjson"
+   },
+   {
+    "raw": "numbat scan --case-id inv-42 --emit all --output file --output-file records.ndjson",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 824,
+    "reason": "needs-live-target",
+    "token": "records.ndjson"
+   },
+   {
+    "raw": "numbat case build inv-42 --from records.ndjson -o inv-42.numbat",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 825,
+    "reason": "needs-live-target",
+    "token": "records.ndjson"
+   },
+   {
+    "raw": "numbat case verify inv-42.numbat",
+    "source": "readme",
+    "path": "docs/cli.md",
+    "line": 826,
+    "reason": "needs-live-target",
+    "token": "inv-42.numbat"
+   },
+   {
+    "raw": "numbat scan",
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 27,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent codex",
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 29,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent openclaw",
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 31,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "/usr/local/bin/numbat                # or /opt/numbat/bin/numbat",
+    "source": "readme",
+    "path": "docs/deployment.md",
+    "line": 400,
+    "reason": "bare-invocation",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent cursor",
+    "source": "readme",
+    "path": "docs/live-capture.md",
+    "line": 50,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent windsurf",
+    "source": "readme",
+    "path": "docs/live-capture.md",
+    "line": 51,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "numbat hook install --agent claude --output file --output http --http-url https://ingest.example/numbat",
+    "source": "readme",
+    "path": "docs/live-capture.md",
+    "line": 151,
+    "reason": "needs-live-target",
+    "token": "https://ingest.example/numbat"
+   },
+   {
+    "raw": "numbat rules test --rules-dir ./my-rules --fixture positive.ndjson --expect acme.secrets.env_read",
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 484,
+    "reason": "needs-live-target",
+    "token": "positive.ndjson"
+   },
+   {
+    "raw": "numbat rules test --rules-dir ./my-rules --fixture negative.ndjson --expect-none",
+    "source": "readme",
+    "path": "docs/rules.md",
+    "line": 489,
+    "reason": "needs-live-target",
+    "token": "negative.ndjson"
+   }
+  ]
+ },
+ "tool": "numbat",
+ "repo": "perplexityai/numbat",
+ "head_sha": "f0778c09dc48281aa93a3887d05096c0a1f3f9f7",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-19T00:16:05.195925+00:00"
+}

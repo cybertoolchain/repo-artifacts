@@ -1,0 +1,4774 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "go",
+  "image_digest": "sha256:7363d496febe9a33732b69d72bbf9da78ce096248730133884b5b101ec37c29b",
+  "duration_s": 40.45,
+  "log_tail": "#11 4.646 go: downloading gopkg.in/warnings.v0 v0.1.2\n#11 4.659 go: downloading github.com/xdg-go/pbkdf2 v1.0.0\n#11 4.666 go: downloading github.com/klauspost/cpuid/v2 v2.3.0\n#11 4.679 go: downloading github.com/envoyproxy/go-control-plane/envoy v1.36.0\n#11 4.738 go: downloading github.com/go-logr/stdr v1.2.2\n#11 4.748 go: downloading go.opentelemetry.io/auto/sdk v1.2.1\n#11 4.796 go: downloading github.com/docker/docker-credential-helpers v0.9.3\n#11 4.797 go: downloading github.com/docker/go-units v0.5.0\n#11 4.797 go: downloading github.com/felixge/httpsnoop v1.0.4\n#11 4.797 go: downloading github.com/xo/terminfo v0.0.0-20220910002029-abceb7e1c41e\n#11 4.798 go: downloading github.com/gorilla/css v1.0.1\n#11 4.845 go: downloading github.com/spiffe/go-spiffe/v2 v2.6.0\n#11 4.888 go: downloading github.com/cncf/xds/go v0.0.0-20251210132809-ee656c7534f5\n#11 5.127 go: downloading github.com/go-jose/go-jose/v4 v4.1.4\n#11 5.127 go: downloading cel.dev/expr v0.25.1\n#11 5.874 go: downloading github.com/googleapis/enterprise-certificate-proxy v0.3.7\n#11 5.874 go: downloading cloud.google.com/go/auth/oauth2adapt v0.2.8\n#11 5.874 go: downloading github.com/google/s2a-go v0.1.9\n#11 DONE 30.4s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.2s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.3s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.191 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 4.6s done\n#18 exporting manifest sha256:7605e6d4dacab2e6a184d9d101936e0043d8275d0b9e5228de07b405e8a0de80 done\n#18 exporting config sha256:10562ed5705d9d3832b16d850d0b143fba29492d787273da2059184b8dcc4e3c done\n#18 exporting attestation manifest sha256:e95ac5146de4fef439081aa4e81c8697b93851ede1239c364ab1060940e13694 done\n#18 exporting manifest list sha256:7363d496febe9a33732b69d72bbf9da78ce096248730133884b5b101ec37c29b done\n#18 naming to docker.io/ctk-exec/trufflehog:bc3a3ae6e097 done\n#18 unpacking to docker.io/ctk-exec/trufflehog:bc3a3ae6e097\n#18 unpacking to docker.io/ctk-exec/trufflehog:bc3a3ae6e097 1.2s done\n#18 DONE 5.8s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "tool",
+    "--help"
+   ],
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": "FileNotFoundError: [Errno 2] No such file or directory: 'tool'"
+  },
+  {
+   "argv": [
+    "trufflehog",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "usage: trufflehog [<flags>] <command> [<args> ...]\n\nTruffleHog is a tool for finding credentials. Run without a command for\ninteractive mode.\n\n\nFlags:\n  -h, --[no-]help                Show context-sensitive help (also try\n                                 --help-long and --help-man).\n      --log-level=0              Logging verbosity on a scale of 0 (info) to 5\n                                 (trace). Can be disabled with \"-1\".\n      --[no-]profile             Enables profiling and sets a pprof and fgprof\n                                 server on :18066.\n  -j, --[no-]json                Output in JSON format.\n      --[no-]json-legacy         Use the pre-v3.0 JSON format. Only works with\n                                 git, gitlab, and github sources.\n      --[no-]github-actions      Output in GitHub Actions format.\n      --[no-]sarif               Output in SARIF format for upload\n                                 to GitHub code scanning (e.g. via\n                                 github/codeql-action/upload-sarif).\n      --concurrency=N            Number of concurrent workers.\n      --[no-]no-verification     Don't verify the results.\n      --results=RESULTS          Specifies which type(s) of results to output:\n                                 verified (confirmed valid by API),\n                                 unknown (verification failed due to error),\n                                 unverified (detected but not verified),\n                                 filtered_unverified (unverified but would\n                                 have been filtered out). Defaults to\n                                 verified,unverified,unknown.\n      --[no-]no-color            Disable colorized output\n      --[no-]allow-verification-overlap  \n                                 Allow verification of similar credentials\n                                 across detectors\n      --[no-]filter-unverified   Only output first unverified result per\n                                 chunk per detector if there are more than one\n                                 results.\n      --filter-entropy=FILTER-ENTROPY  \n                                 Filter unverified results with Shannon entropy.\n                                 Start with 3.0.\n      --max-decode-depth=5       Maximum depth of iterative decoding.\n                                 Each decoder's output is fed back through all\n                                 decoders, up to this limit. 1 = single pass, 2+\n                                 = chained decoding (e.g., base64 inside utf16).\n      --config=CONFIG            Path to configuration file.\n      --[no-]print-avg-detector-time  \n                                 Print the average time spent on each detector.\n      --[no-]no-update           Don't check for updates.\n      --[no-]fail                Exit with code 183 if results are found.\n      --[no-]fail-on-scan-errors  \n                                 Exit with non-zero error code if an error\n                                 occurs during the scan.\n      --verifier=VERIFIER ...    Set custom verification endpoints.\n      --[no-]custom-verifiers-only  \n                                 Only use custom verification endpoints.\n      --detector-timeout=DETECTOR-TIMEOUT  \n                                 Maximum time to spend scanning chunks per\n                                 detector (e.g., 30s).\n      --archive-max-size=ARCHIVE-MAX-SIZE  \n                                 Maximum size of archive to scan. (Byte units\n                                 eg. 512B, 2KB, 4MB)\n      --archive-max-depth=ARCHIVE-MAX-DEPTH  \n                                 Maximum depth of archive to scan.\n      --archive-timeout=ARCHIVE-TIMEOUT  \n                                 Maximum time to spend extracting an archive.\n      --include-detectors=\"all\"  Comma separated list of detector types to\n                                 include. Protobuf name or IDs may be used,\n                                 as well as ranges.\n      --exclude-detectors=EXCLUDE-DETECTORS  \n                                 Comma separated list of detector types to\n                                 exclude. Protobuf name or IDs may be used,\n                                 as well as ranges. IDs defined here take\n                                 precedence over the include list.\n      --[no-]no-verification-cache  \n                                 Disable verification caching\n      --[no-]force-skip-binaries  \n                                 Force skipping binaries.\n      --[no-]force-skip-archives  \n                                 Force skipping archives.\n      --[no-]skip-additional-refs  \n                                 Skip additional references.\n      --user-agent-suffix=USER-AGENT-SUFFIX  \n                                 Suffix to add to User-Agent.\n      --[no-]drop-unverified-jwt-results  \n                                 Drop unverified results without any\n                                 verification errors from the JWT detector.\n      --[no-]version             Show application version.\n\nCommands:\nhelp [<command>...]\n    Show help.\n\ngit [<flags>] <uri>\n    Find credentials in git repositories.\n\ngithub [<flags>]\n    Find credentials in GitHub repositories.\n\ngithub-experimental --repo=REPO [<flags>]\n    Run an experimental GitHub scan. Must specify at least one experimental\n    sub-module to run: object-discovery.\n\ngitlab --token=TOKEN [<flags>]\n    Find credentials in GitLab repositories.\n\nfilesystem [<flags>] [<path>...]\n    Find credentials in a filesystem.\n\ns3 [<flags>]\n    Find credentials in S3 buckets.\n\ngcs [<flags>]\n    Find credentials in GCS buckets.\n\nsyslog --format=FORMAT [<flags>]\n    Scan syslog\n\ncircleci --token=TOKEN\n    Scan CircleCI\n\ndocker [<flags>]\n    Scan Docker Image\n\ntravisci --token=TOKEN\n    Scan TravisCI\n\npostman [<flags>]\n    Scan Postman\n\nelasticsearch [<flags>]\n    Scan Elasticsearch\n\njenkins --url=URL [<flags>]\n    Scan Jenkins\n\nhuggingface [<flags>]\n    Find credentials in HuggingFace datasets, models, spaces and buckets.\n\nstdin\n    Find credentials from stdin.\n\nmulti-scan\n    Find credentials in multiple sources defined in configuration.\n\njson-enumerator [<path>...]\n    Find credentials from a JSON enumerator input.\n\nanalyze\n    Analyze API keys for fine-grained permissions information.\n\n\n",
+   "stderr": "",
+   "duration_ms": 408,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "trufflehog"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for trufflehog\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "trufflehog"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'trufflehog' in node '(dir)Top'\n",
+   "duration_ms": 3,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "/opt/ctk/fixtures/secret-scan",
+    "--no-verification",
+    "--no-update"
+   ],
+   "exit_code": 0,
+   "stdout": "Found unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: AWS\nDecoder Type: PLAIN\nRaw result: [REDACTED:aws-access-key-id]\nResource_type: Access key\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 7\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Github\nDecoder Type: PLAIN\nRaw result: [REDACTED:github-token]\nRotation_guide: https://howtorotate.com/docs/tutorials/github/\nVersion: 2\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 11\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Slack\nDecoder Type: PLAIN\nRaw result: [REDACTED:slack-token]\nRotation_guide: https://howtorotate.com/docs/tutorials/slack/\nToken_type: Slack Bot Token\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 14\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Stripe\nDecoder Type: PLAIN\nRaw result: [REDACTED:stripe-secret-key]\nRotation_guide: https://howtorotate.com/docs/tutorials/stripe/\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 3\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: SendGrid\nDecoder Type: PLAIN\nRaw result: [REDACTED:sendgrid-key]\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 4\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Postgres\nDecoder Type: PLAIN\nRaw result: postgres://svc_app:Hunter2RotationQ9xZ@db.internal.example:5432\nSslmode: <unset>\nHost: db.internal.example:5432\nUsername: svc_app\nDatabase: prod\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 2\n\n",
+   "stderr": "\ud83d\udc37\ud83d\udd11\ud83d\udc37  TruffleHog. Unearth your secrets. \ud83d\udc37\ud83d\udd11\ud83d\udc37\n\n2026-08-18T23:25:42Z\tinfo-0\ttrufflehog\trunning source\t{\"source_manager_worker_id\": \"PHpnv\", \"with_units\": true}\n2026-08-18T23:25:42Z\tinfo-0\ttrufflehog\tfinished scanning\t{\"chunks\": 3, \"bytes\": 3326, \"verified_secrets\": 0, \"unverified_secrets\": 6, \"scan_duration\": \"7.0585ms\", \"trufflehog_version\": \"dev\", \"verification_caching\": {\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "duration_ms": 892,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "scan-filesystem",
+   "title": "Scan a filesystem path for credentials"
+  },
+  {
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "--sarif",
+    "/opt/ctk/fixtures/secret-scan",
+    "--no-verification",
+    "--no-update"
+   ],
+   "exit_code": 0,
+   "stdout": "{\n  \"$schema\": \"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json\",\n  \"version\": \"2.1.0\",\n  \"runs\": [\n    {\n      \"tool\": {\n        \"driver\": {\n          \"name\": \"trufflehog\",\n          \"informationUri\": \"https://github.com/trufflesecurity/trufflehog\",\n          \"version\": \"dev\",\n          \"rules\": [\n            {\n              \"id\": \"AWS\",\n              \"name\": \"AWS\",\n              \"shortDescription\": {\n                \"text\": \"AWS (Amazon Web Services) is a comprehensive cloud computing platform offering a wide range of on-demand services like computing power, storage, databases. API keys for AWS can have varying amount of access to these services depending on the IAM policy attached.\"\n              }\n            },\n            {\n              \"id\": \"Github\",\n              \"name\": \"Github\",\n              \"shortDescription\": {\n                \"text\": \"GitHub is a platform for version control and collaboration. Personal access tokens (PATs) can be used to access and modify repositories and other resources.\"\n              }\n            },\n            {\n              \"id\": \"Postgres\",\n              \"name\": \"Postgres\",\n              \"shortDescription\": {\n                \"text\": \"Postgres connection string containing credentials\"\n              }\n            },\n            {\n              \"id\": \"SendGrid\",\n              \"name\": \"SendGrid\",\n              \"shortDescription\": {\n                \"text\": \"SendGrid is a cloud-based service that provides email delivery and marketing campaigns. SendGrid API keys can be used to send emails and manage other email-related tasks.\"\n              }\n            },\n            {\n              \"id\": \"Slack\",\n              \"name\": \"Slack\",\n              \"shortDescription\": {\n                \"text\": \"Slack tokens can be used to authenticate API requests to the Slack platform, allowing access to various workspace resources and functionalities.\"\n              }\n            },\n            {\n              \"id\": \"Stripe\",\n              \"name\": \"Stripe\",\n              \"shortDescription\": {\n                \"text\": \"Stripe is a payment processing platform. Stripe API keys can be used to interact with Stripe's services for processing payments, managing subscriptions, and more.\"\n              }\n            }\n          ]\n        }\n      },\n      \"results\": [\n        {\n          \"ruleId\": \"Stripe\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Stripe.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 3\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"03aaf51ea9dafc08031b0c5f13defd5327a2a46194c3442100d2d7cfcef635ed\"\n          }\n        },\n        {\n          \"ruleId\": \"Slack\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Slack.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 14\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"a80af4e4cd3aceca244cf06f14a91271d581e98739d35caaa2d1a3d5a9f53630\"\n          }\n        },\n        {\n          \"ruleId\": \"AWS\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector AWS.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 7\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"2dee14d5739fec22ac1b67ba7c8ca8719b0100ecf83ececac7b0fc439afe358c\"\n          }\n        },\n        {\n          \"ruleId\": \"SendGrid\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector SendGrid.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 4\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"faabc32355d46a025dd8965d0e8c186a3ebe776068f1306b3d0416dd3681cc56\"\n          }\n        },\n        {\n          \"ruleId\": \"Github\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Github.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 11\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"30135a1f01686eba23771fbdadbab300176da279d27ff186c38629ef2d169e51\"\n          }\n        },\n        {\n          \"ruleId\": \"Postgres\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Postgres.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 2\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"a5d031b325910c8b5cef321d10568193057e7c136114b04ec16ad04f3ee10799\"\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+   "stderr": "2026-08-18T23:25:43Z\tinfo-0\ttrufflehog\trunning source\t{\"source_manager_worker_id\": \"blGin\", \"with_units\": true}\n2026-08-18T23:25:43Z\tinfo-0\ttrufflehog\tfinished scanning\t{\"chunks\": 3, \"bytes\": 3326, \"verified_secrets\": 0, \"unverified_secrets\": 6, \"scan_duration\": \"4.046792ms\", \"trufflehog_version\": \"dev\", \"verification_caching\": {\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "duration_ms": 883,
+   "truncated": false,
+   "error": null,
+   "kind": "scenario",
+   "id": "t-opt-435ea5b2",
+   "title": "Output in SARIF format for upload to GitHub code scanning\u2026 (--sarif)"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 6,
+   "binary": "trufflehog",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": "4ddda7b86736fdc5",
+ "declared_commands": [
+  {
+   "name": "trufflehog",
+   "source": "go.mod module (root package main)"
+  }
+ ],
+ "examples": [
+  {
+   "id": "scan-filesystem",
+   "title": "Scan a filesystem path for credentials",
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "/opt/ctk/fixtures/secret-scan",
+    "--no-verification",
+    "--no-update"
+   ],
+   "stdout": "Found unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: AWS\nDecoder Type: PLAIN\nRaw result: [REDACTED:aws-access-key-id]\nResource_type: Access key\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 7\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Github\nDecoder Type: PLAIN\nRaw result: [REDACTED:github-token]\nRotation_guide: https://howtorotate.com/docs/tutorials/github/\nVersion: 2\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 11\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Slack\nDecoder Type: PLAIN\nRaw result: [REDACTED:slack-token]\nRotation_guide: https://howtorotate.com/docs/tutorials/slack/\nToken_type: Slack Bot Token\nFile: /opt/ctk/fixtures/secret-scan/config.py\nLine: 14\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Stripe\nDecoder Type: PLAIN\nRaw result: [REDACTED:stripe-secret-key]\nRotation_guide: https://howtorotate.com/docs/tutorials/stripe/\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 3\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: SendGrid\nDecoder Type: PLAIN\nRaw result: [REDACTED:sendgrid-key]\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 4\n\nFound unverified result \ud83d\udc37\ud83d\udd11\u2753\nDetector Type: Postgres\nDecoder Type: PLAIN\nRaw result: postgres://svc_app:Hunter2RotationQ9xZ@db.internal.example:5432\nSslmode: <unset>\nHost: db.internal.example:5432\nUsername: svc_app\nDatabase: prod\nFile: /opt/ctk/fixtures/secret-scan/.env\nLine: 2\n\n",
+   "stderr": "\ud83d\udc37\ud83d\udd11\ud83d\udc37  TruffleHog. Unearth your secrets. \ud83d\udc37\ud83d\udd11\ud83d\udc37\n\n2026-08-18T23:25:42Z\tinfo-0\ttrufflehog\trunning source\t{\"source_manager_worker_id\": \"PHpnv\", \"with_units\": true}\n2026-08-18T23:25:42Z\tinfo-0\ttrufflehog\tfinished scanning\t{\"chunks\": 3, \"bytes\": 3326, \"verified_secrets\": 0, \"unverified_secrets\": 6, \"scan_duration\": \"7.0585ms\", \"trufflehog_version\": \"dev\", \"verification_caching\": {\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "exit_code": 0,
+   "duration_ms": 892,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "id": "t-opt-435ea5b2",
+   "title": "Output in SARIF format for upload to GitHub code scanning\u2026 (--sarif)",
+   "argv": [
+    "trufflehog",
+    "filesystem",
+    "--sarif",
+    "/opt/ctk/fixtures/secret-scan",
+    "--no-verification",
+    "--no-update"
+   ],
+   "stdout": "{\n  \"$schema\": \"https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json\",\n  \"version\": \"2.1.0\",\n  \"runs\": [\n    {\n      \"tool\": {\n        \"driver\": {\n          \"name\": \"trufflehog\",\n          \"informationUri\": \"https://github.com/trufflesecurity/trufflehog\",\n          \"version\": \"dev\",\n          \"rules\": [\n            {\n              \"id\": \"AWS\",\n              \"name\": \"AWS\",\n              \"shortDescription\": {\n                \"text\": \"AWS (Amazon Web Services) is a comprehensive cloud computing platform offering a wide range of on-demand services like computing power, storage, databases. API keys for AWS can have varying amount of access to these services depending on the IAM policy attached.\"\n              }\n            },\n            {\n              \"id\": \"Github\",\n              \"name\": \"Github\",\n              \"shortDescription\": {\n                \"text\": \"GitHub is a platform for version control and collaboration. Personal access tokens (PATs) can be used to access and modify repositories and other resources.\"\n              }\n            },\n            {\n              \"id\": \"Postgres\",\n              \"name\": \"Postgres\",\n              \"shortDescription\": {\n                \"text\": \"Postgres connection string containing credentials\"\n              }\n            },\n            {\n              \"id\": \"SendGrid\",\n              \"name\": \"SendGrid\",\n              \"shortDescription\": {\n                \"text\": \"SendGrid is a cloud-based service that provides email delivery and marketing campaigns. SendGrid API keys can be used to send emails and manage other email-related tasks.\"\n              }\n            },\n            {\n              \"id\": \"Slack\",\n              \"name\": \"Slack\",\n              \"shortDescription\": {\n                \"text\": \"Slack tokens can be used to authenticate API requests to the Slack platform, allowing access to various workspace resources and functionalities.\"\n              }\n            },\n            {\n              \"id\": \"Stripe\",\n              \"name\": \"Stripe\",\n              \"shortDescription\": {\n                \"text\": \"Stripe is a payment processing platform. Stripe API keys can be used to interact with Stripe's services for processing payments, managing subscriptions, and more.\"\n              }\n            }\n          ]\n        }\n      },\n      \"results\": [\n        {\n          \"ruleId\": \"Stripe\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Stripe.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 3\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"03aaf51ea9dafc08031b0c5f13defd5327a2a46194c3442100d2d7cfcef635ed\"\n          }\n        },\n        {\n          \"ruleId\": \"Slack\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Slack.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 14\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"a80af4e4cd3aceca244cf06f14a91271d581e98739d35caaa2d1a3d5a9f53630\"\n          }\n        },\n        {\n          \"ruleId\": \"AWS\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector AWS.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 7\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"2dee14d5739fec22ac1b67ba7c8ca8719b0100ecf83ececac7b0fc439afe358c\"\n          }\n        },\n        {\n          \"ruleId\": \"SendGrid\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector SendGrid.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 4\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"faabc32355d46a025dd8965d0e8c186a3ebe776068f1306b3d0416dd3681cc56\"\n          }\n        },\n        {\n          \"ruleId\": \"Github\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Github.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/config.py\"\n                },\n                \"region\": {\n                  \"startLine\": 11\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"30135a1f01686eba23771fbdadbab300176da279d27ff186c38629ef2d169e51\"\n          }\n        },\n        {\n          \"ruleId\": \"Postgres\",\n          \"level\": \"warning\",\n          \"message\": {\n            \"text\": \"Found unverified result for detector Postgres.\"\n          },\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\n                  \"uri\": \"/opt/ctk/fixtures/secret-scan/.env\"\n                },\n                \"region\": {\n                  \"startLine\": 2\n                }\n              }\n            }\n          ],\n          \"partialFingerprints\": {\n            \"trufflehogFingerprint/v1\": \"a5d031b325910c8b5cef321d10568193057e7c136114b04ec16ad04f3ee10799\"\n          }\n        }\n      ]\n    }\n  ]\n}\n",
+   "stderr": "2026-08-18T23:25:43Z\tinfo-0\ttrufflehog\trunning source\t{\"source_manager_worker_id\": \"blGin\", \"with_units\": true}\n2026-08-18T23:25:43Z\tinfo-0\ttrufflehog\tfinished scanning\t{\"chunks\": 3, \"bytes\": 3326, \"verified_secrets\": 0, \"unverified_secrets\": 6, \"scan_duration\": \"4.046792ms\", \"trufflehog_version\": \"dev\", \"verification_caching\": {\"Hits\":0,\"Misses\":0,\"HitsWasted\":0,\"AttemptsSaved\":0,\"VerificationTimeSpentMS\":0}}\n",
+   "exit_code": 0,
+   "duration_ms": 883,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "help": {
+  "flags_seen": {
+   "--help": "Show context-sensitive help (also try",
+   "--no-help": "Show context-sensitive help (also try",
+   "-h": "Show context-sensitive help (also try",
+   "--help-long": "",
+   "--log-level": "Logging verbosity on a scale of 0 (info) to 5 (trace). Can be disabled with \"-1\".",
+   "--profile": "Enables profiling and sets a pprof and fgprof server on :18066.",
+   "--no-profile": "Enables profiling and sets a pprof and fgprof server on :18066.",
+   "--json": "Output in JSON format.",
+   "--no-json": "Output in JSON format.",
+   "-j": "Output in JSON format.",
+   "--json-legacy": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+   "--no-json-legacy": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+   "--github-actions": "Output in GitHub Actions format.",
+   "--no-github-actions": "Output in GitHub Actions format.",
+   "--sarif": "Output in SARIF format for upload to GitHub code scanning (e.g. via github/codeql-action/upload-sarif).",
+   "--no-sarif": "Output in SARIF format for upload to GitHub code scanning (e.g. via github/codeql-action/upload-sarif).",
+   "--concurrency": "Number of concurrent workers.",
+   "--no-verification": "Don't verify the results.",
+   "--no-no-verification": "Don't verify the results.",
+   "--results": "Specifies which type(s) of results to output: verified (confirmed valid by API), unknown (verification failed due to error), unverified (detected but not verified), filtered_unverified (unverified but would have been filtered out). Defaults to verified,unverified,unknown.",
+   "--no-color": "Disable colorized output",
+   "--no-no-color": "Disable colorized output",
+   "--allow-verification-overlap": "Allow verification of similar credentials across detectors",
+   "--no-allow-verification-overlap": "Allow verification of similar credentials across detectors",
+   "--filter-unverified": "Only output first unverified result per chunk per detector if there are more than one results.",
+   "--no-filter-unverified": "Only output first unverified result per chunk per detector if there are more than one results.",
+   "--filter-entropy": "Filter unverified results with Shannon entropy. Start with 3.0.",
+   "--max-decode-depth": "Maximum depth of iterative decoding. Each decoder's output is fed back through all decoders, up to this limit. 1 = single pass, 2+ = chained decoding (e.g., base64 inside utf16).",
+   "--config": "Path to configuration file.",
+   "--print-avg-detector-time": "Print the average time spent on each detector.",
+   "--no-print-avg-detector-time": "Print the average time spent on each detector.",
+   "--no-update": "Don't check for updates.",
+   "--no-no-update": "Don't check for updates.",
+   "--fail": "Exit with code 183 if results are found.",
+   "--no-fail": "Exit with code 183 if results are found.",
+   "--fail-on-scan-errors": "Exit with non-zero error code if an error occurs during the scan.",
+   "--no-fail-on-scan-errors": "Exit with non-zero error code if an error occurs during the scan.",
+   "--verifier": "Set custom verification endpoints.",
+   "--custom-verifiers-only": "Only use custom verification endpoints.",
+   "--no-custom-verifiers-only": "Only use custom verification endpoints.",
+   "--detector-timeout": "Maximum time to spend scanning chunks per detector (e.g., 30s).",
+   "--archive-max-size": "Maximum size of archive to scan. (Byte units eg. 512B, 2KB, 4MB)",
+   "--archive-max-depth": "Maximum depth of archive to scan.",
+   "--archive-timeout": "Maximum time to spend extracting an archive.",
+   "--include-detectors": "Comma separated list of detector types to include. Protobuf name or IDs may be used, as well as ranges.",
+   "--exclude-detectors": "Comma separated list of detector types to exclude. Protobuf name or IDs may be used, as well as ranges. IDs defined here take precedence over the include list.",
+   "--no-verification-cache": "Disable verification caching",
+   "--no-no-verification-cache": "Disable verification caching",
+   "--force-skip-binaries": "Force skipping binaries.",
+   "--no-force-skip-binaries": "Force skipping binaries.",
+   "--force-skip-archives": "Force skipping archives.",
+   "--no-force-skip-archives": "Force skipping archives.",
+   "--skip-additional-refs": "Skip additional references.",
+   "--no-skip-additional-refs": "Skip additional references.",
+   "--user-agent-suffix": "Suffix to add to User-Agent.",
+   "--drop-unverified-jwt-results": "Drop unverified results without any verification errors from the JWT detector.",
+   "--no-drop-unverified-jwt-results": "Drop unverified results without any verification errors from the JWT detector.",
+   "--version": "Show application version.",
+   "--no-version": "Show application version."
+  },
+  "values_seen": {
+   "--log-level": "0",
+   "--concurrency": "N",
+   "--results": "RESULTS",
+   "--filter-entropy": "FILTER-ENTROPY",
+   "--max-decode-depth": "5",
+   "--config": "CONFIG",
+   "--detector-timeout": "DETECTOR-TIMEOUT",
+   "--archive-max-size": "ARCHIVE-MAX-SIZE",
+   "--archive-max-depth": "ARCHIVE-MAX-DEPTH",
+   "--archive-timeout": "ARCHIVE-TIMEOUT",
+   "--exclude-detectors": "EXCLUDE-DETECTORS",
+   "--user-agent-suffix": "USER-AGENT-SUFFIX"
+  },
+  "aliases": {},
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "trufflehog",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "e269ee4daf30918e8e1c33357be1596f49df9cddf05aca4d2ef1dc7ee1960f96",
+  "text": "usage: trufflehog [<flags>] <command> [<args> ...]\n\nTruffleHog is a tool for finding credentials. Run without a command for\ninteractive mode.\n\n\nFlags:\n  -h, --[no-]help                Show context-sensitive help (also try\n                                 --help-long and --help-man).\n      --log-level=0              Logging verbosity on a scale of 0 (info) to 5\n                                 (trace). Can be disabled with \"-1\".\n      --[no-]profile             Enables profiling and sets a pprof and fgprof\n                                 server on :18066.\n  -j, --[no-]json                Output in JSON format.\n      --[no-]json-legacy         Use the pre-v3.0 JSON format. Only works with\n                                 git, gitlab, and github sources.\n      --[no-]github-actions      Output in GitHub Actions format.\n      --[no-]sarif               Output in SARIF format for upload\n                                 to GitHub code scanning (e.g. via\n                                 github/codeql-action/upload-sarif).\n      --concurrency=N            Number of concurrent workers.\n      --[no-]no-verification     Don't verify the results.\n      --results=RESULTS          Specifies which type(s) of results to output:\n                                 verified (confirmed valid by API),\n                                 unknown (verification failed due to error),\n                                 unverified (detected but not verified),\n                                 filtered_unverified (unverified but would\n                                 have been filtered out). Defaults to\n                                 verified,unverified,unknown.\n      --[no-]no-color            Disable colorized output\n      --[no-]allow-verification-overlap  \n                                 Allow verification of similar credentials\n                                 across detectors\n      --[no-]filter-unverified   Only output first unverified result per\n                                 chunk per detector if there are more than one\n                                 results.\n      --filter-entropy=FILTER-ENTROPY  \n                                 Filter unverified results with Shannon entropy.\n                                 Start with 3.0.\n      --max-decode-depth=5       Maximum depth of iterative decoding.\n                                 Each decoder's output is fed back through all\n                                 decoders, up to this limit. 1 = single pass, 2+\n                                 = chained decoding (e.g., base64 inside utf16).\n      --config=CONFIG            Path to configuration file.\n      --[no-]print-avg-detector-time  \n                                 Print the average time spent on each detector.\n      --[no-]no-update           Don't check for updates.\n      --[no-]fail                Exit with code 183 if results are found.\n      --[no-]fail-on-scan-errors  \n                                 Exit with non-zero error code if an error\n                                 occurs during the scan.\n      --verifier=VERIFIER ...    Set custom verification endpoints.\n      --[no-]custom-verifiers-only  \n                                 Only use custom verification endpoints.\n      --detector-timeout=DETECTOR-TIMEOUT  \n                                 Maximum time to spend scanning chunks per\n                                 detector (e.g., 30s).\n      --archive-max-size=ARCHIVE-MAX-SIZE  \n                                 Maximum size of archive to scan. (Byte units\n                                 eg. 512B, 2KB, 4MB)\n      --archive-max-depth=ARCHIVE-MAX-DEPTH  \n                                 Maximum depth of archive to scan.\n      --archive-timeout=ARCHIVE-TIMEOUT  \n                                 Maximum time to spend extracting an archive.\n      --include-detectors=\"all\"  Comma separated list of detector types to\n                                 include. Protobuf name or IDs may be used,\n                                 as well as ranges.\n      --exclude-detectors=EXCLUDE-DETECTORS  \n                                 Comma separated list of detector types to\n                                 exclude. Protobuf name or IDs may be used,\n                                 as well as ranges. IDs defined here take\n                                 precedence over the include list.\n      --[no-]no-verification-cache  \n                                 Disable verification caching\n      --[no-]force-skip-binaries  \n                                 Force skipping binaries.\n      --[no-]force-skip-archives  \n                                 Force skipping archives.\n      --[no-]skip-additional-refs  \n                                 Skip additional references.\n      --user-agent-suffix=USER-AGENT-SUFFIX  \n                                 Suffix to add to User-Agent.\n      --[no-]drop-unverified-jwt-results  \n                                 Drop unverified results without any\n                                 verification errors from the JWT detector.\n      --[no-]version             Show application version.\n\nCommands:\nhelp [<command>...]\n    Show help.\n\ngit [<flags>] <uri>\n    Find credentials in git repositories.\n\ngithub [<flags>]\n    Find credentials in GitHub repositories.\n\ngithub-experimental --repo=REPO [<flags>]\n    Run an experimental GitHub scan. Must specify at least one experimental\n    sub-module to run: object-discovery.\n\ngitlab --token=TOKEN [<flags>]\n    Find credentials in GitLab repositories.\n\nfilesystem [<flags>] [<path>...]\n    Find credentials in a filesystem.\n\ns3 [<flags>]\n    Find credentials in S3 buckets.\n\ngcs [<flags>]\n    Find credentials in GCS buckets.\n\nsyslog --format=FORMAT [<flags>]\n    Scan syslog\n\ncircleci --token=TOKEN\n    Scan CircleCI\n\ndocker [<flags>]\n    Scan Docker Image\n\ntravisci --token=TOKEN\n    Scan TravisCI\n\npostman [<flags>]\n    Scan Postman\n\nelasticsearch [<flags>]\n    Scan Elasticsearch\n\njenkins --url=URL [<flags>]\n    Scan Jenkins\n\nhuggingface [<flags>]\n    Find credentials in HuggingFace datasets, models, spaces and buckets.\n\nstdin\n    Find credentials from stdin.\n\nmulti-scan\n    Find credentials in multiple sources defined in configuration.\n\njson-enumerator [<path>...]\n    Find credentials from a JSON enumerator input.\n\nanalyze\n    Analyze API keys for fine-grained permissions information.\n\n\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--allow-verification-overlap",
+   "--custom-verifiers-only",
+   "--fail",
+   "--filter-unverified",
+   "--github-actions",
+   "--help",
+   "--json",
+   "--json-legacy",
+   "--no-update",
+   "--no-verification",
+   "--print-avg-detector-time",
+   "--profile",
+   "--version"
+  ],
+  "unconfirmed": [
+   "--bare",
+   "--branch",
+   "--entropy",
+   "--max_depth",
+   "--quiet",
+   "--regex",
+   "--rules",
+   "--since_commit",
+   "git_url"
+  ],
+  "help_only": [
+   "--archive-max-depth",
+   "--archive-max-size",
+   "--archive-timeout",
+   "--concurrency",
+   "--config",
+   "--detector-timeout",
+   "--drop-unverified-jwt-results",
+   "--exclude-detectors",
+   "--fail-on-scan-errors",
+   "--filter-entropy",
+   "--force-skip-archives",
+   "--force-skip-binaries",
+   "--help-long",
+   "--include-detectors",
+   "--log-level",
+   "--max-decode-depth",
+   "--no-allow-verification-overlap",
+   "--no-color",
+   "--no-custom-verifiers-only",
+   "--no-drop-unverified-jwt-results",
+   "--no-fail",
+   "--no-fail-on-scan-errors",
+   "--no-filter-unverified",
+   "--no-force-skip-archives",
+   "--no-force-skip-binaries",
+   "--no-github-actions",
+   "--no-help",
+   "--no-json",
+   "--no-json-legacy",
+   "--no-no-color",
+   "--no-no-update",
+   "--no-no-verification",
+   "--no-no-verification-cache",
+   "--no-print-avg-detector-time",
+   "--no-profile",
+   "--no-sarif",
+   "--no-skip-additional-refs",
+   "--no-verification-cache",
+   "--no-version",
+   "--results",
+   "--sarif",
+   "--skip-additional-refs",
+   "--user-agent-suffix",
+   "--verifier",
+   "-h",
+   "-j"
+  ],
+  "mining_coverage": 0.22033898305084745
+ },
+ "surface": {
+  "flags": {
+   "--allow-verification-overlap": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Allow verification of similar credentials across detectors",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--archive-max-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum depth of archive to scan.",
+    "metavar": "ARCHIVE-MAX-DEPTH"
+   },
+   "--archive-max-size": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum size of archive to scan. (Byte units eg. 512B, 2KB, 4MB)",
+    "metavar": "ARCHIVE-MAX-SIZE"
+   },
+   "--archive-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum time to spend extracting an archive.",
+    "metavar": "ARCHIVE-TIMEOUT"
+   },
+   "--bare": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Scan bare repository (e.g. useful while using in pre-receive hooks)",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--branch": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Name of the branch to be scanned",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--concurrency": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Number of concurrent workers.",
+    "metavar": "N"
+   },
+   "--config": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Path to configuration file.",
+    "metavar": "CONFIG"
+   },
+   "--custom-verifiers-only": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Only use custom verification endpoints.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--detector-timeout": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum time to spend scanning chunks per detector (e.g., 30s).",
+    "metavar": "DETECTOR-TIMEOUT"
+   },
+   "--drop-unverified-jwt-results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Drop unverified results without any verification errors from the JWT detector."
+   },
+   "--entropy": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable entropy checks",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--exclude-detectors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of detector types to exclude. Protobuf name or IDs may be used, as well as ranges. IDs defined here take precedence over the include list.",
+    "metavar": "EXCLUDE-DETECTORS"
+   },
+   "--fail": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Exit with code 183 if results are found.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.97.0",
+    "last_date": "2026-08-13T15:32:49-07:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "hack/checksecretparts/main.go",
+    "takes_value": false
+   },
+   "--fail-on-scan-errors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with non-zero error code if an error occurs during the scan."
+   },
+   "--filter-entropy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Filter unverified results with Shannon entropy. Start with 3.0.",
+    "metavar": "FILTER-ENTROPY"
+   },
+   "--filter-unverified": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Only output first unverified result per chunk per detector if there are more than one results.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--force-skip-archives": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping archives."
+   },
+   "--force-skip-binaries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping binaries."
+   },
+   "--github-actions": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output in GitHub Actions format.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--help-long": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": ""
+   },
+   "--include-detectors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Comma separated list of detector types to include. Protobuf name or IDs may be used, as well as ranges."
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format.",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--json-legacy": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--log-level": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Logging verbosity on a scale of 0 (info) to 5 (trace). Can be disabled with \"-1\".",
+    "metavar": "0"
+   },
+   "--max-decode-depth": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Maximum depth of iterative decoding. Each decoder's output is fed back through all decoders, up to this limit. 1 = single pass, 2+ = chained decoding (e.g., base64 inside utf16).",
+    "metavar": "5"
+   },
+   "--max_depth": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "The max commit depth to go back when searching for secrets",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--no-allow-verification-overlap": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Allow verification of similar credentials across detectors"
+   },
+   "--no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable colorized output"
+   },
+   "--no-custom-verifiers-only": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only use custom verification endpoints."
+   },
+   "--no-drop-unverified-jwt-results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Drop unverified results without any verification errors from the JWT detector."
+   },
+   "--no-fail": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with code 183 if results are found."
+   },
+   "--no-fail-on-scan-errors": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Exit with non-zero error code if an error occurs during the scan."
+   },
+   "--no-filter-unverified": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Only output first unverified result per chunk per detector if there are more than one results."
+   },
+   "--no-force-skip-archives": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping archives."
+   },
+   "--no-force-skip-binaries": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Force skipping binaries."
+   },
+   "--no-github-actions": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in GitHub Actions format."
+   },
+   "--no-help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try"
+   },
+   "--no-json": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format."
+   },
+   "--no-json-legacy": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Use the pre-v3.0 JSON format. Only works with git, gitlab, and github sources."
+   },
+   "--no-no-color": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable colorized output"
+   },
+   "--no-no-update": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates."
+   },
+   "--no-no-verification": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Don't verify the results."
+   },
+   "--no-no-verification-cache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable verification caching"
+   },
+   "--no-print-avg-detector-time": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Print the average time spent on each detector."
+   },
+   "--no-profile": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Enables profiling and sets a pprof and fgprof server on :18066."
+   },
+   "--no-sarif": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in SARIF format for upload to GitHub code scanning (e.g. via github/codeql-action/upload-sarif)."
+   },
+   "--no-skip-additional-refs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip additional references."
+   },
+   "--no-update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't check for updates.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--no-verification": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Don't verify the results.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--no-verification-cache": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Disable verification caching"
+   },
+   "--no-version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show application version."
+   },
+   "--print-avg-detector-time": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Print the average time spent on each detector.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--profile": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Enables profiling and sets a pprof and fgprof server on :18066.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "--quiet": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "suppress the summary line when no findings are reported",
+    "kind": "option",
+    "first_tag": "v3.95.3",
+    "first_date": "2026-05-11T08:27:50-07:00",
+    "last_tag": "v3.97.0",
+    "last_date": "2026-08-13T15:32:49-07:00",
+    "live": true,
+    "attribution": "unattributed",
+    "source_path": "hack/checksecretparts/main.go",
+    "takes_value": false
+   },
+   "--regex": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Enable high signal regex checks",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": false
+   },
+   "--results": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Specifies which type(s) of results to output: verified (confirmed valid by API), unknown (verification failed due to error), unverified (detected but not verified), filtered_unverified (unverified but would have been filtered out). Defaults to verified,unverified,unknown.",
+    "metavar": "RESULTS"
+   },
+   "--rules": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Ignore default regexes and source from json list file",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--sarif": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in SARIF format for upload to GitHub code scanning (e.g. via github/codeql-action/upload-sarif)."
+   },
+   "--since_commit": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Only scan from a given commit hash",
+    "kind": "option",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--skip-additional-refs": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Skip additional references."
+   },
+   "--user-agent-suffix": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Suffix to add to User-Agent.",
+    "metavar": "USER-AGENT-SUFFIX"
+   },
+   "--verifier": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Set custom verification endpoints."
+   },
+   "--version": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show application version.",
+    "kind": "option",
+    "first_tag": "v3.90.9",
+    "first_date": "2025-10-15T09:33:20-07:00",
+    "last_tag": "v3.93.8",
+    "last_date": "2026-03-09T16:02:57-04:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "README.md"
+   },
+   "-h": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show context-sensitive help (also try"
+   },
+   "-j": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Output in JSON format."
+   },
+   "git_url": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "URL for secret searching",
+    "kind": "positional",
+    "first_tag": "2.0.97",
+    "first_date": "2018-09-29T09:21:15-07:00",
+    "last_tag": "2.0.97",
+    "last_date": "2018-09-29T09:21:15-07:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "truffleHog/truffleHog.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 187,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-readme-65155698",
+    "argv": [
+     "trufflehog",
+     "git",
+     "/opt/ctk/fixtures/secret-scan"
+    ],
+    "source": "readme",
+    "path": "PreCommit.md",
+    "line": 52,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 207
+   },
+   {
+    "id": "t-readme-eae98b57",
+    "argv": [
+     "trufflehog",
+     "git",
+     "/opt/ctk/fixtures/secret-scan",
+     "--since-commit",
+     "HEAD",
+     "--results=verified,unknown",
+     "--fail",
+     "--trust-local-git-config"
+    ],
+    "source": "readme",
+    "path": "PreCommit.md",
+    "line": 60,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 207
+   },
+   {
+    "id": "t-readme-6b23848f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 265,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.907",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 2415,
+    "stability": 0.907
+   },
+   {
+    "id": "t-readme-fd183a02",
+    "argv": [
+     "trufflehog",
+     "git",
+     "/opt/ctk/fixtures/secret-scan",
+     "--results=verified,unknown"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 277,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 207
+   },
+   {
+    "id": "t-readme-b49165fc",
+    "argv": [
+     "trufflehog",
+     "git",
+     "/opt/ctk/fixtures/secret-scan",
+     "--since-commit",
+     "main",
+     "--branch",
+     "feature-1",
+     "--results=verified,unknown",
+     "--fail"
+    ],
+    "source": "readme",
+    "path": "README.md",
+    "line": 308,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 207
+   },
+   {
+    "id": "t-surface-0e52248a",
+    "argv": [
+     "trufflehog",
+     "/opt/ctk/fixtures/secret-scan"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 88
+   },
+   {
+    "id": "t-surface-ad251e41",
+    "argv": [
+     "trufflehog",
+     "--config",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60
+   },
+   {
+    "id": "t-surface-3a462bba",
+    "argv": [
+     "trufflehog",
+     "--since_commit",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-color"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 66
+   },
+   {
+    "id": "t-opt-2ae34716",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--allow-verification-overlap",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1793,
+    "flag": "--allow-verification-overlap",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-8ba7fd5e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--archive-max-size",
+     "2KB",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--archive-max-size",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-78333746",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--concurrency",
+     "1",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--concurrency",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-10e14cc7",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--config",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "--config"
+   },
+   {
+    "id": "t-opt-a2f68ff8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--custom-verifiers-only",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--custom-verifiers-only",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-97f3a3a9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--drop-unverified-jwt-results",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--drop-unverified-jwt-results",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-cc35702a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--fail",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "flag-refused-by-the-tool",
+    "grader": 3,
+    "exit_code": 183,
+    "output_bytes": 1793,
+    "flag": "--fail"
+   },
+   {
+    "id": "t-opt-14b1d19c",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--fail-on-scan-errors",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--fail-on-scan-errors",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-36e9cfd3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--filter-unverified",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1793,
+    "flag": "--filter-unverified",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-8523dd84",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--force-skip-archives",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--force-skip-archives",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-8c864053",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--force-skip-binaries",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--force-skip-binaries",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-aa6bb2a6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--github-actions",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.818",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1089,
+    "flag": "--github-actions",
+    "stability": 0.818
+   },
+   {
+    "id": "t-opt-4f54a888",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--help-long",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 29605,
+    "flag": "--help-long"
+   },
+   {
+    "id": "t-opt-5f55fb71",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-detectors",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 239,
+    "flag": "--include-detectors"
+   },
+   {
+    "id": "t-opt-7701dcfa",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--json",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.778",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 4809,
+    "flag": "--json",
+    "stability": 0.778
+   },
+   {
+    "id": "t-opt-306b6b64",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--json-legacy",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1470,
+    "flag": "--json-legacy"
+   },
+   {
+    "id": "t-opt-67ba91ef",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--log-level",
+     "0",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--log-level",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-e1500604",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--max-decode-depth",
+     "5",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--max-decode-depth",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-e3a32b83",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-allow-verification-overlap",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-allow-verification-overlap",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-ba7ae4a8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-color",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1791,
+    "flag": "--no-color",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-4e57b3c9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-custom-verifiers-only",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-custom-verifiers-only",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-d8940b5a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-drop-unverified-jwt-results",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-drop-unverified-jwt-results",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-f73af01a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-fail",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-fail",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-cf11e1da",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-fail-on-scan-errors",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-fail-on-scan-errors",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-329c3e3e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-filter-unverified",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-filter-unverified",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-3f9b7608",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-force-skip-archives",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1793,
+    "flag": "--no-force-skip-archives",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-08e0ca53",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-force-skip-binaries",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-force-skip-binaries",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-8cb671f7",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-github-actions",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-github-actions",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-1efa9f07",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-help",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 5718,
+    "flag": "--no-help"
+   },
+   {
+    "id": "t-opt-a56ae021",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-json",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-json",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-9a05a52d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-json-legacy",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-json-legacy",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-6a9451aa",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-no-color",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1791,
+    "flag": "--no-no-color",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-ed1de3bc",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-no-update",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "--no-no-update"
+   },
+   {
+    "id": "t-opt-41af430a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-no-verification",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "--no-no-verification"
+   },
+   {
+    "id": "t-opt-e9d00ef9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-no-verification-cache",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-no-verification-cache",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-aa476cc9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-print-avg-detector-time",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-print-avg-detector-time",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-b4a88ef3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-profile",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1793,
+    "flag": "--no-profile",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-f107f4ff",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-sarif",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-sarif",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-86698f1f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-skip-additional-refs",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-skip-additional-refs",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-5ba8f440",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-verification-cache",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--no-verification-cache",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-4ecd2f5f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-version",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 15,
+    "flag": "--no-version"
+   },
+   {
+    "id": "t-opt-7944a457",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--print-avg-detector-time",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.72",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 2002,
+    "flag": "--print-avg-detector-time",
+    "stability": 0.72
+   },
+   {
+    "id": "t-opt-14e03e7e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--profile",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.947",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1907,
+    "flag": "--profile",
+    "stability": 0.947
+   },
+   {
+    "id": "t-opt-af1e54a2",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--results",
+     "verified,unverified,unknown",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1792,
+    "flag": "--results",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-0279b88a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--skip-additional-refs",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--skip-additional-refs",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-8a6eec76",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--user-agent-suffix",
+     "ctk-example",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.946",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1794,
+    "flag": "--user-agent-suffix",
+    "stability": 0.946
+   },
+   {
+    "id": "t-opt-75092e8e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--verifier",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 86,
+    "flag": "--verifier"
+   },
+   {
+    "id": "t-opt-5e11041d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "-j",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.778",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 4809,
+    "flag": "-j",
+    "stability": 0.778
+   },
+   {
+    "id": "t-opt-539f463e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--bare",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 58,
+    "flag": "--bare"
+   },
+   {
+    "id": "t-opt-126ee09a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--quiet",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "--quiet"
+   },
+   {
+    "id": "t-opt-ee76865b",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--regex",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "--regex"
+   },
+   {
+    "id": "t-opt-911c9fe3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--rules",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "--rules"
+   },
+   {
+    "id": "t-opt-39d84071",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--filter-entropy",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 107,
+    "flag": "filesystem --filter-entropy"
+   },
+   {
+    "id": "t-opt-51d6ebaf",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--detector-timeout",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 86,
+    "flag": "filesystem --detector-timeout"
+   },
+   {
+    "id": "t-opt-42819001",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--archive-max-depth",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 107,
+    "flag": "filesystem --archive-max-depth"
+   },
+   {
+    "id": "t-opt-c5476d7f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--archive-timeout",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 86,
+    "flag": "filesystem --archive-timeout"
+   },
+   {
+    "id": "t-opt-a19ff579",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-detectors",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "output-does-not-reference-its-input",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 239,
+    "flag": "filesystem --exclude-detectors"
+   },
+   {
+    "id": "t-opt-e85af4a5",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--directory",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "unstable",
+    "reason": "output-differs-between-runs:0.947",
+    "grader": 3,
+    "exit_code": 0,
+    "output_bytes": 1902,
+    "flag": "filesystem --directory",
+    "stability": 0.947
+   },
+   {
+    "id": "t-opt-44f7b12c",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-paths",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 188,
+    "flag": "filesystem --include-paths"
+   },
+   {
+    "id": "t-opt-ec89c534",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-paths",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 188,
+    "flag": "filesystem --exclude-paths"
+   },
+   {
+    "id": "t-opt-7f093a4e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--max-symlink-depth",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 105,
+    "flag": "filesystem --max-symlink-depth"
+   },
+   {
+    "id": "t-opt-2481cad6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-globs",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --exclude-globs"
+   },
+   {
+    "id": "t-opt-a3e5bd7b",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--since-commit",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 66,
+    "flag": "filesystem --since-commit"
+   },
+   {
+    "id": "t-opt-dd55250e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--branch",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "filesystem --branch"
+   },
+   {
+    "id": "t-opt-892e2d98",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--max-depth",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 63,
+    "flag": "filesystem --max-depth"
+   },
+   {
+    "id": "t-opt-5b250347",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-bare",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 61,
+    "flag": "filesystem --no-bare"
+   },
+   {
+    "id": "t-opt-8e6052c6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--clone-path",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 64,
+    "flag": "filesystem --clone-path"
+   },
+   {
+    "id": "t-opt-e3b25695",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-cleanup",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 64,
+    "flag": "filesystem --no-cleanup"
+   },
+   {
+    "id": "t-opt-e1ec37f4",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-no-cleanup",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --no-no-cleanup"
+   },
+   {
+    "id": "t-opt-49562f5d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--trust-local-git-config",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 76,
+    "flag": "filesystem --trust-local-git-config"
+   },
+   {
+    "id": "t-opt-dea7fa99",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-trust-local-git-config",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 79,
+    "flag": "filesystem --no-trust-local-git-config"
+   },
+   {
+    "id": "t-opt-f6f9305a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--allow",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --allow"
+   },
+   {
+    "id": "t-opt-4d3710e6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-allow",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --no-allow"
+   },
+   {
+    "id": "t-opt-75155a60",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--entropy",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 61,
+    "flag": "filesystem --entropy"
+   },
+   {
+    "id": "t-opt-d896f90a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-entropy",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 64,
+    "flag": "filesystem --no-entropy"
+   },
+   {
+    "id": "t-opt-18380e3a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-regex",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --no-regex"
+   },
+   {
+    "id": "t-opt-56e2fd88",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--endpoint",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --endpoint"
+   },
+   {
+    "id": "t-opt-dbe2dbbb",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--repo",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 58,
+    "flag": "filesystem --repo"
+   },
+   {
+    "id": "t-opt-3b95ecc4",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--org",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 57,
+    "flag": "filesystem --org"
+   },
+   {
+    "id": "t-opt-f3afaf49",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--token",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --token"
+   },
+   {
+    "id": "t-opt-5ef8481d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-forks",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --include-forks"
+   },
+   {
+    "id": "t-opt-a5475c8a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-include-forks",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --no-include-forks"
+   },
+   {
+    "id": "t-opt-69ff8858",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-members",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --include-members"
+   },
+   {
+    "id": "t-opt-d4b09fc8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-include-members",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 72,
+    "flag": "filesystem --no-include-members"
+   },
+   {
+    "id": "t-opt-ab574ea9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-repos",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --include-repos"
+   },
+   {
+    "id": "t-opt-23bdcc56",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-wikis",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --include-wikis"
+   },
+   {
+    "id": "t-opt-bee8bdae",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-include-wikis",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --no-include-wikis"
+   },
+   {
+    "id": "t-opt-72bf1d81",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-repos",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --exclude-repos"
+   },
+   {
+    "id": "t-opt-3a9ee540",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--issue-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --issue-comments"
+   },
+   {
+    "id": "t-opt-82183b24",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-issue-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 71,
+    "flag": "filesystem --no-issue-comments"
+   },
+   {
+    "id": "t-opt-da3f2f6f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--pr-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 65,
+    "flag": "filesystem --pr-comments"
+   },
+   {
+    "id": "t-opt-95ee2f95",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-pr-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --no-pr-comments"
+   },
+   {
+    "id": "t-opt-bbddde5c",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--gist-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --gist-comments"
+   },
+   {
+    "id": "t-opt-938a0ef8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-gist-comments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --no-gist-comments"
+   },
+   {
+    "id": "t-opt-940a4af5",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--comments-timeframe",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 72,
+    "flag": "filesystem --comments-timeframe"
+   },
+   {
+    "id": "t-opt-353f3481",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--auth-in-url",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 65,
+    "flag": "filesystem --auth-in-url"
+   },
+   {
+    "id": "t-opt-dadb7c5f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-auth-in-url",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --no-auth-in-url"
+   },
+   {
+    "id": "t-opt-170e116e",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-gists",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 66,
+    "flag": "filesystem --ignore-gists"
+   },
+   {
+    "id": "t-opt-51b88b98",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-ignore-gists",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --no-ignore-gists"
+   },
+   {
+    "id": "t-opt-9d3f321f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-archived",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --exclude-archived"
+   },
+   {
+    "id": "t-opt-b2696128",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-exclude-archived",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --no-exclude-archived"
+   },
+   {
+    "id": "t-opt-d0259e85",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--object-discovery",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --object-discovery"
+   },
+   {
+    "id": "t-opt-5d9de9b7",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-object-discovery",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --no-object-discovery"
+   },
+   {
+    "id": "t-opt-5ce9c189",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--collision-threshold",
+     "1",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --collision-threshold"
+   },
+   {
+    "id": "t-opt-1031a93a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--delete-cached-data",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 72,
+    "flag": "filesystem --delete-cached-data"
+   },
+   {
+    "id": "t-opt-a133da81",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-delete-cached-data",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 75,
+    "flag": "filesystem --no-delete-cached-data"
+   },
+   {
+    "id": "t-opt-0e138ddc",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--group-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --group-id"
+   },
+   {
+    "id": "t-opt-2f52ca70",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--key",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 57,
+    "flag": "filesystem --key"
+   },
+   {
+    "id": "t-opt-41f7fd48",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--role-arn",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --role-arn"
+   },
+   {
+    "id": "t-opt-e39a0274",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--secret",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "filesystem --secret"
+   },
+   {
+    "id": "t-opt-9722e9e1",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--session-token",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --session-token"
+   },
+   {
+    "id": "t-opt-37cc89bd",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--cloud-environment",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 71,
+    "flag": "filesystem --cloud-environment"
+   },
+   {
+    "id": "t-opt-1a561dbd",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-cloud-environment",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 74,
+    "flag": "filesystem --no-cloud-environment"
+   },
+   {
+    "id": "t-opt-f0b583bc",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--bucket",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "filesystem --bucket"
+   },
+   {
+    "id": "t-opt-e973bb0b",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-bucket",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --ignore-bucket"
+   },
+   {
+    "id": "t-opt-ee19a101",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--max-object-size",
+     "2KB",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --max-object-size"
+   },
+   {
+    "id": "t-opt-d0c10e97",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--region",
+     "us-east-1",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "filesystem --region"
+   },
+   {
+    "id": "t-opt-73345844",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--project-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 64,
+    "flag": "filesystem --project-id"
+   },
+   {
+    "id": "t-opt-a3bdd18b",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--service-account",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --service-account"
+   },
+   {
+    "id": "t-opt-bad5b015",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--without-auth",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 66,
+    "flag": "filesystem --without-auth"
+   },
+   {
+    "id": "t-opt-69230046",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-without-auth",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --no-without-auth"
+   },
+   {
+    "id": "t-opt-ffde5a71",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--api-key",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 61,
+    "flag": "filesystem --api-key"
+   },
+   {
+    "id": "t-opt-2a881356",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-buckets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --include-buckets"
+   },
+   {
+    "id": "t-opt-634f5143",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-buckets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --exclude-buckets"
+   },
+   {
+    "id": "t-opt-b4a9f45a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-objects",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --include-objects"
+   },
+   {
+    "id": "t-opt-ca538387",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-objects",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --exclude-objects"
+   },
+   {
+    "id": "t-opt-571172d0",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--address",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 61,
+    "flag": "filesystem --address"
+   },
+   {
+    "id": "t-opt-6290e195",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--protocol",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --protocol"
+   },
+   {
+    "id": "t-opt-f9c555df",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--cert",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 58,
+    "flag": "filesystem --cert"
+   },
+   {
+    "id": "t-opt-0b8b5844",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--format",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 60,
+    "flag": "filesystem --format"
+   },
+   {
+    "id": "t-opt-6464fe80",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--image",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --image"
+   },
+   {
+    "id": "t-opt-e200a764",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--namespace",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 63,
+    "flag": "filesystem --namespace"
+   },
+   {
+    "id": "t-opt-186231b3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--registry-token",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --registry-token"
+   },
+   {
+    "id": "t-opt-840fa869",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--workspace-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 66,
+    "flag": "filesystem --workspace-id"
+   },
+   {
+    "id": "t-opt-04260e8a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--collection-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --collection-id"
+   },
+   {
+    "id": "t-opt-b01c2c03",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--environment",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 65,
+    "flag": "filesystem --environment"
+   },
+   {
+    "id": "t-opt-f01d5df5",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-collection-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 75,
+    "flag": "filesystem --include-collection-id"
+   },
+   {
+    "id": "t-opt-37e0d548",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-environments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 74,
+    "flag": "filesystem --include-environments"
+   },
+   {
+    "id": "t-opt-5924fcf8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-collection-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 75,
+    "flag": "filesystem --exclude-collection-id"
+   },
+   {
+    "id": "t-opt-37805ad0",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--exclude-environments",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 74,
+    "flag": "filesystem --exclude-environments"
+   },
+   {
+    "id": "t-opt-ce802788",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--workspace-paths",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --workspace-paths"
+   },
+   {
+    "id": "t-opt-7082c4e3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--collection-paths",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --collection-paths"
+   },
+   {
+    "id": "t-opt-65830198",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--environment-paths",
+     "/opt/ctk/fixtures/secret-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 71,
+    "flag": "filesystem --environment-paths"
+   },
+   {
+    "id": "t-opt-c469333a",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--nodes",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --nodes"
+   },
+   {
+    "id": "t-opt-c8cb65eb",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--username",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --username"
+   },
+   {
+    "id": "t-opt-a4256be6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--password",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --password"
+   },
+   {
+    "id": "t-opt-ca972c1d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--service-token",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --service-token"
+   },
+   {
+    "id": "t-opt-3e243279",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--cloud-id",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 62,
+    "flag": "filesystem --cloud-id"
+   },
+   {
+    "id": "t-opt-04422b84",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--index-pattern",
+     "ctk",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --index-pattern"
+   },
+   {
+    "id": "t-opt-25c89efe",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--query-json",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 64,
+    "flag": "filesystem --query-json"
+   },
+   {
+    "id": "t-opt-927e4aae",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--since-timestamp",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --since-timestamp"
+   },
+   {
+    "id": "t-opt-30dab7b3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--best-effort-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --best-effort-scan"
+   },
+   {
+    "id": "t-opt-e6c4b8ec",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-best-effort-scan",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --no-best-effort-scan"
+   },
+   {
+    "id": "t-opt-8c312963",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--url",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 57,
+    "flag": "filesystem --url"
+   },
+   {
+    "id": "t-opt-d9ec868d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--insecure-skip-verify-tls",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 78,
+    "flag": "filesystem --insecure-skip-verify-tls"
+   },
+   {
+    "id": "t-opt-4c58f7f9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-insecure-skip-verify-tls",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 81,
+    "flag": "filesystem --no-insecure-skip-verify-tls"
+   },
+   {
+    "id": "t-opt-f153cfb7",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--model",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --model"
+   },
+   {
+    "id": "t-opt-a5fe891d",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--space",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 59,
+    "flag": "filesystem --space"
+   },
+   {
+    "id": "t-opt-f8d409f8",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--dataset",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 61,
+    "flag": "filesystem --dataset"
+   },
+   {
+    "id": "t-opt-87c25c6f",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--user",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "no-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 58,
+    "flag": "filesystem --user"
+   },
+   {
+    "id": "t-opt-841cb1fc",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-models",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --include-models"
+   },
+   {
+    "id": "t-opt-e0359c88",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-spaces",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --include-spaces"
+   },
+   {
+    "id": "t-opt-40403ad3",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-datasets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --include-datasets"
+   },
+   {
+    "id": "t-opt-5d979e41",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-models",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --ignore-models"
+   },
+   {
+    "id": "t-opt-67d20ef9",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-spaces",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 67,
+    "flag": "filesystem --ignore-spaces"
+   },
+   {
+    "id": "t-opt-71c4e3ff",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-datasets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --ignore-datasets"
+   },
+   {
+    "id": "t-opt-768c28de",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--ignore-buckets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --ignore-buckets"
+   },
+   {
+    "id": "t-opt-248e8156",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--skip-all-models",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --skip-all-models"
+   },
+   {
+    "id": "t-opt-6c4c9b08",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-skip-all-models",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 72,
+    "flag": "filesystem --no-skip-all-models"
+   },
+   {
+    "id": "t-opt-c9b46580",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--skip-all-spaces",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 69,
+    "flag": "filesystem --skip-all-spaces"
+   },
+   {
+    "id": "t-opt-4a85aac6",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-skip-all-spaces",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 72,
+    "flag": "filesystem --no-skip-all-spaces"
+   },
+   {
+    "id": "t-opt-0cc4c245",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--skip-all-datasets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 71,
+    "flag": "filesystem --skip-all-datasets"
+   },
+   {
+    "id": "t-opt-a64420bf",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-skip-all-datasets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 74,
+    "flag": "filesystem --no-skip-all-datasets"
+   },
+   {
+    "id": "t-opt-b6dbc0ab",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--skip-all-buckets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 70,
+    "flag": "filesystem --skip-all-buckets"
+   },
+   {
+    "id": "t-opt-25a225ae",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-skip-all-buckets",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --no-skip-all-buckets"
+   },
+   {
+    "id": "t-opt-54cdec22",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-discussions",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 73,
+    "flag": "filesystem --include-discussions"
+   },
+   {
+    "id": "t-opt-9143a433",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-include-discussions",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 76,
+    "flag": "filesystem --no-include-discussions"
+   },
+   {
+    "id": "t-opt-01e49970",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--include-prs",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 65,
+    "flag": "filesystem --include-prs"
+   },
+   {
+    "id": "t-opt-b620c7d5",
+    "argv": [
+     "trufflehog",
+     "filesystem",
+     "--no-include-prs",
+     "/opt/ctk/fixtures/secret-scan",
+     "--no-verification",
+     "--no-update"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "grader": 3,
+    "exit_code": 1,
+    "output_bytes": 68,
+    "flag": "filesystem --no-include-prs"
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "trufflehog git https://github.com/trufflesecurity/test_keys --results=verified",
+    "source": "readme",
+    "path": "README.md",
+    "line": 188,
+    "reason": "needs-live-target",
+    "token": "https://github.com/trufflesecurity/test_keys"
+   },
+   {
+    "raw": "trufflehog github --org=trufflesecurity --results=verified",
+    "source": "readme",
+    "path": "README.md",
+    "line": 212,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "trufflehog github --org=trufflesecurity --exclude-archived",
+    "source": "readme",
+    "path": "README.md",
+    "line": 218,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "trufflehog git https://github.com/trufflesecurity/test_keys --results=verified --json",
+    "source": "readme",
+    "path": "README.md",
+    "line": 226,
+    "reason": "needs-live-target",
+    "token": "https://github.com/trufflesecurity/test_keys"
+   },
+   {
+    "raw": "trufflehog github --repo=https://github.com/trufflesecurity/test_keys --issue-comments --pr-comments",
+    "source": "readme",
+    "path": "README.md",
+    "line": 241,
+    "reason": "needs-live-target",
+    "token": "https://github.com/trufflesecurity/test_keys"
+   },
+   {
+    "raw": "trufflehog jenkins --url https://jenkins.example.com --username admin --password admin",
+    "source": "readme",
+    "path": "README.md",
+    "line": 322,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "trufflehog elasticsearch --nodes 192.168.14.3 192.168.14.4 --username truffle --password hog",
+    "source": "readme",
+    "path": "README.md",
+    "line": 334,
+    "reason": "needs-live-target",
+    "token": "192.168.14.3"
+   },
+   {
+    "raw": "trufflehog elasticsearch --nodes 192.168.14.3 192.168.14.4 --service-token \u2018AAEWVaWM...Rva2VuaSDZ\u2019",
+    "source": "readme",
+    "path": "README.md",
+    "line": 340,
+    "reason": "needs-live-target",
+    "token": "192.168.14.3"
+   },
+   {
+    "raw": "trufflehog elasticsearch --cloud-id 'search-prod:dXMtY2Vx...YjM1ODNlOWFiZGRlNjI0NA==' --api-key 'MlVtVjBZ...ZSYlduYnF1djh3NG5FQQ=='",
+    "source": "readme",
+    "path": "README.md",
+    "line": 348,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "trufflehog git --help",
+    "source": "readme",
+    "path": "README.md",
+    "line": 454,
+    "reason": "needs-network-or-interactive",
+    "token": "--help"
+   },
+   {
+    "raw": "trufflehog git https://github.com/trufflesecurity/trufflehog.git",
+    "source": "readme",
+    "path": "README.md",
+    "line": 589,
+    "reason": "needs-live-target",
+    "token": "https://github.com/trufflesecurity/trufflehog.git"
+   },
+   {
+    "raw": "trufflehog analyze",
+    "source": "readme",
+    "path": "README.md",
+    "line": 816,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "trufflehog",
+ "repo": "trufflesecurity/trufflehog",
+ "head_sha": "bc3a3ae6e097580bdef61492c78f79a4651319df",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T23:25:44.130632+00:00"
+}

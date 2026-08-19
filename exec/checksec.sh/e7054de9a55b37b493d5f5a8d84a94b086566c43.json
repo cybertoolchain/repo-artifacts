@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "go",
-  "image_digest": "sha256:b3bdee5fe9c3ac4f2fc5e206e4b3c1076432f0f5d4c6b07bd5c518567be0e074",
-  "duration_s": 7.98,
-  "log_tail": "#10 DONE 0.3s\n\n#11 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#11 0.150 go: downloading github.com/fatih/color v1.19.0\n#11 0.151 go: downloading github.com/u-root/u-root v0.16.0\n#11 0.151 go: downloading github.com/lorenzosaino/go-sysctl v0.3.1\n#11 0.153 go: downloading github.com/spf13/cobra v1.10.2\n#11 0.153 go: downloading sigs.k8s.io/yaml v1.6.0\n#11 0.153 go: downloading github.com/opencontainers/selinux v1.15.1\n#11 0.156 go: downloading github.com/shirou/gopsutil/v3 v3.24.5\n#11 0.350 go: downloading github.com/mattn/go-isatty v0.0.20\n#11 0.350 go: downloading github.com/mattn/go-colorable v0.1.14\n#11 0.350 go: downloading go.yaml.in/yaml/v2 v2.4.3\n#11 0.382 go: downloading github.com/spf13/pflag v1.0.10\n#11 0.399 go: downloading golang.org/x/sys v0.42.0\n#11 0.399 go: downloading github.com/tklauser/go-sysconf v0.3.16\n#11 0.506 go: downloading github.com/cyphar/filepath-securejoin v0.6.1\n#11 0.506 go: downloading github.com/tklauser/numcpus v0.11.0\n#11 DONE 5.1s\n\n#12 [stage-1 2/7] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.163 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.3s done\n#18 exporting manifest sha256:17dc1b03a23ebb6021c71b5d0cf917fef0119d841e43d51ce0548f442872e765 done\n#18 exporting config sha256:41ea825c0eca38c2a5fbaa07274104df2647f17db5de721c24d0c1ddf4eab9f4 done\n#18 exporting attestation manifest sha256:a1e829ac2892b40607ea5e2294c023239012ce4e85fb192d26cc01993afcd160 done\n#18 exporting manifest list sha256:b3bdee5fe9c3ac4f2fc5e206e4b3c1076432f0f5d4c6b07bd5c518567be0e074 done\n#18 naming to docker.io/ctk-exec/checksec.sh:e7054de9a55b done\n#18 unpacking to docker.io/ctk-exec/checksec.sh:e7054de9a55b\n#18 unpacking to docker.io/ctk-exec/checksec.sh:e7054de9a55b 0.6s done\n#18 DONE 0.9s",
+  "image_digest": "sha256:a48ff26856dd689cf3280f457cbccb0c76c262c155a17a778f82bf631d0297c8",
+  "duration_s": 9.4,
+  "log_tail": "#10 DONE 0.1s\n\n#11 [build 4/5] RUN [ -f go.mod ] || go mod init ctk/tool\n#11 DONE 0.1s\n\n#12 [build 5/5] RUN mkdir -p /out && (go build -o /out/ ./... || go build -o /out/tool .)\n#12 0.168 go: downloading github.com/fatih/color v1.19.0\n#12 0.168 go: downloading github.com/lorenzosaino/go-sysctl v0.3.1\n#12 0.169 go: downloading sigs.k8s.io/yaml v1.6.0\n#12 0.169 go: downloading github.com/opencontainers/selinux v1.15.1\n#12 0.170 go: downloading github.com/spf13/cobra v1.10.2\n#12 0.171 go: downloading github.com/u-root/u-root v0.16.0\n#12 0.172 go: downloading github.com/shirou/gopsutil/v3 v3.24.5\n#12 0.436 go: downloading go.yaml.in/yaml/v2 v2.4.3\n#12 0.437 go: downloading github.com/mattn/go-isatty v0.0.20\n#12 0.437 go: downloading github.com/mattn/go-colorable v0.1.14\n#12 0.479 go: downloading github.com/spf13/pflag v1.0.10\n#12 0.484 go: downloading github.com/cyphar/filepath-securejoin v0.6.1\n#12 0.484 go: downloading golang.org/x/sys v0.42.0\n#12 0.660 go: downloading github.com/tklauser/go-sysconf v0.3.16\n#12 0.729 go: downloading github.com/tklauser/numcpus v0.11.0\n#12 DONE 6.7s\n\n#13 [stage-1 3/7] COPY --from=build /out/ /usr/local/bin/\n#13 DONE 0.0s\n\n#14 [stage-1 4/7] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#14 DONE 0.0s\n\n#15 [stage-1 5/7] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#15 DONE 0.0s\n\n#16 [stage-1 6/7] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#16 DONE 0.0s\n\n#17 [stage-1 7/7] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#17 0.119 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#17 DONE 0.2s\n\n#18 exporting to image\n#18 exporting layers\n#18 exporting layers 0.2s done\n#18 exporting manifest sha256:7819b90e0e5e69cd3f03b4caa3b47c88f22afcd8aa5371e307aca07acf246377 done\n#18 exporting config sha256:ce09146bc2018151a4323458f354b5882cc6ba907815cf335ef61da0965b61cf done\n#18 exporting attestation manifest sha256:daa3d62cb32a83ab4f6ab50611ceaf4e7657f1a78f48f5edf5a1aabaa52e9ad1 0.0s done\n#18 exporting manifest list sha256:a48ff26856dd689cf3280f457cbccb0c76c262c155a17a778f82bf631d0297c8 done\n#18 naming to docker.io/ctk-exec/checksec.sh:e7054de9a55b done\n#18 unpacking to docker.io/ctk-exec/checksec.sh:e7054de9a55b\n#18 unpacking to docker.io/ctk-exec/checksec.sh:e7054de9a55b 0.7s done\n#18 DONE 1.0s",
   "error": null,
   "timed_out": false
  },
@@ -29,7 +29,7 @@
    "exit_code": 0,
    "stdout": "A tool used to quickly survey mitigation technologies in use by processes on a Linux system.\n\nUsage:\n  checksec [command]\n\nAvailable Commands:\n  completion  Generate the autocompletion script for the specified shell\n  dir         check all files in a directory\n  file        Check a single binary file\n  fortifyFile Check Fortify for binary file\n  fortifyProc Check Fortify for running process\n  help        Help about any command\n  kernel      Check kernel security flags\n  listfile    Check every binary listed in a file (or stdin via -)\n  proc        Check a file of a running process\n  procAll     Check all running processes\n  procLibs    Check all libraries mapped into a running process\n\nFlags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -h, --help             help for checksec\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n  -v, --version          version for checksec\n\nUse \"checksec [command] --help\" for more information about a command.\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -42,7 +42,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for checksec for the specified shell.\nSee each sub-command's help for details on how to use the generated script.\n\nUsage:\n  checksec completion [command]\n\nAvailable Commands:\n  bash        Generate the autocompletion script for bash\n  fish        Generate the autocompletion script for fish\n  powershell  Generate the autocompletion script for powershell\n  zsh         Generate the autocompletion script for zsh\n\nFlags:\n  -h, --help   help for completion\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n\nUse \"checksec completion [command] --help\" for more information about a command.\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -56,7 +56,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the bash shell.\n\nThis script depends on the 'bash-completion' package.\nIf it is not installed already, you can install it via your OS's package manager.\n\nTo load completions in your current shell session:\n\n\tsource <(checksec completion bash)\n\nTo load completions for every new session, execute once:\n\n#### Linux:\n\n\tchecksec completion bash > /etc/bash_completion.d/checksec\n\n#### macOS:\n\n\tchecksec completion bash > $(brew --prefix)/etc/bash_completion.d/checksec\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion bash\n\nFlags:\n  -h, --help              help for bash\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -70,7 +70,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for the fish shell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion fish | source\n\nTo load completions for every new session, execute once:\n\n\tchecksec completion fish > ~/.config/fish/completions/checksec.fish\n\nYou will need to start a new shell for this setup to take effect.\n\nUsage:\n  checksec completion fish [flags]\n\nFlags:\n  -h, --help              help for fish\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -84,7 +84,7 @@
    "exit_code": 0,
    "stdout": "Generate the autocompletion script for powershell.\n\nTo load completions in your current shell session:\n\n\tchecksec completion powershell | Out-String | Invoke-Expression\n\nTo load completions for every new session, add the output of the above command\nto your powershell profile.\n\nUsage:\n  checksec completion powershell [flags]\n\nFlags:\n  -h, --help              help for powershell\n      --no-descriptions   disable completion descriptions\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -111,7 +111,7 @@
    "exit_code": 0,
    "stdout": "check all files in a directory\n\nUsage:\n  checksec dir <directory> [flags]\n\nExamples:\n\n  checksec dir /usr/bin/\n  checksec dir /usr/bin/ --recursive\n\nFlags:\n  -h, --help        help for dir\n  -r, --recursive   Enable recursive through the directories\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -150,7 +150,7 @@
    "exit_code": 0,
    "stdout": "Check kernel security flags\n\nUsage:\n  checksec kernel [flags]\n\nFlags:\n  -h, --help   help for kernel\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -176,7 +176,7 @@
    "exit_code": 0,
    "stdout": "Check a file of a running process\n\nUsage:\n  checksec proc [flags]\n\nFlags:\n  -h, --help   help for proc\n\nGlobal Flags:\n      --color string     Color output mode (auto, always, never) (default \"auto\")\n      --fail-if string   Exit non-zero if any listed check (comma-separated keys, e.g. relro,canary,pie) is not StatusGood\n  -l, --libc string      Set libc location (useful for FORTIFY check on offline embedded file-system)\n      --no-banner        disable the banner\n      --no-headers       disable the headers\n      --no-warnings      disable warnings\n  -o, --output string    Output format (table, json, yaml, xml, csv) (default \"table\")\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   },
@@ -203,7 +203,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'checksec' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -216,7 +216,7 @@
    "exit_code": 0,
    "stdout": "checksec version dev (Built on unknown from Git SHA none)\n",
    "stderr": "",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -237,7 +237,7 @@
    "error": null
   }
  ],
- "input_fingerprint": "acaa98a14cda9816",
+ "input_fingerprint": "76f683065c822094",
  "declared_commands": [
   {
    "name": "checksec",
@@ -255,7 +255,7 @@
    "stdout": "checksec version dev (Built on unknown from Git SHA none)\n",
    "stderr": "",
    "exit_code": 0,
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null
   }
@@ -956,5 +956,5 @@
  "head_sha": "e7054de9a55b37b493d5f5a8d84a94b086566c43",
  "analyzer": "exec",
  "analyzer_version": "14",
- "generated_at": "2026-08-18T03:40:50.611871+00:00"
+ "generated_at": "2026-08-19T01:08:10.725137+00:00"
 }

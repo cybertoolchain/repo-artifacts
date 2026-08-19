@@ -2,316 +2,44 @@
  "build": {
   "ok": true,
   "tier": "c",
-  "image_digest": "sha256:ee83ba6b956be93e92168762b0e1048780393b7b822a3e42933ca4e4c06a13c4",
-  "duration_s": 26.07,
-  "log_tail": "#9 18.18 Setting up libxml-libxml-perl (2.0207+dfsg+really+2.0134-1+deb12u1) ...\n#9 18.21 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX::Parser with priority 50...\n#9 18.24 update-perl-sax-parsers: Registering Perl SAX parser XML::LibXML::SAX with priority 50...\n#9 18.26 update-perl-sax-parsers: Updating overall Perl SAX parser modules info file...\n#9 18.30 debconf: unable to initialize frontend: Dialog\n#9 18.30 debconf: (TERM is not set, so the dialog frontend is not usable.)\n#9 18.30 debconf: falling back to frontend: Readline\n#9 18.31 debconf: unable to initialize frontend: Readline\n#9 18.31 debconf: (This frontend requires a controlling tty.)\n#9 18.31 debconf: falling back to frontend: Teletype\n#9 18.33 Replacing config file /etc/perl/XML/SAX/ParserDetails.ini with new version\n#9 18.34 Setting up texinfo (6.8-6+b1) ...\n#9 18.36 Setting up libdevmapper1.02.1:arm64 (2:1.02.185-2) ...\n#9 18.36 Setting up dmsetup (2:1.02.185-2) ...\n#9 18.38 Setting up libcryptsetup12:arm64 (2:2.6.1-4~deb12u2) ...\n#9 18.39 Processing triggers for install-info (6.8-6+b1) ...\n#9 18.40 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#9 DONE 18.5s\n\n#13 [stage-1 3/8] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1 4/8] WORKDIR /src\n#14 DONE 0.1s\n\n#15 [stage-1 5/8] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#15 DONE 0.1s\n\n#16 [stage-1 6/8] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#16 DONE 0.1s\n\n#17 [stage-1 7/8] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#17 DONE 0.1s\n\n#18 [stage-1 8/8] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#18 0.249 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#18 DONE 0.3s\n\n#19 exporting to image\n#19 exporting layers\n#19 exporting layers 3.9s done\n#19 exporting manifest sha256:a97147a538e056b1b88834e19f237104effeb07344484b294ae354a4de7d4125 0.0s done\n#19 exporting config sha256:b90149153e99b57ba0bca1157be17a264360c2242f0b0d163a7b06d08dfea5b8 0.0s done\n#19 exporting attestation manifest sha256:263eab99d3da964c283efd8c51f9bac2d2c24f62fd9d735f95b8453441c45108 0.0s done\n#19 exporting manifest list sha256:ee83ba6b956be93e92168762b0e1048780393b7b822a3e42933ca4e4c06a13c4 0.1s done\n#19 naming to docker.io/ctk-exec/pskracker:07fdda132c89\n#19 naming to docker.io/ctk-exec/pskracker:07fdda132c89 done\n#19 unpacking to docker.io/ctk-exec/pskracker:07fdda132c89\n#19 unpacking to docker.io/ctk-exec/pskracker:07fdda132c89 1.6s done\n#19 DONE 5.7s",
+  "image_digest": "sha256:a8926fcf0ff3242af4e9ffae8253f4e0f1669feccf6319745e05e86011e95b88",
+  "duration_s": 7.68,
+  "log_tail": "#7 DONE 1.0s\n\n#8 [build 2/5] RUN apt-get update && apt-get install -y --no-install-recommends     build-essential autoconf automake libtool pkg-config cmake git ca-certificates     gettext autopoint flex bison     gawk texinfo groff-base python-is-python3 libltdl-dev     xz-utils unzip wget     libssl-dev libpcap-dev zlib1g-dev libcryptsetup-dev libgcrypt20-dev     libjudy-dev libnl-3-dev libnl-genl-3-dev libpcre2-dev libcurl4-openssl-dev     libusb-1.0-0-dev libnet1-dev libsqlite3-dev     libnids-dev libboost-dev libseccomp-dev libbpf-dev libjose-dev libcap-dev  && rm -rf /var/lib/apt/lists/*\n#8 CACHED\n\n#9 [build 3/5] WORKDIR /src\n#9 CACHED\n\n#10 [build 4/5] COPY . .\n#10 CACHED\n\n#11 [build 5/5] RUN if [ -x ./configure ]; then ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f configure.ac ]; then autoreconf -fi && ./configure && make -j\"$(nproc)\" && { make install || true; };     elif [ -f CMakeLists.txt ]; then cmake -S . -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f Makefile ] || [ -f makefile ]; then make -j\"$(nproc)\" && { make install || true; };     elif [ -x src/configure ]; then (cd src && ./configure && make -j\"$(nproc)\" && { make install || true; });     elif [ -f src/CMakeLists.txt ]; then cmake -S src -B build && cmake --build build -j\"$(nproc)\" && { cmake --install build || true; };     elif [ -f src/Makefile ]; then make -C src -j\"$(nproc)\" && { make -C src install || true; };     else make -j\"$(nproc)\"; fi\n#11 CACHED\n\n#12 [stage-1 2/9] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils     libssl3 libpcap0.8 libcryptsetup12 libgcrypt20 libjudydebian1     libnl-3-200 libnl-genl-3-200 libpcre2-8-0 libcurl4 libusb-1.0-0     libnet1 libsqlite3-0     libnids1.21 libseccomp2 libbpf1 libjose0 libcap2  && rm -rf /var/lib/apt/lists/*\n#12 CACHED\n\n#13 [stage-1 3/9] COPY --from=build /src /src\n#13 DONE 0.2s\n\n#14 [stage-1 4/9] COPY --from=build /usr/local /usr/local\n#14 DONE 0.0s\n\n#15 [stage-1 5/9] WORKDIR /src\n#15 DONE 0.0s\n\n#16 [stage-1 6/9] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1 7/9] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.4s\n\n#18 [stage-1 8/9] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 9/9] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.121 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.1s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 3.9s done\n#20 exporting manifest sha256:00829b5fa046577387cf6e3a85f29784410e4a90ea1c4f1a5d48557f072c73bf done\n#20 exporting config sha256:8c9750c014e7dc099462b26d865152c4c61b972861210a729ec0b7a35fe17f2c done\n#20 exporting attestation manifest sha256:1e6f6a6e4cb85c0059142b57e5ec684899aa9c76b81aa1e0dc61eb4e541ab0ba 0.0s done\n#20 exporting manifest list sha256:a8926fcf0ff3242af4e9ffae8253f4e0f1669feccf6319745e05e86011e95b88 done\n#20 naming to docker.io/ctk-exec/pskracker:07fdda132c89 done\n#20 unpacking to docker.io/ctk-exec/pskracker:07fdda132c89\n#20 unpacking to docker.io/ctk-exec/pskracker:07fdda132c89 1.0s done\n#20 DONE 4.9s",
   "error": null,
   "timed_out": false
  },
- "captures": [
-  {
-   "argv": [
-    "LICENSE",
-    "--help"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": "OSError: [Errno 8] Exec format error: 'LICENSE'"
-  },
-  {
-   "argv": [
-    "README.md",
-    "--help"
-   ],
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": "OSError: [Errno 8] Exec format error: 'README.md'"
-  },
-  {
-   "argv": [
-    "pskracker",
-    "--help"
-   ],
-   "exit_code": 1,
-   "stdout": "\n PSKracker 0.2.1 WiFi Security Auditing Toolkit\n Copyright (c) 2017-2019, soxrok2212 <soxrok2212@gmail.com>\n\n Usage: pskracker <arguments>\n\n Required Arguments:\n\n\t-t, --target\t: Target model number\n\n Optional Arguments:\n\n\t-b, --bssid\t: BSSID of target\n\t-W, --wps\t: Output possible WPS pin(s) only\n\t-G, --guest\t: Output possible guest WPA key(s) only\n\t-s, --serial\t: Serial number\n\t-f, --force\t: Force full output\n\t-h, --help\t: Display help/usage\n\n Example:\n\n pskracker -t <target model> -b <bssid> -s <serial number>\n\n",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": null
-  },
-  {
-   "argv": [
-    "man",
-    "pskracker"
-   ],
-   "exit_code": 16,
-   "stdout": "",
-   "stderr": "No manual entry for pskracker\n",
-   "duration_ms": 1,
-   "truncated": false,
-   "error": null,
-   "source": "man"
-  },
-  {
-   "argv": [
-    "info",
-    "--output=-",
-    "--subnodes",
-    "pskracker"
-   ],
-   "exit_code": 0,
-   "stdout": "",
-   "stderr": "info: Cannot find node '(pskracker)Top'\n",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": null,
-   "source": "info"
-  },
-  {
-   "kind": "batch_summary",
-   "argv": [],
-   "capped": false,
-   "commands_run": 5,
-   "binary": "pskracker",
-   "exit_code": null,
-   "stdout": "",
-   "stderr": "",
-   "duration_ms": 0,
-   "truncated": false,
-   "error": null
-  }
- ],
- "input_fingerprint": null,
+ "captures": [],
+ "input_fingerprint": "9fa9a5c2f8b59596",
  "examples": [],
- "help": {
-  "flags_seen": {
-   "--target": ": Target model number",
-   "-t": ": Target model number",
-   "--bssid": ": BSSID of target",
-   "-b": ": BSSID of target",
-   "--wps": ": Output possible WPS pin(s) only",
-   "-W": ": Output possible WPS pin(s) only",
-   "--guest": ": Output possible guest WPA key(s) only",
-   "-G": ": Output possible guest WPA key(s) only",
-   "--serial": ": Serial number",
-   "-s": ": Serial number",
-   "--force": ": Force full output",
-   "-f": ": Force full output",
-   "--help": ": Display help/usage",
-   "-h": ": Display help/usage"
-  },
-  "values_seen": {},
-  "aliases": {
-   "--target": [
-    "-t"
-   ],
-   "--bssid": [
-    "-b"
-   ],
-   "--wps": [
-    "-W"
-   ],
-   "--guest": [
-    "-G"
-   ],
-   "--serial": [
-    "-s"
-   ],
-   "--force": [
-    "-f"
-   ],
-   "--help": [
-    "-h"
-   ]
-  },
-  "subcommand_flags": {},
-  "subcommands": [],
-  "binary": "pskracker",
-  "ladder_used": "--help",
-  "depth": 2,
-  "capped": false,
-  "text_sha256": "db078f00d9fb199ad19311b19bc98a234f611998d5e3dd89ec3964c693c430fa",
-  "text": "\n PSKracker 0.2.1 WiFi Security Auditing Toolkit\n Copyright (c) 2017-2019, soxrok2212 <soxrok2212@gmail.com>\n\n Usage: pskracker <arguments>\n\n Required Arguments:\n\n\t-t, --target\t: Target model number\n\n Optional Arguments:\n\n\t-b, --bssid\t: BSSID of target\n\t-W, --wps\t: Output possible WPS pin(s) only\n\t-G, --guest\t: Output possible guest WPA key(s) only\n\t-s, --serial\t: Serial number\n\t-f, --force\t: Force full output\n\t-h, --help\t: Display help/usage\n\n Example:\n\n pskracker -t <target model> -b <bssid> -s <serial number>\n\n"
- },
- "validation": {
-  "confirmed": [
-   "--bssid",
-   "--force",
-   "--guest",
-   "--help",
-   "--serial",
-   "--target",
-   "--wps"
-  ],
-  "unconfirmed": [
-   "--encryption",
-   "--mac"
-  ],
-  "help_only": [
-   "-G",
-   "-W",
-   "-b",
-   "-f",
-   "-h",
-   "-s",
-   "-t"
-  ],
-  "mining_coverage": 0.5
- },
- "surface": {
-  "flags": {
-   "--bssid": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": BSSID of target",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-b"
-    ]
+ "skipped_reason": "no_entrypoint",
+ "example_trials": {
+  "tried": 0,
+  "tried_this_wave": 0,
+  "promoted": 0,
+  "results": [],
+  "not_attempted": [
+   {
+    "raw": "pskracker -t nvg599",
+    "source": "readme",
+    "path": "README.md",
+    "line": 52,
+    "reason": "no-input-bound",
+    "token": ""
    },
-   "--encryption": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Security/encryption type",
-    "kind": "option",
-    "first_tag": "0.2",
-    "first_date": "2017-10-07T15:21:00-04:00",
-    "last_tag": "0.2.1",
-    "last_date": "2017-12-03T16:52:47-05:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "README.md"
-   },
-   "--force": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Force full output",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-f"
-    ]
-   },
-   "--guest": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Output possible guest WPA key(s) only",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-G"
-    ]
-   },
-   "--help": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Display help/usage",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-h"
-    ]
-   },
-   "--mac": {
-    "source": "source",
-    "runtime_confirmed": false,
-    "help": "Mac address",
-    "kind": "option",
-    "first_tag": "0.2",
-    "first_date": "2017-10-07T15:21:00-04:00",
-    "last_tag": "0.2.1",
-    "last_date": "2017-12-03T16:52:47-05:00",
-    "live": false,
-    "attribution": "own",
-    "source_path": "README.md"
-   },
-   "--serial": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Serial number",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-s"
-    ]
-   },
-   "--target": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Target model number",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-t"
-    ]
-   },
-   "--wps": {
-    "source": "both",
-    "runtime_confirmed": true,
-    "help": ": Output possible WPS pin(s) only",
-    "kind": "option",
-    "first_tag": "v0.2",
-    "first_date": "2018-09-25T16:20:30-04:00",
-    "last_tag": "v0.3.1",
-    "last_date": "2018-09-25T16:20:30-04:00",
-    "live": true,
-    "attribution": "own",
-    "source_path": "README.md",
-    "aliases": [
-     "-W"
-    ]
+   {
+    "raw": "pskracker -t dpc3941 -b 112233445566",
+    "source": "readme",
+    "path": "README.md",
+    "line": 60,
+    "reason": "no-input-bound",
+    "token": ""
    }
-  },
-  "subcommands": []
+  ]
  },
- "skipped_reason": null,
  "tool": "pskracker",
  "repo": "soxrok2212/PSKracker",
  "head_sha": "07fdda132c8991f8e2cf172229fa4e4e736a9575",
  "analyzer": "exec",
- "analyzer_version": "13",
- "generated_at": "2026-08-13T21:06:29.234919+00:00"
+ "analyzer_version": "14",
+ "generated_at": "2026-08-18T23:06:20.689154+00:00"
 }

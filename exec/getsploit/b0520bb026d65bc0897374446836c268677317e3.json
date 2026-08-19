@@ -1,0 +1,520 @@
+{
+ "build": {
+  "ok": true,
+  "tier": "python",
+  "image_digest": "sha256:ccfaf262950f8f792c1c5ba9ab6761ad3a363e01dc25fb2e26f1135db864e405",
+  "duration_s": 15.85,
+  "log_tail": "#10 9.854 Building wheels for collected packages: getsploit\n#10 9.855   Building wheel for getsploit (pyproject.toml): started\n#10 9.877   Building wheel for getsploit (pyproject.toml): finished with status 'done'\n#10 9.877   Created wheel for getsploit: filename=getsploit-3.0.1-py3-none-any.whl size=25096 sha256=55bb5f4ad2011ee2948e79ba300845f5c1f15a64927c28fea3961fb03706d0fe\n#10 9.877   Stored in directory: /tmp/pip-ephem-wheel-cache-pwfvb8ff/wheels/be/16/c1/367c544384017c548a18cd5b8ec9d158b60362a7ae1a22dff3\n#10 9.878 Successfully built getsploit\n#10 9.903 Installing collected packages: brotli, zstandard, typing-extensions, stream-inflate, pygments, pycryptodome, orjson, mdurl, isal, ijson, idna, hyperframe, hpack, h11, click, certifi, annotated-types, typing-inspection, stream-unzip, pydantic-core, markdown-it-py, httpcore, h2, anyio, rich, pydantic, httpx, vulners, getsploit\n#10 11.33 \n#10 11.33 Successfully installed annotated-types-0.8.0 anyio-4.14.2 brotli-1.2.0 certifi-2026.7.22 click-8.4.2 getsploit-3.0.1 h11-0.16.0 h2-4.4.1 hpack-4.2.0 httpcore-1.0.9 httpx-0.28.1 hyperframe-6.1.0 idna-3.19 ijson-3.5.1 isal-1.8.0 markdown-it-py-4.2.0 mdurl-0.1.2 orjson-3.12.0 pycryptodome-3.23.0 pydantic-2.13.4 pydantic-core-2.46.4 pygments-2.21.0 rich-14.3.4 stream-inflate-0.0.43 stream-unzip-0.0.101 typing-extensions-4.16.0 typing-inspection-0.4.4 vulners-4.2.0 zstandard-0.25.0\n#10 DONE 11.4s\n\n#11 [stage-1  2/10] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/10] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.2s\n\n#13 [stage-1  4/10] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/10] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#14 DONE 0.1s\n\n#15 [stage-1  6/10] RUN chmod -R a+rX /src\n#15 DONE 0.2s\n\n#16 [stage-1  7/10] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#16 DONE 0.0s\n\n#17 [stage-1  8/10] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/10] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#18 DONE 0.0s\n\n#19 [stage-1 10/10] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#19 0.152 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#19 DONE 0.2s\n\n#20 exporting to image\n#20 exporting layers\n#20 exporting layers 1.7s done\n#20 exporting manifest sha256:fb012ed26fa443c3cc534889fefab5e84afb735bb78431b03d5875ff21db8ef8 done\n#20 exporting config sha256:d2d3058b22ad5c96d05c26ee5691809cfc1c1706f90dbbac9d0a836f96dbb244 done\n#20 exporting attestation manifest sha256:b7c572a773e29e2eb1ebedb350c9e994145b94092e5afded672857ae13c079c0 done\n#20 exporting manifest list sha256:ccfaf262950f8f792c1c5ba9ab6761ad3a363e01dc25fb2e26f1135db864e405 done\n#20 naming to docker.io/ctk-exec/getsploit:b0520bb026d6 done\n#20 unpacking to docker.io/ctk-exec/getsploit:b0520bb026d6\n#20 unpacking to docker.io/ctk-exec/getsploit:b0520bb026d6 0.9s done\n#20 DONE 2.6s",
+  "error": null,
+  "timed_out": false
+ },
+ "captures": [
+  {
+   "argv": [
+    "getsploit",
+    "--help"
+   ],
+   "exit_code": 0,
+   "stdout": "Usage: getsploit [OPTIONS] [QUERY]...\n\n  Search and download public exploits from Vulners.\n\nOptions:\n  --version                    Show the version and exit.\n  -j, --json                   Alias for --format json.\n  --format [table|json|jsonl]  Output format.  [default: table]\n  --color [auto|always|never]  Color mode for terminal output.  [default:\n                               auto]\n  -m, --mirror                 Save exploit source files locally.\n  -l, --local                  Search the local database.\n  -u, --update                 Download and rebuild the local database.\n  --status                     Show local database details.\n  -s, --set-key                Store the API key in the legacy key file.\n  -c, --count INTEGER RANGE    [default: 10; 1<=x<=1000]\n  -h, --help                   Show this message and exit.\n",
+   "stderr": "",
+   "duration_ms": 785,
+   "truncated": false,
+   "error": null
+  },
+  {
+   "argv": [
+    "man",
+    "getsploit"
+   ],
+   "exit_code": 16,
+   "stdout": "",
+   "stderr": "No manual entry for getsploit\n",
+   "duration_ms": 1,
+   "truncated": false,
+   "error": null,
+   "source": "man"
+  },
+  {
+   "argv": [
+    "info",
+    "--output=-",
+    "--subnodes",
+    "getsploit"
+   ],
+   "exit_code": 0,
+   "stdout": "",
+   "stderr": "info: No menu item 'getsploit' in node '(dir)Top'\n",
+   "duration_ms": 2,
+   "truncated": false,
+   "error": null,
+   "source": "info"
+  },
+  {
+   "kind": "batch_summary",
+   "argv": [],
+   "capped": false,
+   "commands_run": 3,
+   "binary": "getsploit",
+   "exit_code": null,
+   "stdout": "",
+   "stderr": "",
+   "duration_ms": 0,
+   "truncated": false,
+   "error": null
+  }
+ ],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "getsploit",
+   "source": "pyproject.toml [project.scripts]"
+  }
+ ],
+ "examples": [],
+ "help": {
+  "flags_seen": {
+   "--version": "Show the version and exit.",
+   "--json": "Alias for --format json.",
+   "-j": "Alias for --format json.",
+   "--format": "Output format.  [default: table]",
+   "--color": "Color mode for terminal output.  [default: auto]",
+   "--mirror": "Save exploit source files locally.",
+   "-m": "Save exploit source files locally.",
+   "--local": "Search the local database.",
+   "-l": "Search the local database.",
+   "--update": "Download and rebuild the local database.",
+   "-u": "Download and rebuild the local database.",
+   "--status": "Show local database details.",
+   "--set-key": "Store the API key in the legacy key file.",
+   "-s": "Store the API key in the legacy key file.",
+   "--count": "[default: 10; 1<=x<=1000]",
+   "-c": "[default: 10; 1<=x<=1000]",
+   "--help": "Show this message and exit.",
+   "-h": "Show this message and exit."
+  },
+  "values_seen": {
+   "--format": "[table|json|jsonl]",
+   "--color": "[auto|always|never]"
+  },
+  "aliases": {
+   "--json": [
+    "-j"
+   ],
+   "--mirror": [
+    "-m"
+   ],
+   "--local": [
+    "-l"
+   ],
+   "--update": [
+    "-u"
+   ],
+   "--set-key": [
+    "-s"
+   ],
+   "--count": [
+    "-c"
+   ],
+   "--help": [
+    "-h"
+   ]
+  },
+  "subcommand_flags": {},
+  "subcommands": [],
+  "binary": "getsploit",
+  "ladder_used": "--help",
+  "depth": 2,
+  "capped": false,
+  "text_sha256": "1913282e6035d25dad481480eba91b253ee235d43d5519b4f999ec111b470418",
+  "text": "Usage: getsploit [OPTIONS] [QUERY]...\n\n  Search and download public exploits from Vulners.\n\nOptions:\n  --version                    Show the version and exit.\n  -j, --json                   Alias for --format json.\n  --format [table|json|jsonl]  Output format.  [default: table]\n  --color [auto|always|never]  Color mode for terminal output.  [default:\n                               auto]\n  -m, --mirror                 Save exploit source files locally.\n  -l, --local                  Search the local database.\n  -u, --update                 Download and rebuild the local database.\n  --status                     Show local database details.\n  -s, --set-key                Store the API key in the legacy key file.\n  -c, --count INTEGER RANGE    [default: 10; 1<=x<=1000]\n  -h, --help                   Show this message and exit.\n"
+ },
+ "validation": {
+  "confirmed": [
+   "--color",
+   "--count",
+   "--format",
+   "--json",
+   "--local",
+   "--mirror",
+   "--set-key",
+   "--status",
+   "--update"
+  ],
+  "unconfirmed": [
+   "--api-key",
+   "query"
+  ],
+  "help_only": [
+   "--help",
+   "--version",
+   "-c",
+   "-h",
+   "-j",
+   "-l",
+   "-m",
+   "-s",
+   "-u"
+  ],
+  "mining_coverage": 0.5
+ },
+ "surface": {
+  "flags": {
+   "--api-key": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "Vulners API key",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v2.0.2",
+    "last_date": "2025-09-10T11:20:56+03:00",
+    "live": false,
+    "attribution": "own",
+    "source_path": "getsploit/__init__.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--color": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Color mode for terminal output.  [default: auto]",
+    "kind": "option",
+    "metavar": "[auto|always|never]",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-08-17T19:45:10+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--count": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "[default: 10; 1<=x<=1000]",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-c"
+    ]
+   },
+   "--format": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Output format.  [default: table]",
+    "kind": "option",
+    "metavar": "[table|json|jsonl]",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-08-17T19:45:10+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--help": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show this message and exit.",
+    "aliases": [
+     "-h"
+    ]
+   },
+   "--json": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Alias for --format json.",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-j"
+    ]
+   },
+   "--local": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Search the local database.",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-l"
+    ]
+   },
+   "--mirror": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Save exploit source files locally.",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-m"
+    ]
+   },
+   "--set-key": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Store the API key in the legacy key file.",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-s"
+    ]
+   },
+   "--status": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Show local database details.",
+    "kind": "option",
+    "first_tag": "v3.0.0",
+    "first_date": "2026-08-17T19:45:10+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string"
+   },
+   "--update": {
+    "source": "both",
+    "runtime_confirmed": true,
+    "help": "Download and rebuild the local database.",
+    "kind": "option",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py",
+    "takes_value": true,
+    "value_type": "string",
+    "aliases": [
+     "-u"
+    ]
+   },
+   "--version": {
+    "source": "runtime",
+    "runtime_confirmed": true,
+    "help": "Show the version and exit."
+   },
+   "query": {
+    "source": "source",
+    "runtime_confirmed": false,
+    "help": "",
+    "kind": "positional",
+    "first_tag": "v2.0.2",
+    "first_date": "2025-09-10T11:20:56+03:00",
+    "last_tag": "v3.0.1",
+    "last_date": "2026-08-17T19:57:37+03:00",
+    "live": true,
+    "attribution": "own",
+    "source_path": "src/getsploit/cli.py"
+   }
+  },
+  "subcommands": []
+ },
+ "skipped_reason": null,
+ "example_trials": {
+  "tried": 3,
+  "tried_this_wave": 3,
+  "promoted": 0,
+  "results": [
+   {
+    "id": "t-net-9e928ce2",
+    "argv": [
+     "getsploit",
+     "-u",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "printed-usage",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 2,
+    "output_bytes": 138
+   },
+   {
+    "id": "t-net-b7c4a27e",
+    "argv": [
+     "getsploit",
+     "http://dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 128
+   },
+   {
+    "id": "t-net-26c6fd3c",
+    "argv": [
+     "getsploit",
+     "dvwa"
+    ],
+    "source": "surface",
+    "path": "surface",
+    "line": 0,
+    "grade": "rejected",
+    "reason": "failed-with-error-output",
+    "targets": [
+     "dvwa"
+    ],
+    "skipped_reason": null,
+    "exit_code": 1,
+    "output_bytes": 128
+   }
+  ],
+  "not_attempted": [
+   {
+    "raw": "getsploit CVE-2024-3094",
+    "source": "readme",
+    "path": "README.md",
+    "line": 96,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit \"wordpress 4.7 remote code execution\" --count 25",
+    "source": "readme",
+    "path": "README.md",
+    "line": 97,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit 'title:wordpress AND description:\"code execution\"'",
+    "source": "readme",
+    "path": "README.md",
+    "line": 104,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --update                 # download the archive and build the FTS5 index",
+    "source": "readme",
+    "path": "README.md",
+    "line": 113,
+    "reason": "needs-network-or-interactive",
+    "token": "--update"
+   },
+   {
+    "raw": "getsploit --status                 # where it is, how big, how many documents",
+    "source": "readme",
+    "path": "README.md",
+    "line": 114,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --local wordpress 4.7",
+    "source": "readme",
+    "path": "README.md",
+    "line": 115,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --local 'title:eternalblue AND NOT description:metasploit'",
+    "source": "readme",
+    "path": "README.md",
+    "line": 125,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --mirror wordpress 4.7",
+    "source": "readme",
+    "path": "README.md",
+    "line": 134,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --local --mirror eternalblue",
+    "source": "readme",
+    "path": "README.md",
+    "line": 135,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --format json CVE-2024-3094",
+    "source": "readme",
+    "path": "README.md",
+    "line": 147,
+    "reason": "no-input-bound",
+    "token": ""
+   },
+   {
+    "raw": "getsploit --color never query",
+    "source": "readme",
+    "path": "README.md",
+    "line": 158,
+    "reason": "no-input-bound",
+    "token": ""
+   }
+  ]
+ },
+ "tool": "getsploit",
+ "repo": "vulnersCom/getsploit",
+ "head_sha": "b0520bb026d65bc0897374446836c268677317e3",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-19T00:52:27.689093+00:00"
+}

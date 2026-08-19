@@ -1,0 +1,26 @@
+{
+ "build": {
+  "ok": false,
+  "tier": "rust",
+  "image_digest": null,
+  "duration_s": 32.58,
+  "log_tail": "#9 16.16 Setting up libobjc-12-dev:arm64 (12.2.0-14+deb12u1) ...\n#9 16.16 Setting up xml-core (0.18+nmu1) ...\n#9 16.23 Setting up libclang-14-dev (1:14.0.6-12) ...\n#9 16.24 Setting up cmake (3.25.1-1) ...\n#9 16.24 Setting up clang-14 (1:14.0.6-12) ...\n#9 16.24 Setting up libclang-dev (1:14.0-55.7~deb12u1) ...\n#9 16.24 Setting up clang (1:14.0-55.7~deb12u1) ...\n#9 16.25 Processing triggers for libc-bin (2.36-9+deb12u14) ...\n#9 16.26 Processing triggers for sgml-base (1.31) ...\n#9 16.27 Setting up libdbus-1-dev:arm64 (1.14.10-1~deb12u1) ...\n#9 16.34 Setting up libpcap0.8-dev:arm64 (1.10.3-1) ...\n#9 16.34 Setting up libpcap-dev:arm64 (1.10.3-1) ...\n#9 DONE 16.6s\n\n#10 [build 3/6] WORKDIR /src\n#10 DONE 0.0s\n\n#11 [build 4/6] COPY . .\n#11 DONE 0.0s\n\n#12 [build 5/6] RUN cargo build --release\n#12 0.132 error: failed to load manifest for workspace member `/src/libs/libwifi`\n#12 0.132 referenced by workspace at `/src/Cargo.toml`\n#12 0.132 \n#12 0.132 Caused by:\n#12 0.132   failed to read `/src/libs/libwifi/Cargo.toml`\n#12 0.132 \n#12 0.132 Caused by:\n#12 0.132   No such file or directory (os error 2)\n#12 ERROR: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101\n------\n > [build 5/6] RUN cargo build --release:\n0.132 error: failed to load manifest for workspace member `/src/libs/libwifi`\n0.132 referenced by workspace at `/src/Cargo.toml`\n0.132 \n0.132 Caused by:\n0.132   failed to read `/src/libs/libwifi/Cargo.toml`\n0.132 \n0.132 Caused by:\n0.132   No such file or directory (os error 2)\n------\nDockerfile.ctk:8\n--------------------\n   6 |     WORKDIR /src\n   7 |     COPY . .\n   8 | >>> RUN cargo build --release\n   9 |     RUN mkdir -p /out && find target/release -maxdepth 1 -type f -perm -111 -exec cp {} /out/ \\;\n  10 |     \n--------------------\nERROR: failed to build: failed to solve: process \"/bin/sh -c cargo build --release\" did not complete successfully: exit code: 101",
+  "error": "docker build failed",
+  "timed_out": false
+ },
+ "captures": [],
+ "input_fingerprint": null,
+ "declared_commands": [
+  {
+   "name": "angryoxide",
+   "source": "Cargo.toml [[bin]]"
+  }
+ ],
+ "skipped_reason": "docker build failed",
+ "tool": "AngryOxide",
+ "repo": "Ragnt/AngryOxide",
+ "head_sha": "3b9c9c330791fb81ad9cd57487eb14daf5a0b349",
+ "analyzer": "exec",
+ "analyzer_version": "14",
+ "generated_at": "2026-08-19T00:14:05.239177+00:00"
+}
