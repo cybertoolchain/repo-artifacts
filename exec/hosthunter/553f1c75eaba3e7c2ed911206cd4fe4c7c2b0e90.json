@@ -2,9 +2,9 @@
  "build": {
   "ok": true,
   "tier": "python_script",
-  "image_digest": "sha256:ccfc93e5bac9b13d081fb9175fbfe1922531decbd508ea8132b866852b577e15",
-  "duration_s": 9.02,
-  "log_tail": "#11 5.062 Downloading jsonschema-4.26.0-py3-none-any.whl (90 kB)\n#11 5.084 Downloading attrs-26.1.0-py3-none-any.whl (67 kB)\n#11 5.107 Downloading jsonschema_specifications-2025.9.1-py3-none-any.whl (18 kB)\n#11 5.129 Downloading referencing-0.37.0-py3-none-any.whl (26 kB)\n#11 5.152 Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (368 kB)\n#11 5.181 Downloading pycparser-3.0-py3-none-any.whl (48 kB)\n#11 5.240 Installing collected packages: urllib3, typing-extensions, rpds-py, pycparser, idna, fake_useragent, charset_normalizer, certifi, attrs, requests, referencing, cffi, jsonschema-specifications, cryptography, pyOpenSSL, jsonschema, validator_collection\n#11 5.813 \n#11 5.814 Successfully installed attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 cryptography-50.0.0 fake_useragent-2.2.0 idna-3.19 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 pyOpenSSL-26.4.0 pycparser-3.0 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 typing-extensions-4.16.0 urllib3-2.7.0 validator_collection-1.5.0\n#11 DONE 5.9s\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.0s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.117 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 0.9s done\n#21 exporting manifest sha256:5ac5fba9609ac0abf02a10610788e31a784aa7fe993f8bd5491ecead6b2a64e5 done\n#21 exporting config sha256:0f774b70d7ee601bef29ff2220bda37a097fc28b03dccf1ae32a3a53b33f968b done\n#21 exporting attestation manifest sha256:24e6d218f47f531c0ac8d637413201357a28af12074f6fa60c5cd7c314a434a6 0.0s done\n#21 exporting manifest list sha256:ccfc93e5bac9b13d081fb9175fbfe1922531decbd508ea8132b866852b577e15 done\n#21 naming to docker.io/ctk-exec/hosthunter:553f1c75eaba done\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba 0.3s done\n#21 DONE 1.3s",
+  "image_digest": "sha256:53ddf0927a5fb6f0860a68f75d1e74e6978bac42a955d9dadaac1d93c1ca01ec",
+  "duration_s": 19.56,
+  "log_tail": "#10 13.73 Downloading rpds_py-2026.6.3-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (368 kB)\n#10 14.25 Downloading pycparser-3.0-py3-none-any.whl (48 kB)\n#10 14.34 Installing collected packages: urllib3, typing-extensions, rpds-py, pycparser, idna, fake_useragent, charset_normalizer, certifi, attrs, requests, referencing, cffi, jsonschema-specifications, cryptography, pyOpenSSL, jsonschema, validator_collection\n#10 14.99 \n#10 14.99 Successfully installed attrs-26.1.0 certifi-2026.7.22 cffi-2.1.1 charset_normalizer-3.5.1 cryptography-50.0.0 fake_useragent-2.2.0 idna-3.19 jsonschema-4.26.0 jsonschema-specifications-2025.9.1 pyOpenSSL-26.4.0 pycparser-3.0 referencing-0.37.0 requests-2.34.2 rpds-py-2026.6.3 typing-extensions-4.16.0 urllib3-2.7.0 validator_collection-1.5.0\n#10 DONE 15.1s\n\n#11 [stage-1  2/11] RUN apt-get update && apt-get install -y --no-install-recommends python3 man-db groff-base texinfo info less jq libxml2-utils sqlite3 bsdextrautils  && rm -rf /var/lib/apt/lists/*\n#11 CACHED\n\n#12 [stage-1  3/11] COPY --from=build /opt/venv /opt/venv\n#12 DONE 0.1s\n\n#13 [stage-1  4/11] COPY --from=build /src /src\n#13 DONE 0.1s\n\n#14 [stage-1  5/11] WORKDIR /src\n#14 DONE 0.0s\n\n#15 [stage-1  6/11] RUN for f in /src/*.py; do       [ -f \"$f\" ] || continue;       b=$(basename \"$f\" .py);       case \"$b\" in setup|conftest|__init__) continue;; esac;       command -v \"$b\" >/dev/null 2>&1 && continue;       printf '#!/bin/sh\\nexec /opt/venv/bin/python %s \"$@\"\\n' \"$f\"         > \"/usr/local/bin/$b\" && chmod a+rx \"/usr/local/bin/$b\";     done\n#15 DONE 0.2s\n\n#16 [stage-1  7/11] RUN chmod -R a+rX /src\n#16 DONE 0.2s\n\n#17 [stage-1  8/11] COPY .ctk-agent/agent.py /opt/ctk/agent.py\n#17 DONE 0.0s\n\n#18 [stage-1  9/11] COPY .ctk-agent/helptext.py /opt/ctk/helptext.py\n#18 DONE 0.0s\n\n#19 [stage-1 10/11] COPY .ctk-fixtures/ /opt/ctk/fixtures/\n#19 DONE 0.0s\n\n#20 [stage-1 11/11] RUN useradd -u 65532 -m -s /usr/sbin/nologin ctk || true\n#20 0.170 useradd warning: ctk's uid 65532 outside of the UID_MIN 1000 and UID_MAX 60000 range.\n#20 DONE 0.2s\n\n#21 exporting to image\n#21 exporting layers\n#21 exporting layers 1.0s done\n#21 exporting manifest sha256:7385475847ce6558b71fca0445c20252302d89bab1fc5bb01a0eb53986c406b2 0.1s done\n#21 exporting config sha256:df53e750f3c67f99ecb43f6d72fb26d02480576532bb3d04a76616b538958185 0.0s done\n#21 exporting attestation manifest sha256:8a8e617f83cfe5bcfa77ef84ec51a70d325d258b71dafb5a0dd3e31f9797ec8f 0.0s done\n#21 exporting manifest list sha256:53ddf0927a5fb6f0860a68f75d1e74e6978bac42a955d9dadaac1d93c1ca01ec\n#21 exporting manifest list sha256:53ddf0927a5fb6f0860a68f75d1e74e6978bac42a955d9dadaac1d93c1ca01ec 0.0s done\n#21 naming to docker.io/ctk-exec/hosthunter:553f1c75eaba done\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba\n#21 unpacking to docker.io/ctk-exec/hosthunter:553f1c75eaba 0.9s done\n#21 DONE 2.0s",
   "error": null,
   "timed_out": false
  },
@@ -17,7 +17,7 @@
    "exit_code": 0,
    "stdout": "usage: hosthunter.py [-h] [-f FORMAT] [-o OUTPUT] [-t TARGET] [-g GRAB] [-v]\n                     [-V] [-d]\n                     [targets]\n\n[?] HostHunter v2.0 - Help Page\n\npositional arguments:\n  targets               Sets the path of the target IPs file.\n\noptions:\n  -h, --help            show this help message and exit\n  -f FORMAT, --format FORMAT\n                        Choose between .CSV, .TXT, Nessus output file formats.\n  -o OUTPUT, --output OUTPUT\n                        Sets the path of the output file.\n  -t TARGET, --target TARGET\n                        Hunt a Single IP.\n  -g GRAB, --grab GRAB  Choose which SSL ports to actively scan. Default\n                        ports: 21/tcp, 25/tcp, 443/tcp, 993/tcp, 8443/tcp\n  -v, --verify          Attempts to resolve IP Address\n  -V, --version         Displays the current version.\n  -d, --debug           Displays additional output and debugging information.\n\nAuthor: Andreas Georgiou (@superhedgy)\n",
    "stderr": "",
-   "duration_ms": 378,
+   "duration_ms": 474,
    "truncated": false,
    "error": null
   },
@@ -44,7 +44,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "info: No menu item 'hosthunter' in node '(dir)Top'\n",
-   "duration_ms": 1,
+   "duration_ms": 2,
    "truncated": false,
    "error": null,
    "source": "info"
@@ -58,7 +58,7 @@
    "exit_code": 0,
    "stdout": "",
    "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\nRefactoringTool: Skipping optional fixer: buffer\nRefactoringTool: Skipping optional fixer: idioms\nRefactoringTool: Skipping optional fixer: set_literal\nRefactoringTool: Skipping optional fixer: ws_comma\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/settings.py\nRefactoringTool: Files that need to be modified:\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/settings.py\n",
-   "duration_ms": 237,
+   "duration_ms": 316,
    "truncated": false,
    "error": null,
    "kind": "scenario",
@@ -92,7 +92,7 @@
    "stdout": "",
    "stderr": "/usr/local/bin/2to3:3: DeprecationWarning: lib2to3 package is deprecated and may not be able to parse Python 3.10+\n  from lib2to3.main import main\nRefactoringTool: Skipping optional fixer: buffer\nRefactoringTool: Skipping optional fixer: idioms\nRefactoringTool: Skipping optional fixer: set_literal\nRefactoringTool: Skipping optional fixer: ws_comma\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: No changes to /opt/ctk/fixtures/source-corpus/app/settings.py\nRefactoringTool: Files that need to be modified:\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/db.py\nRefactoringTool: /opt/ctk/fixtures/source-corpus/app/settings.py\n",
    "exit_code": 0,
-   "duration_ms": 237,
+   "duration_ms": 316,
    "truncated": false,
    "error": null
   }
@@ -641,5 +641,5 @@
  "head_sha": "553f1c75eaba3e7c2ed911206cd4fe4c7c2b0e90",
  "analyzer": "exec",
  "analyzer_version": "14",
- "generated_at": "2026-08-18T23:12:54.819842+00:00"
+ "generated_at": "2026-08-20T13:26:41.276471+00:00"
 }
